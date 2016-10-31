@@ -22,8 +22,7 @@ FuncTion's main website is: http://www.di.ens.fr/~urban/FuncTion.html
 
 ## Author
 
-	Caterina Urban
-	ETH Zürich, caterina.urban@inf.ethz.ch 
+	Caterina Urban, ETH Zürich, caterina.urban@inf.ethz.ch 
 	
 ## Contributors
 
@@ -73,15 +72,11 @@ FuncTion requires the following applications and libraries:
 
 The command-line analyzer can be invoked using the following call pattern:
 
-	```
 	./function <file> 
-	```
 
 where <file> is the path to the C file to be analyzed for termination of the function main(). Alternatively, the following call pattern can be used for guarantee properties or recurrence properties:
 
-	```
 	./function <file> [-guarantee <property> | -recurrence <property]
-	```
 
 where <property> is the path to the file containing the guarantee or recurrence property.
 
@@ -90,7 +85,6 @@ The analyzer first performs a forward reachability analysis, and then a backward
 The following command-line options are recognized
 (showing their default value):
 
-	```
 	 -main main                         set the analyzer entry point (defaults to main)
 	 -domain boxes|octagons|polyhedra   set the abstract domain (defaults to boxes)
 	 -joinfwd 2                         set the widening delay in forward analysis
@@ -98,6 +92,5 @@ The following command-line options are recognized
 	 -meetbwd 2							set the dual widening delay in backward analysis
 	 -ordinals 2                        set the maximum ordinal value for the ranking functions
 	 -refine							reduces the backward analysis to the reachabile states
-	 ```
 
 The analyzer answers TRUE in case it can successfully prove termination or the guarantee or recurrence property. Otherwise, it answers UNKNOWN.
