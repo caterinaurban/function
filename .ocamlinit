@@ -1,0 +1,20 @@
+#require "core";;
+#require "apron";;
+#require "gmp";;
+#require "oUnit";;
+
+(* Added by OPAM. *)
+let () =
+  try Topdirs.dir_directory (Sys.getenv "OCAML_TOPLEVEL_PATH")
+  with Not_found -> ()
+;;
+
+#directory "_build/utils"
+#directory "_build/domains"
+#directory "_build/frontend"
+#directory "_build/main"
+
+#load_rec "polkaMPQ.cma"
+#load_rec "boxMPQ.cma"
+#load_rec "octD.cma"
+

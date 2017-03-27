@@ -10,3 +10,7 @@ frontend/PropertyLexer.ml
 frontend/PropertyParser.ml
 frontend/PropertyParser.mli
 frontend/Parser.conflicts
+examples/**
+_build/**
+*.byte
+*.native
