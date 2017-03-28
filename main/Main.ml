@@ -76,6 +76,8 @@ let parse_args () =
       ordinals := true; Ordinals.max := int_of_string x; doit r
     | "-recurrence"::x::r -> (* recurrence analysis *)
       analysis := "recurrence"; property := x; doit r
+    | "-actl"::x::r -> (* recurrence analysis *)
+      analysis := "actl"; property := x; doit r
     | "-refine"::r -> (* refine in backward analysis *)
       Iterator.refine := true; doit r
     | "-retrybwd"::x::r ->
@@ -234,6 +236,36 @@ let recurrence () =
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in run_analysis (analysis_function property) program ()
 
+
+module ForwardBoxes = ACTL.ForwardIterator(Numerical.B)
+module ACTLBoxes = ACTL.ACTLIterator(DecisionTree.TSAB)
+    
+let actl () =
+  if !filename = "" then raise (Invalid_argument "No Source File Specified");
+  if !property = "" then raise (Invalid_argument "No Property File Specified");
+  let sources = parseFile !filename in
+  let property = parseProperty !property in
+  let (prog, property) =
+    ItoA.prog_itoa ~property:(!main, property) sources in
+  let annotatedProperty =
+    match property with
+    | None -> raise (Invalid_argument "Unknown Property")
+    | Some property -> property
+  in
+  if not !minimal then
+    begin
+      Format.fprintf !fmt "\nAbstract Syntax:\n";
+      AbstractSyntax.prog_print !fmt prog;
+      Format.fprintf !fmt "\nProperty: ";
+      AbstractSyntax.property_print !fmt annotatedProperty;
+    end;
+  let program = ACTL.program_of_prog prog !main in
+  let property = fst (AbstractSyntax.StringMap.find "" annotatedProperty) in
+  let formula = ACTL.ACTL_atomic property in
+  let _ = ACTLBoxes.compute program formula in
+  ()
+
+
 (*Main entry point for application*)
 let doit () =
   parse_args ();
@@ -241,6 +273,7 @@ let doit () =
   | "termination" -> termination ()
   | "guarantee" -> guarantee ()
   | "recurrence" -> recurrence ()
+  | "actl" -> actl ()
   | _ -> raise (Invalid_argument "Unknown Analysis")
 
 let _ = doit () 
