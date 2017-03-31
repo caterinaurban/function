@@ -76,7 +76,7 @@ let parse_args () =
       ordinals := true; Ordinals.max := int_of_string x; doit r
     | "-recurrence"::x::r -> (* recurrence analysis *)
       analysis := "recurrence"; property := x; doit r
-    | "-actl"::x::r -> (* recurrence analysis *)
+    | "-actl"::x::r -> (* ACTL analysis *)
       analysis := "actl"; property := x; doit r
     | "-refine"::r -> (* refine in backward analysis *)
       Iterator.refine := true; doit r
