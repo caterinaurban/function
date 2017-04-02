@@ -1,0 +1,16 @@
+*.o
+*.cmi
+*.cmx
+function
+depend
+frontend/Lexer.ml
+frontend/Parser.ml
+frontend/Parser.mli
+frontend/PropertyLexer.ml
+frontend/PropertyParser.ml
+frontend/PropertyParser.mli
+frontend/Parser.conflicts
+examples/**
+_build/**
+*.byte
+*.native
