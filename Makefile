@@ -85,7 +85,6 @@ TSTMLFILES = \
   tests/TestCommon.ml \
   tests/TerminationBoxesTest.ml \
   tests/TerminationPolyhedraTest.ml \
-  tests/TerminationPolyhedraOrdinalsSvBenchTest.ml \
   tests/Test.ml \
 
 CMOFILES = $(MLFILES:%.ml=%.cmo)
