@@ -22,10 +22,11 @@ FuncTion's main website is: http://www.di.ens.fr/~urban/FuncTion.html
 
 ## Author
 
-	Caterina Urban, ETH Zürich, caterina.urban@inf.ethz.ch 
+	Caterina Urban, ETH Zurich, caterina.urban@inf.ethz.ch 
 	
 ## Contributors
 
+	Samuel Ueltschi, ETH Zurich
 	Nathanaël Courant, École Normale Supérieure
 	
 # Installation
@@ -89,8 +90,9 @@ The following command-line options are recognized
 	 -domain boxes|octagons|polyhedra   set the abstract domain (defaults to boxes)
 	 -joinfwd 2                         set the widening delay in forward analysis
 	 -joinbwd 2                         set the widening delay in backward analysis
-	 -meetbwd 2							set the dual widening delay in backward analysis
+	 -meetbwd 2			    set the dual widening delay in backward analysis
 	 -ordinals 2                        set the maximum ordinal value for the ranking functions
-	 -refine							reduces the backward analysis to the reachabile states
+	 -refine			    reduces the backward analysis to the reachabile states
 
-The analyzer answers TRUE in case it can successfully prove termination or the guarantee or recurrence property. Otherwise, it answers UNKNOWN.
+The analyzer answers TRUE in case it can successfully prove termination or the guarantee or recurrence property. 
+Otherwise, it answers UNKNOWN.
