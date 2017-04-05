@@ -33,10 +33,14 @@ let parseFile filename =
     Printf.eprintf "Parse Error (Invalid Syntax) near %s\n"
       (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
     failwith "Parse Error"
-  | Failure "lexing: empty token" ->
-    Printf.eprintf "Parse Error (Invalid Token) near %s\n"
-      (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
-    failwith "Parse Error"
+  | Failure e ->
+    if e == "lexing: empty token" then 
+      begin
+        Printf.eprintf "Parse Error (Invalid Token) near %s\n" (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+        failwith "Parse Error"
+      end 
+    else
+      failwith e
 
 let parseProperty filename =
   let f = open_in filename in
@@ -51,10 +55,14 @@ let parseProperty filename =
     Printf.eprintf "Parse Error (Invalid Syntax) near %s\n"
       (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
     failwith "Parse Error"
-  | Failure "lexing: empty token" ->
-    Printf.eprintf "Parse Error (Invalid Token) near %s\n"
-      (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
-    failwith "Parse Error"
+  | Failure e ->
+    if e == "lexing: empty token" then 
+      begin
+        Printf.eprintf "Parse Error (Invalid Token) near %s\n" (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+        failwith "Parse Error"
+      end 
+    else
+      failwith e
 
 let parse_args () =
   let rec doit args =
@@ -237,7 +245,6 @@ let recurrence () =
   in run_analysis (analysis_function property) program ()
 
 
-module ForwardBoxes = ACTL.ForwardIterator(Numerical.B)
 module ACTLBoxes = ACTL.ACTLIterator(DecisionTree.TSAB)
     
 let actl () =
@@ -261,7 +268,8 @@ let actl () =
     end;
   let program = ACTL.program_of_prog prog !main in
   let property = fst (AbstractSyntax.StringMap.find "" annotatedProperty) in
-  let formula = ACTL.ACTL_atomic property in
+  let formula = ACTL.ACTL_next (ACTL.ACTL_atomic property) in
+  (* let formula = ACTL.ACTL_atomic property in *)
   let _ = ACTLBoxes.compute program formula in
   ()
 

@@ -16,6 +16,7 @@ type formula =
 
 module InvMap = Map.Make(struct type t=label let compare=compare end)
 
+(* Bundle commonly used values (AST, Apron env. variable list) to one struct*)
 type program = {
   environment: Apron.Environment.t;
   variables: AbstractSyntax.var list;
@@ -37,11 +38,11 @@ let labels_of_program program =
   (blockLabels program.globalBlock) @ (blockLabels program.mainFunction.funcBody) 
 
 
+(* get label at start of block *)
 let block_label block = 
   match block with
   | A_empty l -> l
   | A_block (l,_,_) -> l
-
 
 
 let program_of_prog (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.key) : program =
@@ -61,79 +62,6 @@ let program_of_prog (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.
     }
 
 
-module ForwardIterator(B: PARTITION) = struct
-
-  module B = B
-
-  let print fmt m = InvMap.iter (fun l a -> Format.fprintf fmt "%a: %a\n" label_print l B.print a) m
-
-  let compute (program : program) : B.t InvMap.t =
-    let invMap = ref InvMap.empty in
-    let addFwdInv l (a:B.t) = invMap := InvMap.add l a !invMap in
-    let rec fwdStm (p:B.t) (s:stmt) : B.t =
-      match s with
-      | A_label _ -> p
-      | A_return -> B.bot program.environment program.variables
-      | A_assign ((l,_),(e,_)) -> B.fwdAssign p (l,e)
-      | A_assert (b,_) -> B.filter p b
-      | A_if ((b,ba),s1,s2) ->
-        let p1 = fwdBlk (B.filter p b) s1 in
-        let p2 = fwdBlk (B.filter p (fst (negBExp (b,ba)))) s2 in
-        B.join p1 p2
-      | A_while (l,(b,ba),s) ->
-        let rec aux i p2 n =
-          let i' = B.join p p2 in
-          if !tracefwd && not !minimal then
-            begin
-              Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
-              Format.fprintf !fmt "p: %a\n" B.print p;
-              Format.fprintf !fmt "i: %a\n" B.print i;
-              Format.fprintf !fmt "p2: %a\n" B.print p2;
-              Format.fprintf !fmt "i': %a\n" B.print i'
-            end;
-          if B.isLeq i' i then i
-          else
-            let i'' = if n <= !joinfwd then i' else B.widen i i' in
-            if !tracefwd && not !minimal then Format.fprintf !fmt "i'': %a\n" B.print i'';
-            aux i'' (fwdBlk (B.filter i'' b) s) (n+1)
-        in
-        let i = B.bot program.environment program.variables in
-        let p2 = fwdBlk (B.filter i b) s in
-        let p = aux i p2 1 in
-        addFwdInv l p;
-        B.filter p (fst (negBExp (b,ba)))
-      | A_call (f,ss) -> raise (Invalid_argument "fwdStm:A_call")
-      | A_recall (f,ss) -> raise (Invalid_argument "fwdStm:A_recall")
-    and fwdBlk (p:B.t) (b:block) : B.t =
-      match b with
-      | A_empty l ->
-        if !tracefwd && not !minimal then Format.fprintf !fmt "### %a ###: %a\n" label_print l B.print p;
-        addFwdInv l p; 
-        p
-      | A_block (l,(s,_),b) ->
-        if !tracefwd && not !minimal then Format.fprintf !fmt "### %a ###: %a\n" label_print l B.print p;
-        addFwdInv l p; 
-        fwdBlk (fwdStm p s) b
-    in
-    if !tracefwd && not !minimal then Format.fprintf !fmt "\nForward Analysis Trace:\n";
-
-    let startfwd = Sys.time () in
-    let top = B.top program.environment program.variables in
-    let pGlobal = fwdBlk top program.globalBlock in
-    let _ = fwdBlk pGlobal program.mainFunction.funcBody in
-    let stopfwd = Sys.time () in
-    if not !minimal then
-      begin
-        if !timefwd then
-          Format.fprintf !fmt "\nForward Analysis (Time: %f s):\n" (stopfwd-.startfwd)
-        else
-          Format.fprintf !fmt "\nForward Analysis:\n";
-        print !fmt !invMap;
-      end;
-    !invMap
-
-end
-
 module AtomicIterator(D: RANKING_FUNCTION) = struct
 
   (* 
@@ -151,38 +79,42 @@ end
 
 module NextIterator(D: RANKING_FUNCTION) = struct
 
-  let compute (program:program) (property:bExp) (fp:D.t InvMap.t) : D.t InvMap.t =
-    let bot = D.bot program.environment program.variables in
-    let rec bwd (b:block) invMap =
+  let compute (program:program) (fp:D.t InvMap.t) : D.t InvMap.t =
+    let invMap = ref InvMap.empty in
+    let addInv label state = invMap := InvMap.add label state !invMap in
+    let rec aux (b:block) (nextOuterState:D.t) ()  =
       match b with 
-      | A_empty l -> InvMap.add l bot invMap
+      | A_empty l -> 
+        addInv l nextOuterState
       | A_block (blockLabel,(stmt,_),nextBlock) -> 
         let nextBlockLabel = block_label nextBlock in
-        let nextP = InvMap.find nextBlockLabel invMap in
+        let nextBlockState = InvMap.find nextBlockLabel fp in
+        aux nextBlock nextOuterState ();
         match stmt with
         | A_if ((b,ba), bIf, bElse) -> 
-          let p1 = D.filter (InvMap.find (block_label bIf) invMap) b in
-          let p2 = D.filter (InvMap.find (block_label bElse) invMap) (fst (negBExp (b,ba))) in
-          let p = D.join APPROXIMATION p1 p2 in
-          InvMap.add blockLabel p invMap
+          let sIf = D.filter (InvMap.find (block_label bIf) fp) b in
+          let sElse = D.filter (InvMap.find (block_label bElse) fp) (fst (negBExp (b,ba))) in
+          let s = D.join APPROXIMATION sIf sElse in
+          addInv blockLabel s;
+          aux bElse nextBlockState ();
+          aux bIf nextBlockState ()
         | A_while (whileLabel,(b,ba),whileBlock) -> 
-          let p1 = D.filter (InvMap.find (block_label whileBlock) invMap) b in
-          let p2 = D.filter (InvMap.find nextBlockLabel invMap) (fst (negBExp (b,ba))) in
-          let p = D.join APPROXIMATION p1 p2 in
-          InvMap.add whileLabel p (InvMap.add blockLabel p invMap) (* add this to both the block and the while label*)
+          let blockState = InvMap.find blockLabel fp in
+          let sFall = D.filter (InvMap.find (block_label whileBlock) fp) b in
+          let sJump = D.filter nextBlockState (fst (negBExp (b,ba))) in
+          let s = D.join APPROXIMATION sFall sJump in
+          addInv blockLabel s;
+          aux whileBlock blockState ();
         | A_assign ((l,_),(e,_)) -> 
-          let p = D.bwdAssign nextP (l,e) in
-          InvMap.add blockLabel p invMap
-        | _ -> InvMap.add blockLabel nextP invMap
+          let s = D.bwdAssign nextBlockState (l,e) in
+          addInv blockLabel s
+        | _ -> 
+          addInv blockLabel nextBlockState
     in
-    bwd program.mainFunction.funcBody fp
-
+    let bot = D.bot program.environment program.variables in
+    aux program.mainFunction.funcBody bot ();
+    !invMap
 end
-
-
-
-
-
 
 
 module FutureIterator(D: RANKING_FUNCTION) = struct
@@ -281,9 +213,9 @@ end
 
 module ACTLIterator(D: RANKING_FUNCTION) = struct
 
-  module ForwardIteratorB = ForwardIterator(D.B)
   module AtomicIteratorD = AtomicIterator(D)
   module FutureIteratorD = FutureIterator(D)
+  module NextIteratorD = NextIterator(D)
 
   let printForwardInvMap fmt m = InvMap.iter (fun l a -> Format.fprintf fmt "%a: %a\n" label_print l D.B.print a) m
 
@@ -294,11 +226,13 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
       InvMap.iter (fun l a -> Format.fprintf fmt "%a: %a\n" label_print l D.print a) m
 
   let compute (program:program) (formula:formula) : D.t InvMap.t = 
-    (*let fwdInvMap = ForwardIteratorB.compute program in*)
     let bwdInvMap = 
       match formula with
       | ACTL_atomic property -> 
         AtomicIteratorD.compute program property
+      | ACTL_next (ACTL_atomic property) -> 
+        let invMap = AtomicIteratorD.compute program property in
+        NextIteratorD.compute program invMap
       | ACTL_future property -> 
         FutureIteratorD.compute program property
       | _ -> raise (Invalid_argument "ACTL formula not yet suppoerted")
