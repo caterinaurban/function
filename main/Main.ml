@@ -42,6 +42,25 @@ let parseFile filename =
     else
       failwith e
 
+
+let parsePropertyString str =
+  let lex = Lexing.from_string str in
+  try
+    PropertyParser.file PropertyLexer.start lex 
+  with
+  | PropertyParser.Error ->
+    Printf.eprintf "Parse Error (Invalid Syntax) near %s\n" (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+    failwith "Parse Error"
+  | Failure e ->
+    if e == "lexing: empty token" then 
+      begin
+        Printf.eprintf "Parse Error (Invalid Token) near %s\n" (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+        failwith "Parse Error"
+      end 
+    else
+      failwith e
+
+
 let parseProperty filename =
   let f = open_in filename in
   let lex = Lexing.from_channel f in
@@ -51,7 +70,7 @@ let parseProperty filename =
     let r = PropertyParser.file PropertyLexer.start lex in
     close_in f; r
   with
-  | Parser.Error ->
+  | PropertyParser.Error ->
     Printf.eprintf "Parse Error (Invalid Syntax) near %s\n"
       (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
     failwith "Parse Error"
@@ -63,6 +82,31 @@ let parseProperty filename =
       end 
     else
       failwith e
+
+
+let parseCTLProperty filename =
+  let f = open_in filename in
+  let lex = Lexing.from_channel f in
+  try
+    lex.Lexing.lex_curr_p <- { lex.Lexing.lex_curr_p with Lexing.pos_fname = filename; };
+    let res = CTLPropertyParser.prog CTLPropertyLexer.read lex in
+    close_in f; 
+    CTLProperty.map (fun p -> fst (parsePropertyString p)) res 
+  with
+  | CTLPropertyParser.Error->
+    Printf.eprintf "Parse Error (Invalid Syntax) near %s\n" 
+      (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+    failwith "Parse Error"
+  | Failure e ->
+    if e == "lexing: empty token" then 
+      begin
+        Printf.eprintf "Parse Error (Invalid Token) near %s\n" 
+          (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+        failwith "Parse Error"
+      end 
+    else
+      failwith e
+
 
 let parse_args () =
   let rec doit args =
@@ -250,26 +294,13 @@ module ACTLBoxes = ACTL.ACTLIterator(DecisionTree.TSAB)
 let actl () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property File Specified");
-  let sources = parseFile !filename in
-  let property = parseProperty !property in
-  let (prog, property) =
-    ItoA.prog_itoa ~property:(!main, property) sources in
-  let annotatedProperty =
-    match property with
-    | None -> raise (Invalid_argument "Unknown Property")
-    | Some property -> property
-  in
+  let (prog, formula) = ItoA.ctl_prog_itoa (parseCTLProperty !property) !main (parseFile !filename) in
   if not !minimal then
     begin
       Format.fprintf !fmt "\nAbstract Syntax:\n";
       AbstractSyntax.prog_print !fmt prog;
-      Format.fprintf !fmt "\nProperty: ";
-      AbstractSyntax.property_print !fmt annotatedProperty;
     end;
   let program = ACTL.program_of_prog prog !main in
-  let property = fst (AbstractSyntax.StringMap.find "" annotatedProperty) in
-  let formula = ACTL.ACTL_next (ACTL.ACTL_atomic property) in
-  (* let formula = ACTL.ACTL_atomic property in *)
   let _ = ACTLBoxes.compute program formula in
   ()
 

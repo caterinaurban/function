@@ -41,4 +41,6 @@ sig
   val compress : t -> t
   val print : Format.formatter -> t -> unit
 
+  val zero_leafs: t -> t
+
 end

@@ -1,18 +1,12 @@
 open AbstractSyntax
+open CTLProperty
 open Apron
 open Domain
 open Partition
 open Functions
 open Iterator
 
-type formula =
-  | ACTL_atomic of AbstractSyntax.bExp
-  | ACTL_future of AbstractSyntax.bExp
-  | ACTL_next of formula
-  | ACTL_until of (formula * formula)
-  | ACTL_global of (formula * formula)
-  | ACTL_and of (formula * formula)
-  | ACTL_or of (formula * formula)
+type ctl_property = AbstractSyntax.bExp CTLProperty.generic_formula
 
 module InvMap = Map.Make(struct type t=label let compare=compare end)
 
@@ -77,6 +71,24 @@ module AtomicIterator(D: RANKING_FUNCTION) = struct
 end
 
 
+module OrIterator(D: RANKING_FUNCTION) = struct
+
+  let compute (program:program) (fp1:D.t InvMap.t) (fp2:D.t InvMap.t) : D.t InvMap.t =
+    let join _ t1 t2 = Some (D.join Functions.COMPUTATIONAL t1 t2) in
+    InvMap.union join fp1 fp2
+
+end
+
+
+module AndIterator(D: RANKING_FUNCTION) = struct
+
+  let compute (program:program) (fp1:D.t InvMap.t) (fp2:D.t InvMap.t) : D.t InvMap.t =
+    let join _ t1 t2 = Some (D.join Functions.APPROXIMATION t1 t2) in
+    InvMap.union join fp1 fp2
+
+end
+
+
 module NextIterator(D: RANKING_FUNCTION) = struct
 
   let compute (program:program) (fp:D.t InvMap.t) : D.t InvMap.t =
@@ -113,7 +125,8 @@ module NextIterator(D: RANKING_FUNCTION) = struct
     in
     let bot = D.bot program.environment program.variables in
     aux program.mainFunction.funcBody bot ();
-    !invMap
+    InvMap.map D.zero_leafs !invMap 
+
 end
 
 
@@ -210,7 +223,6 @@ module FutureIterator(D: RANKING_FUNCTION) = struct
 end
 
 
-
 module ACTLIterator(D: RANKING_FUNCTION) = struct
 
   module AtomicIteratorD = AtomicIterator(D)
@@ -225,16 +237,13 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
     else
       InvMap.iter (fun l a -> Format.fprintf fmt "%a: %a\n" label_print l D.print a) m
 
-  let compute (program:program) (formula:formula) : D.t InvMap.t = 
+  let compute (program:program) (property:ctl_property) : D.t InvMap.t = 
     let bwdInvMap = 
-      match formula with
-      | ACTL_atomic property -> 
-        AtomicIteratorD.compute program property
-      | ACTL_next (ACTL_atomic property) -> 
-        let invMap = AtomicIteratorD.compute program property in
+      match property with
+      | Atomic b -> AtomicIteratorD.compute program b
+      | AX (Atomic b) -> 
+        let invMap = AtomicIteratorD.compute program b in
         NextIteratorD.compute program invMap
-      | ACTL_future property -> 
-        FutureIteratorD.compute program property
       | _ -> raise (Invalid_argument "ACTL formula not yet suppoerted")
    in
    if not !minimal then
@@ -244,10 +253,5 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
      end;
    bwdInvMap
 
-
 end
-
-
-
-
 

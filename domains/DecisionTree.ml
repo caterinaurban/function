@@ -73,6 +73,7 @@ struct
     vars : var list			(* current list of program variables *)
   }
 
+
   (** The current decision tree. *)
   let tree t = t.tree
 
@@ -1318,6 +1319,62 @@ struct
         if B.isBot b then () else Format.fprintf fmt "%a ? %a\n" B.print b F.print f
       | Node((c,nc),l,r) -> aux r (nc::cs); aux l (c::cs)
     in aux t.tree []; Format.fprintf fmt "\nDOMAIN = {%a}%a\n" print_domain domain (print_tree vars) t.tree
+
+
+  let map_tree_leafs f (t:t) =
+    let rec aux (t:tree) = 
+      match t with 
+      | Bot -> Bot
+      | Leaf l -> f l
+      | Node (l, t1, t2) -> 
+        let t1' = aux t1 in
+        let t2' = aux t2 in
+        Node (l, t1', t2')
+    in
+    {
+      domain = t.domain;
+      tree = aux t.tree;
+      env = t.env;
+      vars = t.vars
+    }
+
+  (* Takes a decision tree as argument and replaces all non-bottom leafs with a constant function that returns zero *)
+  let zero_leafs (t:t) =
+    let mapLeaf l = 
+      let f = if F.isBot l then l else F.reset l 
+      in Leaf f 
+    in
+    map_tree_leafs mapLeaf t
+
+
+  let tree_join_helper fBotLeft fBotRight fLeaf tree1 tree2 env vars =
+    let isBot cs = B.isBot (B.inner env vars cs) in
+    let rec aux (t1, t2) cs = match t1, t2 with
+      | (Bot, Bot) -> Bot
+      | (Leaf f, Bot) -> if isBot cs then Bot else fBotRight f 
+      | (Bot,Leaf f) -> if isBot cs then Bot else fBotLeft f
+      | (Leaf f1, Leaf f2) -> if isBot cs then Bot else fLeaf f1 f2
+      | Node ((c1,nc1),l1,r1), Node((c2,nc2),l2,r2) ->
+        if not (C.isEq c1 c2) then 
+          raise (Invalid_argument "tree_join_helper: invalid tree structure, constraints don't match");
+        let l = aux (l1,l2) (c1::cs) in
+        let r = aux (r1,r2) (nc1::cs) in
+        Node ((c1,nc1),l,r)
+      | _ -> raise (Invalid_argument "tree_join_helper: invalid tree structure")
+    in
+    aux (tree_unification tree1 tree2 env vars) []
+
+  let reset_until t_retain t_reset tree env vars =
+    let t' = 
+      let isDefined f = not (F.isBot f || F.isTop f) in
+      let onBotLeft _ = Bot in
+      let onBotRight f = Leaf f in
+      let onLeaf f_left f_right = 
+        if isDefined f_right then Leaf (F.reset f_left)
+        else Leaf f_left
+      in tree_join_helper onBotLeft onBotRight onLeaf tree t_reset env vars
+    in t'
+          
 
 end
 
