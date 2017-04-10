@@ -213,7 +213,8 @@ let rec negBExp (b,a) =
   | A_bbinary (o,b1,b2) -> (A_bbinary (negBBinOp o,negBExp b1,negBExp b2),a)
   | A_rbinary (o,a1,a2) -> (A_rbinary (negRBinOp o,a1,a2),a)
 
-let rec bExp_print fmt (e,_) =
+
+let rec bExp_print_aux fmt e =
   match e with
   | A_TRUE -> Format.fprintf fmt "true"
   | A_MAYBE -> Format.fprintf fmt "?"
@@ -221,16 +222,16 @@ let rec bExp_print fmt (e,_) =
   | A_bunary (o,e1) ->
     Format.fprintf fmt "%a" bUnOp_print o;
     if bExp_prec (fst e1) <= bExp_prec e
-    then Format.fprintf fmt "(%a)" bExp_print e1
-    else Format.fprintf fmt "%a" bExp_print e1
+    then Format.fprintf fmt "(%a)" bExp_print_aux (fst e1)
+    else Format.fprintf fmt "%a" bExp_print_aux (fst e1)
   | A_bbinary (o,e1,e2) ->
     if bExp_prec (fst e1) <= bExp_prec e
-    then Format.fprintf fmt "(%a) " bExp_print e1
-    else Format.fprintf fmt "%a " bExp_print e1;
+    then Format.fprintf fmt "(%a) " bExp_print_aux (fst e1)
+    else Format.fprintf fmt "%a " bExp_print_aux (fst e1);
     Format.fprintf fmt "%a" bBinOp_print o;
     if bExp_prec (fst e2) <= bExp_prec e
-    then Format.fprintf fmt " (%a)" bExp_print e2
-    else Format.fprintf fmt " %a" bExp_print e2
+    then Format.fprintf fmt " (%a)" bExp_print_aux (fst e2)
+    else Format.fprintf fmt " %a" bExp_print_aux (fst e2)
   | A_rbinary (o,e1,e2) ->
     if aExp_prec (fst e1) <= bExp_prec e
     then Format.fprintf fmt "(%a) " aExp_print e1
@@ -239,6 +240,8 @@ let rec bExp_print fmt (e,_) =
     if aExp_prec (fst e2) <= bExp_prec e
     then Format.fprintf fmt " (%a)" aExp_print e2
     else Format.fprintf fmt " %a" aExp_print e2
+
+let bExp_print fmt b = bExp_print_aux fmt (fst b)
 
 (* expressions *)
 type exp =

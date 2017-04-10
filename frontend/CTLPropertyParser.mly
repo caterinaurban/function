@@ -12,7 +12,7 @@ open CTLProperty
 %token LEFT_BRACE
 %token RIGHT_BRACE
 
-%start <string CTLProperty.generic_formula> prog
+%start <string CTLProperty.generic_property> prog
 %%
 
 prog:

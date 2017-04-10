@@ -42,5 +42,7 @@ sig
   val print : Format.formatter -> t -> unit
 
   val zero_leafs: t -> t
+  val leaf_preserving_meet: t -> t -> t
+  val reset_until: t -> t -> t -> t
 
 end

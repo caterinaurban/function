@@ -1319,6 +1319,7 @@ struct
         if B.isBot b then () else Format.fprintf fmt "%a ? %a\n" B.print b F.print f
       | Node((c,nc),l,r) -> aux r (nc::cs); aux l (c::cs)
     in aux t.tree []; Format.fprintf fmt "\nDOMAIN = {%a}%a\n" print_domain domain (print_tree vars) t.tree
+    (* in Format.fprintf fmt "\nDOMAIN = {%a}%a\n" print_domain domain (print_tree vars) t.tree *)
 
 
   let map_tree_leafs f (t:t) =
@@ -1348,12 +1349,11 @@ struct
 
 
   let tree_join_helper fBotLeft fBotRight fLeaf tree1 tree2 env vars =
-    let isBot cs = B.isBot (B.inner env vars cs) in
     let rec aux (t1, t2) cs = match t1, t2 with
       | (Bot, Bot) -> Bot
-      | (Leaf f, Bot) -> if isBot cs then Bot else fBotRight f 
-      | (Bot,Leaf f) -> if isBot cs then Bot else fBotLeft f
-      | (Leaf f1, Leaf f2) -> if isBot cs then Bot else fLeaf f1 f2
+      | (Leaf f, Bot) -> fBotRight cs f 
+      | (Bot,Leaf f) -> fBotLeft cs f
+      | (Leaf f1, Leaf f2) -> fLeaf cs f1 f2
       | Node ((c1,nc1),l1,r1), Node((c2,nc2),l2,r2) ->
         if not (C.isEq c1 c2) then 
           raise (Invalid_argument "tree_join_helper: invalid tree structure, constraints don't match");
@@ -1364,16 +1364,39 @@ struct
     in
     aux (tree_unification tree1 tree2 env vars) []
 
-  let reset_until t_retain t_reset tree env vars =
-    let t' = 
-      let isDefined f = not (F.isBot f || F.isTop f) in
-      let onBotLeft _ = Bot in
-      let onBotRight f = Leaf f in
-      let onLeaf f_left f_right = 
-        if isDefined f_right then Leaf (F.reset f_left)
-        else Leaf f_left
-      in tree_join_helper onBotLeft onBotRight onLeaf tree t_reset env vars
-    in t'
+  (* Equivalent to usual meet but does not generate NIL nodes. Instead, all NIL nodes are converted to bot. leafs*)
+  let leaf_preserving_meet t1 t2 =
+    let domain = t1.domain in 
+    let env = t1.env in 
+    let vars = t1.vars in 
+    let fBotLeftRight _ _ = Leaf (F.bot env vars) in
+    let fLeaf cs l1 l2 = Leaf (F.join APPROXIMATION (B.inner env vars cs) l1 l2) in
+    { 
+      domain = domain; 
+      tree = tree_join_helper fBotLeftRight fBotLeftRight fLeaf t1.tree t2.tree env vars; 
+      env = env; 
+      vars = vars 
+    }
+
+  let reset_until t_keep t_reset t =
+    let domain = t.domain in 
+    let env = t.env in 
+    let vars = t.vars in 
+    let isDefined f = not (F.isBot f || F.isTop f) in
+    let rec reset (t, t_res) = match (t,t_res) with
+      | (Bot, _) | (_, Bot) -> t
+      | (Leaf f1, Leaf f2) -> let f = if isDefined f2 then F.reset f1 else f1 in Leaf f (* reset leaf if there is an actual value in f2 e.g. not top or bottom*)
+      | (Node (c,l1,r1), Node (_,l2,r2)) -> Node (c, reset (l1, l2), reset (r1, r2))
+      | _ -> raise (Invalid_argument "reset_until: Invalid Tree shape")
+    in
+    let reset_tree = reset (tree_unification t.tree t_reset.tree env vars) in
+    let result = { 
+      domain = domain; 
+      tree = reset_tree; 
+      env = env; 
+      vars = vars 
+    } in
+    result
           
 
 end

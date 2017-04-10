@@ -196,6 +196,13 @@ module RecurrencePolyhedra =
 module RecurrencePolyhedraOrdinals =
   RecurrenceIterator.RecurrenceIterator(DecisionTree.TSOP)
 
+module ACTLBoxes = ACTLIterator.ACTLIterator(DecisionTree.TSAB)
+module ACTLBoxesOrdinals = ACTLIterator.ACTLIterator(DecisionTree.TSOB)
+module ACTLOctagons = ACTLIterator.ACTLIterator(DecisionTree.TSAO)
+module ACTLOctagonsOrdinals = ACTLIterator.ACTLIterator(DecisionTree.TSOO)
+module ACTLPolyhedra = ACTLIterator.ACTLIterator(DecisionTree.TSAP)
+module ACTLPolyhedraOrdinals = ACTLIterator.ACTLIterator(DecisionTree.TSOP)
+
 
 let result = ref false
 
@@ -289,7 +296,6 @@ let recurrence () =
   in run_analysis (analysis_function property) program ()
 
 
-module ACTLBoxes = ACTL.ACTLIterator(DecisionTree.TSAB)
     
 let actl () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
@@ -299,9 +305,17 @@ let actl () =
     begin
       Format.fprintf !fmt "\nAbstract Syntax:\n";
       AbstractSyntax.prog_print !fmt prog;
+      Format.fprintf !fmt "\n";
     end;
-  let program = ACTL.program_of_prog prog !main in
-  let _ = ACTLBoxes.compute program formula in
+  let program = ACTLIterator.program_of_prog prog !main in
+  let analyze =
+    match !domain with
+    | "boxes" -> if !ordinals then ACTLBoxesOrdinals.analyze else ACTLBoxes.analyze
+    | "octagons" -> if !ordinals then ACTLOctagonsOrdinals.analyze else ACTLOctagons.analyze
+    | "polyhedra" -> if !ordinals then ACTLPolyhedraOrdinals.analyze else ACTLPolyhedra.analyze
+    | _ -> raise (Invalid_argument "Unknown Abstract Domain")
+  in
+  let _ = analyze program formula in
   ()
 
 
