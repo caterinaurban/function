@@ -215,7 +215,12 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
                 fixed_point
               else
                 (* next iteration *)
-                let out_enter' = D.filter (bwd updated_in loop_body) b in (* process loop body again with updated 'in' state *)
+                let updated_in' = if n <= !joinbwd then 
+                    updated_in 
+                  else 
+                    D.widen current_in updated_in 
+                in
+                let out_enter' = D.filter (bwd updated_in' loop_body) b in (* process loop body again with updated 'in' state *)
                 aux updated_in out_enter' (n+1)
             in
             let initial_out_enter = D.filter (bwd current_in loop_body) b in (* process loop body with current 'in' state at loop-head *)

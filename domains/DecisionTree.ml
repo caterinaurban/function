@@ -1318,7 +1318,8 @@ struct
         let b = match domain with | None -> B.inner env vars cs | Some domain -> B.meet (B.inner env vars cs) domain in
         if B.isBot b then () else Format.fprintf fmt "%a ? %a\n" B.print b F.print f
       | Node((c,nc),l,r) -> aux r (nc::cs); aux l (c::cs)
-    in aux t.tree []; Format.fprintf fmt "\nDOMAIN = {%a}%a\n" print_domain domain (print_tree vars) t.tree
+    (* in aux t.tree []; Format.fprintf fmt "\nDOMAIN = {%a}%a\n" print_domain domain (print_tree vars) t.tree *)
+    in aux t.tree []
     (* in Format.fprintf fmt "\nDOMAIN = {%a}%a\n" print_domain domain (print_tree vars) t.tree *)
 
 
@@ -1392,9 +1393,14 @@ struct
     let vars = t_left.vars in 
     let botLeaf = Leaf (F.bot env vars) in
     let isDefined f = not (F.isBot f || F.isTop f) in
-    let fBotLeft _ _ = Bot in
-    let fBotRight _ _ = botLeaf in (* if RHS is NIL, then LHS goes to bottom *)
-    let fLeaf cs l1 l2 = if isDefined l2 then Leaf l1 else botLeaf in (* if RHS is not defined then LHS goes to bottom *)
+    let fBotLeft _ _ = Bot in (* LHS is bottom, keep it that way *)
+    let fBotRight _ fLeft = if isDefined fLeft then botLeaf else Leaf fLeft in (* if RHS is NIL and LHS is defined then go to bottom *)
+    let fLeaf cs l1 l2 = 
+      if isDefined l2 then Leaf l1 (* don't change if RHS is defined*)
+      else (* if RHS is not defined, then go to bottom if LHS is not already top or bottom*)
+        if isDefined l1 then botLeaf 
+        else Leaf l1
+    in (* if RHS is not defined then LHS goes to bottom *)
     { 
       domain = domain; 
       tree = tree_join_helper fBotLeft fBotRight fLeaf t_left.tree t_right.tree env vars; 
