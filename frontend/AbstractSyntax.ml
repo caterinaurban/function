@@ -316,6 +316,10 @@ and block_print ind fmt b =
 
 and label_print fmt l = if (l < 10) then Format.fprintf fmt "[ %i:]" l else Format.fprintf fmt "[%i:]" l
 
+let label_of_block (block:block) : label = match block with
+  | A_empty l -> l
+  | A_block (l, _ , _) -> l
+
 (* functions *)
 type func = {
   funcName: string;

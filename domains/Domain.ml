@@ -41,6 +41,7 @@ sig
   val compress : t -> t
   val print : Format.formatter -> t -> unit
 
+  val left_narrow: t -> t -> t
   val zero_leafs: t -> t
   val leaf_preserving_meet: t -> t -> t
   val reset_until: t -> t -> t -> t

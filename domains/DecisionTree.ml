@@ -1378,21 +1378,54 @@ struct
       vars = vars 
     }
 
+
+  (* 
+     Takes left and right tree as argument and cuts away all parts of the left tree
+     that are not part of the domain of the righ tree.
+
+     This means that if some part of the domain of the right tree is undefined (i.e. bottom, top or NIL)
+     then the corresponding part of the left tree is replaced with a bottom leaf.
+  *)
+  let left_narrow t_left t_right =
+    let domain = t_left.domain in 
+    let env = t_left.env in 
+    let vars = t_left.vars in 
+    let botLeaf = Leaf (F.bot env vars) in
+    let isDefined f = not (F.isBot f || F.isTop f) in
+    let fBotLeft _ _ = Bot in
+    let fBotRight _ _ = botLeaf in (* if RHS is NIL, then LHS goes to bottom *)
+    let fLeaf cs l1 l2 = if isDefined l2 then Leaf l1 else botLeaf in (* if RHS is not defined then LHS goes to bottom *)
+    { 
+      domain = domain; 
+      tree = tree_join_helper fBotLeft fBotRight fLeaf t_left.tree t_right.tree env vars; 
+      env = env; 
+      vars = vars 
+    }
+
+
   let reset_until t_keep t_reset t =
     let domain = t.domain in 
     let env = t.env in 
     let vars = t.vars in 
     let isDefined f = not (F.isBot f || F.isTop f) in
+    let rec filter (t, t_valid) = match (t, t_valid) with
+      | (Bot, _) | (_, Bot) -> t
+      | (Leaf f, Leaf f_valid) -> Leaf (if isDefined f_valid then f else F.bot env vars) 
+      | (Node (c,l1,r1), Node (_,l2,r2)) -> Node (c, filter (l1, l2), filter (r1, r2))
+      | _ -> raise (Invalid_argument "reset_until: Invalid Tree shape")
+    in
     let rec reset (t, t_res) = match (t,t_res) with
       | (Bot, _) | (_, Bot) -> t
-      | (Leaf f1, Leaf f2) -> let f = if isDefined f2 then F.reset f1 else f1 in Leaf f (* reset leaf if there is an actual value in f2 e.g. not top or bottom*)
+      | (Leaf f, Leaf f_reset) -> Leaf (if isDefined f_reset then F.reset f else f) 
       | (Node (c,l1,r1), Node (_,l2,r2)) -> Node (c, reset (l1, l2), reset (r1, r2))
       | _ -> raise (Invalid_argument "reset_until: Invalid Tree shape")
     in
-    let reset_tree = reset (tree_unification t.tree t_reset.tree env vars) in
+    let t_valid = tree (join COMPUTATIONAL t_keep t_reset) in 
+    let t_filtered = filter (tree_unification t.tree t_valid env vars) in (* filter out all parts of tree that are not part of the valid domain*)
+    let t_reset = reset (tree_unification t_filtered t_reset.tree env vars) in (* reset all parts of the tree that are defined in t_reset *)
     let result = { 
       domain = domain; 
-      tree = reset_tree; 
+      tree = t_reset; 
       env = env; 
       vars = vars 
     } in
