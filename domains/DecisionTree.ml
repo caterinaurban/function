@@ -365,21 +365,19 @@ struct
       | Bot,Bot -> (t1,t2)
       | Bot,Leaf _ | Leaf _,Bot | Leaf _,Leaf _ ->
         if B.isBot (B.inner env vars cs) then (Bot,Bot) else (t1,t2)
-      | Node ((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) 
-        when (C.isEq c1 c2) (* c1 = c2 *) ->
+      | Node ((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isEq c1 c2) (* c1 = c2 *) ->
         let (ul1,ul2) = aux (l1,l2) (c1::cs) in
         let (ur1,ur2) = aux (r1,r2) (nc1::cs) in
         (Node((c1,nc1),ul1,ur1),Node((c2,nc2),ul2,ur2))
-      | Node ((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) 
-        when (C.isLeq c1 c2) (* c1 < c2 *) ->
+      | Node ((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isLeq c1 c2) (* c1 < c2 *) ->
         let bcs = B.inner env vars cs in
         let bc1 = B.inner env vars [c1] in
-        if (B.isLeq bcs bc1)
-        then (* c1 is redundant *) aux (l1,t2) cs
+        if (B.isLeq bcs bc1) then (* c1 is redundant *) 
+          aux (l1,t2) cs
         else (* c1 is not redundant *)
           let bnc1 = B.inner env vars [nc1] in
-          if (B.isLeq bcs bnc1)
-          then (* nc1 is redundant *) aux (r1,t2) cs
+          if (B.isLeq bcs bnc1) then (* nc1 is redundant *) 
+            aux (r1,t2) cs
           else (* nc1 is not redundant *)
             let (ul1,ul2) = aux (l1,t2) (c1::cs) in
             let (ur1,ur2) = aux (r1,t2) (nc1::cs) in
@@ -483,84 +481,51 @@ struct
 
 
 
-  let tree_join k (t1,t2) domain env vars =
-    let rec aux (t1,t2) cs = match t1,t2 with
-      | Bot,Bot -> Bot
-      | Leaf _,Bot ->
-        let b = match domain with 
-          | None -> B.inner env vars cs 
-          | Some domain -> B.meet (B.inner env vars cs) domain in
-        if (B.isBot b) then Bot else t1
-      | Bot,Leaf _ ->
-        let b = match domain with 
-          | None -> B.inner env vars cs 
-          | Some domain -> B.meet (B.inner env vars cs) domain in
-        if (B.isBot b) then Bot else t2
-      | Leaf f1,Leaf f2 ->
-        let b = match domain with 
-          | None -> B.inner env vars cs 
-          | Some domain -> B.meet (B.inner env vars cs) domain in
-        if (B.isBot b) then Bot else Leaf (F.join k b f1 f2)
-      | Node ((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) 
-        when (C.isEq c1 c2) (* c1 = c2 *) ->
+  (*
+    The 'tree_join_helper' function can be used to generalize the joining of two trees.
+    It uses tree_unification on the two input trees 'tree1' and 'tree2' and uses 
+    the given functions 'fBotLeft', 'fBotRight' and 'fBotLeaf' produce the new leaf nodes in the resulting tree.
+
+     - fBotRight: is called when the left node is a leaf and the right node is NIL
+     - fBotLeft: is called when the right node is a leaf and the left node is NIL
+     - fLeaf: is called if both nodes are leafs
+
+    All of the above take the set of constraints 'cs' leading up to that tree node and the corresponding leaf value(s) as argument.
+  *)
+  let tree_join_helper 
+      (fBotLeft:C.t list -> F.f -> tree)
+      (fBotRight:C.t list -> F.f -> tree)
+      (fLeaf:C.t list -> F.f -> F.f -> tree)
+      (tree1:tree) 
+      (tree2:tree) 
+      env vars =
+    let rec aux (t1, t2) cs = match t1, t2 with
+      | (Bot, Bot) -> Bot
+      | (Leaf f, Bot) -> fBotRight cs f 
+      | (Bot,Leaf f) -> fBotLeft cs f
+      | (Leaf f1, Leaf f2) -> fLeaf cs f1 f2
+      | Node ((c1,nc1),l1,r1), Node((c2,nc2),l2,r2) ->
+        (* if not (C.isEq c1 c2) then raise (Invalid_argument "tree_join_helper: invalid tree structure, constraints don't match"); *)
         let l = aux (l1,l2) (c1::cs) in
         let r = aux (r1,r2) (nc1::cs) in
         Node ((c1,nc1),l,r)
-      | Node ((c1,nc1),l1,r1),Node((c2,_),_,_) 
-        when (C.isLeq c1 c2) (* c1 < c2 *) ->
-        let bcs = B.inner env vars cs in
-        let bc1 = B.inner env vars [c1] in
-        if (B.isLeq bcs bc1)
-        then (* c1 is redundant *) aux (l1,t2) cs
-        else (* c1 is not redundant *)
-          let bnc1 = B.inner env vars [nc1] in
-          if (B.isLeq bcs bnc1)
-          then (* nc1 is redundant *) aux (r1,t2) cs
-          else (* nc1 is not redundant *)
-            let l = aux (l1,t2) (c1::cs) in
-            let r = aux (r1,t2) (nc1::cs) in
-            Node ((c1,nc1),l,r)
-      | Node ((c1,_),_,_),Node((c2,nc2),l2,r2) 
-        when (C.isLeq c2 c1) (* c1 > c2 *) ->
-        let bcs = B.inner env vars cs in
-        let bc2 = B.inner env vars [c2] in
-        if (B.isLeq bcs bc2)
-        then (* c2 is redundant *) aux (t1,l2) cs
-        else (* c2 is not redundant *)
-          let bnc2 = B.inner env vars [nc2] in
-          if (B.isLeq bcs bnc2)
-          then (* nc2 is redundant *) aux (t1,r2) cs
-          else (* nc2 is not redundant *)
-            let l = aux (t1,l2) (c2::cs) in
-            let r = aux (t1,r2) (nc2::cs) in
-            Node ((c2,nc2),l,r)
-      | Node ((c1,nc1),l1,r1),_ ->
-        let bcs = B.inner env vars cs in
-        let bc1 = B.inner env vars [c1] in
-        if (B.isLeq bcs bc1)
-        then (* c1 is redundant *) aux (l1,t2) cs
-        else (* c1 is not redundant *)
-          let bnc1 = B.inner env vars [nc1] in
-          if (B.isLeq bcs bnc1)
-          then (* nc1 is redundant *) aux (r1,t2) cs
-          else (* nc1 is not redundant *)
-            let l = aux (l1,t2) (c1::cs) in
-            let r = aux (r1,t2) (nc1::cs) in
-            Node ((c1,nc1),l,r)
-      | _,Node((c2,nc2),l2,r2) ->
-        let bcs = B.inner env vars cs in
-        let bc2 = B.inner env vars [c2] in
-        if (B.isLeq bcs bc2)
-        then (* c2 is redundant *) aux (t1,l2) cs
-        else (* c2 is not redundant *)
-          let bnc2 = B.inner env vars [nc2] in
-          if (B.isLeq bcs bnc2)
-          then (* nc2 is redundant *) aux (t1,r2) cs
-          else (* nc2 is not redundant *)
-            let l = aux (t1,l2) (c2::cs) in
-            let r = aux (t1,r2) (nc2::cs) in
-            Node ((c2,nc2),l,r)
-    in aux (t1,t2) []
+      | _ -> raise (Invalid_argument "tree_join_helper: invalid tree structure")
+    in
+    aux (tree_unification tree1 tree2 env vars) []
+
+  let tree_join k (t1, t2) domain env vars = 
+    let fBotLeftRight cs f = 
+      let b = match domain with 
+        | None -> B.inner env vars cs 
+        | Some domain -> B.meet (B.inner env vars cs) domain 
+      in if (B.isBot b) then Bot else Leaf f 
+    in
+    let fLeaf cs f1 f2 = 
+      let b = match domain with 
+        | None -> B.inner env vars cs 
+        | Some domain -> B.meet (B.inner env vars cs) domain 
+      in if (B.isBot b) then Bot else Leaf (F.join k b f1 f2)
+    in tree_join_helper fBotLeftRight fBotLeftRight fLeaf t1 t2 env vars
 
   (** The decision tree join is parameterized by the choice of the 
       join `k` between leaf nodes, i.e., approximation or computational 
@@ -572,8 +537,10 @@ struct
       The implementation assumes that t1 and t2 are defined over the same 
       reachable states, the same APRON envorinment and the same list of 
       program variables. *)
+
   let join k t1 t2 = {
     domain = t1.domain;	(* assuming t1.domain = t2.domain *)
+    (* tree = tree_join k (t1.tree,t2.tree) t1.domain t1.env t1.vars; *) 
     tree = tree_join k (t1.tree,t2.tree) t1.domain t1.env t1.vars; 
     env = t1.env;	(* assuming t1.env = t2.env *)
     vars = t1.vars	(* assuming t1.vars = t2.vars *)
@@ -587,81 +554,24 @@ struct
       The implementation assumes that t1 and t2 are defined over the same 
       reachable states, the same APRON envorinment and the same list of 
       program variables. *)
-  let meet t1 t2 =
+
+  let meet t1 t2 = 
     let domain = t1.domain in (* assuming t1.domain = t2.domain *)
     let env = t1.env in (* assuming t1.env = t2.env *)
     let vars = t1.vars in (* assuming t1.vars = t2.vars *)
-    let rec aux (t1,t2) cs = match t1,t2 with
-      | Bot, _ | _, Bot -> Bot
-      | Leaf f1, Leaf f2 ->
-        let b = match domain with 
-          | None -> B.inner env vars cs 
-          | Some domain -> B.meet (B.inner env vars cs) domain in
-        if B.isBot b then Bot else Leaf (F.join APPROXIMATION b f1 f2)
-      | Node ((c1,nc1),l1,r1), Node((c2,nc2),l2,r2) 
-        when (C.isEq c1 c2) (* c1 = c2 *) ->
-        let l = aux (l1,l2) (c1::cs) in
-        let r = aux (r1,r2) (nc1::cs) in
-        Node ((c1,nc1),l,r)
-      | Node ((c1,nc1),l1,r1), Node((c2,_),_,_) 
-        when (C.isLeq c1 c2) (* c1 < c2 *) ->
-        let bcs = B.inner env vars cs in
-        let bc1 = B.inner env vars [c1] in
-        if (B.isLeq bcs bc1)
-        then (* c1 is redundant *) aux (l1,t2) cs
-        else (* c1 is not redundant *)
-          let bnc1 = B.inner env vars [nc1] in
-          if (B.isLeq bcs bnc1)
-          then (* nc1 is redundant *) aux (r1,t2) cs
-          else (* nc1 is not redundant *)
-            let l = aux (l1,t2) (c1::cs) in
-            let r = aux (r1,t2) (nc1::cs) in
-            Node ((c1,nc1),l,r)
-      | Node ((c1,_),_,_), Node((c2,nc2),l2,r2) 
-        when (C.isLeq c2 c1) (* c1 > c2 *) ->
-        let bcs = B.inner env vars cs in
-        let bc2 = B.inner env vars [c2] in
-        if (B.isLeq bcs bc2)
-        then (* c2 is redundant *) aux (t1,l2) cs
-        else (* c2 is not redundant *)
-          let bnc2 = B.inner env vars [nc2] in
-          if (B.isLeq bcs bnc2)
-          then (* nc2 is redundant *) aux (t1,r2) cs
-          else (* nc2 is not redundant *)
-            let l = aux (t1,l2) (c2::cs) in
-            let r = aux (t1,r2) (nc2::cs) in
-            Node ((c2,nc2),l,r)
-      | Node ((c1,nc1),l1,r1), _ ->
-        let bcs = B.inner env vars cs in
-        let bc1 = B.inner env vars [c1] in
-        if (B.isLeq bcs bc1)
-        then (* c1 is redundant *) aux (l1,t2) cs
-        else (* c1 is not redundant *)
-          let bnc1 = B.inner env vars [nc1] in
-          if (B.isLeq bcs bnc1)
-          then (* nc1 is redundant *) aux (r1,t2) cs
-          else (* nc1 is not redundant *)
-            let l = aux (l1,t2) (c1::cs) in
-            let r = aux (r1,t2) (nc1::cs) in
-            Node ((c1,nc1),l,r)
-      | _, Node((c2,nc2),l2,r2) ->
-        let bcs = B.inner env vars cs in
-        let bc2 = B.inner env vars [c2] in
-        if (B.isLeq bcs bc2)
-        then (* c2 is redundant *) aux (t1,l2) cs
-        else (* c2 is not redundant *)
-          let bnc2 = B.inner env vars [nc2] in
-          if (B.isLeq bcs bnc2)
-          then (* nc2 is redundant *) aux (t1,r2) cs
-          else (* nc2 is not redundant *)
-            let l = aux (t1,l2) (c2::cs) in
-            let r = aux (t1,r2) (nc2::cs) in
-            Node ((c2,nc2),l,r)
+    let fBotLeftRight _ _ = Bot in
+    let fLeaf cs f1 f2 = 
+      let b = match domain with 
+        | None -> B.inner env vars cs 
+        | Some domain -> B.meet (B.inner env vars cs) domain in 
+      if B.isBot b then Bot else Leaf (F.join APPROXIMATION b f1 f2)
     in { 
       domain = domain; 
-      tree = aux (t1.tree,t2.tree) []; 
-      env = env; vars = vars 
+      tree = tree_join_helper fBotLeftRight fBotLeftRight fLeaf t1.tree t2.tree env vars; 
+      env = env;
+      vars = vars 
     }
+    
 
   let left_unification t1 t2 domain env vars =
     let ls1 = tree_labels t1 in
@@ -1349,21 +1259,6 @@ struct
     map_tree_leafs mapLeaf t
 
 
-  let tree_join_helper fBotLeft fBotRight fLeaf tree1 tree2 env vars =
-    let rec aux (t1, t2) cs = match t1, t2 with
-      | (Bot, Bot) -> Bot
-      | (Leaf f, Bot) -> fBotRight cs f 
-      | (Bot,Leaf f) -> fBotLeft cs f
-      | (Leaf f1, Leaf f2) -> fLeaf cs f1 f2
-      | Node ((c1,nc1),l1,r1), Node((c2,nc2),l2,r2) ->
-        if not (C.isEq c1 c2) then 
-          raise (Invalid_argument "tree_join_helper: invalid tree structure, constraints don't match");
-        let l = aux (l1,l2) (c1::cs) in
-        let r = aux (r1,r2) (nc1::cs) in
-        Node ((c1,nc1),l,r)
-      | _ -> raise (Invalid_argument "tree_join_helper: invalid tree structure")
-    in
-    aux (tree_unification tree1 tree2 env vars) []
 
   (* Equivalent to usual meet but does not generate NIL nodes. Instead, all NIL nodes are converted to bot. leafs*)
   let leaf_preserving_meet t1 t2 =
