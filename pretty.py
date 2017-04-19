@@ -86,7 +86,7 @@ for k in properties:
     properties_formatted[k] = {}
     inv = properties[k]
     for l in inv:
-        formatted_state = '<span class="label label-default" data-html="true" data-container="body" data-placement="top" data-toggle="tooltip" title="<div style=\'text-align:left;font-size:12pt;\'>' \
+        formatted_state = '<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style=\'text-align:left;font-size:12pt;\'>' \
                           + "<br/>".join(inv[l]) + '</div>">' + l + '</span>'
         properties_formatted[k][l] = formatted_state
 

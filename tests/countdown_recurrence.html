@@ -1,0 +1,135 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap 3 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <h1>Analysis Result</h1>
+    </div>
+
+    <div class="row">
+
+ <ul class="nav nav-tabs" role="tablist"> 
+
+      <li role="presentation"><a href="#0" class="tab_button" id="tab_0" aria-controls="home" role="tab" data-toggle="tab">$1{x} <= 0 && $1{x} >= 0</a></li>  
+    
+
+      <li role="presentation"><a href="#1" class="tab_button" id="tab_1" aria-controls="home" role="tab" data-toggle="tab">true</a></li>  
+    
+
+      <li role="presentation"><a href="#2" class="tab_button" id="tab_2" aria-controls="home" role="tab" data-toggle="tab">AF($1{x} <= 0 && $1{x} >= 0)</a></li>  
+    
+
+      <li role="presentation"><a href="#3" class="tab_button" id="tab_3" aria-controls="home" role="tab" data-toggle="tab">AG(AF($1{x} <= 0 && $1{x} >= 0))</a></li>  
+    
+ </ul> 
+ <div class="tab-content"> 
+ <div role="tabpanel" class="tab-pane active" id="0"> 
+<pre>
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? bottom<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? bottom</div>">[ 1:]</span>
+void main( ):
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? bottom<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? bottom</div>">[ 2:]</span> $2{c} := 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? bottom<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? bottom</div>">[ 3:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? bottom<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? bottom</div>">[ 4:]</span> ( true ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? bottom<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? bottom</div>">[ 5:]</span>   $1{x} := $2{c}
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? bottom<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? bottom</div>">[ 6:]</span>   while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? bottom<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? bottom</div>">[ 7:]</span> ( $1{x} > 0 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? bottom<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? bottom</div>">[ 8:]</span>     $1{x} := $1{x} - 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? bottom<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? bottom</div>">[ 9:]</span>     $2{c} := $2{c} + 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? bottom<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? bottom</div>">[10:]</span>
+od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? bottom<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? bottom</div>">[11:]</span>
+od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? bottom<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? bottom</div>">[12:]</span>
+</pre>
+ </div > 
+ <div role="tabpanel" class="tab-pane active" id="1"> 
+<pre>
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 1:]</span>
+void main( ):
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 2:]</span> $2{c} := 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 3:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 4:]</span> ( true ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 5:]</span>   $1{x} := $2{c}
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 6:]</span>   while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 7:]</span> ( $1{x} > 0 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 8:]</span>     $1{x} := $1{x} - 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 9:]</span>     $2{c} := $2{c} + 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[10:]</span>
+od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[11:]</span>
+od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[12:]</span>
+</pre>
+ </div > 
+ <div role="tabpanel" class="tab-pane active" id="2"> 
+<pre>
+[ 1:]
+void main( ):
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? 5<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? 5</div>">[ 2:]</span> $2{c} := 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 1 && -$1{x} >= 1 ? bottom<br/>-$2{c} >= 1 && $1{x} == 0 ? 0.<br/>-$2{c} >= 1 && $1{x} >= 1 ? bottom<br/>$2{c} == 0 && -$1{x} >= 1 ? 2<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 2<br/>$2{c} == 1 && -$1{x} >= 1 ? 4<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 4<br/>$2{c} == 2 && -$1{x} >= 1 ? 7<br/>$2{c} == 2 && $1{x} == 0 ? 0.<br/>$2{c} == 2 && $1{x} >= 1 ? 7<br/>$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+1<br/>$2{c} >= 3 && $1{x} == 0 ? 0.<br/>$2{c} >= 3 && $1{x} >= 1 ? 3$2{c}+1</div>">[ 3:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 1 && -$1{x} >= 1 ? bottom<br/>-$2{c} >= 1 && $1{x} == 0 ? 0.<br/>-$2{c} >= 1 && $1{x} >= 1 ? bottom<br/>$2{c} == 0 && -$1{x} >= 1 ? 2<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 2<br/>$2{c} == 1 && -$1{x} >= 1 ? 4<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 4<br/>$2{c} == 2 && -$1{x} >= 1 ? 7<br/>$2{c} == 2 && $1{x} == 0 ? 0.<br/>$2{c} == 2 && $1{x} >= 1 ? 7<br/>$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+1<br/>$2{c} >= 3 && $1{x} == 0 ? 0.<br/>$2{c} >= 3 && $1{x} >= 1 ? 3$2{c}+1</div>">[ 4:]</span> ( true ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 2 && -$1{x} >= 1 ? bottom<br/>-$2{c} >= 2 && $1{x} == 0 ? 0.<br/>-$2{c} >= 2 && $1{x} >= 1 ? bottom<br/>$2{c} == -1 && -$1{x} >= 1 ? bottom<br/>$2{c} == -1 && $1{x} == 0 ? 0.<br/>$2{c} == -1 && $1{x} >= 1 ? bottom<br/>$2{c} == 0 && -$1{x} >= 1 ? 1<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 1<br/>$2{c} == 1 && -$1{x} >= 1 ? 3<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 3<br/>$2{c} == 2 && -$1{x} >= 1 ? 6<br/>$2{c} == 2 && $1{x} == 0 ? 0.<br/>$2{c} == 2 && $1{x} >= 1 ? 6<br/>$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+0<br/>$2{c} >= 3 && $1{x} == 0 ? 0.<br/>$2{c} >= 3 && $1{x} >= 1 ? 3$2{c}+0</div>">[ 5:]</span>   $1{x} := $2{c}
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 2 && -$1{x} >= 1 ? bottom<br/>-$2{c} >= 2 && $1{x} == 0 ? 0.<br/>-$2{c} >= 2 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == -1 && -$1{x} >= 1 ? bottom<br/>$2{c} == -1 && $1{x} == 0 ? 0.<br/>$2{c} == -1 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 0 && -$1{x} >= 1 ? 3<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 1 && -$1{x} >= 1 ? 5<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 2 && -$1{x} >= 1 ? 8<br/>$2{c} == 2 && $1{x} == 0 ? 0.<br/>$2{c} == 2 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+2<br/>$2{c} >= 3 && $1{x} == 0 ? 0.<br/>$2{c} >= 3 && $1{x} >= 1 ? 3$1{x}-1</div>">[ 6:]</span>   while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 2 && -$1{x} >= 1 ? bottom<br/>-$2{c} >= 2 && $1{x} == 0 ? 0<br/>-$2{c} >= 2 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == -1 && -$1{x} >= 1 ? bottom<br/>$2{c} == -1 && $1{x} == 0 ? 0<br/>$2{c} == -1 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 0 && -$1{x} >= 1 ? 3<br/>$2{c} == 0 && $1{x} == 0 ? 0<br/>$2{c} == 0 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 1 && -$1{x} >= 1 ? 5<br/>$2{c} == 1 && $1{x} == 0 ? 0<br/>$2{c} == 1 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 2 && -$1{x} >= 1 ? 8<br/>$2{c} == 2 && $1{x} == 0 ? 0<br/>$2{c} == 2 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+2<br/>$2{c} >= 3 && $1{x} == 0 ? 0<br/>$2{c} >= 3 && $1{x} >= 1 ? 3$1{x}-1</div>">[ 7:]</span> ( $1{x} > 0 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 3 && -$1{x} >= 1 ? bottom<br/>-$2{c} >= 3 && $1{x} == 0 ? 0.<br/>-$2{c} >= 3 && $1{x} >= 1 ? 3$1{x}-2<br/>$2{c} == -2 && -$1{x} >= 1 ? bottom<br/>$2{c} == -2 && $1{x} == 0 ? 0.<br/>$2{c} == -2 && $1{x} >= 1 ? 3$1{x}-2<br/>$2{c} == -1 && -$1{x} >= 1 ? 5<br/>$2{c} == -1 && $1{x} == 0 ? 0.<br/>$2{c} == -1 && $1{x} >= 1 ? 3$1{x}-2<br/>$2{c} == 0 && -$1{x} >= 1 ? 7<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 3$1{x}-2<br/>$2{c} == 1 && -$1{x} >= 1 ? 10<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 3$1{x}-2<br/>$2{c} >= 2 && -$1{x} >= 1 ? 3$2{c}+7<br/>$2{c} >= 2 && $1{x} == 0 ? 0.<br/>$2{c} >= 2 && $1{x} >= 1 ? 3$1{x}-2</div>">[ 8:]</span>     $1{x} := $1{x} - 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 3 && -$1{x} >= 1 ? bottom<br/>-$2{c} >= 3 && $1{x} >= 0 ? 3$1{x}+0<br/>$2{c} == -2 && -$1{x} >= 1 ? bottom<br/>$2{c} == -2 && $1{x} >= 0 ? 3$1{x}+0<br/>$2{c} == -1 && -$1{x} >= 1 ? 4<br/>$2{c} == -1 && $1{x} >= 0 ? 3$1{x}+0<br/>$2{c} >= 0 && -$1{x} >= 1 ? 3$2{c}+6<br/>$2{c} >= 0 && $1{x} >= 0 ? 3$1{x}+0</div>">[ 9:]</span>     $2{c} := $2{c} + 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 2 && -$1{x} >= 1 ? bottom<br/>-$2{c} >= 2 && $1{x} == 0 ? 0.<br/>-$2{c} >= 2 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == -1 && -$1{x} >= 1 ? bottom<br/>$2{c} == -1 && $1{x} == 0 ? 0.<br/>$2{c} == -1 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 0 && -$1{x} >= 1 ? 3<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 1 && -$1{x} >= 1 ? 5<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 2 && -$1{x} >= 1 ? 8<br/>$2{c} == 2 && $1{x} == 0 ? 0.<br/>$2{c} == 2 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+2<br/>$2{c} >= 3 && $1{x} == 0 ? 0.<br/>$2{c} >= 3 && $1{x} >= 1 ? 3$1{x}-1</div>">[10:]</span>
+od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 1 && -$1{x} >= 1 ? bottom<br/>-$2{c} >= 1 && $1{x} == 0 ? 0.<br/>-$2{c} >= 1 && $1{x} >= 1 ? bottom<br/>$2{c} == 0 && -$1{x} >= 1 ? 2<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 2<br/>$2{c} == 1 && -$1{x} >= 1 ? 4<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 4<br/>$2{c} == 2 && -$1{x} >= 1 ? 7<br/>$2{c} == 2 && $1{x} == 0 ? 0.<br/>$2{c} == 2 && $1{x} >= 1 ? 7<br/>$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+1<br/>$2{c} >= 3 && $1{x} == 0 ? 0.<br/>$2{c} >= 3 && $1{x} >= 1 ? 3$2{c}+1</div>">[11:]</span>
+od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? bottom<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? bottom</div>">[12:]</span>
+</pre>
+ </div > 
+ <div role="tabpanel" class="tab-pane active" id="3"> 
+<pre>
+[ 1:]
+void main( ):
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$1{x} >= 1 ? 5<br/>$1{x} == 0 ? 0.<br/>$1{x} >= 1 ? 5</div>">[ 2:]</span> $2{c} := 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 1 ? bottom<br/>$2{c} == 0 && -$1{x} >= 1 ? 2<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 2<br/>$2{c} == 1 && -$1{x} >= 1 ? 4<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 4<br/>$2{c} == 2 && -$1{x} >= 1 ? 7<br/>$2{c} == 2 && $1{x} == 0 ? 0.<br/>$2{c} == 2 && $1{x} >= 1 ? 7<br/>$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+1<br/>$2{c} >= 3 && $1{x} == 0 ? 0.<br/>$2{c} >= 3 && $1{x} >= 1 ? 3$2{c}+1</div>">[ 3:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 1 ? bottom<br/>$2{c} == 0 && -$1{x} >= 1 ? 2<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 2<br/>$2{c} == 1 && -$1{x} >= 1 ? 4<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 4<br/>$2{c} == 2 && -$1{x} >= 1 ? 7<br/>$2{c} == 2 && $1{x} == 0 ? 0.<br/>$2{c} == 2 && $1{x} >= 1 ? 7<br/>$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+1<br/>$2{c} >= 3 && $1{x} == 0 ? 0.<br/>$2{c} >= 3 && $1{x} >= 1 ? 3$2{c}+1</div>">[ 4:]</span> ( true ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 1 ? bottom<br/>$2{c} == 0 && -$1{x} >= 1 ? 1<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 1<br/>$2{c} == 1 && -$1{x} >= 1 ? 3<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 3<br/>$2{c} == 2 && -$1{x} >= 1 ? 6<br/>$2{c} == 2 && $1{x} == 0 ? 0.<br/>$2{c} == 2 && $1{x} >= 1 ? 6<br/>$2{c} == 3 && -$1{x} >= 1 ? 3$2{c}+0<br/>$2{c} == 3 && $1{x} == 0 ? 0.<br/>$2{c} == 3 && $1{x} >= 1 ? 3$2{c}+0<br/>$2{c} == 4 && -$1{x} >= 1 ? 3$2{c}+0<br/>$2{c} == 4 && $1{x} == 0 ? 0.<br/>$2{c} == 4 && $1{x} >= 1 ? 3$2{c}+0<br/>$2{c} == 5 && -$1{x} >= 1 ? 3$2{c}+0<br/>$2{c} == 5 && $1{x} == 0 ? 0.<br/>$2{c} == 5 && $1{x} >= 1 ? 3$2{c}+0<br/>$2{c} == 6 && -$1{x} >= 1 ? 3$2{c}+0<br/>$2{c} == 6 && $1{x} == 0 ? 0.<br/>$2{c} == 6 && $1{x} >= 1 ? 3$2{c}+0<br/>$2{c} == 7 && -$1{x} >= 1 ? 3$2{c}+0<br/>$2{c} == 7 && $1{x} == 0 ? 0.<br/>$2{c} == 7 && $1{x} >= 1 ? 3$2{c}+0<br/>$2{c} == 8 && -$1{x} >= 1 ? 3$2{c}+0<br/>$2{c} == 8 && $1{x} == 0 ? 0.<br/>$2{c} == 8 && $1{x} >= 1 ? 3$2{c}+0<br/>$2{c} >= 9 && -$1{x} >= 1 ? 3$2{c}+0<br/>$2{c} >= 9 && $1{x} == 0 ? 0.<br/>$2{c} >= 9 && $1{x} >= 1 ? 3$2{c}+0</div>">[ 5:]</span>   $1{x} := $2{c}
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 8 ? bottom<br/>$2{c} == -7 && -$1{x} >= -7 ? bottom<br/>$2{c} == -7 && $1{x} >= 8 ? 3$1{x}-1<br/>$2{c} == -6 && -$1{x} >= -5 ? bottom<br/>$2{c} == -6 && $1{x} >= 6 ? 3$1{x}-1<br/>$2{c} == -5 && -$1{x} >= -4 ? bottom<br/>$2{c} == -5 && $1{x} >= 5 ? 3$1{x}-1<br/>$2{c} == -4 && -$1{x} >= -3 ? bottom<br/>$2{c} == -4 && $1{x} >= 4 ? 3$1{x}-1<br/>$2{c} == -3 && -$1{x} >= -2 ? bottom<br/>$2{c} == -3 && $1{x} >= 3 ? 3$1{x}-1<br/>$2{c} == -2 && -$1{x} >= -1 ? bottom<br/>$2{c} == -2 && $1{x} >= 2 ? 3$1{x}-1<br/>$2{c} == -1 && -$1{x} >= 0 ? bottom<br/>$2{c} == -1 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 0 && -$1{x} >= 1 ? 3<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 1 && -$1{x} >= 1 ? 5<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 2 && -$1{x} >= 1 ? 8<br/>$2{c} == 2 && $1{x} == 0 ? 0.<br/>$2{c} == 2 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+2<br/>$2{c} >= 3 && $1{x} == 0 ? 0.<br/>$2{c} >= 3 && $1{x} >= 1 ? 3$1{x}-1</div>">[ 6:]</span>   while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 8 ? bottom<br/>$2{c} == -7 && -$1{x} >= -7 ? bottom<br/>$2{c} == -7 && $1{x} >= 8 ? 3$1{x}-1<br/>$2{c} == -6 && -$1{x} >= -5 ? bottom<br/>$2{c} == -6 && $1{x} >= 6 ? 3$1{x}-1<br/>$2{c} == -5 && -$1{x} >= -4 ? bottom<br/>$2{c} == -5 && $1{x} >= 5 ? 3$1{x}-1<br/>$2{c} == -4 && -$1{x} >= -3 ? bottom<br/>$2{c} == -4 && $1{x} >= 4 ? 3$1{x}-1<br/>$2{c} == -3 && -$1{x} >= -2 ? bottom<br/>$2{c} == -3 && $1{x} >= 3 ? 3$1{x}-1<br/>$2{c} == -2 && -$1{x} >= -1 ? bottom<br/>$2{c} == -2 && $1{x} >= 2 ? 3$1{x}-1<br/>$2{c} == -1 && -$1{x} >= 0 ? bottom<br/>$2{c} == -1 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 0 && -$1{x} >= 1 ? 3<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 1 && -$1{x} >= 1 ? 5<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 2 && -$1{x} >= 1 ? 8<br/>$2{c} == 2 && $1{x} == 0 ? 0.<br/>$2{c} == 2 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+2<br/>$2{c} >= 3 && $1{x} == 0 ? 0.<br/>$2{c} >= 3 && $1{x} >= 1 ? 3$1{x}-1</div>">[ 7:]</span> ( $1{x} > 0 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 8 ? bottom<br/>$2{c} == -7 && -$1{x} >= -7 ? bottom<br/>$2{c} == -7 && $1{x} >= 8 ? 3$1{x}-2<br/>$2{c} == -6 && -$1{x} >= -5 ? bottom<br/>$2{c} == -6 && $1{x} >= 6 ? 3$1{x}-2<br/>$2{c} == -5 && -$1{x} >= -4 ? bottom<br/>$2{c} == -5 && $1{x} >= 5 ? 3$1{x}-2<br/>$2{c} == -4 && -$1{x} >= -3 ? bottom<br/>$2{c} == -4 && $1{x} >= 4 ? 3$1{x}-2<br/>$2{c} == -3 && -$1{x} >= -2 ? bottom<br/>$2{c} == -3 && $1{x} >= 3 ? 3$1{x}-2<br/>$2{c} == -2 && -$1{x} >= -1 ? bottom<br/>$2{c} == -2 && $1{x} >= 2 ? 3$1{x}-2<br/>$2{c} == -1 && -$1{x} >= 1 ? 5<br/>$2{c} == -1 && $1{x} == 0 ? 0.<br/>$2{c} == -1 && $1{x} >= 1 ? 3$1{x}-2<br/>$2{c} == 0 && -$1{x} >= 1 ? 7<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 3$1{x}-2<br/>$2{c} == 1 && -$1{x} >= 1 ? 10<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 3$1{x}-2<br/>$2{c} >= 2 && -$1{x} >= 1 ? 3$2{c}+7<br/>$2{c} >= 2 && $1{x} == 0 ? 0.<br/>$2{c} >= 2 && $1{x} >= 1 ? 3$1{x}-2</div>">[ 8:]</span>     $1{x} := $1{x} - 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 8 ? bottom<br/>$2{c} == -7 && -$1{x} >= -6 ? bottom<br/>$2{c} == -7 && $1{x} >= 7 ? 3$1{x}+0<br/>$2{c} == -6 && -$1{x} >= -4 ? bottom<br/>$2{c} == -6 && $1{x} >= 5 ? 3$1{x}+0<br/>$2{c} == -5 && -$1{x} >= -3 ? bottom<br/>$2{c} == -5 && $1{x} >= 4 ? 3$1{x}+0<br/>$2{c} == -4 && -$1{x} >= -2 ? bottom<br/>$2{c} == -4 && $1{x} >= 3 ? 3$1{x}+0<br/>$2{c} == -3 && -$1{x} >= -1 ? bottom<br/>$2{c} == -3 && $1{x} >= 2 ? 3$1{x}+0<br/>$2{c} == -2 && -$1{x} >= 0 ? bottom<br/>$2{c} == -2 && $1{x} >= 1 ? 3$1{x}+0<br/>$2{c} == -1 && -$1{x} >= 1 ? 4<br/>$2{c} == -1 && $1{x} >= 0 ? 3$1{x}+0<br/>$2{c} >= 0 && -$1{x} >= 1 ? 3$2{c}+6<br/>$2{c} >= 0 && $1{x} >= 0 ? 3$1{x}+0</div>">[ 9:]</span>     $2{c} := $2{c} + 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 7 ? bottom<br/>$2{c} == -6 && -$1{x} >= -6 ? bottom<br/>$2{c} == -6 && $1{x} >= 7 ? 3$1{x}-1<br/>$2{c} == -5 && -$1{x} >= -4 ? bottom<br/>$2{c} == -5 && $1{x} >= 5 ? 3$1{x}-1<br/>$2{c} == -4 && -$1{x} >= -3 ? bottom<br/>$2{c} == -4 && $1{x} >= 4 ? 3$1{x}-1<br/>$2{c} == -3 && -$1{x} >= -2 ? bottom<br/>$2{c} == -3 && $1{x} >= 3 ? 3$1{x}-1<br/>$2{c} == -2 && -$1{x} >= -1 ? bottom<br/>$2{c} == -2 && $1{x} >= 2 ? 3$1{x}-1<br/>$2{c} == -1 && -$1{x} >= 0 ? bottom<br/>$2{c} == -1 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 0 && -$1{x} >= 1 ? 3<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 1 && -$1{x} >= 1 ? 5<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} == 2 && -$1{x} >= 1 ? 8<br/>$2{c} == 2 && $1{x} == 0 ? 0.<br/>$2{c} == 2 && $1{x} >= 1 ? 3$1{x}-1<br/>$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+2<br/>$2{c} >= 3 && $1{x} == 0 ? 0.<br/>$2{c} >= 3 && $1{x} >= 1 ? 3$1{x}-1</div>">[10:]</span>
+od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{c} >= 1 ? bottom<br/>$2{c} == 0 && -$1{x} >= 1 ? 2<br/>$2{c} == 0 && $1{x} == 0 ? 0.<br/>$2{c} == 0 && $1{x} >= 1 ? 2<br/>$2{c} == 1 && -$1{x} >= 1 ? 4<br/>$2{c} == 1 && $1{x} == 0 ? 0.<br/>$2{c} == 1 && $1{x} >= 1 ? 4<br/>$2{c} == 2 && -$1{x} >= 1 ? 7<br/>$2{c} == 2 && $1{x} == 0 ? 0.<br/>$2{c} == 2 && $1{x} >= 1 ? 7<br/>$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+1<br/>$2{c} >= 3 && $1{x} == 0 ? 0.<br/>$2{c} >= 3 && $1{x} >= 1 ? 3$2{c}+1</div>">[11:]</span>
+od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[12:]</span>
+</pre>
+ </div > 
+ </div > 
+
+    </div>
+</div>
+
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<script>
+      $(function () { 
+          $('[data-toggle="tooltip"]').tooltip() 
+        $('.tab_button').last().click()
+      })
+      
+  </script>
+</body>
+</html>
+
+
+
