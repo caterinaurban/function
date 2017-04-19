@@ -298,7 +298,6 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
       InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.print a) inv
 
   let compute (program:program) (property:ctl_property) : inv = 
-    Format.fprintf !fmt "Processing ACTL Property: %a \n" print_ctl_property property;
     let rec inv (property:ctl_property) : inv = 
       let result = 
         match property with
@@ -312,7 +311,7 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
       in
       if not !minimal then
         begin
-          Format.fprintf !fmt "========== Computed invariant for: %a =========== \n" print_ctl_property property;
+          Format.fprintf !fmt "Property: %a\n\n" print_ctl_property property;
           printInv !fmt result;
         end;
       result

@@ -51,21 +51,17 @@ struct
     | A_while (l,(b,ba),s) ->
       let rec aux i p2 n =
         let i' = B.join p p2 in
-        if !tracefwd && not !minimal then
+        if !tracefwd && not !minimal then begin
           Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
-        if !tracefwd && not !minimal then
           Format.fprintf !fmt "p: %a\n" B.print p;
-        if !tracefwd && not !minimal then
           Format.fprintf !fmt "i: %a\n" B.print i;
-        if !tracefwd && not !minimal then
           Format.fprintf !fmt "p2: %a\n" B.print p2;
-        if !tracefwd && not !minimal then
           Format.fprintf !fmt "i': %a\n" B.print i';
+        end;
         if B.isLeq i' i then i
         else
           let i'' = if n <= !joinfwd then i' else B.widen i i' in
-          if !tracefwd && not !minimal then
-            Format.fprintf !fmt "i'': %a\n" B.print i'';
+          if !tracefwd && not !minimal then Format.fprintf !fmt "i'': %a\n" B.print i'';
           aux i'' (fwdBlk funcs env vars (B.filter i'' b) s) (n+1)
       in
       let i = B.bot env vars in
