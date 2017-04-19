@@ -919,7 +919,7 @@ struct
       Format.fprintf Format.std_formatter "\nt2[widen_up]: %a\n" (print_tree vars) t2;
     { domain = domain; tree = widen (t1, t2); env = env; vars = vars }
 
-  let dual_widen t1 t2 = raise (Invalid_argument "TODO")
+  let dual_widen t1 t2 = raise (Invalid_argument "TODO: implement dual_widen")
 
   (**)
 
