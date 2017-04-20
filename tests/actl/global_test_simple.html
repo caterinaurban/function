@@ -14,6 +14,12 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
     <![endif]-->
+    <style>
+      .tooltip-inner {
+            max-width: none;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 <body>
 
@@ -27,85 +33,81 @@
 
  <ul class="nav nav-tabs" role="tablist"> 
 
-      <li role="presentation"><a href="#0" class="tab_button" id="tab_0" aria-controls="home" role="tab" data-toggle="tab">$2{x} <= -6</a></li>  
+      <li role="presentation"><a href="#0" class="tab_button" id="tab_0" aria-controls="home" role="tab" data-toggle="tab">$2{x} <= -10</a></li>  
     
 
       <li role="presentation"><a href="#1" class="tab_button" id="tab_1" aria-controls="home" role="tab" data-toggle="tab">true</a></li>  
     
 
-      <li role="presentation"><a href="#2" class="tab_button" id="tab_2" aria-controls="home" role="tab" data-toggle="tab">AF($2{x} <= -6)</a></li>  
+      <li role="presentation"><a href="#2" class="tab_button" id="tab_2" aria-controls="home" role="tab" data-toggle="tab">AF{$2{x} <= -10}</a></li>  
     
 
-      <li role="presentation"><a href="#3" class="tab_button" id="tab_3" aria-controls="home" role="tab" data-toggle="tab">AG(AF($2{x} <= -6))</a></li>  
+      <li role="presentation"><a href="#3" class="tab_button" id="tab_3" aria-controls="home" role="tab" data-toggle="tab">AG{AF{$2{x} <= -10}}</a></li>  
     
  </ul> 
  <div class="tab-content"> 
  <div role="tabpanel" class="tab-pane active" id="0"> 
 <pre>
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? bottom</div>">[ 1:]</span>
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 1:]</span>
 int main( ):
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? bottom</div>">[ 2:]</span> $2{x} := ?
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? bottom</div>">[ 3:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? bottom</div>">[ 4:]</span> ( $2{x} < 0 ) do
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? bottom</div>">[ 5:]</span>   $2{x} := $2{x} + 1
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? bottom</div>">[ 6:]</span>   while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? bottom</div>">[ 7:]</span> ( $2{x} < -3 ) do
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? bottom</div>">[ 8:]</span>     $2{x} := $2{x} - 1
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? bottom</div>">[ 9:]</span>
-od
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? bottom</div>">[10:]</span>
-od
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? bottom</div>">[11:]</span> $2{x} := -20
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? bottom</div>">[12:]</span>
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 2:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 3:]</span> ( $2{x} < 0 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 4:]</span>   $2{x} := $2{x} + 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 5:]</span>   while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 6:]</span> ( $2{x} < -3 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 7:]</span>     $2{x} := $2{x} - 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 8:]</span>
+        od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 9:]</span>
+      od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[10:]</span> $2{x} := -20
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[11:]</span>
 </pre>
  </div > 
  <div role="tabpanel" class="tab-pane active" id="1"> 
 <pre>
 <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 1:]</span>
 int main( ):
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 2:]</span> $2{x} := ?
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 3:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 4:]</span> ( $2{x} < 0 ) do
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 5:]</span>   $2{x} := $2{x} + 1
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 6:]</span>   while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 7:]</span> ( $2{x} < -3 ) do
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 8:]</span>     $2{x} := $2{x} - 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 2:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 3:]</span> ( $2{x} < 0 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 4:]</span>   $2{x} := $2{x} + 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 5:]</span>   while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 6:]</span> ( $2{x} < -3 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 7:]</span>     $2{x} := $2{x} - 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 8:]</span>
+        od
 <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 9:]</span>
-od
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[10:]</span>
-od
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[11:]</span> $2{x} := -20
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[12:]</span>
+      od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[10:]</span> $2{x} := -20
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[11:]</span>
 </pre>
  </div > 
  <div role="tabpanel" class="tab-pane active" id="2"> 
 <pre>
 [ 1:]
 int main( ):
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? top</div>">[ 2:]</span> $2{x} := ?
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 6<br/>-$2{x} >= 2 && $2{x} >= -4 ? top<br/>$2{x} == -1 ? 5<br/>$2{x} >= 0 ? 2</div>">[ 3:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0<br/>$2{x} == -5 ? 6<br/>-$2{x} >= 2 && $2{x} >= -4 ? top<br/>$2{x} == -1 ? 5<br/>$2{x} >= 0 ? 2</div>">[ 4:]</span> ( $2{x} < 0 ) do
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 5<br/>-$2{x} >= 3 && $2{x} >= -4 ? top<br/>$2{x} == -2 ? 7<br/>$2{x} >= -1 ? 4</div>">[ 5:]</span>   $2{x} := $2{x} + 1
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 2<br/>$2{x} == -4 ? 4<br/>-$2{x} >= 2 && $2{x} >= -3 ? top<br/>$2{x} == -1 ? 6<br/>$2{x} >= 0 ? 3</div>">[ 6:]</span>   while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 2<br/>$2{x} == -4 ? 4<br/>-$2{x} >= 2 && $2{x} >= -3 ? top<br/>$2{x} == -1 ? 6<br/>$2{x} >= 0 ? 3</div>">[ 7:]</span> ( $2{x} < -3 ) do
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 1<br/>$2{x} == -4 ? 3<br/>$2{x} == -3 ? 5<br/>-$2{x} >= 1 && $2{x} >= -2 ? top<br/>$2{x} == 0 ? 7<br/>$2{x} >= 1 ? 4</div>">[ 8:]</span>     $2{x} := $2{x} - 1
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 2<br/>$2{x} == -4 ? 4<br/>-$2{x} >= 2 && $2{x} >= -3 ? top<br/>$2{x} == -1 ? 6<br/>$2{x} >= 0 ? 3</div>">[ 9:]</span>
-od
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 6<br/>-$2{x} >= 2 && $2{x} >= -4 ? top<br/>$2{x} == -1 ? 5<br/>$2{x} >= 0 ? 2</div>">[10:]</span>
-od
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? 1</div>">[11:]</span> $2{x} := -20
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} >= -5 ? bottom</div>">[12:]</span>
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 5 && $2{x} >= -9 ? 2$2{x}+24<br/>$2{x} == -4 ? 16<br/>$2{x} == -3 ? 11<br/>$2{x} == -2 ? 8<br/>$2{x} == -1 ? 5<br/>$2{x} >= 0 ? 2</div>">[ 2:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0<br/>-$2{x} >= 5 && $2{x} >= -9 ? 2$2{x}+24<br/>$2{x} == -4 ? 16<br/>$2{x} == -3 ? 11<br/>$2{x} == -2 ? 8<br/>$2{x} == -1 ? 5<br/>$2{x} >= 0 ? 2</div>">[ 3:]</span> ( $2{x} < 0 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 5 && $2{x} >= -9 ? 2$2{x}+23<br/>$2{x} == -4 ? 13<br/>$2{x} == -3 ? 10<br/>$2{x} == -2 ? 7<br/>$2{x} >= -1 ? 4</div>">[ 4:]</span>   $2{x} := $2{x} + 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 4 && $2{x} >= -9 ? 2$2{x}+20<br/>$2{x} == -3 ? 12<br/>$2{x} == -2 ? 9<br/>$2{x} == -1 ? 6<br/>$2{x} >= 0 ? 3</div>">[ 5:]</span>   while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0<br/>-$2{x} >= 4 && $2{x} >= -9 ? 2$2{x}+20<br/>$2{x} == -3 ? 12<br/>$2{x} == -2 ? 9<br/>$2{x} == -1 ? 6<br/>$2{x} >= 0 ? 3</div>">[ 6:]</span> ( $2{x} < -3 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 3 && $2{x} >= -9 ? 2$2{x}+19<br/>$2{x} == -2 ? 13<br/>$2{x} == -1 ? 10<br/>$2{x} == 0 ? 7<br/>$2{x} >= 1 ? 4</div>">[ 7:]</span>     $2{x} := $2{x} - 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 4 && $2{x} >= -9 ? 2$2{x}+20<br/>$2{x} == -3 ? 12<br/>$2{x} == -2 ? 9<br/>$2{x} == -1 ? 6<br/>$2{x} >= 0 ? 3</div>">[ 8:]</span>
+        od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 5 && $2{x} >= -9 ? 2$2{x}+24<br/>$2{x} == -4 ? 16<br/>$2{x} == -3 ? 11<br/>$2{x} == -2 ? 8<br/>$2{x} == -1 ? 5<br/>$2{x} >= 0 ? 2</div>">[ 9:]</span>
+      od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? 1</div>">[10:]</span> $2{x} := -20
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[11:]</span>
 </pre>
  </div > 
  <div role="tabpanel" class="tab-pane active" id="3"> 
 <pre>
 [ 1:]
 int main( ):
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? bottom<br/>$2{x} >= -5 ? top</div>">[ 2:]</span> $2{x} := ?
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 6<br/>-$2{x} >= 2 && $2{x} >= -4 ? top<br/>$2{x} >= -1 ? bottom</div>">[ 3:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 6<br/>-$2{x} >= 2 && $2{x} >= -4 ? top<br/>$2{x} >= -1 ? bottom</div>">[ 4:]</span> ( $2{x} < 0 ) do
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 5<br/>-$2{x} >= 3 && $2{x} >= -4 ? top<br/>$2{x} >= -2 ? bottom</div>">[ 5:]</span>   $2{x} := $2{x} + 1
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 2<br/>$2{x} == -4 ? 4<br/>-$2{x} >= 2 && $2{x} >= -3 ? top<br/>$2{x} >= -1 ? bottom</div>">[ 6:]</span>   while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 2<br/>$2{x} == -4 ? 4<br/>-$2{x} >= 2 && $2{x} >= -3 ? top<br/>$2{x} >= -1 ? bottom</div>">[ 7:]</span> ( $2{x} < -3 ) do
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 1<br/>$2{x} == -4 ? 3<br/>$2{x} == -3 ? 5<br/>-$2{x} >= 1 && $2{x} >= -2 ? top<br/>$2{x} >= 0 ? bottom</div>">[ 8:]</span>     $2{x} := $2{x} - 1
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 2<br/>$2{x} == -4 ? 4<br/>-$2{x} >= 2 && $2{x} >= -3 ? top<br/>$2{x} >= -1 ? bottom</div>">[ 9:]</span>
-od
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 6 ? 0.<br/>$2{x} == -5 ? 6<br/>-$2{x} >= 2 && $2{x} >= -4 ? top<br/>$2{x} >= -1 ? bottom</div>">[10:]</span>
-od
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[11:]</span> $2{x} := -20
-<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[12:]</span>
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 5 && $2{x} >= -9 ? 2$2{x}+24<br/>$2{x} >= -4 ? bottom</div>">[ 2:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 5 && $2{x} >= -9 ? 2$2{x}+24<br/>$2{x} >= -4 ? bottom</div>">[ 3:]</span> ( $2{x} < 0 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 5 && $2{x} >= -9 ? 2$2{x}+23<br/>$2{x} >= -4 ? bottom</div>">[ 4:]</span>   $2{x} := $2{x} + 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 4 && $2{x} >= -9 ? 2$2{x}+20<br/>$2{x} >= -3 ? bottom</div>">[ 5:]</span>   while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 4 && $2{x} >= -9 ? 2$2{x}+20<br/>$2{x} >= -3 ? bottom</div>">[ 6:]</span> ( $2{x} < -3 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 3 && $2{x} >= -9 ? 2$2{x}+19<br/>$2{x} >= -2 ? bottom</div>">[ 7:]</span>     $2{x} := $2{x} - 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 4 && $2{x} >= -9 ? 2$2{x}+20<br/>$2{x} >= -3 ? bottom</div>">[ 8:]</span>
+        od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>-$2{x} >= 5 && $2{x} >= -9 ? 2$2{x}+24<br/>$2{x} >= -4 ? bottom</div>">[ 9:]</span>
+      od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[10:]</span> $2{x} := -20
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[11:]</span>
 </pre>
  </div > 
  </div > 

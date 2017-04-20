@@ -6,6 +6,7 @@ open Partition
 open Functions
 open Iterator
 
+(* type for CTL properties, instantiated with bExp for atomic propositions *)
 type ctl_property = AbstractSyntax.bExp CTLProperty.generic_property
 
 let rec print_ctl_property fmt (property:ctl_property) = match property with 
@@ -20,7 +21,7 @@ let rec print_ctl_property fmt (property:ctl_property) = match property with
 
 module InvMap = Map.Make(struct type t=label let compare=compare end)
 
-(* Bundle commonly used values (AST, Apron env. variable list) to one struct*)
+(* Bundle commonly used values (AST, Apron env. variable list) to one struct *)
 type program = {
   environment: Apron.Environment.t;
   variables: AbstractSyntax.var list;
@@ -28,6 +29,7 @@ type program = {
   globalBlock: AbstractSyntax.block; 
 }
 
+(* Computes the set of all labels of a program *)
 let labels_of_program program = 
   let rec stmtLabels s =
     match s with
@@ -49,6 +51,7 @@ let block_label block =
   | A_block (l,_,_) -> l
 
 
+(* bundle values into 'program' struct *)
 let program_of_prog (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.key) : program =
   let (globalVariables, globalBlock, functions) = prog in
   let mainFunction = StringMap.find main functions in
@@ -67,19 +70,23 @@ let program_of_prog (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.
 
 module ACTLIterator(D: RANKING_FUNCTION) = struct
 
-  type inv = D.t InvMap.t
-
   (*
      Fixed Point Computation:
 
      The fixed point for the 'unit' and 'global' operators are computed by performing a backward-analysis.
 
      Given a statement, we call the state that holds before the statement the 'in' state, and the state that holds
-     after the statement the 'out' state. The backward analysis starts with an initial 'out' state at the end of the program
+     after the statement the 'out' state (before and after according to the control-flow). 
+     The backward analysis starts with an initial 'out' state at the end of the program
      and propagates it backwards to the start of the program. For each statement, the 'in' state is computed based on the 'out' state.
      At loop heads the final 'in' state is computed by iterating over the loop body until a fixed-point is reached.
-
   *)
+
+  (* 
+     Type that represents an invariant/fixed-point.
+     An invariant assigns an abstract state to each statement of a program
+  *)
+  type inv = D.t InvMap.t
 
 
   (* Computes fixed-point for 'until' properties: AU{inv_keep}{inv_reset} 
@@ -90,7 +97,7 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
      defined and it discards those parts of the ranking function where neither inv_keep nor inv_reset are defined.
   *)
   let until (program:program) (inv_keep:inv) (inv_reset:inv) : inv =
-    let inv = ref InvMap.empty in (* map that stores the 'in' states for each block *)
+    let inv = ref InvMap.empty in (* variable where the resulting invariant/fixed-point is stored *)
     let addInv l (a:D.t) = inv := InvMap.add l a !inv; a in (* update InvMap with new value and return new updated value *)
     let bot = D.bot program.environment program.variables in
     let start = Sys.time () in
@@ -152,11 +159,11 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
                 let in_state'' = if n <= !joinbwd then in_state' else D.widen in_state (D.join COMPUTATIONAL in_state in_state') in
                 if !tracebwd && not !minimal then Format.fprintf !fmt "in'': %a\n" D.print in_state'';
                 let out_enter' = D.filter (bwd in_state'' loop_body) b in (* process loop body again with updated 'in' state *)
-                aux in_state'' out_enter' (n+1)
+                aux in_state'' out_enter' (n+1) (* next iteration*)
             in
             let initial_in = bot in (* start with bottom as initial 'in' state *)
             let initial_out_enter = D.filter (bwd initial_in loop_body) b in (* process loop body with initial 'in' state *)
-            let final_in_state = aux initial_in initial_out_enter 1 in (* compute fixed point for while-loop starting *)
+            let final_in_state = aux initial_in initial_out_enter 1 in (* compute fixed point for loop-head *)
             addInv l final_in_state 
           | A_call (f,ss) -> raise (Invalid_argument "bwdStm:A_call")
           | A_recall (f,ss) -> raise (Invalid_argument "bwdStm:A_recall")
@@ -169,8 +176,16 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
     !inv (* return computed program invariant *)
 
 
+  (*
+    Computed fixed-point for 'global' operator (e.g. AG{...}), takes an existing fixed point for the nested property as argument.
+
+    Applies the 'left_narrow' function to compute the greates-fixed point starting from the given fixed point for the nested property. 
+    During the backward analysis, the reachable state at each statement is computed by inspecting the 'out' states. 
+    Then this reachable state is used to narrow down the given fixed-point of the nested property by using 'left_narrow'. 
+    To backward analysis for the while-loop uses widening to get convergence.
+  *)
   let global (program:program) (fixed_point:inv) : inv =
-    let inv = ref (InvMap.union (fun _ _ _ -> None) fixed_point InvMap.empty) in (* initialize InvMap with given fixed point *)
+    let inv = ref (InvMap.union (fun _ _ _ -> None) fixed_point InvMap.empty) in (* initialize InvMap with given fixed-point for nested property *)
     let addInv l (a:D.t) = inv := InvMap.add l a !inv; a in (* update InvMap with new value and return new updated value *)
     let blockState block = InvMap.find (label_of_block block) !inv in (* returns current 'in' state of a block *)
     let bot = D.bot program.environment program.variables in 
@@ -181,8 +196,7 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
       match b with
       | A_empty blockLabel -> addInv blockLabel (D.left_narrow current_in out) 
       | A_block (blockLabel, (stmt,_), nextBlock) ->
-        (* recursively process the rest of the program, this gives us the 'out' state for this statement *)
-        let out_state = bwd out nextBlock in
+        let out_state = bwd out nextBlock in (* recursively process the rest of the program, this gives us the 'out' state for this statement *)
         let new_in = match stmt with 
           | A_label (l,_) -> out_state
           | A_return -> bot
@@ -218,6 +232,7 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
                 let updated_in' = if n <= !joinbwd then 
                     updated_in 
                   else 
+                    (* use widening after fixed number of iterations *)
                     D.widen current_in updated_in 
                 in
                 let out_enter' = D.filter (bwd updated_in' loop_body) b in (* process loop body again with updated 'in' state *)
@@ -234,13 +249,19 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
     let _ = bwd bot program.mainFunction.funcBody in (* run backward analysis starting from bottom *)
     !inv
 
+  (* 
+    Computes fixed-point for 'next' operator (e.g. AX{...})
+    For each program label, this function joins all 'out' states and sets this value as the new invariant.
+    This computatoin is straight-forward with the exception of empty blocks. 
+    There we need to inject the 'out' state of the next basic block in the control-flow-graph. 
+    This is done by passing in said state through the recursion of the backward analysis.
+  *)
   let next (program:program) (fp:inv) : inv =
     let invMap = ref InvMap.empty in
     let addInv label state = invMap := InvMap.add label state !invMap in
-    let rec aux (b:block) (nextOuterState:D.t) ()  =
+    let rec aux (b:block) (nextOuterState:D.t) () = (* nextOuterState is the 'out' state of the next basic block in the CFG *)
       match b with 
-      | A_empty l -> 
-        addInv l nextOuterState
+      | A_empty l -> addInv l nextOuterState (* here we use 'nextOuterState' because there is no 'out' state coming in from the next block *)
       | A_block (blockLabel,(stmt,_),nextBlock) -> 
         let nextBlockLabel = block_label nextBlock in
         let nextBlockState = InvMap.find nextBlockLabel fp in
@@ -267,9 +288,10 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
           addInv blockLabel nextBlockState
     in
     let bot = D.bot program.environment program.variables in
+    let top = D.top program.environment program.variables in
     aux program.mainFunction.funcBody bot ();
-    InvMap.map D.zero_leafs !invMap 
-
+    let zero_leafs t = D.reset_until top t t in (* set all defined leafs of the decision trees to zero *)
+    InvMap.map zero_leafs !invMap 
 
   (* 
     Assign atomic state to each label of the program.
@@ -297,6 +319,9 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
     else
       InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.print a) inv
 
+  (*
+    Recusively compute fixed-point for CTL properties 
+  *)
   let compute (program:program) (property:ctl_property) : inv = 
     let rec inv (property:ctl_property) : inv = 
       let result = 

@@ -3,14 +3,9 @@ import re
 
 content = []
 for line in sys.stdin:
-    l = line.strip()
+    l = line.rstrip()
     if l != '':
         content.append(l)
-
-# with open("result.log") as f:
-#     content = f.readlines()
-# # you may also want to remove whitespace characters like `\n` at the end of each line
-# content = [x for x in content if x != '']
 
 label_pattern = re.compile('(\[\s*\d+:\]):')
 

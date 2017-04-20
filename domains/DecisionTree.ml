@@ -480,11 +480,10 @@ struct
     in aux (tree_unification t1.tree t2.tree env vars) []
 
 
-
   (*
     The 'tree_join_helper' function can be used to generalize the joining of two trees.
-    It uses tree_unification on the two input trees 'tree1' and 'tree2' and uses 
-    the given functions 'fBotLeft', 'fBotRight' and 'fBotLeaf' produce the new leaf nodes in the resulting tree.
+    It applies tree_unification to the two input trees 'tree1' and 'tree2' and uses 
+    the given functions 'fBotLeft', 'fBotRight' and 'fBotLeaf' to produce the new leaf nodes in the resulting tree.
 
      - fBotRight: is called when the left node is a leaf and the right node is NIL
      - fBotLeft: is called when the right node is a leaf and the left node is NIL
@@ -1245,35 +1244,6 @@ struct
       | Node((c,nc),l,r) -> aux r (nc::cs); aux l (c::cs)
     (* in aux t.tree []; Format.fprintf fmt "\nDOMAIN = {%a}%a\n" print_domain domain (print_tree vars) t.tree *)
     in aux t.tree []
-    (* in Format.fprintf fmt "\nDOMAIN = {%a}%a\n" print_domain domain (print_tree vars) t.tree *)
-
-
-  let map_tree_leafs f (t:t) =
-    let rec aux (t:tree) = 
-      match t with 
-      | Bot -> Bot
-      | Leaf l -> f l
-      | Node (l, t1, t2) -> 
-        let t1' = aux t1 in
-        let t2' = aux t2 in
-        Node (l, t1', t2')
-    in
-    {
-      domain = t.domain;
-      tree = aux t.tree;
-      env = t.env;
-      vars = t.vars
-    }
-
-  (* Takes a decision tree as argument and replaces all non-bottom leafs with a constant function that returns zero *)
-  let zero_leafs (t:t) =
-    let mapLeaf l = 
-      let f = if F.isBot l then l else F.reset l 
-      in Leaf f 
-    in
-    map_tree_leafs mapLeaf t
-
-
 
 
   (* 
@@ -1281,7 +1251,9 @@ struct
      that are not part of the domain of the righ tree.
 
      This means that if some part of the domain of the right tree is undefined (i.e. bottom, top or NIL)
-     then the corresponding part of the left tree is replaced with a bottom leaf.
+     then the corresponding part in the left tree is replaced with a bottom leaf.
+
+     NOTE: narrow_left is only monotone w.r.t. the APPROXIMATION order
   *)
   let left_narrow t_left t_right =
     let domain = t_left.domain in 
@@ -1296,8 +1268,7 @@ struct
       else (* if RHS is not defined, then go to bottom if LHS is not already top or bottom*)
         if isDefined l1 then botLeaf 
         else Leaf l1
-    in (* if RHS is not defined then LHS goes to bottom *)
-    { 
+    in { 
       domain = domain; 
       tree = tree_join_helper fBotLeft fBotRight fLeaf t_left.tree t_right.tree env vars; 
       env = env; 
@@ -1305,6 +1276,17 @@ struct
     }
 
 
+  (*
+     Combination of reset and filter operation. This operator can be used to implement the CTL 'until' operator.
+
+     Takes a decision trees 't_keep', 't_reset' and 't' an as argument and resets all leafs in 't' 
+     that are also part of the domain of 't_reset' and removes all leafs in 't' that are neither part of the domain of 't_keep' or 't_reset'.
+
+
+     The function first filters out all leafs in 't' that are not also part of the domain of 't_keep' and 't_reset'. 
+     Then it resets all leafs in 't' that are also part of the domain of 't_reset'.
+  
+  *)
   let reset_until t_keep t_reset t =
     let domain = t.domain in 
     let env = t.env in 
@@ -1322,17 +1304,10 @@ struct
       | (Node (c,l1,r1), Node (_,l2,r2)) -> Node (c, reset (l1, l2), reset (r1, r2))
       | _ -> raise (Invalid_argument "reset_until: Invalid Tree shape")
     in
-    let t_valid = tree (join COMPUTATIONAL t_keep t_reset) in 
-    let t_filtered = filter (tree_unification t.tree t_valid env vars) in (* filter out all parts of tree that are not part of the valid domain*)
-    let t_reset = reset (tree_unification t_filtered t_reset.tree env vars) in (* reset all parts of the tree that are defined in t_reset *)
-    let result = { 
-      domain = domain; 
-      tree = t_reset; 
-      env = env; 
-      vars = vars 
-    } in
-    result
-          
+    let t_valid = tree (join COMPUTATIONAL t_keep t_reset) in (* join t_reset and t_keep to get the entire domain for which 't' is still defined*)
+    let t_filtered = filter (tree_unification t.tree t_valid env vars) in (* filter out all parts of 't' that are not part of the domain of 't_keep' or 't_reset'*)
+    let t_reset = reset (tree_unification t_filtered t_reset.tree env vars) in (* reset all parts of the 't' that are defined in 't_reset' *)
+    {domain = domain; tree = t_reset; env = env; vars = vars}
 
 end
 
