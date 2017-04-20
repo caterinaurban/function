@@ -55,6 +55,12 @@ print("""
     <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
     <![endif]-->
+    <style>
+      .tooltip-inner {
+            max-width: none;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 <body>
 

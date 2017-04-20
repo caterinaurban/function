@@ -1,0 +1,103 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap 3 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <h1>Analysis Result</h1>
+    </div>
+
+    <div class="row">
+
+ <ul class="nav nav-tabs" role="tablist"> 
+
+      <li role="presentation"><a href="#0" class="tab_button" id="tab_0" aria-controls="home" role="tab" data-toggle="tab">$2{x} <= 0 && $2{x} >= 0</a></li>  
+    
+
+      <li role="presentation"><a href="#1" class="tab_button" id="tab_1" aria-controls="home" role="tab" data-toggle="tab">$2{x} <= 4</a></li>  
+    
+
+      <li role="presentation"><a href="#2" class="tab_button" id="tab_2" aria-controls="home" role="tab" data-toggle="tab">A(($2{x} <= 4) U ($2{x} <= 0 && $2{x} >= 0))</a></li>  
+    
+ </ul> 
+ <div class="tab-content"> 
+ <div role="tabpanel" class="tab-pane active" id="0"> 
+<pre>
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} >= 1 ? bottom</div>">[ 1:]</span>
+int main( ):
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} >= 1 ? bottom</div>">[ 2:]</span> $2{x} := ?
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} >= 1 ? bottom</div>">[ 3:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} >= 1 ? bottom</div>">[ 4:]</span> ( $2{x} > 2 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} >= 1 ? bottom</div>">[ 5:]</span>   $2{x} := $2{x} - 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} >= 1 ? bottom</div>">[ 6:]</span>
+od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} >= 1 ? bottom</div>">[ 7:]</span> $2{x} := $2{x} - 2
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} >= 1 ? bottom</div>">[ 8:]</span>
+</pre>
+ </div > 
+ <div role="tabpanel" class="tab-pane active" id="1"> 
+<pre>
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= -4 ? 0.<br/>$2{x} >= 5 ? bottom</div>">[ 1:]</span>
+int main( ):
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= -4 ? 0.<br/>$2{x} >= 5 ? bottom</div>">[ 2:]</span> $2{x} := ?
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= -4 ? 0.<br/>$2{x} >= 5 ? bottom</div>">[ 3:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= -4 ? 0.<br/>$2{x} >= 5 ? bottom</div>">[ 4:]</span> ( $2{x} > 2 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= -4 ? 0.<br/>$2{x} >= 5 ? bottom</div>">[ 5:]</span>   $2{x} := $2{x} - 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= -4 ? 0.<br/>$2{x} >= 5 ? bottom</div>">[ 6:]</span>
+od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= -4 ? 0.<br/>$2{x} >= 5 ? bottom</div>">[ 7:]</span> $2{x} := $2{x} - 2
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= -4 ? 0.<br/>$2{x} >= 5 ? bottom</div>">[ 8:]</span>
+</pre>
+ </div > 
+ <div role="tabpanel" class="tab-pane active" id="2"> 
+<pre>
+[ 1:]
+int main( ):
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} >= 1 ? bottom</div>">[ 2:]</span> $2{x} := ?
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} == 1 ? bottom<br/>$2{x} == 2 ? 2<br/>$2{x} == 3 ? 4<br/>$2{x} == 4 ? 6<br/>$2{x} >= 5 ? bottom</div>">[ 3:]</span> while <span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0<br/>$2{x} == 1 ? bottom<br/>$2{x} == 2 ? 2<br/>$2{x} == 3 ? 4<br/>$2{x} == 4 ? 6<br/>$2{x} >= 5 ? bottom</div>">[ 4:]</span> ( $2{x} > 2 ) do
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} == 1 ? 1<br/>$2{x} == 2 ? bottom<br/>$2{x} == 3 ? 3<br/>$2{x} == 4 ? 5<br/>$2{x} >= 5 ? bottom</div>">[ 5:]</span>   $2{x} := $2{x} - 1
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} == 1 ? bottom<br/>$2{x} == 2 ? 2<br/>$2{x} == 3 ? 4<br/>$2{x} == 4 ? 6<br/>$2{x} >= 5 ? bottom</div>">[ 6:]</span>
+od
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} == 1 ? bottom<br/>$2{x} == 2 ? 1<br/>$2{x} >= 3 ? bottom</div>">[ 7:]</span> $2{x} := $2{x} - 2
+<span class="label label-default" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} >= 1 ? bottom</div>">[ 8:]</span>
+</pre>
+ </div > 
+ </div > 
+
+    </div>
+</div>
+
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<script>
+      $(function () { 
+          $('[data-toggle="tooltip"]').tooltip() 
+        $('.tab_button').last().click()
+      })
+      
+  </script>
+</body>
+</html>
+
+
+

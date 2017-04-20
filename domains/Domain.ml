@@ -28,7 +28,7 @@ sig
 
   val isLeq : kind -> t -> t -> bool
   val join : kind -> t -> t -> t
-  val meet : t -> t -> t
+  val meet : kind -> t -> t -> t
   val widen : ?jokers:int -> t -> t -> t
   val dual_widen : t -> t -> t
 
@@ -43,7 +43,6 @@ sig
 
   val left_narrow: t -> t -> t
   val zero_leafs: t -> t
-  val leaf_preserving_meet: t -> t -> t
   val reset_until: t -> t -> t -> t
 
 end

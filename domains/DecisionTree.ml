@@ -553,18 +553,33 @@ struct
 
       The implementation assumes that t1 and t2 are defined over the same 
       reachable states, the same APRON envorinment and the same list of 
-      program variables. *)
+      program variables. 
 
-  let meet t1 t2 = 
+      The following two versions of meet exists:
+
+      COMPUTATIONAL:
+      In this versions, all parts of the resuling decision tree that are undefined i.e. not part of t1 and t2 are 
+      set to bottom leafs.
+
+      APPROXIMATION:
+      In this versions, all parts of the resuling decision tree that are undefined i.e. not part of t1 and t2 are 
+      replaced with NIL nodes. Using this version of the meet can lead to NIL nodes in the resulting tree.
+  *)
+
+  let meet (k:kind) (t1:t) (t2:t) = 
     let domain = t1.domain in (* assuming t1.domain = t2.domain *)
     let env = t1.env in (* assuming t1.env = t2.env *)
     let vars = t1.vars in (* assuming t1.vars = t2.vars *)
-    let fBotLeftRight _ _ = Bot in
+    let botLeaf = Leaf (F.bot env vars) in
+    let fBotLeftRight = match k with
+      | APPROXIMATION -> fun _ _ -> Bot (* use NIL if at least one leaf is NIL *)
+      | COMPUTATIONAL -> fun _ _ -> botLeaf (* use bottom leaf if at least one leaf is nil*)
+    in
     let fLeaf cs f1 f2 = 
       let b = match domain with 
         | None -> B.inner env vars cs 
-        | Some domain -> B.meet (B.inner env vars cs) domain in 
-      if B.isBot b then Bot else Leaf (F.join APPROXIMATION b f1 f2)
+        | Some domain -> B.meet (B.inner env vars cs) domain in
+      if B.isBot b then Bot else Leaf (F.join APPROXIMATION b f1 f2) (* join leaf values using APPROXIMATION join *)
     in { 
       domain = domain; 
       tree = tree_join_helper fBotLeftRight fBotLeftRight fLeaf t1.tree t2.tree env vars; 
@@ -1138,7 +1153,7 @@ struct
     | A_bbinary (o,(e1,_),(e2,_)) ->
       let t1 = filter ?domain:pre t e1 and t2 = filter ?domain:pre t e2 in
       (match o with
-       | A_AND -> meet t1 t2
+       | A_AND -> meet APPROXIMATION t1 t2
        | A_OR -> join APPROXIMATION t1 t2)
     | A_rbinary (_,_,_) ->
       let bp = match post with
@@ -1259,20 +1274,6 @@ struct
     map_tree_leafs mapLeaf t
 
 
-
-  (* Equivalent to usual meet but does not generate NIL nodes. Instead, all NIL nodes are converted to bot. leafs*)
-  let leaf_preserving_meet t1 t2 =
-    let domain = t1.domain in 
-    let env = t1.env in 
-    let vars = t1.vars in 
-    let fBotLeftRight _ _ = Leaf (F.bot env vars) in
-    let fLeaf cs l1 l2 = Leaf (F.join APPROXIMATION (B.inner env vars cs) l1 l2) in
-    { 
-      domain = domain; 
-      tree = tree_join_helper fBotLeftRight fBotLeftRight fLeaf t1.tree t2.tree env vars; 
-      env = env; 
-      vars = vars 
-    }
 
 
   (* 

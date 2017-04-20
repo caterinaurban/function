@@ -283,12 +283,12 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
 
   (* CTL 'or' opperator *)
   let logic_or (fp1:inv) (fp2:inv) : inv =
-    let f _ t1 t2 = Some (D.join Functions.COMPUTATIONAL t1 t2) in
+    let f _ t1 t2 = Some (D.join COMPUTATIONAL t1 t2) in
     InvMap.union f fp1 fp2
 
   (* CTL 'and' opperator *)
   let logic_and (fp1:inv) (fp2:inv) : inv =
-    let f _ t1 t2 = Some (D.leaf_preserving_meet t1 t2) in (* meet COMPUTATIONAL ... *)
+    let f _ t1 t2 = Some (D.meet COMPUTATIONAL t1 t2) in
     InvMap.union f fp1 fp2
 
   let printInv fmt (inv:inv) =
