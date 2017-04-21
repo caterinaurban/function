@@ -51,6 +51,65 @@ let block_label block =
   | A_block (l,_,_) -> l
 
 
+
+(*
+   This function takes a given paresed program and introduces a new variable called 'termination' that is set to '0'
+   whenever the program terminates i.e. at the end and before every return statement. 
+
+   The augmented program and a corresponding ctl_property for termination is returned. 
+   This pair can then be used with the usual CTL analysis to check for termination.
+*)
+let program_of_prog_with_termination (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.key) : (program * ctl_property) =
+  let (globalVariables, globalBlock, functions) = prog in
+  let mainFunction = StringMap.find main functions in
+  let dummyPosition = match mainFunction.funcBody with 
+    | A_block (_, (_,pos), _) -> pos
+    | _ -> raise (Invalid_argument "empty main function")
+  in
+  let terminationVar = {varId = "$termination"; varName = "termination"; varTyp = A_INT} in
+  let assignZero = (A_assign ((A_var terminationVar, dummyPosition), (A_const 0, dummyPosition)), dummyPosition) in
+  let assignOne = (A_assign ((A_var terminationVar, dummyPosition), (A_const 1, dummyPosition)), dummyPosition) in
+  let id = ref (-2) in
+  let nextId () = let i = !id in id := i + 1; i in
+  let rec addTerminationStmt (block:block) = match block with
+    | A_empty l -> A_block (nextId (), assignOne, block)
+    | A_block (l,stmt,nextBlock) -> A_block (l, stmt, addTerminationStmt nextBlock)
+  in
+  let rec addTerminationStmtReturn (block:block) = match block with
+    | A_empty l -> block 
+    | A_block (l, (A_return,a) , nextBlock) -> 
+      let nextBlock = A_block (l, (A_return, a), addTerminationStmtReturn nextBlock) in
+      A_block (nextId (), assignOne, nextBlock)
+    | A_block (l, stmt, nextBlock) -> A_block (l, stmt, addTerminationStmtReturn nextBlock)
+  in
+  let augmentedBody = A_block (-1, assignZero, addTerminationStmtReturn @@ addTerminationStmt mainFunction.funcBody) in
+  let v1 = snd (List.split (StringMap.bindings globalVariables)) in
+  let v2 = snd (List.split (StringMap.bindings mainFunction.funcVars)) in
+  let vars = terminationVar :: (List.append v1 v2) in (* add special terminationVar to list of variables *)
+  let var_to_apron v = Apron.Var.of_string v.varId in
+  let apron_vars = Array.map var_to_apron (Array.of_list vars) in
+  let env = Environment.make apron_vars [||] in
+  let program = {
+    environment = env;
+    variables = vars;
+    mainFunction = {
+      funcName = mainFunction.funcName;
+      funcTyp = mainFunction.funcTyp;
+      funcArgs = mainFunction.funcArgs;
+      funcVars = StringMap.add terminationVar.varId terminationVar mainFunction.funcVars; (* add termination var to function variables *)
+      funcBody = augmentedBody
+    };
+    globalBlock = globalBlock
+  } in
+  let terminationProperty = AF (Atomic (AbstractSyntax.A_rbinary (AbstractSyntax.A_GREATER_EQUAL, (A_var terminationVar, dummyPosition), (A_const 1, dummyPosition)))) in
+  (program, terminationProperty)
+
+
+let prog_of_program (program:program) : prog = 
+  let funcMap = StringMap.add "main" program.mainFunction StringMap.empty in
+  let varMap = List.fold_left (fun map var -> StringMap.add var.varId var map) StringMap.empty program.variables in
+  (varMap, program.globalBlock, funcMap)
+
 (* bundle values into 'program' struct *)
 let program_of_prog (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.key) : program =
   let (globalVariables, globalBlock, functions) = prog in
@@ -343,8 +402,11 @@ module ACTLIterator(D: RANKING_FUNCTION) = struct
     in inv property
 
   let analyze (program:program) (property:ctl_property) =  
-    let _ = compute program property in
-    ()
+    let inv = compute program property in
+    let initialLabel = block_label program.mainFunction.funcBody in
+    let programInvariant = InvMap.find initialLabel inv in
+    let isTerminating = D.terminating programInvariant in
+    isTerminating
 
 
 end

@@ -130,6 +130,8 @@ let parse_args () =
       analysis := "recurrence"; property := x; doit r
     | "-actl"::x::r -> (* ACTL analysis *)
       analysis := "actl"; property := x; doit r
+    | "-actl_termination"::r -> (* ACTL analysis *)
+      analysis := "actl_termination"; doit r
     | "-refine"::r -> (* refine in backward analysis *)
       Iterator.refine := true; doit r
     | "-retrybwd"::x::r ->
@@ -295,6 +297,31 @@ let recurrence () =
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in run_analysis (analysis_function property) program ()
 
+
+(* run termination analysis in CTL *)
+let actl_termination () =
+  if !filename = "" then raise (Invalid_argument "No Source File Specified");
+  let (prog, _) = ItoA.prog_itoa (parseFile !filename) in
+  let (program, property) = ACTLIterator.program_of_prog_with_termination prog !main in
+  if not !minimal then
+    begin
+      Format.fprintf !fmt "\nAbstract Syntax:\n";
+      AbstractSyntax.prog_print !fmt (ACTLIterator.prog_of_program program);
+      Format.fprintf !fmt "\n";
+    end;
+  let analyze =
+    match !domain with
+    | "boxes" -> if !ordinals then ACTLBoxesOrdinals.analyze else ACTLBoxes.analyze
+    | "octagons" -> if !ordinals then ACTLOctagonsOrdinals.analyze else ACTLOctagons.analyze
+    | "polyhedra" -> if !ordinals then ACTLPolyhedraOrdinals.analyze else ACTLPolyhedra.analyze
+    | _ -> raise (Invalid_argument "Unknown Abstract Domain")
+  in
+  let terminating = analyze program property in
+  if terminating then 
+    Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
+  else 
+    Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
+
     
 let actl () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
@@ -326,6 +353,7 @@ let doit () =
   | "guarantee" -> guarantee ()
   | "recurrence" -> recurrence ()
   | "actl" -> actl ()
+  | "actl_termination" -> actl_termination ()
   | _ -> raise (Invalid_argument "Unknown Analysis")
 
 let _ = doit () 
