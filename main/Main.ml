@@ -128,9 +128,9 @@ let parse_args () =
       ordinals := true; Ordinals.max := int_of_string x; doit r
     | "-recurrence"::x::r -> (* recurrence analysis *)
       analysis := "recurrence"; property := x; doit r
-    | "-actl"::x::r -> (* ACTL analysis *)
+    | "-actl"::x::r -> (* CTL analysis *)
       analysis := "actl"; property := x; doit r
-    | "-actl_termination"::r -> (* ACTL analysis *)
+    | "-actl_termination"::r -> (* CTL analysis *)
       analysis := "actl_termination"; doit r
     | "-refine"::r -> (* refine in backward analysis *)
       Iterator.refine := true; doit r
@@ -198,12 +198,12 @@ module RecurrencePolyhedra =
 module RecurrencePolyhedraOrdinals =
   RecurrenceIterator.RecurrenceIterator(DecisionTree.TSOP)
 
-module ACTLBoxes = ACTLIterator.ACTLIterator(DecisionTree.TSAB)
-module ACTLBoxesOrdinals = ACTLIterator.ACTLIterator(DecisionTree.TSOB)
-module ACTLOctagons = ACTLIterator.ACTLIterator(DecisionTree.TSAO)
-module ACTLOctagonsOrdinals = ACTLIterator.ACTLIterator(DecisionTree.TSOO)
-module ACTLPolyhedra = ACTLIterator.ACTLIterator(DecisionTree.TSAP)
-module ACTLPolyhedraOrdinals = ACTLIterator.ACTLIterator(DecisionTree.TSOP)
+module CTLBoxes = CTLIterator.CTLIterator(DecisionTree.TSAB)
+module CTLBoxesOrdinals = CTLIterator.CTLIterator(DecisionTree.TSOB)
+module CTLOctagons = CTLIterator.CTLIterator(DecisionTree.TSAO)
+module CTLOctagonsOrdinals = CTLIterator.CTLIterator(DecisionTree.TSOO)
+module CTLPolyhedra = CTLIterator.CTLIterator(DecisionTree.TSAP)
+module CTLPolyhedraOrdinals = CTLIterator.CTLIterator(DecisionTree.TSOP)
 
 
 let result = ref false
@@ -302,18 +302,18 @@ let recurrence () =
 let actl_termination () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   let (prog, _) = ItoA.prog_itoa (parseFile !filename) in
-  let (program, property) = ACTLIterator.program_of_prog_with_termination prog !main in
+  let (program, property) = CTLIterator.program_of_prog_with_termination prog !main in
   if not !minimal then
     begin
       Format.fprintf !fmt "\nAbstract Syntax:\n";
-      AbstractSyntax.prog_print !fmt (ACTLIterator.prog_of_program program);
+      AbstractSyntax.prog_print !fmt (CTLIterator.prog_of_program program);
       Format.fprintf !fmt "\n";
     end;
   let analyze =
     match !domain with
-    | "boxes" -> if !ordinals then ACTLBoxesOrdinals.analyze else ACTLBoxes.analyze
-    | "octagons" -> if !ordinals then ACTLOctagonsOrdinals.analyze else ACTLOctagons.analyze
-    | "polyhedra" -> if !ordinals then ACTLPolyhedraOrdinals.analyze else ACTLPolyhedra.analyze
+    | "boxes" -> if !ordinals then CTLBoxesOrdinals.analyze else CTLBoxes.analyze
+    | "octagons" -> if !ordinals then CTLOctagonsOrdinals.analyze else CTLOctagons.analyze
+    | "polyhedra" -> if !ordinals then CTLPolyhedraOrdinals.analyze else CTLPolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in
   let terminating = analyze program property in
@@ -333,12 +333,12 @@ let actl () =
       AbstractSyntax.prog_print !fmt prog;
       Format.fprintf !fmt "\n";
     end;
-  let program = ACTLIterator.program_of_prog prog !main in
+  let program = CTLIterator.program_of_prog prog !main in
   let analyze =
     match !domain with
-    | "boxes" -> if !ordinals then ACTLBoxesOrdinals.analyze else ACTLBoxes.analyze
-    | "octagons" -> if !ordinals then ACTLOctagonsOrdinals.analyze else ACTLOctagons.analyze
-    | "polyhedra" -> if !ordinals then ACTLPolyhedraOrdinals.analyze else ACTLPolyhedra.analyze
+    | "boxes" -> if !ordinals then CTLBoxesOrdinals.analyze else CTLBoxes.analyze
+    | "octagons" -> if !ordinals then CTLOctagonsOrdinals.analyze else CTLOctagons.analyze
+    | "polyhedra" -> if !ordinals then CTLPolyhedraOrdinals.analyze else CTLPolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in
   let _ = analyze program formula in

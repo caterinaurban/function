@@ -81,7 +81,7 @@ MLFILES = \
   main/TerminationIterator.ml \
   main/GuaranteeIterator.ml \
   main/RecurrenceIterator.ml \
-  main/ACTLIterator.ml \
+  main/CTLIterator.ml \
 
 MLIFILES = \
   frontend/Parser.mli \

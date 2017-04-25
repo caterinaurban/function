@@ -28,6 +28,10 @@ rule read =
   | "AF"   { AF }
   | "AG"   { AG }
   | "AU"   { AU }
+  | "EX"   { EX }
+  | "EF"   { EF }
+  | "EG"   { EG }
+  | "EU"   { EU }
   | "AND"   { AND }
   | "OR"   { OR }
   | "{"   { LEFT_BRACE }

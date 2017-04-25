@@ -23,7 +23,7 @@ let (+=>) = (=>) ~setup:["-joinbwd"; "5"]
 let (^=>) = (=>) ~setup:["-joinbwd"; "7"]
 let ($=>) = (=>) ~setup:["-cda"; "2"] (* conflict-driven learning *)
 
-(* ACTL based termination analysis *)
+(* CTL based termination analysis *)
 let (@=>) = (=>) ~setup:["-actl_termination"] 
 
 
@@ -87,7 +87,7 @@ let boxes = "boxes" >:::
   "./tests/widening3.c" => false;
   "./tests/zune.c" => false;
 
-  (* ACTL termination test cases *)
+  (* CTL termination test cases *)
   "./tests/boolean.c" @=> true;
   "./tests/boolean.c" @=> true;
   "./tests/cacm2009a.c" @=> true;
