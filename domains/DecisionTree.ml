@@ -87,6 +87,39 @@ struct
                               (C.print vars) c (aux (ind ^ "  ")) l (aux (ind ^ "  ")) r
     in aux "" fmt t
 
+  (**
+     Prints a tree in graphviz 'dot' format for visualization. 
+     http://www.graphviz.org/content/dot-language
+  *)
+  let print_graphviz_dot fmt t = 
+    let vars = t.vars in
+    let nodeId = ref 0 in
+    let nextNodeId () =
+      let id = !nodeId in
+      nodeId := id + 1;
+      Printf.sprintf "node%d" id
+    in
+    let rec aux id fmt t =
+      match t with
+      | Bot -> Format.fprintf fmt "%s[shape=box,label=\"Nil\"]" id
+      | Leaf f -> Format.fprintf fmt "%s[shape=box,label=\"%a\"]" id F.print f
+      | Node ((c,_),l,r) -> 
+        let leftId = nextNodeId () in
+        let hiddenId = nextNodeId () in
+        let rightId = nextNodeId () in
+        Format.fprintf fmt "%s[shape=box,style=rounded,label=\"%a\"] ; %s [label=\"\",width=.1,style=invis] ; %s -- %s ; %s -- %s [style=invis] ; %s -- %s [style=dashed] {rank=same %s -- %s -- %s [style=invis]} ; %a; %a" 
+            id
+            (C.print vars) c
+            hiddenId 
+            id leftId 
+            id hiddenId 
+            id rightId 
+            leftId hiddenId rightId 
+            (aux leftId) l
+            (aux rightId) r
+    in Format.fprintf fmt "graph G { %a }" (aux (nextNodeId ())) t.tree
+
+
   (** Collects the linear constraints labeling the current decision tree. *)
   let tree_labels t =
     let ls = ref LSet.empty in
@@ -1243,6 +1276,7 @@ struct
         if B.isBot b then () else Format.fprintf fmt "%a ? %a\n" B.print b F.print f
       | Node((c,nc),l,r) -> aux r (nc::cs); aux l (c::cs)
     (* in aux t.tree []; Format.fprintf fmt "\nDOMAIN = {%a}%a\n" print_domain domain (print_tree vars) t.tree *)
+    (* Format.fprintf fmt "\nDOMAIN = {%a}%a\n" print_domain domain (print_tree vars) t.tree; *)
     in aux t.tree []
 
 

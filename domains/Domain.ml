@@ -41,6 +41,8 @@ sig
   val compress : t -> t
   val print : Format.formatter -> t -> unit
 
+  val print_graphviz_dot : Format.formatter -> t -> unit
+
   val left_narrow: t -> t -> t
   val reset_until: t -> t -> t -> t
 

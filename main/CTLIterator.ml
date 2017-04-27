@@ -131,6 +131,83 @@ let program_of_prog (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.
     globalBlock = globalBlock
   }
 
+
+module ForwardIterator (D:RANKING_FUNCTION) = struct
+
+  let fwdInvMap = ref InvMap.empty
+
+  let addFwdInv l (a:D.B.t) = fwdInvMap := InvMap.add l a !fwdInvMap
+
+  let fwdMap_print fmt m = InvMap.iter (fun l a -> Format.fprintf fmt "%a: %a\n" label_print l D.B.print a) m
+
+  (* Forward Iterator *)
+
+  let rec fwdStm (program:program) p s =
+    match s with
+    | A_label _ -> p
+    | A_return -> D.B.bot program.environment program.variables
+    | A_assign ((l,_),(e,_)) -> D.B.fwdAssign p (l,e)
+    | A_assert (b,_) -> D.B.filter p b
+    | A_if ((b,ba),s1,s2) ->
+      let p1 = fwdBlk program (D.B.filter p b) s1 in
+      let p2 = fwdBlk program (D.B.filter p (fst (negBExp (b,ba)))) s2 in
+      D.B.join p1 p2
+    | A_while (l,(b,ba),s) ->
+      let rec aux i p2 n =
+        let i' = D.B.join p p2 in
+        if !tracefwd && not !minimal then begin
+          Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
+          Format.fprintf !fmt "p: %a\n" D.B.print p;
+          Format.fprintf !fmt "i: %a\n" D.B.print i;
+          Format.fprintf !fmt "p2: %a\n" D.B.print p2;
+          Format.fprintf !fmt "i': %a\n" D.B.print i';
+        end;
+        if D.B.isLeq i' i then i
+        else
+          let i'' = if n <= !joinfwd then i' else D.B.widen i i' in
+          if !tracefwd && not !minimal then Format.fprintf !fmt "i'': %a\n" D.B.print i'';
+          aux i'' (fwdBlk program (D.B.filter i'' b) s) (n+1)
+      in
+      let i = D.B.bot program.environment program.variables in
+      let p2 = fwdBlk program (D.B.filter i b) s in
+      let p = aux i p2 1 in
+      addFwdInv l p;
+      D.B.filter p (fst (negBExp (b,ba)))
+    | A_call (f,ss) -> raise (Invalid_argument "fwdStm:A_recall")
+    | A_recall (f,ss) -> raise (Invalid_argument "fwdStm:A_recall")
+
+  and fwdBlk (program:program) (p:D.B.t) (b:block) : D.B.t =
+    match b with
+    | A_empty l ->
+      if !tracefwd && not !minimal then
+        Format.fprintf !fmt "### %a ###: %a\n" label_print l D.B.print p;
+      addFwdInv l p; p
+    | A_block (l,(s,_),b) ->
+      if !tracefwd && not !minimal then
+        Format.fprintf !fmt "### %a ###: %a\n" label_print l D.B.print p;
+      addFwdInv l p; fwdBlk program (fwdStm program p s) b
+
+  let compute (program:program) =
+    let s = program.mainFunction.funcBody in
+    (* Forward Analysis *)
+    if !tracefwd && not !minimal then Format.fprintf !fmt "\nForward Analysis Trace:\n";
+    let startfwd = Sys.time () in
+    fwdInvMap := InvMap.empty; (* reset inv map *)
+    let _ = fwdBlk program (D.B.top program.environment program.variables) s in
+    let stopfwd = Sys.time () in
+    if not !minimal then
+      begin
+        if !timefwd then
+          Format.fprintf !fmt "\nForward Analysis (Time: %f s):\n" (stopfwd-.startfwd)
+        else
+          Format.fprintf !fmt "\nForward Analysis:\n";
+        fwdMap_print !fmt !fwdInvMap;
+      end;
+    !fwdInvMap
+
+end
+
+
 module CTLIterator(D: RANKING_FUNCTION) = struct
 
   (*
@@ -379,11 +456,13 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     let f _ t1 t2 = Some (D.meet COMPUTATIONAL t1 t2) in
     InvMap.union f fp1 fp2
 
-  let printInv fmt (inv:inv) =
-    if !compress then
-      InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.print (D.compress a)) inv
-    else
-      InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.print a) inv
+  let printInv ?fwdInvOpt fmt (inv:inv) =
+    let inv = 
+      if !compress then 
+        InvMap.map D.compress inv
+      else 
+        inv
+    in InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\nDOT: %a\n" label_print l D.print a D.print_graphviz_dot a) inv
 
   (*
     Recusively compute fixed-point for CTL properties 
