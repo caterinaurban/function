@@ -280,27 +280,30 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
                 Format.fprintf !fmt "out_enter: %a\n" D.print out_enter;
                 Format.fprintf !fmt "in': %a\n" D.print in_state';
               end;
-              if (D.isLeq COMPUTATIONAL in_state' in_state) then
-                if (D.isLeq APPROXIMATION in_state' in_state) then
-                  (* fixed-point reached*)
-                  let fixed_point = in_state in
-                  if !tracebwd && not !minimal then begin
-                    Format.fprintf !fmt "### %a:FIXPOINT ###:\n" label_print l;
-                    Format.fprintf !fmt "in_state: %a\n" D.print fixed_point;
-                  end;
-                  fixed_point
-                else
-                  (* apply widening after constant number of iterations *)
-                  let in_state'' = if n <= !joinbwd then in_state' else D.widen in_state in_state' in
-                  if !tracebwd && not !minimal then Format.fprintf !fmt "in'': %a\n" D.print in_state'';
-                  let out_enter' = D.filter (bwd in_state'' loop_body) b in (* process loop body again with updated 'in' state *)
-                  aux in_state'' out_enter' (n+1) (* next iteration *)
+              let isLeqComp = D.isLeq COMPUTATIONAL in_state' in_state in
+              let isLeqApprox = D.isLeq APPROXIMATION in_state' in_state in
+              if isLeqComp && isLeqApprox then
+                (* fixed-point reached *)
+                let fixed_point = in_state in
+                if !tracebwd && not !minimal then begin
+                  Format.fprintf !fmt "### %a:FIXPOINT ###:\n" label_print l;
+                  Format.fprintf !fmt "in_state: %a\n" D.print fixed_point;
+                end;
+                fixed_point
               else
-                (* apply widening after constant number of iterations *)
-                let in_state'' = if n <= !joinbwd then in_state' else D.widen in_state (D.join COMPUTATIONAL in_state in_state') in
+                (*fixed-point not yet reached, continue with next iteration*)
+                let in_state'' = 
+                  if n <= !joinbwd then 
+                    in_state' (* iteration count below widening threshold *)
+                  else if (not isLeqComp) then 
+                    D.widen in_state (D.join COMPUTATIONAL in_state in_state') (* widening threshold reached, apply widening *)
+                      (* NOTE: the join might be necessary to ensure termination because of a bug (???) *)
+                  else 
+                    D.widen in_state in_state' (* widening threshold reached, apply widening *)
+                in
                 if !tracebwd && not !minimal then Format.fprintf !fmt "in'': %a\n" D.print in_state'';
                 let out_enter' = D.filter (bwd in_state'' loop_body) b in (* process loop body again with updated 'in' state *)
-                aux in_state'' out_enter' (n+1) (* next iteration*)
+                aux in_state'' out_enter' (n+1) (* run next iteration *)
             in
             let initial_in = bot in (* start with bottom as initial 'in' state *)
             let initial_out_enter = D.filter (bwd initial_in loop_body) b in (* process loop body with initial 'in' state *)
@@ -364,21 +367,22 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
                 Format.fprintf !fmt "current_in: %a\n" D.print current_in;
                 Format.fprintf !fmt "updated_in: %a\n" D.print updated_in;
               end;
+              (** NOTE: left_narrow is only monotone w.r.t. the approximation order. In fact it usually decreases w.r.t the computational order as
+                    leafs of the decision tree got to bottom. Therefore we only check if we reached a fixed point using the approximation order. 
+              *)
               if (D.isLeq APPROXIMATION current_in updated_in) && (D.isLeq APPROXIMATION updated_in current_in) then
                 (* fixed-point reached, current_in has stabilized *)
                 let fixed_point = current_in in 
                 if !tracebwd && not !minimal then Format.fprintf !fmt "Fixed-Point reached \n";
                 fixed_point
               else
-                (* next iteration *)
-                let updated_in' = if n <= !joinbwd then 
-                    updated_in 
-                  else 
-                    (* use widening after fixed number of iterations *)
-                    D.widen current_in updated_in 
+                let updated_in' = 
+                  if n <= !joinbwd then updated_in (* widening threshold not yet reached *)
+                  else D.widen current_in updated_in (* use widening after widening threshold met *)
                 in
                 let out_enter' = D.filter (bwd updated_in' loop_body) b in (* process loop body again with updated 'in' state *)
-                aux updated_in out_enter' (n+1)
+                (* next iteration *)
+                aux updated_in' out_enter' (n+1)
             in
             let initial_out_enter = D.filter (bwd current_in loop_body) b in (* process loop body with current 'in' state at loop-head *)
             let final_in_state = aux current_in initial_out_enter 1 in (* compute fixed point for while-loop starting with current 'in' state at loop-head *)
