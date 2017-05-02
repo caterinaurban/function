@@ -42,7 +42,6 @@ let parseFile filename =
     else
       failwith e
 
-
 let parsePropertyString str =
   let lex = Lexing.from_string str in
   try
@@ -70,9 +69,7 @@ let parseProperty filename =
     let r = PropertyParser.file PropertyLexer.start lex in
     close_in f; r
   with
-  | PropertyParser.Error ->
-    Printf.eprintf "Parse Error (Invalid Syntax) near %s\n"
-      (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+  | PropertyParser.Error -> Printf.eprintf "Parse Error (Invalid Syntax) near %s\n" (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
     failwith "Parse Error"
   | Failure e ->
     if e == "lexing: empty token" then 
@@ -91,6 +88,28 @@ let parseCTLProperty filename =
     lex.Lexing.lex_curr_p <- { lex.Lexing.lex_curr_p with Lexing.pos_fname = filename; };
     let res = CTLPropertyParser.prog CTLPropertyLexer.read lex in
     close_in f; 
+    CTLProperty.map (fun p -> fst (parsePropertyString p)) res 
+  with
+  | CTLPropertyParser.Error->
+    Printf.eprintf "Parse Error (Invalid Syntax) near %s\n" 
+      (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+    failwith "Parse Error"
+  | Failure e ->
+    if e == "lexing: empty token" then 
+      begin
+        Printf.eprintf "Parse Error (Invalid Token) near %s\n" 
+          (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+        failwith "Parse Error"
+      end 
+    else
+      failwith e
+
+
+let parseCTLPropertyString (property:string) =
+  let lex = Lexing.from_string property in
+  try
+    lex.Lexing.lex_curr_p <- { lex.Lexing.lex_curr_p with Lexing.pos_fname = "string"; };
+    let res = CTLPropertyParser.prog CTLPropertyLexer.read lex in
     CTLProperty.map (fun p -> fst (parsePropertyString p)) res 
   with
   | CTLPropertyParser.Error->
@@ -128,10 +147,16 @@ let parse_args () =
       ordinals := true; Ordinals.max := int_of_string x; doit r
     | "-recurrence"::x::r -> (* recurrence analysis *)
       analysis := "recurrence"; property := x; doit r
-    | "-actl"::x::r -> (* CTL analysis *)
+    | "-actl"::x::r -> (* TODO: legacy name, delete me *)
       analysis := "actl"; property := x; doit r
-    | "-actl_termination"::r -> (* CTL analysis *)
+    | "-actl_termination"::r -> (*TODO: legacy name, delete me*)
       analysis := "actl_termination"; doit r
+    | "-ctl"::x::r -> (* CTL analysis *)
+      analysis := "ctl"; property := x; doit r
+    | "-ctl_str"::x::r -> (* CTL analysis with property passed as string *)
+      analysis := "ctl_str"; property := x; doit r
+    | "-ctl_termination"::r -> (* CTL analysis for termination *)
+      analysis := "ctl_termination"; doit r
     | "-refine"::r -> (* refine in backward analysis *)
       Iterator.refine := true; doit r
     | "-retrybwd"::x::r ->
@@ -299,7 +324,7 @@ let recurrence () =
 
 
 (* run termination analysis in CTL *)
-let actl_termination () =
+let ctl_termination () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   let (prog, _) = ItoA.prog_itoa (parseFile !filename) in
   let (program, property) = CTLIterator.program_of_prog_with_termination prog !main in
@@ -323,10 +348,11 @@ let actl_termination () =
     Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
 
     
-let actl () =
+let ctl ?(property_as_string = false) () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
-  if !property = "" then raise (Invalid_argument "No Property File Specified");
-  let (prog, formula) = ItoA.ctl_prog_itoa (parseCTLProperty !property) !main (parseFile !filename) in
+  if !property = "" then raise (Invalid_argument "No Property Specified");
+  let parsedProperty = (if property_as_string then parseCTLPropertyString else parseCTLProperty) !property in
+  let (prog, formula) = ItoA.ctl_prog_itoa parsedProperty !main (parseFile !filename) in
   if not !minimal then
     begin
       Format.fprintf !fmt "\nAbstract Syntax:\n";
@@ -352,8 +378,11 @@ let doit () =
   | "termination" -> termination ()
   | "guarantee" -> guarantee ()
   | "recurrence" -> recurrence ()
-  | "actl" -> actl ()
-  | "actl_termination" -> actl_termination ()
+  | "actl" -> ctl ()
+  | "actl_termination" -> ctl_termination ()
+  | "ctl" -> ctl ()
+  | "ctl_str" -> ctl ~property_as_string:true ()
+  | "ctl_termination" -> ctl_termination ()
   | _ -> raise (Invalid_argument "Unknown Analysis")
 
 let _ = doit () 
