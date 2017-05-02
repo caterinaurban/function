@@ -263,9 +263,11 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
           | A_assign ((l,_),(e,_)) -> D.bwdAssign out_state (l,e)
           | A_assert (b,_) -> D.filter out_state b
           | A_if ((b,ba),s1,s2) ->
-            let out_if = D.filter (bwd out_state s1) b in (* compute 'out' state for if-block*)
-            let out_else = D.filter (bwd out_state s2) (fst (negBExp (b,ba))) in (* compute 'out' state for else-block *)
-            join out_if out_else (* join the two branches *)
+            let in_if = bwd out_state s1 in (* compute 'in state for if-block*)
+            let in_else = bwd out_state s2 in (* compute 'in state for else-block *)
+            let in_if_filtered = D.filter in_if b in (* filter *)
+            let in_else_filtered = D.filter in_else (fst (negBExp (b,ba))) in (* filter *)
+            join in_if_filtered in_else_filtered (* join the two branches *)
           | A_while (l,(b,ba),loop_body) ->
             let out_exit = D.filter out_state (fst (negBExp (b,ba))) in (* 'out' state when not entering the loop body *)
             let rec aux (* recursive function that iteratively computes fixed point for 'in' state at loop head *)
