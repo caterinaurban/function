@@ -620,7 +620,7 @@ struct
     }
     
 
-  let left_unification t1 t2 domain env vars =
+  let left_unification ?(join_kind = COMPUTATIONAL) t1 t2 domain env vars =
     let ls1 = tree_labels t1 in
     let ls2 = tree_labels t2 in
     let ls = LSet.diff ls2 ls1 in
@@ -723,7 +723,7 @@ struct
               | None -> B.inner env vars cs
               | Some domain -> B.meet (B.inner env vars cs) domain
             in
-            Leaf (F.join COMPUTATIONAL b f1 f2)
+            Leaf (F.join join_kind b f1 f2)
           | _, _ -> assert false
     in
     (* Finish t1 and t2 unification by doing a tree unification step
@@ -966,7 +966,31 @@ struct
       Format.fprintf Format.std_formatter "\nt2[widen_up]: %a\n" (print_tree vars) t2;
     { domain = domain; tree = widen (t1, t2); env = env; vars = vars }
 
-  let dual_widen t1 t2 = raise (Invalid_argument "TODO: implement dual_widen")
+
+  (* let dual_widen t1 t2 = raise (Invalid_argument "TODO implement dual widening") *)
+
+  let dual_widen t1 t2 =
+    let domain = t1.domain in
+    let env = t1.env in
+    let vars = t1.vars in
+    let rec aux (tree1, tree2) cs = match (tree1, tree2) with
+      | Bot,_ | _,Bot -> Bot
+      | Leaf f1, Leaf f2 -> 
+        let b = match domain with 
+          | None -> B.inner env vars cs 
+          | Some domain -> B.meet (B.inner env vars cs) domain 
+        in
+        if B.isBot b then Bot
+        else if F.isLeq COMPUTATIONAL b f2 f1 then Leaf f2
+        else Leaf (F.bot env vars)
+      | Node ((c1,nc1),l1,r1), Node((c2,nc2),l2,r2) ->
+        let l = aux (l1,l2) (c2::cs) in
+        let r = aux (r1,r2) (nc2::cs) in
+        Node ((c2,nc2),l,r)
+      | _ -> raise (Invalid_argument "dual_widen: invalid tree structure")
+    in
+    let t2_tree = left_unification ~join_kind:APPROXIMATION t1.tree t2.tree domain env vars in
+    {domain = domain; tree = aux (tree_unification t1.tree t2_tree env vars) []; env = env; vars = vars }
 
   (**)
 
@@ -987,6 +1011,7 @@ struct
          | Some domain -> F.defined f || B.isBot (B.meet (B.inner env vars cs) domain))
       | Node ((c,nc),l,r) -> (aux l (c::cs)) && (aux r (nc::cs))
     in aux t.tree []
+
 
   let bwdAssign ?domain t e = 
     let cache = ref CMap.empty in

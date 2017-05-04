@@ -9,6 +9,8 @@ open Iterator
 (* type for CTL properties, instantiated with bExp for atomic propositions *)
 type ctl_property = AbstractSyntax.bExp CTLProperty.generic_property
 
+type quantifier = UNIVERSAL | EXISTENTIAL
+
 let rec print_ctl_property fmt (property:ctl_property) = match property with 
   | Atomic b -> AbstractSyntax.bExp_print_aux fmt b
   | AX p -> Format.fprintf fmt "AX{%a}" print_ctl_property p
@@ -236,10 +238,9 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
      This resets the ranking function for those parts of the domain where inv_reset is also 
      defined and it discards those parts of the ranking function where neither inv_keep nor inv_reset are defined.
   *)
-  let until ?(join_kind = APPROXIMATION) (program:program) (inv_keep:inv) (inv_reset:inv) : inv =
+  let until (quantifier:quantifier) (program:program) (inv_keep:inv) (inv_reset:inv) : inv =
     let inv = ref InvMap.empty in (* variable where the resulting invariant/fixed-point is stored *)
     let addInv l (a:D.t) = inv := InvMap.add l a !inv; a in (* update InvMap with new value and return new updated value *)
-    let join = D.join join_kind in (* defines which join should be used when joining branches *)
     let bot = D.bot program.environment program.variables in
     let start = Sys.time () in
     let rec bwd (out:D.t) (b:block) : D.t = (* recursive function that performs the backward analysis *)
@@ -267,14 +268,14 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
             let in_else = bwd out_state s2 in (* compute 'in state for else-block *)
             let in_if_filtered = D.filter in_if b in (* filter *)
             let in_else_filtered = D.filter in_else (fst (negBExp (b,ba))) in (* filter *)
-            join in_if_filtered in_else_filtered (* join the two branches *)
+            D.join APPROXIMATION in_if_filtered in_else_filtered (* join the two branches *)
           | A_while (l,(b,ba),loop_body) ->
             let out_exit = D.filter out_state (fst (negBExp (b,ba))) in (* 'out' state when not entering the loop body *)
             let rec aux (* recursive function that iteratively computes fixed point for 'in' state at loop head *)
                 in_state (* 'in' state of the previous iteration *)
                 out_enter (* current 'out' state when entering the loop body *)
                 n = (* iteration counter *)
-              let in_state' = reset_until (join out_exit out_enter) in (* 'in' state for this iteration *)
+              let in_state' = reset_until (D.join APPROXIMATION out_exit out_enter) in (* 'in' state for this iteration *)
               if !tracebwd && not !minimal then begin
                 Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
                 Format.fprintf !fmt "out_exit: %a\n" D.print out_exit;
@@ -330,11 +331,10 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     Then this reachable state is used to narrow down the given fixed-point of the nested property by using 'left_narrow'. 
     To backward analysis for the while-loop uses widening to get convergence.
   *)
-  let global ?(join_kind = APPROXIMATION) (program:program) (fixed_point:inv) : inv =
+  let global (quantifier:quantifier) (program:program) (fixed_point:inv) : inv =
     let inv = ref (InvMap.union (fun _ _ _ -> None) fixed_point InvMap.empty) in (* initialize InvMap with given fixed-point for nested property *)
     let addInv l (a:D.t) = inv := InvMap.add l a !inv; a in (* update InvMap with new value and return new updated value *)
     let blockState block = InvMap.find (label_of_block block) !inv in (* returns current 'in' state of a block *)
-    let join = D.join join_kind in (* defines which join should be used when joining branches *)
     let bot = D.bot program.environment program.variables in 
     let start = Sys.time () in
     let rec bwd (out:D.t) (b:block) : D.t = (* recursive function that performs block-wise backward analysis *)
@@ -352,14 +352,14 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
           | A_if ((b,ba),s1,s2) ->
             let out_if = D.filter (bwd out_state s1) b in (* compute 'out' state for if-block*)
             let out_else = D.filter (bwd out_state s2) (fst (negBExp (b,ba))) in (* compute 'out' state for else-block *)
-            D.left_narrow current_in (join out_if out_else) (* join the two branches and combine with current 'in' state using left_narrow *)
+            D.left_narrow current_in (D.join APPROXIMATION out_if out_else) (* join the two branches and combine with current 'in' state using left_narrow *)
           | A_while (l,(b,ba),loop_body) ->
             let out_exit = D.filter out_state (fst (negBExp (b,ba))) in (* 'out' state when not entering the loop body *)
             let rec aux (* recursive function that iteratively computes fixed point for 'in' state at loop head *)
                 (current_in:D.t) (* 'in' state of the previous iteration *)
                 (out_enter:D.t) (* current 'out' state when entering the loop body *)
                 (n:int) : D.t = (* iteration counter *)
-              let out_joined = join out_exit out_enter in (* new 'in' state after joining the incoming branches *)
+              let out_joined = D.join APPROXIMATION out_exit out_enter in (* new 'in' state after joining the incoming branches *)
               let updated_in = D.left_narrow current_in out_joined in (* join two branches and combine with current 'in' state using left_narrow *)
               if !tracebwd && not !minimal then begin
                 Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
@@ -369,18 +369,17 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
                 Format.fprintf !fmt "current_in: %a\n" D.print current_in;
                 Format.fprintf !fmt "updated_in: %a\n" D.print updated_in;
               end;
-              (** NOTE: left_narrow is only monotone w.r.t. the approximation order. In fact it usually decreases w.r.t the computational order as
-                    leafs of the decision tree got to bottom. Therefore we only check if we reached a fixed point using the approximation order. 
-              *)
-              if (D.isLeq APPROXIMATION current_in updated_in) && (D.isLeq APPROXIMATION updated_in current_in) then
-                (* fixed-point reached, current_in has stabilized *)
+              let isLeqApprox = D.isLeq APPROXIMATION current_in updated_in in
+              let isLeqComp = D.isLeq COMPUTATIONAL current_in updated_in in
+              if isLeqComp && isLeqApprox then
+                (* fixed point *)
                 let fixed_point = current_in in 
                 if !tracebwd && not !minimal then Format.fprintf !fmt "Fixed-Point reached \n";
                 fixed_point
               else
                 let updated_in' = 
                   if n <= !joinbwd then updated_in (* widening threshold not yet reached *)
-                  else D.widen current_in updated_in (* use widening after widening threshold met *)
+                  else D.dual_widen current_in updated_in (* use dual_widen after widening threshold reached *)
                 in
                 let out_enter' = D.filter (bwd updated_in' loop_body) b in (* process loop body again with updated 'in' state *)
                 (* next iteration *)
@@ -404,10 +403,9 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     There we need to inject the 'out' state of the next basic block in the control-flow-graph. 
     This is done by passing in said state through the recursion of the backward analysis.
   *)
-  let next ?(join_kind = APPROXIMATION) (program:program) (fp:inv) : inv =
+  let next (quantifier:quantifier) (program:program) (fp:inv) : inv =
     let invMap = ref InvMap.empty in
     let addInv label state = invMap := InvMap.add label state !invMap in
-    let join = D.join join_kind in (* defines which join should be used when joining branches *)
     let rec aux (b:block) (nextOuterState:D.t) () = (* nextOuterState is the 'out' state of the next basic block in the CFG *)
       match b with 
       | A_empty l -> addInv l nextOuterState (* here we use 'nextOuterState' because there is no 'out' state coming in from the next block *)
@@ -419,7 +417,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         | A_if ((b,ba), bIf, bElse) -> 
           let sIf = D.filter (InvMap.find (block_label bIf) fp) b in
           let sElse = D.filter (InvMap.find (block_label bElse) fp) (fst (negBExp (b,ba))) in
-          let s = join sIf sElse in
+          let s = D.join APPROXIMATION sIf sElse in
           addInv blockLabel s;
           aux bElse nextBlockState ();
           aux bIf nextBlockState ()
@@ -427,7 +425,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
           let blockState = InvMap.find blockLabel fp in
           let sFall = D.filter (InvMap.find (block_label whileBlock) fp) b in
           let sJump = D.filter nextBlockState (fst (negBExp (b,ba))) in
-          let s = join sFall sJump in
+          let s = D.join APPROXIMATION sFall sJump in
           addInv blockLabel s;
           aux whileBlock blockState ();
         | A_assign ((l,_),(e,_)) -> 
@@ -478,16 +476,17 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
       let result = 
         match property with
         | Atomic b -> atomic program b
-        | AX p -> next program (inv p)
-        | AF p -> until program (inv (Atomic A_TRUE)) (inv p)
-        | AG p -> global program (inv p)
-        | AU (p1, p2) -> until program (inv p1) (inv p2)
-        | EX p -> next ~join_kind:COMPUTATIONAL program (inv p)
-        | EF p -> until ~join_kind:COMPUTATIONAL program (inv (Atomic A_TRUE)) (inv p)
-        | EG p -> global ~join_kind:COMPUTATIONAL program (inv p)
-        | EU (p1, p2) -> until ~join_kind:COMPUTATIONAL program (inv p1) (inv p2)
+        | AX p -> next UNIVERSAL program (inv p)
+        | AF p -> until UNIVERSAL program (inv (Atomic A_TRUE)) (inv p)
+        | AG p -> global UNIVERSAL program (inv p)
+        | AU (p1, p2) -> until UNIVERSAL program (inv p1) (inv p2)
+        (* | EX p -> next EXISTENTIAL program (inv p) *)
+        (* | EF p -> until EXISTENTIAL program (inv (Atomic A_TRUE)) (inv p) *)
+        (* | EG p -> global EXISTENTIAL program (inv p) *)
+        (* | EU (p1, p2) -> until EXISTENTIAL program (inv p1) (inv p2) *)
         | AND (p1, p2) -> logic_and (inv p1) (inv p2)
         | OR (p1, p2) -> logic_or (inv p1) (inv p2)
+        | _ -> raise (Invalid_argument "CTL operator not supported")
       in
       if not !minimal then
         begin
