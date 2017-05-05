@@ -28,7 +28,7 @@ sig
 
   val isLeq : kind -> t -> t -> bool
   val join : kind -> t -> t -> t
-  val meet : t -> t -> t
+  val meet : kind -> t -> t -> t
   val widen : ?jokers:int -> t -> t -> t
   val dual_widen : t -> t -> t
 
@@ -40,5 +40,12 @@ sig
 
   val compress : t -> t
   val print : Format.formatter -> t -> unit
+
+  val print_graphviz_dot : Format.formatter -> t -> unit
+
+  val left_narrow: t -> t -> t
+  val reset_until: t -> t -> t -> t
+
+  val complement: t -> t
 
 end

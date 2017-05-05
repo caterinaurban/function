@@ -32,9 +32,9 @@ struct
 
   let bwdMap_print fmt m =
     if !compress then
-      InvMap.iter (fun l a -> Format.fprintf fmt "%a: %a\n" label_print l D.print (D.compress a)) m
+      InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.print (D.compress a)) m
     else
-      InvMap.iter (fun l a -> Format.fprintf fmt "%a: %a\n" label_print l D.print a) m
+      InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.print a) m
 
   (* Forward Iterator *)
 
@@ -108,16 +108,13 @@ struct
       let rec aux m o =
         let rec auxaux i p2 n =
           let i' = D.reset ~mask:m (D.join APPROXIMATION p1 p2) (fst (StringMap.find "" property)) in
-          if !tracebwd && not !minimal then
+          if !tracebwd && not !minimal then begin
             Format.fprintf !fmt "### %a-INNER:%i ###:\n" label_print l n;
-          if !tracebwd && not !minimal then
             Format.fprintf !fmt "p1: %a\n" D.print p1;
-          if !tracebwd && not !minimal then
             Format.fprintf !fmt "i: %a\n" D.print i;
-          if !tracebwd && not !minimal then
             Format.fprintf !fmt "p2: %a\n" D.print p2;
-          if !tracebwd && not !minimal then
             Format.fprintf !fmt "i': %a\n" D.print i';
+          end;
           if (D.isLeq COMPUTATIONAL i' i)
           then
             if (D.isLeq APPROXIMATION i' i)
@@ -152,7 +149,7 @@ struct
         if !tracebwd && not !minimal then
           Format.fprintf !fmt "p: %a\n" D.print p;
 
-        let m' = D.meet m p in
+        let m' = D.meet APPROXIMATION m p in
 
         if !tracebwd && not !minimal then
           Format.fprintf !fmt "m': %a\n" D.print m';
@@ -160,10 +157,10 @@ struct
         if (D.isLeq COMPUTATIONAL m' m) && (D.isLeq COMPUTATIONAL m m')
         then
           let p = p in
-          if !tracebwd && not !minimal then
+          if !tracebwd && not !minimal then begin
             Format.fprintf !fmt "### %a-OUTER:FIXPOINT ###:\n" label_print l;
-          if !tracebwd && not !minimal then
             Format.fprintf !fmt "m: %a\n" D.print m;
+          end;
           p
         else
           let m'' = if o <= !meetbwd then m' else D.dual_widen m m' in
@@ -181,7 +178,7 @@ struct
     | A_empty l ->
       let a = InvMap.find l !fwdInvMap in
       let p = if !refine then D.refine p a else p in
-      let m = if !refine then D.meet (D.refine (D.top env vars) a) p else D.meet (D.top env vars) p in
+      let m = if !refine then D.meet APPROXIMATION (D.refine (D.top env vars) a) p else D.meet APPROXIMATION (D.top env vars) p in
       let p = D.reset ~mask:m p (fst (StringMap.find "" property)) in
       if !tracebwd && not !minimal then
         Format.fprintf !fmt "### %a ###:\n%a\n" label_print l D.print p;
@@ -195,7 +192,7 @@ struct
         let p = bwdStm property funcs env vars b s in
         let a = InvMap.find l !fwdInvMap in
         let p = if !refine then D.refine p a else p in
-        let m = if !refine then D.meet (D.refine (D.top env vars) a) p else D.meet (D.top env vars) p in
+        let m = if !refine then D.meet APPROXIMATION (D.refine (D.top env vars) a) p else D.meet APPROXIMATION (D.top env vars) p in
         let p = D.reset ~mask:m p (fst (StringMap.find "" property)) in
         if !tracebwd && not !minimal then
           Format.fprintf !fmt "### %a ###:\n%a\n" label_print l D.print p;

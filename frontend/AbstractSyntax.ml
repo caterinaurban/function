@@ -167,6 +167,7 @@ let rec aExp_to_apron e =
      | A_MULTIPLY -> Texpr1.Binop (Texpr1.Mul,e1,e2,Texpr1.Int,Texpr1.Zero)
      | A_DIVIDE -> Texpr1.Binop (Texpr1.Div,e1,e2,Texpr1.Int,Texpr1.Zero))
 
+
 let rec aExp_print fmt (e,_) =
   match e with
   | A_RANDOM -> Format.fprintf fmt "?"
@@ -213,7 +214,8 @@ let rec negBExp (b,a) =
   | A_bbinary (o,b1,b2) -> (A_bbinary (negBBinOp o,negBExp b1,negBExp b2),a)
   | A_rbinary (o,a1,a2) -> (A_rbinary (negRBinOp o,a1,a2),a)
 
-let rec bExp_print fmt (e,_) =
+
+let rec bExp_print_aux fmt e =
   match e with
   | A_TRUE -> Format.fprintf fmt "true"
   | A_MAYBE -> Format.fprintf fmt "?"
@@ -221,16 +223,16 @@ let rec bExp_print fmt (e,_) =
   | A_bunary (o,e1) ->
     Format.fprintf fmt "%a" bUnOp_print o;
     if bExp_prec (fst e1) <= bExp_prec e
-    then Format.fprintf fmt "(%a)" bExp_print e1
-    else Format.fprintf fmt "%a" bExp_print e1
+    then Format.fprintf fmt "(%a)" bExp_print_aux (fst e1)
+    else Format.fprintf fmt "%a" bExp_print_aux (fst e1)
   | A_bbinary (o,e1,e2) ->
     if bExp_prec (fst e1) <= bExp_prec e
-    then Format.fprintf fmt "(%a) " bExp_print e1
-    else Format.fprintf fmt "%a " bExp_print e1;
+    then Format.fprintf fmt "(%a) " bExp_print_aux (fst e1)
+    else Format.fprintf fmt "%a " bExp_print_aux (fst e1);
     Format.fprintf fmt "%a" bBinOp_print o;
     if bExp_prec (fst e2) <= bExp_prec e
-    then Format.fprintf fmt " (%a)" bExp_print e2
-    else Format.fprintf fmt " %a" bExp_print e2
+    then Format.fprintf fmt " (%a)" bExp_print_aux (fst e2)
+    else Format.fprintf fmt " %a" bExp_print_aux (fst e2)
   | A_rbinary (o,e1,e2) ->
     if aExp_prec (fst e1) <= bExp_prec e
     then Format.fprintf fmt "(%a) " aExp_print e1
@@ -239,6 +241,8 @@ let rec bExp_print fmt (e,_) =
     if aExp_prec (fst e2) <= bExp_prec e
     then Format.fprintf fmt " (%a)" aExp_print e2
     else Format.fprintf fmt " %a" aExp_print e2
+
+let bExp_print fmt b = bExp_print_aux fmt (fst b)
 
 (* expressions *)
 type exp =
@@ -312,6 +316,10 @@ and block_print ind fmt b =
     Format.fprintf fmt "%a %a%a" label_print l (stmt_print ind) s (block_print ind) b
 
 and label_print fmt l = if (l < 10) then Format.fprintf fmt "[ %i:]" l else Format.fprintf fmt "[%i:]" l
+
+let label_of_block (block:block) : label = match block with
+  | A_empty l -> l
+  | A_block (l, _ , _) -> l
 
 (* functions *)
 type func = {
