@@ -1368,6 +1368,30 @@ struct
     let t_reset = reset (tree_unification t_filtered t_reset.tree env vars) in (* reset all parts of the 't' that are defined in 't_reset' *)
     {domain = domain; tree = t_reset; env = env; vars = vars}
 
+
+  (*
+    Complements the domain of a tree:
+    - every leaf that is defined i.e. not top or bottom goes to bottom
+    - every bottom leaf is replaced with a 'zero' leaf
+    - top stays top
+
+    This function assumes that there are no NIL nodes in the tree
+  *)
+  let complement t =
+    let domain = t.domain in 
+    let env = t.env in 
+    let vars = t.vars in 
+    let zeroLeaf = Leaf (F.zero env vars) in
+    let botLeaf = Leaf (F.bot env vars) in
+    let rec aux tree = match tree with 
+      | Bot -> raise (Invalid_argument "complement: invalid tree, encountered NIL node")
+      | Leaf f when F.isBot f -> zeroLeaf (* bottom goes to constant zero *)
+      | Leaf f when F.isTop f -> tree (* top stays top *)
+      | Leaf f -> botLeaf (* everything else goes to bottom *)
+      | Node (c,l,r) -> Node (c, aux l, aux r)
+    in {domain = domain; tree = aux t.tree; env = env; vars = vars}
+    
+
 end
 
 module TSAB = DecisionTree(AB)

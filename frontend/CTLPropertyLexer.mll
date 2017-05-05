@@ -34,6 +34,7 @@ rule read =
   | "EU"   { EU }
   | "AND"   { AND }
   | "OR"   { OR }
+  | "NOT"   { NOT }
   | "{"   { LEFT_BRACE }
   | "}"   { RIGHT_BRACE }
   | atomic {ATOMIC (Lexing.lexeme lexbuf)}

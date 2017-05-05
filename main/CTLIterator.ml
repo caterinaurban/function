@@ -23,9 +23,11 @@ let rec print_ctl_property fmt (property:ctl_property) = match property with
   | EU (p1,p2) -> Format.fprintf fmt "EU{%a}{%a}" print_ctl_property p1 print_ctl_property p2;
   | AND (p1,p2) -> Format.fprintf fmt "AND{%a}{%a}" print_ctl_property p1 print_ctl_property p2;
   | OR (p1,p2) -> Format.fprintf fmt "OR{%a}{%a}" print_ctl_property p1 print_ctl_property p2;
+  | NOT p -> Format.fprintf fmt "NOT{%a}" print_ctl_property p;
 
 
 module InvMap = Map.Make(struct type t=label let compare=compare end)
+
 
 (* Bundle commonly used values (AST, Apron env. variable list) to one struct *)
 type program = {
@@ -33,6 +35,7 @@ type program = {
   variables: AbstractSyntax.var list;
   mainFunction: AbstractSyntax.func;
   globalBlock: AbstractSyntax.block; 
+  dummyPosition: IntermediateSyntax.extent;
 }
 
 (* Computes the set of all labels of a program *)
@@ -105,7 +108,8 @@ let program_of_prog_with_termination (prog: AbstractSyntax.prog) (main: Abstract
       funcVars = StringMap.add terminationVar.varId terminationVar mainFunction.funcVars; (* add termination var to function variables *)
       funcBody = augmentedBody
     };
-    globalBlock = globalBlock
+    globalBlock = globalBlock;
+    dummyPosition = dummyPosition
   } in
   let terminationProperty = AF (Atomic (AbstractSyntax.A_rbinary (AbstractSyntax.A_GREATER_EQUAL, (A_var terminationVar, dummyPosition), (A_const 1, dummyPosition)))) in
   (program, terminationProperty)
@@ -126,11 +130,16 @@ let program_of_prog (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.
   let var_to_apron v = Apron.Var.of_string v.varId in
   let apron_vars = Array.map var_to_apron (Array.of_list vars) in
   let env = Environment.make apron_vars [||] in
+  let dummyPosition = match mainFunction.funcBody with (* store some syntax possition for later use *)
+    | A_block (_, (_,pos), _) -> pos
+    | _ -> raise (Invalid_argument "empty main function")
+  in
   {
     environment = env;
     variables = vars;
     mainFunction = mainFunction;
-    globalBlock = globalBlock
+    globalBlock = globalBlock;
+    dummyPosition = dummyPosition
   }
 
 
@@ -230,6 +239,14 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
   *)
   type inv = D.t InvMap.t
 
+  let printInv ?fwdInvOpt fmt (inv:inv) =
+    let inv = 
+      if !compress then 
+        InvMap.map D.compress inv
+      else 
+        inv
+    in InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\nDOT: %a\n" label_print l D.print a D.print_graphviz_dot a) inv
+
 
   (* Computes fixed-point for 'until' properties: AU{inv_keep}{inv_reset} 
      inv_keep and inv_reset are fixed-point for the nested properties
@@ -238,7 +255,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
      This resets the ranking function for those parts of the domain where inv_reset is also 
      defined and it discards those parts of the ranking function where neither inv_keep nor inv_reset are defined.
   *)
-  let until (quantifier:quantifier) (program:program) (inv_keep:inv) (inv_reset:inv) : inv =
+  let until (program:program) (inv_keep:inv) (inv_reset:inv) : inv =
     let inv = ref InvMap.empty in (* variable where the resulting invariant/fixed-point is stored *)
     let addInv l (a:D.t) = inv := InvMap.add l a !inv; a in (* update InvMap with new value and return new updated value *)
     let bot = D.bot program.environment program.variables in
@@ -330,11 +347,20 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     During the backward analysis, the reachable state at each statement is computed by inspecting the 'out' states. 
     Then this reachable state is used to narrow down the given fixed-point of the nested property by using 'left_narrow'. 
     To backward analysis for the while-loop uses widening to get convergence.
+
+
+    By default, the global operator only holds for infinite traces in which the property is satisfied. 
+    As a consequence, it's not possible to argue about properties that hold globally until termination. 
+    This problem could be solved by adding an endless loop at the end of the program. 
+    The result of adding an infinite loop at the end of the program can be simulated by setting the optional 'use_sink_state' parameter to true.
+    This will start the backward analysis with a zero state that is defined on the entire domain. By doing so, we avoid cutting away states on finite traces.
+
   *)
-  let global (quantifier:quantifier) (program:program) (fixed_point:inv) : inv =
+  let global ?(use_sink_state = false) (program:program) (fixed_point:inv) : inv =
     let inv = ref (InvMap.union (fun _ _ _ -> None) fixed_point InvMap.empty) in (* initialize InvMap with given fixed-point for nested property *)
     let addInv l (a:D.t) = inv := InvMap.add l a !inv; a in (* update InvMap with new value and return new updated value *)
     let blockState block = InvMap.find (label_of_block block) !inv in (* returns current 'in' state of a block *)
+    let zero = D.zero program.environment program.variables in 
     let bot = D.bot program.environment program.variables in 
     let start = Sys.time () in
     let rec bwd (out:D.t) (b:block) : D.t = (* recursive function that performs block-wise backward analysis *)
@@ -346,7 +372,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         let out_state = bwd out nextBlock in (* recursively process the rest of the program, this gives us the 'out' state for this statement *)
         let new_in = match stmt with 
           | A_label (l,_) -> out_state
-          | A_return -> bot
+          | A_return -> if use_sink_state then zero else bot 
           | A_assign ((l,_),(e,_)) -> D.left_narrow current_in (D.bwdAssign out_state (l,e))
           | A_assert (b,_) -> D.left_narrow current_in (D.filter out_state b)
           | A_if ((b,ba),s1,s2) ->
@@ -393,7 +419,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         in
         addInv blockLabel new_in (* use left_narrow to compute the new 'in' state for this block *)
     in 
-    let _ = bwd bot program.mainFunction.funcBody in (* run backward analysis starting from bottom *)
+    let _ = bwd (if use_sink_state then zero else bot) program.mainFunction.funcBody in (* run backward analysis starting from bottom *)
     !inv
 
   (* 
@@ -403,7 +429,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     There we need to inject the 'out' state of the next basic block in the control-flow-graph. 
     This is done by passing in said state through the recursion of the backward analysis.
   *)
-  let next (quantifier:quantifier) (program:program) (fp:inv) : inv =
+  let next (program:program) (fp:inv) : inv =
     let invMap = ref InvMap.empty in
     let addInv label state = invMap := InvMap.add label state !invMap in
     let rec aux (b:block) (nextOuterState:D.t) () = (* nextOuterState is the 'out' state of the next basic block in the CFG *)
@@ -460,39 +486,54 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     let f _ t1 t2 = Some (D.meet COMPUTATIONAL t1 t2) in
     InvMap.union f fp1 fp2
 
-  let printInv ?fwdInvOpt fmt (inv:inv) =
-    let inv = 
-      if !compress then 
-        InvMap.map D.compress inv
-      else 
-        inv
-    in InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\nDOT: %a\n" label_print l D.print a D.print_graphviz_dot a) inv
+  (* CTL 'not' opperator *)
+  let logic_not (fp:inv) : inv = InvMap.map D.complement fp
+
 
   (*
     Recusively compute fixed-point for CTL properties 
   *)
   let compute (program:program) (property:ctl_property) : inv = 
+    let print_inv property inv = 
+      if not !minimal then
+        begin
+          Format.fprintf !fmt "Property: %a\n\n" print_ctl_property property;
+          printInv !fmt inv;
+        end;
+    in
     let rec inv (property:ctl_property) : inv = 
       let result = 
         match property with
         | Atomic b -> atomic program b
-        | AX p -> next UNIVERSAL program (inv p)
-        | AF p -> until UNIVERSAL program (inv (Atomic A_TRUE)) (inv p)
-        | AG p -> global UNIVERSAL program (inv p)
-        | AU (p1, p2) -> until UNIVERSAL program (inv p1) (inv p2)
-        (* | EX p -> next EXISTENTIAL program (inv p) *)
-        (* | EF p -> until EXISTENTIAL program (inv (Atomic A_TRUE)) (inv p) *)
-        (* | EG p -> global EXISTENTIAL program (inv p) *)
-        (* | EU (p1, p2) -> until EXISTENTIAL program (inv p1) (inv p2) *)
+        | AX p -> next program (inv p)
+        | AF p -> until program (inv (Atomic A_TRUE)) (inv p)
+        | AG p -> global program (inv p)
+        | AU (p1, p2) -> until program (inv p1) (inv p2)
+        | EF p -> (* EF(p) := not AG(not p)  *)
+            let inv_not_p = inv (NOT p) in
+            let inv_ag = global ~use_sink_state:true program inv_not_p in
+            print_inv (AG (NOT p)) inv_ag;
+            let not_inv_ag = logic_not inv_ag in
+            not_inv_ag
+        | EG p -> (* EG(p) := not AF(not p)  *)
+            let inv_not_p = inv (NOT p) in
+            let inv_af = until program (inv (Atomic A_TRUE)) inv_not_p in
+            print_inv (AF (NOT p)) inv_af;
+            let not_inv_af = logic_not inv_af in
+            not_inv_af
+        | EX p -> (* EX(p) := not AX(not p)  *)
+            let inv_not_p = inv (NOT p) in
+            let inv_ax = next program inv_not_p in
+            print_inv (AX (NOT p)) inv_ax;
+            let not_inv_ax = logic_not inv_ax in
+            not_inv_ax
         | AND (p1, p2) -> logic_and (inv p1) (inv p2)
         | OR (p1, p2) -> logic_or (inv p1) (inv p2)
+        | NOT (Atomic b) -> atomic program (fst (negBExp (b, program.dummyPosition)))
+        | NOT p -> logic_not (inv p) 
         | _ -> raise (Invalid_argument "CTL operator not supported")
       in
-      if not !minimal then
-        begin
-          Format.fprintf !fmt "Property: %a\n\n" print_ctl_property property;
-          printInv !fmt result;
-        end;
+      print_inv property result;
       result
     in inv property
 

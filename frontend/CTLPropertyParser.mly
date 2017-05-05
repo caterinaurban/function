@@ -13,6 +13,7 @@ open CTLProperty
 %token EU
 %token AND
 %token OR
+%token NOT
 %token LEFT_BRACE
 %token RIGHT_BRACE
 
@@ -31,4 +32,5 @@ prog:
   | EU; LEFT_BRACE; e1 = prog; RIGHT_BRACE; LEFT_BRACE; e2 = prog; RIGHT_BRACE; { EU (e1, e2) }
   | AND; LEFT_BRACE; e1 = prog; RIGHT_BRACE; LEFT_BRACE; e2 = prog; RIGHT_BRACE; { AND (e1, e2) }
   | OR; LEFT_BRACE; e1 = prog; RIGHT_BRACE; LEFT_BRACE; e2 = prog; RIGHT_BRACE; { OR (e1, e2) }
+  | NOT; LEFT_BRACE; e = prog; RIGHT_BRACE; { NOT e}
   ;

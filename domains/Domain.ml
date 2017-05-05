@@ -46,4 +46,6 @@ sig
   val left_narrow: t -> t -> t
   val reset_until: t -> t -> t -> t
 
+  val complement: t -> t
+
 end

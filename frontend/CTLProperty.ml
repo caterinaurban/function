@@ -23,6 +23,7 @@ type 'a generic_property =
   | EU of ('a generic_property * 'a generic_property) (* until *)
   | AND of ('a generic_property * 'a generic_property) (* and *)
   | OR of ('a generic_property * 'a generic_property) (* or *)
+  | NOT of 'a generic_property (* not *)
 
 let rec map f property = match property with
   | Atomic x -> Atomic (f x)
@@ -36,4 +37,5 @@ let rec map f property = match property with
   | EU (e1, e2) -> EU (map f e1, map f e2)
   | AND (e1, e2) -> AND (map f e1, map f e2)
   | OR (e1, e2) -> OR (map f e1, map f e2)
+  | NOT e -> NOT (map f e)
 
