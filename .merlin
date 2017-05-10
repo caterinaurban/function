@@ -3,5 +3,6 @@ S examples
 S frontend
 S main
 S utils
+S banal
 B _build/**
-PKG apron gmp oUnit
+PKG apron gmp oUnit zarith
