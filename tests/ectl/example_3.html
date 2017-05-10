@@ -1,0 +1,2598 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap 3 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+    <style>
+      .tooltip-inner {
+            max-width: none;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <h1>Analysis Result</h1>
+    </div>
+
+    <div class="row">
+
+ <ul class="nav nav-tabs" role="tablist"> 
+
+      <li role="presentation"><a href="#0" class="tab_button" id="tab_0" aria-controls="home" role="tab" data-toggle="tab">$2{x} <= -10</a></li>  
+    
+
+      <li role="presentation"><a href="#1" class="tab_button" id="tab_1" aria-controls="home" role="tab" data-toggle="tab">AG{$2{x} <= -10}</a></li>  
+    
+
+      <li role="presentation"><a href="#2" class="tab_button" id="tab_2" aria-controls="home" role="tab" data-toggle="tab">NOT{AG{$2{x} <= -10}}</a></li>  
+    
+
+      <li role="presentation"><a href="#3" class="tab_button" id="tab_3" aria-controls="home" role="tab" data-toggle="tab">AG{NOT{AG{$2{x} <= -10}}}</a></li>  
+    
+
+      <li role="presentation"><a href="#4" class="tab_button" id="tab_4" aria-controls="home" role="tab" data-toggle="tab">EF{AG{$2{x} <= -10}}</a></li>  
+    
+ </ul> 
+ <div class="tab-content"> 
+ <div role="tabpanel" class="tab-pane active" id="0"> 
+ <div class="row"> 
+
+                       <div class="col-md-6">
+                        <pre>
+    
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,0 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 1:]</span>
+int main( ):
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,1 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 2:]</span> $2{x} := 3
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,2 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 3:]</span> if ( ? ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,3 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 4:]</span>   if ( ? ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,4 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 5:]</span>     while <span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,5 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 6:]</span> ( true ) do
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,6 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 7:]</span>       $2{x} := $2{x} - 1
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,7 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 8:]</span>
+          od
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,8 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 9:]</span>
+        else
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,9 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[10:]</span>     $2{x} := 10
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,10 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[11:]</span>
+        endif
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,11 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[12:]</span>
+      else
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,12 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[13:]</span>   $2{x} := 20
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,13 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[14:]</span>
+      endif
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,14 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[15:]</span>
+</pre>
+ </div > 
+ <div class="col-md-6"> 
+<div class="decision_tree tree_0_0">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_1">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_2">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_3">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_4">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_5">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_6">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_7">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_8">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_9">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_10">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_11">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_12">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_13">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_14">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+ </div > 
+ </div > 
+ </div > 
+ <div role="tabpanel" class="tab-pane active" id="1"> 
+ <div class="row"> 
+
+                       <div class="col-md-6">
+                        <pre>
+    
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,0 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 1:]</span>
+int main( ):
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,1 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 2:]</span> $2{x} := 3
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,2 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 3:]</span> if ( ? ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,3 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 4:]</span>   if ( ? ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,4 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 5:]</span>     while <span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,5 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 6:]</span> ( true ) do
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,6 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 7:]</span>       $2{x} := $2{x} - 1
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,7 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 8:]</span>
+          od
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,8 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 9:]</span>
+        else
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,9 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[10:]</span>     $2{x} := 10
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,10 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[11:]</span>
+        endif
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,11 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[12:]</span>
+      else
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,12 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[13:]</span>   $2{x} := 20
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,13 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[14:]</span>
+      endif
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,14 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[15:]</span>
+</pre>
+ </div > 
+ <div class="col-md-6"> 
+<div class="decision_tree tree_1_0">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_1">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_2">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_3">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_4">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_5">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_6">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_7">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_8">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_9">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_10">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_11">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_12">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_13">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_14">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+ </div > 
+ </div > 
+ </div > 
+ <div role="tabpanel" class="tab-pane active" id="2"> 
+ <div class="row"> 
+
+                       <div class="col-md-6">
+                        <pre>
+    
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,0 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? bottom<br/>$2{x} >= -9 ? 0.</div>">[ 1:]</span>
+int main( ):
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,1 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 2:]</span> $2{x} := 3
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,2 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 3:]</span> if ( ? ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,3 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 4:]</span>   if ( ? ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,4 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? bottom<br/>$2{x} >= -9 ? 0.</div>">[ 5:]</span>     while <span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,5 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? bottom<br/>$2{x} >= -9 ? 0.</div>">[ 6:]</span> ( true ) do
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,6 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? bottom<br/>$2{x} >= -9 ? 0.</div>">[ 7:]</span>       $2{x} := $2{x} - 1
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,7 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? bottom<br/>$2{x} >= -9 ? 0.</div>">[ 8:]</span>
+          od
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,8 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 9:]</span>
+        else
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,9 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[10:]</span>     $2{x} := 10
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,10 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[11:]</span>
+        endif
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,11 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[12:]</span>
+      else
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,12 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[13:]</span>   $2{x} := 20
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,13 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[14:]</span>
+      endif
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,14 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[15:]</span>
+</pre>
+ </div > 
+ <div class="col-md-6"> 
+<div class="decision_tree tree_2_0">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M117.5,-108C117.5,-108 34.5,-108 34.5,-108 28.5,-108 22.5,-102 22.5,-96 22.5,-96 22.5,-84 22.5,-84 22.5,-78 28.5,-72 34.5,-72 34.5,-72 117.5,-72 117.5,-72 123.5,-72 129.5,-78 129.5,-84 129.5,-84 129.5,-96 129.5,-96 129.5,-102 123.5,-108 117.5,-108"/>
+<text text-anchor="middle" x="76" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M63.6352,-71.8314C56.2639,-61 46.9318,-47.2876 39.5313,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 98,-36 98,0 166,0 166,-36"/>
+<text text-anchor="middle" x="132" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M90.1312,-71.8314C98.5555,-61 109.2208,-47.2876 117.6786,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_1">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_2">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_3">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_4">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M117.5,-108C117.5,-108 34.5,-108 34.5,-108 28.5,-108 22.5,-102 22.5,-96 22.5,-96 22.5,-84 22.5,-84 22.5,-78 28.5,-72 34.5,-72 34.5,-72 117.5,-72 117.5,-72 123.5,-72 129.5,-78 129.5,-84 129.5,-84 129.5,-96 129.5,-96 129.5,-102 123.5,-108 117.5,-108"/>
+<text text-anchor="middle" x="76" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M63.6352,-71.8314C56.2639,-61 46.9318,-47.2876 39.5313,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 98,-36 98,0 166,0 166,-36"/>
+<text text-anchor="middle" x="132" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M90.1312,-71.8314C98.5555,-61 109.2208,-47.2876 117.6786,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_5">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M117.5,-108C117.5,-108 34.5,-108 34.5,-108 28.5,-108 22.5,-102 22.5,-96 22.5,-96 22.5,-84 22.5,-84 22.5,-78 28.5,-72 34.5,-72 34.5,-72 117.5,-72 117.5,-72 123.5,-72 129.5,-78 129.5,-84 129.5,-84 129.5,-96 129.5,-96 129.5,-102 123.5,-108 117.5,-108"/>
+<text text-anchor="middle" x="76" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M63.6352,-71.8314C56.2639,-61 46.9318,-47.2876 39.5313,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 98,-36 98,0 166,0 166,-36"/>
+<text text-anchor="middle" x="132" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M90.1312,-71.8314C98.5555,-61 109.2208,-47.2876 117.6786,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_6">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M117.5,-108C117.5,-108 34.5,-108 34.5,-108 28.5,-108 22.5,-102 22.5,-96 22.5,-96 22.5,-84 22.5,-84 22.5,-78 28.5,-72 34.5,-72 34.5,-72 117.5,-72 117.5,-72 123.5,-72 129.5,-78 129.5,-84 129.5,-84 129.5,-96 129.5,-96 129.5,-102 123.5,-108 117.5,-108"/>
+<text text-anchor="middle" x="76" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M63.6352,-71.8314C56.2639,-61 46.9318,-47.2876 39.5313,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 98,-36 98,0 166,0 166,-36"/>
+<text text-anchor="middle" x="132" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M90.1312,-71.8314C98.5555,-61 109.2208,-47.2876 117.6786,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_7">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M117.5,-108C117.5,-108 34.5,-108 34.5,-108 28.5,-108 22.5,-102 22.5,-96 22.5,-96 22.5,-84 22.5,-84 22.5,-78 28.5,-72 34.5,-72 34.5,-72 117.5,-72 117.5,-72 123.5,-72 129.5,-78 129.5,-84 129.5,-84 129.5,-96 129.5,-96 129.5,-102 123.5,-108 117.5,-108"/>
+<text text-anchor="middle" x="76" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M63.6352,-71.8314C56.2639,-61 46.9318,-47.2876 39.5313,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 98,-36 98,0 166,0 166,-36"/>
+<text text-anchor="middle" x="132" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M90.1312,-71.8314C98.5555,-61 109.2208,-47.2876 117.6786,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_8">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_9">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_10">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_11">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_12">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_13">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_14">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+ </div > 
+ </div > 
+ </div > 
+ <div role="tabpanel" class="tab-pane active" id="3"> 
+ <div class="row"> 
+
+                       <div class="col-md-6">
+                        <pre>
+    
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,0 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? bottom<br/>$2{x} >= -9 ? 0.</div>">[ 1:]</span>
+int main( ):
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,1 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 2:]</span> $2{x} := 3
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,2 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 3:]</span> if ( ? ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,3 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 4:]</span>   if ( ? ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,4 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 5:]</span>     while <span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,5 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 6:]</span> ( true ) do
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,6 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 7:]</span>       $2{x} := $2{x} - 1
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,7 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 8:]</span>
+          od
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,8 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 9:]</span>
+        else
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,9 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[10:]</span>     $2{x} := 10
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,10 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[11:]</span>
+        endif
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,11 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[12:]</span>
+      else
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,12 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[13:]</span>   $2{x} := 20
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,13 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[14:]</span>
+      endif
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 3,14 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[15:]</span>
+</pre>
+ </div > 
+ <div class="col-md-6"> 
+<div class="decision_tree tree_3_0">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M117.5,-108C117.5,-108 34.5,-108 34.5,-108 28.5,-108 22.5,-102 22.5,-96 22.5,-96 22.5,-84 22.5,-84 22.5,-78 28.5,-72 34.5,-72 34.5,-72 117.5,-72 117.5,-72 123.5,-72 129.5,-78 129.5,-84 129.5,-84 129.5,-96 129.5,-96 129.5,-102 123.5,-108 117.5,-108"/>
+<text text-anchor="middle" x="76" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M63.6352,-71.8314C56.2639,-61 46.9318,-47.2876 39.5313,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 98,-36 98,0 166,0 166,-36"/>
+<text text-anchor="middle" x="132" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M90.1312,-71.8314C98.5555,-61 109.2208,-47.2876 117.6786,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_1">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_2">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_3">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_4">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_5">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_6">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_7">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_8">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_9">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_10">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_11">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_12">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_13">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_3_14">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+ </div > 
+ </div > 
+ </div > 
+ <div role="tabpanel" class="tab-pane active" id="4"> 
+ <div class="row"> 
+
+                       <div class="col-md-6">
+                        <pre>
+    
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,0 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 10 ? 0.<br/>$2{x} >= -9 ? bottom</div>">[ 1:]</span>
+int main( ):
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,1 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 2:]</span> $2{x} := 3
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,2 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 3:]</span> if ( ? ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,3 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 4:]</span>   if ( ? ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,4 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 5:]</span>     while <span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,5 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 6:]</span> ( true ) do
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,6 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 7:]</span>       $2{x} := $2{x} - 1
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,7 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 8:]</span>
+          od
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,8 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 9:]</span>
+        else
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,9 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[10:]</span>     $2{x} := 10
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,10 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[11:]</span>
+        endif
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,11 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[12:]</span>
+      else
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,12 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[13:]</span>   $2{x} := 20
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,13 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[14:]</span>
+      endif
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 4,14 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[15:]</span>
+</pre>
+ </div > 
+ <div class="col-md-6"> 
+<div class="decision_tree tree_4_0">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="174pt" height="116pt"
+ viewBox="0.00 0.00 174.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 170,-112 170,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M131.5,-108C131.5,-108 48.5,-108 48.5,-108 42.5,-108 36.5,-102 36.5,-96 36.5,-96 36.5,-84 36.5,-84 36.5,-78 42.5,-72 48.5,-72 48.5,-72 131.5,-72 131.5,-72 137.5,-72 143.5,-78 143.5,-84 143.5,-84 143.5,-96 143.5,-96 143.5,-102 137.5,-108 131.5,-108"/>
+<text text-anchor="middle" x="90" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= &#45;9</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-71.8314C67.4445,-61 56.7792,-47.2876 48.3214,-36.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<polygon fill="none" stroke="#000000" points="166,-36 112,-36 112,0 166,0 166,-36"/>
+<text text-anchor="middle" x="139" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M102.3648,-71.8314C109.7361,-61 119.0682,-47.2876 126.4687,-36.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_1">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_2">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_3">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_4">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_5">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_6">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_7">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_8">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_9">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_10">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_11">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_12">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_13">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_4_14">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="76pt" height="44pt"
+ viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
+<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+</g>
+</svg>
+
+</div>
+ </div > 
+ </div > 
+ </div > 
+ </div > 
+
+    </div>
+</div>
+
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<script>
+
+        function hideTrees() {
+            $('div.decision_tree').hide();
+        }
+        
+        function showTree(pid,lid) {
+            $('div.tree_'+pid+'_'+lid).show();
+         }
+
+      $(function () { 
+          $('[data-toggle="tooltip"]').tooltip() 
+          $('.tab_button').last().click()
+          hideTrees();
+      })
+      
+  </script>
+</body>
+</html>
+
+
+
