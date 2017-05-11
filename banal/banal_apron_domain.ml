@@ -28,13 +28,11 @@ end
 
 module Lin = Linearization.Make(Itv_rat)
 
-module ApronDomain(Param: APRON_PARAM) = (struct
+module ApronDomain(Param: APRON_PARAM) = struct
 
   let man = Param.manager
 
   type t = Param.lib Abstract1.t
-
-
 
   (*************)
   (* UTILITIES *)
@@ -862,7 +860,6 @@ module ApronDomain(Param: APRON_PARAM) = (struct
     let both = bwd_trace "meet_both" (Abstract1.meet man mid1) mid2 in
     bwd_trace "meet_pre" (Abstract1.meet man pre) both
 
-
   (* improvement on bwd_filter: if it fails, tries to force a branch *)
   let bwd_filter post1 post2 err e typ pre =
     (* try both branches *)
@@ -929,7 +926,7 @@ module ApronDomain(Param: APRON_PARAM) = (struct
 
 
 
-end: ABSTRACT_DOMAIN)
+end
 
 
 

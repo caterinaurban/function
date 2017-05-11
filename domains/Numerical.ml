@@ -13,19 +13,20 @@ open Apron
 open Partition
 open Constraints
 
-type numerical_domain = BOXES | OCTAGONS | POLYHEDRA
 
-(** APRON numerical abstract domains. *)
-module type NUMERICAL = sig
-  val t: numerical_domain
+module type APRON_PARAM = sig 
+  type lib
+  val manager: lib Manager.t 
 end
 
 (** Single partition of the domain of a ranking function 
     represented by an APRON numerical abstract domain. *)
-module Numerical(N: NUMERICAL)(C: CONSTRAINT): PARTITION = struct
+module Numerical(Param: APRON_PARAM)(C: CONSTRAINT): PARTITION = struct
 
   (** Linear constraints used to represent the partition. *)
   module C = C 
+
+  module BanalApron = Banal_apron_domain.ApronDomain(Param)
 
   (** An element of the numerical abstract domain. *)
   type t = { 
@@ -33,6 +34,8 @@ module Numerical(N: NUMERICAL)(C: CONSTRAINT): PARTITION = struct
     env : Environment.t; (* APRON environment *)
     vars : var list (* list of variables in the APRON environment *)
   }
+
+  type apron_t = Param.lib Abstract1.t
 
   (** The current representation as list of linear constraints. *)
   let constraints b: C.t list = List.fold_right (fun c cs -> 
@@ -49,10 +52,12 @@ module Numerical(N: NUMERICAL)(C: CONSTRAINT): PARTITION = struct
   let vars b = b.vars
 
   (** Creates an APRON manager depending on the numerical abstract domain. *)
-  let manager = match N.t with
-    | BOXES -> Box.manager_of_box (Box.manager_alloc ())
-    | OCTAGONS -> Oct.manager_of_oct (Oct.manager_alloc ())
-    | POLYHEDRA -> Polka.manager_of_polka (Polka.manager_alloc_loose ())	
+
+  let manager = Param.manager
+  (* let manager = match N.t with *)
+  (*   | BOXES -> Box.manager_of_box (Box.manager_alloc ()) *)
+  (*   | OCTAGONS -> Oct.manager_of_oct (Oct.manager_alloc ()) *)
+  (*   | POLYHEDRA -> Polka.manager_of_polka (Polka.manager_alloc_loose ()) *)	
 
   (**)
 
@@ -96,6 +101,21 @@ module Numerical(N: NUMERICAL)(C: CONSTRAINT): PARTITION = struct
     Abstract1.is_leq manager b1 b2
 
   (**)
+
+
+  let to_apron_t (t:t) : apron_t = 
+    let env = t.env in
+    let a = Lincons1.array_make env (List.length t.constraints) in
+    let i = ref 0 in
+    List.iter (fun c -> Lincons1.array_set a !i c; i := !i + 1) t.constraints;
+    Abstract1.of_lincons_array manager env a 
+
+  let of_apron_t env vars (a:apron_t) : t = 
+    let a = Abstract1.to_lincons_array manager a in
+    let cs = ref [] in
+    for i=0 to (Lincons1.array_length a)-1 do
+      cs := (Lincons1.array_get a i)::!cs; (*TODO: normalization *)
+    done; { constraints = !cs; env = env; vars = vars }
 
   let join b1 b2 = 
     let env = b1.env in
@@ -186,6 +206,18 @@ module Numerical(N: NUMERICAL)(C: CONSTRAINT): PARTITION = struct
         cs := (Lincons1.array_get a i)::!cs; (*TODO: normalization *)
       done; { constraints = !cs; env = env; vars = vars }
     | _ -> raise (Invalid_argument "bwdAssign: unexpected lvalue")
+
+
+  let filter_underapprox (t:t) (e:bExp) : t = 
+    let env = t.env in
+    let vars = t.vars in
+    let expr = Function_banal_converter.of_bExp e in
+    let at = to_apron_t t in
+    let top = Abstract1.top manager (Abstract1.env at) in
+    let pre = top in (* use top as pre environment *)
+    let filtered = BanalApron.bwd_filter at top () expr () pre in
+    of_apron_t env vars filtered
+
 
   let rec filter b e =
     match e with
@@ -281,10 +313,24 @@ end
 
 (** Single partition of the domain of a ranking function 
     represented by the boxes numerical abstract domain. *)
-module B = Numerical(struct let t = BOXES end)(C)
+module B = Numerical(
+  struct 
+    type lib = Box.t
+    let manager = Box.manager_alloc ()
+  end)(C)
+
 (** Single partition of the domain of a ranking function 
     represented by the octagons abstract domain. *)
-module O = Numerical(struct let t = OCTAGONS end)(C)
+module O = Numerical(
+  struct 
+    type lib = Oct.t 
+    let manager = Oct.manager_alloc () 
+  end)(C)
+
 (** Single partition of the domain of a ranking function 
     represented by the polyhedra abstract domain. *)
-module P = Numerical(struct let t = POLYHEDRA end)(C)
+module P = Numerical(
+  struct 
+    type lib = Polka.loose Polka.t
+    let manager = Polka.manager_alloc_loose ()
+  end)(C)
