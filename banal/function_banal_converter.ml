@@ -14,13 +14,13 @@ let int_type = A_int (A_INTEGER, A_SIGNED)
 
 let var_to_banal (v:FAS.var) : var = 
   let name = v.FAS.varName in 
-  let id = Z.of_string v.FAS.varId in 
+  let id = v.FAS.varId in 
   {
     var_name = name;
     var_extent = dummy_extent;
     var_typ = int_type;
     var_id = id;
-    var_synthetic =false; (* added by translation? *)
+    var_synthetic = false; 
     var_scope = T_LOCAL;
   }
 
@@ -48,10 +48,9 @@ let rec of_aExp_aux (aExp:FAS.aExp) : expr =
       | FAS.A_MULTIPLY -> A_MULTIPLY
       | FAS.A_DIVIDE -> A_DIVIDE
     in T_binary (binOp, expr1, expr2) 
-  | FAS.A_RANDOM -> raise (Invalid_argument "TODO") 
-
+  | FAS.A_RANDOM -> T_int_const (Banal_intinf.minus_inf, Banal_intinf.inf) 
+    
 let of_aExp (aExp:FAS.aExp) : expr typed = (of_aExp_aux aExp, int_type, dummy_extent)
-
     
 let rec of_bExp_aux (bExp:FAS.bExp) : expr = 
   match bExp with 

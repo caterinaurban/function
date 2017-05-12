@@ -248,6 +248,11 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     in InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\nDOT: %a\n" label_print l D.print a D.print_graphviz_dot a) inv
 
 
+  let abstract_transformer (quantifier:quantifier) = match quantifier with
+    | UNIVERSAL -> (D.join APPROXIMATION, D.bwdAssign ~underapprox:false, D.filter ~underapprox: false)
+    | EXISTENTIAL -> (D.join COMPUTATIONAL, D.bwdAssign ~underapprox:true, D.filter ~underapprox: true)
+
+
   (* Computes fixed-point for 'until' properties: AU{inv_keep}{inv_reset} 
      inv_keep and inv_reset are fixed-point for the nested properties
 
@@ -255,7 +260,8 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
      This resets the ranking function for those parts of the domain where inv_reset is also 
      defined and it discards those parts of the ranking function where neither inv_keep nor inv_reset are defined.
   *)
-  let until (program:program) (inv_keep:inv) (inv_reset:inv) : inv =
+  let until (quantifier:quantifier) (program:program) (inv_keep:inv) (inv_reset:inv) : inv =
+    let (branch_join, bwd_assign, bwd_filter) = abstract_transformer quantifier in
     let inv = ref InvMap.empty in (* variable where the resulting invariant/fixed-point is stored *)
     let addInv l (a:D.t) = inv := InvMap.add l a !inv; a in (* update InvMap with new value and return new updated value *)
     let bot = D.bot program.environment program.variables in
@@ -278,21 +284,27 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         let in_state = match stmt with 
           | A_label (l,_) -> out_state
           | A_return -> bot
-          | A_assign ((l,_),(e,_)) -> D.bwdAssign out_state (l,e)
-          | A_assert (b,_) -> D.filter out_state b
+          | A_assign ((l,_),(e,_)) -> 
+            bwd_assign out_state (l,e)
+          | A_assert (b,_) -> bwd_filter out_state b
           | A_if ((b,ba),s1,s2) ->
             let in_if = bwd out_state s1 in (* compute 'in state for if-block*)
             let in_else = bwd out_state s2 in (* compute 'in state for else-block *)
-            let in_if_filtered = D.filter in_if b in (* filter *)
-            let in_else_filtered = D.filter in_else (fst (negBExp (b,ba))) in (* filter *)
-            D.join APPROXIMATION in_if_filtered in_else_filtered (* join the two branches *)
+            let in_if_filtered = bwd_filter in_if b in (* filter *)
+            let in_else_filtered = bwd_filter in_else (fst (negBExp (b,ba))) in (* filter *)
+            (* DEBUG INFO: *)
+            (* Format.fprintf !fmt "Filter: %a \n if: \n %a \n else: \n %a \n" *)
+            (*   AbstractSyntax.bExp_print (b, (Lexing.dummy_pos,Lexing.dummy_pos)) *)
+            (*   D.print in_if_filtered *)
+            (*   D.print in_else_filtered; *)
+            branch_join in_if_filtered in_else_filtered (* join the two branches *)
           | A_while (l,(b,ba),loop_body) ->
-            let out_exit = D.filter out_state (fst (negBExp (b,ba))) in (* 'out' state when not entering the loop body *)
+            let out_exit = bwd_filter out_state (fst (negBExp (b,ba))) in (* 'out' state when not entering the loop body *)
             let rec aux (* recursive function that iteratively computes fixed point for 'in' state at loop head *)
                 in_state (* 'in' state of the previous iteration *)
                 out_enter (* current 'out' state when entering the loop body *)
                 n = (* iteration counter *)
-              let in_state' = reset_until (D.join APPROXIMATION out_exit out_enter) in (* 'in' state for this iteration *)
+              let in_state' = reset_until (branch_join out_exit out_enter) in (* 'in' state for this iteration *)
               if !tracebwd && not !minimal then begin
                 Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
                 Format.fprintf !fmt "out_exit: %a\n" D.print out_exit;
@@ -322,11 +334,11 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
                     D.widen in_state in_state' (* widening threshold reached, apply widening *)
                 in
                 if !tracebwd && not !minimal then Format.fprintf !fmt "in'': %a\n" D.print in_state'';
-                let out_enter' = D.filter (bwd in_state'' loop_body) b in (* process loop body again with updated 'in' state *)
+                let out_enter' = bwd_filter (bwd in_state'' loop_body) b in (* process loop body again with updated 'in' state *)
                 aux in_state'' out_enter' (n+1) (* run next iteration *)
             in
             let initial_in = bot in (* start with bottom as initial 'in' state *)
-            let initial_out_enter = D.filter (bwd initial_in loop_body) b in (* process loop body with initial 'in' state *)
+            let initial_out_enter = bwd_filter (bwd initial_in loop_body) b in (* process loop body with initial 'in' state *)
             let final_in_state = aux initial_in initial_out_enter 1 in (* compute fixed point for loop-head *)
             addInv l final_in_state 
           | A_call (f,ss) -> raise (Invalid_argument "bwdStm:A_call")
@@ -356,7 +368,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     This will start the backward analysis with a zero state that is defined on the entire domain. By doing so, we avoid cutting away states on finite traces.
 
   *)
-  let global ?(use_sink_state = false) (program:program) (fixed_point:inv) : inv =
+  let global (quantifier:quantifier) ?(use_sink_state = false)(program:program) (fixed_point:inv) : inv =
     let inv = ref (InvMap.union (fun _ _ _ -> None) fixed_point InvMap.empty) in (* initialize InvMap with given fixed-point for nested property *)
     let addInv l (a:D.t) = inv := InvMap.add l a !inv; a in (* update InvMap with new value and return new updated value *)
     let blockState block = InvMap.find (label_of_block block) !inv in (* returns current 'in' state of a block *)
@@ -429,7 +441,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     There we need to inject the 'out' state of the next basic block in the control-flow-graph. 
     This is done by passing in said state through the recursion of the backward analysis.
   *)
-  let next (program:program) (fp:inv) : inv =
+  let next (quantifier:quantifier) (program:program) (fp:inv) : inv =
     let invMap = ref InvMap.empty in
     let addInv label state = invMap := InvMap.add label state !invMap in
     let rec aux (b:block) (nextOuterState:D.t) () = (* nextOuterState is the 'out' state of the next basic block in the CFG *)
@@ -494,6 +506,12 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     Recusively compute fixed-point for CTL properties 
   *)
   let compute (program:program) (property:ctl_property) : inv = 
+    let a_until = until UNIVERSAL in
+    let e_until = until EXISTENTIAL in
+    let a_global = global UNIVERSAL in
+    let e_global = global EXISTENTIAL in
+    let a_next = next UNIVERSAL in
+    let e_next = next EXISTENTIAL in
     let print_inv property inv = 
       if not !minimal then
         begin
@@ -505,25 +523,26 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
       let result = 
         match property with
         | Atomic b -> atomic program b
-        | AX p -> next program (inv p)
-        | AF p -> until program (inv (Atomic A_TRUE)) (inv p)
-        | AG p -> global program (inv p)
-        | AU (p1, p2) -> until program (inv p1) (inv p2)
-        | EF p -> (* EF(p) := not AG(not p)  *)
-            let inv_not_p = inv (NOT p) in
-            let inv_ag = global ~use_sink_state:true program inv_not_p in
-            print_inv (AG (NOT p)) inv_ag;
-            let not_inv_ag = logic_not inv_ag in
-            not_inv_ag
+        | AX p -> a_next program (inv p)
+        | AF p -> a_until program (inv (Atomic A_TRUE)) (inv p)
+        | AG p -> a_global program (inv p)
+        | AU (p1, p2) -> a_until program (inv p1) (inv p2)
+        (* | EF p -> (1* EF(p) := not AG(not p)  *1) *)
+        (*     let inv_not_p = inv (NOT p) in *)
+        (*     let inv_ag = a_global ~use_sink_state:true program inv_not_p in *)
+        (*     print_inv (AG (NOT p)) inv_ag; *)
+        (*     let not_inv_ag = logic_not inv_ag in *)
+        (*     not_inv_ag *)
+        | EF p -> e_until program (inv (Atomic A_TRUE)) (inv p)
         | EG p -> (* EG(p) := not AF(not p)  *)
             let inv_not_p = inv (NOT p) in
-            let inv_af = until program (inv (Atomic A_TRUE)) inv_not_p in
+            let inv_af = a_until program (inv (Atomic A_TRUE)) inv_not_p in
             print_inv (AF (NOT p)) inv_af;
             let not_inv_af = logic_not inv_af in
             not_inv_af
         | EX p -> (* EX(p) := not AX(not p)  *)
             let inv_not_p = inv (NOT p) in
-            let inv_ax = next program inv_not_p in
+            let inv_ax = a_next program inv_not_p in
             print_inv (AX (NOT p)) inv_ax;
             let not_inv_ax = logic_not inv_ax in
             not_inv_ax

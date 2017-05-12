@@ -1,15 +1,8 @@
-// EGAG(x == 0)
+// EF(r == 0)
 int main() {
-    int x = 3;
-    if (?) {
-        if (?) {
-            while (true) {
-                x = x - 1;
-            }
-        } else {
-            x = 10;
-        }
-    } else {
-        x = 20;
+    int r = 0;
+    int x = ?;
+    if (x >= 0) {
+        r = 1;
     }
 }

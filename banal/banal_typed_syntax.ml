@@ -43,7 +43,8 @@ and var = {
     var_name: string;
     var_extent: extent;
     var_typ: typ;
-    var_id: id;
+    (* var_id: id; *)
+    var_id: string;
     var_synthetic: bool; (* added by translation? *)
     var_scope: var_scope;
   }

@@ -1,9 +1,13 @@
-// EGEF(x == 0)
+// EF(r == 1)
 int main() {
+    int r = 0;
     int x;
-    if (?) {
-        x = 1;
-    } else {
-        x = 0;
+    int y;
+
+    if (x*x < y*y) {
+        if (?) {
+            r = 1;
+        } 
     }
 }
+

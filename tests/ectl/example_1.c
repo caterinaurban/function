@@ -1,12 +1,12 @@
-// EF(x >= 0)
+// EF(r == 1)
 int main() {
-    int x = -10;
-    while ( x < 0) {
+    int r = 0;
+    int x;
+    int y;
+    if (2*x <= y+3) {
         if (?) {
-            x = x + 1;
-        } else {
-            x = x - 1;
-        }
+            r = 1;
+        } 
     }
-
 }
+

@@ -40,9 +40,7 @@ module ApronDomain(Param: APRON_PARAM) = struct
 
 
   (* apron name of a variable *)
-  let apron_of_var (v:var) : Var.t =
-    Var.of_string (string_of_id (v.var_name^"#") v.var_id)
-
+  let apron_of_var (v:var) : Var.t = Var.of_string v.var_id
 
   let add_var_to_env env v =
     let i,r = match v.var_typ with

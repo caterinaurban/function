@@ -33,13 +33,13 @@
 
  <ul class="nav nav-tabs" role="tablist"> 
 
-      <li role="presentation"><a href="#0" class="tab_button" id="tab_0" aria-controls="home" role="tab" data-toggle="tab">NOT{$2{x} <= 0 && $2{x} >= 0}</a></li>  
+      <li role="presentation"><a href="#0" class="tab_button" id="tab_0" aria-controls="home" role="tab" data-toggle="tab">$2{r} <= 1 && $2{r} >= 1</a></li>  
     
 
-      <li role="presentation"><a href="#1" class="tab_button" id="tab_1" aria-controls="home" role="tab" data-toggle="tab">AX{NOT{$2{x} <= 0 && $2{x} >= 0}}</a></li>  
+      <li role="presentation"><a href="#1" class="tab_button" id="tab_1" aria-controls="home" role="tab" data-toggle="tab">true</a></li>  
     
 
-      <li role="presentation"><a href="#2" class="tab_button" id="tab_2" aria-controls="home" role="tab" data-toggle="tab">EX{$2{x} <= 0 && $2{x} >= 0}</a></li>  
+      <li role="presentation"><a href="#2" class="tab_button" id="tab_2" aria-controls="home" role="tab" data-toggle="tab">EF{$2{r} <= 1 && $2{r} >= 1}</a></li>  
     
  </ul> 
  <div class="tab-content"> 
@@ -49,16 +49,21 @@
                        <div class="col-md-6">
                         <pre>
     
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,0 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? 0.<br/>$2{x} == 0 ? bottom<br/>$2{x} >= 1 ? 0.</div>">[ 1:]</span>
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,0 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[ 1:]</span>
 int main( ):
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,1 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? 0.<br/>$2{x} == 0 ? bottom<br/>$2{x} >= 1 ? 0.</div>">[ 2:]</span> if ( ? ) then
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,2 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? 0.<br/>$2{x} == 0 ? bottom<br/>$2{x} >= 1 ? 0.</div>">[ 3:]</span>   $2{x} := 1
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,3 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? 0.<br/>$2{x} == 0 ? bottom<br/>$2{x} >= 1 ? 0.</div>">[ 4:]</span>
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,1 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[ 2:]</span> $2{r} := 0
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,2 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[ 3:]</span> if ( $3{x} * $3{x} < $4{y} * $4{y} ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,3 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[ 4:]</span>   if ( ? ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,4 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[ 5:]</span>     $2{r} := 1
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,5 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[ 6:]</span>
+        else
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,6 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[ 7:]</span>
+        endif
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,7 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[ 8:]</span>
       else
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,4 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? 0.<br/>$2{x} == 0 ? bottom<br/>$2{x} >= 1 ? 0.</div>">[ 5:]</span>   $2{x} := 0
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,5 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? 0.<br/>$2{x} == 0 ? bottom<br/>$2{x} >= 1 ? 0.</div>">[ 6:]</span>
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,8 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[ 9:]</span>
       endif
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,6 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? 0.<br/>$2{x} == 0 ? bottom<br/>$2{x} >= 1 ? 0.</div>">[ 7:]</span>
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 0,9 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[10:]</span>
 </pre>
  </div > 
  <div class="col-md-6"> 
@@ -69,40 +74,40 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="233pt" height="188pt"
- viewBox="0.00 0.00 233.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 229,-184 229,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<path fill="none" stroke="#000000" d="M115.5,-180C115.5,-180 36.5,-180 36.5,-180 30.5,-180 24.5,-174 24.5,-168 24.5,-168 24.5,-156 24.5,-156 24.5,-150 30.5,-144 36.5,-144 36.5,-144 115.5,-144 115.5,-144 121.5,-144 127.5,-150 127.5,-156 127.5,-156 127.5,-168 127.5,-168 127.5,-174 121.5,-180 115.5,-180"/>
-<text text-anchor="middle" x="76" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 1</text>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
 </g>
 <!-- node2 -->
 <!-- node0&#45;&#45;node2 -->
 <!-- node1 -->
 <g id="node3" class="node">
 <title>node1</title>
-<polygon fill="none" stroke="#000000" points="54,-108 0,-108 0,-72 54,-72 54,-108"/>
-<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node0&#45;&#45;node1 -->
 <g id="edge1" class="edge">
 <title>node0&#45;&#45;node1</title>
-<path fill="none" stroke="#000000" d="M63.6352,-143.8314C56.2639,-133 46.9318,-119.2876 39.5313,-108.4133"/>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
 </g>
 <!-- node3 -->
 <g id="node4" class="node">
 <title>node3</title>
-<path fill="none" stroke="#000000" d="M188.5,-108C188.5,-108 109.5,-108 109.5,-108 103.5,-108 97.5,-102 97.5,-96 97.5,-96 97.5,-84 97.5,-84 97.5,-78 103.5,-72 109.5,-72 109.5,-72 188.5,-72 188.5,-72 194.5,-72 200.5,-78 200.5,-84 200.5,-84 200.5,-96 200.5,-96 200.5,-102 194.5,-108 188.5,-108"/>
-<text text-anchor="middle" x="149" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 0</text>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
 </g>
 <!-- node0&#45;&#45;node3 -->
 <g id="edge3" class="edge">
 <title>node0&#45;&#45;node3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M94.421,-143.8314C105.4872,-132.9167 119.5197,-119.0764 130.5849,-108.1628"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
 </g>
 <!-- node2&#45;&#45;node3 -->
 <!-- node1&#45;&#45;node2 -->
@@ -111,24 +116,24 @@ int main( ):
 <!-- node4 -->
 <g id="node6" class="node">
 <title>node4</title>
-<polygon fill="none" stroke="#000000" points="127,-36 59,-36 59,0 127,0 127,-36"/>
-<text text-anchor="middle" x="93" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
 <!-- node3&#45;&#45;node4 -->
 <g id="edge6" class="edge">
 <title>node3&#45;&#45;node4</title>
-<path fill="none" stroke="#000000" d="M134.8688,-71.8314C126.4445,-61 115.7792,-47.2876 107.3214,-36.4133"/>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
 </g>
 <!-- node6 -->
 <g id="node7" class="node">
 <title>node6</title>
-<polygon fill="none" stroke="#000000" points="225,-36 171,-36 171,0 225,0 225,-36"/>
-<text text-anchor="middle" x="198" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node3&#45;&#45;node6 -->
 <g id="edge8" class="edge">
 <title>node3&#45;&#45;node6</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M161.3648,-71.8314C168.7361,-61 178.0682,-47.2876 185.4687,-36.4133"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
 </g>
 <!-- node5&#45;&#45;node6 -->
 <!-- node4&#45;&#45;node5 -->
@@ -143,40 +148,40 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="233pt" height="188pt"
- viewBox="0.00 0.00 233.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 229,-184 229,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<path fill="none" stroke="#000000" d="M115.5,-180C115.5,-180 36.5,-180 36.5,-180 30.5,-180 24.5,-174 24.5,-168 24.5,-168 24.5,-156 24.5,-156 24.5,-150 30.5,-144 36.5,-144 36.5,-144 115.5,-144 115.5,-144 121.5,-144 127.5,-150 127.5,-156 127.5,-156 127.5,-168 127.5,-168 127.5,-174 121.5,-180 115.5,-180"/>
-<text text-anchor="middle" x="76" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 1</text>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
 </g>
 <!-- node2 -->
 <!-- node0&#45;&#45;node2 -->
 <!-- node1 -->
 <g id="node3" class="node">
 <title>node1</title>
-<polygon fill="none" stroke="#000000" points="54,-108 0,-108 0,-72 54,-72 54,-108"/>
-<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node0&#45;&#45;node1 -->
 <g id="edge1" class="edge">
 <title>node0&#45;&#45;node1</title>
-<path fill="none" stroke="#000000" d="M63.6352,-143.8314C56.2639,-133 46.9318,-119.2876 39.5313,-108.4133"/>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
 </g>
 <!-- node3 -->
 <g id="node4" class="node">
 <title>node3</title>
-<path fill="none" stroke="#000000" d="M188.5,-108C188.5,-108 109.5,-108 109.5,-108 103.5,-108 97.5,-102 97.5,-96 97.5,-96 97.5,-84 97.5,-84 97.5,-78 103.5,-72 109.5,-72 109.5,-72 188.5,-72 188.5,-72 194.5,-72 200.5,-78 200.5,-84 200.5,-84 200.5,-96 200.5,-96 200.5,-102 194.5,-108 188.5,-108"/>
-<text text-anchor="middle" x="149" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 0</text>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
 </g>
 <!-- node0&#45;&#45;node3 -->
 <g id="edge3" class="edge">
 <title>node0&#45;&#45;node3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M94.421,-143.8314C105.4872,-132.9167 119.5197,-119.0764 130.5849,-108.1628"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
 </g>
 <!-- node2&#45;&#45;node3 -->
 <!-- node1&#45;&#45;node2 -->
@@ -185,24 +190,24 @@ int main( ):
 <!-- node4 -->
 <g id="node6" class="node">
 <title>node4</title>
-<polygon fill="none" stroke="#000000" points="127,-36 59,-36 59,0 127,0 127,-36"/>
-<text text-anchor="middle" x="93" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
 <!-- node3&#45;&#45;node4 -->
 <g id="edge6" class="edge">
 <title>node3&#45;&#45;node4</title>
-<path fill="none" stroke="#000000" d="M134.8688,-71.8314C126.4445,-61 115.7792,-47.2876 107.3214,-36.4133"/>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
 </g>
 <!-- node6 -->
 <g id="node7" class="node">
 <title>node6</title>
-<polygon fill="none" stroke="#000000" points="225,-36 171,-36 171,0 225,0 225,-36"/>
-<text text-anchor="middle" x="198" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node3&#45;&#45;node6 -->
 <g id="edge8" class="edge">
 <title>node3&#45;&#45;node6</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M161.3648,-71.8314C168.7361,-61 178.0682,-47.2876 185.4687,-36.4133"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
 </g>
 <!-- node5&#45;&#45;node6 -->
 <!-- node4&#45;&#45;node5 -->
@@ -217,40 +222,40 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="233pt" height="188pt"
- viewBox="0.00 0.00 233.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 229,-184 229,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<path fill="none" stroke="#000000" d="M115.5,-180C115.5,-180 36.5,-180 36.5,-180 30.5,-180 24.5,-174 24.5,-168 24.5,-168 24.5,-156 24.5,-156 24.5,-150 30.5,-144 36.5,-144 36.5,-144 115.5,-144 115.5,-144 121.5,-144 127.5,-150 127.5,-156 127.5,-156 127.5,-168 127.5,-168 127.5,-174 121.5,-180 115.5,-180"/>
-<text text-anchor="middle" x="76" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 1</text>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
 </g>
 <!-- node2 -->
 <!-- node0&#45;&#45;node2 -->
 <!-- node1 -->
 <g id="node3" class="node">
 <title>node1</title>
-<polygon fill="none" stroke="#000000" points="54,-108 0,-108 0,-72 54,-72 54,-108"/>
-<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node0&#45;&#45;node1 -->
 <g id="edge1" class="edge">
 <title>node0&#45;&#45;node1</title>
-<path fill="none" stroke="#000000" d="M63.6352,-143.8314C56.2639,-133 46.9318,-119.2876 39.5313,-108.4133"/>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
 </g>
 <!-- node3 -->
 <g id="node4" class="node">
 <title>node3</title>
-<path fill="none" stroke="#000000" d="M188.5,-108C188.5,-108 109.5,-108 109.5,-108 103.5,-108 97.5,-102 97.5,-96 97.5,-96 97.5,-84 97.5,-84 97.5,-78 103.5,-72 109.5,-72 109.5,-72 188.5,-72 188.5,-72 194.5,-72 200.5,-78 200.5,-84 200.5,-84 200.5,-96 200.5,-96 200.5,-102 194.5,-108 188.5,-108"/>
-<text text-anchor="middle" x="149" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 0</text>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
 </g>
 <!-- node0&#45;&#45;node3 -->
 <g id="edge3" class="edge">
 <title>node0&#45;&#45;node3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M94.421,-143.8314C105.4872,-132.9167 119.5197,-119.0764 130.5849,-108.1628"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
 </g>
 <!-- node2&#45;&#45;node3 -->
 <!-- node1&#45;&#45;node2 -->
@@ -259,24 +264,24 @@ int main( ):
 <!-- node4 -->
 <g id="node6" class="node">
 <title>node4</title>
-<polygon fill="none" stroke="#000000" points="127,-36 59,-36 59,0 127,0 127,-36"/>
-<text text-anchor="middle" x="93" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
 <!-- node3&#45;&#45;node4 -->
 <g id="edge6" class="edge">
 <title>node3&#45;&#45;node4</title>
-<path fill="none" stroke="#000000" d="M134.8688,-71.8314C126.4445,-61 115.7792,-47.2876 107.3214,-36.4133"/>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
 </g>
 <!-- node6 -->
 <g id="node7" class="node">
 <title>node6</title>
-<polygon fill="none" stroke="#000000" points="225,-36 171,-36 171,0 225,0 225,-36"/>
-<text text-anchor="middle" x="198" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node3&#45;&#45;node6 -->
 <g id="edge8" class="edge">
 <title>node3&#45;&#45;node6</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M161.3648,-71.8314C168.7361,-61 178.0682,-47.2876 185.4687,-36.4133"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
 </g>
 <!-- node5&#45;&#45;node6 -->
 <!-- node4&#45;&#45;node5 -->
@@ -291,40 +296,40 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="233pt" height="188pt"
- viewBox="0.00 0.00 233.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 229,-184 229,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<path fill="none" stroke="#000000" d="M115.5,-180C115.5,-180 36.5,-180 36.5,-180 30.5,-180 24.5,-174 24.5,-168 24.5,-168 24.5,-156 24.5,-156 24.5,-150 30.5,-144 36.5,-144 36.5,-144 115.5,-144 115.5,-144 121.5,-144 127.5,-150 127.5,-156 127.5,-156 127.5,-168 127.5,-168 127.5,-174 121.5,-180 115.5,-180"/>
-<text text-anchor="middle" x="76" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 1</text>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
 </g>
 <!-- node2 -->
 <!-- node0&#45;&#45;node2 -->
 <!-- node1 -->
 <g id="node3" class="node">
 <title>node1</title>
-<polygon fill="none" stroke="#000000" points="54,-108 0,-108 0,-72 54,-72 54,-108"/>
-<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node0&#45;&#45;node1 -->
 <g id="edge1" class="edge">
 <title>node0&#45;&#45;node1</title>
-<path fill="none" stroke="#000000" d="M63.6352,-143.8314C56.2639,-133 46.9318,-119.2876 39.5313,-108.4133"/>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
 </g>
 <!-- node3 -->
 <g id="node4" class="node">
 <title>node3</title>
-<path fill="none" stroke="#000000" d="M188.5,-108C188.5,-108 109.5,-108 109.5,-108 103.5,-108 97.5,-102 97.5,-96 97.5,-96 97.5,-84 97.5,-84 97.5,-78 103.5,-72 109.5,-72 109.5,-72 188.5,-72 188.5,-72 194.5,-72 200.5,-78 200.5,-84 200.5,-84 200.5,-96 200.5,-96 200.5,-102 194.5,-108 188.5,-108"/>
-<text text-anchor="middle" x="149" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 0</text>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
 </g>
 <!-- node0&#45;&#45;node3 -->
 <g id="edge3" class="edge">
 <title>node0&#45;&#45;node3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M94.421,-143.8314C105.4872,-132.9167 119.5197,-119.0764 130.5849,-108.1628"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
 </g>
 <!-- node2&#45;&#45;node3 -->
 <!-- node1&#45;&#45;node2 -->
@@ -333,24 +338,24 @@ int main( ):
 <!-- node4 -->
 <g id="node6" class="node">
 <title>node4</title>
-<polygon fill="none" stroke="#000000" points="127,-36 59,-36 59,0 127,0 127,-36"/>
-<text text-anchor="middle" x="93" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
 <!-- node3&#45;&#45;node4 -->
 <g id="edge6" class="edge">
 <title>node3&#45;&#45;node4</title>
-<path fill="none" stroke="#000000" d="M134.8688,-71.8314C126.4445,-61 115.7792,-47.2876 107.3214,-36.4133"/>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
 </g>
 <!-- node6 -->
 <g id="node7" class="node">
 <title>node6</title>
-<polygon fill="none" stroke="#000000" points="225,-36 171,-36 171,0 225,0 225,-36"/>
-<text text-anchor="middle" x="198" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node3&#45;&#45;node6 -->
 <g id="edge8" class="edge">
 <title>node3&#45;&#45;node6</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M161.3648,-71.8314C168.7361,-61 178.0682,-47.2876 185.4687,-36.4133"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
 </g>
 <!-- node5&#45;&#45;node6 -->
 <!-- node4&#45;&#45;node5 -->
@@ -365,40 +370,40 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="233pt" height="188pt"
- viewBox="0.00 0.00 233.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 229,-184 229,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<path fill="none" stroke="#000000" d="M115.5,-180C115.5,-180 36.5,-180 36.5,-180 30.5,-180 24.5,-174 24.5,-168 24.5,-168 24.5,-156 24.5,-156 24.5,-150 30.5,-144 36.5,-144 36.5,-144 115.5,-144 115.5,-144 121.5,-144 127.5,-150 127.5,-156 127.5,-156 127.5,-168 127.5,-168 127.5,-174 121.5,-180 115.5,-180"/>
-<text text-anchor="middle" x="76" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 1</text>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
 </g>
 <!-- node2 -->
 <!-- node0&#45;&#45;node2 -->
 <!-- node1 -->
 <g id="node3" class="node">
 <title>node1</title>
-<polygon fill="none" stroke="#000000" points="54,-108 0,-108 0,-72 54,-72 54,-108"/>
-<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node0&#45;&#45;node1 -->
 <g id="edge1" class="edge">
 <title>node0&#45;&#45;node1</title>
-<path fill="none" stroke="#000000" d="M63.6352,-143.8314C56.2639,-133 46.9318,-119.2876 39.5313,-108.4133"/>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
 </g>
 <!-- node3 -->
 <g id="node4" class="node">
 <title>node3</title>
-<path fill="none" stroke="#000000" d="M188.5,-108C188.5,-108 109.5,-108 109.5,-108 103.5,-108 97.5,-102 97.5,-96 97.5,-96 97.5,-84 97.5,-84 97.5,-78 103.5,-72 109.5,-72 109.5,-72 188.5,-72 188.5,-72 194.5,-72 200.5,-78 200.5,-84 200.5,-84 200.5,-96 200.5,-96 200.5,-102 194.5,-108 188.5,-108"/>
-<text text-anchor="middle" x="149" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 0</text>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
 </g>
 <!-- node0&#45;&#45;node3 -->
 <g id="edge3" class="edge">
 <title>node0&#45;&#45;node3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M94.421,-143.8314C105.4872,-132.9167 119.5197,-119.0764 130.5849,-108.1628"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
 </g>
 <!-- node2&#45;&#45;node3 -->
 <!-- node1&#45;&#45;node2 -->
@@ -407,24 +412,24 @@ int main( ):
 <!-- node4 -->
 <g id="node6" class="node">
 <title>node4</title>
-<polygon fill="none" stroke="#000000" points="127,-36 59,-36 59,0 127,0 127,-36"/>
-<text text-anchor="middle" x="93" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
 <!-- node3&#45;&#45;node4 -->
 <g id="edge6" class="edge">
 <title>node3&#45;&#45;node4</title>
-<path fill="none" stroke="#000000" d="M134.8688,-71.8314C126.4445,-61 115.7792,-47.2876 107.3214,-36.4133"/>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
 </g>
 <!-- node6 -->
 <g id="node7" class="node">
 <title>node6</title>
-<polygon fill="none" stroke="#000000" points="225,-36 171,-36 171,0 225,0 225,-36"/>
-<text text-anchor="middle" x="198" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node3&#45;&#45;node6 -->
 <g id="edge8" class="edge">
 <title>node3&#45;&#45;node6</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M161.3648,-71.8314C168.7361,-61 178.0682,-47.2876 185.4687,-36.4133"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
 </g>
 <!-- node5&#45;&#45;node6 -->
 <!-- node4&#45;&#45;node5 -->
@@ -439,40 +444,40 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="233pt" height="188pt"
- viewBox="0.00 0.00 233.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 229,-184 229,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<path fill="none" stroke="#000000" d="M115.5,-180C115.5,-180 36.5,-180 36.5,-180 30.5,-180 24.5,-174 24.5,-168 24.5,-168 24.5,-156 24.5,-156 24.5,-150 30.5,-144 36.5,-144 36.5,-144 115.5,-144 115.5,-144 121.5,-144 127.5,-150 127.5,-156 127.5,-156 127.5,-168 127.5,-168 127.5,-174 121.5,-180 115.5,-180"/>
-<text text-anchor="middle" x="76" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 1</text>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
 </g>
 <!-- node2 -->
 <!-- node0&#45;&#45;node2 -->
 <!-- node1 -->
 <g id="node3" class="node">
 <title>node1</title>
-<polygon fill="none" stroke="#000000" points="54,-108 0,-108 0,-72 54,-72 54,-108"/>
-<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node0&#45;&#45;node1 -->
 <g id="edge1" class="edge">
 <title>node0&#45;&#45;node1</title>
-<path fill="none" stroke="#000000" d="M63.6352,-143.8314C56.2639,-133 46.9318,-119.2876 39.5313,-108.4133"/>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
 </g>
 <!-- node3 -->
 <g id="node4" class="node">
 <title>node3</title>
-<path fill="none" stroke="#000000" d="M188.5,-108C188.5,-108 109.5,-108 109.5,-108 103.5,-108 97.5,-102 97.5,-96 97.5,-96 97.5,-84 97.5,-84 97.5,-78 103.5,-72 109.5,-72 109.5,-72 188.5,-72 188.5,-72 194.5,-72 200.5,-78 200.5,-84 200.5,-84 200.5,-96 200.5,-96 200.5,-102 194.5,-108 188.5,-108"/>
-<text text-anchor="middle" x="149" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 0</text>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
 </g>
 <!-- node0&#45;&#45;node3 -->
 <g id="edge3" class="edge">
 <title>node0&#45;&#45;node3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M94.421,-143.8314C105.4872,-132.9167 119.5197,-119.0764 130.5849,-108.1628"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
 </g>
 <!-- node2&#45;&#45;node3 -->
 <!-- node1&#45;&#45;node2 -->
@@ -481,24 +486,24 @@ int main( ):
 <!-- node4 -->
 <g id="node6" class="node">
 <title>node4</title>
-<polygon fill="none" stroke="#000000" points="127,-36 59,-36 59,0 127,0 127,-36"/>
-<text text-anchor="middle" x="93" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
 <!-- node3&#45;&#45;node4 -->
 <g id="edge6" class="edge">
 <title>node3&#45;&#45;node4</title>
-<path fill="none" stroke="#000000" d="M134.8688,-71.8314C126.4445,-61 115.7792,-47.2876 107.3214,-36.4133"/>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
 </g>
 <!-- node6 -->
 <g id="node7" class="node">
 <title>node6</title>
-<polygon fill="none" stroke="#000000" points="225,-36 171,-36 171,0 225,0 225,-36"/>
-<text text-anchor="middle" x="198" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node3&#45;&#45;node6 -->
 <g id="edge8" class="edge">
 <title>node3&#45;&#45;node6</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M161.3648,-71.8314C168.7361,-61 178.0682,-47.2876 185.4687,-36.4133"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
 </g>
 <!-- node5&#45;&#45;node6 -->
 <!-- node4&#45;&#45;node5 -->
@@ -513,40 +518,40 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="233pt" height="188pt"
- viewBox="0.00 0.00 233.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 229,-184 229,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<path fill="none" stroke="#000000" d="M115.5,-180C115.5,-180 36.5,-180 36.5,-180 30.5,-180 24.5,-174 24.5,-168 24.5,-168 24.5,-156 24.5,-156 24.5,-150 30.5,-144 36.5,-144 36.5,-144 115.5,-144 115.5,-144 121.5,-144 127.5,-150 127.5,-156 127.5,-156 127.5,-168 127.5,-168 127.5,-174 121.5,-180 115.5,-180"/>
-<text text-anchor="middle" x="76" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 1</text>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
 </g>
 <!-- node2 -->
 <!-- node0&#45;&#45;node2 -->
 <!-- node1 -->
 <g id="node3" class="node">
 <title>node1</title>
-<polygon fill="none" stroke="#000000" points="54,-108 0,-108 0,-72 54,-72 54,-108"/>
-<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node0&#45;&#45;node1 -->
 <g id="edge1" class="edge">
 <title>node0&#45;&#45;node1</title>
-<path fill="none" stroke="#000000" d="M63.6352,-143.8314C56.2639,-133 46.9318,-119.2876 39.5313,-108.4133"/>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
 </g>
 <!-- node3 -->
 <g id="node4" class="node">
 <title>node3</title>
-<path fill="none" stroke="#000000" d="M188.5,-108C188.5,-108 109.5,-108 109.5,-108 103.5,-108 97.5,-102 97.5,-96 97.5,-96 97.5,-84 97.5,-84 97.5,-78 103.5,-72 109.5,-72 109.5,-72 188.5,-72 188.5,-72 194.5,-72 200.5,-78 200.5,-84 200.5,-84 200.5,-96 200.5,-96 200.5,-102 194.5,-108 188.5,-108"/>
-<text text-anchor="middle" x="149" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 0</text>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
 </g>
 <!-- node0&#45;&#45;node3 -->
 <g id="edge3" class="edge">
 <title>node0&#45;&#45;node3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M94.421,-143.8314C105.4872,-132.9167 119.5197,-119.0764 130.5849,-108.1628"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
 </g>
 <!-- node2&#45;&#45;node3 -->
 <!-- node1&#45;&#45;node2 -->
@@ -555,24 +560,246 @@ int main( ):
 <!-- node4 -->
 <g id="node6" class="node">
 <title>node4</title>
-<polygon fill="none" stroke="#000000" points="127,-36 59,-36 59,0 127,0 127,-36"/>
-<text text-anchor="middle" x="93" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
 <!-- node3&#45;&#45;node4 -->
 <g id="edge6" class="edge">
 <title>node3&#45;&#45;node4</title>
-<path fill="none" stroke="#000000" d="M134.8688,-71.8314C126.4445,-61 115.7792,-47.2876 107.3214,-36.4133"/>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
 </g>
 <!-- node6 -->
 <g id="node7" class="node">
 <title>node6</title>
-<polygon fill="none" stroke="#000000" points="225,-36 171,-36 171,0 225,0 225,-36"/>
-<text text-anchor="middle" x="198" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node3&#45;&#45;node6 -->
 <g id="edge8" class="edge">
 <title>node3&#45;&#45;node6</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M161.3648,-71.8314C168.7361,-61 178.0682,-47.2876 185.4687,-36.4133"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
+</g>
+<!-- node5&#45;&#45;node6 -->
+<!-- node4&#45;&#45;node5 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_7">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+<!-- node5 -->
+<!-- node3&#45;&#45;node5 -->
+<!-- node4 -->
+<g id="node6" class="node">
+<title>node4</title>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node3&#45;&#45;node4 -->
+<g id="edge6" class="edge">
+<title>node3&#45;&#45;node4</title>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
+</g>
+<!-- node6 -->
+<g id="node7" class="node">
+<title>node6</title>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node3&#45;&#45;node6 -->
+<g id="edge8" class="edge">
+<title>node3&#45;&#45;node6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
+</g>
+<!-- node5&#45;&#45;node6 -->
+<!-- node4&#45;&#45;node5 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_8">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+<!-- node5 -->
+<!-- node3&#45;&#45;node5 -->
+<!-- node4 -->
+<g id="node6" class="node">
+<title>node4</title>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node3&#45;&#45;node4 -->
+<g id="edge6" class="edge">
+<title>node3&#45;&#45;node4</title>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
+</g>
+<!-- node6 -->
+<g id="node7" class="node">
+<title>node6</title>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node3&#45;&#45;node6 -->
+<g id="edge8" class="edge">
+<title>node3&#45;&#45;node6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
+</g>
+<!-- node5&#45;&#45;node6 -->
+<!-- node4&#45;&#45;node5 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_0_9">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+<!-- node5 -->
+<!-- node3&#45;&#45;node5 -->
+<!-- node4 -->
+<g id="node6" class="node">
+<title>node4</title>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node3&#45;&#45;node4 -->
+<g id="edge6" class="edge">
+<title>node3&#45;&#45;node4</title>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
+</g>
+<!-- node6 -->
+<g id="node7" class="node">
+<title>node6</title>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node3&#45;&#45;node6 -->
+<g id="edge8" class="edge">
+<title>node3&#45;&#45;node6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
 </g>
 <!-- node5&#45;&#45;node6 -->
 <!-- node4&#45;&#45;node5 -->
@@ -589,16 +816,21 @@ int main( ):
                        <div class="col-md-6">
                         <pre>
     
-[ 1:]
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,0 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 1:]</span>
 int main( ):
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,0 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? 0.<br/>$2{x} == 0 ? bottom<br/>$2{x} >= 1 ? 0.</div>">[ 2:]</span> if ( ? ) then
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,1 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 3:]</span>   $2{x} := 1
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,2 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? 0.<br/>$2{x} == 0 ? bottom<br/>$2{x} >= 1 ? 0.</div>">[ 4:]</span>
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,1 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 2:]</span> $2{r} := 0
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,2 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 3:]</span> if ( $3{x} * $3{x} < $4{y} * $4{y} ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,3 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 4:]</span>   if ( ? ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,4 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 5:]</span>     $2{r} := 1
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,5 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 6:]</span>
+        else
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,6 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 7:]</span>
+        endif
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,7 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 8:]</span>
       else
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,3 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 5:]</span>   $2{x} := 0
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,4 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? 0.<br/>$2{x} == 0 ? bottom<br/>$2{x} >= 1 ? 0.</div>">[ 6:]</span>
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,8 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 9:]</span>
       endif
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,5 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 7:]</span>
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 1,9 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[10:]</span>
 </pre>
  </div > 
  <div class="col-md-6"> 
@@ -609,69 +841,17 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="233pt" height="188pt"
- viewBox="0.00 0.00 233.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 229,-184 229,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<path fill="none" stroke="#000000" d="M115.5,-180C115.5,-180 36.5,-180 36.5,-180 30.5,-180 24.5,-174 24.5,-168 24.5,-168 24.5,-156 24.5,-156 24.5,-150 30.5,-144 36.5,-144 36.5,-144 115.5,-144 115.5,-144 121.5,-144 127.5,-150 127.5,-156 127.5,-156 127.5,-168 127.5,-168 127.5,-174 121.5,-180 115.5,-180"/>
-<text text-anchor="middle" x="76" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 1</text>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
-<!-- node2 -->
-<!-- node0&#45;&#45;node2 -->
-<!-- node1 -->
-<g id="node3" class="node">
-<title>node1</title>
-<polygon fill="none" stroke="#000000" points="54,-108 0,-108 0,-72 54,-72 54,-108"/>
-<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
-</g>
-<!-- node0&#45;&#45;node1 -->
-<g id="edge1" class="edge">
-<title>node0&#45;&#45;node1</title>
-<path fill="none" stroke="#000000" d="M63.6352,-143.8314C56.2639,-133 46.9318,-119.2876 39.5313,-108.4133"/>
-</g>
-<!-- node3 -->
-<g id="node4" class="node">
-<title>node3</title>
-<path fill="none" stroke="#000000" d="M188.5,-108C188.5,-108 109.5,-108 109.5,-108 103.5,-108 97.5,-102 97.5,-96 97.5,-96 97.5,-84 97.5,-84 97.5,-78 103.5,-72 109.5,-72 109.5,-72 188.5,-72 188.5,-72 194.5,-72 200.5,-78 200.5,-84 200.5,-84 200.5,-96 200.5,-96 200.5,-102 194.5,-108 188.5,-108"/>
-<text text-anchor="middle" x="149" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 0</text>
-</g>
-<!-- node0&#45;&#45;node3 -->
-<g id="edge3" class="edge">
-<title>node0&#45;&#45;node3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M94.421,-143.8314C105.4872,-132.9167 119.5197,-119.0764 130.5849,-108.1628"/>
-</g>
-<!-- node2&#45;&#45;node3 -->
-<!-- node1&#45;&#45;node2 -->
-<!-- node5 -->
-<!-- node3&#45;&#45;node5 -->
-<!-- node4 -->
-<g id="node6" class="node">
-<title>node4</title>
-<polygon fill="none" stroke="#000000" points="127,-36 59,-36 59,0 127,0 127,-36"/>
-<text text-anchor="middle" x="93" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
-</g>
-<!-- node3&#45;&#45;node4 -->
-<g id="edge6" class="edge">
-<title>node3&#45;&#45;node4</title>
-<path fill="none" stroke="#000000" d="M134.8688,-71.8314C126.4445,-61 115.7792,-47.2876 107.3214,-36.4133"/>
-</g>
-<!-- node6 -->
-<g id="node7" class="node">
-<title>node6</title>
-<polygon fill="none" stroke="#000000" points="225,-36 171,-36 171,0 225,0 225,-36"/>
-<text text-anchor="middle" x="198" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
-</g>
-<!-- node3&#45;&#45;node6 -->
-<g id="edge8" class="edge">
-<title>node3&#45;&#45;node6</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M161.3648,-71.8314C168.7361,-61 178.0682,-47.2876 185.4687,-36.4133"/>
-</g>
-<!-- node5&#45;&#45;node6 -->
-<!-- node4&#45;&#45;node5 -->
 </g>
 </svg>
 
@@ -705,69 +885,17 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="233pt" height="188pt"
- viewBox="0.00 0.00 233.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 229,-184 229,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<path fill="none" stroke="#000000" d="M115.5,-180C115.5,-180 36.5,-180 36.5,-180 30.5,-180 24.5,-174 24.5,-168 24.5,-168 24.5,-156 24.5,-156 24.5,-150 30.5,-144 36.5,-144 36.5,-144 115.5,-144 115.5,-144 121.5,-144 127.5,-150 127.5,-156 127.5,-156 127.5,-168 127.5,-168 127.5,-174 121.5,-180 115.5,-180"/>
-<text text-anchor="middle" x="76" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 1</text>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
-<!-- node2 -->
-<!-- node0&#45;&#45;node2 -->
-<!-- node1 -->
-<g id="node3" class="node">
-<title>node1</title>
-<polygon fill="none" stroke="#000000" points="54,-108 0,-108 0,-72 54,-72 54,-108"/>
-<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
-</g>
-<!-- node0&#45;&#45;node1 -->
-<g id="edge1" class="edge">
-<title>node0&#45;&#45;node1</title>
-<path fill="none" stroke="#000000" d="M63.6352,-143.8314C56.2639,-133 46.9318,-119.2876 39.5313,-108.4133"/>
-</g>
-<!-- node3 -->
-<g id="node4" class="node">
-<title>node3</title>
-<path fill="none" stroke="#000000" d="M188.5,-108C188.5,-108 109.5,-108 109.5,-108 103.5,-108 97.5,-102 97.5,-96 97.5,-96 97.5,-84 97.5,-84 97.5,-78 103.5,-72 109.5,-72 109.5,-72 188.5,-72 188.5,-72 194.5,-72 200.5,-78 200.5,-84 200.5,-84 200.5,-96 200.5,-96 200.5,-102 194.5,-108 188.5,-108"/>
-<text text-anchor="middle" x="149" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 0</text>
-</g>
-<!-- node0&#45;&#45;node3 -->
-<g id="edge3" class="edge">
-<title>node0&#45;&#45;node3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M94.421,-143.8314C105.4872,-132.9167 119.5197,-119.0764 130.5849,-108.1628"/>
-</g>
-<!-- node2&#45;&#45;node3 -->
-<!-- node1&#45;&#45;node2 -->
-<!-- node5 -->
-<!-- node3&#45;&#45;node5 -->
-<!-- node4 -->
-<g id="node6" class="node">
-<title>node4</title>
-<polygon fill="none" stroke="#000000" points="127,-36 59,-36 59,0 127,0 127,-36"/>
-<text text-anchor="middle" x="93" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
-</g>
-<!-- node3&#45;&#45;node4 -->
-<g id="edge6" class="edge">
-<title>node3&#45;&#45;node4</title>
-<path fill="none" stroke="#000000" d="M134.8688,-71.8314C126.4445,-61 115.7792,-47.2876 107.3214,-36.4133"/>
-</g>
-<!-- node6 -->
-<g id="node7" class="node">
-<title>node6</title>
-<polygon fill="none" stroke="#000000" points="225,-36 171,-36 171,0 225,0 225,-36"/>
-<text text-anchor="middle" x="198" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
-</g>
-<!-- node3&#45;&#45;node6 -->
-<g id="edge8" class="edge">
-<title>node3&#45;&#45;node6</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M161.3648,-71.8314C168.7361,-61 178.0682,-47.2876 185.4687,-36.4133"/>
-</g>
-<!-- node5&#45;&#45;node6 -->
-<!-- node4&#45;&#45;node5 -->
 </g>
 </svg>
 
@@ -779,16 +907,16 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="76pt" height="44pt"
- viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
-<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
 </g>
 </svg>
@@ -801,69 +929,17 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="233pt" height="188pt"
- viewBox="0.00 0.00 233.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 229,-184 229,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<path fill="none" stroke="#000000" d="M115.5,-180C115.5,-180 36.5,-180 36.5,-180 30.5,-180 24.5,-174 24.5,-168 24.5,-168 24.5,-156 24.5,-156 24.5,-150 30.5,-144 36.5,-144 36.5,-144 115.5,-144 115.5,-144 121.5,-144 127.5,-150 127.5,-156 127.5,-156 127.5,-168 127.5,-168 127.5,-174 121.5,-180 115.5,-180"/>
-<text text-anchor="middle" x="76" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 1</text>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
-<!-- node2 -->
-<!-- node0&#45;&#45;node2 -->
-<!-- node1 -->
-<g id="node3" class="node">
-<title>node1</title>
-<polygon fill="none" stroke="#000000" points="54,-108 0,-108 0,-72 54,-72 54,-108"/>
-<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
-</g>
-<!-- node0&#45;&#45;node1 -->
-<g id="edge1" class="edge">
-<title>node0&#45;&#45;node1</title>
-<path fill="none" stroke="#000000" d="M63.6352,-143.8314C56.2639,-133 46.9318,-119.2876 39.5313,-108.4133"/>
-</g>
-<!-- node3 -->
-<g id="node4" class="node">
-<title>node3</title>
-<path fill="none" stroke="#000000" d="M188.5,-108C188.5,-108 109.5,-108 109.5,-108 103.5,-108 97.5,-102 97.5,-96 97.5,-96 97.5,-84 97.5,-84 97.5,-78 103.5,-72 109.5,-72 109.5,-72 188.5,-72 188.5,-72 194.5,-72 200.5,-78 200.5,-84 200.5,-84 200.5,-96 200.5,-96 200.5,-102 194.5,-108 188.5,-108"/>
-<text text-anchor="middle" x="149" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 0</text>
-</g>
-<!-- node0&#45;&#45;node3 -->
-<g id="edge3" class="edge">
-<title>node0&#45;&#45;node3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M94.421,-143.8314C105.4872,-132.9167 119.5197,-119.0764 130.5849,-108.1628"/>
-</g>
-<!-- node2&#45;&#45;node3 -->
-<!-- node1&#45;&#45;node2 -->
-<!-- node5 -->
-<!-- node3&#45;&#45;node5 -->
-<!-- node4 -->
-<g id="node6" class="node">
-<title>node4</title>
-<polygon fill="none" stroke="#000000" points="127,-36 59,-36 59,0 127,0 127,-36"/>
-<text text-anchor="middle" x="93" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
-</g>
-<!-- node3&#45;&#45;node4 -->
-<g id="edge6" class="edge">
-<title>node3&#45;&#45;node4</title>
-<path fill="none" stroke="#000000" d="M134.8688,-71.8314C126.4445,-61 115.7792,-47.2876 107.3214,-36.4133"/>
-</g>
-<!-- node6 -->
-<g id="node7" class="node">
-<title>node6</title>
-<polygon fill="none" stroke="#000000" points="225,-36 171,-36 171,0 225,0 225,-36"/>
-<text text-anchor="middle" x="198" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
-</g>
-<!-- node3&#45;&#45;node6 -->
-<g id="edge8" class="edge">
-<title>node3&#45;&#45;node6</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M161.3648,-71.8314C168.7361,-61 178.0682,-47.2876 185.4687,-36.4133"/>
-</g>
-<!-- node5&#45;&#45;node6 -->
-<!-- node4&#45;&#45;node5 -->
 </g>
 </svg>
 
@@ -875,16 +951,104 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="76pt" height="44pt"
- viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
-<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_6">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_7">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_8">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_1_9">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
 </g>
 </svg>
@@ -901,14 +1065,19 @@ int main( ):
     
 [ 1:]
 int main( ):
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,0 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} >= 1 ? bottom</div>">[ 2:]</span> if ( ? ) then
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,1 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? bottom</div>">[ 3:]</span>   $2{x} := 1
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,2 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} >= 1 ? bottom</div>">[ 4:]</span>
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,0 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? BOT</div>">[ 2:]</span> $2{r} := 0
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,1 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? BOT</div>">[ 3:]</span> if ( $3{x} * $3{x} < $4{y} * $4{y} ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,2 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? 2<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? 2</div>">[ 4:]</span>   if ( ? ) then
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,3 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? 1<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? 1</div>">[ 5:]</span>     $2{r} := 1
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,4 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[ 6:]</span>
+        else
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,5 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[ 7:]</span>
+        endif
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,6 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[ 8:]</span>
       else
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,3 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 5:]</span>   $2{x} := 0
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,4 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{x} >= 1 ? bottom<br/>$2{x} == 0 ? 0.<br/>$2{x} >= 1 ? bottom</div>">[ 6:]</span>
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,7 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[ 9:]</span>
       endif
-<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,5 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>top ? 0.</div>">[ 7:]</span>
+<span class="label label-default" onMouseLeave="hideTrees()" onMouseEnter="showTree( 2,8 )" data-html="true" data-container="body" data-placement="right" data-toggle="tooltip" title="<div style='text-align:left;font-size:12pt;'>-$2{r} >= 0 ? bottom<br/>$2{r} == 1 ? 0.<br/>$2{r} >= 2 ? bottom</div>">[10:]</span>
 </pre>
  </div > 
  <div class="col-md-6"> 
@@ -919,69 +1088,17 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="261pt" height="188pt"
- viewBox="0.00 0.00 261.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 257,-184 257,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<path fill="none" stroke="#000000" d="M129.5,-180C129.5,-180 50.5,-180 50.5,-180 44.5,-180 38.5,-174 38.5,-168 38.5,-168 38.5,-156 38.5,-156 38.5,-150 44.5,-144 50.5,-144 50.5,-144 129.5,-144 129.5,-144 135.5,-144 141.5,-150 141.5,-156 141.5,-156 141.5,-168 141.5,-168 141.5,-174 135.5,-180 129.5,-180"/>
-<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 1</text>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">Nil</text>
 </g>
-<!-- node2 -->
-<!-- node0&#45;&#45;node2 -->
-<!-- node1 -->
-<g id="node3" class="node">
-<title>node1</title>
-<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
-<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
-</g>
-<!-- node0&#45;&#45;node1 -->
-<g id="edge1" class="edge">
-<title>node0&#45;&#45;node1</title>
-<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
-</g>
-<!-- node3 -->
-<g id="node4" class="node">
-<title>node3</title>
-<path fill="none" stroke="#000000" d="M202.5,-108C202.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 202.5,-72 202.5,-72 208.5,-72 214.5,-78 214.5,-84 214.5,-84 214.5,-96 214.5,-96 214.5,-102 208.5,-108 202.5,-108"/>
-<text text-anchor="middle" x="163" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 0</text>
-</g>
-<!-- node0&#45;&#45;node3 -->
-<g id="edge3" class="edge">
-<title>node0&#45;&#45;node3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.421,-143.8314C119.4872,-132.9167 133.5197,-119.0764 144.5849,-108.1628"/>
-</g>
-<!-- node2&#45;&#45;node3 -->
-<!-- node1&#45;&#45;node2 -->
-<!-- node5 -->
-<!-- node3&#45;&#45;node5 -->
-<!-- node4 -->
-<g id="node6" class="node">
-<title>node4</title>
-<polygon fill="none" stroke="#000000" points="141,-36 87,-36 87,0 141,0 141,-36"/>
-<text text-anchor="middle" x="114" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
-</g>
-<!-- node3&#45;&#45;node4 -->
-<g id="edge6" class="edge">
-<title>node3&#45;&#45;node4</title>
-<path fill="none" stroke="#000000" d="M150.6352,-71.8314C143.2639,-61 133.9318,-47.2876 126.5313,-36.4133"/>
-</g>
-<!-- node6 -->
-<g id="node7" class="node">
-<title>node6</title>
-<polygon fill="none" stroke="#000000" points="253,-36 185,-36 185,0 253,0 253,-36"/>
-<text text-anchor="middle" x="219" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
-</g>
-<!-- node3&#45;&#45;node6 -->
-<g id="edge8" class="edge">
-<title>node3&#45;&#45;node6</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M177.1312,-71.8314C185.5555,-61 196.2208,-47.2876 204.6786,-36.4133"/>
-</g>
-<!-- node5&#45;&#45;node6 -->
-<!-- node4&#45;&#45;node5 -->
 </g>
 </svg>
 
@@ -993,16 +1110,16 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="76pt" height="44pt"
- viewBox="0.00 0.00 76.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="62pt" height="44pt"
+ viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 72,-40 72,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<polygon fill="none" stroke="#000000" points="68,-36 0,-36 0,0 68,0 68,-36"/>
-<text text-anchor="middle" x="34" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">Nil</text>
 </g>
 </g>
 </svg>
@@ -1015,40 +1132,40 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="261pt" height="188pt"
- viewBox="0.00 0.00 261.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="232pt" height="188pt"
+ viewBox="0.00 0.00 232.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 257,-184 257,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 228,-184 228,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<path fill="none" stroke="#000000" d="M129.5,-180C129.5,-180 50.5,-180 50.5,-180 44.5,-180 38.5,-174 38.5,-168 38.5,-168 38.5,-156 38.5,-156 38.5,-150 44.5,-144 50.5,-144 50.5,-144 129.5,-144 129.5,-144 135.5,-144 141.5,-150 141.5,-156 141.5,-156 141.5,-168 141.5,-168 141.5,-174 135.5,-180 129.5,-180"/>
-<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 1</text>
+<path fill="none" stroke="#000000" d="M114.5,-180C114.5,-180 37.5,-180 37.5,-180 31.5,-180 25.5,-174 25.5,-168 25.5,-168 25.5,-156 25.5,-156 25.5,-150 31.5,-144 37.5,-144 37.5,-144 114.5,-144 114.5,-144 120.5,-144 126.5,-150 126.5,-156 126.5,-156 126.5,-168 126.5,-168 126.5,-174 120.5,-180 114.5,-180"/>
+<text text-anchor="middle" x="76" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
 </g>
 <!-- node2 -->
 <!-- node0&#45;&#45;node2 -->
 <!-- node1 -->
 <g id="node3" class="node">
 <title>node1</title>
-<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
-<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+<polygon fill="none" stroke="#000000" points="54,-108 0,-108 0,-72 54,-72 54,-108"/>
+<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">2</text>
 </g>
 <!-- node0&#45;&#45;node1 -->
 <g id="edge1" class="edge">
 <title>node0&#45;&#45;node1</title>
-<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
+<path fill="none" stroke="#000000" d="M63.6352,-143.8314C56.2639,-133 46.9318,-119.2876 39.5313,-108.4133"/>
 </g>
 <!-- node3 -->
 <g id="node4" class="node">
 <title>node3</title>
-<path fill="none" stroke="#000000" d="M202.5,-108C202.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 202.5,-72 202.5,-72 208.5,-72 214.5,-78 214.5,-84 214.5,-84 214.5,-96 214.5,-96 214.5,-102 208.5,-108 202.5,-108"/>
-<text text-anchor="middle" x="163" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 0</text>
+<path fill="none" stroke="#000000" d="M186.5,-108C186.5,-108 109.5,-108 109.5,-108 103.5,-108 97.5,-102 97.5,-96 97.5,-96 97.5,-84 97.5,-84 97.5,-78 103.5,-72 109.5,-72 109.5,-72 186.5,-72 186.5,-72 192.5,-72 198.5,-78 198.5,-84 198.5,-84 198.5,-96 198.5,-96 198.5,-102 192.5,-108 186.5,-108"/>
+<text text-anchor="middle" x="148" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
 </g>
 <!-- node0&#45;&#45;node3 -->
 <g id="edge3" class="edge">
 <title>node0&#45;&#45;node3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.421,-143.8314C119.4872,-132.9167 133.5197,-119.0764 144.5849,-108.1628"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M94.1686,-143.8314C105,-133 118.7124,-119.2876 129.5867,-108.4133"/>
 </g>
 <!-- node2&#45;&#45;node3 -->
 <!-- node1&#45;&#45;node2 -->
@@ -1057,24 +1174,24 @@ int main( ):
 <!-- node4 -->
 <g id="node6" class="node">
 <title>node4</title>
-<polygon fill="none" stroke="#000000" points="141,-36 87,-36 87,0 141,0 141,-36"/>
-<text text-anchor="middle" x="114" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="126,-36 72,-36 72,0 126,0 126,-36"/>
+<text text-anchor="middle" x="99" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
 <!-- node3&#45;&#45;node4 -->
 <g id="edge6" class="edge">
 <title>node3&#45;&#45;node4</title>
-<path fill="none" stroke="#000000" d="M150.6352,-71.8314C143.2639,-61 133.9318,-47.2876 126.5313,-36.4133"/>
+<path fill="none" stroke="#000000" d="M135.6352,-71.8314C128.2639,-61 118.9318,-47.2876 111.5313,-36.4133"/>
 </g>
 <!-- node6 -->
 <g id="node7" class="node">
 <title>node6</title>
-<polygon fill="none" stroke="#000000" points="253,-36 185,-36 185,0 253,0 253,-36"/>
-<text text-anchor="middle" x="219" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+<polygon fill="none" stroke="#000000" points="224,-36 170,-36 170,0 224,0 224,-36"/>
+<text text-anchor="middle" x="197" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">2</text>
 </g>
 <!-- node3&#45;&#45;node6 -->
 <g id="edge8" class="edge">
 <title>node3&#45;&#45;node6</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M177.1312,-71.8314C185.5555,-61 196.2208,-47.2876 204.6786,-36.4133"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M160.3648,-71.8314C167.7361,-61 177.0682,-47.2876 184.4687,-36.4133"/>
 </g>
 <!-- node5&#45;&#45;node6 -->
 <!-- node4&#45;&#45;node5 -->
@@ -1089,17 +1206,69 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="62pt" height="44pt"
- viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<svg width="232pt" height="188pt"
+ viewBox="0.00 0.00 232.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 228,-184 228,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
-<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<path fill="none" stroke="#000000" d="M114.5,-180C114.5,-180 37.5,-180 37.5,-180 31.5,-180 25.5,-174 25.5,-168 25.5,-168 25.5,-156 25.5,-156 25.5,-150 31.5,-144 37.5,-144 37.5,-144 114.5,-144 114.5,-144 120.5,-144 126.5,-150 126.5,-156 126.5,-156 126.5,-168 126.5,-168 126.5,-174 120.5,-180 114.5,-180"/>
+<text text-anchor="middle" x="76" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
 </g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="54,-108 0,-108 0,-72 54,-72 54,-108"/>
+<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M63.6352,-143.8314C56.2639,-133 46.9318,-119.2876 39.5313,-108.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<path fill="none" stroke="#000000" d="M186.5,-108C186.5,-108 109.5,-108 109.5,-108 103.5,-108 97.5,-102 97.5,-96 97.5,-96 97.5,-84 97.5,-84 97.5,-78 103.5,-72 109.5,-72 109.5,-72 186.5,-72 186.5,-72 192.5,-72 198.5,-78 198.5,-84 198.5,-84 198.5,-96 198.5,-96 198.5,-102 192.5,-108 186.5,-108"/>
+<text text-anchor="middle" x="148" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M94.1686,-143.8314C105,-133 118.7124,-119.2876 129.5867,-108.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+<!-- node5 -->
+<!-- node3&#45;&#45;node5 -->
+<!-- node4 -->
+<g id="node6" class="node">
+<title>node4</title>
+<polygon fill="none" stroke="#000000" points="126,-36 72,-36 72,0 126,0 126,-36"/>
+<text text-anchor="middle" x="99" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node3&#45;&#45;node4 -->
+<g id="edge6" class="edge">
+<title>node3&#45;&#45;node4</title>
+<path fill="none" stroke="#000000" d="M135.6352,-71.8314C128.2639,-61 118.9318,-47.2876 111.5313,-36.4133"/>
+</g>
+<!-- node6 -->
+<g id="node7" class="node">
+<title>node6</title>
+<polygon fill="none" stroke="#000000" points="224,-36 170,-36 170,0 224,0 224,-36"/>
+<text text-anchor="middle" x="197" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- node3&#45;&#45;node6 -->
+<g id="edge8" class="edge">
+<title>node3&#45;&#45;node6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M160.3648,-71.8314C167.7361,-61 177.0682,-47.2876 184.4687,-36.4133"/>
+</g>
+<!-- node5&#45;&#45;node6 -->
+<!-- node4&#45;&#45;node5 -->
 </g>
 </svg>
 
@@ -1111,16 +1280,16 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="261pt" height="188pt"
- viewBox="0.00 0.00 261.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 257,-184 257,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<path fill="none" stroke="#000000" d="M129.5,-180C129.5,-180 50.5,-180 50.5,-180 44.5,-180 38.5,-174 38.5,-168 38.5,-168 38.5,-156 38.5,-156 38.5,-150 44.5,-144 50.5,-144 50.5,-144 129.5,-144 129.5,-144 135.5,-144 141.5,-150 141.5,-156 141.5,-156 141.5,-168 141.5,-168 141.5,-174 135.5,-180 129.5,-180"/>
-<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 1</text>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
 </g>
 <!-- node2 -->
 <!-- node0&#45;&#45;node2 -->
@@ -1138,13 +1307,13 @@ int main( ):
 <!-- node3 -->
 <g id="node4" class="node">
 <title>node3</title>
-<path fill="none" stroke="#000000" d="M202.5,-108C202.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 202.5,-72 202.5,-72 208.5,-72 214.5,-78 214.5,-84 214.5,-84 214.5,-96 214.5,-96 214.5,-102 208.5,-108 202.5,-108"/>
-<text text-anchor="middle" x="163" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{x} &gt;= 0</text>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
 </g>
 <!-- node0&#45;&#45;node3 -->
 <g id="edge3" class="edge">
 <title>node0&#45;&#45;node3</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.421,-143.8314C119.4872,-132.9167 133.5197,-119.0764 144.5849,-108.1628"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
 </g>
 <!-- node2&#45;&#45;node3 -->
 <!-- node1&#45;&#45;node2 -->
@@ -1153,24 +1322,24 @@ int main( ):
 <!-- node4 -->
 <g id="node6" class="node">
 <title>node4</title>
-<polygon fill="none" stroke="#000000" points="141,-36 87,-36 87,0 141,0 141,-36"/>
-<text text-anchor="middle" x="114" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
 </g>
 <!-- node3&#45;&#45;node4 -->
 <g id="edge6" class="edge">
 <title>node3&#45;&#45;node4</title>
-<path fill="none" stroke="#000000" d="M150.6352,-71.8314C143.2639,-61 133.9318,-47.2876 126.5313,-36.4133"/>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
 </g>
 <!-- node6 -->
 <g id="node7" class="node">
 <title>node6</title>
-<polygon fill="none" stroke="#000000" points="253,-36 185,-36 185,0 253,0 253,-36"/>
-<text text-anchor="middle" x="219" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
 </g>
 <!-- node3&#45;&#45;node6 -->
 <g id="edge8" class="edge">
 <title>node3&#45;&#45;node6</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M177.1312,-71.8314C185.5555,-61 196.2208,-47.2876 204.6786,-36.4133"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
 </g>
 <!-- node5&#45;&#45;node6 -->
 <!-- node4&#45;&#45;node5 -->
@@ -1185,17 +1354,291 @@ int main( ):
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="62pt" height="44pt"
- viewBox="0.00 0.00 62.00 44.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
 <title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 58,-40 58,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
 <!-- node0 -->
 <g id="node1" class="node">
 <title>node0</title>
-<polygon fill="none" stroke="#000000" points="54,-36 0,-36 0,0 54,0 54,-36"/>
-<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
 </g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+<!-- node5 -->
+<!-- node3&#45;&#45;node5 -->
+<!-- node4 -->
+<g id="node6" class="node">
+<title>node4</title>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node3&#45;&#45;node4 -->
+<g id="edge6" class="edge">
+<title>node3&#45;&#45;node4</title>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
+</g>
+<!-- node6 -->
+<g id="node7" class="node">
+<title>node6</title>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node3&#45;&#45;node6 -->
+<g id="edge8" class="edge">
+<title>node3&#45;&#45;node6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
+</g>
+<!-- node5&#45;&#45;node6 -->
+<!-- node4&#45;&#45;node5 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_6">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+<!-- node5 -->
+<!-- node3&#45;&#45;node5 -->
+<!-- node4 -->
+<g id="node6" class="node">
+<title>node4</title>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node3&#45;&#45;node4 -->
+<g id="edge6" class="edge">
+<title>node3&#45;&#45;node4</title>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
+</g>
+<!-- node6 -->
+<g id="node7" class="node">
+<title>node6</title>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node3&#45;&#45;node6 -->
+<g id="edge8" class="edge">
+<title>node3&#45;&#45;node6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
+</g>
+<!-- node5&#45;&#45;node6 -->
+<!-- node4&#45;&#45;node5 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_7">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+<!-- node5 -->
+<!-- node3&#45;&#45;node5 -->
+<!-- node4 -->
+<g id="node6" class="node">
+<title>node4</title>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node3&#45;&#45;node4 -->
+<g id="edge6" class="edge">
+<title>node3&#45;&#45;node4</title>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
+</g>
+<!-- node6 -->
+<g id="node7" class="node">
+<title>node6</title>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node3&#45;&#45;node6 -->
+<g id="edge8" class="edge">
+<title>node3&#45;&#45;node6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
+</g>
+<!-- node5&#45;&#45;node6 -->
+<!-- node4&#45;&#45;node5 -->
+</g>
+</svg>
+
+</div>
+<div class="decision_tree tree_2_8">  
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="260pt" height="188pt"
+ viewBox="0.00 0.00 260.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 256,-184 256,4 -4,4"/>
+<!-- node0 -->
+<g id="node1" class="node">
+<title>node0</title>
+<path fill="none" stroke="#000000" d="M128.5,-180C128.5,-180 51.5,-180 51.5,-180 45.5,-180 39.5,-174 39.5,-168 39.5,-168 39.5,-156 39.5,-156 39.5,-150 45.5,-144 51.5,-144 51.5,-144 128.5,-144 128.5,-144 134.5,-144 140.5,-150 140.5,-156 140.5,-156 140.5,-168 140.5,-168 140.5,-174 134.5,-180 128.5,-180"/>
+<text text-anchor="middle" x="90" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 2</text>
+</g>
+<!-- node2 -->
+<!-- node0&#45;&#45;node2 -->
+<!-- node1 -->
+<g id="node3" class="node">
+<title>node1</title>
+<polygon fill="none" stroke="#000000" points="68,-108 0,-108 0,-72 68,-72 68,-108"/>
+<text text-anchor="middle" x="34" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node0&#45;&#45;node1 -->
+<g id="edge1" class="edge">
+<title>node0&#45;&#45;node1</title>
+<path fill="none" stroke="#000000" d="M75.8688,-143.8314C67.4445,-133 56.7792,-119.2876 48.3214,-108.4133"/>
+</g>
+<!-- node3 -->
+<g id="node4" class="node">
+<title>node3</title>
+<path fill="none" stroke="#000000" d="M200.5,-108C200.5,-108 123.5,-108 123.5,-108 117.5,-108 111.5,-102 111.5,-96 111.5,-96 111.5,-84 111.5,-84 111.5,-78 117.5,-72 123.5,-72 123.5,-72 200.5,-72 200.5,-72 206.5,-72 212.5,-78 212.5,-84 212.5,-84 212.5,-96 212.5,-96 212.5,-102 206.5,-108 200.5,-108"/>
+<text text-anchor="middle" x="162" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">$2{r} &gt;= 1</text>
+</g>
+<!-- node0&#45;&#45;node3 -->
+<g id="edge3" class="edge">
+<title>node0&#45;&#45;node3</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M108.1686,-143.8314C119,-133 132.7124,-119.2876 143.5867,-108.4133"/>
+</g>
+<!-- node2&#45;&#45;node3 -->
+<!-- node1&#45;&#45;node2 -->
+<!-- node5 -->
+<!-- node3&#45;&#45;node5 -->
+<!-- node4 -->
+<g id="node6" class="node">
+<title>node4</title>
+<polygon fill="none" stroke="#000000" points="140,-36 86,-36 86,0 140,0 140,-36"/>
+<text text-anchor="middle" x="113" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">0.</text>
+</g>
+<!-- node3&#45;&#45;node4 -->
+<g id="edge6" class="edge">
+<title>node3&#45;&#45;node4</title>
+<path fill="none" stroke="#000000" d="M149.6352,-71.8314C142.2639,-61 132.9318,-47.2876 125.5313,-36.4133"/>
+</g>
+<!-- node6 -->
+<g id="node7" class="node">
+<title>node6</title>
+<polygon fill="none" stroke="#000000" points="252,-36 184,-36 184,0 252,0 252,-36"/>
+<text text-anchor="middle" x="218" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">bottom</text>
+</g>
+<!-- node3&#45;&#45;node6 -->
+<g id="edge8" class="edge">
+<title>node3&#45;&#45;node6</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M176.1312,-71.8314C184.5555,-61 195.2208,-47.2876 203.6786,-36.4133"/>
+</g>
+<!-- node5&#45;&#45;node6 -->
+<!-- node4&#45;&#45;node5 -->
 </g>
 </svg>
 

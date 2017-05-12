@@ -1013,7 +1013,7 @@ struct
     in aux t.tree []
 
 
-  let bwdAssign ?domain t e = 
+  let bwdAssign ?domain ?(underapprox = false) t e = 
     let cache = ref CMap.empty in
     let pre = domain in
     let post = t.domain in
@@ -1041,14 +1041,14 @@ struct
         then (* x is normalized *) Node((x,nx),build t xs,Bot)
         else (* x is not normalized *) Node((nx,x),Bot,build t xs)
     in
+    let b_bwdAssign = if underapprox then B.bwdAssign_underapprox else B.bwdAssign in
     let rec aux t cs =
       match t with
       | Bot -> Bot
       | Leaf f -> Leaf (F.bwdAssign f e)
       | Node((c,nc),l,r) -> match (fst e) with
         | A_var variable ->
-          if (C.var variable c)
-          then
+          if (C.var variable c) then
             let filter_constraints cs dom =
               List.fold_left (fun cs c ->
                   let b = B.inner env vars [c] in
@@ -1064,18 +1064,16 @@ struct
                 (match pre, post with
                  | Some pre, Some post ->
                    let key = c in
-                   let c = B.constraints (B.bwdAssign (B.meet
-                                                         (B.inner env vars [c]) post) e) in
+                   let c = B.constraints (b_bwdAssign (B.meet (B.inner env vars [c]) post) e) in
                    let c = filter_constraints c pre in
-                   let nc = B.constraints (B.bwdAssign (B.meet
-                                                          (B.inner env vars [nc]) post) e) in
+                   let nc = B.constraints (b_bwdAssign (B.meet (B.inner env vars [nc]) post) e)in
                    let nc = filter_constraints nc pre in
                    cache := CMap.add key (c,nc) !cache;
                    (c, nc)
                  | _ ->
                    let key = c in
-                   let c = B.constraints (B.bwdAssign (B.inner env vars [c]) e) in
-                   let nc = B.constraints (B.bwdAssign (B.inner env vars [nc]) e) in
+                   let c = B.constraints (b_bwdAssign (B.inner env vars [c]) e) in
+                   let nc = B.constraints (b_bwdAssign (B.inner env vars [nc]) e) in
                    cache := CMap.add key (c,nc) !cache;
                    (c, nc)
                 ) in
@@ -1110,11 +1108,12 @@ struct
       env = env;
       vars = vars }
 
-  let rec filter ?domain t e =
+  let rec filter ?domain ?(underapprox = false) t e =
     let pre = domain in
     let post = t.domain in
     let env = t.env in
     let vars = t.vars in
+    let b_filter = if underapprox then B.filter_underapprox else B.filter in
     let rec aux t bs cs =
       let bcs = match pre with
         | None -> B.inner env vars cs
@@ -1217,7 +1216,7 @@ struct
         | None -> B.inner env vars []
         | Some post -> B.meet (B.inner env vars []) post
       in
-      let bs = List.map (fun c -> let nc = C.negate c in (c,nc)) (B.constraints (B.filter bp e)) in
+      let bs = List.map (fun c -> let nc = C.negate c in (c,nc)) (B.constraints (b_filter bp e)) in
       let bs = List.sort L.compare bs in
       { domain = pre; tree = aux t.tree bs []; env = env; vars = vars }
 

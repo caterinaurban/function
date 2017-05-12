@@ -17,6 +17,7 @@ open Constraints
 module type APRON_PARAM = sig 
   type lib
   val manager: lib Manager.t 
+  val supports_underapproximation: bool
 end
 
 (** Single partition of the domain of a ranking function 
@@ -60,6 +61,28 @@ module Numerical(Param: APRON_PARAM)(C: CONSTRAINT): PARTITION = struct
   (*   | POLYHEDRA -> Polka.manager_of_polka (Polka.manager_alloc_loose ()) *)	
 
   (**)
+
+  let print fmt b =
+    let vars = b.vars in
+    let a = Lincons1.array_make b.env (List.length b.constraints) in
+    let i = ref 0 in
+    List.iter (fun c -> Lincons1.array_set a !i c; i := !i + 1) b.constraints;
+    let b = Abstract1.of_lincons_array manager b.env a in
+    let a = Abstract1.to_lincons_array manager b in
+    let cs = ref [] in
+    for i=0 to (Lincons1.array_length a)-1 do
+      cs := (Lincons1.array_get a i)::!cs;
+    done;
+    match !cs with
+    | [] -> Format.fprintf fmt "top"
+    | x::_ ->
+      if (C.isBot x) then Format.fprintf fmt "bottom" else
+        let i = ref 1 and l = List.length !cs in
+        List.iter (fun c ->
+            C.print vars fmt c;
+            if (!i = l) then () else Format.fprintf fmt " && ";
+            i := !i + 1
+          ) !cs
 
   let bot e vs = {
     constraints = [Lincons1.make_unsat e];
@@ -190,6 +213,22 @@ module Numerical(Param: APRON_PARAM)(C: CONSTRAINT): PARTITION = struct
       done; { constraints = !cs; env = env; vars = vars }
     | _ -> raise (Invalid_argument "fwdAssign: unexpected lvalue")
 
+
+  let bwdAssign_underapprox (t:t) ((x,e): aExp * aExp) : t = match x with
+    | A_var x ->
+      if not Param.supports_underapproximation then
+        raise (Invalid_argument "Underapproximation not supported by this abstract domain, use polyhedra instead");
+      let env = t.env in
+      let vars = t.vars in
+      let at = to_apron_t t in
+      let top = Abstract1.top manager (Abstract1.env at) in
+      let pre = top in (* use top as pre environment *)
+      let assignDest = Banal_domain.STRONG (Function_banal_converter.var_to_banal x) in
+      let assignValue = Function_banal_converter.of_aExp e in
+      let assigned = BanalApron.bwd_assign at () assignDest assignValue pre in
+      of_apron_t env vars assigned
+    | _ -> raise (Invalid_argument "bwdAssign_underapprox: unexpected lvalue")
+
   let bwdAssign b (x,e) = match x with
     | A_var x ->
       let env = b.env in
@@ -209,14 +248,18 @@ module Numerical(Param: APRON_PARAM)(C: CONSTRAINT): PARTITION = struct
 
 
   let filter_underapprox (t:t) (e:bExp) : t = 
+    if not Param.supports_underapproximation then
+      raise (Invalid_argument "Underapproximation not supported by this abstract domain, use octagons or polyhedra instead");
     let env = t.env in
     let vars = t.vars in
     let expr = Function_banal_converter.of_bExp e in
     let at = to_apron_t t in
     let top = Abstract1.top manager (Abstract1.env at) in
+    let bot = Abstract1.bottom manager (Abstract1.env at) in
     let pre = top in (* use top as pre environment *)
-    let filtered = BanalApron.bwd_filter at top () expr () pre in
-    of_apron_t env vars filtered
+    let filtered = BanalApron.bwd_filter at bot () expr () pre in
+    let result = of_apron_t env vars filtered in 
+    result
 
 
   let rec filter b e =
@@ -287,27 +330,6 @@ module Numerical(Param: APRON_PARAM)(C: CONSTRAINT): PARTITION = struct
 
   (**)
 
-  let print fmt b =
-    let vars = b.vars in
-    let a = Lincons1.array_make b.env (List.length b.constraints) in
-    let i = ref 0 in
-    List.iter (fun c -> Lincons1.array_set a !i c; i := !i + 1) b.constraints;
-    let b = Abstract1.of_lincons_array manager b.env a in
-    let a = Abstract1.to_lincons_array manager b in
-    let cs = ref [] in
-    for i=0 to (Lincons1.array_length a)-1 do
-      cs := (Lincons1.array_get a i)::!cs;
-    done;
-    match !cs with
-    | [] -> Format.fprintf fmt "top"
-    | x::_ ->
-      if (C.isBot x) then Format.fprintf fmt "bottom" else
-        let i = ref 1 and l = List.length !cs in
-        List.iter (fun c ->
-            C.print vars fmt c;
-            if (!i = l) then () else Format.fprintf fmt " && ";
-            i := !i + 1
-          ) !cs
 
 end
 
@@ -317,6 +339,7 @@ module B = Numerical(
   struct 
     type lib = Box.t
     let manager = Box.manager_alloc ()
+    let supports_underapproximation = false
   end)(C)
 
 (** Single partition of the domain of a ranking function 
@@ -325,6 +348,7 @@ module O = Numerical(
   struct 
     type lib = Oct.t 
     let manager = Oct.manager_alloc () 
+    let supports_underapproximation = false
   end)(C)
 
 (** Single partition of the domain of a ranking function 
@@ -333,4 +357,5 @@ module P = Numerical(
   struct 
     type lib = Polka.loose Polka.t
     let manager = Polka.manager_alloc_loose ()
+    let supports_underapproximation = true
   end)(C)

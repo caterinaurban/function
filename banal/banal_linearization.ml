@@ -16,7 +16,7 @@ module Affine = Banal_affine
 
 module Var = struct
   type t = var
-  let compare x y = compare_id x.var_id y.var_id
+  let compare x y = compare x.var_id y.var_id
   let to_string v = v.var_name
 end
 
