@@ -369,6 +369,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
 
   *)
   let global (quantifier:quantifier) ?(use_sink_state = false)(program:program) (fixed_point:inv) : inv =
+    let (branch_join, bwd_assign, bwd_filter) = abstract_transformer quantifier in
     let inv = ref (InvMap.union (fun _ _ _ -> None) fixed_point InvMap.empty) in (* initialize InvMap with given fixed-point for nested property *)
     let addInv l (a:D.t) = inv := InvMap.add l a !inv; a in (* update InvMap with new value and return new updated value *)
     let blockState block = InvMap.find (label_of_block block) !inv in (* returns current 'in' state of a block *)
@@ -385,19 +386,19 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         let new_in = match stmt with 
           | A_label (l,_) -> out_state
           | A_return -> if use_sink_state then zero else bot 
-          | A_assign ((l,_),(e,_)) -> D.left_narrow current_in (D.bwdAssign out_state (l,e))
-          | A_assert (b,_) -> D.left_narrow current_in (D.filter out_state b)
+          | A_assign ((l,_),(e,_)) -> D.left_narrow current_in (bwd_assign out_state (l,e))
+          | A_assert (b,_) -> D.left_narrow current_in (bwd_filter out_state b)
           | A_if ((b,ba),s1,s2) ->
-            let out_if = D.filter (bwd out_state s1) b in (* compute 'out' state for if-block*)
-            let out_else = D.filter (bwd out_state s2) (fst (negBExp (b,ba))) in (* compute 'out' state for else-block *)
-            D.left_narrow current_in (D.join APPROXIMATION out_if out_else) (* join the two branches and combine with current 'in' state using left_narrow *)
+            let out_if = bwd_filter (bwd out_state s1) b in (* compute 'out' state for if-block*)
+            let out_else = bwd_filter (bwd out_state s2) (fst (negBExp (b,ba))) in (* compute 'out' state for else-block *)
+            D.left_narrow current_in (branch_join out_if out_else) (* join the two branches and combine with current 'in' state using left_narrow *)
           | A_while (l,(b,ba),loop_body) ->
-            let out_exit = D.filter out_state (fst (negBExp (b,ba))) in (* 'out' state when not entering the loop body *)
+            let out_exit = bwd_filter out_state (fst (negBExp (b,ba))) in (* 'out' state when not entering the loop body *)
             let rec aux (* recursive function that iteratively computes fixed point for 'in' state at loop head *)
                 (current_in:D.t) (* 'in' state of the previous iteration *)
                 (out_enter:D.t) (* current 'out' state when entering the loop body *)
                 (n:int) : D.t = (* iteration counter *)
-              let out_joined = D.join APPROXIMATION out_exit out_enter in (* new 'in' state after joining the incoming branches *)
+              let out_joined = branch_join out_exit out_enter in (* new 'in' state after joining the incoming branches *)
               let updated_in = D.left_narrow current_in out_joined in (* join two branches and combine with current 'in' state using left_narrow *)
               if !tracebwd && not !minimal then begin
                 Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
@@ -419,11 +420,11 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
                   if n <= !joinbwd then updated_in (* widening threshold not yet reached *)
                   else D.dual_widen current_in updated_in (* use dual_widen after widening threshold reached *)
                 in
-                let out_enter' = D.filter (bwd updated_in' loop_body) b in (* process loop body again with updated 'in' state *)
+                let out_enter' = bwd_filter (bwd updated_in' loop_body) b in (* process loop body again with updated 'in' state *)
                 (* next iteration *)
                 aux updated_in' out_enter' (n+1)
             in
-            let initial_out_enter = D.filter (bwd current_in loop_body) b in (* process loop body with current 'in' state at loop-head *)
+            let initial_out_enter = bwd_filter (bwd current_in loop_body) b in (* process loop body with current 'in' state at loop-head *)
             let final_in_state = aux current_in initial_out_enter 1 in (* compute fixed point for while-loop starting with current 'in' state at loop-head *)
             addInv l final_in_state 
           | A_call (f,ss) -> raise (Invalid_argument "bwdStm:A_call")
@@ -442,6 +443,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     This is done by passing in said state through the recursion of the backward analysis.
   *)
   let next (quantifier:quantifier) (program:program) (fp:inv) : inv =
+    let (branch_join, bwd_assign, bwd_filter) = abstract_transformer quantifier in
     let invMap = ref InvMap.empty in
     let addInv label state = invMap := InvMap.add label state !invMap in
     let rec aux (b:block) (nextOuterState:D.t) () = (* nextOuterState is the 'out' state of the next basic block in the CFG *)
@@ -453,21 +455,21 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         aux nextBlock nextOuterState ();
         match stmt with
         | A_if ((b,ba), bIf, bElse) -> 
-          let sIf = D.filter (InvMap.find (block_label bIf) fp) b in
-          let sElse = D.filter (InvMap.find (block_label bElse) fp) (fst (negBExp (b,ba))) in
-          let s = D.join APPROXIMATION sIf sElse in
+          let sIf = bwd_filter (InvMap.find (block_label bIf) fp) b in
+          let sElse = bwd_filter (InvMap.find (block_label bElse) fp) (fst (negBExp (b,ba))) in
+          let s = branch_join sIf sElse in
           addInv blockLabel s;
           aux bElse nextBlockState ();
           aux bIf nextBlockState ()
         | A_while (whileLabel,(b,ba),whileBlock) -> 
           let blockState = InvMap.find blockLabel fp in
-          let sFall = D.filter (InvMap.find (block_label whileBlock) fp) b in
-          let sJump = D.filter nextBlockState (fst (negBExp (b,ba))) in
-          let s = D.join APPROXIMATION sFall sJump in
+          let sFall = bwd_filter (InvMap.find (block_label whileBlock) fp) b in
+          let sJump = bwd_filter nextBlockState (fst (negBExp (b,ba))) in
+          let s = branch_join sFall sJump in
           addInv blockLabel s;
           aux whileBlock blockState ();
         | A_assign ((l,_),(e,_)) -> 
-          let s = D.bwdAssign nextBlockState (l,e) in
+          let s = bwd_assign nextBlockState (l,e) in
           addInv blockLabel s
         | _ -> 
           addInv blockLabel nextBlockState
@@ -533,19 +535,21 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         (*     print_inv (AG (NOT p)) inv_ag; *)
         (*     let not_inv_ag = logic_not inv_ag in *)
         (*     not_inv_ag *)
+        (* | EG p -> (1* EG(p) := not AF(not p)  *1) *)
+        (*     let inv_not_p = inv (NOT p) in *)
+        (*     let inv_af = a_until program (inv (Atomic A_TRUE)) inv_not_p in *)
+        (*     print_inv (AF (NOT p)) inv_af; *)
+        (*     let not_inv_af = logic_not inv_af in *)
+        (*     not_inv_af *)
+        (* | EX p -> (1* EX(p) := not AX(not p)  *1) *)
+        (*     let inv_not_p = inv (NOT p) in *)
+        (*     let inv_ax = a_next program inv_not_p in *)
+        (*     print_inv (AX (NOT p)) inv_ax; *)
+        (*     let not_inv_ax = logic_not inv_ax in *)
+        (*     not_inv_ax *)
         | EF p -> e_until program (inv (Atomic A_TRUE)) (inv p)
-        | EG p -> (* EG(p) := not AF(not p)  *)
-            let inv_not_p = inv (NOT p) in
-            let inv_af = a_until program (inv (Atomic A_TRUE)) inv_not_p in
-            print_inv (AF (NOT p)) inv_af;
-            let not_inv_af = logic_not inv_af in
-            not_inv_af
-        | EX p -> (* EX(p) := not AX(not p)  *)
-            let inv_not_p = inv (NOT p) in
-            let inv_ax = a_next program inv_not_p in
-            print_inv (AX (NOT p)) inv_ax;
-            let not_inv_ax = logic_not inv_ax in
-            not_inv_ax
+        | EG p -> e_global program (inv p)
+        | EX p -> e_next program (inv p)
         | AND (p1, p2) -> logic_and (inv p1) (inv p2)
         | OR (p1, p2) -> logic_or (inv p1) (inv p2)
         | NOT (Atomic b) -> atomic program (fst (negBExp (b, program.dummyPosition)))
