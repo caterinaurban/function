@@ -24,7 +24,7 @@ let (^=>) = (=>) ~setup:["-joinbwd"; "7"]
 let ($=>) = (=>) ~setup:["-cda"; "2"] (* conflict-driven learning *)
 
 (* CTL based termination analysis *)
-let (@=>) = (=>) ~setup:["-actl_termination"] 
+let (@=>) = (=>) ~setup:["-ctl_termination"] 
 
 
 let (--) filename expected =

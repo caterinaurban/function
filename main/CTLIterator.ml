@@ -251,7 +251,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
   (* Computes fixed-point for 'until' properties: AU{inv_keep}{inv_reset} 
      inv_keep and inv_reset are fixed-point for the nested properties
 
-     Applies the reset_until operator to each state. 
+     Applies the 'until' operator of the decision tree domain to each state. 
      This resets the ranking function for those parts of the domain where inv_reset is also 
      defined and it discards those parts of the ranking function where neither inv_keep nor inv_reset are defined.
   *)
@@ -266,13 +266,13 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
       | A_empty blockLabel ->
         let invBlockKeep = InvMap.find blockLabel inv_keep in
         let invBlockReset = InvMap.find blockLabel inv_reset in
-        let in_state = D.reset_until invBlockKeep invBlockReset out in
+        let in_state = D.until out invBlockKeep invBlockReset in
         if !tracebwd && not !minimal then Format.fprintf !fmt "### %a ###:\n%a\n" label_print blockLabel D.print in_state;
         addInv blockLabel in_state
       | A_block (blockLabel,(stmt,_),nextBlock) ->
         let invBlockKeep = InvMap.find blockLabel inv_keep in 
         let invBlockReset = InvMap.find blockLabel inv_reset in
-        let reset_until = D.reset_until invBlockKeep invBlockReset in
+        let d_until = fun t -> D.until t invBlockKeep invBlockReset in
         let out_state = bwd out nextBlock in (* recursively process the rest of the program, this gives us the 'out' state for this statement *)
         (* compute 'in' state for this statement *)
         let in_state = match stmt with 
@@ -292,7 +292,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
                 in_state (* 'in' state of the previous iteration *)
                 out_enter (* current 'out' state when entering the loop body *)
                 n = (* iteration counter *)
-              let in_state' = reset_until (D.join APPROXIMATION out_exit out_enter) in (* 'in' state for this iteration *)
+              let in_state' = d_until (D.join APPROXIMATION out_exit out_enter) in (* 'in' state for this iteration *)
               if !tracebwd && not !minimal then begin
                 Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
                 Format.fprintf !fmt "out_exit: %a\n" D.print out_exit;
@@ -332,7 +332,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
           | A_call (f,ss) -> raise (Invalid_argument "bwdStm:A_call")
           | A_recall (f,ss) -> raise (Invalid_argument "bwdStm:A_recall")
         in
-        let in_state = reset_until in_state in (* reset ranking functions *)
+        let in_state = d_until in_state in (* reset ranking functions *)
         if !tracebwd && not !minimal then Format.fprintf !fmt "### %a ###:\n%a\n" label_print blockLabel D.print in_state;
         addInv blockLabel in_state
     in 
@@ -343,10 +343,10 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
   (*
     Computed fixed-point for 'global' operator (e.g. AG{...}), takes an existing fixed point for the nested property as argument.
 
-    Applies the 'left_narrow' function to compute the greates-fixed point starting from the given fixed point for the nested property. 
+    Applies the 'mask' operator to compute the greatest-fixed point starting from the given fixed point for the nested property. 
     During the backward analysis, the reachable state at each statement is computed by inspecting the 'out' states. 
-    Then this reachable state is used to narrow down the given fixed-point of the nested property by using 'left_narrow'. 
-    To backward analysis for the while-loop uses widening to get convergence.
+    Then this reachable state is used to shrink down the given fixed-point of the nested property by using 'maks'. 
+    To backward analysis for the while-loop uses dual_widening to get convergence.
 
 
     By default, the global operator only holds for infinite traces in which the property is satisfied. 
@@ -367,18 +367,18 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
       if (((Sys.time ()) -. start) > !timeout) then raise Timeout; (* check for timeout *)
       let current_in = blockState b in (* current 'in' state for this block *)
       match b with
-      | A_empty blockLabel -> addInv blockLabel (D.left_narrow current_in out) 
+      | A_empty blockLabel -> addInv blockLabel (D.mask current_in out) 
       | A_block (blockLabel, (stmt,_), nextBlock) ->
         let out_state = bwd out nextBlock in (* recursively process the rest of the program, this gives us the 'out' state for this statement *)
         let new_in = match stmt with 
           | A_label (l,_) -> out_state
           | A_return -> if use_sink_state then zero else bot 
-          | A_assign ((l,_),(e,_)) -> D.left_narrow current_in (D.bwdAssign out_state (l,e))
-          | A_assert (b,_) -> D.left_narrow current_in (D.filter out_state b)
+          | A_assign ((l,_),(e,_)) -> D.mask current_in (D.bwdAssign out_state (l,e))
+          | A_assert (b,_) -> D.mask current_in (D.filter out_state b)
           | A_if ((b,ba),s1,s2) ->
             let out_if = D.filter (bwd out_state s1) b in (* compute 'out' state for if-block*)
             let out_else = D.filter (bwd out_state s2) (fst (negBExp (b,ba))) in (* compute 'out' state for else-block *)
-            D.left_narrow current_in (D.join APPROXIMATION out_if out_else) (* join the two branches and combine with current 'in' state using left_narrow *)
+            D.mask current_in (D.join APPROXIMATION out_if out_else) (* join the two branches and combine with current 'in' state using maks *)
           | A_while (l,(b,ba),loop_body) ->
             let out_exit = D.filter out_state (fst (negBExp (b,ba))) in (* 'out' state when not entering the loop body *)
             let rec aux (* recursive function that iteratively computes fixed point for 'in' state at loop head *)
@@ -386,7 +386,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
                 (out_enter:D.t) (* current 'out' state when entering the loop body *)
                 (n:int) : D.t = (* iteration counter *)
               let out_joined = D.join APPROXIMATION out_exit out_enter in (* new 'in' state after joining the incoming branches *)
-              let updated_in = D.left_narrow current_in out_joined in (* join two branches and combine with current 'in' state using left_narrow *)
+              let updated_in = D.mask current_in out_joined in (* join two branches and combine with current 'in' state using mask *)
               if !tracebwd && not !minimal then begin
                 Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
                 (* Format.fprintf !fmt "out_exit: %a\n" D.print out_exit; *)
@@ -417,7 +417,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
           | A_call (f,ss) -> raise (Invalid_argument "bwdStm:A_call")
           | A_recall (f,ss) -> raise (Invalid_argument "bwdStm:A_recall")
         in
-        addInv blockLabel new_in (* use left_narrow to compute the new 'in' state for this block *)
+        addInv blockLabel new_in (* use mask to compute the new 'in' state for this block *)
     in 
     let _ = bwd (if use_sink_state then zero else bot) program.mainFunction.funcBody in (* run backward analysis starting from bottom *)
     !inv
@@ -463,7 +463,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     let bot = D.bot program.environment program.variables in
     let top = D.top program.environment program.variables in
     aux program.mainFunction.funcBody bot ();
-    let zero_leafs t = D.reset_until top t t in (* set all defined leafs of the decision trees to zero *)
+    let zero_leafs t = D.until t top t in (* set all defined leafs of the decision trees to zero *)
     InvMap.map zero_leafs !invMap 
 
   (* 
