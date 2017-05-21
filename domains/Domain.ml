@@ -28,17 +28,21 @@ sig
 
   val isLeq : kind -> t -> t -> bool
   val join : kind -> t -> t -> t
-  val meet : t -> t -> t
+  val meet : kind -> t -> t -> t
   val widen : ?jokers:int -> t -> t -> t
   val dual_widen : t -> t -> t
 
   val terminating : t -> bool
+  val complement: t -> t
   val bwdAssign : ?domain:B.t -> t -> aExp * aExp -> t
   val filter : ?domain:B.t -> t -> bExp -> t
   val reset : ?mask:t -> t -> bExp -> t
+  val until: t -> t -> t -> t
   val refine : t -> B.t -> t
+  val mask: t -> t -> t
 
   val compress : t -> t
   val print : Format.formatter -> t -> unit
+  val print_graphviz_dot : Format.formatter -> t -> unit
 
 end

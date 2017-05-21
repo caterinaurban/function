@@ -33,10 +33,32 @@ let parseFile filename =
     Printf.eprintf "Parse Error (Invalid Syntax) near %s\n"
       (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
     failwith "Parse Error"
-  | Failure "lexing: empty token" ->
-    Printf.eprintf "Parse Error (Invalid Token) near %s\n"
-      (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+  | Failure e ->
+    if e == "lexing: empty token" then 
+      begin
+        Printf.eprintf "Parse Error (Invalid Token) near %s\n" (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+        failwith "Parse Error"
+      end 
+    else
+      failwith e
+
+let parsePropertyString str =
+  let lex = Lexing.from_string str in
+  try
+    PropertyParser.file PropertyLexer.start lex 
+  with
+  | PropertyParser.Error ->
+    Printf.eprintf "Parse Error (Invalid Syntax) near %s\n" (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
     failwith "Parse Error"
+  | Failure e ->
+    if e == "lexing: empty token" then 
+      begin
+        Printf.eprintf "Parse Error (Invalid Token) near %s\n" (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+        failwith "Parse Error"
+      end 
+    else
+      failwith e
+
 
 let parseProperty filename =
   let f = open_in filename in
@@ -47,14 +69,63 @@ let parseProperty filename =
     let r = PropertyParser.file PropertyLexer.start lex in
     close_in f; r
   with
-  | Parser.Error ->
-    Printf.eprintf "Parse Error (Invalid Syntax) near %s\n"
+  | PropertyParser.Error -> Printf.eprintf "Parse Error (Invalid Syntax) near %s\n" (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+    failwith "Parse Error"
+  | Failure e ->
+    if e == "lexing: empty token" then 
+      begin
+        Printf.eprintf "Parse Error (Invalid Token) near %s\n" (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+        failwith "Parse Error"
+      end 
+    else
+      failwith e
+
+
+let parseCTLProperty filename =
+  let f = open_in filename in
+  let lex = Lexing.from_channel f in
+  try
+    lex.Lexing.lex_curr_p <- { lex.Lexing.lex_curr_p with Lexing.pos_fname = filename; };
+    let res = CTLPropertyParser.prog CTLPropertyLexer.read lex in
+    close_in f; 
+    CTLProperty.map (fun p -> fst (parsePropertyString p)) res 
+  with
+  | CTLPropertyParser.Error->
+    Printf.eprintf "Parse Error (Invalid Syntax) near %s\n" 
       (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
     failwith "Parse Error"
-  | Failure "lexing: empty token" ->
-    Printf.eprintf "Parse Error (Invalid Token) near %s\n"
+  | Failure e ->
+    if e == "lexing: empty token" then 
+      begin
+        Printf.eprintf "Parse Error (Invalid Token) near %s\n" 
+          (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+        failwith "Parse Error"
+      end 
+    else
+      failwith e
+
+
+let parseCTLPropertyString (property:string) =
+  let lex = Lexing.from_string property in
+  try
+    lex.Lexing.lex_curr_p <- { lex.Lexing.lex_curr_p with Lexing.pos_fname = "string"; };
+    let res = CTLPropertyParser.prog CTLPropertyLexer.read lex in
+    CTLProperty.map (fun p -> fst (parsePropertyString p)) res 
+  with
+  | CTLPropertyParser.Error->
+    Printf.eprintf "Parse Error (Invalid Syntax) near %s\n" 
       (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
     failwith "Parse Error"
+  | Failure e ->
+    if e == "lexing: empty token" then 
+      begin
+        Printf.eprintf "Parse Error (Invalid Token) near %s\n" 
+          (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
+        failwith "Parse Error"
+      end 
+    else
+      failwith e
+
 
 let parse_args () =
   let rec doit args =
@@ -76,6 +147,16 @@ let parse_args () =
       ordinals := true; Ordinals.max := int_of_string x; doit r
     | "-recurrence"::x::r -> (* recurrence analysis *)
       analysis := "recurrence"; property := x; doit r
+    | "-actl"::x::r -> (* TODO: legacy name, delete me *)
+      analysis := "actl"; property := x; doit r
+    | "-actl_termination"::r -> (*TODO: legacy name, delete me*)
+      analysis := "actl_termination"; doit r
+    | "-ctl"::x::r -> (* CTL analysis *)
+      analysis := "ctl"; property := x; doit r
+    | "-ctl_str"::x::r -> (* CTL analysis with property passed as string *)
+      analysis := "ctl_str"; property := x; doit r
+    | "-ctl_termination"::r -> (* CTL analysis for termination *)
+      analysis := "ctl_termination"; doit r
     | "-refine"::r -> (* refine in backward analysis *)
       Iterator.refine := true; doit r
     | "-retrybwd"::x::r ->
@@ -141,6 +222,13 @@ module RecurrencePolyhedra =
   RecurrenceIterator.RecurrenceIterator(DecisionTree.TSAP)
 module RecurrencePolyhedraOrdinals =
   RecurrenceIterator.RecurrenceIterator(DecisionTree.TSOP)
+
+module CTLBoxes = CTLIterator.CTLIterator(DecisionTree.TSAB)
+module CTLBoxesOrdinals = CTLIterator.CTLIterator(DecisionTree.TSOB)
+module CTLOctagons = CTLIterator.CTLIterator(DecisionTree.TSAO)
+module CTLOctagonsOrdinals = CTLIterator.CTLIterator(DecisionTree.TSOO)
+module CTLPolyhedra = CTLIterator.CTLIterator(DecisionTree.TSAP)
+module CTLPolyhedraOrdinals = CTLIterator.CTLIterator(DecisionTree.TSOP)
 
 
 let result = ref false
@@ -234,6 +322,55 @@ let recurrence () =
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in run_analysis (analysis_function property) program ()
 
+
+(* run termination analysis in CTL *)
+let ctl_termination () =
+  if !filename = "" then raise (Invalid_argument "No Source File Specified");
+  let (prog, _) = ItoA.prog_itoa (parseFile !filename) in
+  let (program, property) = CTLIterator.program_of_prog_with_termination prog !main in
+  if not !minimal then
+    begin
+      Format.fprintf !fmt "\nAbstract Syntax:\n";
+      AbstractSyntax.prog_print !fmt (CTLIterator.prog_of_program program);
+      Format.fprintf !fmt "\n";
+    end;
+  let analyze =
+    match !domain with
+    | "boxes" -> if !ordinals then CTLBoxesOrdinals.analyze else CTLBoxes.analyze
+    | "octagons" -> if !ordinals then CTLOctagonsOrdinals.analyze else CTLOctagons.analyze
+    | "polyhedra" -> if !ordinals then CTLPolyhedraOrdinals.analyze else CTLPolyhedra.analyze
+    | _ -> raise (Invalid_argument "Unknown Abstract Domain")
+  in
+  let terminating = analyze program property in
+  if terminating then 
+    Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
+  else 
+    Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
+
+    
+let ctl ?(property_as_string = false) () =
+  if !filename = "" then raise (Invalid_argument "No Source File Specified");
+  if !property = "" then raise (Invalid_argument "No Property Specified");
+  let parsedProperty = (if property_as_string then parseCTLPropertyString else parseCTLProperty) !property in
+  let (prog, formula) = ItoA.ctl_prog_itoa parsedProperty !main (parseFile !filename) in
+  if not !minimal then
+    begin
+      Format.fprintf !fmt "\nAbstract Syntax:\n";
+      AbstractSyntax.prog_print !fmt prog;
+      Format.fprintf !fmt "\n";
+    end;
+  let program = CTLIterator.program_of_prog prog !main in
+  let analyze =
+    match !domain with
+    | "boxes" -> if !ordinals then CTLBoxesOrdinals.analyze else CTLBoxes.analyze
+    | "octagons" -> if !ordinals then CTLOctagonsOrdinals.analyze else CTLOctagons.analyze
+    | "polyhedra" -> if !ordinals then CTLPolyhedraOrdinals.analyze else CTLPolyhedra.analyze
+    | _ -> raise (Invalid_argument "Unknown Abstract Domain")
+  in
+  let _ = analyze program formula in
+  ()
+
+
 (*Main entry point for application*)
 let doit () =
   parse_args ();
@@ -241,6 +378,11 @@ let doit () =
   | "termination" -> termination ()
   | "guarantee" -> guarantee ()
   | "recurrence" -> recurrence ()
+  | "actl" -> ctl ()
+  | "actl_termination" -> ctl_termination ()
+  | "ctl" -> ctl ()
+  | "ctl_str" -> ctl ~property_as_string:true ()
+  | "ctl_termination" -> ctl_termination ()
   | _ -> raise (Invalid_argument "Unknown Analysis")
 
 let _ = doit () 

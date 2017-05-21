@@ -2,6 +2,7 @@
 *.cmi
 *.cmx
 function
+test
 depend
 frontend/Lexer.ml
 frontend/Parser.ml
@@ -9,8 +10,15 @@ frontend/Parser.mli
 frontend/PropertyLexer.ml
 frontend/PropertyParser.ml
 frontend/PropertyParser.mli
+frontend/CTLPropertyLexer.ml
+frontend/CTLPropertyParser.ml
+frontend/CTLPropertyParser.mli
 frontend/Parser.conflicts
 examples/**
 _build/**
 *.byte
 *.native
+ocamlbuild.sh
+ocamlbuild_opt.sh
+_tags
+.idea

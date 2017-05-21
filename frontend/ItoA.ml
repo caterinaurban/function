@@ -583,3 +583,23 @@ let prog_itoa ?property (decls (* Isyntax.decl list *),_) =
     let ctx = { ctxName = main; ctxTyp = f.funcTyp; ctxArgs = f.funcArgs } in
     let property = property_itoa ctx env property in
     (program,Some property)
+
+
+(* CTL *)
+
+let ctl_prog_itoa ctl_property main (decls, _) =
+  let (env,stmts) = List.fold_left (fun (aenv ,astmts) adecl -> decl_itoa aenv astmts adecl) (emptyEnv,[]) decls in
+  zeroId();
+  let block = label_block (block_itoa stmts) in
+  let aux f = { f with funcBody = label_block f.funcBody; } in
+  let program = (env.globals, block, StringMap.map aux env.funcs) in
+  let (globals,_,funcs) = program in
+  let f = StringMap.find main funcs in
+  let locals = f.funcVars in
+  let env = { globals = globals; locals = locals; funcs = StringMap.empty; return = None; constants = VarMap.empty } in
+  let ctx = { ctxName = main; ctxTyp = f.funcTyp; ctxArgs = f.funcArgs } in
+  let aux p = fst (StringMap.find "" (property_itoa ctx env (p, ()))) in
+  let property = CTLProperty.map aux ctl_property in
+  (program, property)
+
+

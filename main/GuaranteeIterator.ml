@@ -32,9 +32,9 @@ struct
 
   let bwdMap_print fmt m =
     if !compress then
-      InvMap.iter (fun l a -> Format.fprintf fmt "%a: %a\n" label_print l D.print (D.compress a)) m
+      InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.print (D.compress a)) m
     else
-      InvMap.iter (fun l a -> Format.fprintf fmt "%a: %a\n" label_print l D.print a) m
+      InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.print a) m
 
   (* Forward Iterator *)
 
@@ -51,21 +51,17 @@ struct
     | A_while (l,(b,ba),s) ->
       let rec aux i p2 n =
         let i' = B.join p p2 in
-        if !tracefwd && not !minimal then
+        if !tracefwd && not !minimal then begin
           Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
-        if !tracefwd && not !minimal then
           Format.fprintf !fmt "p: %a\n" B.print p;
-        if !tracefwd && not !minimal then
           Format.fprintf !fmt "i: %a\n" B.print i;
-        if !tracefwd && not !minimal then
           Format.fprintf !fmt "p2: %a\n" B.print p2;
-        if !tracefwd && not !minimal then
           Format.fprintf !fmt "i': %a\n" B.print i';
+        end;
         if B.isLeq i' i then i
         else
           let i'' = if n <= !joinfwd then i' else B.widen i i' in
-          if !tracefwd && not !minimal then
-            Format.fprintf !fmt "i'': %a\n" B.print i'';
+          if !tracefwd && not !minimal then Format.fprintf !fmt "i'': %a\n" B.print i'';
           aux i'' (fwdBlk funcs env vars (B.filter i'' b) s) (n+1)
       in
       let i = B.bot env vars in
@@ -107,20 +103,15 @@ struct
       let p1 = D.filter p (fst (negBExp (b,ba))) in
       let rec aux i p2 n =
         let i' = D.reset (D.join APPROXIMATION p1 p2) (fst (StringMap.find "" property)) in
-        if !tracebwd && not !minimal then
+        if !tracebwd && not !minimal then begin
           Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
-        if !tracebwd && not !minimal then
           Format.fprintf !fmt "p1: %a\n" D.print p1;
-        if !tracebwd && not !minimal then
           Format.fprintf !fmt "i: %a\n" D.print i;
-        if !tracebwd && not !minimal then
           Format.fprintf !fmt "p2: %a\n" D.print p2;
-        if !tracebwd && not !minimal then
           Format.fprintf !fmt "i': %a\n" D.print i';
-        if (D.isLeq COMPUTATIONAL i' i)
-        then
-          if (D.isLeq APPROXIMATION i' i)
-          then
+        end;
+        if (D.isLeq COMPUTATIONAL i' i) then
+          if (D.isLeq APPROXIMATION i' i) then
             let i = i in
             if !tracebwd && not !minimal then
               Format.fprintf !fmt "### %a:FIXPOINT ###:\n" label_print l;

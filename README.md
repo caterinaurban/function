@@ -69,6 +69,27 @@ FuncTion requires the following applications and libraries:
 	opam install apron
 	```
 
+
+# Compiling FuncTion
+
+Once all required libraries are installed, FuncTion can be compiled with 'make':
+
+```
+make
+```
+
+This will generate the command line program 'function' in the project directory. 
+
+Alternatively, 'ocamlbuild' can be used to compile either a native or bytecode version with the following commands:
+
+```
+ocamlbuild -use-ocamlfind -use-menhir -pkgs 'apron,gmp,oUnit' -I utils -I domains -I frontend -I main -libs boxMPQ,octD,polkaMPQ,str Main.byte
+```
+
+```
+ocamlbuild -use-ocamlfind -use-menhir -pkgs 'apron,gmp,oUnit' -I utils -I domains -I frontend -I main -libs boxMPQ,octD,polkaMPQ,str Main.native
+```
+
 # Usage
 
 The command-line analyzer can be invoked using the following call pattern:

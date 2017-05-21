@@ -54,13 +54,19 @@ AUTOGEN = \
   frontend/PropertyLexer.ml \
   frontend/PropertyParser.ml \
   frontend/PropertyParser.mli \
+  frontend/CTLPropertyLexer.ml \
+  frontend/CTLPropertyParser.ml \
+  frontend/CTLPropertyParser.mli \
   
 MLFILES = \
   frontend/IntermediateSyntax.ml \
+  frontend/CTLProperty.ml \
   frontend/Lexer.ml \
   frontend/PropertyLexer.ml \
+  frontend/CTLPropertyLexer.ml \
   frontend/Parser.ml \
   frontend/PropertyParser.ml \
+  frontend/CTLPropertyParser.ml \
   frontend/AbstractSyntax.ml \
   frontend/ItoA.ml \
   utils/Constraints.ml \
@@ -75,6 +81,7 @@ MLFILES = \
   main/TerminationIterator.ml \
   main/GuaranteeIterator.ml \
   main/RecurrenceIterator.ml \
+  main/CTLIterator.ml \
 
 MLIFILES = \
   frontend/Parser.mli \
