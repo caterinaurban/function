@@ -529,32 +529,45 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         | AF p -> a_until program (inv (Atomic A_TRUE)) (inv p)
         | AG p -> a_global program (inv p)
         | AU (p1, p2) -> a_until program (inv p1) (inv p2)
-        (* | EF p -> (1* EF(p) := not AG(not p)  *1) *)
-        (*     let inv_not_p = inv (NOT p) in *)
-        (*     let inv_ag = a_global ~use_sink_state:true program inv_not_p in *)
-        (*     print_inv (AG (NOT p)) inv_ag; *)
-        (*     let not_inv_ag = logic_not inv_ag in *)
-        (*     not_inv_ag *)
-        (* | EG p -> (1* EG(p) := not AF(not p)  *1) *)
-        (*     let inv_not_p = inv (NOT p) in *)
-        (*     let inv_af = a_until program (inv (Atomic A_TRUE)) inv_not_p in *)
-        (*     print_inv (AF (NOT p)) inv_af; *)
-        (*     let not_inv_af = logic_not inv_af in *)
-        (*     not_inv_af *)
-        (* | EX p -> (1* EX(p) := not AX(not p)  *1) *)
-        (*     let inv_not_p = inv (NOT p) in *)
-        (*     let inv_ax = a_next program inv_not_p in *)
-        (*     print_inv (AX (NOT p)) inv_ax; *)
-        (*     let not_inv_ax = logic_not inv_ax in *)
-        (*     not_inv_ax *)
-        | EF p -> e_until program (inv (Atomic A_TRUE)) (inv p)
-        | EG p -> e_global program (inv p)
-        | EX p -> e_next program (inv p)
+        | EU (p1, p2) -> 
+          if !ctl_existential_equivalence then 
+            raise (Invalid_argument "existential equivalence conversion not supported for 'until' operator")
+          else 
+            e_until program (inv p1) (inv p2)
+        | EF p -> 
+          if !ctl_existential_equivalence then 
+            (* use the following equivalence relation: EF(p) := not AG(not p)  *)
+            let inv_not_p = inv (NOT p) in
+            let inv_ag = a_global ~use_sink_state:true program inv_not_p in
+            print_inv (AG (NOT p)) inv_ag;
+            let not_inv_ag = logic_not inv_ag in
+            not_inv_ag
+          else
+            e_until program (inv (Atomic A_TRUE)) (inv p)
+        | EG p -> 
+          if !ctl_existential_equivalence then
+            (* use the following equivalence realtion: EG(p) := not AF(not p)  *)
+            let inv_not_p = inv (NOT p) in
+            let inv_af = a_until program (inv (Atomic A_TRUE)) inv_not_p in
+            print_inv (AF (NOT p)) inv_af;
+            let not_inv_af = logic_not inv_af in
+            not_inv_af
+          else
+            e_global program (inv p)
+        | EX p -> (* EX(p) := not AX(not p)  *)
+          if !ctl_existential_equivalence then
+            (* use the following equivalence relation: EX(p) := not AX(not p)  *)
+            let inv_not_p = inv (NOT p) in
+            let inv_ax = a_next program inv_not_p in
+            print_inv (AX (NOT p)) inv_ax;
+            let not_inv_ax = logic_not inv_ax in
+            not_inv_ax
+          else
+            e_next program (inv p)
         | AND (p1, p2) -> logic_and (inv p1) (inv p2)
         | OR (p1, p2) -> logic_or (inv p1) (inv p2)
         | NOT (Atomic b) -> atomic program (fst (negBExp (b, program.dummyPosition)))
         | NOT p -> logic_not (inv p) 
-        | _ -> raise (Invalid_argument "CTL operator not supported")
       in
       print_inv property result;
       result

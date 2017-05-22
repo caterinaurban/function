@@ -157,6 +157,8 @@ let parse_args () =
       analysis := "ctl_str"; property := x; doit r
     | "-ctl_termination"::r -> (* CTL analysis for termination *)
       analysis := "ctl_termination"; doit r
+    | "-ctl_existential_equivalence"::r ->
+        Iterator.ctl_existential_equivalence := true; doit r
     | "-refine"::r -> (* refine in backward analysis *)
       Iterator.refine := true; doit r
     | "-retrybwd"::x::r ->
