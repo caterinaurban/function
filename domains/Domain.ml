@@ -33,19 +33,16 @@ sig
   val dual_widen : t -> t -> t
 
   val terminating : t -> bool
+  val complement: t -> t
   val bwdAssign : ?domain:B.t -> ?underapprox:bool -> t -> aExp * aExp -> t
   val filter : ?domain:B.t -> ?underapprox:bool -> t -> bExp -> t
   val reset : ?mask:t -> t -> bExp -> t
+  val until: t -> t -> t -> t
   val refine : t -> B.t -> t
+  val mask: t -> t -> t
 
   val compress : t -> t
   val print : Format.formatter -> t -> unit
-
   val print_graphviz_dot : Format.formatter -> t -> unit
-
-  val left_narrow: t -> t -> t
-  val reset_until: t -> t -> t -> t
-
-  val complement: t -> t
 
 end

@@ -1305,18 +1305,18 @@ struct
 
 
   (* 
-     Takes left and right tree as argument and cuts away all parts of the left tree
-     that are not part of the domain of the righ tree.
+     Takes 't' and 't_mask' as argument and cuts away all parts of 't'
+     that are not part of the domain of 't_mask'.
 
-     This means that if some part of the domain of the right tree is undefined (i.e. bottom, top or NIL)
-     then the corresponding part in the left tree is replaced with a bottom leaf.
+     This means that if some part of the domain of the 't_mask' is undefined (i.e. bottom, top or NIL)
+     then the corresponding part in 't' is replaced with a bottom leaf.
 
-     NOTE: narrow_left is only monotone w.r.t. the APPROXIMATION order
+     NOTE: mask is only monotone w.r.t. the APPROXIMATION order
   *)
-  let left_narrow t_left t_right =
-    let domain = t_left.domain in 
-    let env = t_left.env in 
-    let vars = t_left.vars in 
+  let mask t t_mask =
+    let domain = t.domain in 
+    let env = t.env in 
+    let vars = t.vars in 
     let botLeaf = Leaf (F.bot env vars) in
     let isDefined f = not (F.isBot f || F.isTop f) in
     let fBotLeft _ _ = Bot in (* LHS is bottom, keep it that way *)
@@ -1328,24 +1328,27 @@ struct
         else Leaf l1
     in { 
       domain = domain; 
-      tree = tree_join_helper fBotLeft fBotRight fLeaf t_left.tree t_right.tree env vars; 
+      tree = tree_join_helper fBotLeft fBotRight fLeaf t.tree t_mask.tree env vars; 
       env = env; 
       vars = vars 
     }
 
 
   (*
-     Combination of reset and filter operation. This operator can be used to implement the CTL 'until' operator.
-
-     Takes a decision trees 't_keep', 't_reset' and 't' an as argument and resets all leafs in 't' 
-     that are also part of the domain of 't_reset' and removes all leafs in 't' that are neither part of the domain of 't_keep' or 't_reset'.
-
+     This function is used to implement the CTL 'until' operator. It takes three arguments 't', 't_keep' and 't_reset'. 
+     For a given 'until' formula 'f1 U f2': 
+     - 't' is the decision tree that should be modified to satisfy the 'f1 U f2' formula.
+     - 't_keep' corresponds to the decision tree representing 'f1' 
+     - 't_reset' corresponds to the decision tree representing 'f2'
 
      The function first filters out all leafs in 't' that are not also part of the domain of 't_keep' and 't_reset'. 
-     Then it resets all leafs in 't' that are also part of the domain of 't_reset'.
-  
+     Then it resets all leafs in 't' that are also part of the domain of 't_reset'. 
+
+     The intuition behind this is to set the ranking function to zero for all partitions that satisfy 'f1' and
+     to remove all partitions from the domain of 't' that don't satisfy 'f1' or 'f2' 
+     an therefore excluding traces not satisfying the 'f1 U f2' property.
   *)
-  let reset_until t_keep t_reset t =
+  let until t t_keep t_reset =
     let domain = t.domain in 
     let env = t.env in 
     let vars = t.vars in 
@@ -1354,13 +1357,13 @@ struct
       | (Bot, _) | (_, Bot) -> t
       | (Leaf f, Leaf f_valid) -> Leaf (if isDefined f_valid then f else F.bot env vars) 
       | (Node (c,l1,r1), Node (_,l2,r2)) -> Node (c, filter (l1, l2), filter (r1, r2))
-      | _ -> raise (Invalid_argument "reset_until: Invalid Tree shape")
+      | _ -> raise (Invalid_argument "until: Invalid Tree shape")
     in
     let rec reset (t, t_res) = match (t,t_res) with
       | (Bot, _) | (_, Bot) -> t
       | (Leaf f, Leaf f_reset) -> Leaf (if isDefined f_reset then F.reset f else f) 
       | (Node (c,l1,r1), Node (_,l2,r2)) -> Node (c, reset (l1, l2), reset (r1, r2))
-      | _ -> raise (Invalid_argument "reset_until: Invalid Tree shape")
+      | _ -> raise (Invalid_argument "until: Invalid Tree shape")
     in
     let t_valid = tree (join COMPUTATIONAL t_keep t_reset) in (* join t_reset and t_keep to get the entire domain for which 't' is still defined*)
     let t_filtered = filter (tree_unification t.tree t_valid env vars) in (* filter out all parts of 't' that are not part of the domain of 't_keep' or 't_reset'*)
