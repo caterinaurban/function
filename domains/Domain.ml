@@ -32,7 +32,7 @@ sig
   val widen : ?jokers:int -> t -> t -> t
   val dual_widen : t -> t -> t
 
-  val terminating : t -> bool
+  val terminating : ?terminationCondition:bExp -> t -> bool
   val complement: t -> t
   val bwdAssign : ?domain:B.t -> ?underapprox:bool -> t -> aExp * aExp -> t
   val filter : ?domain:B.t -> ?underapprox:bool -> t -> bExp -> t

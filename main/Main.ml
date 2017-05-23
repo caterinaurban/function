@@ -18,6 +18,7 @@ let main = ref "main"
 let minimal = ref false
 let ordinals = ref false
 let property = ref ""
+let termination_condition = ref "true"
 let time = ref false
 
 let parseFile filename =
@@ -157,6 +158,8 @@ let parse_args () =
       analysis := "ctl_str"; property := x; doit r
     | "-ctl_termination"::r -> (* CTL analysis for termination *)
       analysis := "ctl_termination"; doit r
+    | "-termination_condition"::c::r -> (* optional condititon under which the program should terminate, default = true *)
+      termination_condition := c; doit r
     | "-ctl_existential_equivalence"::r ->
         Iterator.ctl_existential_equivalence := true; doit r
     | "-refine"::r -> (* refine in backward analysis *)
@@ -328,7 +331,11 @@ let recurrence () =
 (* run termination analysis in CTL *)
 let ctl_termination () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
-  let (prog, _) = ItoA.prog_itoa (parseFile !filename) in
+  let parsedConditionalTerminationProperty = parseCTLPropertyString !termination_condition in
+  let (prog, conditionalTerminationProperty) = ItoA.ctl_prog_itoa parsedConditionalTerminationProperty !main (parseFile !filename) in
+  let conditionalTerminationProperty = match conditionalTerminationProperty with  (* use ctl_prog_itoa to parse the conditional termination property*)
+    | CTLProperty.Atomic prop -> AbstractSyntax.StringMap.find "" prop 
+    | _ -> raise (Invalid_argument "ctl_prog_itoa returned invalid property") in
   let (program, property) = CTLIterator.program_of_prog_with_termination prog !main in
   if not !minimal then
     begin
@@ -343,7 +350,7 @@ let ctl_termination () =
     | "polyhedra" -> if !ordinals then CTLPolyhedraOrdinals.analyze else CTLPolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in
-  let terminating = analyze program property in
+  let terminating = analyze ~precondition:conditionalTerminationProperty program property in
   if terminating then 
     Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
   else 
@@ -354,7 +361,7 @@ let ctl ?(property_as_string = false) () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property Specified");
   let parsedProperty = (if property_as_string then parseCTLPropertyString else parseCTLProperty) !property in
-  let (prog, formula) = ItoA.ctl_prog_itoa parsedProperty !main (parseFile !filename) in
+  let (prog, property) = ItoA.ctl_prog_itoa parsedProperty !main (parseFile !filename) in
   if not !minimal then
     begin
       Format.fprintf !fmt "\nAbstract Syntax:\n";
@@ -369,7 +376,7 @@ let ctl ?(property_as_string = false) () =
     | "polyhedra" -> if !ordinals then CTLPolyhedraOrdinals.analyze else CTLPolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in
-  let _ = analyze program formula in
+  let _ = analyze program property in
   ()
 
 

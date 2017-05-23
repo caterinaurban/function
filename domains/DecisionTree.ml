@@ -994,25 +994,6 @@ struct
 
   (**)
 
-  let terminating t =
-    let domain = t.domain in
-    let env = t.env in
-    let vars = t.vars in
-    let rec aux t cs =
-      match t with
-      | Bot ->
-        let b = match domain with 
-          | None -> B.inner env vars cs 
-          | Some domain -> B.meet (B.inner env vars cs) domain 
-        in B.isBot b
-      | Leaf f ->
-        (match domain with
-         | None -> F.defined f || B.isBot (B.inner env vars cs)
-         | Some domain -> F.defined f || B.isBot (B.meet (B.inner env vars cs) domain))
-      | Node ((c,nc),l,r) -> (aux l (c::cs)) && (aux r (nc::cs))
-    in aux t.tree []
-
-
   let bwdAssign ?domain ?(underapprox = false) t e = 
     let cache = ref CMap.empty in
     let pre = domain in
@@ -1219,6 +1200,44 @@ struct
       let bs = List.map (fun c -> let nc = C.negate c in (c,nc)) (B.constraints (b_filter bp e)) in
       let bs = List.sort L.compare bs in
       { domain = pre; tree = aux t.tree bs []; env = env; vars = vars }
+
+
+  (* 
+    Check if all partitions in the decision tree have a concrete value assigned to them which 
+    means that the program always terminates in a finite number of steps.
+
+    Optionally, a termination condition can be passed as argument to limit the 
+    check for termination to only those partitions that satisfy the given condition. 
+    By doing so, one can check if the program always terminates under a given precondition.
+  *)
+  let terminating ?terminationCondition t =
+    let domain = t.domain in
+    let env = t.env in
+    let vars = t.vars in
+    let rec aux t cs =
+      match t with
+      | Bot ->
+        (match terminationCondition with
+        | None -> 
+          (let b = match domain with 
+              | None -> B.inner env vars cs 
+              | Some domain -> B.meet (B.inner env vars cs) domain 
+           in B.isBot b)
+        | Some _ -> true) (* given a termination condition, we first filter the tree and don't consider NIL leafs *)
+      | Leaf f ->
+        (match domain with
+         | None -> F.defined f || B.isBot (B.inner env vars cs)
+         | Some domain -> F.defined f || B.isBot (B.meet (B.inner env vars cs) domain))
+      | Node ((c,nc),l,r) -> (aux l (c::cs)) && (aux r (nc::cs))
+    in 
+    let t = match terminationCondition with
+      | Some b -> filter t b (* filte tree with termination condition *)
+      | None -> t
+    in aux t.tree []
+
+
+
+
 
   let reset ?mask t e =
     let domain = t.domain in

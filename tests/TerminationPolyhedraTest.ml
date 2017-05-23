@@ -26,6 +26,8 @@ let ($=>) = (=>) ~setup:["-cda"; "2"] (* conflict-driven learning *)
 
 (* CTL based termination analysis *)
 let (@=>) = (=>) ~setup:["-ctl_termination"] 
+let (@@=>) (filename, conditionalTerminationProperty) = (=>) ~setup:["-ctl_termination"; "-termination_condition"; conditionalTerminationProperty] filename 
+let (@@+=>) (filename, conditionalTerminationProperty) = (=>) ~setup:["-ctl_termination"; "-joinbwd"; "5" ;"-termination_condition"; conditionalTerminationProperty] filename 
 
 
 let (--) filename expected =
@@ -119,4 +121,15 @@ let polyhedra = "polyhedra" >:::
   "./tests/vmcai2004b.c" @=> false; (* conditionally terminating *)
   "./tests/widening3.c" @=> false;
   "./tests/zune.c" @=> false;
+
+  (* CTL conditional termination tests *)
+  ("./tests/euclid.c", "x==y") @@=> true; 
+  ("./tests/example0.c", "x > 10") @@=> true; 
+  ("./tests/example5.c", "x > 0") @@+=> true; 
+  ("./tests/example7.c", "x > 6") @@=> true; 
+  ("./tests/issue8.c", "y >= z || x > 0 || -y >= 2") @@=> true; 
+  ("./tests/sas2014a.c", "r <= 0") @@=> true;
+  ("./tests/vmcai2004b.c", "x != 3") @@+=> true;
+
+
 ]

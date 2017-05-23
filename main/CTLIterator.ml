@@ -7,12 +7,17 @@ open Functions
 open Iterator
 
 (* type for CTL properties, instantiated with bExp for atomic propositions *)
-type ctl_property = AbstractSyntax.bExp CTLProperty.generic_property
+type ctl_property = (AbstractSyntax.bExp StringMap.t) CTLProperty.generic_property
+
+let atomic_property_of_bexp (b:bExp) = Atomic (StringMap.add "" b StringMap.empty)
 
 type quantifier = UNIVERSAL | EXISTENTIAL
 
 let rec print_ctl_property fmt (property:ctl_property) = match property with 
-  | Atomic b -> AbstractSyntax.bExp_print_aux fmt b
+  | Atomic p -> 
+    let propertyBindings = StringMap.bindings p in
+    if List.length propertyBindings == 1 then AbstractSyntax.bExp_print_aux fmt (StringMap.find "" p)
+    else StringMap.iter (fun key b -> if String.length key > 0 then Format.fprintf fmt "%s: %a" key AbstractSyntax.bExp_print_aux b else ()) p
   | AX p -> Format.fprintf fmt "AX{%a}" print_ctl_property p
   | AF p -> Format.fprintf fmt "AF{%a}" print_ctl_property p
   | AG p -> Format.fprintf fmt "AG{%a}" print_ctl_property p
@@ -35,7 +40,6 @@ type program = {
   variables: AbstractSyntax.var list;
   mainFunction: AbstractSyntax.func;
   globalBlock: AbstractSyntax.block; 
-  dummyPosition: IntermediateSyntax.extent;
 }
 
 (* Computes the set of all labels of a program *)
@@ -60,41 +64,52 @@ let block_label block =
   | A_block (l,_,_) -> l
 
 
+(* generate map that assigns a block to each label in the program *)
+let block_label_map block: block InvMap.t = 
+  let rec aux (b:block) (map: block InvMap.t) = 
+    let map' = InvMap.add (block_label b) b map in 
+    match b with
+    | A_empty _ -> map'
+    | A_block (blockLabel, (stmt, _), nextBlock) ->
+      let map'' = aux nextBlock map' in
+      match stmt with 
+      | A_if (_, bIf, bElse) -> aux bElse (aux bIf map'') 
+      | A_while (whileLabel, _, loop_body) -> 
+        let map''' = InvMap.add whileLabel b map'' in
+        aux loop_body map'''
+      | _ -> map''
+  in aux block InvMap.empty
+
 
 (*
-   This function takes a given paresed program and introduces a new variable called 'termination' that is set to '0'
-   whenever the program terminates i.e. at the end and before every return statement. 
+   This function takes a given paresed program and introduces a new label called 'exit' 
+   before each 'return' statement and at the end of the program
 
-   The augmented program and a corresponding ctl_property for termination is returned. 
+   The augmented program and a corresponding ctl_property 'AF{exit: true}' for termination is returned. 
    This pair can then be used with the usual CTL analysis to check for termination.
 *)
 let program_of_prog_with_termination (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.key) : (program * ctl_property) =
   let (globalVariables, globalBlock, functions) = prog in
   let mainFunction = StringMap.find main functions in
-  let dummyPosition = match mainFunction.funcBody with 
-    | A_block (_, (_,pos), _) -> pos
-    | _ -> raise (Invalid_argument "empty main function")
-  in
-  let terminationVar = {varId = "$termination"; varName = "termination"; varTyp = A_INT} in
-  let assignZero = (A_assign ((A_var terminationVar, dummyPosition), (A_const 0, dummyPosition)), dummyPosition) in
-  let assignOne = (A_assign ((A_var terminationVar, dummyPosition), (A_const 1, dummyPosition)), dummyPosition) in
-  let id = ref (-2) in
-  let nextId () = let i = !id in id := i + 1; i in
+  let dummyExtent = (Lexing.dummy_pos, Lexing.dummy_pos) in
+  let exitLabel = A_label ("exit", dummyExtent) in
+  let id = ref (-1) in
+  let nextId () = let i = !id in id := i - 1; i in
   let rec addTerminationStmt (block:block) = match block with
-    | A_empty l -> A_block (nextId (), assignOne, block)
+    | A_empty l -> A_block (nextId (), (exitLabel, dummyExtent), block)
     | A_block (l,stmt,nextBlock) -> A_block (l, stmt, addTerminationStmt nextBlock)
   in
   let rec addTerminationStmtReturn (block:block) = match block with
     | A_empty l -> block 
     | A_block (l, (A_return,a) , nextBlock) -> 
       let nextBlock = A_block (l, (A_return, a), addTerminationStmtReturn nextBlock) in
-      A_block (nextId (), assignOne, nextBlock)
+      A_block (nextId (), (exitLabel, dummyExtent), nextBlock)
     | A_block (l, stmt, nextBlock) -> A_block (l, stmt, addTerminationStmtReturn nextBlock)
   in
-  let augmentedBody = A_block (-1, assignZero, addTerminationStmtReturn @@ addTerminationStmt mainFunction.funcBody) in
+  let augmentedBody = addTerminationStmtReturn @@ addTerminationStmt mainFunction.funcBody in
   let v1 = snd (List.split (StringMap.bindings globalVariables)) in
   let v2 = snd (List.split (StringMap.bindings mainFunction.funcVars)) in
-  let vars = terminationVar :: (List.append v1 v2) in (* add special terminationVar to list of variables *)
+  let vars = List.append v1 v2 in 
   let var_to_apron v = Apron.Var.of_string v.varId in
   let apron_vars = Array.map var_to_apron (Array.of_list vars) in
   let env = Environment.make apron_vars [||] in
@@ -105,14 +120,13 @@ let program_of_prog_with_termination (prog: AbstractSyntax.prog) (main: Abstract
       funcName = mainFunction.funcName;
       funcTyp = mainFunction.funcTyp;
       funcArgs = mainFunction.funcArgs;
-      funcVars = StringMap.add terminationVar.varId terminationVar mainFunction.funcVars; (* add termination var to function variables *)
+      funcVars = mainFunction.funcVars; (* add termination var to function variables *)
       funcBody = augmentedBody
     };
     globalBlock = globalBlock;
-    dummyPosition = dummyPosition
   } in
-  let terminationProperty = AF (Atomic (AbstractSyntax.A_rbinary (AbstractSyntax.A_GREATER_EQUAL, (A_var terminationVar, dummyPosition), (A_const 1, dummyPosition)))) in
-  (program, terminationProperty)
+  let exitProperty = StringMap.add "exit" A_TRUE (StringMap.add "" A_FALSE StringMap.empty) in
+  (program, AF (Atomic exitProperty))
 
 
 let prog_of_program (program:program) : prog = 
@@ -130,16 +144,11 @@ let program_of_prog (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.
   let var_to_apron v = Apron.Var.of_string v.varId in
   let apron_vars = Array.map var_to_apron (Array.of_list vars) in
   let env = Environment.make apron_vars [||] in
-  let dummyPosition = match mainFunction.funcBody with (* store some syntax possition for later use *)
-    | A_block (_, (_,pos), _) -> pos
-    | _ -> raise (Invalid_argument "empty main function")
-  in
   {
     environment = env;
     variables = vars;
     mainFunction = mainFunction;
     globalBlock = globalBlock;
-    dummyPosition = dummyPosition
   }
 
 
@@ -282,7 +291,8 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         let out_state = bwd out nextBlock in (* recursively process the rest of the program, this gives us the 'out' state for this statement *)
         (* compute 'in' state for this statement *)
         let in_state = match stmt with 
-          | A_label (l,_) -> out_state
+          | A_label (l,_) -> 
+            out_state
           | A_return -> bot
           | A_assign ((l,_),(e,_)) -> 
             bwd_assign out_state (l,e)
@@ -484,11 +494,25 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     Assign atomic state to each label of the program.
     Atomic state is a function that returns zero for all states that satisfy the property
   *)
-  let atomic (program:program) (property:bExp) : inv = 
+  let atomic (program:program) (property:bExp StringMap.t) : inv = 
     let bot = D.bot program.environment program.variables in
-    let atomicState = D.reset bot property in
-    let labels = labels_of_program program in
-    List.fold_left (fun invMap label -> InvMap.add label atomicState invMap) InvMap.empty labels
+    let blockMap = block_label_map program.mainFunction.funcBody in
+    let globalProperty = StringMap.find "" property in (* get global property i.e. property not associated with a label *)
+    let atomicState = D.reset bot globalProperty in
+    let reducer (inv:D.t InvMap.t) (label, block) = 
+      let state = match block with 
+        | A_block (_, (A_label (l, _), _), _) -> 
+          (try D.reset bot (StringMap.find l property) with Not_found -> atomicState)
+        | _ -> atomicState 
+      in InvMap.add label state inv
+    in List.fold_left reducer InvMap.empty (InvMap.bindings blockMap)
+
+   let atomic_true (program:program) : inv =
+     let bot = D.bot program.environment program.variables in
+     let trueState = D.reset bot (A_TRUE) in
+     let labels = labels_of_program program in
+     List.fold_left (fun inv label -> InvMap.add label trueState inv) InvMap.empty labels
+
 
   (* CTL 'or' opperator *)
   let logic_or (fp1:inv) (fp2:inv) : inv =
@@ -514,6 +538,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     let e_global = global EXISTENTIAL in
     let a_next = next UNIVERSAL in
     let e_next = next EXISTENTIAL in
+    let atomic_true_inv = atomic_true program in
     let print_inv property inv = 
       if not !minimal then
         begin
@@ -526,7 +551,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         match property with
         | Atomic b -> atomic program b
         | AX p -> a_next program (inv p)
-        | AF p -> a_until program (inv (Atomic A_TRUE)) (inv p)
+        | AF p -> a_until program atomic_true_inv (inv p)
         | AG p -> a_global program (inv p)
         | AU (p1, p2) -> a_until program (inv p1) (inv p2)
         | EU (p1, p2) -> 
@@ -543,12 +568,12 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
             let not_inv_ag = logic_not inv_ag in
             not_inv_ag
           else
-            e_until program (inv (Atomic A_TRUE)) (inv p)
+            e_until program atomic_true_inv (inv p)
         | EG p -> 
           if !ctl_existential_equivalence then
             (* use the following equivalence realtion: EG(p) := not AF(not p)  *)
             let inv_not_p = inv (NOT p) in
-            let inv_af = a_until program (inv (Atomic A_TRUE)) inv_not_p in
+            let inv_af = a_until program atomic_true_inv inv_not_p in
             print_inv (AF (NOT p)) inv_af;
             let not_inv_af = logic_not inv_af in
             not_inv_af
@@ -566,18 +591,20 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
             e_next program (inv p)
         | AND (p1, p2) -> logic_and (inv p1) (inv p2)
         | OR (p1, p2) -> logic_or (inv p1) (inv p2)
-        | NOT (Atomic b) -> atomic program (fst (negBExp (b, program.dummyPosition)))
+        | NOT (Atomic property) -> 
+          let negatedProperty = StringMap.map (fun b -> (fst (negBExp (b, (Lexing.dummy_pos, Lexing.dummy_pos))))) property in
+          atomic program negatedProperty
         | NOT p -> logic_not (inv p) 
       in
       print_inv property result;
       result
     in inv property
 
-  let analyze (program:program) (property:ctl_property) =  
+  let analyze ?precondition (program:program) (property:ctl_property) =  
     let inv = compute program property in
     let initialLabel = block_label program.mainFunction.funcBody in
     let programInvariant = InvMap.find initialLabel inv in
-    let isTerminating = D.terminating programInvariant in
+    let isTerminating = D.terminating ?terminationCondition:precondition programInvariant in
     isTerminating
 
 
