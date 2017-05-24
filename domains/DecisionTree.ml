@@ -1007,7 +1007,8 @@ struct
         | Bot,_ -> t2
         | Leaf f1,Leaf f2 ->
           let b = match pre with | None -> B.inner env vars cs | Some pre -> B.meet (B.inner env vars cs) pre in
-          Leaf (F.join APPROXIMATION b f1 f2)
+          let joinType = if underapprox then COMPUTATIONAL else APPROXIMATION in
+          Leaf (F.join joinType b f1 f2)
         | Node ((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isEq c1 c2) ->
           Node((c1,nc1),aux (l1,l2) (c1::cs),aux (r1,r2) (nc1::cs))
         | _ -> raise (Invalid_argument "bwdAssign:merge:")

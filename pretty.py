@@ -77,7 +77,7 @@ print("""
 <body>
 
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <h1>Analysis Result</h1>
     </div>
@@ -123,7 +123,7 @@ for id,p in enumerate(properties.keys()):
 
 
     print("""
-                       <div class="col-md-6">
+                       <div class="col-md-4">
                         <pre>
     """)
     for s in statements:
@@ -136,7 +136,7 @@ for id,p in enumerate(properties.keys()):
     print(""" </div > """)
 
 
-    print(""" <div class="col-md-6"> """)
+    print(""" <div class="col-md-8"> """)
 
     for id_l, l in enumerate(trees[p]):
         print("""<div class="decision_tree tree_{0}_{1}">  """.format(id, id_l))
