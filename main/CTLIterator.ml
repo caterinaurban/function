@@ -604,8 +604,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     let inv = compute program property in
     let initialLabel = block_label program.mainFunction.funcBody in
     let programInvariant = InvMap.find initialLabel inv in
-    let isTerminating = D.terminating ?terminationCondition:precondition programInvariant in
-    isTerminating
+    D.defined ?condition:precondition programInvariant
 
 
 end

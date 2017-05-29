@@ -304,6 +304,6 @@ struct
         Format.fprintf !fmt "\nBackward Analysis:\n";
       bwdMap_print !fmt !bwdInvMap;
     end;
-    D.terminating i
+    D.defined i
 
 end

@@ -1204,35 +1204,33 @@ struct
 
 
   (* 
-    Check if all partitions in the decision tree have a concrete value assigned to them which 
-    means that the program always terminates in a finite number of steps.
+    Check if all partitions in the decision tree are defined i.e. have a ranking function assigned to them.
 
-    Optionally, a termination condition can be passed as argument to limit the 
-    check for termination to only those partitions that satisfy the given condition. 
-    By doing so, one can check if the program always terminates under a given precondition.
+    Optionally, a boolean expression condition can be passed to limit the check to only those partitions that 
+    satisfy the expression. This can be used to check if a decision tree is defined under a given assumption.
   *)
-  let terminating ?terminationCondition t =
+  let defined ?condition t =
     let domain = t.domain in
     let env = t.env in
     let vars = t.vars in
     let rec aux t cs =
       match t with
       | Bot ->
-        (match terminationCondition with
+        (match condition with
         | None -> 
           (let b = match domain with 
               | None -> B.inner env vars cs 
               | Some domain -> B.meet (B.inner env vars cs) domain 
            in B.isBot b)
-        | Some _ -> true) (* given a termination condition, we first filter the tree and don't consider NIL leafs *)
+        | Some _ -> true) (* when given a condition, we first filter the tree and ignore NIL leafs *)
       | Leaf f ->
         (match domain with
          | None -> F.defined f || B.isBot (B.inner env vars cs)
          | Some domain -> F.defined f || B.isBot (B.meet (B.inner env vars cs) domain))
       | Node ((c,nc),l,r) -> (aux l (c::cs)) && (aux r (nc::cs))
     in 
-    let t = match terminationCondition with
-      | Some b -> filter t b (* filte tree with termination condition *)
+    let t = match condition with
+      | Some b -> filter t b (* filte tree with optional condition *)
       | None -> t
     in aux t.tree []
 
