@@ -356,6 +356,14 @@ let property_itoa ctx env (property,a) =
      | A_boolean (exp,a) -> StringMap.add lbl (exp,a) (StringMap.add "" (A_FALSE,a) StringMap.empty)
      | _ -> raise (Invalid_argument "property_itoa:I_particular"))
 
+let property_itoa_of_prog prog main property =
+    let (globals,_,funcs) = prog in
+    let f = StringMap.find main funcs in
+    let locals = f.funcVars in
+    let env = { globals = globals; locals = locals; funcs = StringMap.empty; return = None; constants = VarMap.empty } in
+    let ctx = { ctxName = main; ctxTyp = f.funcTyp; ctxArgs = f.funcArgs } in
+    property_itoa ctx env property
+
 (* variable declarations *)
 let declarator_itoa ctx (* ctx *) gs (* var StringMap.t *) ls (* var StringMap.t *) scope fs (* func StringMap.t *) cs (* int VarMap.t *) typ (* Isyntax.typ annotated *) ((x (* string *),xa),exp (* Isyntax.exp annotated option *)) =
   let v = { varId = "$" ^ string_of_int (newId()); varName = x; varTyp = typ_itoa typ } in
@@ -583,6 +591,7 @@ let prog_itoa ?property (decls (* Isyntax.decl list *),_) =
     let ctx = { ctxName = main; ctxTyp = f.funcTyp; ctxArgs = f.funcArgs } in
     let property = property_itoa ctx env property in
     (program,Some property)
+
 
 
 (* CTL *)

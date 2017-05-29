@@ -15,7 +15,7 @@ statements = []
 properties = {}
 prop = None
 target = None
-
+result = ""
 
 for l in content:
     if l == "Abstract Syntax:":
@@ -27,6 +27,8 @@ for l in content:
         target = []
         label = label_pattern.match(l).group(1)
         prop[label] = target
+    elif l.startswith("Analysis Result: "):
+        result = l
     elif target is None:
         print("Invalid Input Format")
         sys.exit(-1)
@@ -76,14 +78,16 @@ print("""
 </head>
 <body>
 
+""")
 
+print(""" 
 <div class="container-fluid">
     <div class="row">
-        <h1>Analysis Result</h1>
+        <h1>{0}</h1>
     </div>
 
     <div class="row">
-""")
+""".format(result))
 
 # Tab header ----------------------------------------------------------
 print(""" <ul class="nav nav-tabs" role="tablist"> """)

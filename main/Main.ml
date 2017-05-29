@@ -18,7 +18,7 @@ let main = ref "main"
 let minimal = ref false
 let ordinals = ref false
 let property = ref ""
-let termination_condition = ref "true"
+let precondition = ref "true"
 let time = ref false
 
 let parseFile filename =
@@ -158,8 +158,8 @@ let parse_args () =
       analysis := "ctl_str"; property := x; doit r
     | "-ctl_termination"::r -> (* CTL analysis for termination *)
       analysis := "ctl_termination"; doit r
-    | "-termination_condition"::c::r -> (* optional condititon under which the program should terminate, default = true *)
-      termination_condition := c; doit r
+    | "-precondition"::c::r -> (* optional precondition that holds at the start of the program, default = true *)
+      precondition := c; doit r
     | "-ctl_existential_equivalence"::r ->
         Iterator.ctl_existential_equivalence := true; doit r
     | "-refine"::r -> (* refine in backward analysis *)
@@ -331,7 +331,7 @@ let recurrence () =
 (* run termination analysis in CTL *)
 let ctl_termination () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
-  let parsedConditionalTerminationProperty = parseCTLPropertyString !termination_condition in
+  let parsedConditionalTerminationProperty = parseCTLPropertyString !precondition in
   let (prog, conditionalTerminationProperty) = ItoA.ctl_prog_itoa parsedConditionalTerminationProperty !main (parseFile !filename) in
   let conditionalTerminationProperty = match conditionalTerminationProperty with  (* use ctl_prog_itoa to parse the conditional termination property*)
     | CTLProperty.Atomic prop -> AbstractSyntax.StringMap.find "" prop 
@@ -360,8 +360,10 @@ let ctl_termination () =
 let ctl ?(property_as_string = false) () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property Specified");
+  let parsedPrecondition = parsePropertyString !precondition in
   let parsedProperty = (if property_as_string then parseCTLPropertyString else parseCTLProperty) !property in
   let (prog, property) = ItoA.ctl_prog_itoa parsedProperty !main (parseFile !filename) in
+  let precondition = fst @@ AbstractSyntax.StringMap.find "" @@ ItoA.property_itoa_of_prog prog !main parsedPrecondition in
   if not !minimal then
     begin
       Format.fprintf !fmt "\nAbstract Syntax:\n";
@@ -376,8 +378,11 @@ let ctl ?(property_as_string = false) () =
     | "polyhedra" -> if !ordinals then CTLPolyhedraOrdinals.analyze else CTLPolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in
-  let _ = analyze program property in
-  ()
+  let result = analyze ~precondition:precondition program property in
+  if result then 
+    Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
+  else 
+    Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
 
 
 (*Main entry point for application*)

@@ -25,8 +25,8 @@ let ($=>) = (=>) ~setup:["-cda"; "2"] (* conflict-driven learning *)
 
 (* CTL based termination analysis *)
 let (@=>) = (=>) ~setup:["-ctl_termination"] 
-let (@@=>) (filename, conditionalTerminationProperty) = (=>) ~setup:["-ctl_termination"; "-termination_condition"; conditionalTerminationProperty] filename 
-let (@@+=>) (filename, conditionalTerminationProperty) = (=>) ~setup:["-ctl_termination"; "-joinbwd"; "5" ;"-termination_condition"; conditionalTerminationProperty] filename 
+let (@@=>) (filename, conditionalTerminationProperty) = (=>) ~setup:["-ctl_termination"; "-precondition"; conditionalTerminationProperty] filename 
+let (@@+=>) (filename, conditionalTerminationProperty) = (=>) ~setup:["-ctl_termination"; "-joinbwd"; "5" ;"-precondition"; conditionalTerminationProperty] filename 
 
 
 let (--) filename expected =
