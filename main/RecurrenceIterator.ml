@@ -4,6 +4,8 @@
 *)
 
 open AbstractSyntax
+open ForwardIterator
+open InvMap
 open Apron
 open Domain
 open Functions
@@ -16,13 +18,9 @@ struct
 
   module B = D.B
 
-  (* Invariant Map *)
-
-  module InvMap = Map.Make(struct type t=label let compare=compare end)
+  module ForwardIteratorB = ForwardIterator(D.B)
 
   let fwdInvMap = ref InvMap.empty
-
-  let addFwdInv l (a:B.t) = fwdInvMap := InvMap.add l a !fwdInvMap
 
   let fwdMap_print fmt m = InvMap.iter (fun l a -> Format.fprintf fmt "%a: %a\n" label_print l B.print a) m
 
@@ -35,60 +33,6 @@ struct
       InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.print (D.compress a)) m
     else
       InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.print a) m
-
-  (* Forward Iterator *)
-
-  let rec fwdStm funcs env vars p s =
-    match s with
-    | A_label _ -> p
-    | A_return -> B.bot env vars
-    | A_assign ((l,_),(e,_)) -> B.fwdAssign p (l,e)
-    | A_assert (b,_) -> B.filter p b
-    | A_if ((b,ba),s1,s2) ->
-      let p1 = fwdBlk funcs env vars (B.filter p b) s1 in
-      let p2 = fwdBlk funcs env vars (B.filter p (fst (negBExp (b,ba)))) s2 in
-      B.join p1 p2
-    | A_while (l,(b,ba),s) ->
-      let rec aux i p2 n =
-        let i' = B.join p p2 in
-        if !tracefwd && not !minimal then
-          Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
-        if !tracefwd && not !minimal then
-          Format.fprintf !fmt "p: %a\n" B.print p;
-        if !tracefwd && not !minimal then
-          Format.fprintf !fmt "i: %a\n" B.print i;
-        if !tracefwd && not !minimal then
-          Format.fprintf !fmt "p2: %a\n" B.print p2;
-        if !tracefwd && not !minimal then
-          Format.fprintf !fmt "i': %a\n" B.print i';
-        if B.isLeq i' i then i
-        else
-          let i'' = if n <= !joinfwd then i' else B.widen i i' in
-          if !tracefwd && not !minimal then
-            Format.fprintf !fmt "i'': %a\n" B.print i'';
-          aux i'' (fwdBlk funcs env vars (B.filter i'' b) s) (n+1)
-      in
-      let i = B.bot env vars in
-      let p2 = fwdBlk funcs env vars (B.filter i b) s in
-      let p = aux i p2 1 in
-      addFwdInv l p;
-      B.filter p (fst (negBExp (b,ba)))
-    | A_call (f,ss) ->
-      let f = StringMap.find f funcs in
-      let p = List.fold_left (fun ap (s,_) -> fwdStm funcs env vars p s) p ss in
-      fwdBlk funcs env vars p f.funcBody
-    | A_recall (f,ss) -> raise (Invalid_argument "fwdStm:A_recall")
-
-  and fwdBlk funcs env vars (p:B.t) (b:block) : B.t =
-    match b with
-    | A_empty l ->
-      if !tracefwd && not !minimal then
-        Format.fprintf !fmt "### %a ###: %a\n" label_print l B.print p;
-      addFwdInv l p; p
-    | A_block (l,(s,_),b) ->
-      if !tracefwd && not !minimal then
-        Format.fprintf !fmt "### %a ###: %a\n" label_print l B.print p;
-      addFwdInv l p; fwdBlk funcs env vars (fwdStm funcs env vars p s) b
 
   (* Backward Iterator *)
 
@@ -216,7 +160,7 @@ struct
     if !tracefwd && not !minimal then
       Format.fprintf !fmt "\nForward Analysis Trace:\n";
     let startfwd = Sys.time () in
-    let _ = fwdBlk funcs env vars (fwdBlk funcs env vars (B.top env vars) stmts) s in
+    fwdInvMap := ForwardIteratorB.compute (vars, stmts, funcs) main env;
     let stopfwd = Sys.time () in
     if not !minimal then
       begin

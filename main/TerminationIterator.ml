@@ -9,6 +9,7 @@
 (***************************************************)
 
 open AbstractSyntax
+open InvMap
 open Apron
 open Domain
 open Functions
@@ -20,10 +21,6 @@ struct
   module D = D
 
   module B = D.B
-
-  (* Invariant Map *)
-
-  module InvMap = Map.Make(struct type t=label let compare=compare end)
 
   let fwdInvMap = ref InvMap.empty
 

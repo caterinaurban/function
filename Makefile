@@ -69,6 +69,7 @@ MLFILES = \
   frontend/AbstractSyntax.ml \
   frontend/ItoA.ml \
   utils/Constraints.ml \
+  utils/InvMap.ml \
   utils/setext.ml \
   utils/mapext.ml \
   banal/banal_int.ml \
@@ -96,6 +97,7 @@ MLFILES = \
   domains/Domain.ml \
   domains/DecisionTree.ml \
   main/Iterator.ml \
+  main/ForwardIterator.ml \
   main/TerminationIterator.ml \
   main/GuaranteeIterator.ml \
   main/RecurrenceIterator.ml \
