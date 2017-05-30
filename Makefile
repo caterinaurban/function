@@ -112,6 +112,7 @@ TSTMLFILES = \
   tests/TestCommon.ml \
   tests/TerminationBoxesTest.ml \
   tests/TerminationPolyhedraTest.ml \
+  tests/CTLTest.ml \
   tests/Test.ml \
 
 
