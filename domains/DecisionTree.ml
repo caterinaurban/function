@@ -129,6 +129,18 @@ struct
       | Node (c,l,r) -> aux l; aux r; ls := LSet.add c !ls
     in aux t; !ls
 
+
+  (* map function for decision tree*)
+  let tree_map f_bot f_leaf t: t = 
+    let domain = t.domain in 
+    let env = t.env in 
+    let vars = t.vars in 
+    let rec aux (tree:tree) : tree = match tree with
+      | Bot -> f_bot
+      | Leaf f -> f_leaf f
+      | Node (c,l,r) -> Node (c, aux l, aux r)
+    in {domain = domain; tree = aux t.tree; env = env; vars = vars}
+
   (** Sorts (and normalizes the constraints within) a decision tree `t`. 
 
       Let x_1,...,x_k be program variables. We consider all linear 
@@ -1126,7 +1138,7 @@ struct
         then (* x is redundant *) aux t xs cs
         else (* x is not redundant *)
         if (B.isBot (B.meet bx bcs))
-        then (* x is conflicting *) Bot
+        then (* x is conflicting *) Bot (* This introduces a NIL leaf to the tree *)
         else
         if (C.isLeq nx x)
         then (* x is normalized *)
@@ -1230,7 +1242,11 @@ struct
       | Node ((c,nc),l,r) -> (aux l (c::cs)) && (aux r (nc::cs))
     in 
     let t = match condition with
-      | Some b -> filter t b (* filte tree with optional condition *)
+      | Some b -> 
+        (* replace all NIL leafs with 'bottom' leafs to ensure that we don't confuse actual 
+           NIL leafs with NIL leafs introduces by filer *)
+        let t' = tree_map (Leaf (F.bot t.env t.vars)) (fun f -> Leaf f) t in
+        filter t' b (* filte tree with optional condition *)
       | None -> t
     in aux t.tree []
 

@@ -1,6 +1,6 @@
 (*******************************************)
 (*                                         *)
-(*          CTL Test                       *)
+(*                CTL Test                 *)
 (*                                         *)
 (*             Samuel Ueltschi             *)
 (*     ETH Zürich, Zurich, Switzerland     *)
@@ -18,7 +18,7 @@ let string_of_domain d = match d with
 
 let test file ctl_str 
     ?(precondition = "true")
-    ?(domain = BOXES) 
+    ?(domain = POLYHEDRA) 
     ?(joinbwd = 2)
     ?setup
   = TestCommon.make_analyser [
@@ -29,11 +29,12 @@ let test file ctl_str
   ] ?setup:setup file
 
 
-let ctl_testcases = "boxes" >:::
+let ctl_testcases = "ctl" >:::
 [
   test ~joinbwd:4 "./tests/ctl/global_test_simple.c" "AG{AF{x <= -10}}" true;
   test ~precondition:"x == y + 20" "./tests/ctl/until_test.c" "AU{x >= y}{x==y}" true;
-  (* test "./tests/ctl/until_test.c" "AU{x <= y}{x==y}" false; *) (*TODO find problem*)
+  test "./tests/ctl/until_test.c" "AU{x <= y}{x==y}" false;
+  test ~domain:BOXES "./tests/ctl/until_test.c" "AF{x < y + 20}" false; (*TODO: Problem with BOXES domain*)
   test "./tests/countdown.c" "AF{x == 0}" true;
   test "./tests/countdown.c" "AG{AF{x == 0}}" true;
   test "./tests/mnav.c" "AF{enable == 0}" true;
@@ -46,4 +47,20 @@ let ctl_testcases = "boxes" >:::
   test "./tests/ctl/or_test.c" "OR{AF{AG{x < -100}}}{AF{x==20}}" true;
   test ~precondition: "x==1" "./tests/ctl/next.c" "AX{x==0}" true;
   test "./tests/ctl/next.c" "AX{x==0}" false;
+  test "./tests/ctl/existential_test1.c" "EF{r==1}" false;
+  test ~precondition:"2*x <= y+3" "./tests/ctl/existential_test1.c" "EF{r==1}" true;
+  test "./tests/ctl/existential_test1.c" "EF{r==1}" false;
+  test "./tests/ctl/existential_test2.c" "EF{r==1}" false;
+  test "./tests/ctl/existential_test3.c" "EF{r==1}" false;
+  test 
+    ~setup:["-ctl_existential_equivalence"] 
+    ~precondition: "x > 0"
+    "./tests/ctl/existential_test3.c" "EF{r==1}" true;
+  test 
+    ~joinbwd:5
+    ~precondition: "x==2"
+    "./tests/ctl/existential_test3.c" "EF{r==1}" true;
+  test ~precondition:"y<0" "./tests/ctl/existential_test4.c" "EF{r==1}" true;
+  test ~precondition:"a!=1" "./tests/ctl/acqrel.c" "AG{OR{a!=1}{AF{r==1}}}" true;
+  test "./tests/ctl/win4.c"  "AF{AG{WItemsNum >= 1}}" true;
 ]
