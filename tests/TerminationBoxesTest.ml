@@ -28,7 +28,6 @@ let (@=>) = (=>) ~setup:["-ctl_termination"]
 let (@@=>) (filename, conditionalTerminationProperty) = (=>) ~setup:["-ctl_termination"; "-precondition"; conditionalTerminationProperty] filename 
 let (@@+=>) (filename, conditionalTerminationProperty) = (=>) ~setup:["-ctl_termination"; "-joinbwd"; "5" ;"-precondition"; conditionalTerminationProperty] filename 
 
-
 let (--) filename expected =
   filename >:: (fun test_ctxt ->
     assert_bool "Test marked as not working but non-terminating" expected;
