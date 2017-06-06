@@ -356,6 +356,11 @@ let property_itoa ctx env (property,a) =
      | A_boolean (exp,a) -> StringMap.add lbl (exp,a) (StringMap.add "" (A_FALSE,a) StringMap.empty)
      | _ -> raise (Invalid_argument "property_itoa:I_particular"))
 
+(**
+   Converts a parsed property to it's AbstractSyntax version. In constrast to 'property_itoa', this function takes the result
+   of 'prog_itoa' and a main function as argument. This makes it possible to convert additional properties for a given program 
+   without having to construct the internal context and environment data structures after the program has already been converted.
+*)
 let property_itoa_of_prog prog main property =
     let (globals,_,funcs) = prog in
     let f = StringMap.find main funcs in

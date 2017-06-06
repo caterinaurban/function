@@ -14,7 +14,7 @@ open Partition
 open Constraints
 
 
-module type APRON_PARAM = sig 
+module type NUMERICAL = sig 
   type lib
   val manager: lib Manager.t 
   val supports_underapproximation: bool
@@ -22,12 +22,12 @@ end
 
 (** Single partition of the domain of a ranking function 
     represented by an APRON numerical abstract domain. *)
-module Numerical(Param: APRON_PARAM)(C: CONSTRAINT): PARTITION = struct
+module Numerical(N: NUMERICAL)(C: CONSTRAINT): PARTITION = struct
 
   (** Linear constraints used to represent the partition. *)
   module C = C 
 
-  module BanalApron = Banal_apron_domain.ApronDomain(Param)
+  module BanalApron = Banal_apron_domain.ApronDomain(N)
 
   (** An element of the numerical abstract domain. *)
   type t = { 
@@ -36,7 +36,7 @@ module Numerical(Param: APRON_PARAM)(C: CONSTRAINT): PARTITION = struct
     vars : var list (* list of variables in the APRON environment *)
   }
 
-  type apron_t = Param.lib Abstract1.t
+  type apron_t = N.lib Abstract1.t
 
   (** The current representation as list of linear constraints. *)
   let constraints b: C.t list = List.fold_right (fun c cs -> 
@@ -54,35 +54,9 @@ module Numerical(Param: APRON_PARAM)(C: CONSTRAINT): PARTITION = struct
 
   (** Creates an APRON manager depending on the numerical abstract domain. *)
 
-  let manager = Param.manager
-  (* let manager = match N.t with *)
-  (*   | BOXES -> Box.manager_of_box (Box.manager_alloc ()) *)
-  (*   | OCTAGONS -> Oct.manager_of_oct (Oct.manager_alloc ()) *)
-  (*   | POLYHEDRA -> Polka.manager_of_polka (Polka.manager_alloc_loose ()) *)	
+  let manager = N.manager
 
   (**)
-
-  let print fmt b =
-    let vars = b.vars in
-    let a = Lincons1.array_make b.env (List.length b.constraints) in
-    let i = ref 0 in
-    List.iter (fun c -> Lincons1.array_set a !i c; i := !i + 1) b.constraints;
-    let b = Abstract1.of_lincons_array manager b.env a in
-    let a = Abstract1.to_lincons_array manager b in
-    let cs = ref [] in
-    for i=0 to (Lincons1.array_length a)-1 do
-      cs := (Lincons1.array_get a i)::!cs;
-    done;
-    match !cs with
-    | [] -> Format.fprintf fmt "top"
-    | x::_ ->
-      if (C.isBot x) then Format.fprintf fmt "bottom" else
-        let i = ref 1 and l = List.length !cs in
-        List.iter (fun c ->
-            C.print vars fmt c;
-            if (!i = l) then () else Format.fprintf fmt " && ";
-            i := !i + 1
-          ) !cs
 
   let bot e vs = {
     constraints = [Lincons1.make_unsat e];
@@ -216,7 +190,7 @@ module Numerical(Param: APRON_PARAM)(C: CONSTRAINT): PARTITION = struct
 
   let bwdAssign_underapprox (t:t) ((x,e): aExp * aExp) : t = match x with
     | A_var x ->
-      if not Param.supports_underapproximation then
+      if not N.supports_underapproximation then
         raise (Invalid_argument "Underapproximation not supported by this abstract domain, use polyhedra instead");
       let env = t.env in
       let vars = t.vars in
@@ -248,7 +222,7 @@ module Numerical(Param: APRON_PARAM)(C: CONSTRAINT): PARTITION = struct
 
 
   let filter_underapprox (t:t) (e:bExp) : t = 
-    if not Param.supports_underapproximation then
+    if not N.supports_underapproximation then
       raise (Invalid_argument "Underapproximation not supported by this abstract domain, use octagons or polyhedra instead");
     let env = t.env in
     let vars = t.vars in
@@ -330,6 +304,27 @@ module Numerical(Param: APRON_PARAM)(C: CONSTRAINT): PARTITION = struct
 
   (**)
 
+  let print fmt b =
+    let vars = b.vars in
+    let a = Lincons1.array_make b.env (List.length b.constraints) in
+    let i = ref 0 in
+    List.iter (fun c -> Lincons1.array_set a !i c; i := !i + 1) b.constraints;
+    let b = Abstract1.of_lincons_array manager b.env a in
+    let a = Abstract1.to_lincons_array manager b in
+    let cs = ref [] in
+    for i=0 to (Lincons1.array_length a)-1 do
+      cs := (Lincons1.array_get a i)::!cs;
+    done;
+    match !cs with
+    | [] -> Format.fprintf fmt "top"
+    | x::_ ->
+      if (C.isBot x) then Format.fprintf fmt "bottom" else
+        let i = ref 1 and l = List.length !cs in
+        List.iter (fun c ->
+            C.print vars fmt c;
+            if (!i = l) then () else Format.fprintf fmt " && ";
+            i := !i + 1
+          ) !cs
 
 end
 

@@ -21,14 +21,14 @@ let trace_bwd = false
 (* GENERIC FUNCTOR *)
 (* *************** *)
 
-module type APRON_PARAM = sig 
+module type NUMERICAL = sig 
   type lib
   val manager: lib Manager.t 
 end
 
 module Lin = Linearization.Make(Itv_rat)
 
-module ApronDomain(Param: APRON_PARAM) = struct
+module ApronDomain(Param: NUMERICAL) = struct
 
   let man = Param.manager
 
