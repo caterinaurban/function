@@ -158,6 +158,8 @@ let parse_args () =
       analysis := "ctl_str"; property := x; doit r
     | "-ctl_termination"::r -> (* CTL analysis for termination *)
       analysis := "ctl_termination"; doit r
+    | "-ctl_new"::r -> (* CTL analysis for termination *)
+      analysis := "ctl_new"; doit r
     | "-precondition"::c::r -> (* optional precondition that holds at the start of the program, default = true *)
       precondition := c; doit r
     | "-ctl_existential_equivalence"::r ->
@@ -385,6 +387,17 @@ let ctl ?(property_as_string = false) () =
     Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
 
 
+
+let ctl_new () =
+  if !filename = "" then raise (Invalid_argument "No Source File Specified");
+  let ast = File_parser.parse_file !filename in
+  let cfg = Tree_to_cfg.prog ast in
+  let _ = CFGIterator.backward_analysis in
+  Printf.printf "%a" Cfg_printer.print_cfg cfg;
+  ()
+
+
+
 (*Main entry point for application*)
 let doit () =
   parse_args ();
@@ -395,6 +408,7 @@ let doit () =
   | "actl" -> ctl ()
   | "actl_termination" -> ctl_termination ()
   | "ctl" -> ctl ()
+  | "ctl_new" -> ctl_new ()
   | "ctl_str" -> ctl ~property_as_string:true ()
   | "ctl_termination" -> ctl_termination ()
   | _ -> raise (Invalid_argument "Unknown Analysis")
