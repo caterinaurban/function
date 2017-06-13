@@ -1,47 +1,41 @@
+(***************************************************)
+(*                                                 *)
+(*         CFG Based Backward Interpreter          *)
+(*                                                 *)
+(*            Samuel Marco Ueltschi                *)
+(*           ETH Zurich, Switzerland               *)
+(*                   2017                          *)
+(*                                                 *)
+(***************************************************)
+
 open Cfg
+
 
 (* Map module for cfg nodes *)
 module NodeMap = Map.Make(Node)
 
-(**
-    Module signature that defines abstract transformers used by 'backward_analysis' 
+(** 
+   type definition for abstact transformer.
+   
+   an abstract transformer is a function that transforms a given abstract
+   w.r.t the semantics of a node in the control-flow-graph (cfg)
 *)
-module type CFGIterator = sig
-
-  (* type of abstract state that is computed for each node in cfg *)
-  type t 
-
-  (**
-     abstract transformer that is used to processes node
-  *)
-  val process_node: 
-    node -> (* current node that is being processed *)
-    int -> (* iteration count, how many times has this node been processed *)
-    t -> (* current value of abstract state for this node *)
-    (t * inst) list (** 
+type 't abstract_transformer  = 
+  node -> (* current node that is being processed *)
+  int -> (* iteration count, how many times has this node been processed *)
+  't -> (* current value of abstract state for this node *)
+  ('t * inst) list (** 
                        list of (abstract state, instruction) pairs for all 
                        predecessors nodes that have an incoming edge from this node. 
-                    *)
-    -> t (* resulting new abstract state for this node *)
-
-  (** 
-     lessEqual realtion that is used to determine if the computed state of a node
-     is still increasing i.e. has changed.  
-
-     example:
-     s  = abstract state at node
-     s' = new abstract state at node after applying abstract transformer
-
-     The analysis propagates s' to all predecessors of the node current if s <= s'
-  *)
-  val lessEqual: t -> t -> bool
-end
+                   *)
+  -> (bool * 't)
+     
 
 
 (* abstract implementation of a backward analysis over a control flow graph *)
 let backward_analysis
     (type a) (* type of the abstract state that is computed for each node in 'cfg' *)
-    (module I : CFGIterator with type t = a) (* module that implements the abstract transformers for the analysis *)
+    (abstract_transformer: a abstract_transformer) (* implementation of abstract transformer for this analysis *)
     (initial_value:a NodeMap.t) (* map that assigns an initial state to each node in the cfg *)
     (main:func) (* entry point of the program *)
     (cfg:cfg) (* control flow graph *)
@@ -52,7 +46,7 @@ let backward_analysis
   let worklist = Queue.create () in 
   (* bitmap array that keeps track of all nodes that are in the worklist *)
   let inWorklist = Array.make (nodeCount + 1) false in 
-  (* Adds all predecessors of a node to the worklist *)
+  (* Adds all predecessors of 'node' to the worklist *)
   let addPredecessorsToWorklist node = List.iter (fun arc -> 
       let predecessor = arc.arc_src in
       Queue.add predecessor worklist; (* add predecessor to worklist *)
@@ -85,14 +79,15 @@ let backward_analysis
       (* number of times this node has been processed *)
       let nodeProcessed = processed.(node.node_id) in
       (* run abstract transformer for node to get new abstract state *)
-      let newState = I.process_node node processed.(node.node_id) currentState instStatePairs in 
+      let (fixedPoint, newState) = abstract_transformer node processed.(node.node_id) currentState instStatePairs in 
       (* update 'processed' count *)
       processed.(node.node_id) <- nodeProcessed + 1; 
-      if (I.lessEqual newState currentState) then 
-        (*if newState <= currentState i.e. the abstract state didn't increase then we are done for this node *)
+      if fixedPoint then 
+        (* newState is a fixed point therefore we are done with this node *)
         NodeMap.add node newState nodeMap
       else 
-        (* otherwise we add all predecessors of node to the worklist, update 'worklist', update 'nodeMap' and contionue with the algorithm *)
+        (* otherwise we add all predecessors of node to the worklist, 
+           update 'nodeMap' and contionue with the algorithm *)
         let newNodeMap = NodeMap.add node newState nodeMap in (* update nodeMap with new state *)
         addPredecessorsToWorklist node;
         aux newNodeMap (* continute with algorithm *)

@@ -107,6 +107,9 @@ type inst =
      information on the original instruction that caused the skip
    *)
   | CFG_skip of string
+
+  (* equivalent to skip but has name of label definiton as value *)
+  | CFG_label of string
     
   (* assignment *)
   | CFG_assign of var * int_expr

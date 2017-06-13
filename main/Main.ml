@@ -392,7 +392,8 @@ let ctl_new () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   let ast = File_parser.parse_file !filename in
   let cfg = Tree_to_cfg.prog ast in
-  let _ = CFGIterator.backward_analysis in
+  let (env, vars) = CTLCFGIterator.env_vars cfg in
+  let _ = BackwardInterpreter.backward_analysis in
   Printf.printf "%a" Cfg_printer.print_cfg cfg;
   ()
 

@@ -518,7 +518,7 @@ let rec stat (env:env) (entry:node) (exit:node) (s:stat) : env =
        (* remember the node of the label *)
        if StringMap.mem id env.env_labels then
          failwith (Printf.sprintf "duplicate label %s at %s" id (string_of_extent x));
-       add_arc entry exit (CFG_skip ("skip: label "^id));
+       add_arc entry exit (CFG_label id);
        { env with env_labels = StringMap.add id entry env.env_labels; }
 
    | AST_goto (id,x) ->
