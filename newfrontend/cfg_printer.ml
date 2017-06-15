@@ -102,8 +102,7 @@ let print_option f none ch l =
 (* *********** *)
 
 
-let print_var ch v =
-  Printf.fprintf ch "%s(%i)" v.var_name v.var_id
+let print_var ch v = Printf.fprintf ch "%s" @@ unique_var_name v
 
 
 let string_of_type t =
@@ -131,8 +130,10 @@ let rec print_int_expr ch e =
           
   | CFG_int_const i -> output_string ch (Z.to_string i)
 
-  | CFG_int_rand (i1,i2) ->
-      Printf.fprintf ch "rand(%s,%s)" (Z.to_string i1) (Z.to_string i2)
+  | CFG_int_random -> Printf.printf "?"
+
+  | CFG_int_interval (i1,i2) ->
+      Printf.fprintf ch "[%s,%s]" (Z.to_string i1) (Z.to_string i2)
         
   | CFG_int_var v -> print_var ch v
 
@@ -181,7 +182,7 @@ let print_inst ch i =
   | CFG_guard b -> Printf.fprintf ch "%a ?" print_bool_expr b
   | CFG_assert b -> Printf.fprintf ch "assert %a" print_bool_expr b
   | CFG_call f -> Printf.fprintf ch "call %s" f.func_name
-
+  | CFG_label l -> Printf.fprintf ch "label %s" l
      
 
 (* programs *)
@@ -190,8 +191,8 @@ let print_inst ch i =
 (* raw dump of the graph *)        
 let print_cfg ch p =
   let pp_var ch v =
-    Printf.fprintf ch "%s(%i):%s"
-      v.var_name v.var_id (string_of_type v.var_type)
+    Printf.fprintf ch "%s:%s"
+      (unique_var_name v) (string_of_type v.var_type)
   in
   Printf.fprintf ch "List of variables:\n";
   List.iter
@@ -237,8 +238,8 @@ let print_cfg ch p =
 
     
 (* dump to a DOT file, viewable with Graphviz *)
-let output_dot name p =
-  let ch = open_out name in
+(* let output_dot name p = *)
+let output_dot ch p =
   Printf.fprintf ch "digraph CFG {\n";
   (* nodes and instructions *)
   List.iter
@@ -264,6 +265,4 @@ let output_dot name p =
   Printf.fprintf ch "  init_entry -> %i;\n" p.cfg_init_entry.node_id;
   Printf.fprintf ch "  %i -> init_exit;\n" p.cfg_init_exit.node_id;
   Printf.fprintf ch "}\n";
-  flush ch;
-  close_out ch
     

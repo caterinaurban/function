@@ -87,8 +87,11 @@ type int_expr =
   (* constants (integers are still in their string representation) *)
   | AST_int_const of string ext
 
+  (* random integer *)
+  | AST_int_random 
+
   (* non-deterministic choice between two integers *)
-  | AST_int_rand of (string ext) (* lower bound *) * 
+  | AST_int_interval of (string ext) (* lower bound *) * 
                     (string ext) (* upper bound *)
 
   (* calls a function with arguments and return value *)

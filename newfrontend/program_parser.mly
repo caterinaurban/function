@@ -25,6 +25,7 @@ open Abstract_syntax_tree
 %token TOK_TRUE
 %token TOK_FALSE
 %token TOK_RAND
+%token TOK_QUESTIONMARK
 %token TOK_BRAND
 %token TOK_FOR
 %token TOK_WHILE
@@ -39,6 +40,8 @@ open Abstract_syntax_tree
 %token TOK_RPAREN
 %token TOK_LCURLY
 %token TOK_RCURLY
+%token TOK_LBRACKET
+%token TOK_RBRACKET
 %token TOK_STAR
 %token TOK_PLUS
 %token TOK_MINUS
@@ -82,6 +85,7 @@ open Abstract_syntax_tree
 /****************/
 
 %start<Abstract_syntax_tree.toplevel list Abstract_syntax_tree.ext> file
+%start<Abstract_syntax_tree.bool_expr Abstract_syntax_tree.ext> expression
 
 
 %%
@@ -91,6 +95,10 @@ open Abstract_syntax_tree
 /************/
 
 file: t=ext(list(toplevel)) TOK_EOF { t }
+
+expression: t=ext(bool_expr) TOK_EOF { t }
+
+
 
 toplevel:
 | d=ext(var_decl)           { AST_global_decl d }
@@ -133,16 +141,22 @@ int_expr:
     
 | e=ext(TOK_id)
     { AST_int_identifier e }
+
+| e=ext(TOK_QUESTIONMARK)
+    { AST_int_random }
     
+| e=ext(TOK_RAND) TOK_LPAREN TOK_RPAREN
+    { AST_int_random }
+
 | o=int_unary_op e=ext(int_expr)
     { AST_int_unary (o,e) }
     
 | e1=ext(int_expr) o=int_binary_op e2=ext(int_expr)
     { AST_int_binary (o,e1,e2) }
     
-| TOK_RAND TOK_LPAREN e1=ext(sign_int_literal)  
-           TOK_COMMA  e2=ext(sign_int_literal) TOK_RPAREN
-    { AST_int_rand (e1, e2) }
+| TOK_LBRACKET e1=ext(sign_int_literal)  
+           TOK_COMMA  e2=ext(sign_int_literal) TOK_RBRACKET
+    { AST_int_interval (e1, e2) }
 
 | e=ext(TOK_id) TOK_LPAREN l=int_expr_list TOK_RPAREN
     { AST_expr_call (e, l) }

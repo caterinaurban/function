@@ -9,10 +9,12 @@
 (***************************************************)
 
 open Cfg
+open Iterator
 
 
-(* Map module for cfg nodes *)
-module NodeMap = Map.Make(Node)
+let trace = ref false
+let trace_states = ref false
+
 
 (** 
    type definition for abstact transformer.
@@ -28,13 +30,21 @@ type 't abstract_transformer  =
                        list of (abstract state, instruction) pairs for all 
                        predecessors nodes that have an incoming edge from this node. 
                    *)
-  -> (bool * 't)
+  -> (bool * 't) (* returns a boolean flag that indicates if a fixed point was 
+                    reached for this node and the updated state for this node *)
      
 
+type 't print_state = Format.formatter -> 't -> unit
+
+let print_worklist fmt queue = 
+  Format.fprintf fmt "worklist = [";
+  Queue.iter (fun node -> Format.fprintf fmt "%d " node.node_id) queue;
+  Format.fprintf fmt "]"
 
 (* abstract implementation of a backward analysis over a control flow graph *)
 let backward_analysis
     (type a) (* type of the abstract state that is computed for each node in 'cfg' *)
+    ?(print_state:a print_state option)
     (abstract_transformer: a abstract_transformer) (* implementation of abstract transformer for this analysis *)
     (initial_value:a NodeMap.t) (* map that assigns an initial state to each node in the cfg *)
     (main:func) (* entry point of the program *)
@@ -49,8 +59,10 @@ let backward_analysis
   (* Adds all predecessors of 'node' to the worklist *)
   let addPredecessorsToWorklist node = List.iter (fun arc -> 
       let predecessor = arc.arc_src in
-      Queue.add predecessor worklist; (* add predecessor to worklist *)
-      inWorklist.(predecessor.node_id) <- true (* update inWorklist array*)
+      if not inWorklist.(predecessor.node_id) then begin
+        Queue.add predecessor worklist; (* add predecessor to worklist *)
+        inWorklist.(predecessor.node_id) <- true (* update inWorklist array*)
+      end
     ) node.node_in
   in
   (** 
@@ -78,21 +90,20 @@ let backward_analysis
       let instStatePairs = List.map (fun arc -> (getState arc.arc_dst, arc.arc_inst)) node.node_out in
       (* number of times this node has been processed *)
       let nodeProcessed = processed.(node.node_id) in
+      if !trace then Format.fprintf !fmt "### processing node %d: \n" node.node_id;
       (* run abstract transformer for node to get new abstract state *)
       let (fixedPoint, newState) = abstract_transformer node processed.(node.node_id) currentState instStatePairs in 
       (* update 'processed' count *)
       processed.(node.node_id) <- nodeProcessed + 1; 
-      if fixedPoint then 
-        (* newState is a fixed point therefore we are done with this node *)
-        NodeMap.add node newState nodeMap
-      else 
-        (* otherwise we add all predecessors of node to the worklist, 
-           update 'nodeMap' and contionue with the algorithm *)
-        let newNodeMap = NodeMap.add node newState nodeMap in (* update nodeMap with new state *)
-        addPredecessorsToWorklist node;
-        aux newNodeMap (* continute with algorithm *)
+      (* add predecessors of node to worklist state of node changed *)
+      if not fixedPoint then addPredecessorsToWorklist node;
+      if !trace then Format.fprintf !fmt "-fixedPoint: %b \n-new worklist: %a \n######### \n \n"
+          fixedPoint print_worklist worklist;
+      (* add newState to nodeMap and continute with algorithm *)
+      aux @@ NodeMap.add node newState nodeMap 
   in
-  (* Add all predecessors of exit node to worklist *)
-  addPredecessorsToWorklist main.func_exit;
+  (* Add exit node to worklist *)
+  Queue.add main.func_exit worklist;
+  if !trace then Format.fprintf !fmt "### starting backward analysis: %a \n" print_worklist worklist;
   (* Run analysis *)
   aux initial_value

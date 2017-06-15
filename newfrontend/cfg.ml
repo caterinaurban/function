@@ -38,6 +38,7 @@ type var =
       var_pos: extent;   (* position of the variable declaration *)
     }
     
+let unique_var_name v = Printf.sprintf "$%i{%s}" v.var_id v.var_name 
 
       
 (* Expressions *)
@@ -69,8 +70,11 @@ type int_expr =
   (* constants *)
   | CFG_int_const of Z.t
 
+  (* constants *)
+  | CFG_int_random 
+
   (* non-deterministic choice between two integers *)
-  | CFG_int_rand of Z.t (* lower bound *) * Z.t (* upper bound *)
+  | CFG_int_interval of Z.t (* lower bound *) * Z.t (* upper bound *)
 
         
 type bool_expr =
@@ -231,6 +235,8 @@ module FuncSet = Set.Make(Func)
 module FuncMap = Mapext.Make(Func)
 module FuncHash = Hashtbl.Make(Func)
 
+
+
     
 
 (* Program CFG *)
@@ -246,3 +252,13 @@ type cfg =
       cfg_init_exit: node;   (* last node of initialization code *)
     }
       
+
+(* Find function by name *)
+let find_func (func_name:string) (cfg:cfg): func = 
+  List.find (fun f -> String.equal func_name f.func_name) cfg.cfg_funcs 
+
+(* Create NodeMap that maps 'value' to each node in 'cfg'*)
+let const_node_map (cfg:cfg) value = 
+  List.fold_left (fun map node -> NodeMap.add node value map) NodeMap.empty cfg.cfg_nodes
+
+let negate_bool_expr (bexpr:bool_expr): bool_expr = CFG_bool_unary (AST_NOT, bexpr)

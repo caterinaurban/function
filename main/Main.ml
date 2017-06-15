@@ -106,12 +106,11 @@ let parseCTLProperty filename =
       failwith e
 
 
-let parseCTLPropertyString (property:string) =
+let parseCTLPropertyString_plain (property:string) =
   let lex = Lexing.from_string property in
   try
     lex.Lexing.lex_curr_p <- { lex.Lexing.lex_curr_p with Lexing.pos_fname = "string"; };
-    let res = CTLPropertyParser.prog CTLPropertyLexer.read lex in
-    CTLProperty.map (fun p -> fst (parsePropertyString p)) res 
+    CTLPropertyParser.prog CTLPropertyLexer.read lex 
   with
   | CTLPropertyParser.Error->
     Printf.eprintf "Parse Error (Invalid Syntax) near %s\n" 
@@ -127,6 +126,9 @@ let parseCTLPropertyString (property:string) =
     else
       failwith e
 
+
+let parseCTLPropertyString (property:string) =
+    CTLProperty.map (fun p -> fst (parsePropertyString p)) @@ parseCTLPropertyString_plain property 
 
 let parse_args () =
   let rec doit args =
@@ -158,8 +160,8 @@ let parse_args () =
       analysis := "ctl_str"; property := x; doit r
     | "-ctl_termination"::r -> (* CTL analysis for termination *)
       analysis := "ctl_termination"; doit r
-    | "-ctl_new"::r -> (* CTL analysis for termination *)
-      analysis := "ctl_new"; doit r
+    | "-ctl_new"::x::r -> (* CTL analysis for termination *)
+      analysis := "ctl_new"; property := x; doit r
     | "-precondition"::c::r -> (* optional precondition that holds at the start of the program, default = true *)
       precondition := c; doit r
     | "-ctl_existential_equivalence"::r ->
@@ -184,6 +186,13 @@ let parse_args () =
       doit r
     | "-tracefwd"::r -> (* forward analysis trace *)
       Iterator.tracefwd := true; doit r
+    | "-traceworklist"::r -> (* backward analysis trace *)
+      BackwardInterpreter.trace := true;
+      doit r
+    | "-traceworkliststates"::r -> (* backward analysis trace *)
+      BackwardInterpreter.trace := true;
+      BackwardInterpreter.trace_states := true;
+      doit r
     | x::r -> filename := x; doit r
     | [] -> ()
   in
@@ -236,6 +245,13 @@ module CTLOctagons = CTLIterator.CTLIterator(DecisionTree.TSAO)
 module CTLOctagonsOrdinals = CTLIterator.CTLIterator(DecisionTree.TSOO)
 module CTLPolyhedra = CTLIterator.CTLIterator(DecisionTree.TSAP)
 module CTLPolyhedraOrdinals = CTLIterator.CTLIterator(DecisionTree.TSOP)
+
+module CTLCFGBoxes = CTLCFGIterator.CTLCFGIterator(DecisionTree.TSAB)
+module CTLCFGBoxesOrdinals = CTLCFGIterator.CTLCFGIterator(DecisionTree.TSOB)
+module CTLCFGOctagons = CTLCFGIterator.CTLCFGIterator(DecisionTree.TSAO)
+module CTLCFGOctagonsOrdinals = CTLCFGIterator.CTLCFGIterator(DecisionTree.TSOO)
+module CTLCFGPolyhedra = CTLCFGIterator.CTLCFGIterator(DecisionTree.TSAP)
+module CTLCFGPolyhedraOrdinals = CTLCFGIterator.CTLCFGIterator(DecisionTree.TSOP)
 
 
 let result = ref false
@@ -390,12 +406,33 @@ let ctl ?(property_as_string = false) () =
 
 let ctl_new () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
-  let ast = File_parser.parse_file !filename in
-  let cfg = Tree_to_cfg.prog ast in
-  let (env, vars) = CTLCFGIterator.env_vars cfg in
-  let _ = BackwardInterpreter.backward_analysis in
-  Printf.printf "%a" Cfg_printer.print_cfg cfg;
-  ()
+  if !property = "" then raise (Invalid_argument "No Property Specified");
+  let (cfg, getProperty) = Tree_to_cfg.prog (File_parser.parse_file !filename) !main in
+  let ctlProperty = CTLProperty.map File_parser.parse_bool_expression @@ parseCTLPropertyString_plain !property in
+  let ctlProperty = CTLProperty.map getProperty ctlProperty in
+  let precondition = getProperty @@ File_parser.parse_bool_expression !precondition in
+  let analyze =
+    match !domain with
+    | "boxes" -> if !ordinals then CTLCFGBoxesOrdinals.analyze else CTLCFGBoxes.analyze
+    | "octagons" -> if !ordinals then CTLCFGOctagonsOrdinals.analyze else CTLCFGOctagons.analyze
+    | "polyhedra" -> if !ordinals then CTLCFGPolyhedraOrdinals.analyze else CTLCFGPolyhedra.analyze
+    | _ -> raise (Invalid_argument "Unknown Abstract Domain")
+  in
+  if not !minimal then
+    begin
+      Printf.printf "\nCFG:\n";
+      Printf.printf "%a" Cfg_printer.print_cfg cfg;
+      Printf.printf "CFG_DOT:\n %a" Cfg_printer.output_dot cfg;
+      Printf.printf "\n";
+    end;
+  let mainFunc = Cfg.find_func !main cfg in
+  let result = analyze ~precondition:precondition cfg mainFunc ctlProperty in
+  if result then 
+    Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
+  else 
+    Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
+
+
 
 
 

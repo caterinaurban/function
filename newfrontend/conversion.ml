@@ -1,3 +1,4 @@
+open Apron
 open AbstractSyntax
 open Cfg
 open Abstract_syntax_tree
@@ -6,13 +7,22 @@ open Abstract_syntax_tree
    NOTE: this quite a mess, ideally one would unify the two syntaxes but this is a lot of work
 *)
 
+let varId_of_var (var: Cfg.var) = "$" ^ string_of_int var.var_id
 
 let of_var (var: Cfg.var): AbstractSyntax.var =
     {
-      AbstractSyntax.varId = string_of_int var.var_id;
+      AbstractSyntax.varId = varId_of_var var;
       AbstractSyntax.varName = var.var_name;
       AbstractSyntax.varTyp  = AbstractSyntax.A_INT; (* only int for now *)
     }
+
+let env_vars_of_cfg (cfg:cfg) =
+  let var_to_apron v = Apron.Var.of_string (varId_of_var v) in
+  let apron_vars = Array.map var_to_apron (Array.of_list cfg.cfg_vars) in
+  let env = Environment.make apron_vars [||] in
+  let vars = List.map of_var cfg.cfg_vars in
+  (env, vars)
+
    
 let of_binary_op (op:int_binary_op): AbstractSyntax.aBinOp = match op with
   | AST_PLUS -> A_PLUS
@@ -35,7 +45,8 @@ let rec of_int_expr expr = match expr with
     )
   | CFG_int_var var -> A_var (of_var var)
   | CFG_int_const c -> A_const (Z.to_int c)
-  | CFG_int_rand (l, u) -> A_interval (Z.to_int l, Z.to_int u)
+  | CFG_int_random -> A_RANDOM
+  | CFG_int_interval (l, u) -> A_interval (Z.to_int l, Z.to_int u)
 
 
 let rec of_bool_expr (expr:Cfg.bool_expr): bExp = match expr with

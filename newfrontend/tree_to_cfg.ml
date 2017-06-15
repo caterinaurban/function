@@ -176,6 +176,7 @@ type env =
       env_allvars: VarSet.t;               (* set of all variables *)
       env_labels: node StringMap.t;        (* labels *)
       env_gotos: (node * string ext) list; (* gotos *)
+      env_get_main_property: Abstract_syntax_tree.bool_expr -> bool_expr;
     }
 
 
@@ -220,7 +221,10 @@ let rec int_expr (env:env) (expr:Abstract_syntax_tree.int_expr)
       in
       env, [], CFG_int_const v
 
-  | AST_int_rand ((i1,x1),(i2,x2)) ->
+  | AST_int_random ->
+      env, [], CFG_int_random
+
+  | AST_int_interval ((i1,x1),(i2,x2)) ->
       let v1 =
         try Z.of_string i1
         with _ -> failwith (Printf.sprintf "invalid integer constant %s at %s" i1 (string_of_extent x1))
@@ -228,7 +232,7 @@ let rec int_expr (env:env) (expr:Abstract_syntax_tree.int_expr)
         try Z.of_string i2
         with _ -> failwith (Printf.sprintf "invalid integer constant %s at %s" i2 (string_of_extent x2))
       in
-      env, [], CFG_int_rand (v1,v2)
+      env, [], CFG_int_interval (v1,v2)
         
   | AST_expr_call ((id,x),exprs) ->
       let env1, inst, f = call env (id,x) exprs in
@@ -552,7 +556,7 @@ and stat_list (env:env) (entry:node) (exit:node) (l:stat ext list) : env =
 
 (* Translate a function *)
 
-let func (env:env) (f:fun_decl) : env =
+let func ?(is_main = false) (env:env) (f:fun_decl) : env =
   (* create entry and exit nodes *)
   let entry = create_node (fst f.fun_ext) in
   let exit = create_node (snd f.fun_ext) in
@@ -585,16 +589,24 @@ let func (env:env) (f:fun_decl) : env =
       in
       add_arc src dst (CFG_skip ("skip: goto "^id))
     ) env4.env_gotos;
+  (* create function to convert arbirary properties that are valid inside the main function *)
+  let env_get_main_property = 
+    if is_main then 
+      let env_get_main_property bexp = let (_, _, cfg_bexp) = bool_expr env4 bexp in cfg_bexp
+      in env_get_main_property
+    else env.env_get_main_property
+  in
   (* returned environment *)
   { env with
     env_funcs = env4.env_funcs;
     env_allvars = env4.env_allvars;
+    env_get_main_property = env_get_main_property;
   }
 
 
 (* Translate a whole program *)        
 
-let prog ((t,x):toplevel list ext) : cfg =
+let prog ((t,x):toplevel list ext) (main:string) : (cfg * (Abstract_syntax_tree.bool_expr -> Cfg.bool_expr)) =
   (* initial environment *)
   arcs := [];
   nodes := [];
@@ -607,17 +619,21 @@ let prog ((t,x):toplevel list ext) : cfg =
       env_allvars = VarSet.empty;
       env_labels = StringMap.empty;
       env_gotos = [];
+      env_get_main_property = fun _ -> CFG_bool_rand;
     }
   in
   (* translate each toplevel instruction *)
   let env, revinit =
     List.fold_left
-      (fun (env,revinit) t -> match t with
-      | AST_fun_decl (f,_) ->
-          func env f, revinit
-      | AST_global_decl (d,_) ->
-          let env1, inst1 = decls env d in
-          env1, List.rev_append inst1 revinit
+      (fun (env, revinit) t -> match t with
+         | AST_fun_decl (f,_) ->
+           if String.equal main (fst f.fun_name) then 
+             func ~is_main:true env f, revinit
+           else 
+             func env f, revinit
+         | AST_global_decl (d,_) ->
+           let env1, inst1 = decls env d in
+           env1, List.rev_append inst1 revinit
       )
       (env_init,[]) t
   in
@@ -629,11 +645,11 @@ let prog ((t,x):toplevel list ext) : cfg =
   (* extract program info *)
   let vars = List.rev (VarSet.fold (fun a acc -> a::acc) env.env_allvars []) in
   let funcs = List.rev (StringMap.fold (fun _ f acc -> f::acc) env.env_funcs []) in
-  { cfg_vars = vars;
+  ({ cfg_vars = vars;
     cfg_funcs = funcs;
     cfg_init_entry = entry;
     cfg_init_exit = exit;
     cfg_nodes = List.rev !nodes;
     cfg_arcs = List.rev !arcs;
-  }
+  }, env.env_get_main_property)
     
