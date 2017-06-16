@@ -253,6 +253,10 @@ type cfg =
     }
       
 
+(* Utility functions *)
+
+
+
 (* Find function by name *)
 let find_func (func_name:string) (cfg:cfg): func = 
   List.find (fun f -> String.equal func_name f.func_name) cfg.cfg_funcs 
@@ -262,3 +266,43 @@ let const_node_map (cfg:cfg) value =
   List.fold_left (fun map node -> NodeMap.add node value map) NodeMap.empty cfg.cfg_nodes
 
 let negate_bool_expr (bexpr:bool_expr): bool_expr = CFG_bool_unary (AST_NOT, bexpr)
+
+
+(* Insert 'exit' label befor exit node in 'func' *)
+let insert_exit_label (cfg:cfg) (func:func) = 
+  let maxNodeId = List.fold_left 
+      (fun currentMax node -> if node.node_id > currentMax then node.node_id else currentMax) 
+      0 cfg.cfg_nodes in
+  let maxArcId = List.fold_left 
+      (fun currentMax arc -> if arc.arc_id > currentMax then arc.arc_id else currentMax) 
+      0 cfg.cfg_arcs in
+  let oldExitNode = func.func_exit in
+  let newExitNode = { 
+    node_id = maxNodeId + 1;
+    node_pos = position_unknown;
+    node_out = [];
+    node_in = [];
+  } in
+  let labelArc = {
+    arc_id = maxArcId + 1;    
+    arc_src = oldExitNode;   
+    arc_dst = newExitNode;   
+    arc_inst = CFG_label "exit";
+  } in 
+  let newFunc = {
+    func with
+    func_exit = newExitNode;
+  } in
+  let newCfgFuncs = List.map (fun f -> if f.func_id == newFunc.func_id then newFunc else f) cfg.cfg_funcs in
+  oldExitNode.node_out <- labelArc::oldExitNode.node_out;
+  newExitNode.node_in <- labelArc::newExitNode.node_in;
+  {
+    cfg with
+    cfg_funcs = newCfgFuncs;
+    cfg_nodes = newExitNode::cfg.cfg_nodes;
+    cfg_arcs = labelArc::cfg.cfg_arcs
+  }
+
+
+
+

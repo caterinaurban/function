@@ -131,6 +131,8 @@ bool_expr:
 | TOK_BRAND
     { AST_bool_rand }
 
+| e=ext(int_expr)
+    { AST_compare (AST_NOT_EQUAL, e, add_extend_unknown (AST_int_const (add_extend_unknown "0"))) }
     
 int_expr:    
 | TOK_LPAREN e=int_expr TOK_RPAREN

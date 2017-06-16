@@ -160,8 +160,8 @@ let parse_args () =
       analysis := "ctl_str"; property := x; doit r
     | "-ctl_termination"::r -> (* CTL analysis for termination *)
       analysis := "ctl_termination"; doit r
-    | "-ctl_new"::x::r -> (* CTL analysis for termination *)
-      analysis := "ctl_new"; property := x; doit r
+    | "-ctl_cfg"::x::r -> (* CTL analysis for termination *)
+      analysis := "ctl_cfg"; property := x; doit r
     | "-precondition"::c::r -> (* optional precondition that holds at the start of the program, default = true *)
       precondition := c; doit r
     | "-ctl_existential_equivalence"::r ->
@@ -351,10 +351,12 @@ let ctl_termination () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   let parsedConditionalTerminationProperty = parseCTLPropertyString !precondition in
   let (prog, conditionalTerminationProperty) = ItoA.ctl_prog_itoa parsedConditionalTerminationProperty !main (parseFile !filename) in
-  let conditionalTerminationProperty = match conditionalTerminationProperty with  (* use ctl_prog_itoa to parse the conditional termination property*)
-    | CTLProperty.Atomic prop -> AbstractSyntax.StringMap.find "" prop 
+  let conditionalTerminationProperty = 
+    match conditionalTerminationProperty with  (* use ctl_prog_itoa to parse the conditional termination property*)
+    | CTLProperty.Atomic (prop, None) -> prop 
     | _ -> raise (Invalid_argument "ctl_prog_itoa returned invalid property") in
-  let (program, property) = CTLIterator.program_of_prog_with_termination prog !main in
+  let (program, property) = 
+    CTLIterator.program_of_prog_with_termination prog !main in
   if not !minimal then
     begin
       Format.fprintf !fmt "\nAbstract Syntax:\n";
@@ -403,11 +405,12 @@ let ctl ?(property_as_string = false) () =
     Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
 
 
-
-let ctl_new () =
+let ctl_cfg () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property Specified");
   let (cfg, getProperty) = Tree_to_cfg.prog (File_parser.parse_file !filename) !main in
+  let mainFunc = Cfg.find_func !main cfg in
+  let cfg = Cfg.insert_exit_label cfg mainFunc in
   let ctlProperty = CTLProperty.map File_parser.parse_bool_expression @@ parseCTLPropertyString_plain !property in
   let ctlProperty = CTLProperty.map getProperty ctlProperty in
   let precondition = getProperty @@ File_parser.parse_bool_expression !precondition in
@@ -446,7 +449,7 @@ let doit () =
   | "actl" -> ctl ()
   | "actl_termination" -> ctl_termination ()
   | "ctl" -> ctl ()
-  | "ctl_new" -> ctl_new ()
+  | "ctl_cfg" -> ctl_cfg ()
   | "ctl_str" -> ctl ~property_as_string:true ()
   | "ctl_termination" -> ctl_termination ()
   | _ -> raise (Invalid_argument "Unknown Analysis")

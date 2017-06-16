@@ -31,6 +31,8 @@ let extent_unknown = (position_unknown, position_unknown)
  *)
 type 'a ext = 'a * extent
 
+let add_extend_unknown a: 't ext = (a, extent_unknown)
+
 (* variable identifiers are string *)
 type id = string
 

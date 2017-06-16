@@ -24,7 +24,7 @@ OUNITDIR = `$(OCAMLFIND) query oUnit`
 OCAMLDIR = `$(OCAMLC) -where`
 OCAMLFLAGS = -thread -g
 OCAMLOPTFLAGS = -thread
-OCAMLINC = -I $(APRONDIR) -I $(ZARITHDIR) -I frontend -I utils -I banal -I domains -I main -I web -I $(OUNITDIR) -I tests -I $(GMPDIR)
+OCAMLINC = -I $(APRONDIR) -I $(ZARITHDIR) -I frontend -I newfrontend -I utils -I banal -I domains -I main -I web -I $(OUNITDIR) -I tests -I $(GMPDIR)
 #OCAMLLIBS = bigarray.cma gmp.cma apron.cma boxMPQ.cma octD.cma zarith.cma polkaMPQ.cma str.cma unix.cma threads.cma
 OCAMLOPTLIBS = bigarray.cmxa gmp.cmxa apron.cmxa boxMPQ.cmxa octD.cmxa zarith.cmxa polkaMPQ.cmxa str.cmxa threads.cmxa
 MENHIRFLAGS = --explain
@@ -56,8 +56,22 @@ AUTOGEN = \
   frontend/CTLPropertyLexer.ml \
   frontend/CTLPropertyParser.ml \
   frontend/CTLPropertyParser.mli \
+  newfrontend/program_lexer.ml \
+  newfrontend/program_parser.ml \
+  newfrontend/program_parser.mli \
   
 MLFILES = \
+  utils/setext.ml \
+  utils/mapext.ml \
+  utils/Constraints.ml \
+  utils/InvMap.ml \
+  newfrontend/abstract_syntax_tree.ml \
+  newfrontend/program_parser.ml \
+  newfrontend/program_lexer.ml \
+  newfrontend/cfg.ml \
+  newfrontend/cfg_printer.ml \
+  newfrontend/tree_to_cfg.ml \
+  newfrontend/file_parser.ml \
   frontend/IntermediateSyntax.ml \
   frontend/CTLProperty.ml \
   frontend/Lexer.ml \
@@ -68,10 +82,7 @@ MLFILES = \
   frontend/CTLPropertyParser.ml \
   frontend/AbstractSyntax.ml \
   frontend/ItoA.ml \
-  utils/Constraints.ml \
-  utils/InvMap.ml \
-  utils/setext.ml \
-  utils/mapext.ml \
+  newfrontend/conversion.ml \
   banal/banal_int.ml \
   banal/banal_float.ml \
   banal/banal_intinf.ml \
@@ -102,10 +113,13 @@ MLFILES = \
   main/GuaranteeIterator.ml \
   main/RecurrenceIterator.ml \
   main/CTLIterator.ml \
+  main/BackwardInterpreter.ml \
+  main/CTLCFGIterator.ml \
 
 MLIFILES = \
   frontend/Parser.mli \
   frontend/PropertyParser.mli \
+  newfrontend/program_parser.mli \
 
 CMDMLFILES = main/Main.ml
 TSTMLFILES = \

@@ -13,7 +13,8 @@ open ForwardIterator
 type ctl_property = Cfg.bool_expr CTLProperty.generic_property
 
 let rec print_ctl_property ch (property:ctl_property) = match property with 
-  | Atomic p -> Printf.printf "%a" print_bool_expr p
+  | Atomic (p, None) -> Printf.printf "%a" print_bool_expr p
+  | Atomic (p, Some l) -> Printf.printf "%s: %a" l print_bool_expr p
   | AX p ->  Printf.printf "AX{%a}" print_ctl_property p
   | AF p ->  Printf.printf "AF{%a}" print_ctl_property p
   | AG p ->  Printf.printf "AG{%a}" print_ctl_property p
@@ -28,6 +29,7 @@ let rec print_ctl_property ch (property:ctl_property) = match property with
 
 type quantifier = UNIVERSAL | EXISTENTIAL
 
+
 module CTLCFGIterator(D: RANKING_FUNCTION) = struct
 
   type inv = D.t NodeMap.t
@@ -39,14 +41,27 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
     in NodeMap.iter (fun node a -> 
         Format.fprintf fmt "[%d:]:\n%aDOT: %a\n\n" node.node_id D.print a D.print_graphviz_dot a) inv
 
-  let atomic env vars (cfg:cfg) (property:bool_expr) : inv = 
-    let bot = D.bot env vars in
+  let atomic bot (cfg:cfg) (property:bool_expr) : inv = 
     (* abstract state of all nodes in cfg*)
     let atomicState = D.reset bot (Conversion.of_bool_expr property) in
     (* create node map that assigns atomicState to all nodes*)
     List.fold_left
         (fun map node -> NodeMap.add node atomicState map) 
         NodeMap.empty cfg.cfg_nodes 
+
+
+  let labeled_atomic bot (cfg:cfg) (label:string) (property:bool_expr) : inv = 
+    (*node map that assigns bottom to all nodes*)
+    let botNodeMap = List.fold_left (fun map n -> NodeMap.add n bot map) NodeMap.empty cfg.cfg_nodes in
+    (* abstract state of all nodes with label in cfg*)
+    let atomicState = D.reset bot (Conversion.of_bool_expr property) in
+    (* create node map that assigns atomicState to all nodes that have an incoming arc with that label*)
+    let aux map arc = 
+      match arc.arc_inst with
+      | CFG_label l -> if String.equal l label then NodeMap.add arc.arc_dst atomicState map else map
+      | _ -> map
+    in List.fold_left aux botNodeMap cfg.cfg_arcs
+
 
   (* CTL 'or' opperator *)
   let logic_or (fp1:inv) (fp2:inv) : inv =
@@ -135,10 +150,13 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
             if iter_count <= !joinbwd then 
               (* keep going while widening threshold not reached *)
               newState 
-            (* else if (not isLeqComp) then *) 
-            (*   (1* widening threshold reached, apply widening *1) *)
-            (*   D.widen current_state (D.join COMPUTATIONAL current_state newState) *)
-            (*   (1* NOTE: the join might be necessary to ensure termination because of a bug (???) *1) *)
+            else if (not isLeqComp) then 
+              (* widening threshold reached, apply widening *)
+              let widenedNewState = D.widen current_state (D.join COMPUTATIONAL current_state newState) in
+              (* NOTE: the join might be necessary to ensure termination because of a bug (???) *)
+              if !BackwardInterpreter.trace_states then 
+                Format.fprintf !fmt "widenedNewState: \n %a \n" D.print widenedNewState;
+              widenedNewState
             else 
               let widenedNewState = D.widen current_state newState in (* widening threshold reached, apply widening *)
               if !BackwardInterpreter.trace_states then 
@@ -205,12 +223,13 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
         end;
     in
     let bot = D.bot env vars in
-    let atomic_true_inv = atomic env vars cfg (CFG_bool_const true) in
+    let atomic_true_inv = atomic bot cfg (CFG_bool_const true) in
     let init_bot = const_node_map cfg bot in
     let rec inv (property:ctl_property) : inv = 
       let result = 
         match property with
-        | Atomic b -> atomic env vars cfg b
+        | Atomic (b, None) -> atomic bot cfg b
+        | Atomic (b, Some l) -> labeled_atomic bot cfg l b
         | AX p -> next UNIVERSAL bot cfg (inv p)
         | EX p -> next EXISTENTIAL bot cfg (inv p)
         | AG p -> 
@@ -237,9 +256,9 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
           backwardAnalysis abstractTransformer init_bot main cfg 
         | AND (p1, p2) -> logic_and (inv p1) (inv p2)
         | OR (p1, p2) -> logic_or (inv p1) (inv p2)
-        | NOT (Atomic property) -> 
+        | NOT (Atomic (property, None)) -> 
           let negatedProperty = negate_bool_expr property in
-          atomic env vars cfg negatedProperty
+          atomic bot cfg negatedProperty
         | NOT p -> logic_not (inv p) 
         (* | _ -> raise (Invalid_argument "CTL property not supported") *)
       in
