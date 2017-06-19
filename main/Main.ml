@@ -193,6 +193,8 @@ let parse_args () =
       BackwardInterpreter.trace := true;
       BackwardInterpreter.trace_states := true;
       doit r
+    | "-dot"::r -> (* forward analysis trace *)
+      Iterator.dot := true; doit r
     | x::r -> filename := x; doit r
     | [] -> ()
   in
