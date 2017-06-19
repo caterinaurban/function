@@ -23,6 +23,7 @@ let timefwd = ref false
 let timeout = ref 300.0
 let tracefwd = ref false
 let tracebwd = ref false
+let dot = ref false (* output trees in graphviz dot format *)
 
 exception Abort
 exception Timeout

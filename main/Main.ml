@@ -182,6 +182,8 @@ let parse_args () =
       doit r
     | "-tracefwd"::r -> (* forward analysis trace *)
       Iterator.tracefwd := true; doit r
+    | "-dot"::r -> (* forward analysis trace *)
+      Iterator.dot := true; doit r
     | x::r -> filename := x; doit r
     | [] -> ()
   in

@@ -179,7 +179,13 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         InvMap.map D.compress inv
       else 
         inv
-    in InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\nDOT: %a\n" label_print l D.print a D.print_graphviz_dot a) inv
+    in
+    let printState l a =
+      if !dot then
+        Format.fprintf fmt "%a:\n%a\nDOT: %a\n" label_print l D.print a D.print_graphviz_dot a
+      else
+        Format.fprintf fmt "%a:\n%a\n" label_print l D.print a 
+    in InvMap.iter printState inv
 
 
   let abstract_transformer (quantifier:quantifier) = match quantifier with
