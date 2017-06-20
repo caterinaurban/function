@@ -14,9 +14,8 @@ MENHIR =    menhir
 # external libs
 
 APRONDIR = `$(OCAMLFIND) query apron`
-# APRONDIR = /users/absint/urban/lib/ocaml/site-lib/apron
+ZARITHDIR = `$(OCAMLFIND) query zarith`
 GMPDIR = `$(OCAMLFIND) query gmp`
-# GMPDIR = /users/absint/urban/lib/ocaml/site-lib/gmp
 OUNITDIR = `$(OCAMLFIND) query oUnit`
 
 # flags & paths
@@ -25,9 +24,9 @@ OUNITDIR = `$(OCAMLFIND) query oUnit`
 OCAMLDIR = `$(OCAMLC) -where`
 OCAMLFLAGS = -thread -g
 OCAMLOPTFLAGS = -thread
-OCAMLINC = -I $(APRONDIR) -I frontend -I utils -I domains -I main -I web -I $(OUNITDIR) -I tests -I $(GMPDIR)
-#OCAMLLIBS = bigarray.cma gmp.cma apron.cma boxMPQ.cma octD.cma polkaMPQ.cma str.cma unix.cma threads.cma
-OCAMLOPTLIBS = bigarray.cmxa gmp.cmxa apron.cmxa boxMPQ.cmxa octD.cmxa polkaMPQ.cmxa str.cmxa threads.cmxa
+OCAMLINC = -I $(APRONDIR) -I $(ZARITHDIR) -I frontend -I utils -I banal -I domains -I main -I web -I $(OUNITDIR) -I tests -I $(GMPDIR)
+#OCAMLLIBS = bigarray.cma gmp.cma apron.cma boxMPQ.cma octD.cma zarith.cma polkaMPQ.cma str.cma unix.cma threads.cma
+OCAMLOPTLIBS = bigarray.cmxa gmp.cmxa apron.cmxa boxMPQ.cmxa octD.cmxa zarith.cmxa polkaMPQ.cmxa str.cmxa threads.cmxa
 MENHIRFLAGS = --explain
 CFLAGS = -I $(OCAMLDIR) -O3 -Wall
 CLIBS = -lgmp
@@ -70,6 +69,26 @@ MLFILES = \
   frontend/AbstractSyntax.ml \
   frontend/ItoA.ml \
   utils/Constraints.ml \
+  utils/InvMap.ml \
+  utils/setext.ml \
+  utils/mapext.ml \
+  banal/banal_int.ml \
+  banal/banal_float.ml \
+  banal/banal_intinf.ml \
+  banal/banal_datatypes.ml \
+  banal/banal_rat.ml \
+  banal/banal_itv_int.ml \
+  banal/banal_itv_rat.ml \
+  banal/banal_itv_float.ml \
+  banal/banal_mathtypes.ml \
+  banal/banal_affine.ml \
+  banal/banal_abstract_syntax.ml \
+  banal/banal_typed_syntax.ml \
+  banal/banal_semantics.ml \
+  banal/banal_domain.ml \
+  banal/banal_linearization.ml \
+  banal/banal_apron_domain.ml \
+  banal/function_banal_converter.ml \
   domains/Partition.ml \
   domains/Numerical.ml \
   domains/Functions.ml \
@@ -78,6 +97,7 @@ MLFILES = \
   domains/Domain.ml \
   domains/DecisionTree.ml \
   main/Iterator.ml \
+  main/ForwardIterator.ml \
   main/TerminationIterator.ml \
   main/GuaranteeIterator.ml \
   main/RecurrenceIterator.ml \
@@ -92,7 +112,13 @@ TSTMLFILES = \
   tests/TestCommon.ml \
   tests/TerminationBoxesTest.ml \
   tests/TerminationPolyhedraTest.ml \
+  tests/CTLTest.ml \
   tests/Test.ml \
+
+
+CFILES = \
+  banal/ml_float.c \
+
 
 CMOFILES = $(MLFILES:%.ml=%.cmo)
 CMXFILES = $(MLFILES:%.ml=%.cmx)

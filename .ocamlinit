@@ -1,6 +1,7 @@
 #require "core";;
 #require "apron";;
 #require "gmp";;
+#require "zarith";;
 #require "oUnit";;
 
 (* Added by OPAM. *)
@@ -13,6 +14,7 @@ let () =
 #directory "_build/domains"
 #directory "_build/frontend"
 #directory "_build/main"
+#directory "_build/banal"
 
 #load_rec "polkaMPQ.cma"
 #load_rec "boxMPQ.cma"

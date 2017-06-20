@@ -1,18 +1,25 @@
 open AbstractSyntax
+open InvMap
 open CTLProperty
 open Apron
 open Domain
 open Partition
 open Functions
 open Iterator
+open ForwardIterator
 
 (* type for CTL properties, instantiated with bExp for atomic propositions *)
-type ctl_property = AbstractSyntax.bExp CTLProperty.generic_property
+type ctl_property = (AbstractSyntax.bExp StringMap.t) CTLProperty.generic_property
+
+let atomic_property_of_bexp (b:bExp) = Atomic (StringMap.add "" b StringMap.empty)
 
 type quantifier = UNIVERSAL | EXISTENTIAL
 
 let rec print_ctl_property fmt (property:ctl_property) = match property with 
-  | Atomic b -> AbstractSyntax.bExp_print_aux fmt b
+  | Atomic p -> 
+    let propertyBindings = StringMap.bindings p in
+    if List.length propertyBindings == 1 then AbstractSyntax.bExp_print_aux fmt (StringMap.find "" p)
+    else StringMap.iter (fun key b -> if String.length key > 0 then Format.fprintf fmt "%s: %a" key AbstractSyntax.bExp_print_aux b else ()) p
   | AX p -> Format.fprintf fmt "AX{%a}" print_ctl_property p
   | AF p -> Format.fprintf fmt "AF{%a}" print_ctl_property p
   | AG p -> Format.fprintf fmt "AG{%a}" print_ctl_property p
@@ -26,16 +33,12 @@ let rec print_ctl_property fmt (property:ctl_property) = match property with
   | NOT p -> Format.fprintf fmt "NOT{%a}" print_ctl_property p;
 
 
-module InvMap = Map.Make(struct type t=label let compare=compare end)
-
-
 (* Bundle commonly used values (AST, Apron env. variable list) to one struct *)
 type program = {
   environment: Apron.Environment.t;
   variables: AbstractSyntax.var list;
   mainFunction: AbstractSyntax.func;
   globalBlock: AbstractSyntax.block; 
-  dummyPosition: IntermediateSyntax.extent;
 }
 
 (* Computes the set of all labels of a program *)
@@ -60,41 +63,52 @@ let block_label block =
   | A_block (l,_,_) -> l
 
 
+(* generate map that assigns a block to each label in the program *)
+let block_label_map block: block InvMap.t = 
+  let rec aux (b:block) (map: block InvMap.t) = 
+    let map' = InvMap.add (block_label b) b map in 
+    match b with
+    | A_empty _ -> map'
+    | A_block (blockLabel, (stmt, _), nextBlock) ->
+      let map'' = aux nextBlock map' in
+      match stmt with 
+      | A_if (_, bIf, bElse) -> aux bElse (aux bIf map'') 
+      | A_while (whileLabel, _, loop_body) -> 
+        let map''' = InvMap.add whileLabel b map'' in
+        aux loop_body map'''
+      | _ -> map''
+  in aux block InvMap.empty
+
 
 (*
-   This function takes a given paresed program and introduces a new variable called 'termination' that is set to '0'
-   whenever the program terminates i.e. at the end and before every return statement. 
+   This function takes a given paresed program and introduces a new label called 'exit' 
+   before each 'return' statement and at the end of the program
 
-   The augmented program and a corresponding ctl_property for termination is returned. 
+   The augmented program and a corresponding ctl_property 'AF{exit: true}' for termination is returned. 
    This pair can then be used with the usual CTL analysis to check for termination.
 *)
 let program_of_prog_with_termination (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.key) : (program * ctl_property) =
   let (globalVariables, globalBlock, functions) = prog in
   let mainFunction = StringMap.find main functions in
-  let dummyPosition = match mainFunction.funcBody with 
-    | A_block (_, (_,pos), _) -> pos
-    | _ -> raise (Invalid_argument "empty main function")
-  in
-  let terminationVar = {varId = "$termination"; varName = "termination"; varTyp = A_INT} in
-  let assignZero = (A_assign ((A_var terminationVar, dummyPosition), (A_const 0, dummyPosition)), dummyPosition) in
-  let assignOne = (A_assign ((A_var terminationVar, dummyPosition), (A_const 1, dummyPosition)), dummyPosition) in
-  let id = ref (-2) in
-  let nextId () = let i = !id in id := i + 1; i in
+  let dummyExtent = (Lexing.dummy_pos, Lexing.dummy_pos) in
+  let exitLabel = A_label ("exit", dummyExtent) in
+  let id = ref (-1) in
+  let nextId () = let i = !id in id := i - 1; i in
   let rec addTerminationStmt (block:block) = match block with
-    | A_empty l -> A_block (nextId (), assignOne, block)
+    | A_empty l -> A_block (nextId (), (exitLabel, dummyExtent), block)
     | A_block (l,stmt,nextBlock) -> A_block (l, stmt, addTerminationStmt nextBlock)
   in
   let rec addTerminationStmtReturn (block:block) = match block with
     | A_empty l -> block 
     | A_block (l, (A_return,a) , nextBlock) -> 
       let nextBlock = A_block (l, (A_return, a), addTerminationStmtReturn nextBlock) in
-      A_block (nextId (), assignOne, nextBlock)
+      A_block (nextId (), (exitLabel, dummyExtent), nextBlock)
     | A_block (l, stmt, nextBlock) -> A_block (l, stmt, addTerminationStmtReturn nextBlock)
   in
-  let augmentedBody = A_block (-1, assignZero, addTerminationStmtReturn @@ addTerminationStmt mainFunction.funcBody) in
+  let augmentedBody = addTerminationStmtReturn @@ addTerminationStmt mainFunction.funcBody in
   let v1 = snd (List.split (StringMap.bindings globalVariables)) in
   let v2 = snd (List.split (StringMap.bindings mainFunction.funcVars)) in
-  let vars = terminationVar :: (List.append v1 v2) in (* add special terminationVar to list of variables *)
+  let vars = List.append v1 v2 in 
   let var_to_apron v = Apron.Var.of_string v.varId in
   let apron_vars = Array.map var_to_apron (Array.of_list vars) in
   let env = Environment.make apron_vars [||] in
@@ -105,14 +119,13 @@ let program_of_prog_with_termination (prog: AbstractSyntax.prog) (main: Abstract
       funcName = mainFunction.funcName;
       funcTyp = mainFunction.funcTyp;
       funcArgs = mainFunction.funcArgs;
-      funcVars = StringMap.add terminationVar.varId terminationVar mainFunction.funcVars; (* add termination var to function variables *)
+      funcVars = mainFunction.funcVars; (* add termination var to function variables *)
       funcBody = augmentedBody
     };
     globalBlock = globalBlock;
-    dummyPosition = dummyPosition
   } in
-  let terminationProperty = AF (Atomic (AbstractSyntax.A_rbinary (AbstractSyntax.A_GREATER_EQUAL, (A_var terminationVar, dummyPosition), (A_const 1, dummyPosition)))) in
-  (program, terminationProperty)
+  let exitProperty = StringMap.add "exit" A_TRUE (StringMap.add "" A_FALSE StringMap.empty) in
+  (program, AF (Atomic exitProperty))
 
 
 let prog_of_program (program:program) : prog = 
@@ -130,93 +143,12 @@ let program_of_prog (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.
   let var_to_apron v = Apron.Var.of_string v.varId in
   let apron_vars = Array.map var_to_apron (Array.of_list vars) in
   let env = Environment.make apron_vars [||] in
-  let dummyPosition = match mainFunction.funcBody with (* store some syntax possition for later use *)
-    | A_block (_, (_,pos), _) -> pos
-    | _ -> raise (Invalid_argument "empty main function")
-  in
   {
     environment = env;
     variables = vars;
     mainFunction = mainFunction;
     globalBlock = globalBlock;
-    dummyPosition = dummyPosition
   }
-
-
-module ForwardIterator (D:RANKING_FUNCTION) = struct
-
-  let fwdInvMap = ref InvMap.empty
-
-  let addFwdInv l (a:D.B.t) = fwdInvMap := InvMap.add l a !fwdInvMap
-
-  let fwdMap_print fmt m = InvMap.iter (fun l a -> Format.fprintf fmt "%a: %a\n" label_print l D.B.print a) m
-
-  (* Forward Iterator *)
-
-  let rec fwdStm (program:program) p s =
-    match s with
-    | A_label _ -> p
-    | A_return -> D.B.bot program.environment program.variables
-    | A_assign ((l,_),(e,_)) -> D.B.fwdAssign p (l,e)
-    | A_assert (b,_) -> D.B.filter p b
-    | A_if ((b,ba),s1,s2) ->
-      let p1 = fwdBlk program (D.B.filter p b) s1 in
-      let p2 = fwdBlk program (D.B.filter p (fst (negBExp (b,ba)))) s2 in
-      D.B.join p1 p2
-    | A_while (l,(b,ba),s) ->
-      let rec aux i p2 n =
-        let i' = D.B.join p p2 in
-        if !tracefwd && not !minimal then begin
-          Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
-          Format.fprintf !fmt "p: %a\n" D.B.print p;
-          Format.fprintf !fmt "i: %a\n" D.B.print i;
-          Format.fprintf !fmt "p2: %a\n" D.B.print p2;
-          Format.fprintf !fmt "i': %a\n" D.B.print i';
-        end;
-        if D.B.isLeq i' i then i
-        else
-          let i'' = if n <= !joinfwd then i' else D.B.widen i i' in
-          if !tracefwd && not !minimal then Format.fprintf !fmt "i'': %a\n" D.B.print i'';
-          aux i'' (fwdBlk program (D.B.filter i'' b) s) (n+1)
-      in
-      let i = D.B.bot program.environment program.variables in
-      let p2 = fwdBlk program (D.B.filter i b) s in
-      let p = aux i p2 1 in
-      addFwdInv l p;
-      D.B.filter p (fst (negBExp (b,ba)))
-    | A_call (f,ss) -> raise (Invalid_argument "fwdStm:A_recall")
-    | A_recall (f,ss) -> raise (Invalid_argument "fwdStm:A_recall")
-
-  and fwdBlk (program:program) (p:D.B.t) (b:block) : D.B.t =
-    match b with
-    | A_empty l ->
-      if !tracefwd && not !minimal then
-        Format.fprintf !fmt "### %a ###: %a\n" label_print l D.B.print p;
-      addFwdInv l p; p
-    | A_block (l,(s,_),b) ->
-      if !tracefwd && not !minimal then
-        Format.fprintf !fmt "### %a ###: %a\n" label_print l D.B.print p;
-      addFwdInv l p; fwdBlk program (fwdStm program p s) b
-
-  let compute (program:program) =
-    let s = program.mainFunction.funcBody in
-    (* Forward Analysis *)
-    if !tracefwd && not !minimal then Format.fprintf !fmt "\nForward Analysis Trace:\n";
-    let startfwd = Sys.time () in
-    fwdInvMap := InvMap.empty; (* reset inv map *)
-    let _ = fwdBlk program (D.B.top program.environment program.variables) s in
-    let stopfwd = Sys.time () in
-    if not !minimal then
-      begin
-        if !timefwd then
-          Format.fprintf !fmt "\nForward Analysis (Time: %f s):\n" (stopfwd-.startfwd)
-        else
-          Format.fprintf !fmt "\nForward Analysis:\n";
-        fwdMap_print !fmt !fwdInvMap;
-      end;
-    !fwdInvMap
-
-end
 
 
 module CTLIterator(D: RANKING_FUNCTION) = struct
@@ -233,6 +165,8 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
      At loop heads the final 'in' state is computed by iterating over the loop body until a fixed-point is reached.
   *)
 
+  module ForwardIteratorB = ForwardIterator(D.B)
+
   (* 
      Type that represents an invariant/fixed-point.
      An invariant assigns an abstract state to each statement of a program
@@ -245,7 +179,18 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         InvMap.map D.compress inv
       else 
         inv
-    in InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\nDOT: %a\n" label_print l D.print a D.print_graphviz_dot a) inv
+    in
+    let printState l a =
+      if !dot then
+        Format.fprintf fmt "%a:\n%a\nDOT: %a\n" label_print l D.print a D.print_graphviz_dot a
+      else
+        Format.fprintf fmt "%a:\n%a\n" label_print l D.print a 
+    in InvMap.iter printState inv
+
+
+  let abstract_transformer (quantifier:quantifier) = match quantifier with
+    | UNIVERSAL -> (D.join APPROXIMATION, D.bwdAssign ~underapprox:false, D.filter ~underapprox: false)
+    | EXISTENTIAL -> (D.join COMPUTATIONAL, D.bwdAssign ~underapprox:true, D.filter ~underapprox: true)
 
 
   (* Computes fixed-point for 'until' properties: AU{inv_keep}{inv_reset} 
@@ -255,7 +200,8 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
      This resets the ranking function for those parts of the domain where inv_reset is also 
      defined and it discards those parts of the ranking function where neither inv_keep nor inv_reset are defined.
   *)
-  let until (program:program) (inv_keep:inv) (inv_reset:inv) : inv =
+  let until (quantifier:quantifier) (fwdInv:label -> D.B.t) (program:program) (inv_keep:inv) (inv_reset:inv) : inv =
+    let (branch_join, bwd_assign, bwd_filter) = abstract_transformer quantifier in
     let inv = ref InvMap.empty in (* variable where the resulting invariant/fixed-point is stored *)
     let addInv l (a:D.t) = inv := InvMap.add l a !inv; a in (* update InvMap with new value and return new updated value *)
     let bot = D.bot program.environment program.variables in
@@ -266,6 +212,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
       | A_empty blockLabel ->
         let invBlockKeep = InvMap.find blockLabel inv_keep in
         let invBlockReset = InvMap.find blockLabel inv_reset in
+        let out = if !refine then D.refine out (fwdInv blockLabel) else out in
         let in_state = D.until out invBlockKeep invBlockReset in
         if !tracebwd && not !minimal then Format.fprintf !fmt "### %a ###:\n%a\n" label_print blockLabel D.print in_state;
         addInv blockLabel in_state
@@ -278,16 +225,16 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         let in_state = match stmt with 
           | A_label (l,_) -> out_state
           | A_return -> bot
-          | A_assign ((l,_),(e,_)) -> D.bwdAssign out_state (l,e)
-          | A_assert (b,_) -> D.filter out_state b
+          | A_assign ((l,_),(e,_)) -> bwd_assign out_state (l,e)
+          | A_assert (b,_) -> bwd_filter out_state b
           | A_if ((b,ba),s1,s2) ->
             let in_if = bwd out_state s1 in (* compute 'in state for if-block*)
             let in_else = bwd out_state s2 in (* compute 'in state for else-block *)
-            let in_if_filtered = D.filter in_if b in (* filter *)
-            let in_else_filtered = D.filter in_else (fst (negBExp (b,ba))) in (* filter *)
-            D.join APPROXIMATION in_if_filtered in_else_filtered (* join the two branches *)
+            let in_if_filtered = bwd_filter in_if b in (* filter *)
+            let in_else_filtered = bwd_filter in_else (fst (negBExp (b,ba))) in (* filter *)
+            branch_join in_if_filtered in_else_filtered (* join the two branches *)
           | A_while (l,(b,ba),loop_body) ->
-            let out_exit = D.filter out_state (fst (negBExp (b,ba))) in (* 'out' state when not entering the loop body *)
+            let out_exit = bwd_filter out_state (fst (negBExp (b,ba))) in (* 'out' state when not entering the loop body *)
             let rec aux (* recursive function that iteratively computes fixed point for 'in' state at loop head *)
                 in_state (* 'in' state of the previous iteration *)
                 out_enter (* current 'out' state when entering the loop body *)
@@ -322,16 +269,17 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
                     D.widen in_state in_state' (* widening threshold reached, apply widening *)
                 in
                 if !tracebwd && not !minimal then Format.fprintf !fmt "in'': %a\n" D.print in_state'';
-                let out_enter' = D.filter (bwd in_state'' loop_body) b in (* process loop body again with updated 'in' state *)
+                let out_enter' = bwd_filter (bwd in_state'' loop_body) b in (* process loop body again with updated 'in' state *)
                 aux in_state'' out_enter' (n+1) (* run next iteration *)
             in
             let initial_in = bot in (* start with bottom as initial 'in' state *)
-            let initial_out_enter = D.filter (bwd initial_in loop_body) b in (* process loop body with initial 'in' state *)
+            let initial_out_enter = bwd_filter (bwd initial_in loop_body) b in (* process loop body with initial 'in' state *)
             let final_in_state = aux initial_in initial_out_enter 1 in (* compute fixed point for loop-head *)
             addInv l final_in_state 
           | A_call (f,ss) -> raise (Invalid_argument "bwdStm:A_call")
           | A_recall (f,ss) -> raise (Invalid_argument "bwdStm:A_recall")
         in
+        let in_state = if !refine then D.refine in_state (fwdInv blockLabel) else in_state in
         let in_state = d_until in_state in (* reset ranking functions *)
         if !tracebwd && not !minimal then Format.fprintf !fmt "### %a ###:\n%a\n" label_print blockLabel D.print in_state;
         addInv blockLabel in_state
@@ -356,7 +304,8 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     This will start the backward analysis with a zero state that is defined on the entire domain. By doing so, we avoid cutting away states on finite traces.
 
   *)
-  let global ?(use_sink_state = false) (program:program) (fixed_point:inv) : inv =
+  let global (quantifier:quantifier) (fwdInv:label -> D.B.t) ?(use_sink_state = false) (program:program) (fixed_point:inv) : inv =
+    let (branch_join, bwd_assign, bwd_filter) = abstract_transformer quantifier in
     let inv = ref (InvMap.union (fun _ _ _ -> None) fixed_point InvMap.empty) in (* initialize InvMap with given fixed-point for nested property *)
     let addInv l (a:D.t) = inv := InvMap.add l a !inv; a in (* update InvMap with new value and return new updated value *)
     let blockState block = InvMap.find (label_of_block block) !inv in (* returns current 'in' state of a block *)
@@ -367,25 +316,27 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
       if (((Sys.time ()) -. start) > !timeout) then raise Timeout; (* check for timeout *)
       let current_in = blockState b in (* current 'in' state for this block *)
       match b with
-      | A_empty blockLabel -> addInv blockLabel (D.mask current_in out) 
+      | A_empty blockLabel -> 
+        let out = if !refine then D.refine out (fwdInv blockLabel) else out in
+        addInv blockLabel (D.mask current_in out) 
       | A_block (blockLabel, (stmt,_), nextBlock) ->
         let out_state = bwd out nextBlock in (* recursively process the rest of the program, this gives us the 'out' state for this statement *)
         let new_in = match stmt with 
           | A_label (l,_) -> out_state
           | A_return -> if use_sink_state then zero else bot 
-          | A_assign ((l,_),(e,_)) -> D.mask current_in (D.bwdAssign out_state (l,e))
-          | A_assert (b,_) -> D.mask current_in (D.filter out_state b)
+          | A_assign ((l,_),(e,_)) -> D.mask current_in (bwd_assign out_state (l,e))
+          | A_assert (b,_) -> D.mask current_in (bwd_filter out_state b)
           | A_if ((b,ba),s1,s2) ->
-            let out_if = D.filter (bwd out_state s1) b in (* compute 'out' state for if-block*)
-            let out_else = D.filter (bwd out_state s2) (fst (negBExp (b,ba))) in (* compute 'out' state for else-block *)
-            D.mask current_in (D.join APPROXIMATION out_if out_else) (* join the two branches and combine with current 'in' state using maks *)
+            let out_if = bwd_filter (bwd out_state s1) b in (* compute 'out' state for if-block*)
+            let out_else = bwd_filter (bwd out_state s2) (fst (negBExp (b,ba))) in (* compute 'out' state for else-block *)
+            D.mask current_in (branch_join out_if out_else) (* join the two branches and combine with current 'in' state using mask *)
           | A_while (l,(b,ba),loop_body) ->
-            let out_exit = D.filter out_state (fst (negBExp (b,ba))) in (* 'out' state when not entering the loop body *)
+            let out_exit = bwd_filter out_state (fst (negBExp (b,ba))) in (* 'out' state when not entering the loop body *)
             let rec aux (* recursive function that iteratively computes fixed point for 'in' state at loop head *)
                 (current_in:D.t) (* 'in' state of the previous iteration *)
                 (out_enter:D.t) (* current 'out' state when entering the loop body *)
                 (n:int) : D.t = (* iteration counter *)
-              let out_joined = D.join APPROXIMATION out_exit out_enter in (* new 'in' state after joining the incoming branches *)
+              let out_joined = branch_join out_exit out_enter in (* new 'in' state after joining the incoming branches *)
               let updated_in = D.mask current_in out_joined in (* join two branches and combine with current 'in' state using mask *)
               if !tracebwd && not !minimal then begin
                 Format.fprintf !fmt "### %a:%i ###:\n" label_print l n;
@@ -407,16 +358,17 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
                   if n <= !joinbwd then updated_in (* widening threshold not yet reached *)
                   else D.dual_widen current_in updated_in (* use dual_widen after widening threshold reached *)
                 in
-                let out_enter' = D.filter (bwd updated_in' loop_body) b in (* process loop body again with updated 'in' state *)
+                let out_enter' = bwd_filter (bwd updated_in' loop_body) b in (* process loop body again with updated 'in' state *)
                 (* next iteration *)
                 aux updated_in' out_enter' (n+1)
             in
-            let initial_out_enter = D.filter (bwd current_in loop_body) b in (* process loop body with current 'in' state at loop-head *)
+            let initial_out_enter = bwd_filter (bwd current_in loop_body) b in (* process loop body with current 'in' state at loop-head *)
             let final_in_state = aux current_in initial_out_enter 1 in (* compute fixed point for while-loop starting with current 'in' state at loop-head *)
             addInv l final_in_state 
           | A_call (f,ss) -> raise (Invalid_argument "bwdStm:A_call")
           | A_recall (f,ss) -> raise (Invalid_argument "bwdStm:A_recall")
         in
+        let new_in = if !refine then D.refine new_in (fwdInv blockLabel) else new_in in
         addInv blockLabel new_in (* use mask to compute the new 'in' state for this block *)
     in 
     let _ = bwd (if use_sink_state then zero else bot) program.mainFunction.funcBody in (* run backward analysis starting from bottom *)
@@ -429,7 +381,8 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     There we need to inject the 'out' state of the next basic block in the control-flow-graph. 
     This is done by passing in said state through the recursion of the backward analysis.
   *)
-  let next (program:program) (fp:inv) : inv =
+  let next (quantifier:quantifier) (program:program) (fp:inv) : inv =
+    let (branch_join, bwd_assign, bwd_filter) = abstract_transformer quantifier in
     let invMap = ref InvMap.empty in
     let addInv label state = invMap := InvMap.add label state !invMap in
     let rec aux (b:block) (nextOuterState:D.t) () = (* nextOuterState is the 'out' state of the next basic block in the CFG *)
@@ -441,21 +394,21 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
         aux nextBlock nextOuterState ();
         match stmt with
         | A_if ((b,ba), bIf, bElse) -> 
-          let sIf = D.filter (InvMap.find (block_label bIf) fp) b in
-          let sElse = D.filter (InvMap.find (block_label bElse) fp) (fst (negBExp (b,ba))) in
-          let s = D.join APPROXIMATION sIf sElse in
+          let sIf = bwd_filter (InvMap.find (block_label bIf) fp) b in
+          let sElse = bwd_filter (InvMap.find (block_label bElse) fp) (fst (negBExp (b,ba))) in
+          let s = branch_join sIf sElse in
           addInv blockLabel s;
           aux bElse nextBlockState ();
           aux bIf nextBlockState ()
         | A_while (whileLabel,(b,ba),whileBlock) -> 
           let blockState = InvMap.find blockLabel fp in
-          let sFall = D.filter (InvMap.find (block_label whileBlock) fp) b in
-          let sJump = D.filter nextBlockState (fst (negBExp (b,ba))) in
-          let s = D.join APPROXIMATION sFall sJump in
+          let sFall = bwd_filter (InvMap.find (block_label whileBlock) fp) b in
+          let sJump = bwd_filter nextBlockState (fst (negBExp (b,ba))) in
+          let s = branch_join sFall sJump in
           addInv blockLabel s;
           aux whileBlock blockState ();
         | A_assign ((l,_),(e,_)) -> 
-          let s = D.bwdAssign nextBlockState (l,e) in
+          let s = bwd_assign nextBlockState (l,e) in
           addInv blockLabel s
         | _ -> 
           addInv blockLabel nextBlockState
@@ -470,11 +423,25 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     Assign atomic state to each label of the program.
     Atomic state is a function that returns zero for all states that satisfy the property
   *)
-  let atomic (program:program) (property:bExp) : inv = 
+  let atomic (program:program) (property:bExp StringMap.t) : inv = 
     let bot = D.bot program.environment program.variables in
-    let atomicState = D.reset bot property in
-    let labels = labels_of_program program in
-    List.fold_left (fun invMap label -> InvMap.add label atomicState invMap) InvMap.empty labels
+    let blockMap = block_label_map program.mainFunction.funcBody in
+    let globalProperty = StringMap.find "" property in (* get global property i.e. property not associated with a label *)
+    let atomicState = D.reset bot globalProperty in
+    let reducer (inv:D.t InvMap.t) (label, block) = 
+      let state = match block with 
+        | A_block (_, (A_label (l, _), _), _) -> 
+          (try D.reset bot (StringMap.find l property) with Not_found -> atomicState)
+        | _ -> atomicState 
+      in InvMap.add label state inv
+    in List.fold_left reducer InvMap.empty (InvMap.bindings blockMap)
+
+   let atomic_true (program:program) : inv =
+     let bot = D.bot program.environment program.variables in
+     let trueState = D.reset bot (A_TRUE) in
+     let labels = labels_of_program program in
+     List.fold_left (fun inv label -> InvMap.add label trueState inv) InvMap.empty labels
+
 
   (* CTL 'or' opperator *)
   let logic_or (fp1:inv) (fp2:inv) : inv =
@@ -494,6 +461,24 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     Recusively compute fixed-point for CTL properties 
   *)
   let compute (program:program) (property:ctl_property) : inv = 
+    let atomic_true_inv = atomic_true program in
+    let fwdInvMap = if !refine then (* Run forward analysis if 'refine' flag is set *)
+        ForwardIteratorB.compute 
+          (program.variables,
+           program.globalBlock,
+          (StringMap.singleton program.mainFunction.funcName program.mainFunction))
+          program.mainFunction.funcName
+          program.environment
+      else
+        InvMap.empty
+    in
+    let fwdInv l = InvMap.find l fwdInvMap in
+    let a_until = until UNIVERSAL fwdInv in
+    let e_until = until EXISTENTIAL fwdInv in
+    let a_global = global UNIVERSAL fwdInv in
+    let e_global = global EXISTENTIAL fwdInv in
+    let a_next = next UNIVERSAL in
+    let e_next = next EXISTENTIAL in
     let print_inv property inv = 
       if not !minimal then
         begin
@@ -505,44 +490,61 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
       let result = 
         match property with
         | Atomic b -> atomic program b
-        | AX p -> next program (inv p)
-        | AF p -> until program (inv (Atomic A_TRUE)) (inv p)
-        | AG p -> global program (inv p)
-        | AU (p1, p2) -> until program (inv p1) (inv p2)
-        | EF p -> (* EF(p) := not AG(not p)  *)
+        | AX p -> a_next program (inv p)
+        | AF p -> a_until program atomic_true_inv (inv p)
+        | AG p -> a_global program (inv p)
+        | AU (p1, p2) -> a_until program (inv p1) (inv p2)
+        | EU (p1, p2) -> 
+          if !ctl_existential_equivalence then 
+            raise (Invalid_argument "existential equivalence conversion not supported for 'until' operator")
+          else 
+            e_until program (inv p1) (inv p2)
+        | EF p -> 
+          if !ctl_existential_equivalence then 
+            (* use the following equivalence relation: EF(p) := not AG(not p)  *)
             let inv_not_p = inv (NOT p) in
-            let inv_ag = global ~use_sink_state:true program inv_not_p in
+            let inv_ag = a_global ~use_sink_state:true program inv_not_p in
             print_inv (AG (NOT p)) inv_ag;
             let not_inv_ag = logic_not inv_ag in
             not_inv_ag
-        | EG p -> (* EG(p) := not AF(not p)  *)
+          else
+            e_until program atomic_true_inv (inv p)
+        | EG p -> 
+          if !ctl_existential_equivalence then
+            (* use the following equivalence realtion: EG(p) := not AF(not p)  *)
             let inv_not_p = inv (NOT p) in
-            let inv_af = until program (inv (Atomic A_TRUE)) inv_not_p in
+            let inv_af = a_until program atomic_true_inv inv_not_p in
             print_inv (AF (NOT p)) inv_af;
             let not_inv_af = logic_not inv_af in
             not_inv_af
+          else
+            e_global program (inv p)
         | EX p -> (* EX(p) := not AX(not p)  *)
+          if !ctl_existential_equivalence then
+            (* use the following equivalence relation: EX(p) := not AX(not p)  *)
             let inv_not_p = inv (NOT p) in
-            let inv_ax = next program inv_not_p in
+            let inv_ax = a_next program inv_not_p in
             print_inv (AX (NOT p)) inv_ax;
             let not_inv_ax = logic_not inv_ax in
             not_inv_ax
+          else
+            e_next program (inv p)
         | AND (p1, p2) -> logic_and (inv p1) (inv p2)
         | OR (p1, p2) -> logic_or (inv p1) (inv p2)
-        | NOT (Atomic b) -> atomic program (fst (negBExp (b, program.dummyPosition)))
+        | NOT (Atomic property) -> 
+          let negatedProperty = StringMap.map (fun b -> (fst (negBExp (b, (Lexing.dummy_pos, Lexing.dummy_pos))))) property in
+          atomic program negatedProperty
         | NOT p -> logic_not (inv p) 
-        | _ -> raise (Invalid_argument "CTL operator not supported")
       in
       print_inv property result;
       result
     in inv property
 
-  let analyze (program:program) (property:ctl_property) =  
+  let analyze ?precondition (program:program) (property:ctl_property) =  
     let inv = compute program property in
     let initialLabel = block_label program.mainFunction.funcBody in
     let programInvariant = InvMap.find initialLabel inv in
-    let isTerminating = D.terminating programInvariant in
-    isTerminating
+    D.defined ?condition:precondition programInvariant
 
 
 end

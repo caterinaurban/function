@@ -6,6 +6,7 @@
 let abort = ref false
 let cda = ref false (* conflict-driven conditional termination *)
 let compress = ref true (* false *)
+let ctl_existential_equivalence = ref false (* use logical equivalences to express existential CTL properties based on universal properties *)
 let fmt = ref Format.std_formatter
 let joinbwd = ref 2
 let joinfwd = ref 2
@@ -22,6 +23,7 @@ let timefwd = ref false
 let timeout = ref 300.0
 let tracefwd = ref false
 let tracebwd = ref false
+let dot = ref false (* output trees in graphviz dot format *)
 
 exception Abort
 exception Timeout

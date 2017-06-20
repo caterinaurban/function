@@ -15,7 +15,7 @@ statements = []
 properties = {}
 prop = None
 target = None
-
+result = ""
 
 for l in content:
     if l == "Abstract Syntax:":
@@ -27,6 +27,8 @@ for l in content:
         target = []
         label = label_pattern.match(l).group(1)
         prop[label] = target
+    elif l.startswith("Analysis Result: "):
+        result = l
     elif target is None:
         print("Invalid Input Format")
         sys.exit(-1)
@@ -56,7 +58,7 @@ print("""
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bootstrap 3 Template</title>
+    <title>FuncTion Static Analyzer Result</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap core CSS -->
@@ -76,14 +78,16 @@ print("""
 </head>
 <body>
 
+""")
 
-<div class="container">
+print(""" 
+<div class="container-fluid">
     <div class="row">
-        <h1>Analysis Result</h1>
+        <h1>{0}</h1>
     </div>
 
     <div class="row">
-""")
+""".format(result))
 
 # Tab header ----------------------------------------------------------
 print(""" <ul class="nav nav-tabs" role="tablist"> """)
@@ -123,7 +127,7 @@ for id,p in enumerate(properties.keys()):
 
 
     print("""
-                       <div class="col-md-6">
+                       <div class="col-md-4">
                         <pre>
     """)
     for s in statements:
@@ -136,7 +140,7 @@ for id,p in enumerate(properties.keys()):
     print(""" </div > """)
 
 
-    print(""" <div class="col-md-6"> """)
+    print(""" <div class="col-md-8"> """)
 
     for id_l, l in enumerate(trees[p]):
         print("""<div class="decision_tree tree_{0}_{1}">  """.format(id, id_l))

@@ -34,7 +34,9 @@ module type PARTITION = sig
 
   val fwdAssign : t -> aExp * aExp -> t
   val bwdAssign : t -> aExp * aExp -> t
+  val bwdAssign_underapprox : t -> aExp * aExp -> t
   val filter : t -> bExp -> t
+  val filter_underapprox : t -> bExp -> t
 
   val print : Format.formatter -> t -> unit
 

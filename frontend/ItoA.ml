@@ -356,6 +356,19 @@ let property_itoa ctx env (property,a) =
      | A_boolean (exp,a) -> StringMap.add lbl (exp,a) (StringMap.add "" (A_FALSE,a) StringMap.empty)
      | _ -> raise (Invalid_argument "property_itoa:I_particular"))
 
+(**
+   Converts a parsed property to it's AbstractSyntax version. In constrast to 'property_itoa', this function takes the result
+   of 'prog_itoa' and a main function as argument. This makes it possible to convert additional properties for a given program 
+   without having to construct the internal context and environment data structures after the program has already been converted.
+*)
+let property_itoa_of_prog prog main property =
+    let (globals,_,funcs) = prog in
+    let f = StringMap.find main funcs in
+    let locals = f.funcVars in
+    let env = { globals = globals; locals = locals; funcs = StringMap.empty; return = None; constants = VarMap.empty } in
+    let ctx = { ctxName = main; ctxTyp = f.funcTyp; ctxArgs = f.funcArgs } in
+    property_itoa ctx env property
+
 (* variable declarations *)
 let declarator_itoa ctx (* ctx *) gs (* var StringMap.t *) ls (* var StringMap.t *) scope fs (* func StringMap.t *) cs (* int VarMap.t *) typ (* Isyntax.typ annotated *) ((x (* string *),xa),exp (* Isyntax.exp annotated option *)) =
   let v = { varId = "$" ^ string_of_int (newId()); varName = x; varTyp = typ_itoa typ } in
@@ -585,6 +598,7 @@ let prog_itoa ?property (decls (* Isyntax.decl list *),_) =
     (program,Some property)
 
 
+
 (* CTL *)
 
 let ctl_prog_itoa ctl_property main (decls, _) =
@@ -598,7 +612,10 @@ let ctl_prog_itoa ctl_property main (decls, _) =
   let locals = f.funcVars in
   let env = { globals = globals; locals = locals; funcs = StringMap.empty; return = None; constants = VarMap.empty } in
   let ctx = { ctxName = main; ctxTyp = f.funcTyp; ctxArgs = f.funcArgs } in
-  let aux p = fst (StringMap.find "" (property_itoa ctx env (p, ()))) in
+  let aux p = 
+    let prop = property_itoa ctx env (p, ()) in
+    StringMap.map fst prop (* remove annotation info *)
+  in
   let property = CTLProperty.map aux ctl_property in
   (program, property)
 

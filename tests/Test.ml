@@ -11,8 +11,10 @@
 open OUnit
 open TerminationBoxesTest
 open TerminationPolyhedraTest
+open CTLTest
 				
 let _ = begin
+  run_test_tt_main ctl_testcases;
   run_test_tt_main boxes;
   run_test_tt_main polyhedra;
   end

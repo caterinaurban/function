@@ -25,7 +25,8 @@ let ($=>) = (=>) ~setup:["-cda"; "2"] (* conflict-driven learning *)
 
 (* CTL based termination analysis *)
 let (@=>) = (=>) ~setup:["-ctl_termination"] 
-
+let (@@=>) (filename, conditionalTerminationProperty) = (=>) ~setup:["-ctl_termination"; "-precondition"; conditionalTerminationProperty] filename 
+let (@@+=>) (filename, conditionalTerminationProperty) = (=>) ~setup:["-ctl_termination"; "-joinbwd"; "5" ;"-precondition"; conditionalTerminationProperty] filename 
 
 let (--) filename expected =
   filename >:: (fun test_ctxt ->
@@ -89,7 +90,6 @@ let boxes = "boxes" >:::
 
   (* CTL termination test cases *)
   "./tests/boolean.c" @=> true;
-  "./tests/boolean.c" @=> true;
   "./tests/cacm2009a.c" @=> true;
   "./tests/cav2006.c" @=> true;
   "./tests/euclid.c" @=> false; (* conditionally terminating *)
@@ -115,4 +115,10 @@ let boxes = "boxes" >:::
   "./tests/vmcai2004b.c" @=> false; (* conditionally terminating *)
   "./tests/widening3.c" @=> false;
   "./tests/zune.c" @=> false;
+
+  (* CTL conditional termination tests *)
+  ("./tests/example0.c", "x > 10") @@=> true; 
+  ("./tests/example5.c", "x > 0") @@+=> true; 
+  ("./tests/example7.c", "x > 6") @@=> true; 
+
 ]

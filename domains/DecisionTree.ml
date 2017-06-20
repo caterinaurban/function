@@ -129,6 +129,18 @@ struct
       | Node (c,l,r) -> aux l; aux r; ls := LSet.add c !ls
     in aux t; !ls
 
+
+  (* map function for decision tree*)
+  let tree_map f_bot f_leaf t: t = 
+    let domain = t.domain in 
+    let env = t.env in 
+    let vars = t.vars in 
+    let rec aux (tree:tree) : tree = match tree with
+      | Bot -> f_bot
+      | Leaf f -> f_leaf f
+      | Node (c,l,r) -> Node (c, aux l, aux r)
+    in {domain = domain; tree = aux t.tree; env = env; vars = vars}
+
   (** Sorts (and normalizes the constraints within) a decision tree `t`. 
 
       Let x_1,...,x_k be program variables. We consider all linear 
@@ -994,26 +1006,7 @@ struct
 
   (**)
 
-  let terminating t =
-    let domain = t.domain in
-    let env = t.env in
-    let vars = t.vars in
-    let rec aux t cs =
-      match t with
-      | Bot ->
-        let b = match domain with 
-          | None -> B.inner env vars cs 
-          | Some domain -> B.meet (B.inner env vars cs) domain 
-        in B.isBot b
-      | Leaf f ->
-        (match domain with
-         | None -> F.defined f || B.isBot (B.inner env vars cs)
-         | Some domain -> F.defined f || B.isBot (B.meet (B.inner env vars cs) domain))
-      | Node ((c,nc),l,r) -> (aux l (c::cs)) && (aux r (nc::cs))
-    in aux t.tree []
-
-
-  let bwdAssign ?domain t e = 
+  let bwdAssign ?domain ?(underapprox = false) t e = 
     let cache = ref CMap.empty in
     let pre = domain in
     let post = t.domain in
@@ -1026,7 +1019,8 @@ struct
         | Bot,_ -> t2
         | Leaf f1,Leaf f2 ->
           let b = match pre with | None -> B.inner env vars cs | Some pre -> B.meet (B.inner env vars cs) pre in
-          Leaf (F.join APPROXIMATION b f1 f2)
+          let joinType = if underapprox then COMPUTATIONAL else APPROXIMATION in
+          Leaf (F.join joinType b f1 f2)
         | Node ((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isEq c1 c2) ->
           Node((c1,nc1),aux (l1,l2) (c1::cs),aux (r1,r2) (nc1::cs))
         | _ -> raise (Invalid_argument "bwdAssign:merge:")
@@ -1041,14 +1035,14 @@ struct
         then (* x is normalized *) Node((x,nx),build t xs,Bot)
         else (* x is not normalized *) Node((nx,x),Bot,build t xs)
     in
+    let b_bwdAssign = if underapprox then B.bwdAssign_underapprox else B.bwdAssign in
     let rec aux t cs =
       match t with
       | Bot -> Bot
       | Leaf f -> Leaf (F.bwdAssign f e)
       | Node((c,nc),l,r) -> match (fst e) with
         | A_var variable ->
-          if (C.var variable c)
-          then
+          if (C.var variable c) then
             let filter_constraints cs dom =
               List.fold_left (fun cs c ->
                   let b = B.inner env vars [c] in
@@ -1064,18 +1058,16 @@ struct
                 (match pre, post with
                  | Some pre, Some post ->
                    let key = c in
-                   let c = B.constraints (B.bwdAssign (B.meet
-                                                         (B.inner env vars [c]) post) e) in
+                   let c = B.constraints (b_bwdAssign (B.meet (B.inner env vars [c]) post) e) in
                    let c = filter_constraints c pre in
-                   let nc = B.constraints (B.bwdAssign (B.meet
-                                                          (B.inner env vars [nc]) post) e) in
+                   let nc = B.constraints (b_bwdAssign (B.meet (B.inner env vars [nc]) post) e)in
                    let nc = filter_constraints nc pre in
                    cache := CMap.add key (c,nc) !cache;
                    (c, nc)
                  | _ ->
                    let key = c in
-                   let c = B.constraints (B.bwdAssign (B.inner env vars [c]) e) in
-                   let nc = B.constraints (B.bwdAssign (B.inner env vars [nc]) e) in
+                   let c = B.constraints (b_bwdAssign (B.inner env vars [c]) e) in
+                   let nc = B.constraints (b_bwdAssign (B.inner env vars [nc]) e) in
                    cache := CMap.add key (c,nc) !cache;
                    (c, nc)
                 ) in
@@ -1110,11 +1102,12 @@ struct
       env = env;
       vars = vars }
 
-  let rec filter ?domain t e =
+  let rec filter ?domain ?(underapprox = false) t e =
     let pre = domain in
     let post = t.domain in
     let env = t.env in
     let vars = t.vars in
+    let b_filter = if underapprox then B.filter_underapprox else B.filter in
     let rec aux t bs cs =
       let bcs = match pre with
         | None -> B.inner env vars cs
@@ -1145,7 +1138,7 @@ struct
         then (* x is redundant *) aux t xs cs
         else (* x is not redundant *)
         if (B.isBot (B.meet bx bcs))
-        then (* x is conflicting *) Bot
+        then (* x is conflicting *) Bot (* This introduces a NIL leaf to the tree *)
         else
         if (C.isLeq nx x)
         then (* x is normalized *)
@@ -1217,9 +1210,49 @@ struct
         | None -> B.inner env vars []
         | Some post -> B.meet (B.inner env vars []) post
       in
-      let bs = List.map (fun c -> let nc = C.negate c in (c,nc)) (B.constraints (B.filter bp e)) in
+      let bs = List.map (fun c -> let nc = C.negate c in (c,nc)) (B.constraints (b_filter bp e)) in
       let bs = List.sort L.compare bs in
       { domain = pre; tree = aux t.tree bs []; env = env; vars = vars }
+
+
+  (* 
+    Check if all partitions in the decision tree are defined i.e. have a ranking function assigned to them.
+
+    Optionally, a boolean expression condition can be passed to limit the check to only those partitions that 
+    satisfy the expression. This can be used to check if a decision tree is defined under a given assumption.
+  *)
+  let defined ?condition t =
+    let domain = t.domain in
+    let env = t.env in
+    let vars = t.vars in
+    let rec aux t cs =
+      match t with
+      | Bot ->
+        (match condition with
+        | None -> 
+          (let b = match domain with 
+              | None -> B.inner env vars cs 
+              | Some domain -> B.meet (B.inner env vars cs) domain 
+           in B.isBot b)
+        | Some _ -> true) (* when given a condition, we first filter the tree and ignore NIL leafs *)
+      | Leaf f ->
+        (match domain with
+         | None -> F.defined f || B.isBot (B.inner env vars cs)
+         | Some domain -> F.defined f || B.isBot (B.meet (B.inner env vars cs) domain))
+      | Node ((c,nc),l,r) -> (aux l (c::cs)) && (aux r (nc::cs))
+    in 
+    let t = match condition with
+      | Some b -> 
+        (* replace all NIL leafs with 'bottom' leafs to ensure that we don't confuse actual 
+           NIL leafs with NIL leafs introduces by filer *)
+        let t' = tree_map (Leaf (F.bot t.env t.vars)) (fun f -> Leaf f) t in
+        filter t' b (* filte tree with optional condition *)
+      | None -> t
+    in aux t.tree []
+
+
+
+
 
   let reset ?mask t e =
     let domain = t.domain in
