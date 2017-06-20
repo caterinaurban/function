@@ -95,8 +95,9 @@ let backward_analysis
       let (fixedPoint, newState) = abstract_transformer node processed.(node.node_id) currentState instStatePairs in 
       (* update 'processed' count *)
       processed.(node.node_id) <- nodeProcessed + 1; 
-      (* add predecessors of node to worklist state of node changed *)
-      if not fixedPoint then addPredecessorsToWorklist node;
+      (* add predecessors of node to worklist if either we didn't reach a fixed point 
+         or if this is the first time we process this node *)
+      if not fixedPoint || processed.(node.node_id) == 1 then addPredecessorsToWorklist node;
       if !trace then Format.fprintf !fmt "-fixedPoint: %b \n-new worklist: %a \n######### \n \n"
           fixedPoint print_worklist worklist;
       (* add newState to nodeMap and continute with algorithm *)

@@ -38,8 +38,13 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
     let inv = 
       if !compress then NodeMap.map D.compress inv
       else inv
-    in NodeMap.iter (fun node a -> 
-        Format.fprintf fmt "[%d:]:\n%aDOT: %a\n\n" node.node_id D.print a D.print_graphviz_dot a) inv
+    in
+    let printState node a =
+      if !dot then
+        Format.fprintf fmt "[%d:]:\n%a\nDOT: %a\n" node.node_id D.print a D.print_graphviz_dot a
+      else
+        Format.fprintf fmt "[%d:]:\n%a\n" node.node_id D.print a 
+    in NodeMap.iter printState inv
 
   let atomic bot (cfg:cfg) (property:bool_expr) : inv = 
     (* abstract state of all nodes in cfg*)
@@ -190,6 +195,8 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
         (* apply 'mask' operator to get new state for this node. This removes all partitions from the current state 
            that are not also part of the newly computed state. *)
         let newState = D.mask current_state joindOutStates in
+        if !BackwardInterpreter.trace_states then 
+          Format.fprintf !fmt "old_state: \n%a \nnew_state: \n%a \n" D.print current_state D.print newState;
         if List.length outStates < 2 then 
           (* don't check for convergence if this this is not a branch point *)
           (false, newState)
@@ -207,7 +214,10 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
                 newState 
               else 
                 (* use dual_widen after widening threshold reached *)
-                D.dual_widen current_state newState 
+                let widenedNewState = D.dual_widen current_state newState in
+                if !BackwardInterpreter.trace_states then 
+                  Format.fprintf !fmt "widenedNewState: \n %a \n" D.print widenedNewState;
+                widenedNewState
             in (false, newState')
     in abstract_transformer
 
@@ -223,6 +233,7 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
         end;
     in
     let bot = D.bot env vars in
+    let zero = D.zero env vars in
     let atomic_true_inv = atomic bot cfg (CFG_bool_const true) in
     let init_bot = const_node_map cfg bot in
     let rec inv (property:ctl_property) : inv = 
@@ -231,29 +242,57 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
         | Atomic (b, None) -> atomic bot cfg b
         | Atomic (b, Some l) -> labeled_atomic bot cfg l b
         | AX p -> next UNIVERSAL bot cfg (inv p)
-        | EX p -> next EXISTENTIAL bot cfg (inv p)
         | AG p -> 
           let pInv = inv p in
           (* exit_node is set to bot for inital value of backward analysis *)
           let init_value = NodeMap.add main.func_exit bot pInv in
           backwardAnalysis (global UNIVERSAL) init_value main cfg 
-        | EG p -> 
-          let pInv = inv p in
-          (* exit_node is set to bot for inital value of backward analysis *)
-          let init_value = NodeMap.add main.func_exit bot pInv in
-          backwardAnalysis (global EXISTENTIAL) init_value main cfg 
         | AU (p1, p2) -> 
           let abstractTransformer = until UNIVERSAL (inv p1) (inv p2) in
           backwardAnalysis abstractTransformer init_bot main cfg 
         | AF p -> 
           let abstractTransformer = until UNIVERSAL atomic_true_inv (inv p) in
           backwardAnalysis abstractTransformer init_bot main cfg 
+        | EX p -> 
+          if !ctl_existential_equivalence then
+            (* use the following equivalence relation: 
+               EX(p) := not AX(not p)  *)
+            inv (NOT (AX (NOT p)))
+          else
+            next EXISTENTIAL bot cfg (inv p)
+        | EG p -> 
+          if !ctl_existential_equivalence then
+            (* use the following equivalence realtion: 
+               EG(p) := not AF(not p)  *)
+            inv (NOT (AF (NOT p)))
+          else
+            let pInv = inv p in
+            (* exit_node is set to bot for inital value of backward analysis *)
+            let init_value = NodeMap.add main.func_exit bot pInv in
+            backwardAnalysis (global EXISTENTIAL) init_value main cfg 
         | EU (p1, p2) -> 
-          let abstractTransformer = until EXISTENTIAL (inv p1) (inv p2) in
-          backwardAnalysis abstractTransformer init_bot main cfg 
+          if !ctl_existential_equivalence then 
+            raise (Invalid_argument "existential equivalence conversion not supported for 'until' operator")
+          else
+            let abstractTransformer = until EXISTENTIAL (inv p1) (inv p2) in
+            backwardAnalysis abstractTransformer init_bot main cfg 
         | EF p -> 
-          let abstractTransformer = until EXISTENTIAL atomic_true_inv (inv p) in
-          backwardAnalysis abstractTransformer init_bot main cfg 
+          if !ctl_existential_equivalence then 
+            (* use the following equivalence relation: 
+               EF(p) := not AG(not p)  *)
+            (* compute: not p*)
+            let inv_not_p = inv (NOT p) in
+            (* compute: 'AG (not p)' starting from 'zero' instead of 'bot'
+               to also capture finite traces with the 'AG' operator
+            *)
+            let init_value = NodeMap.add main.func_exit zero inv_not_p in
+            let inv_ag = backwardAnalysis (global UNIVERSAL) init_value main cfg in
+            print_inv (AG (NOT p)) inv_ag;
+            (* compute: not AG(not p) *)
+            logic_not inv_ag 
+          else
+            let abstractTransformer = until EXISTENTIAL atomic_true_inv (inv p) in
+            backwardAnalysis abstractTransformer init_bot main cfg 
         | AND (p1, p2) -> logic_and (inv p1) (inv p2)
         | OR (p1, p2) -> logic_or (inv p1) (inv p2)
         | NOT (Atomic (property, None)) -> 
