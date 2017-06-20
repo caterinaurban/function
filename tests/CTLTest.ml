@@ -107,4 +107,5 @@ let ctl_testcases = "ctl" >:::
   test_cfg ~precondition:"y<0" "./tests/ctl/existential_test4.c" "EF{r==1}" true;
   test_cfg ~precondition:"a!=1" "./tests/ctl/acqrel.c" "AG{OR{a!=1}{AF{r==1}}}" true;
   test_cfg "./tests/ctl/win4.c"  "AF{AG{WItemsNum >= 1}}" true;
+  test_cfg ~joinbwd:4 "./tests/ctl/fig8-2007.c" "OR{set==0}{AF{unset == 1}}" true;
 ]

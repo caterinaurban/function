@@ -124,6 +124,7 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
       let resetState = NodeMap.find node inv_reset in
       (* process all outgoing edges and get resp. abstract states 
          for each out edge after applying its instruction*)
+
       let outStates = List.map (process_inst quantifier) out_edges in
       (* join states *)
       let joindOutStates = match outStates with 
@@ -138,7 +139,7 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
       (* apply 'until' operator to compute new state for this node *)
       let newState = D.until joindOutStates keepState resetState in
       if !BackwardInterpreter.trace_states then 
-        Format.fprintf !fmt "old_state: \n%a \nnew_state: \n%a \n" D.print current_state D.print newState;
+        Format.fprintf !fmt "old_state: \n%a \nnew_state: \n%a \n" D.print (D.compress current_state) D.print (D.compress newState);
       if List.length outStates < 2 then 
         (* don't check for convergence if this this is not a branch point *)
         (false, newState)
@@ -160,12 +161,12 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
               let widenedNewState = D.widen current_state (D.join COMPUTATIONAL current_state newState) in
               (* NOTE: the join might be necessary to ensure termination because of a bug (???) *)
               if !BackwardInterpreter.trace_states then 
-                Format.fprintf !fmt "widenedNewState: \n %a \n" D.print widenedNewState;
+                Format.fprintf !fmt "widenedNewState: \n %a \n" D.print (D.compress widenedNewState);
               widenedNewState
             else 
               let widenedNewState = D.widen current_state newState in (* widening threshold reached, apply widening *)
               if !BackwardInterpreter.trace_states then 
-                Format.fprintf !fmt "widenedNewState: \n %a \n" D.print widenedNewState;
+                Format.fprintf !fmt "widenedNewState: \n %a \n" D.print (D.compress widenedNewState);
               widenedNewState
           in (false, newState')
     in abstract_transformer
@@ -196,7 +197,7 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
            that are not also part of the newly computed state. *)
         let newState = D.mask current_state joindOutStates in
         if !BackwardInterpreter.trace_states then 
-          Format.fprintf !fmt "old_state: \n%a \nnew_state: \n%a \n" D.print current_state D.print newState;
+          Format.fprintf !fmt "old_state: \n%a \nnew_state: \n%a \n" D.print (D.compress current_state) D.print (D.compress newState);
         if List.length outStates < 2 then 
           (* don't check for convergence if this this is not a branch point *)
           (false, newState)

@@ -273,6 +273,10 @@ let max_arc_id cfg =
     (fun currentMax arc -> if arc.arc_id > currentMax then arc.arc_id else currentMax) 
     0 cfg.cfg_arcs 
 
+let max_node_id cfg = List.fold_left 
+    (fun currentMax node -> if node.node_id > currentMax then node.node_id else currentMax) 
+    0 cfg.cfg_nodes
+
 (* Insert 'exit' label befor exit node in 'func' *)
 let insert_exit_label (cfg:cfg) (func:func) = 
   let maxNodeId = List.fold_left 
@@ -353,5 +357,62 @@ let add_function_call_arcs (cfg:cfg) =
       cfg.cfg_arcs in
   List.fold_left add_function_call_arc cfg callArcs
 
+(* return all nodes contained in a function *)
+let func_nodes (func:func) =
+  let rec aux nodeMap (node:node) =
+    if NodeMap.mem node nodeMap then
+      nodeMap 
+    else
+      let nodeMap' = NodeMap.add node node nodeMap in
+      List.fold_left aux nodeMap' (List.map (fun a -> a.arc_dst) node.node_out)
+  in
+  let nodeMap = aux NodeMap.empty func.func_entry in
+  List.map fst @@ NodeMap.bindings nodeMap
+
+
+let copy_function_nodes (cfg:cfg) (func:func) (new_name:string) = 
+  let module IntMap = Map.Make(struct type t = int let compare = compare end) in
+  let nodeId = ref (max_node_id cfg + 1) in
+  let nextNodeId () = 
+    let id = !nodeId in
+    incr nodeId;
+    id
+  in
+  let arcId = ref (max_arc_id cfg + 1) in
+  let nextArcId () = 
+    let id = !arcId in
+    incr arcId;
+    id
+  in
+  let originalNodes = func_nodes func in
+  let originalArcs = List.flatten @@ List.map (fun n -> n.node_out) originalNodes in
+
+  (* construct map of old node ids to clones of nodes with new unique ids *)
+  let addNode idMap n = IntMap.add n.node_id {n with node_id = nextNodeId ()} idMap in
+  let idNodeMap = List.fold_left addNode IntMap.empty (func_nodes func) in
+
+  (* clone arcs *)
+  List.iter (fun arc -> 
+      let newSrc = IntMap.find arc.arc_src.node_id idNodeMap in
+      let newDst = IntMap.find arc.arc_dst.node_id idNodeMap in
+      let newArc = {
+        arc with
+        arc_id = nextArcId ();
+        arc_src = newSrc;
+        arc_dst = newDst;
+      } in
+      let replaceWithNewArc a = if a.arc_id == arc.arc_id then newArc else a in
+      newSrc.node_out <- List.map replaceWithNewArc newSrc.node_out; 
+      newDst.node_in <- List.map replaceWithNewArc newDst.node_in 
+  ) originalArcs;
+  let newNodes = List.map snd @@  IntMap.bindings idNodeMap in
+  let newArcs = List.flatten @@ List.map (fun n -> n.node_out) newNodes in
+  let newCfg = {
+    cfg with
+    cfg_nodes = List.append cfg.cfg_nodes newNodes;
+    cfg_arcs = List.append cfg.cfg_arcs newArcs;
+  } in
+  (* return new cfg and pair of new (func_entry, func_exit) nodes*)
+  (newCfg, IntMap.find func.func_entry.node_id idNodeMap, IntMap.find func.func_exit.node_id idNodeMap)
 
 
