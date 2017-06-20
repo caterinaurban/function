@@ -268,14 +268,17 @@ let const_node_map (cfg:cfg) value =
 let negate_bool_expr (bexpr:bool_expr): bool_expr = CFG_bool_unary (AST_NOT, bexpr)
 
 
+let max_arc_id cfg =
+  List.fold_left 
+    (fun currentMax arc -> if arc.arc_id > currentMax then arc.arc_id else currentMax) 
+    0 cfg.cfg_arcs 
+
 (* Insert 'exit' label befor exit node in 'func' *)
 let insert_exit_label (cfg:cfg) (func:func) = 
   let maxNodeId = List.fold_left 
       (fun currentMax node -> if node.node_id > currentMax then node.node_id else currentMax) 
       0 cfg.cfg_nodes in
-  let maxArcId = List.fold_left 
-      (fun currentMax arc -> if arc.arc_id > currentMax then arc.arc_id else currentMax) 
-      0 cfg.cfg_arcs in
+  let maxArcId = max_arc_id cfg in
   let oldExitNode = func.func_exit in
   let newExitNode = { 
     node_id = maxNodeId + 1;
@@ -303,6 +306,52 @@ let insert_exit_label (cfg:cfg) (func:func) =
     cfg_arcs = labelArc::cfg.cfg_arcs
   }
 
+
+
+(* 
+   Replace each function call edge in cfg with an edge from the original call source entering the 
+   function and adds one returning back from the function exit to the destination of the original call edge. 
+*)
+let add_function_call_arcs (cfg:cfg) =
+  let arcId = ref (max_arc_id cfg + 1) in
+  let nextArcId () = 
+    let id = !arcId in
+    incr arcId;
+    id
+  in
+  let add_function_call_arc (cfg:cfg) (arc:arc) = 
+    match arc.arc_inst with 
+    | CFG_call f -> 
+      (* replace function call arc with arc from source node to function entry *)
+      let src_func_arc = {
+        arc_id = arc.arc_id;
+        arc_src = arc.arc_src;
+        arc_dst = f.func_entry;
+        arc_inst = CFG_skip ("call: " ^ f.func_name);
+      } in
+      arc.arc_src.node_out <- [src_func_arc];
+      f.func_entry.node_in <- src_func_arc::f.func_entry.node_in;
+      (* add edge from function exit back to arc destination *)
+      let func_dst_arc = {
+        arc_id = nextArcId ();
+        arc_src = f.func_exit;
+        arc_dst = arc.arc_dst;
+        arc_inst = CFG_skip ("return: " ^ f.func_name);
+      } in
+      f.func_exit.node_out <- func_dst_arc::f.func_exit.node_out;
+      arc.arc_dst.node_in <- [func_dst_arc];
+      (* add two new arcs to cfg and remove old one *) 
+      let new_arcs = func_dst_arc :: List.map 
+                       (fun a -> if a.arc_id == arc.arc_id then src_func_arc else a) cfg.cfg_arcs 
+      in {
+        cfg with
+        cfg_arcs = new_arcs;
+      }
+    | _ -> raise (Invalid_argument "Not a call arc")
+  in 
+  let callArcs = List.filter (fun a -> match a.arc_inst with | CFG_call f -> true | _ -> false) 
+      cfg.cfg_arcs in
+  List.fold_left add_function_call_arc cfg callArcs
 
 
 

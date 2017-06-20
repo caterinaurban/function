@@ -243,8 +243,9 @@ let rec int_expr (env:env) (expr:Abstract_syntax_tree.int_expr)
              (consider the case where the function is called twice in the expression)
            *)
           let tmp = create_var ("__ret_"^id) x var.var_type in
+          let env2 = add_to_vars env1 tmp in
           let ass = CFG_assign (tmp, CFG_int_var var) in
-          add_to_vars env1 var, inst@[ass,x], CFG_int_var tmp
+          add_to_vars env2 var, inst@[ass,x], CFG_int_var tmp
       )
 
         

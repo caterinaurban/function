@@ -412,7 +412,8 @@ let ctl_cfg () =
   if !property = "" then raise (Invalid_argument "No Property Specified");
   let (cfg, getProperty) = Tree_to_cfg.prog (File_parser.parse_file !filename) !main in
   let mainFunc = Cfg.find_func !main cfg in
-  let cfg = Cfg.insert_exit_label cfg mainFunc in
+  let cfg = Cfg.insert_exit_label cfg mainFunc in (* add exit label at end of main function *)
+  let cfg = Cfg.add_function_call_arcs cfg in (* insert function call edges to cfg *)
   let ctlProperty = CTLProperty.map File_parser.parse_bool_expression @@ parseCTLPropertyString_plain !property in
   let ctlProperty = CTLProperty.map getProperty ctlProperty in
   let precondition = getProperty @@ File_parser.parse_bool_expression !precondition in
@@ -427,6 +428,10 @@ let ctl_cfg () =
     begin
       Printf.printf "\nCFG:\n";
       Printf.printf "%a" Cfg_printer.print_cfg cfg;
+      Printf.printf "\n";
+    end;
+  if not !minimal && !Iterator.dot then
+    begin
       Printf.printf "CFG_DOT:\n %a" Cfg_printer.output_dot cfg;
       Printf.printf "\n";
     end;
@@ -436,8 +441,6 @@ let ctl_cfg () =
     Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
   else 
     Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
-
-
 
 
 
