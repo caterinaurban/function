@@ -102,6 +102,7 @@ rule token = parse
 | "*="   { TOK_STAR_EQUAL }
 | "/="   { TOK_DIVIDE_EQUAL }
 | "%="   { TOK_PERCENT_EQUAL }
+| "__VERIFIER_nondet_int()" { TOK_QUESTIONMARK }
 
 
 (* literals *)
@@ -110,6 +111,8 @@ rule token = parse
 (* spaces, comments *)
 | "/*" { comment lexbuf; token lexbuf }
 | "//" [^ '\n' '\r']* { token lexbuf }
+| "extern" [^ '\n' '\r']*	{ token lexbuf }
+| "#include" [^ '\n' '\r']*	{ token lexbuf }
 | newline { new_line lexbuf; token lexbuf }
 | space { token lexbuf }
 

@@ -90,7 +90,7 @@ let backward_analysis
       let instStatePairs = List.map (fun arc -> (getState arc.arc_dst, arc.arc_inst)) node.node_out in
       (* number of times this node has been processed *)
       let nodeProcessed = processed.(node.node_id) in
-      if !trace then Format.fprintf !fmt "### processing node %d: \n" node.node_id;
+      if !trace then Format.fprintf !fmt "### processing node %d: \n" node.node_id; 
       (* run abstract transformer for node to get new abstract state *)
       let (fixedPoint, newState) = abstract_transformer node processed.(node.node_id) currentState instStatePairs in 
       (* update 'processed' count *)

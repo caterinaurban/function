@@ -107,8 +107,7 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
         | [] -> bot
         | s::[] -> s
         | s1::s2::[] -> join s1 s2
-        | _ -> raise (Invalid_argument "More than two out edges in CFG") 
-                 (* we assume that control flow can only from two branches *)
+        | s::ss -> List.fold_left join s ss
       in NodeMap.add node joindOutStates nodeMap
     in List.fold_left aux NodeMap.empty cfg.cfg_nodes
 
@@ -131,10 +130,7 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
         | [] -> current_state
         | s::[] -> s
         | s1::s2::[] -> join s1 s2
-        | _ -> 
-          (* we assume that control flow can only from two branches *)
-          let err = "More than two out edges in CFG node " ^ (string_of_int node.node_id) in
-          raise (Invalid_argument err)
+        | s::ss -> List.fold_left join s ss
       in
       (* apply 'until' operator to compute new state for this node *)
       let newState = D.until joindOutStates keepState resetState in
@@ -179,7 +175,6 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
         (iter_count:int) (* iteration count, how many times has this node been processed *)
         (current_state:D.t) (* current value of abstract state for this node *)
         (out_edges: (D.t * inst) list): (bool * D.t) =
-
       (* process all outgoing edges and get resp. abstract states 
          for each out edge after applying its instruction*)
       let outStates = List.map (process_inst quantifier) out_edges in
@@ -188,16 +183,14 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
           | [] -> current_state
           | s::[] -> s
           | s1::s2::[] -> join s1 s2
-          | _ -> 
-            (* we assume that control flow can only from two branches *)
-            let err = "More than two out edges in CFG node " ^ (string_of_int node.node_id) in
-            raise (Invalid_argument err)
+          | s::ss -> List.fold_left join s ss
         in
         (* apply 'mask' operator to get new state for this node. This removes all partitions from the current state 
            that are not also part of the newly computed state. *)
         let newState = D.mask current_state joindOutStates in
-        if !BackwardInterpreter.trace_states then 
+        if !BackwardInterpreter.trace_states then begin
           Format.fprintf !fmt "old_state: \n%a \nnew_state: \n%a \n" D.print (D.compress current_state) D.print (D.compress newState);
+        end;
         if List.length outStates < 2 then 
           (* don't check for convergence if this this is not a branch point *)
           (false, newState)
@@ -284,7 +277,7 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
             (* compute: not p*)
             let inv_not_p = inv (NOT p) in
             (* compute: 'AG (not p)' starting from 'zero' instead of 'bot'
-               to also capture finite traces with the 'AG' operator
+               to capture finite traces with the 'AG' operator
             *)
             let init_value = NodeMap.add main.func_exit zero inv_not_p in
             let inv_ag = backwardAnalysis (global UNIVERSAL) init_value main cfg in

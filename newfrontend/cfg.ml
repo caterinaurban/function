@@ -312,6 +312,7 @@ let insert_exit_label (cfg:cfg) (func:func) =
 
 
 
+
 (* 
    Replace each function call edge in cfg with an edge from the original call source entering the 
    function and adds one returning back from the function exit to the destination of the original call edge. 
@@ -370,7 +371,22 @@ let func_nodes (func:func) =
   List.map fst @@ NodeMap.bindings nodeMap
 
 
-let copy_function_nodes (cfg:cfg) (func:func) (new_name:string) = 
+let called_functions (func:func): func list = 
+  let isCallArc (a:arc) = match a.arc_inst with
+    | CFG_call _ -> true
+    | _ -> false
+  in
+  let getFunc a = match a.arc_inst with 
+    | CFG_call f -> f 
+    | _ -> raise (Invalid_argument "invalid instruction" )
+  in
+  let funcNodes = func_nodes func in
+  List.map getFunc @@ 
+    List.flatten @@ 
+    List.map (fun n -> List.filter isCallArc n.node_out) funcNodes 
+
+
+let copy_function_nodes (cfg:cfg) (func:func) = 
   let module IntMap = Map.Make(struct type t = int let compare = compare end) in
   let nodeId = ref (max_node_id cfg + 1) in
   let nextNodeId () = 
@@ -415,4 +431,72 @@ let copy_function_nodes (cfg:cfg) (func:func) (new_name:string) =
   (* return new cfg and pair of new (func_entry, func_exit) nodes*)
   (newCfg, IntMap.find func.func_entry.node_id idNodeMap, IntMap.find func.func_exit.node_id idNodeMap)
 
+
+let delete_arc (cfg:cfg) (arc:arc) = 
+  let isNotArc a = a.arc_id != arc.arc_id in
+  arc.arc_src.node_out <- List.filter isNotArc arc.arc_src.node_out;
+  arc.arc_dst.node_in <- List.filter isNotArc arc.arc_dst.node_in;
+  {
+    cfg with
+    cfg_arcs = List.filter isNotArc cfg.cfg_arcs;
+  }
+
+let add_arc (cfg:cfg) (arc:arc) = 
+  arc.arc_src.node_out <- arc::arc.arc_src.node_out;
+  arc.arc_dst.node_in <- arc::arc.arc_dst.node_in;
+  {
+    cfg with
+    cfg_arcs = arc::cfg.cfg_arcs;
+  }
+
+
+let inline_function_calls (cfg:cfg) =
+  let inlineCallArc canInline cfg call_arc = 
+    let calledFunction = match call_arc.arc_inst with 
+      | CFG_call f -> f 
+      | _ -> raise (Invalid_argument "invalid arc") 
+    in
+    if canInline calledFunction then
+      let (cfg', start, exit) = copy_function_nodes cfg calledFunction in
+      let cfg'' = delete_arc cfg' call_arc in
+      let newCallArc = {
+        arc_id = call_arc.arc_id;
+        arc_src = call_arc.arc_src;
+        arc_dst = start;
+        arc_inst = CFG_skip ("call: " ^ calledFunction.func_name);
+      } in
+      let newReturnArc = {
+        arc_id = 1 + max_arc_id cfg'';
+        arc_src = exit;
+        arc_dst = call_arc.arc_dst;
+        arc_inst = CFG_skip ("return: " ^ calledFunction.func_name);
+      } in
+      add_arc (add_arc cfg'' newCallArc) newReturnArc 
+    else 
+      cfg
+  in
+
+  let rec aux cfg =  
+    let calledFunctionsMap = List.fold_left 
+        (fun map func -> FuncMap.add func (called_functions func) map) 
+        FuncMap.empty cfg.cfg_funcs in
+    let canInline f = List.length (FuncMap.find f calledFunctionsMap) == 0 in
+    let cfg' = List.fold_left (fun cfg arc -> 
+        match arc.arc_inst with 
+        | CFG_call f -> inlineCallArc canInline cfg arc
+        | _ -> cfg
+      ) cfg cfg.cfg_arcs
+    in 
+    if cfg == cfg' then cfg'
+    else aux cfg' (* keep going until there are no more function calls that can be inlined *)
+  in aux cfg
+
+
+
+let valid_cfg (cfg:cfg) =
+  let idEq a1 a2 = a1.arc_id == a2.arc_id in
+  let validArc arc = 
+    (List.exists (idEq arc) arc.arc_src.node_out) &&
+    (List.exists (idEq arc) arc.arc_dst.node_in) 
+  in List.for_all validArc cfg.cfg_arcs
 

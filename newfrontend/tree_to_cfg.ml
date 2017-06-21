@@ -186,7 +186,6 @@ let add_to_vars (env:env) (v:var) : env =
     env_allvars = VarSet.add v env.env_allvars;
   }
     
-    
 (*
   Expression translation.
 
@@ -204,7 +203,7 @@ let rec int_expr (env:env) (expr:Abstract_syntax_tree.int_expr)
         
   | AST_int_binary (o,(e1,_),(e2,_)) ->
       let env1, before1, f1 = int_expr env e1 in
-      let env2, before2, f2 = int_expr env e2 in
+      let env2, before2, f2 = int_expr env1 e2 in
       env2, before1@before2, CFG_int_binary (o,f1,f2)
                 
   | AST_int_identifier (id,x) ->
@@ -294,7 +293,22 @@ and call (env:env) ((id,x):id ext) (exprs:Abstract_syntax_tree.int_expr ext list
       failwith (Printf.sprintf "wrong number of arguments for function %s at %s" id (string_of_extent x))
   in
   let env1, inst = doargs env [CFG_call f, x] (f.func_args,exprs) in
-  env1, inst, f
+  (* remove func_args from environments to avoid naming conflicts *)
+  let restore_variable vars arg_var =
+    if StringMap.mem arg_var.var_name env.env_vars then
+      (* restore previous visible variable if there was a name clash *)
+      let previousVarEntry = StringMap.find arg_var.var_name env.env_vars in
+      StringMap.add arg_var.var_name previousVarEntry vars
+    else
+      (* otherwise just remove the variable *)
+      StringMap.remove arg_var.var_name vars
+  in
+  let env2 = {
+    env1 with 
+    env_vars = List.fold_left restore_variable env1.env_vars f.func_args;
+  } in
+  env2, inst, f
+  (* env1, inst, f *)
 
     
 (* Variable declarations.
