@@ -108,13 +108,14 @@ MLFILES = \
   domains/Domain.ml \
   domains/DecisionTree.ml \
   main/Iterator.ml \
+  main/CFGInterpreter.ml \
+  main/CFGForwardIterator.ml \
   main/ForwardIterator.ml \
   main/TerminationIterator.ml \
   main/GuaranteeIterator.ml \
   main/RecurrenceIterator.ml \
   main/CTLIterator.ml \
-  main/BackwardInterpreter.ml \
-  main/CTLCFGIterator.ml \
+  main/CFGCTLIterator.ml \
 
 MLIFILES = \
   frontend/Parser.mli \

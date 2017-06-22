@@ -19,6 +19,7 @@ label_pattern = re.compile('(\[\s*(\d+):\]):')
 
 
 cfg = []
+fwd = []
 cfg_dot = []
 properties = {}
 prop = None
@@ -29,6 +30,8 @@ for l in content:
     if l == "CFG_DOT:":
         target = cfg_dot
     elif l == "CFG:":
+        target = cfg
+    elif l == "Forwad Analysis:":
         target = cfg
     elif l.startswith("Property: "):
         prop = {}

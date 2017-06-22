@@ -46,7 +46,7 @@ let ctl_testcases = "ctl" >:::
   test ~joinbwd:4 "./tests/ctl/global_test_simple.c" "AG{AF{x <= -10}}" true;
   test ~precondition:"x == y + 20" "./tests/ctl/until_test.c" "AU{x >= y}{x==y}" true;
   test "./tests/ctl/until_test.c" "AU{x <= y}{x==y}" false;
-  (*TODO: Currently can't use BOXES domain because of missing underapproximation support *)
+  (* NOTE: Currently can't use BOXES domain because of missing underapproximation support *)
   (* test ~domain:BOXES "./tests/ctl/until_test.c" "AF{x < y + 20}" false; *) 
   test "./tests/countdown.c" "AF{x == 0}" true;
   test "./tests/countdown.c" "AG{AF{x == 0}}" true;
@@ -94,7 +94,7 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
   test_cfg ~setup:["-ordinals"; "1"] "./tests/sink.c" "AG{AF{x==0}}" true;
   test_cfg ~precondition: "n > 0" "./tests/ctl/and_test.c" "AND{AG{AF{n==1}}}{AF{n==0}}" true;
   test_cfg "./tests/ctl/or_test.c" "OR{AF{AG{x < -100}}}{AF{x==20}}" true;
-  test_cfg ~precondition: "x==1" "./tests/ctl/next.c" "AX{AX{x==0}}" true;
+  test_cfg ~precondition: "x==1" "./tests/ctl/next.c" "AX{AX{AX{x==0}}}" true;
   test_cfg "./tests/ctl/next.c" "AX{AX{x==0}}" false;
   test_cfg "./tests/ctl/existential_test1.c" "EF{r==1}" false;
   test_cfg ~precondition:"2*x <= y+3" "./tests/ctl/existential_test1.c" "EF{r==1}" true;

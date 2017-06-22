@@ -286,7 +286,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
 
 
   (*
-    Computed fixed-point for 'global' operator (e.g. AG{...}), takes an existing fixed point for the nested property as argument.
+    Computed fixed-point for 'global' operator (i.e. AG{...}), takes an existing fixed point for the nested property as argument.
 
     Applies the 'mask' operator to compute the greatest-fixed point starting from the given fixed point for the nested property. 
     During the backward analysis, the reachable state at each statement is computed by inspecting the 'out' states. 

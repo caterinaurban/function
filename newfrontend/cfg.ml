@@ -267,6 +267,13 @@ let const_node_map (cfg:cfg) value =
 
 let negate_bool_expr (bexpr:bool_expr): bool_expr = CFG_bool_unary (AST_NOT, bexpr)
 
+let valid_cfg (cfg:cfg) =
+  let idEq a1 a2 = a1.arc_id == a2.arc_id in
+  let validArc arc = 
+    (List.exists (idEq arc) arc.arc_src.node_out) &&
+    (List.exists (idEq arc) arc.arc_dst.node_in) 
+  in List.for_all validArc cfg.cfg_arcs
+
 
 let max_arc_id cfg =
   List.fold_left 
@@ -277,8 +284,8 @@ let max_node_id cfg = List.fold_left
     (fun currentMax node -> if node.node_id > currentMax then node.node_id else currentMax) 
     0 cfg.cfg_nodes
 
-(* Insert 'exit' label befor exit node in 'func' *)
-let insert_exit_label (cfg:cfg) (func:func) = 
+(* Insert 'exit' label befor exit node and 'entry' label before entry node in 'func' *)
+let insert_entry_exit_label (cfg:cfg) (func:func) = 
   let maxNodeId = List.fold_left 
       (fun currentMax node -> if node.node_id > currentMax then node.node_id else currentMax) 
       0 cfg.cfg_nodes in
@@ -290,25 +297,41 @@ let insert_exit_label (cfg:cfg) (func:func) =
     node_out = [];
     node_in = [];
   } in
-  let labelArc = {
+  let exitLabelArc = {
     arc_id = maxArcId + 1;    
     arc_src = oldExitNode;   
     arc_dst = newExitNode;   
     arc_inst = CFG_label "exit";
   } in 
+  oldExitNode.node_out <- exitLabelArc::oldExitNode.node_out;
+  newExitNode.node_in <- exitLabelArc::newExitNode.node_in;
+  let oldEntryNode = func.func_entry in
+  let newEntryNode = { 
+    node_id = maxNodeId + 2;
+    node_pos = position_unknown;
+    node_out = [];
+    node_in = [];
+  } in
+  let entryLabelArc = {
+    arc_id = maxArcId + 2;    
+    arc_src = newEntryNode;   
+    arc_dst = oldEntryNode;   
+    arc_inst = CFG_label "entry";
+  } in 
+  oldEntryNode.node_in <- entryLabelArc::oldEntryNode.node_in;
+  newEntryNode.node_out <- entryLabelArc::newEntryNode.node_out;
   let newFunc = {
     func with
     func_exit = newExitNode;
+    func_entry = newEntryNode;
   } in
   let newCfgFuncs = List.map (fun f -> if f.func_id == newFunc.func_id then newFunc else f) cfg.cfg_funcs in
-  oldExitNode.node_out <- labelArc::oldExitNode.node_out;
-  newExitNode.node_in <- labelArc::newExitNode.node_in;
-  {
+  let result = {
     cfg with
     cfg_funcs = newCfgFuncs;
-    cfg_nodes = newExitNode::cfg.cfg_nodes;
-    cfg_arcs = labelArc::cfg.cfg_arcs
-  }
+    cfg_nodes = newEntryNode::newExitNode::cfg.cfg_nodes;
+    cfg_arcs = entryLabelArc::exitLabelArc::cfg.cfg_arcs
+  } in result
 
 
 
@@ -492,11 +515,4 @@ let inline_function_calls (cfg:cfg) =
   in aux cfg
 
 
-
-let valid_cfg (cfg:cfg) =
-  let idEq a1 a2 = a1.arc_id == a2.arc_id in
-  let validArc arc = 
-    (List.exists (idEq arc) arc.arc_src.node_out) &&
-    (List.exists (idEq arc) arc.arc_dst.node_in) 
-  in List.for_all validArc cfg.cfg_arcs
 

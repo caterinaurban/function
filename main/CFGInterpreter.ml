@@ -28,26 +28,26 @@ type 't abstract_transformer  =
   't -> (* current value of abstract state for this node *)
   ('t * inst) list (** 
                        list of (abstract state, instruction) pairs for all 
-                       predecessors nodes that have an incoming edge from this node. 
+                       predecessors (successor) nodes that have an incoming (outgoing) edge from (to) this node. 
                    *)
   -> (bool * 't) (* returns a boolean flag that indicates if a fixed point was 
                     reached for this node and the updated state for this node *)
      
-
-type 't print_state = Format.formatter -> 't -> unit
-
 let print_worklist fmt queue = 
   Format.fprintf fmt "worklist = [";
   Queue.iter (fun node -> Format.fprintf fmt "%d " node.node_id) queue;
   Format.fprintf fmt "]"
 
+
+type analysis_type = | FORWARD | BACKWARD 
+
 (* abstract implementation of a backward analysis over a control flow graph *)
-let backward_analysis
+let execute
     (type a) (* type of the abstract state that is computed for each node in 'cfg' *)
-    ?(print_state:a print_state option)
+    (analysis_type:analysis_type) (* type of analysis, either forward or backward *)
     (abstract_transformer: a abstract_transformer) (* implementation of abstract transformer for this analysis *)
     (initial_value:a NodeMap.t) (* map that assigns an initial state to each node in the cfg *)
-    (main:func) (* entry point of the program *)
+    (entry_node:node) (* entry point of the program analysis *)
     (cfg:cfg) (* control flow graph *)
     : a NodeMap.t (* returns a map that assigns each node an abstract state that is the result of the backward analysis *)
   =
@@ -56,7 +56,7 @@ let backward_analysis
   let worklist = Queue.create () in 
   (* bitmap array that keeps track of all nodes that are in the worklist *)
   let inWorklist = Array.make (nodeCount + 1) false in 
-  (* Adds all predecessors of 'node' to the worklist *)
+  (* add all predecessors of 'node' to worklist if they are not already in it*)
   let addPredecessorsToWorklist node = List.iter (fun arc -> 
       let predecessor = arc.arc_src in
       if not inWorklist.(predecessor.node_id) then begin
@@ -64,6 +64,31 @@ let backward_analysis
         inWorklist.(predecessor.node_id) <- true (* update inWorklist array*)
       end
     ) node.node_in
+  in
+  (* add all successors of 'node' to worklist if they are not already in it*)
+  let addSuccessorsToWorklist node = List.iter (fun arc -> 
+      let successor = arc.arc_dst in
+      if not inWorklist.(successor.node_id) then begin
+        Queue.add successor worklist; (* add successor to worklist *)
+        inWorklist.(successor.node_id) <- true (* update inWorklist array*)
+      end
+    ) node.node_out
+  in
+  (* choose how to update worklist based on analysis type *)
+  let updateWorklist = match analysis_type with 
+    | FORWARD -> addSuccessorsToWorklist
+    | BACKWARD -> addPredecessorsToWorklist
+  in
+  (* get all states / instructions from predecessor nodes*)
+  let getIncomingStates nodeMap node = 
+    List.map (fun arc -> (NodeMap.find arc.arc_src nodeMap, arc.arc_inst)) node.node_in in
+  (* get all states / instructions from successor nodes*)
+  let getOutgoingStates nodeMap node = 
+    List.map (fun arc -> (NodeMap.find arc.arc_dst nodeMap, arc.arc_inst)) node.node_out in
+  (* choose which states are passed to abstract transformer based on analysis type *)
+  let getStateDependency = match analysis_type with 
+    | FORWARD -> getIncomingStates
+    | BACKWARD -> getOutgoingStates
   in
   (** 
      array that counts the number of times a node as heen processed
@@ -86,25 +111,41 @@ let backward_analysis
       inWorklist.(node.node_id) <- false;
       (* Find current state of node *)
       let currentState = getState node in
-      (* find states of all successors and convert to list of (a, inst) tuples for each successor *)
-      let instStatePairs = List.map (fun arc -> (getState arc.arc_dst, arc.arc_inst)) node.node_out in
+      (* find states/instructions of successors (predecessor) nodes *)
+      let instStatePairs = getStateDependency nodeMap node in
       (* number of times this node has been processed *)
       let nodeProcessed = processed.(node.node_id) in
-      if !trace then Format.fprintf !fmt "### processing node %d: \n" node.node_id; 
+      if !trace then begin
+        Format.fprintf !fmt "### processing node %d (iter: %d): \n" node.node_id nodeProcessed; 
+        Pervasives.print_newline ();
+      end;
       (* run abstract transformer for node to get new abstract state *)
       let (fixedPoint, newState) = abstract_transformer node processed.(node.node_id) currentState instStatePairs in 
       (* update 'processed' count *)
       processed.(node.node_id) <- nodeProcessed + 1; 
-      (* add predecessors of node to worklist if either we didn't reach a fixed point 
+      (* add predecessors (successors) of node to worklist if either we didn't reach a fixed point 
          or if this is the first time we process this node *)
-      if not fixedPoint || processed.(node.node_id) == 1 then addPredecessorsToWorklist node;
+      if not fixedPoint || processed.(node.node_id) == 1 then updateWorklist node;
       if !trace then Format.fprintf !fmt "-fixedPoint: %b \n-new worklist: %a \n######### \n \n"
           fixedPoint print_worklist worklist;
       (* add newState to nodeMap and continute with algorithm *)
       aux @@ NodeMap.add node newState nodeMap 
   in
-  (* Add exit node to worklist *)
-  Queue.add main.func_exit worklist;
-  if !trace then Format.fprintf !fmt "### starting backward analysis: %a \n" print_worklist worklist;
+  (* Add initial node to worklist *)
+  Queue.add entry_node worklist;
+  if !trace then 
+    begin 
+      match analysis_type with 
+      | BACKWARD -> 
+        Format.fprintf !fmt "### starting backward analysis: %a \n" print_worklist worklist;
+      | FORWARD -> 
+        Format.fprintf !fmt "### starting forward analysis: %a \n" print_worklist worklist;
+    end;
   (* Run analysis *)
   aux initial_value
+
+
+let backward_analysis (type a) (at: a abstract_transformer) = execute BACKWARD at 
+
+let forward_analysis (type a) (at: a abstract_transformer) = execute FORWARD at 
+

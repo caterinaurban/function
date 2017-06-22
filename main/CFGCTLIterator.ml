@@ -30,11 +30,18 @@ let rec print_ctl_property ch (property:ctl_property) = match property with
 type quantifier = UNIVERSAL | EXISTENTIAL
 
 
-module CTLCFGIterator(D: RANKING_FUNCTION) = struct
+module CFGCTLIterator(D: RANKING_FUNCTION) = struct
+
+  module CFGForwardIteratorB = CFGForwardIterator.CFGForwardIterator(D.B)
 
   type inv = D.t NodeMap.t
+  type fwd_inv = D.B.t NodeMap.t
 
-  let printInv ?fwdInvOpt fmt (inv:inv) =
+  let printFwdInv fmt (inv:D.B.t NodeMap.t) =
+    let printState node a = Format.fprintf fmt "[%d]: %a\n" node.node_id D.B.print a 
+    in NodeMap.iter printState inv
+
+  let printInv fmt (inv:inv) =
     let inv = 
       if !compress then NodeMap.map D.compress inv
       else inv
@@ -112,7 +119,7 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
     in List.fold_left aux NodeMap.empty cfg.cfg_nodes
 
 
-  let until (quantifier:quantifier) (inv_keep:inv) (inv_reset:inv) : D.t BackwardInterpreter.abstract_transformer =
+  let until (quantifier:quantifier) (fwd_inv:fwd_inv) (inv_keep:inv) (inv_reset:inv) : D.t CFGInterpreter.abstract_transformer =
     let (join, bwdAssign, filter) = transform_functions quantifier in
     let abstract_transformer 
         (node:node) (* current node that is being processed *)
@@ -132,9 +139,14 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
         | s1::s2::[] -> join s1 s2
         | s::ss -> List.fold_left join s ss
       in
+      (* do optional refinement of joined states *)
+      let joindOutStates = 
+        if !refine then 
+          D.refine joindOutStates (NodeMap.find node fwd_inv)
+        else joindOutStates in
       (* apply 'until' operator to compute new state for this node *)
       let newState = D.until joindOutStates keepState resetState in
-      if !BackwardInterpreter.trace_states then 
+      if !CFGInterpreter.trace_states then 
         Format.fprintf !fmt "old_state: \n%a \nnew_state: \n%a \n" D.print (D.compress current_state) D.print (D.compress newState);
       if List.length outStates < 2 then 
         (* don't check for convergence if this this is not a branch point *)
@@ -156,19 +168,19 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
               (* widening threshold reached, apply widening *)
               let widenedNewState = D.widen current_state (D.join COMPUTATIONAL current_state newState) in
               (* NOTE: the join might be necessary to ensure termination because of a bug (???) *)
-              if !BackwardInterpreter.trace_states then 
+              if !CFGInterpreter.trace_states then 
                 Format.fprintf !fmt "widenedNewState: \n %a \n" D.print (D.compress widenedNewState);
               widenedNewState
             else 
               let widenedNewState = D.widen current_state newState in (* widening threshold reached, apply widening *)
-              if !BackwardInterpreter.trace_states then 
+              if !CFGInterpreter.trace_states then 
                 Format.fprintf !fmt "widenedNewState: \n %a \n" D.print (D.compress widenedNewState);
               widenedNewState
           in (false, newState')
     in abstract_transformer
 
 
-  let global (quantifier:quantifier): D.t BackwardInterpreter.abstract_transformer =
+  let global (quantifier:quantifier) (fwd_inv:fwd_inv): D.t CFGInterpreter.abstract_transformer =
     let (join, bwdAssign, filter) = transform_functions quantifier in
     let abstract_transformer 
         (node:node) (* current node that is being processed *)
@@ -185,10 +197,15 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
           | s1::s2::[] -> join s1 s2
           | s::ss -> List.fold_left join s ss
         in
+        (* do optional refinedment of joined states *)
+        let joindOutStates = 
+          if !refine then 
+            D.refine joindOutStates (NodeMap.find node fwd_inv)
+          else joindOutStates in
         (* apply 'mask' operator to get new state for this node. This removes all partitions from the current state 
            that are not also part of the newly computed state. *)
         let newState = D.mask current_state joindOutStates in
-        if !BackwardInterpreter.trace_states then begin
+        if !CFGInterpreter.trace_states then begin
           Format.fprintf !fmt "old_state: \n%a \nnew_state: \n%a \n" D.print (D.compress current_state) D.print (D.compress newState);
         end;
         if List.length outStates < 2 then 
@@ -209,7 +226,7 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
               else 
                 (* use dual_widen after widening threshold reached *)
                 let widenedNewState = D.dual_widen current_state newState in
-                if !BackwardInterpreter.trace_states then 
+                if !CFGInterpreter.trace_states then 
                   Format.fprintf !fmt "widenedNewState: \n %a \n" D.print widenedNewState;
                 widenedNewState
             in (false, newState')
@@ -217,7 +234,7 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
 
 
   let compute (cfg:cfg) (main:Cfg.func) (property:ctl_property) : inv = 
-    let backwardAnalysis = BackwardInterpreter.backward_analysis ~print_state:D.print in
+    let backwardAnalysis = CFGInterpreter.backward_analysis in
     let (env, vars) = Conversion.env_vars_of_cfg cfg in
     let print_inv property inv = 
       if not !minimal then
@@ -230,6 +247,13 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
     let zero = D.zero env vars in
     let atomic_true_inv = atomic bot cfg (CFG_bool_const true) in
     let init_bot = const_node_map cfg bot in
+
+    let fwdInv = if !refine then
+        CFGForwardIteratorB.compute cfg main 
+      else NodeMap.empty
+    in
+    if not !minimal && !refine then
+      Format.fprintf !fmt "Forwad Analysis: \n%a \n" printFwdInv fwdInv;
     let rec inv (property:ctl_property) : inv = 
       let result = 
         match property with
@@ -240,13 +264,13 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
           let pInv = inv p in
           (* exit_node is set to bot for inital value of backward analysis *)
           let init_value = NodeMap.add main.func_exit bot pInv in
-          backwardAnalysis (global UNIVERSAL) init_value main cfg 
+          backwardAnalysis (global UNIVERSAL fwdInv) init_value main.func_exit cfg 
         | AU (p1, p2) -> 
-          let abstractTransformer = until UNIVERSAL (inv p1) (inv p2) in
-          backwardAnalysis abstractTransformer init_bot main cfg 
+          let abstractTransformer = until UNIVERSAL fwdInv (inv p1) (inv p2) in
+          backwardAnalysis abstractTransformer init_bot main.func_exit cfg 
         | AF p -> 
-          let abstractTransformer = until UNIVERSAL atomic_true_inv (inv p) in
-          backwardAnalysis abstractTransformer init_bot main cfg 
+          let abstractTransformer = until UNIVERSAL fwdInv atomic_true_inv (inv p) in
+          backwardAnalysis abstractTransformer init_bot main.func_exit cfg 
         | EX p -> 
           if !ctl_existential_equivalence then
             (* use the following equivalence relation: 
@@ -263,13 +287,13 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
             let pInv = inv p in
             (* exit_node is set to bot for inital value of backward analysis *)
             let init_value = NodeMap.add main.func_exit bot pInv in
-            backwardAnalysis (global EXISTENTIAL) init_value main cfg 
+            backwardAnalysis (global EXISTENTIAL fwdInv) init_value main.func_exit cfg 
         | EU (p1, p2) -> 
           if !ctl_existential_equivalence then 
             raise (Invalid_argument "existential equivalence conversion not supported for 'until' operator")
           else
-            let abstractTransformer = until EXISTENTIAL (inv p1) (inv p2) in
-            backwardAnalysis abstractTransformer init_bot main cfg 
+            let abstractTransformer = until EXISTENTIAL fwdInv (inv p1) (inv p2) in
+            backwardAnalysis abstractTransformer init_bot main.func_exit cfg 
         | EF p -> 
           if !ctl_existential_equivalence then 
             (* use the following equivalence relation: 
@@ -280,13 +304,13 @@ module CTLCFGIterator(D: RANKING_FUNCTION) = struct
                to capture finite traces with the 'AG' operator
             *)
             let init_value = NodeMap.add main.func_exit zero inv_not_p in
-            let inv_ag = backwardAnalysis (global UNIVERSAL) init_value main cfg in
+            let inv_ag = backwardAnalysis (global UNIVERSAL fwdInv) init_value main.func_exit cfg in
             print_inv (AG (NOT p)) inv_ag;
             (* compute: not AG(not p) *)
             logic_not inv_ag 
           else
-            let abstractTransformer = until EXISTENTIAL atomic_true_inv (inv p) in
-            backwardAnalysis abstractTransformer init_bot main cfg 
+            let abstractTransformer = until EXISTENTIAL fwdInv atomic_true_inv (inv p) in
+            backwardAnalysis abstractTransformer init_bot main.func_exit cfg 
         | AND (p1, p2) -> logic_and (inv p1) (inv p2)
         | OR (p1, p2) -> logic_or (inv p1) (inv p2)
         | NOT (Atomic (property, None)) -> 

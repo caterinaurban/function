@@ -187,11 +187,11 @@ let parse_args () =
     | "-tracefwd"::r -> (* forward analysis trace *)
       Iterator.tracefwd := true; doit r
     | "-traceworklist"::r -> (* backward analysis trace *)
-      BackwardInterpreter.trace := true;
+      CFGInterpreter.trace := true;
       doit r
     | "-traceworkliststates"::r -> (* backward analysis trace *)
-      BackwardInterpreter.trace := true;
-      BackwardInterpreter.trace_states := true;
+      CFGInterpreter.trace := true;
+      CFGInterpreter.trace_states := true;
       doit r
     | "-dot"::r -> (* forward analysis trace *)
       Iterator.dot := true; doit r
@@ -248,12 +248,12 @@ module CTLOctagonsOrdinals = CTLIterator.CTLIterator(DecisionTree.TSOO)
 module CTLPolyhedra = CTLIterator.CTLIterator(DecisionTree.TSAP)
 module CTLPolyhedraOrdinals = CTLIterator.CTLIterator(DecisionTree.TSOP)
 
-module CTLCFGBoxes = CTLCFGIterator.CTLCFGIterator(DecisionTree.TSAB)
-module CTLCFGBoxesOrdinals = CTLCFGIterator.CTLCFGIterator(DecisionTree.TSOB)
-module CTLCFGOctagons = CTLCFGIterator.CTLCFGIterator(DecisionTree.TSAO)
-module CTLCFGOctagonsOrdinals = CTLCFGIterator.CTLCFGIterator(DecisionTree.TSOO)
-module CTLCFGPolyhedra = CTLCFGIterator.CTLCFGIterator(DecisionTree.TSAP)
-module CTLCFGPolyhedraOrdinals = CTLCFGIterator.CTLCFGIterator(DecisionTree.TSOP)
+module CFGCTLBoxes = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSAB)
+module CFGCTLBoxesOrdinals = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSOB)
+module CFGCTLOctagons = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSAO)
+module CFGCTLOctagonsOrdinals = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSOO)
+module CFGCTLPolyhedra = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSAP)
+module CFGCTLPolyhedraOrdinals = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSOP)
 
 
 let result = ref false
@@ -412,7 +412,7 @@ let ctl_cfg () =
   if !property = "" then raise (Invalid_argument "No Property Specified");
   let (cfg, getProperty) = Tree_to_cfg.prog (File_parser.parse_file !filename) !main in
   let mainFunc = Cfg.find_func !main cfg in
-  let cfg = Cfg.insert_exit_label cfg mainFunc in (* add exit label at end of main function *)
+  let cfg = Cfg.insert_entry_exit_label cfg mainFunc in (* add exit label at end of main function *)
   let cfg = Cfg.inline_function_calls cfg in (* inline all non recursive functions *)
   let cfg = Cfg.add_function_call_arcs cfg in (* insert function call edges for remaining function calls *)
   let ctlProperty = CTLProperty.map File_parser.parse_bool_expression @@ parseCTLPropertyString_plain !property in
@@ -420,9 +420,9 @@ let ctl_cfg () =
   let precondition = getProperty @@ File_parser.parse_bool_expression !precondition in
   let analyze =
     match !domain with
-    | "boxes" -> if !ordinals then CTLCFGBoxesOrdinals.analyze else CTLCFGBoxes.analyze
-    | "octagons" -> if !ordinals then CTLCFGOctagonsOrdinals.analyze else CTLCFGOctagons.analyze
-    | "polyhedra" -> if !ordinals then CTLCFGPolyhedraOrdinals.analyze else CTLCFGPolyhedra.analyze
+    | "boxes" -> if !ordinals then CFGCTLBoxesOrdinals.analyze else CFGCTLBoxes.analyze
+    | "octagons" -> if !ordinals then CFGCTLOctagonsOrdinals.analyze else CFGCTLOctagons.analyze
+    | "polyhedra" -> if !ordinals then CFGCTLPolyhedraOrdinals.analyze else CFGCTLPolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in
   if not !minimal then
