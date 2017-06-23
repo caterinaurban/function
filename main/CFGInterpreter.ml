@@ -12,7 +12,9 @@ open Cfg
 open Iterator
 
 
+(* log worklist algorithm *)
 let trace = ref false
+(* log worklist algorithm and show how states change *)
 let trace_states = ref false
 
 
@@ -41,7 +43,7 @@ let print_worklist fmt queue =
 
 type analysis_type = | FORWARD | BACKWARD 
 
-(* abstract implementation of a backward analysis over a control flow graph *)
+(* abstract implementation of a backward/forward analysis over a control flow graph *)
 let execute
     (type a) (* type of the abstract state that is computed for each node in 'cfg' *)
     (analysis_type:analysis_type) (* type of analysis, either forward or backward *)
@@ -49,7 +51,7 @@ let execute
     (initial_value:a NodeMap.t) (* map that assigns an initial state to each node in the cfg *)
     (entry_node:node) (* entry point of the program analysis *)
     (cfg:cfg) (* control flow graph *)
-    : a NodeMap.t (* returns a map that assigns each node an abstract state that is the result of the backward analysis *)
+    : a NodeMap.t (* returns a map that assigns each node an abstract state that is the result of the analysis *)
   =
   let nodeCount = List.length cfg.cfg_nodes in
   (* Create empty worklist *)

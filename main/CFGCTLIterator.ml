@@ -53,6 +53,7 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
         Format.fprintf fmt "[%d:]:\n%a\n" node.node_id D.print a 
     in NodeMap.iter printState inv
 
+  (* assign corresponding state for atomic proposition to each node *)
   let atomic bot (cfg:cfg) (property:bool_expr) : inv = 
     (* abstract state of all nodes in cfg*)
     let atomicState = D.reset bot (Conversion.of_bool_expr property) in
@@ -61,9 +62,9 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
         (fun map node -> NodeMap.add node atomicState map) 
         NodeMap.empty cfg.cfg_nodes 
 
-
+  (* assign corresponding atomic state for atomic state to each nodes with given label *)
   let labeled_atomic bot (cfg:cfg) (label:string) (property:bool_expr) : inv = 
-    (*node map that assigns bottom to all nodes*)
+    (* node map that assigns bottom to all nodes *)
     let botNodeMap = List.fold_left (fun map n -> NodeMap.add n bot map) NodeMap.empty cfg.cfg_nodes in
     (* abstract state of all nodes with label in cfg*)
     let atomicState = D.reset bot (Conversion.of_bool_expr property) in
@@ -88,12 +89,14 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
   (* CTL 'not' opperator *)
   let logic_not (fp:inv) : inv = NodeMap.map D.complement fp
 
+  (* return appropriate 'join' 'assign' and 'filter' implementations based on given quantifier *)
   let transform_functions (quantifier:quantifier) = 
     let join = D.join (if quantifier == UNIVERSAL then APPROXIMATION else COMPUTATIONAL) in
     let bwdAssign = D.bwdAssign ~underapprox:(quantifier == EXISTENTIAL) in
     let filter = D.filter ~underapprox:(quantifier == EXISTENTIAL)in
     (join, bwdAssign, filter)
 
+  (* process instructions of a given arc in CFG *)
   let process_inst (quantifier:quantifier) (out_state, inst: (D.t * inst)) =
     let (join, bwdAssign, filter) = transform_functions quantifier in
     match inst with
@@ -105,6 +108,7 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
     | CFG_assert bexpr -> filter out_state @@ Conversion.of_bool_expr bexpr
     | CFG_call bexpr -> raise (Invalid_argument "function calls not supported")
 
+  (* CTL 'next' operator *)
   let next (quantifier:quantifier) (bot:D.t) (cfg:cfg) (inv:inv): inv = 
     let (join, _, _) = transform_functions quantifier in
     let aux (nodeMap:inv) (node:node) =
@@ -119,6 +123,7 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
     in List.fold_left aux NodeMap.empty cfg.cfg_nodes
 
 
+  (* CTL 'until' operator *)
   let until (quantifier:quantifier) (fwd_inv:fwd_inv) (inv_keep:inv) (inv_reset:inv) : D.t CFGInterpreter.abstract_transformer =
     let (join, bwdAssign, filter) = transform_functions quantifier in
     let abstract_transformer 
@@ -180,6 +185,7 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
     in abstract_transformer
 
 
+  (* CTL 'global' operator *)
   let global (quantifier:quantifier) (fwd_inv:fwd_inv): D.t CFGInterpreter.abstract_transformer =
     let (join, bwdAssign, filter) = transform_functions quantifier in
     let abstract_transformer 
@@ -247,8 +253,8 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
     let zero = D.zero env vars in
     let atomic_true_inv = atomic bot cfg (CFG_bool_const true) in
     let init_bot = const_node_map cfg bot in
-
-    let fwdInv = if !refine then
+    let fwdInv = 
+      if !refine then
         CFGForwardIteratorB.compute cfg main 
       else NodeMap.empty
     in
@@ -317,7 +323,6 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
           let negatedProperty = negate_bool_expr property in
           atomic bot cfg negatedProperty
         | NOT p -> logic_not (inv p) 
-        (* | _ -> raise (Invalid_argument "CTL property not supported") *)
       in
       print_inv property result;
       result
@@ -328,7 +333,6 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
     let programInvariant = NodeMap.find main.func_entry inv in
     let precondition = Conversion.of_bool_expr precondition in
     D.defined ~condition:precondition programInvariant
-
 
 end
 

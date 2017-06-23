@@ -267,13 +267,13 @@ let const_node_map (cfg:cfg) value =
 
 let negate_bool_expr (bexpr:bool_expr): bool_expr = CFG_bool_unary (AST_NOT, bexpr)
 
+(* check if all arcs in cfg have corresponding entry in node_in and node_out *)
 let valid_cfg (cfg:cfg) =
   let idEq a1 a2 = a1.arc_id == a2.arc_id in
   let validArc arc = 
     (List.exists (idEq arc) arc.arc_src.node_out) &&
     (List.exists (idEq arc) arc.arc_dst.node_in) 
   in List.for_all validArc cfg.cfg_arcs
-
 
 let max_arc_id cfg =
   List.fold_left 
@@ -394,6 +394,7 @@ let func_nodes (func:func) =
   List.map fst @@ NodeMap.bindings nodeMap
 
 
+(* return list of functions that are called from withing 'func' *)
 let called_functions (func:func): func list = 
   let isCallArc (a:arc) = match a.arc_inst with
     | CFG_call _ -> true
@@ -409,6 +410,7 @@ let called_functions (func:func): func list =
     List.map (fun n -> List.filter isCallArc n.node_out) funcNodes 
 
 
+(* create copy of all nodes in a function *)
 let copy_function_nodes (cfg:cfg) (func:func) = 
   let module IntMap = Map.Make(struct type t = int let compare = compare end) in
   let nodeId = ref (max_node_id cfg + 1) in
@@ -473,13 +475,18 @@ let add_arc (cfg:cfg) (arc:arc) =
   }
 
 
+(* inline all function calls to non-recursive functions *)
 let inline_function_calls (cfg:cfg) =
+  (* inline a single call instruction *)
   let inlineCallArc canInline cfg call_arc = 
     let calledFunction = match call_arc.arc_inst with 
       | CFG_call f -> f 
       | _ -> raise (Invalid_argument "invalid arc") 
     in
     if canInline calledFunction then
+      (* copy all nodes in the function to inline, replace the call arc with an edge to 
+         the entry of the copied function and add add back edge from the exit.
+      *)
       let (cfg', start, exit) = copy_function_nodes cfg calledFunction in
       let cfg'' = delete_arc cfg' call_arc in
       let newCallArc = {
@@ -498,7 +505,8 @@ let inline_function_calls (cfg:cfg) =
     else 
       cfg
   in
-
+  (* Keep inlining all functions that don't call any other 
+     functions until only recursive functions are left *)
   let rec aux cfg =  
     let calledFunctionsMap = List.fold_left 
         (fun map func -> FuncMap.add func (called_functions func) map) 
