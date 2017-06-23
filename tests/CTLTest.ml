@@ -22,6 +22,7 @@ let test file ctl_str
     ?(joinbwd = 2)
     ?setup
   = TestCommon.make_analyser [
+    "-minimal";
     "-domain"; string_of_domain domain; 
     "-joinbwd"; string_of_int joinbwd; 
     "-precondition"; precondition;
@@ -34,6 +35,7 @@ let test_cfg file ctl_property
     ?(joinbwd = 2)
     ?setup
   = TestCommon.make_analyser [
+    "-minimal";
     "-domain"; string_of_domain domain; 
     "-joinbwd"; string_of_int joinbwd; 
     "-precondition"; precondition;
@@ -113,4 +115,54 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
   test_cfg ~precondition:"a!=1" "./tests/ctl/acqrel.c" "AG{OR{a!=1}{AF{r==1}}}" true;
   test_cfg "./tests/ctl/win4.c"  "AF{AG{WItemsNum >= 1}}" true;
   test_cfg ~joinbwd:4 "./tests/ctl/fig8-2007.c" "OR{set==0}{AF{unset == 1}}" true;
+
+
+  (* Testcases from Ultimate LTL Automizer *)
+
+  test_cfg ~precondition:"chainBroken == 0" 
+    "./tests/ctl/ltl_automizer/coolant_basis_1_safe_sfty.c" 
+    "AG{OR{chainBroken != 1}{AG{chainBroken == 1}}}" true;
+
+  test_cfg ~precondition:"chainBroken == 0" 
+    "./tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c" 
+    "AG{OR{chainBroken != 1}{AG{chainBroken == 1}}}" false;
+
+  test_cfg ~joinbwd:7
+    "./tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c"
+    "AG{AF{otime < time}}" true;
+
+  test_cfg ~joinbwd:7
+    "./tests/ctl/ltl_automizer/coolant_basis_2_unsafe_lifeness.c"
+    "AG{AF{otime < time}}" false;
+
+  test_cfg ~precondition:"init == 0" 
+    "./tests/ctl/ltl_automizer/coolant_basis_3_safe_sfty.c" 
+    "AG{OR{init != 3}{AG{AF{time > otime}}}}" true;
+
+  test_cfg ~precondition:"init == 0" 
+    "./tests/ctl/ltl_automizer/coolant_basis_3_unsafe_sfty.c" 
+    "AG{OR{init != 3}{AG{AF{time > otime}}}}" false;
+
+  test_cfg ~precondition:"init == 0 && temp < limit"
+    "./tests/ctl/ltl_automizer/coolant_basis_4_safe_sfty.c" 
+    "AG{OR{init != 3}{OR{temp <= limit}{AF{AG{chainBroken == 1}}}}}" true;
+
+  (*TODO performs realy bad, I suspect because of a problem in 'dual_widen' *)
+  (* test_cfg ~precondition:"init == 0 && temp < limit" *)
+  (*   "./tests/ctl/ltl_automizer/coolant_basis_4_unsafe_sfty.c" *) 
+  (*   "AG{OR{init != 3}{OR{temp <= limit}{AF{AG{chainBroken == 1}}}}}" false; *)
+
+  (* Analysis can't prove coolant_basis_5_safe_sfty.c, but we can show a slightly modified example: *)
+  test_cfg ~precondition:"init == 0"
+    "./tests/ctl/ltl_automizer/coolant_basis_5_safe_cheat.c" 
+    "AU{init == 0}{OR{AU{init == 1}{AG{init == 3}}}{AG{init == 1}}}" true;
+
+  test_cfg ~precondition:"init == 0 && temp < limit"
+    "./tests/ctl/ltl_automizer/coolant_basis_6_safe_sfty.c" 
+    "AG{OR{limit <= -273 && limit >= 10}{OR{tempIn >= 0}{AF{ warnLED == 1}}}}" true;
+
+  test_cfg ~precondition:"init == 0 && temp < limit"
+    "./tests/ctl/ltl_automizer/coolant_basis_6_unsafe_sfty.c" 
+    "AG{OR{limit <= -273 && limit >= 10}{OR{tempIn >= 0}{AF{ warnLED == 1}}}}" false;
+
 ]

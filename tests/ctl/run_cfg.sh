@@ -12,7 +12,6 @@
 ./Main.native -dot -domain polyhedra -joinbwd 7 ./tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c -ctl_cfg "AG{AF{otime < time}}" | python ./pretty_cfg.py > ./tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.html
 ./Main.native -dot -domain polyhedra tests/ctl/ltl_automizer/coolant_basis_3_safe_sfty.c -ctl_cfg "AG{OR{init != 3}{AG{AF{time > otime}}}}" -precondition "init == 0" | python ./pretty_cfg.py > ./tests/ctl/ltl_automizer/coolant_basis_3_safe_sfty.html 
 ./Main.native -dot -domain polyhedra tests/ctl/ltl_automizer/coolant_basis_4_safe_sfty.c -ctl_cfg "AG{OR{init != 3}{OR{temp <= limit}{AF{AG{chainBroken == 1}}}}}" -precondition "init == 0 && temp < limit" | python ./pretty_cfg.py > ./tests/ctl/ltl_automizer/coolant_basis_4_safe_sfty.html 
+./Main.native -dot -domain polyhedra tests/ctl/ltl_automizer/coolant_basis_5_safe_cheat.c -ctl_cfg "AU{init == 0}{OR{AU{init == 1}{AG{init == 3}}}{AG{init == 1}}}" -precondition "init==0" | python ./pretty_cfg.py > ./tests/ctl/ltl_automizer/coolant_basis_5_safe_cheat.html 
 ./Main.native -dot -domain polyhedra tests/ctl/ltl_automizer/coolant_basis_6_safe_sfty.c -ctl_cfg "AG{OR{limit <= -273 && limit >= 10}{OR{tempIn >= 0}{AF{ warnLED == 1}}}}" -precondition "init == 0 && temp < limit"  | python ./pretty_cfg.py > ./tests/ctl/ltl_automizer/coolant_basis_6_safe_sfty.html 
-
-
 
