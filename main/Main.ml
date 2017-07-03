@@ -20,6 +20,7 @@ let ordinals = ref false
 let property = ref ""
 let precondition = ref "true"
 let time = ref false
+let noinline = ref false
 
 let parseFile filename =
   let f = open_in filename in
@@ -195,6 +196,8 @@ let parse_args () =
       doit r
     | "-dot"::r -> (* forward analysis trace *)
       Iterator.dot := true; doit r
+    | "-noinline"::r -> (* forward analysis trace *)
+      noinline := true; doit r
     | x::r -> filename := x; doit r
     | [] -> ()
   in
@@ -413,7 +416,7 @@ let ctl_cfg () =
   let (cfg, getProperty) = Tree_to_cfg.prog (File_parser.parse_file !filename) !main in
   let mainFunc = Cfg.find_func !main cfg in
   let cfg = Cfg.insert_entry_exit_label cfg mainFunc in (* add exit/entry labels to main function *)
-  let cfg = Cfg.inline_function_calls cfg in (* inline all non recursive functions *)
+  let cfg = if !noinline then cfg else Cfg.inline_function_calls cfg in (* inline all non recursive functions unless -noinline is used *)
   let cfg = Cfg.add_function_call_arcs cfg in (* insert function call edges for remaining function calls *)
   let ctlProperty = CTLProperty.map File_parser.parse_bool_expression @@ parseCTLPropertyString_plain !property in
   let ctlProperty = CTLProperty.map getProperty ctlProperty in
