@@ -112,6 +112,7 @@ rule token = parse
 | "/*" { comment lexbuf; token lexbuf }
 | "//" [^ '\n' '\r']* { token lexbuf }
 | "extern" [^ '\n' '\r']*	{ token lexbuf }
+| "typedef" [^ '\n' '\r']*	{ token lexbuf }
 | "#include" [^ '\n' '\r']*	{ token lexbuf }
 | newline { new_line lexbuf; token lexbuf }
 | space { token lexbuf }

@@ -116,6 +116,44 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
   test_cfg "./tests/ctl/win4.c"  "AF{AG{WItemsNum >= 1}}" true;
   test_cfg ~joinbwd:4 "./tests/ctl/fig8-2007.c" "OR{set==0}{AF{unset == 1}}" true;
 
+  test_cfg 
+    "./tests/ctl/multi_branch_choice.c"
+    "AF{OR{x==4}{x==-4}}" true;
+
+  test_cfg 
+    "./tests/ctl/multi_branch_choice.c"
+    "AND{EF{x==4}}{EF{x==-4}}" true;
+
+  test_cfg 
+    "./tests/ctl/potential_termination_1.c"
+    "EF{exit: true}" true;
+
+  (* Some SV Comp testcases *)
+
+  test_cfg 
+    "./tests/ctl/sv_comp/Bangalore_false-no-overflow.c" 
+    "EF{x < 0}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/Ex02_false-termination_true-no-overflow.c"
+    "OR{i >= 5}{AF{exit: true}}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/Ex07_false-termination_true-no-overflow.c"
+    "AF{AG{i==0}}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c"
+    "AF{AND{AF{j >= 21}}{i==100}}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/Madrid_true-no-overflow_false-termination_true-valid-memsafety.c"
+    "AF{AND{x==7}{AF{AG{x==2}}}}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c"
+    "AF{AG{j==0}}" true;
+
 
   (* Testcases from Ultimate LTL Automizer *)
 
