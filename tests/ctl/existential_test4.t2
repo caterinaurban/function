@@ -1,0 +1,40 @@
+/// [EF](r==1)
+START: 1;
+
+FROM: 1;
+    x := nondet();
+    y := nondet();
+    r := 0;
+TO: 2;
+
+FROM: 2;
+    assume(y < 0);
+TO: 3;
+
+FROM: 2;
+    assume(y >= 0);
+TO: 4;
+
+FROM: 3;
+    assume(x < 0);
+TO: 5;
+
+FROM: 3;
+    assume(x >= 0);
+TO: 7;
+
+FROM: 5;
+    r := 1;
+TO: 8;
+
+FROM: 8;
+TO: 9;
+
+FROM: 7;
+TO: 9;
+
+FROM: 4;
+TO: 9;
+
+FROM: 9;
+TO: 9;

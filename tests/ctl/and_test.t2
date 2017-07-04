@@ -1,0 +1,35 @@
+///*** 1_main ***///
+// asdfadsf
+START: 1;
+
+FROM: 1;
+TO: 2;
+FROM: 2;
+  nondef.0 := nondet();
+  n := nondef.0;
+  assume (n > 0);
+TO: 3;
+FROM: 3;
+  assume(n > 0);
+TO: 4;
+FROM: 3;
+  assume(n <= 0);
+TO: 5;
+FROM: 4;
+  n := n - 1;
+TO: 3;
+FROM: 5;
+  assume(n == 0);
+TO: 6;
+FROM: 5;
+  assume(n < 0);
+TO: 7;
+FROM: 5;
+  assume(n > 0);
+TO: 7;
+FROM: 6;
+  n := n + 1;
+  n := n - 1;
+TO: 5;
+FROM: 7;
+TO: 8;

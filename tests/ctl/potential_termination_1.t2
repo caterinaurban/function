@@ -1,0 +1,40 @@
+// [EF](exit == 1)
+
+START: 1;
+
+FROM: 1;
+    exit := 0;
+    y := 1;
+    i := nondet();
+    x := nondet();
+TO: 2;
+
+FROM: 2;
+    assume(i > 10);
+TO: 3;
+
+FROM: 3;
+    x := 1;
+TO: 4;
+
+FROM: 2;
+    assume(i <= 10);
+TO: 4;
+
+
+FROM: 4;
+    assume(x == y);
+TO: 5;
+
+
+FROM: 5;
+TO: 4;
+
+
+FROM: 4;
+    assume(x != y);
+TO: 6;
+
+FROM: 6;
+    exit := 1;
+TO: 7;

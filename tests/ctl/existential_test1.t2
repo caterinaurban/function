@@ -1,0 +1,31 @@
+// [EF](r == 1)
+
+START: 1;
+
+FROM: 1;
+  r := 0;
+  x := nondet();
+  y := nondet();
+  assume(2*x <= y + 3);
+TO: 2;
+
+FROM: 2;
+  assume(2*x <= y + 3);
+TO: 3;
+
+FROM: 3;
+  r := 1;    
+TO: 4;
+
+FROM: 4;
+TO: 5;
+
+FROM: 3;
+TO: 5;
+
+FROM: 2;
+  assume(2*x > y + 3);
+TO: 5;
+
+FROM: 5;
+TO: 5;

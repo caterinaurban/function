@@ -90,6 +90,8 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
   test_cfg "./tests/ctl/until_test.c" "AU{x <= y}{x==y}" false;
   test_cfg "./tests/countdown.c" "AF{x == 0}" true;
   test_cfg "./tests/countdown.c" "AG{AF{x == 0}}" true;
+  test_cfg "./tests/peterson.c" "AF{C1: true}" true;
+  test_cfg "./tests/peterson.c" "AG{AF{C1: true}}" true;
   test_cfg "./tests/mnav.c" "AF{enable == 0}" true;
   test_cfg "./tests/pingpong.c" "AF{z==1}" true;
   test_cfg ~setup:["-ordinals"; "1"] "./tests/sink.c" "AF{x==0}" true;
