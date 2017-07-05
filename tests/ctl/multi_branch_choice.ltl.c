@@ -1,16 +1,13 @@
-/**
- * Samuel Ueltschi: multiple branches with initial non-det choice
- *
- * FuncTion arguments: 
- * -ctl_cfg AF{OR{x==4}{x==-4}}
- * -ctl_cfg EF{x==-4}
- *
- */
+//#Safe
+//@ ltl invariant positive: <>(AP(x == 4 || x == -4));
+
+extern int __VERIFIER_nondet_int() __attribute__ ((__noreturn__));
+
+int x;
 
 int main() {
-    int x;
 
-    if (?) {
+    if (__VERIFIER_nondet_int()) {
         x = 1;
     } else {
         x = -1;

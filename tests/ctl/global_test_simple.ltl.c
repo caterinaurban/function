@@ -1,8 +1,9 @@
-// FuncTion arguments:
-// -ctl_cfg "AG{AF{x <= -10}}" 
-// -joinbwd 4
+//#Safe
+//@ ltl invariant positive: []<>AP(x <= -10);
+
+int x;
+
 int main() {
-    int x;
 
     while (x < 0) {
         x = x + 1;

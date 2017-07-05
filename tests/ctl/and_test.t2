@@ -1,5 +1,7 @@
-///*** 1_main ***///
-// asdfadsf
+// -CTL="[AG]([AF](n==1))) && [AF](n==0)" proof failed
+// -CTL="[AG]([AF](n==1)))" proof failed
+// -CTL="[AF](n==0)" proof succeeds
+
 START: 1;
 
 FROM: 1;

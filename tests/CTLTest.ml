@@ -76,8 +76,8 @@ let ctl_testcases = "ctl" >:::
     ~precondition: "x==2"
     "./tests/ctl/existential_test3.c" "EF{r==1}" true;
   test ~precondition:"y<0" "./tests/ctl/existential_test4.c" "EF{r==1}" true;
-  test ~precondition:"a!=1" "./tests/ctl/acqrel.c" "AG{OR{a!=1}{AF{r==1}}}" true;
-  test "./tests/ctl/win4.c"  "AF{AG{WItemsNum >= 1}}" true;
+  test ~precondition:"a!=1" "./tests/ctl/koskinen/acqrel_mod.c" "AG{OR{a!=1}{AF{r==1}}}" true;
+  test "./tests/ctl/koskinen/win4.c"  "AF{AG{WItemsNum >= 1}}" true;
 
 ]
 
@@ -114,9 +114,9 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
     ~precondition: "x==2"
     "./tests/ctl/existential_test3.c" "EF{r==1}" true;
   test_cfg ~precondition:"y<0" "./tests/ctl/existential_test4.c" "EF{r==1}" true;
-  test_cfg ~precondition:"a!=1" "./tests/ctl/acqrel.c" "AG{OR{a!=1}{AF{r==1}}}" true;
-  test_cfg "./tests/ctl/win4.c"  "AF{AG{WItemsNum >= 1}}" true;
-  test_cfg ~joinbwd:4 "./tests/ctl/fig8-2007.c" "OR{set==0}{AF{unset == 1}}" true;
+  test_cfg ~precondition:"a!=1" "./tests/ctl/koskinen/acqrel_mod.c" "AG{OR{a!=1}{AF{r==1}}}" true;
+  test_cfg "./tests/ctl/koskinen/win4.c"  "AF{AG{WItemsNum >= 1}}" true;
+  test_cfg ~joinbwd:4 "./tests/ctl/koskinen/fig8-2007_mod.c" "OR{set==0}{AF{unset == 1}}" true;
 
   test_cfg 
     "./tests/ctl/multi_branch_choice.c"

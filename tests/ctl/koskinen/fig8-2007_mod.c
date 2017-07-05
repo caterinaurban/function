@@ -3,12 +3,10 @@
 //              Byron Cook * Eric Koskinen
 //                     July 2010
 //
-//
-//          Adjusted for FuncTion by Samuel Ueltschi
+//          Modified version of acqrel that can be proven by FuncTion
 // *************************************************************
 
-// Benchmark: fig8-2007.c
-//
+// FuncTion arguments:
 // -ctl_cfg "OR{set==0}{AF{unset == 1}}"
 
 int i; int Pdolen; int DName;
@@ -18,9 +16,11 @@ int set;
 int unset;
 
 void main() {
-    set = 1;
+
+    set = 1; // aquire resource
+
     while (i < Pdolen) { 
-        DName = ?;  
+        // DName = ?;  // leads to bad widening behaviour
         if (!DName) { break; } 
         status = ?; 
         if (1 != status) { 
@@ -32,7 +32,11 @@ void main() {
             i++; 
         } 
     } 
+
 loc_continue:
+
+    // release resource
     unset = 1; 
+    
 }
 

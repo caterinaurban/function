@@ -7,29 +7,23 @@
 //
 // *************************************************************
 
-// Benchmark: acqrel.c
-// Property: AG(a => AF r)
+// -ctl_cfg "AF{resp > 5}"
+// -precondition "c > 5"
 
-// FuncTion arguments:
-// -ctl_cfg "AG{OR{A!=1}{AF{R==1}}}" 
-// -precondition "A==0 && R==0"
-
-
-int A = 0;
-int R = 0;
+int c; // assume c > 0
+int servers = 4;
+int resp = 0;
+int curr_serv = servers;
 
 void main() {
-  int n;
-  while(?) {
-    A = 1;
-    A = 0;
-    n = ?;
-    while(n>0) {
-      n--;
+  while(curr_serv > 0) {
+    if(?) {
+      c--; curr_serv--;
+      resp++;
+    } else if (c < curr_serv) {
+      curr_serv--;
     }
-    R = 1;
-    R = 0;
   }
-  while(1) { int x; x=x; }
+  while(1) { int ddd; ddd=ddd; }
 }
 

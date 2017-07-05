@@ -1,0 +1,36 @@
+// -CTL="[AF]([AG](j==0))"
+
+START: init;
+
+FROM: init;
+    i := 0;
+TO: 1;
+
+
+FROM: 1;
+    assume(i < 100);
+TO: 2;
+
+FROM: 2;
+    j := 0;
+TO: 4;
+
+FROM: 4;
+    assume(j < 1);
+TO: 5;
+
+FROM: 5;
+    j := j + 0;
+TO: 4;
+
+FROM: 4;
+    assume(j >= 1);
+TO: 6;
+
+FROM: 6;
+    i := i + 1;
+TO: 1;
+
+FROM: 1;
+    assume(i >= 100);
+TO: 3;

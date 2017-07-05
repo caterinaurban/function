@@ -1,0 +1,41 @@
+// -CTL="[AF]([AF](j >= 21) && i == 100)"
+
+START: init;
+
+FROM: init;
+    c := 0;
+    i := 0;
+TO: 1;
+
+FROM: 1;
+    assume(i < 100);
+TO: 2;
+
+FROM: 2;
+    c := c + 1;
+    i := i + 1;
+TO: 1;
+
+FROM: 1;
+    assume(i >= 100);
+TO: 3;
+
+FROM: 3;
+    j := 5;
+TO: 4;
+
+FROM: 4;
+    assume(j < 21);
+TO: 5;
+
+FROM: 5;
+    c := c + 1;
+    j := j + 3;
+TO: 4;
+
+FROM: 4;
+    assume(j >= 21);
+TO: 6;
+
+FROM: 6;
+TO: 6;
