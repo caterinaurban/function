@@ -134,10 +134,11 @@ let parseCTLPropertyString (property:string) =
 let parse_args () =
   let rec doit args =
     match args with
+    (* General arguments -------------------------------------------*)
     | "-domain"::x::r -> (* abstract domain: boxes|octagons|polyhedra *)
       domain := x; doit r
-    | "-guarantee"::x::r -> (* guarantee analysis *)
-      analysis := "guarantee"; property := x; doit r
+    | "-timeout"::x::r -> (* analysis timeout *)
+      Iterator.timeout := float_of_string x; doit r
     | "-joinfwd"::x::r -> (* widening delay in forward analysis *)
       Iterator.joinfwd := int_of_string x; doit r
     | "-joinbwd"::x::r -> (* widening delay in backward analysis *)
@@ -149,54 +150,52 @@ let parse_args () =
       minimal := true; Iterator.minimal := true; doit r
     | "-ordinals"::x::r -> (* ordinal-valued ranking functions *)
       ordinals := true; Ordinals.max := int_of_string x; doit r
-    | "-recurrence"::x::r -> (* recurrence analysis *)
-      analysis := "recurrence"; property := x; doit r
-    | "-actl"::x::r -> (* TODO: legacy name, delete me *)
-      analysis := "actl"; property := x; doit r
-    | "-actl_termination"::r -> (*TODO: legacy name, delete me*)
-      analysis := "actl_termination"; doit r
-    | "-ctl"::x::r -> (* CTL analysis *)
-      analysis := "ctl"; property := x; doit r
-    | "-ctl_str"::x::r -> (* CTL analysis with property passed as string *)
-      analysis := "ctl_str"; property := x; doit r
-    | "-ctl_termination"::r -> (* CTL analysis for termination *)
-      analysis := "ctl_termination"; doit r
-    | "-ctl_cfg"::x::r -> (* CTL analysis for termination *)
-      analysis := "ctl_cfg"; property := x; doit r
-    | "-precondition"::c::r -> (* optional precondition that holds at the start of the program, default = true *)
-      precondition := c; doit r
-    | "-ctl_existential_equivalence"::r ->
-        Iterator.ctl_existential_equivalence := true; doit r
     | "-refine"::r -> (* refine in backward analysis *)
       Iterator.refine := true; doit r
     | "-retrybwd"::x::r ->
       Iterator.retrybwd := int_of_string x;
       DecisionTree.retrybwd := int_of_string x;
       doit r
-    | "-time"::r -> (* track analysis time *)
-      time := true; doit r
-    | "-timebwd"::r -> (* track backward analysis time *)
-      Iterator.timebwd := true; doit r
-    | "-timefwd"::r -> (* track forward analysis time *)
-      Iterator.timefwd := true; doit r
-    | "-timeout"::x::r -> (* analysis timeout *)
-      Iterator.timeout := float_of_string x; doit r
     | "-tracebwd"::r -> (* backward analysis trace *)
       Iterator.tracebwd := true;
       DecisionTree.tracebwd := true;
       doit r
     | "-tracefwd"::r -> (* forward analysis trace *)
       Iterator.tracefwd := true; doit r
-    | "-traceworklist"::r -> (* backward analysis trace *)
+    (* Recurrence / Guarantee arguments -------------------------------*)
+    | "-guarantee"::x::r -> (* guarantee analysis *)
+      analysis := "guarantee"; property := x; doit r
+    | "-recurrence"::x::r -> (* recurrence analysis *)
+      analysis := "recurrence"; property := x; doit r
+    | "-time"::r -> (* track analysis time *)
+      time := true; doit r
+    | "-timebwd"::r -> (* track backward analysis time *)
+      Iterator.timebwd := true; doit r
+    | "-timefwd"::r -> (* track forward analysis time *)
+      Iterator.timefwd := true; doit r
+    (* CTL arguments ---------------------------------------------------*)
+    | "-ctl"::x::r -> (* CTL analysis *)
+      analysis := "ctl"; property := x; doit r
+    | "-ctl_str"::x::r -> (* CTL analysis with property passed as string *)
+      analysis := "ctl_str"; property := x; doit r
+    | "-ctl_termination"::r -> (* CTL analysis for termination *)
+      analysis := "ctl_termination"; doit r
+    | "-dot"::r -> (* print CFG and decision trees in 'dot' format *)
+      Iterator.dot := true; doit r
+    | "-precondition"::c::r -> (* optional precondition that holds at the start of the program, default = true *)
+      precondition := c; doit r
+    | "-ctl_cfg"::x::r -> (* CTL analysis based on CFG *)
+      analysis := "ctl_cfg"; property := x; doit r
+    | "-ctl_existential_equivalence"::r ->
+        Iterator.ctl_existential_equivalence := true; doit r
+    | "-traceworklist"::r -> (* backward analysis trace for worklist algorithm *)
       CFGInterpreter.trace := true;
       doit r
-    | "-traceworkliststates"::r -> (* backward analysis trace *)
+    | "-traceworkliststates"::r -> (* backward analysis trace for worklist algorithm including details about states *)
       CFGInterpreter.trace := true;
       CFGInterpreter.trace_states := true;
       doit r
-    | "-dot"::r -> (* forward analysis trace *)
-      Iterator.dot := true; doit r
-    | "-noinline"::r -> (* forward analysis trace *)
+    | "-noinline"::r -> (* don't inline function calls *)
       noinline := true; doit r
     | x::r -> filename := x; doit r
     | [] -> ()
@@ -455,8 +454,6 @@ let doit () =
   | "termination" -> termination ()
   | "guarantee" -> guarantee ()
   | "recurrence" -> recurrence ()
-  | "actl" -> ctl ()
-  | "actl_termination" -> ctl_termination ()
   | "ctl" -> ctl ()
   | "ctl_cfg" -> ctl_cfg ()
   | "ctl_str" -> ctl ~property_as_string:true ()
