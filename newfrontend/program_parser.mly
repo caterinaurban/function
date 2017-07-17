@@ -222,11 +222,20 @@ init_declarator:
 
 fun_decl:
 | t=ext(typ_or_void) i=ext(TOK_id)
-        TOK_LPAREN p=separated_list(TOK_COMMA,param_decl) TOK_RPAREN 
+         TOK_LPAREN p=separated_list(TOK_COMMA,param_decl) TOK_RPAREN 
          TOK_LCURLY l=list(ext(stat)) TOK_RCURLY
   { { Abstract_syntax_tree.fun_name = i;
       Abstract_syntax_tree.fun_typ = t;
       Abstract_syntax_tree.fun_args = p;
+      Abstract_syntax_tree.fun_body = l;
+      Abstract_syntax_tree.fun_ext = ($startpos, $endpos); }
+  }
+| t=ext(typ_or_void) i=ext(TOK_id)
+         TOK_LPAREN TOK_VOID TOK_RPAREN 
+         TOK_LCURLY l=list(ext(stat)) TOK_RCURLY
+  { { Abstract_syntax_tree.fun_name = i;
+      Abstract_syntax_tree.fun_typ = t;
+      Abstract_syntax_tree.fun_args = [];
       Abstract_syntax_tree.fun_body = l;
       Abstract_syntax_tree.fun_ext = ($startpos, $endpos); }
   }

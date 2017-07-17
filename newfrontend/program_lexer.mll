@@ -114,6 +114,7 @@ rule token = parse
 | "extern" [^ '\n' '\r']*	{ token lexbuf }
 | "typedef" [^ '\n' '\r']*	{ token lexbuf }
 | "#include" [^ '\n' '\r']*	{ token lexbuf }
+| "__VERIFIER_error();"		{ token lexbuf }
 | newline { new_line lexbuf; token lexbuf }
 | space { token lexbuf }
 

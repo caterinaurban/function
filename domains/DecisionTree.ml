@@ -978,9 +978,6 @@ struct
       Format.fprintf Format.std_formatter "\nt2[widen_up]: %a\n" (print_tree vars) t2;
     { domain = domain; tree = widen (t1, t2); env = env; vars = vars }
 
-
-  (* let dual_widen t1 t2 = raise (Invalid_argument "TODO implement dual widening") *)
-
   let dual_widen t1 t2 =
     let domain = t1.domain in
     let env = t1.env in
@@ -1422,7 +1419,7 @@ struct
     let zeroLeaf = Leaf (F.zero env vars) in
     let botLeaf = Leaf (F.bot env vars) in
     let rec aux tree = match tree with 
-      | Bot -> raise (Invalid_argument "complement: invalid tree, encountered NIL node")
+      | Bot -> tree (* NIL nodes are unchanged because they represent missing information *)
       | Leaf f when F.isBot f -> zeroLeaf (* bottom goes to constant zero *)
       | Leaf f when F.isTop f -> tree (* top stays top *)
       | Leaf f -> botLeaf (* everything else goes to bottom *)
