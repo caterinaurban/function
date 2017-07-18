@@ -69,6 +69,12 @@ FuncTion requires the following applications and libraries:
 	opam install apron
 	```
 
+* Zarith: arbitrary-precision integer operations
+
+	```
+	opam install zarith
+	```
+
 
 # Compiling FuncTion
 
@@ -80,14 +86,10 @@ make
 
 This will generate the command line program 'function' in the project directory. 
 
-Alternatively, 'ocamlbuild' can be used to compile either a native or bytecode version with the following commands:
+Alternatively, 'ocamlbuild' can be used to build FuncTion with the following command:
 
 ```
-ocamlbuild -use-ocamlfind -use-menhir -pkgs 'apron,gmp,oUnit' -I utils -I domains -I frontend -I main -libs boxMPQ,octD,polkaMPQ,str Main.byte
-```
-
-```
-ocamlbuild -use-ocamlfind -use-menhir -pkgs 'apron,gmp,oUnit' -I utils -I domains -I frontend -I main -libs boxMPQ,octD,polkaMPQ,str Main.native
+ocamlbuild ml_float.o Main.native -use-ocamlfind -use-menhir -pkgs 'apron,gmp,oUnit,zarith' -I utils -I banal -I domains -I frontend -I newfrontend -I main -libs boxMPQ,octD,polkaMPQ,str,zarith -lflags banal/ml_float.o
 ```
 
 # Usage
