@@ -14,10 +14,10 @@ frontend/PropertyParser.mli
 frontend/CTLPropertyLexer.ml
 frontend/CTLPropertyParser.ml
 frontend/CTLPropertyParser.mli
-newfrontend/program_lexer.ml
-newfrontend/program_parser.ml
-newfrontend/program_parser.mli
-newfrontend/Parser.conflicts
+cfgfrontend/program_lexer.ml
+cfgfrontend/program_parser.ml
+cfgfrontend/program_parser.mli
+cfgfrontend/Parser.conflicts
 examples/**
 _build/**
 *.byte

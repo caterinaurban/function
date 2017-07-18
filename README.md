@@ -89,7 +89,7 @@ This will generate the command line program 'function' in the project directory.
 Alternatively, 'ocamlbuild' can be used to build FuncTion with the following command:
 
 ```
-ocamlbuild ml_float.o Main.native -use-ocamlfind -use-menhir -pkgs 'apron,gmp,oUnit,zarith' -I utils -I banal -I domains -I frontend -I newfrontend -I main -libs boxMPQ,octD,polkaMPQ,str,zarith -lflags banal/ml_float.o
+ocamlbuild ml_float.o Main.native -use-ocamlfind -use-menhir -pkgs 'apron,gmp,oUnit,zarith' -I utils -I banal -I domains -I frontend -I cfgfrontend -I main -libs boxMPQ,octD,polkaMPQ,str,zarith -lflags banal/ml_float.o
 ```
 
 # Usage
