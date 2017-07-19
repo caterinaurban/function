@@ -82,10 +82,9 @@ let block_label_map block: block InvMap.t =
    This function takes a given paresed program and introduces a new label called 'exit' 
    before each 'return' statement and at the end of the program
 
-   The augmented program and a corresponding ctl_property 'AF{exit: true}' for termination is returned. 
-   This pair can then be used with the usual CTL analysis to check for termination.
+   The augmented program can be checked for termination with the following ctl: 'AF{exit: true}'
 *)
-let program_of_prog_with_termination (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.key) : (program * ctl_property) =
+let program_of_prog (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.key) : program =
   let (globalVariables, globalBlock, functions) = prog in
   let mainFunction = StringMap.find main functions in
   let dummyExtent = (Lexing.dummy_pos, Lexing.dummy_pos) in
@@ -117,35 +116,18 @@ let program_of_prog_with_termination (prog: AbstractSyntax.prog) (main: Abstract
       funcName = mainFunction.funcName;
       funcTyp = mainFunction.funcTyp;
       funcArgs = mainFunction.funcArgs;
-      funcVars = mainFunction.funcVars; (* add termination var to function variables *)
+      funcVars = mainFunction.funcVars; 
       funcBody = augmentedBody
     };
     globalBlock = globalBlock;
   } in
-  (program, AF (Atomic (A_TRUE, Some "exit")))
+  program
 
 
 let prog_of_program (program:program) : prog = 
   let funcMap = StringMap.add "main" program.mainFunction StringMap.empty in
   let varMap = List.fold_left (fun map var -> StringMap.add var.varId var map) StringMap.empty program.variables in
   (varMap, program.globalBlock, funcMap)
-
-(* bundle values into 'program' struct *)
-let program_of_prog (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.key) : program =
-  let (globalVariables, globalBlock, functions) = prog in
-  let mainFunction = StringMap.find main functions in
-  let v1 = snd (List.split (StringMap.bindings globalVariables)) in
-  let v2 = snd (List.split (StringMap.bindings mainFunction.funcVars)) in
-  let vars = List.append v1 v2 in
-  let var_to_apron v = Apron.Var.of_string v.varId in
-  let apron_vars = Array.map var_to_apron (Array.of_list vars) in
-  let env = Environment.make apron_vars [||] in
-  {
-    environment = env;
-    variables = vars;
-    mainFunction = mainFunction;
-    globalBlock = globalBlock;
-  }
 
 
 module CTLIterator(D: RANKING_FUNCTION) = struct

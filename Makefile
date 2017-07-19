@@ -72,6 +72,7 @@ MLFILES = \
   cfgfrontend/cfg_printer.ml \
   cfgfrontend/tree_to_cfg.ml \
   cfgfrontend/file_parser.ml \
+  cfgfrontend/loop_detection.ml \
   frontend/IntermediateSyntax.ml \
   frontend/CTLProperty.ml \
   frontend/Lexer.ml \

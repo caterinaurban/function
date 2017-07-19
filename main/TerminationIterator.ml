@@ -211,38 +211,43 @@ struct
         if !tracebwd && not !minimal then result_print l p;
         addBwdInv l p; (p,r,flag)
 
-  and bwdRec funcs env vars (p:D.t) (b:block) : D.t =
-    let rec aux r n =
-      let (r',_,_) = bwdBlk funcs env vars (r,r,true) b in
-      if !tracebwd && not !minimal then begin
-        Format.fprintf !fmt "r: %a@." D.print r;
-        Format.fprintf !fmt "r': %a@." D.print r'
-      end;
-      if (D.isLeq COMPUTATIONAL r' r)
-      then
-        if (D.isLeq APPROXIMATION r' r)
-        then
-          let r = r in
-          if !tracebwd && not !minimal then begin
-            Format.fprintf !fmt "### REC-FIXPOINT ###:@.";
-            Format.fprintf !fmt "r: %a@." D.print r
-          end;
-          r
-        else
-          let r'' = if n <= !joinbwd then r' else D.widen r r' in
-          if !tracebwd && not !minimal then
-            Format.fprintf !fmt "r'': %a@." D.print r'';
-          aux r'' (n+1)
-      else
-        let r'' = if n <= !joinbwd then r' else 
-            D.widen r (D.join COMPUTATIONAL r r') in
-        if !tracebwd && not !minimal then
-          Format.fprintf !fmt "r'': %a@." D.print r'';
-        aux r'' (n+1)
-    in
-    let (i,_,flag) = bwdBlk funcs env vars (p,D.bot env vars,false) b in
-    if flag then aux i 1
-    else i
+  and bwdRec funcs env vars (p:D.t) (b:block) : D.t = 
+    let (res, _, _) = bwdBlk funcs env vars (p,D.bot env vars,false) b  in
+    res
+
+  (* NOTE: unsound *)
+  (* and bwdRec funcs env vars (p:D.t) (b:block) : D.t = *) 
+    (* let rec aux r n = *)
+    (*   let (r',_,_) = bwdBlk funcs env vars (r,r,true) b in *)
+    (*   if !tracebwd && not !minimal then begin *)
+    (*     Format.fprintf !fmt "r: %a@." D.print r; *)
+    (*     Format.fprintf !fmt "r': %a@." D.print r' *)
+    (*   end; *)
+    (*   if (D.isLeq COMPUTATIONAL r' r) *)
+    (*   then *)
+    (*     if (D.isLeq APPROXIMATION r' r) *)
+    (*     then *)
+    (*       let r = r in *)
+    (*       if !tracebwd && not !minimal then begin *)
+    (*         Format.fprintf !fmt "### REC-FIXPOINT ###:@."; *)
+    (*         Format.fprintf !fmt "r: %a@." D.print r *)
+    (*       end; *)
+    (*       r *)
+    (*     else *)
+    (*       let r'' = if n <= !joinbwd then r' else D.widen r r' in *)
+    (*       if !tracebwd && not !minimal then *)
+    (*         Format.fprintf !fmt "r'': %a@." D.print r''; *)
+    (*       aux r'' (n+1) *)
+    (*   else *)
+    (*     let r'' = if n <= !joinbwd then r' else *) 
+    (*         D.widen r (D.join COMPUTATIONAL r r') in *)
+    (*     if !tracebwd && not !minimal then *)
+    (*       Format.fprintf !fmt "r'': %a@." D.print r''; *)
+    (*     aux r'' (n+1) *)
+    (* in *)
+    (* let (i,_,flag) = bwdBlk funcs env vars (p,D.bot env vars,false) b in *)
+    (* if flag then aux i 1 *)
+    (* else i *)
 
   (* Analyzer *)
 

@@ -15,7 +15,7 @@ open CTLTest
 				
 let _ = begin
   run_test_tt_main ctl_cfg_testcases;
-  run_test_tt_main ctl_testcases;
+  run_test_tt_main ctl_ast_testcases;
   run_test_tt_main boxes;
   run_test_tt_main polyhedra;
   end

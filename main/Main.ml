@@ -20,6 +20,7 @@ let ordinals = ref false
 let property = ref ""
 let precondition = ref "true"
 let time = ref false
+let ctl_analysis_type = ref "cfg"
 let noinline = ref false
 
 let parseFile filename =
@@ -159,9 +160,14 @@ let parse_args () =
     | "-tracebwd"::r -> (* backward analysis trace *)
       Iterator.tracebwd := true;
       DecisionTree.tracebwd := true;
+      CFGInterpreter.trace := true;
+      CFGInterpreter.trace_states := true;
       doit r
     | "-tracefwd"::r -> (* forward analysis trace *)
       Iterator.tracefwd := true; doit r
+    (* Termination arguments -------------------------------*)
+    | "-termination"::r -> (* guarantee analysis *)
+      analysis := "termination"; doit r
     (* Recurrence / Guarantee arguments -------------------------------*)
     | "-guarantee"::x::r -> (* guarantee analysis *)
       analysis := "guarantee"; property := x; doit r
@@ -176,26 +182,17 @@ let parse_args () =
     (* CTL arguments ---------------------------------------------------*)
     | "-ctl"::x::r -> (* CTL analysis *)
       analysis := "ctl"; property := x; doit r
-    | "-ctl_str"::x::r -> (* CTL analysis with property passed as string *)
-      analysis := "ctl_str"; property := x; doit r
-    | "-ctl_termination"::r -> (* CTL analysis for termination *)
-      analysis := "ctl_termination"; doit r
+    | "-ast"::r -> (* use AST instead of CFG for analysis *)
+      ctl_analysis_type := "ast"; doit r
     | "-dot"::r -> (* print CFG and decision trees in 'dot' format *)
       Iterator.dot := true; doit r
-    | "-precondition"::c::r -> (* optional precondition that holds at the start of the program, default = true *)
-      precondition := c; doit r
-    | "-ctl_cfg"::x::r -> (* CTL analysis based on CFG *)
-      analysis := "ctl_cfg"; property := x; doit r
-    | "-ctl_existential_equivalence"::r ->
+    | "-precondition"::c::r -> (* optional precondition that holds 
+                                  at the start of the program, default = true *)
+      precondition := c; doit r 
+    | "-ctl_existential_equivalence"::r -> (* use CTL equivalence relations to 
+                                              convert existential to universal CTL properties *)
         Iterator.ctl_existential_equivalence := true; doit r
-    | "-traceworklist"::r -> (* backward analysis trace for worklist algorithm *)
-      CFGInterpreter.trace := true;
-      doit r
-    | "-traceworkliststates"::r -> (* backward analysis trace for worklist algorithm including details about states *)
-      CFGInterpreter.trace := true;
-      CFGInterpreter.trace_states := true;
-      doit r
-    | "-noinline"::r -> (* don't inline function calls *)
+    | "-noinline"::r -> (* don't inline function calls, only for CFG based analysis *)
       noinline := true; doit r
     | x::r -> filename := x; doit r
     | [] -> ()
@@ -349,43 +346,11 @@ let recurrence () =
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in run_analysis (analysis_function property) program ()
 
-
-(* run termination analysis in CTL *)
-let ctl_termination () =
-  if !filename = "" then raise (Invalid_argument "No Source File Specified");
-  let parsedConditionalTerminationProperty = parseCTLPropertyString !precondition in
-  let (prog, conditionalTerminationProperty) = ItoA.ctl_prog_itoa parsedConditionalTerminationProperty !main (parseFile !filename) in
-  let conditionalTerminationProperty = 
-    match conditionalTerminationProperty with  (* use ctl_prog_itoa to parse the conditional termination property*)
-    | CTLProperty.Atomic (prop, None) -> prop 
-    | _ -> raise (Invalid_argument "ctl_prog_itoa returned invalid property") in
-  let (program, property) = 
-    CTLIterator.program_of_prog_with_termination prog !main in
-  if not !minimal then
-    begin
-      Format.fprintf !fmt "\nAbstract Syntax:\n";
-      AbstractSyntax.prog_print !fmt (CTLIterator.prog_of_program program);
-      Format.fprintf !fmt "\n";
-    end;
-  let analyze =
-    match !domain with
-    | "boxes" -> if !ordinals then CTLBoxesOrdinals.analyze else CTLBoxes.analyze
-    | "octagons" -> if !ordinals then CTLOctagonsOrdinals.analyze else CTLOctagons.analyze
-    | "polyhedra" -> if !ordinals then CTLPolyhedraOrdinals.analyze else CTLPolyhedra.analyze
-    | _ -> raise (Invalid_argument "Unknown Abstract Domain")
-  in
-  let terminating = analyze ~precondition:conditionalTerminationProperty program property in
-  if terminating then 
-    Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
-  else 
-    Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
-
-    
-let ctl ?(property_as_string = false) () =
+let ctl_ast () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property Specified");
   let parsedPrecondition = parsePropertyString !precondition in
-  let parsedProperty = (if property_as_string then parseCTLPropertyString else parseCTLProperty) !property in
+  let parsedProperty = parseCTLPropertyString !property in
   let (prog, property) = ItoA.ctl_prog_itoa parsedProperty !main (parseFile !filename) in
   let precondition = fst @@ AbstractSyntax.StringMap.find "" @@ ItoA.property_itoa_of_prog prog !main parsedPrecondition in
   if not !minimal then
@@ -407,7 +372,6 @@ let ctl ?(property_as_string = false) () =
     Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
   else 
     Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
-
 
 let ctl_cfg () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
@@ -439,12 +403,12 @@ let ctl_cfg () =
       Printf.printf "\n";
     end;
   let mainFunc = Cfg.find_func !main cfg in
-  let result = analyze ~precondition:precondition cfg mainFunc ctlProperty in
+  let possibleLoopHeads = Loop_detection.possible_loop_heads cfg mainFunc in
+  let result = analyze ~precondition:precondition cfg mainFunc possibleLoopHeads ctlProperty in
   if result then 
     Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
   else 
     Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
-
 
 
 (*Main entry point for application*)
@@ -454,10 +418,12 @@ let doit () =
   | "termination" -> termination ()
   | "guarantee" -> guarantee ()
   | "recurrence" -> recurrence ()
-  | "ctl" -> ctl ()
-  | "ctl_cfg" -> ctl_cfg ()
-  | "ctl_str" -> ctl ~property_as_string:true ()
-  | "ctl_termination" -> ctl_termination ()
+  | "ctl" -> 
+    (match !ctl_analysis_type with 
+        | "cfg" -> ctl_cfg ()
+        | "ast" -> ctl_ast ()
+        | _ -> raise (Invalid_argument "Unknown CTL Analysis")
+    )
   | _ -> raise (Invalid_argument "Unknown Analysis")
 
 let _ = doit () 

@@ -26,6 +26,7 @@ module CFGForwardIterator (B: PARTITION) = struct
 
   let abstract_transformer 
       (node:node) (* current node that is being processed *)
+      (loop_head:bool) (* current node is loop head *)
       (iter_count:int) (* iteration count, how many times has this node been processed *)
       (current_state:B.t) (* current value of abstract state for this node *)
       (in_edges: (B.t * inst) list): (bool * B.t) =
@@ -63,7 +64,7 @@ module CFGForwardIterator (B: PARTITION) = struct
 
 
   (* compute invariant map based on forward analysis *)
-  let compute (cfg:cfg) (main:func) : B.t NodeMap.t = 
+  let compute (cfg:cfg) (main:func) (loop_heads: bool NodeMap.t) : B.t NodeMap.t = 
     let (env, vars) = Conversion.env_vars_of_cfg cfg in
     let bot = B.bot env vars in
     let top = B.top env vars in
@@ -72,9 +73,9 @@ module CFGForwardIterator (B: PARTITION) = struct
         NodeMap.empty cfg.cfg_nodes 
     in
     let initialState = NodeMap.add cfg.cfg_init_entry top initialState in
-    let fwdInv = forward_analysis abstract_transformer initialState cfg.cfg_init_entry cfg in
+    let fwdInv = forward_analysis abstract_transformer initialState cfg.cfg_init_entry cfg loop_heads in
     let mainStartState = NodeMap.find cfg.cfg_init_exit fwdInv in
     let initialState = NodeMap.add main.func_entry mainStartState fwdInv in
-    forward_analysis abstract_transformer initialState main.func_entry cfg
+    forward_analysis abstract_transformer initialState main.func_entry cfg loop_heads
 
 end

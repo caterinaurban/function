@@ -26,6 +26,7 @@ let trace_states = ref false
 *)
 type 't abstract_transformer  = 
   node -> (* current node that is being processed *)
+  bool -> (* is current node a loop head *)
   int -> (* iteration count, how many times has this node been processed *)
   't -> (* current value of abstract state for this node *)
   ('t * inst) list (** 
@@ -51,6 +52,7 @@ let execute
     (initial_value:a NodeMap.t) (* map that assigns an initial state to each node in the cfg *)
     (entry_node:node) (* entry point of the program analysis *)
     (cfg:cfg) (* control flow graph *)
+    (loop_heads:bool NodeMap.t)
     : a NodeMap.t (* returns a map that assigns each node an abstract state that is the result of the analysis *)
   =
   let nodeCount = List.length cfg.cfg_nodes in
@@ -121,8 +123,16 @@ let execute
         Format.fprintf !fmt "### processing node %d (iter: %d): \n" node.node_id nodeProcessed; 
         Pervasives.print_newline ();
       end;
+      let isLoopHead = NodeMap.find node loop_heads in
       (* run abstract transformer for node to get new abstract state *)
-      let (fixedPoint, newState) = abstract_transformer node processed.(node.node_id) currentState instStatePairs in 
+      let (fixedPoint, newState) = 
+        abstract_transformer 
+          node 
+          isLoopHead 
+          processed.(node.node_id) 
+          currentState 
+          instStatePairs 
+      in 
       (* update 'processed' count *)
       processed.(node.node_id) <- nodeProcessed + 1; 
       (* add predecessors (successors) of node to worklist if either we didn't reach a fixed point 

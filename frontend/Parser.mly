@@ -76,8 +76,6 @@ global_typ:
 
 declarator:
 	| d = annotate(TOK_id)										{ d, None }
-	| d = annotate(TOK_id) TOK_LBRACKET TOK_const TOK_RBRACKET	{ d, None }
-	| d = annotate(TOK_id) TOK_LBRACKET TOK_id TOK_RBRACKET		{ d, None }
 	| d = annotate(TOK_id) TOK_EQUAL e = annotate(exp)			{ d, Some e }
 
 function_decl:
@@ -92,7 +90,6 @@ function_decl:
 
 parameter:
 	| t = annotate(global_typ) d = annotate(TOK_id)										{ t, d }
-	| t = annotate(global_typ) d = annotate(TOK_id)	TOK_LBRACKET TOK_RBRACKET			{ t, d }
 
 stmt:
 	| s = labeled_stmt		{ s }
@@ -195,7 +192,6 @@ primary_exp:
 	| TOK_FALSE																										{ I_FALSE }
 	| e = TOK_id																									{ I_id e }
 	| TOK_MULTIPLY e = TOK_id																						{ I_id e }
-	| e = TOK_id TOK_LBRACKET exp TOK_RBRACKET																		{ I_id e }
 	| e = TOK_const																									{ I_const e }
 	| TOK_LBRACKET o1 = option(unary_op) e1 = TOK_const TOK_COMMA o2=option(unary_op) e2 = TOK_const TOK_RBRACKET	{ I_interval (o1,e1,o2,e2) }
 	| TOK_LPAREN e = exp TOK_RPAREN																					{ e }
