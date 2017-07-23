@@ -1,0 +1,15 @@
+// -CTL="[AF](x==7 && [AF]([AG](x==2)))"
+
+START: init;
+
+FROM: init;
+    x := 7;
+TO: 1;
+
+FROM: 1;
+    x := 2;
+TO: 2;
+
+FROM: 2;
+TO: 1;
+

@@ -1,0 +1,48 @@
+///*** 1_main ***///
+// set != 1 || [AF](unset == 1)"
+
+START: 1;
+
+FROM: 1;
+    set := 1;
+    unset := nondet();
+    i := nondet();
+    Pdolen := nondet();
+    DName := nondet();
+    status := nondet();
+TO: 2;
+
+FROM: 2;
+    assume(i < Pdolen);
+TO: 3;
+
+FROM: 3;
+    status := nondet();
+TO: 4;
+
+FROM: 3;
+    assume(DName == 0);
+TO: 8;
+
+FROM: 4;
+    assume (status == 1);
+TO: 5;
+
+FROM: 5;
+    i := i + 1;
+TO: 2;
+
+FROM: 4;
+    assume (status != 1);
+TO: 6;
+
+FROM: 6;
+TO: 8;
+
+FROM: 8;
+    unset := 1;
+TO: 9;
+
+FROM: 9;
+TO: 9;
+

@@ -614,7 +614,7 @@ let ctl_prog_itoa ctl_property main (decls, _) =
   let ctx = { ctxName = main; ctxTyp = f.funcTyp; ctxArgs = f.funcArgs } in
   let aux p = 
     let prop = property_itoa ctx env (p, ()) in
-    StringMap.map fst prop (* remove annotation info *)
+    fst @@ StringMap.find "" prop
   in
   let property = CTLProperty.map aux ctl_property in
   (program, property)

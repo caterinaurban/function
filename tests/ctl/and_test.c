@@ -1,7 +1,10 @@
-// -ctl_str "AND{AG{AF{n==1}}}{AF{n==0}}"
+// FuncTion arguments:
+// -ctl_cfg "AND{AG{AF{n==1}}}{AF{n==0}}"
 // -precondition n > 0
-int main() {
+
+void main() {
     int n;  //assume n > 0
+
     while (n > 0) {
         n--;
     }
@@ -10,6 +13,4 @@ int main() {
         n++;
         n--;
     }
-
-    return;
 }

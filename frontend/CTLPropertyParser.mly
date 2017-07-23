@@ -1,8 +1,12 @@
 %{
 open CTLProperty
+
+let label_name l = String.sub l 0 (String.length l - 1)
+
 %}
 
 %token <string> ATOMIC
+%token <string> LABEL
 %token AX
 %token AF
 %token AG
@@ -21,7 +25,8 @@ open CTLProperty
 %%
 
 prog:
-  | e = ATOMIC { Atomic e }
+  | e = ATOMIC { Atomic (e, None) }
+  | l = LABEL; e = ATOMIC { Atomic (e, Some (label_name l)) }
   | AX; LEFT_BRACE; e = prog; RIGHT_BRACE {AX e}
   | AF; LEFT_BRACE; e = prog; RIGHT_BRACE {AF e}
   | AG; LEFT_BRACE; e = prog; RIGHT_BRACE {AG e}

@@ -20,6 +20,8 @@ let ordinals = ref false
 let property = ref ""
 let precondition = ref "true"
 let time = ref false
+let ctl_analysis_type = ref "cfg"
+let noinline = ref false
 
 let parseFile filename =
   let f = open_in filename in
@@ -106,12 +108,11 @@ let parseCTLProperty filename =
       failwith e
 
 
-let parseCTLPropertyString (property:string) =
+let parseCTLPropertyString_plain (property:string) =
   let lex = Lexing.from_string property in
   try
     lex.Lexing.lex_curr_p <- { lex.Lexing.lex_curr_p with Lexing.pos_fname = "string"; };
-    let res = CTLPropertyParser.prog CTLPropertyLexer.read lex in
-    CTLProperty.map (fun p -> fst (parsePropertyString p)) res 
+    CTLPropertyParser.prog CTLPropertyLexer.read lex 
   with
   | CTLPropertyParser.Error->
     Printf.eprintf "Parse Error (Invalid Syntax) near %s\n" 
@@ -128,13 +129,17 @@ let parseCTLPropertyString (property:string) =
       failwith e
 
 
+let parseCTLPropertyString (property:string) =
+    CTLProperty.map (fun p -> fst (parsePropertyString p)) @@ parseCTLPropertyString_plain property 
+
 let parse_args () =
   let rec doit args =
     match args with
+    (* General arguments -------------------------------------------*)
     | "-domain"::x::r -> (* abstract domain: boxes|octagons|polyhedra *)
       domain := x; doit r
-    | "-guarantee"::x::r -> (* guarantee analysis *)
-      analysis := "guarantee"; property := x; doit r
+    | "-timeout"::x::r -> (* analysis timeout *)
+      Iterator.timeout := float_of_string x; doit r
     | "-joinfwd"::x::r -> (* widening delay in forward analysis *)
       Iterator.joinfwd := int_of_string x; doit r
     | "-joinbwd"::x::r -> (* widening delay in backward analysis *)
@@ -146,44 +151,49 @@ let parse_args () =
       minimal := true; Iterator.minimal := true; doit r
     | "-ordinals"::x::r -> (* ordinal-valued ranking functions *)
       ordinals := true; Ordinals.max := int_of_string x; doit r
-    | "-recurrence"::x::r -> (* recurrence analysis *)
-      analysis := "recurrence"; property := x; doit r
-    | "-actl"::x::r -> (* TODO: legacy name, delete me *)
-      analysis := "actl"; property := x; doit r
-    | "-actl_termination"::r -> (*TODO: legacy name, delete me*)
-      analysis := "actl_termination"; doit r
-    | "-ctl"::x::r -> (* CTL analysis *)
-      analysis := "ctl"; property := x; doit r
-    | "-ctl_str"::x::r -> (* CTL analysis with property passed as string *)
-      analysis := "ctl_str"; property := x; doit r
-    | "-ctl_termination"::r -> (* CTL analysis for termination *)
-      analysis := "ctl_termination"; doit r
-    | "-precondition"::c::r -> (* optional precondition that holds at the start of the program, default = true *)
-      precondition := c; doit r
-    | "-ctl_existential_equivalence"::r ->
-        Iterator.ctl_existential_equivalence := true; doit r
     | "-refine"::r -> (* refine in backward analysis *)
       Iterator.refine := true; doit r
     | "-retrybwd"::x::r ->
       Iterator.retrybwd := int_of_string x;
       DecisionTree.retrybwd := int_of_string x;
       doit r
+    | "-tracebwd"::r -> (* backward analysis trace *)
+      Iterator.tracebwd := true;
+      DecisionTree.tracebwd := true;
+      CFGInterpreter.trace := true;
+      CFGInterpreter.trace_states := true;
+      doit r
+    | "-tracefwd"::r -> (* forward analysis trace *)
+      Iterator.tracefwd := true; doit r
+    (* Termination arguments -------------------------------*)
+    | "-termination"::r -> (* guarantee analysis *)
+      analysis := "termination"; doit r
+    (* Recurrence / Guarantee arguments -------------------------------*)
+    | "-guarantee"::x::r -> (* guarantee analysis *)
+      analysis := "guarantee"; property := x; doit r
+    | "-recurrence"::x::r -> (* recurrence analysis *)
+      analysis := "recurrence"; property := x; doit r
     | "-time"::r -> (* track analysis time *)
       time := true; doit r
     | "-timebwd"::r -> (* track backward analysis time *)
       Iterator.timebwd := true; doit r
     | "-timefwd"::r -> (* track forward analysis time *)
       Iterator.timefwd := true; doit r
-    | "-timeout"::x::r -> (* analysis timeout *)
-      Iterator.timeout := float_of_string x; doit r
-    | "-tracebwd"::r -> (* backward analysis trace *)
-      Iterator.tracebwd := true;
-      DecisionTree.tracebwd := true;
-      doit r
-    | "-tracefwd"::r -> (* forward analysis trace *)
-      Iterator.tracefwd := true; doit r
-    | "-dot"::r -> (* forward analysis trace *)
+    (* CTL arguments ---------------------------------------------------*)
+    | "-ctl"::x::r -> (* CTL analysis *)
+      analysis := "ctl"; property := x; doit r
+    | "-ast"::r -> (* use AST instead of CFG for analysis *)
+      ctl_analysis_type := "ast"; doit r
+    | "-dot"::r -> (* print CFG and decision trees in 'dot' format *)
       Iterator.dot := true; doit r
+    | "-precondition"::c::r -> (* optional precondition that holds 
+                                  at the start of the program, default = true *)
+      precondition := c; doit r 
+    | "-ctl_existential_equivalence"::r -> (* use CTL equivalence relations to 
+                                              convert existential to universal CTL properties *)
+        Iterator.ctl_existential_equivalence := true; doit r
+    | "-noinline"::r -> (* don't inline function calls, only for CFG based analysis *)
+      noinline := true; doit r
     | x::r -> filename := x; doit r
     | [] -> ()
   in
@@ -236,6 +246,13 @@ module CTLOctagons = CTLIterator.CTLIterator(DecisionTree.TSAO)
 module CTLOctagonsOrdinals = CTLIterator.CTLIterator(DecisionTree.TSOO)
 module CTLPolyhedra = CTLIterator.CTLIterator(DecisionTree.TSAP)
 module CTLPolyhedraOrdinals = CTLIterator.CTLIterator(DecisionTree.TSOP)
+
+module CFGCTLBoxes = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSAB)
+module CFGCTLBoxesOrdinals = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSOB)
+module CFGCTLOctagons = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSAO)
+module CFGCTLOctagonsOrdinals = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSOO)
+module CFGCTLPolyhedra = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSAP)
+module CFGCTLPolyhedraOrdinals = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSOP)
 
 
 let result = ref false
@@ -329,41 +346,11 @@ let recurrence () =
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in run_analysis (analysis_function property) program ()
 
-
-(* run termination analysis in CTL *)
-let ctl_termination () =
-  if !filename = "" then raise (Invalid_argument "No Source File Specified");
-  let parsedConditionalTerminationProperty = parseCTLPropertyString !precondition in
-  let (prog, conditionalTerminationProperty) = ItoA.ctl_prog_itoa parsedConditionalTerminationProperty !main (parseFile !filename) in
-  let conditionalTerminationProperty = match conditionalTerminationProperty with  (* use ctl_prog_itoa to parse the conditional termination property*)
-    | CTLProperty.Atomic prop -> AbstractSyntax.StringMap.find "" prop 
-    | _ -> raise (Invalid_argument "ctl_prog_itoa returned invalid property") in
-  let (program, property) = CTLIterator.program_of_prog_with_termination prog !main in
-  if not !minimal then
-    begin
-      Format.fprintf !fmt "\nAbstract Syntax:\n";
-      AbstractSyntax.prog_print !fmt (CTLIterator.prog_of_program program);
-      Format.fprintf !fmt "\n";
-    end;
-  let analyze =
-    match !domain with
-    | "boxes" -> if !ordinals then CTLBoxesOrdinals.analyze else CTLBoxes.analyze
-    | "octagons" -> if !ordinals then CTLOctagonsOrdinals.analyze else CTLOctagons.analyze
-    | "polyhedra" -> if !ordinals then CTLPolyhedraOrdinals.analyze else CTLPolyhedra.analyze
-    | _ -> raise (Invalid_argument "Unknown Abstract Domain")
-  in
-  let terminating = analyze ~precondition:conditionalTerminationProperty program property in
-  if terminating then 
-    Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
-  else 
-    Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
-
-    
-let ctl ?(property_as_string = false) () =
+let ctl_ast () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property Specified");
   let parsedPrecondition = parsePropertyString !precondition in
-  let parsedProperty = (if property_as_string then parseCTLPropertyString else parseCTLProperty) !property in
+  let parsedProperty = parseCTLPropertyString !property in
   let (prog, property) = ItoA.ctl_prog_itoa parsedProperty !main (parseFile !filename) in
   let precondition = fst @@ AbstractSyntax.StringMap.find "" @@ ItoA.property_itoa_of_prog prog !main parsedPrecondition in
   if not !minimal then
@@ -386,6 +373,43 @@ let ctl ?(property_as_string = false) () =
   else 
     Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
 
+let ctl_cfg () =
+  if !filename = "" then raise (Invalid_argument "No Source File Specified");
+  if !property = "" then raise (Invalid_argument "No Property Specified");
+  let (cfg, getProperty) = Tree_to_cfg.prog (File_parser.parse_file !filename) !main in
+  let mainFunc = Cfg.find_func !main cfg in
+  let cfg = Cfg.insert_entry_exit_label cfg mainFunc in (* add exit/entry labels to main function *)
+  let cfg = if !noinline then cfg else Cfg.inline_function_calls cfg in (* inline all non recursive functions unless -noinline is used *)
+  let cfg = Cfg.add_function_call_arcs cfg in (* insert function call edges for remaining function calls *)
+  let ctlProperty = CTLProperty.map File_parser.parse_bool_expression @@ parseCTLPropertyString_plain !property in
+  let ctlProperty = CTLProperty.map getProperty ctlProperty in
+  let precondition = getProperty @@ File_parser.parse_bool_expression !precondition in
+  let analyze =
+    match !domain with
+    | "boxes" -> if !ordinals then CFGCTLBoxesOrdinals.analyze else CFGCTLBoxes.analyze
+    | "octagons" -> if !ordinals then CFGCTLOctagonsOrdinals.analyze else CFGCTLOctagons.analyze
+    | "polyhedra" -> if !ordinals then CFGCTLPolyhedraOrdinals.analyze else CFGCTLPolyhedra.analyze
+    | _ -> raise (Invalid_argument "Unknown Abstract Domain")
+  in
+  if not !minimal then
+    begin
+      Printf.printf "\nCFG:\n";
+      Printf.printf "%a" Cfg_printer.print_cfg cfg;
+      Printf.printf "\n";
+    end;
+  if not !minimal && !Iterator.dot then
+    begin
+      Printf.printf "CFG_DOT:\n %a" Cfg_printer.output_dot cfg;
+      Printf.printf "\n";
+    end;
+  let mainFunc = Cfg.find_func !main cfg in
+  let possibleLoopHeads = Loop_detection.possible_loop_heads cfg mainFunc in
+  let result = analyze ~precondition:precondition cfg mainFunc possibleLoopHeads ctlProperty in
+  if result then 
+    Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
+  else 
+    Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
+
 
 (*Main entry point for application*)
 let doit () =
@@ -394,11 +418,12 @@ let doit () =
   | "termination" -> termination ()
   | "guarantee" -> guarantee ()
   | "recurrence" -> recurrence ()
-  | "actl" -> ctl ()
-  | "actl_termination" -> ctl_termination ()
-  | "ctl" -> ctl ()
-  | "ctl_str" -> ctl ~property_as_string:true ()
-  | "ctl_termination" -> ctl_termination ()
+  | "ctl" -> 
+    (match !ctl_analysis_type with 
+        | "cfg" -> ctl_cfg ()
+        | "ast" -> ctl_ast ()
+        | _ -> raise (Invalid_argument "Unknown CTL Analysis")
+    )
   | _ -> raise (Invalid_argument "Unknown Analysis")
 
 let _ = doit () 

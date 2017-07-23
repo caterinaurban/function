@@ -9,17 +9,15 @@ open Iterator
 open ForwardIterator
 
 (* type for CTL properties, instantiated with bExp for atomic propositions *)
-type ctl_property = (AbstractSyntax.bExp StringMap.t) CTLProperty.generic_property
+type ctl_property = AbstractSyntax.bExp CTLProperty.generic_property
 
-let atomic_property_of_bexp (b:bExp) = Atomic (StringMap.add "" b StringMap.empty)
+let atomic_property_of_bexp (b:bExp) = Atomic (b, None)
 
 type quantifier = UNIVERSAL | EXISTENTIAL
 
 let rec print_ctl_property fmt (property:ctl_property) = match property with 
-  | Atomic p -> 
-    let propertyBindings = StringMap.bindings p in
-    if List.length propertyBindings == 1 then AbstractSyntax.bExp_print_aux fmt (StringMap.find "" p)
-    else StringMap.iter (fun key b -> if String.length key > 0 then Format.fprintf fmt "%s: %a" key AbstractSyntax.bExp_print_aux b else ()) p
+  | Atomic (p, Some l) -> Format.fprintf fmt "%s: %a" l AbstractSyntax.bExp_print_aux p 
+  | Atomic (p, None) -> AbstractSyntax.bExp_print_aux fmt p
   | AX p -> Format.fprintf fmt "AX{%a}" print_ctl_property p
   | AF p -> Format.fprintf fmt "AF{%a}" print_ctl_property p
   | AG p -> Format.fprintf fmt "AG{%a}" print_ctl_property p
@@ -84,10 +82,9 @@ let block_label_map block: block InvMap.t =
    This function takes a given paresed program and introduces a new label called 'exit' 
    before each 'return' statement and at the end of the program
 
-   The augmented program and a corresponding ctl_property 'AF{exit: true}' for termination is returned. 
-   This pair can then be used with the usual CTL analysis to check for termination.
+   The augmented program can be checked for termination with the following ctl: 'AF{exit: true}'
 *)
-let program_of_prog_with_termination (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.key) : (program * ctl_property) =
+let program_of_prog (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.key) : program =
   let (globalVariables, globalBlock, functions) = prog in
   let mainFunction = StringMap.find main functions in
   let dummyExtent = (Lexing.dummy_pos, Lexing.dummy_pos) in
@@ -119,36 +116,18 @@ let program_of_prog_with_termination (prog: AbstractSyntax.prog) (main: Abstract
       funcName = mainFunction.funcName;
       funcTyp = mainFunction.funcTyp;
       funcArgs = mainFunction.funcArgs;
-      funcVars = mainFunction.funcVars; (* add termination var to function variables *)
+      funcVars = mainFunction.funcVars; 
       funcBody = augmentedBody
     };
     globalBlock = globalBlock;
   } in
-  let exitProperty = StringMap.add "exit" A_TRUE (StringMap.add "" A_FALSE StringMap.empty) in
-  (program, AF (Atomic exitProperty))
+  program
 
 
 let prog_of_program (program:program) : prog = 
   let funcMap = StringMap.add "main" program.mainFunction StringMap.empty in
   let varMap = List.fold_left (fun map var -> StringMap.add var.varId var map) StringMap.empty program.variables in
   (varMap, program.globalBlock, funcMap)
-
-(* bundle values into 'program' struct *)
-let program_of_prog (prog: AbstractSyntax.prog) (main: AbstractSyntax.StringMap.key) : program =
-  let (globalVariables, globalBlock, functions) = prog in
-  let mainFunction = StringMap.find main functions in
-  let v1 = snd (List.split (StringMap.bindings globalVariables)) in
-  let v2 = snd (List.split (StringMap.bindings mainFunction.funcVars)) in
-  let vars = List.append v1 v2 in
-  let var_to_apron v = Apron.Var.of_string v.varId in
-  let apron_vars = Array.map var_to_apron (Array.of_list vars) in
-  let env = Environment.make apron_vars [||] in
-  {
-    environment = env;
-    variables = vars;
-    mainFunction = mainFunction;
-    globalBlock = globalBlock;
-  }
 
 
 module CTLIterator(D: RANKING_FUNCTION) = struct
@@ -289,7 +268,7 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
 
 
   (*
-    Computed fixed-point for 'global' operator (e.g. AG{...}), takes an existing fixed point for the nested property as argument.
+    Computed fixed-point for 'global' operator (i.e. AG{...}), takes an existing fixed point for the nested property as argument.
 
     Applies the 'mask' operator to compute the greatest-fixed point starting from the given fixed point for the nested property. 
     During the backward analysis, the reachable state at each statement is computed by inspecting the 'out' states. 
@@ -419,28 +398,39 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     let zero_leafs t = D.until t top t in (* set all defined leafs of the decision trees to zero *)
     InvMap.map zero_leafs !invMap 
 
+
+  (* 
+    Assign atomic state to those blocks that match the label and bot to all others
+  *)
+  let label_atomic (program:program) (propertyLabel:string) (property:bExp) : inv = 
+    let bot = D.bot program.environment program.variables in
+    let labelState = D.reset bot property in
+    let blockMap = block_label_map program.mainFunction.funcBody in
+    let reducer (inv:D.t InvMap.t) (label, block) =
+      let state = match block with
+        | A_block (_, (A_label (l, _), _), _) ->
+          if String.equal l propertyLabel then labelState else bot
+        | _ -> bot
+      in InvMap.add label state inv
+    in List.fold_left reducer InvMap.empty (InvMap.bindings blockMap)
+
+
   (* 
     Assign atomic state to each label of the program.
     Atomic state is a function that returns zero for all states that satisfy the property
   *)
-  let atomic (program:program) (property:bExp StringMap.t) : inv = 
+  let atomic (program:program) (property:bExp) : inv = 
     let bot = D.bot program.environment program.variables in
     let blockMap = block_label_map program.mainFunction.funcBody in
-    let globalProperty = StringMap.find "" property in (* get global property i.e. property not associated with a label *)
-    let atomicState = D.reset bot globalProperty in
-    let reducer (inv:D.t InvMap.t) (label, block) = 
-      let state = match block with 
-        | A_block (_, (A_label (l, _), _), _) -> 
-          (try D.reset bot (StringMap.find l property) with Not_found -> atomicState)
-        | _ -> atomicState 
-      in InvMap.add label state inv
+    let atomicState = D.reset bot property in
+    let reducer (inv:D.t InvMap.t) (label, block) = InvMap.add label atomicState inv
     in List.fold_left reducer InvMap.empty (InvMap.bindings blockMap)
 
-   let atomic_true (program:program) : inv =
-     let bot = D.bot program.environment program.variables in
-     let trueState = D.reset bot (A_TRUE) in
-     let labels = labels_of_program program in
-     List.fold_left (fun inv label -> InvMap.add label trueState inv) InvMap.empty labels
+  let atomic_true (program:program) : inv =
+    let bot = D.bot program.environment program.variables in
+    let trueState = D.reset bot (A_TRUE) in
+    let labels = labels_of_program program in
+    List.fold_left (fun inv label -> InvMap.add label trueState inv) InvMap.empty labels
 
 
   (* CTL 'or' opperator *)
@@ -489,7 +479,8 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
     let rec inv (property:ctl_property) : inv = 
       let result = 
         match property with
-        | Atomic b -> atomic program b
+        | Atomic (b, None) -> atomic program b
+        | Atomic (b, Some l) -> label_atomic program l b
         | AX p -> a_next program (inv p)
         | AF p -> a_until program atomic_true_inv (inv p)
         | AG p -> a_global program (inv p)
@@ -531,9 +522,8 @@ module CTLIterator(D: RANKING_FUNCTION) = struct
             e_next program (inv p)
         | AND (p1, p2) -> logic_and (inv p1) (inv p2)
         | OR (p1, p2) -> logic_or (inv p1) (inv p2)
-        | NOT (Atomic property) -> 
-          let negatedProperty = StringMap.map (fun b -> (fst (negBExp (b, (Lexing.dummy_pos, Lexing.dummy_pos))))) property in
-          atomic program negatedProperty
+        | NOT (Atomic (b, None)) -> 
+          atomic program @@ fst @@ negBExp (b, (Lexing.dummy_pos, Lexing.dummy_pos))
         | NOT p -> logic_not (inv p) 
       in
       print_inv property result;

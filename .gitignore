@@ -1,6 +1,7 @@
 *.o
 *.cmi
 *.cmx
+*.conflicts
 function
 test
 depend
@@ -13,7 +14,10 @@ frontend/PropertyParser.mli
 frontend/CTLPropertyLexer.ml
 frontend/CTLPropertyParser.ml
 frontend/CTLPropertyParser.mli
-frontend/Parser.conflicts
+cfgfrontend/program_lexer.ml
+cfgfrontend/program_parser.ml
+cfgfrontend/program_parser.mli
+cfgfrontend/Parser.conflicts
 examples/**
 _build/**
 *.byte

@@ -5,7 +5,7 @@ int main() {
     int x;
     int y;
     if (2*x <= y+3) {
-        if (?) {
+        if (? == 1) {
             r = 1;
         } 
     }

@@ -1,0 +1,33 @@
+// "[AG]([AF](x <= -10))" crash
+START: 1;
+
+FROM: 1;
+TO: 2;
+FROM: 2;
+  x := nondet();
+TO: 3;
+FROM: 3;
+  assume(x < 0);
+TO: 4;
+FROM: 3;
+  assume(x >= 0);
+TO: 5;
+FROM: 4;
+  x := x + 1;
+TO: 6;
+FROM: 6;
+  assume(x < -3);
+TO: 7;
+FROM: 6;
+  assume(x >= -3);
+TO: 3;
+FROM: 7;
+  x := x - 1;
+TO: 6;
+
+FROM: 5;
+  x := -20;
+TO: 8;
+
+FROM: 8;
+TO: 8;

@@ -1,0 +1,45 @@
+// -CTL="[AG](a != 1 || [AF](r==1))" 
+
+START: 1;
+
+FROM: 1;
+    a := 0;
+    r := 0;
+    m := m_init;
+TO: 2;
+
+FROM: 2;
+  assume (m > 0);
+TO: 3;
+
+FROM: 2;
+  assume (m <= 0);
+TO: 4;
+
+FROM: 4;
+TO: 4;
+
+FROM: 3;
+    a := 1;
+    a := 0;
+    n := n_init;
+TO: 5;
+
+FROM: 5;
+    assume (n > 0);
+TO: 6;
+
+FROM: 6;
+    n := n - 1;
+TO: 5;
+
+FROM: 5;
+    assume (n <= 0);
+TO: 7;
+
+FROM: 7;
+    r := 1;
+    r := 0;
+TO: 2;
+
+

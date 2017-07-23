@@ -12,7 +12,7 @@
 *)
 
 type 'a generic_property =
-  | Atomic of 'a (* atomic *)
+  | Atomic of ('a * string option) (* atomic property with optional label *)
   | AX of 'a generic_property (* next *)
   | AF of 'a generic_property (* future/eventually *)
   | AG of 'a generic_property (* global *)
@@ -26,7 +26,7 @@ type 'a generic_property =
   | NOT of 'a generic_property (* not *)
 
 let rec map f property = match property with
-  | Atomic x -> Atomic (f x)
+  | Atomic (x, l) -> Atomic (f x, l)
   | AX e -> AX (map f e)
   | AF e -> AF (map f e)
   | AG e -> AG (map f e)

@@ -1,4 +1,6 @@
-// -ctl_str "AG{AF{x <= -10}}" -joinbwd 4
+// FuncTion arguments:
+// -ctl_cfg "AG{AF{x <= -10}}" 
+// -joinbwd 4
 int main() {
     int x;
 
@@ -10,5 +12,5 @@ int main() {
     }
 
     x = -20;
-    while(true) {}
+    while(1) {}
 }

@@ -69,6 +69,12 @@ FuncTion requires the following applications and libraries:
 	opam install apron
 	```
 
+* Zarith: arbitrary-precision integer operations
+
+	```
+	opam install zarith
+	```
+
 
 # Compiling FuncTion
 
@@ -80,40 +86,73 @@ make
 
 This will generate the command line program 'function' in the project directory. 
 
-Alternatively, 'ocamlbuild' can be used to compile either a native or bytecode version with the following commands:
+Alternatively, 'ocamlbuild' can be used to build FuncTion with the following command:
 
 ```
-ocamlbuild -use-ocamlfind -use-menhir -pkgs 'apron,gmp,oUnit' -I utils -I domains -I frontend -I main -libs boxMPQ,octD,polkaMPQ,str Main.byte
-```
-
-```
-ocamlbuild -use-ocamlfind -use-menhir -pkgs 'apron,gmp,oUnit' -I utils -I domains -I frontend -I main -libs boxMPQ,octD,polkaMPQ,str Main.native
+ocamlbuild ml_float.o Main.native -use-ocamlfind -use-menhir -pkgs 'apron,gmp,oUnit,zarith' -I utils -I banal -I domains -I frontend -I cfgfrontend -I main -libs boxMPQ,octD,polkaMPQ,str,zarith -lflags banal/ml_float.o
 ```
 
 # Usage
 
 The command-line analyzer can be invoked using the following call pattern:
 
-	./function <file> 
+	./function <file> <analysis> [options] 
 
-where <file> is the path to the C file to be analyzed for termination of the function main(). Alternatively, the following call pattern can be used for guarantee properties or recurrence properties:
+where "file" is the path to the C file to be analyzed and "analysis" the type of the analysis to perform. 
 
-	./function <file> [-guarantee <property> | -recurrence <property]
+The analyzer first performs a forward reachability analysis, and then a backward analysis to find a 
+piecewise-defined ranking function and sufficient preconditions at the entry point for the program 
+to satisfy the given analyzed property.
 
-where <property> is the path to the file containing the guarantee or recurrence property.
-
-The analyzer first performs a forward reachability analysis, and then a backward analysis to find a piecewise-defined ranking function and sufficient preconditions at the entry point for the program to always terminate or satisfy the given guarantee or recurrence property.
-
-The following command-line options are recognized
+The following general command-line options are recognized
 (showing their default value):
 
 	 -main main                         set the analyzer entry point (defaults to main)
 	 -domain boxes|octagons|polyhedra   set the abstract domain (defaults to boxes)
 	 -joinfwd 2                         set the widening delay in forward analysis
 	 -joinbwd 2                         set the widening delay in backward analysis
-	 -meetbwd 2			    set the dual widening delay in backward analysis
+	 -meetbwd 2			                set the dual widening delay in backward analysis
 	 -ordinals 2                        set the maximum ordinal value for the ranking functions
-	 -refine			    reduces the backward analysis to the reachabile states
+	 -refine            			    reduces the backward analysis to the reachabile states
 
-The analyzer answers TRUE in case it can successfully prove termination or the guarantee or recurrence property. 
-Otherwise, it answers UNKNOWN.
+The analyzer answers TRUE in case it can successfully prove the property. Otherwise, it answers UNKNOWN.
+
+FuncTion can analyze the following properties:
+
+* Termination
+* Guarantee / Recurrence 
+* Computation-Tree-Logic (CTL) 
+
+## Termination
+
+To check for termination, call the analyzer with the following call pattern:
+
+	./function <file> -termination [options]
+
+## Guarantee / Recurrence
+
+The following call pattern can be used for guarantee properties or recurrence properties:
+
+	./function <file> -guarantee <property_file> [options]
+	./function <file> -recurrence <property_file> [options] 
+
+where "property\_file" is the path to the file containing the guarantee or recurrence property.
+
+## CTL
+
+CTL properties can be analyzed using the following call pattern:
+
+	./function <file> -ctl <property> [options]
+
+where "property" is the CTL property to be analyzed. 
+
+The following additional command-line options exist for the CTL analysis:
+(showing their default value):
+
+	 -precondition true                 a precondition that is assumed to hold at the start of the program
+	 -noinline			                disable inlining of function calls
+     -ast                               run the analysis on the abstract-syntax-tree instead of the control-flow-graph,
+                                        note that in that case function calls and goto/break/continue are not supported
+     -dot                               print out control-flow-graph and decision trees in graphviz dot format
+
+

@@ -24,9 +24,9 @@ OUNITDIR = `$(OCAMLFIND) query oUnit`
 OCAMLDIR = `$(OCAMLC) -where`
 OCAMLFLAGS = -thread -g
 OCAMLOPTFLAGS = -thread
-OCAMLINC = -I $(APRONDIR) -I $(ZARITHDIR) -I frontend -I utils -I banal -I domains -I main -I web -I $(OUNITDIR) -I tests -I $(GMPDIR)
+OCAMLINC = -I $(APRONDIR) -I $(ZARITHDIR) -I frontend -I cfgfrontend -I utils -I banal -I domains -I main -I web -I $(OUNITDIR) -I tests -I $(GMPDIR)
 #OCAMLLIBS = bigarray.cma gmp.cma apron.cma boxMPQ.cma octD.cma zarith.cma polkaMPQ.cma str.cma unix.cma threads.cma
-OCAMLOPTLIBS = bigarray.cmxa gmp.cmxa apron.cmxa boxMPQ.cmxa octD.cmxa zarith.cmxa polkaMPQ.cmxa str.cmxa threads.cmxa
+OCAMLOPTLIBS = bigarray.cmxa gmp.cmxa apron.cmxa boxMPQ.cmxa octD.cmxa zarith.cmxa polkaMPQ.cmxa str.cmxa #threads.cmxa
 MENHIRFLAGS = --explain
 CFLAGS = -I $(OCAMLDIR) -O3 -Wall
 CLIBS = -lgmp
@@ -56,8 +56,23 @@ AUTOGEN = \
   frontend/CTLPropertyLexer.ml \
   frontend/CTLPropertyParser.ml \
   frontend/CTLPropertyParser.mli \
+  cfgfrontend/program_lexer.ml \
+  cfgfrontend/program_parser.ml \
+  cfgfrontend/program_parser.mli \
   
 MLFILES = \
+  utils/setext.ml \
+  utils/mapext.ml \
+  utils/Constraints.ml \
+  utils/InvMap.ml \
+  cfgfrontend/abstract_syntax_tree.ml \
+  cfgfrontend/program_parser.ml \
+  cfgfrontend/program_lexer.ml \
+  cfgfrontend/cfg.ml \
+  cfgfrontend/cfg_printer.ml \
+  cfgfrontend/tree_to_cfg.ml \
+  cfgfrontend/file_parser.ml \
+  cfgfrontend/loop_detection.ml \
   frontend/IntermediateSyntax.ml \
   frontend/CTLProperty.ml \
   frontend/Lexer.ml \
@@ -68,10 +83,7 @@ MLFILES = \
   frontend/CTLPropertyParser.ml \
   frontend/AbstractSyntax.ml \
   frontend/ItoA.ml \
-  utils/Constraints.ml \
-  utils/InvMap.ml \
-  utils/setext.ml \
-  utils/mapext.ml \
+  cfgfrontend/conversion.ml \
   banal/banal_int.ml \
   banal/banal_float.ml \
   banal/banal_intinf.ml \
@@ -97,15 +109,19 @@ MLFILES = \
   domains/Domain.ml \
   domains/DecisionTree.ml \
   main/Iterator.ml \
+  main/CFGInterpreter.ml \
+  main/CFGForwardIterator.ml \
   main/ForwardIterator.ml \
   main/TerminationIterator.ml \
   main/GuaranteeIterator.ml \
   main/RecurrenceIterator.ml \
   main/CTLIterator.ml \
+  main/CFGCTLIterator.ml \
 
 MLIFILES = \
   frontend/Parser.mli \
   frontend/PropertyParser.mli \
+  cfgfrontend/program_parser.mli \
 
 CMDMLFILES = main/Main.ml
 TSTMLFILES = \

@@ -24,9 +24,12 @@ let (^=>) = (=>) ~setup:["-joinbwd"; "7"]
 let ($=>) = (=>) ~setup:["-cda"; "2"] (* conflict-driven learning *)
 
 (* CTL based termination analysis *)
-let (@=>) = (=>) ~setup:["-ctl_termination"] 
-let (@@=>) (filename, conditionalTerminationProperty) = (=>) ~setup:["-ctl_termination"; "-precondition"; conditionalTerminationProperty] filename 
-let (@@+=>) (filename, conditionalTerminationProperty) = (=>) ~setup:["-ctl_termination"; "-joinbwd"; "5" ;"-precondition"; conditionalTerminationProperty] filename 
+let (@=>) = (=>) ~setup:["-ctl"; "AF{exit: true}"; "-ast"] 
+let (@@=>) (filename, conditionalTerminationProperty) = 
+  (=>) ~setup:["-ctl"; "AF{exit: true}"; "-ast"; "-precondition"; conditionalTerminationProperty] filename 
+let (@@+=>) (filename, conditionalTerminationProperty) = 
+  (=>) ~setup:["-ctl"; "AF{exit: true}"; "-ast"; "-joinbwd"; "5" ;"-precondition"; conditionalTerminationProperty] filename 
+
 
 let (--) filename expected =
   filename >:: (fun test_ctxt ->
@@ -64,7 +67,7 @@ let boxes = "boxes" >:::
   "./tests/postincrement.c" => true;
   "./tests/predecrement.c" => true;
   "./tests/preincrement.c" => true;
-  "./tests/recursion.c" => true;
+  "./tests/recursion.c" -- true;
   "./tests/sas2010.c" => true;
   "./tests/sas2014a.c" => false; (* conditionally terminating *)
   "./tests/sas2014b.c" -- true; (* polyhedra *)

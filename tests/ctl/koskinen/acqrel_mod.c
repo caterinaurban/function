@@ -1,15 +1,15 @@
 // *************************************************************
-//  
 //
 // Original source code by Byron Cook & Eric Koskinen, July 2010
 // https://github.com/ultimate-pa/ultimate/blob/dev/trunk/examples/LTL/koskinen/branching-benchmarks/acqrel.c
 //
 // Modified by Samuel Ueltschi for FuncTion: 
-// - removed non-determinism from loop conditions at replaced 
+// - removed non-determinism from loop conditions and replaced it
 //   with variable number of loop iterations stored in input variables
 //
 // Property: AG(a => AF r)
 //
+// FuncTion arguments
 // -ctl_str AG{OR{a!=1}{AF{r==1}}}
 // -precondition "a!=1"
 int main() {

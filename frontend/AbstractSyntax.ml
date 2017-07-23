@@ -349,3 +349,7 @@ let function_print fmt f =
 type prog = (var StringMap.t) * block * (func StringMap.t)
 
 let prog_print fmt (_,b,fs) = block_print "" fmt b; StringMap.iter (fun _ f -> function_print fmt f) fs
+
+(* utility *)
+
+let annotate e = (e, (Lexing.dummy_pos, Lexing.dummy_pos))
