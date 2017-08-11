@@ -16,6 +16,12 @@ let string_of_domain d = match d with
   | BOXES -> "boxes" 
   | POLYHEDRA -> "polyhedra"
 
+let (--) (filename, property) expected =
+  filename >:: (fun test_ctxt ->
+    assert_bool "Test marked as not working but non-terminating" expected;
+    todo (filename ^ "Doesn't work yet")
+  )
+
 let test_ast file property 
     ?(precondition = "true")
     ?(domain = POLYHEDRA) 
@@ -78,6 +84,9 @@ let ctl_ast_testcases = "ctl_ast" >:::
     "./tests/ctl/existential_test3.c" "EF{r==1}" true;
   test_ast ~precondition:"y<0" "./tests/ctl/existential_test4.c" "EF{r==1}" true;
   test_ast ~precondition:"a!=1" "./tests/ctl/koskinen/acqrel_mod.c" "AG{OR{a!=1}{AF{r==1}}}" true;
+  test_ast 
+    ~setup:["-ordinals"; "3"] 
+    ~precondition:"A==0 && R==0" "./tests/ctl/koskinen/acqrel.c" "AG{OR{A!=1}{AF{R==1}}}" true;
   test_ast "./tests/ctl/koskinen/win4.c"  "AF{AG{WItemsNum >= 1}}" true;
 
 ]
@@ -86,6 +95,19 @@ let ctl_ast_testcases = "ctl_ast" >:::
 let ctl_cfg_testcases = "ctl_cfg" >:::
 [
 
+  (* Test Cases for the report*)
+  test_cfg ~precondition:"x >= y" "./tests/ctl/report/test_until.c" "AU{x >= y}{x==y}" true;
+  test_cfg ~precondition:"x < 10" "./tests/ctl/report/test_global.c" "AF{AG{y > 0}}" true;
+  test_cfg ~precondition:"x < 200" "./tests/ctl/report/test_existential2.c" "EF{r==1}" true;
+  test_cfg 
+    ~joinbwd:5
+    ~precondition: "x==2"
+    "./tests/ctl/report/test_existential3.c" "EF{r==1}" true;
+  test_cfg ~setup:["-ctl_existential_equivalence"] 
+    ~precondition: "x > 0"
+    "./tests/ctl/report/test_existential3.c" "EF{r==1}" true;
+
+  (* Toy Test Cases*)
   test_cfg ~joinbwd:6 "./tests/ctl/global_test_simple.c" "AG{AF{x <= -10}}" true;
   test_cfg ~precondition:"x == y + 20" "./tests/ctl/until_test.c" "AU{x >= y}{x==y}" true;
   test_cfg "./tests/ctl/until_test.c" "AU{x <= y}{x==y}" false;
@@ -116,6 +138,9 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
     "./tests/ctl/existential_test3.c" "EF{r==1}" true;
   test_cfg ~precondition:"y<0" "./tests/ctl/existential_test4.c" "EF{r==1}" true;
   test_cfg ~precondition:"a!=1" "./tests/ctl/koskinen/acqrel_mod.c" "AG{OR{a!=1}{AF{r==1}}}" true;
+  test_cfg 
+    ~setup:["-ordinals"; "3"] 
+    ~precondition:"A==0 && R==0" "./tests/ctl/koskinen/acqrel.c" "AG{OR{A!=1}{AF{R==1}}}" true;
   test_cfg "./tests/ctl/koskinen/win4.c"  "AF{AG{WItemsNum >= 1}}" true;
   test_cfg ~joinbwd:4 "./tests/ctl/koskinen/fig8-2007_mod.c" "OR{set==0}{AF{unset == 1}}" true;
 
@@ -158,7 +183,7 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
     "AF{AG{j==0}}" true;
 
 
-  (* Testcases from Ultimate LTL Automizer *)
+  (* (1* Testcases from Ultimate LTL Automizer *1) *)
 
   test_cfg ~precondition:"chainBroken == 0" 
     "./tests/ctl/ltl_automizer/coolant_basis_1_safe_sfty.c" 
@@ -205,5 +230,46 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
   test_cfg ~precondition:"init == 0 && temp < limit"
     "./tests/ctl/ltl_automizer/coolant_basis_6_unsafe_sfty.c" 
     "AG{OR{limit <= -273 && limit >= 10}{OR{tempIn >= 0}{AF{ warnLED == 1}}}}" false;
+
+
+  test_cfg ~precondition:"i == 1 && n >= 0 && i > n"
+    "./tests/ctl/ltl_automizer/nestedRandomLoop_true-valid-ltl.c" 
+    "AG{i >= n}" true;
+
+  (* imprecision *)
+  ("./tests/ctl/ltl_automizer/timer-simple.c", "NOT{AG{OR{timer_1 != 0}{AF{output_1 == 1}}}}") -- true;
+
+  (* imprecision due to modulo *)
+  ("./tests/ctl/ltl_automizer/togglecounter_true-valid-ltl.c", "AG{AND{AF{t == 1}}{AF{t == 0}}}") -- true;
+
+  test_cfg ~precondition:"i == 1 && n >= 0 && i > n"
+    "./tests/ctl/ltl_automizer/nestedRandomLoop_true-valid-ltl.c" 
+    "AG{i >= n}" true;
+
+  test_cfg ~precondition:"t >= 0"
+    "./tests/ctl/ltl_automizer/toggletoggle_true-valid-ltl.c" 
+    "AG{AND{AF{t==1}}{AF{t==0}}}" true;
+
+  test_cfg ~precondition:"x < 0"
+    ~setup:["-ordinals"; "3"] 
+    "./tests/ctl/ltl_automizer/PotentialMinimizeSEVPABug.c" 
+    "AG{OR{x <= 0}{AF{y == 0}}}" true;
+
+  test_cfg ~precondition:"x < 0"
+    ~setup:["-ordinals"; "3"] 
+    "./tests/ctl/ltl_automizer/cav2015.c" 
+    "AG{OR{x <= 0}{AF{y == 0}}}" true;
+
+  test_cfg 
+    "./tests/ctl/ltl_automizer/simple-1.c" 
+    "AF{x > 10000}" true;
+
+  test_cfg 
+    "./tests/ctl/ltl_automizer/simple-2.c" 
+    "AF{x > 100}" true;
+
+  test_cfg ~precondition:"ap==0"
+    "./tests/ctl/ltl_automizer/Bug_NoLoopAtEndForTerminatingPrograms_safe.c" 
+    "NOT{AF{ap > 2}}" true;
 
 ]
