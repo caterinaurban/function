@@ -82,7 +82,8 @@ let ctl_ast_testcases = "ctl_ast" >:::
     ~joinbwd:5
     ~precondition: "x==2"
     "./tests/ctl/existential_test3.c" "EF{r==1}" true;
-  test_ast ~precondition:"y<0" "./tests/ctl/existential_test4.c" "EF{r==1}" true;
+
+  test_ast "./tests/ctl/existential_test4.c" "EF{r==1}" true;
   test_ast ~precondition:"a!=1" "./tests/ctl/koskinen/acqrel_mod.c" "AG{OR{a!=1}{AF{r==1}}}" true;
   test_ast 
     ~setup:["-ordinals"; "3"] 
@@ -136,7 +137,7 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
     ~joinbwd:5
     ~precondition: "x==2"
     "./tests/ctl/existential_test3.c" "EF{r==1}" true;
-  test_cfg ~precondition:"y<0" "./tests/ctl/existential_test4.c" "EF{r==1}" true;
+  test_cfg "./tests/ctl/existential_test4.c" "EF{r==1}" true;
   test_cfg ~precondition:"a!=1" "./tests/ctl/koskinen/acqrel_mod.c" "AG{OR{a!=1}{AF{r==1}}}" true;
   test_cfg 
     ~setup:["-ordinals"; "3"] 
@@ -152,15 +153,13 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
     "./tests/ctl/multi_branch_choice.c"
     "AND{EF{x==4}}{EF{x==-4}}" true;
 
-  test_cfg 
-    "./tests/ctl/potential_termination_1.c"
-    "EF{exit: true}" true;
+  (* can't handle existential non-det assignments *)
+  ("./tests/ctl/potential_termination_1.c", "EF{exit: true}") -- true;
 
   (* Some SV Comp testcases *)
 
-  test_cfg 
-    "./tests/ctl/sv_comp/Bangalore_false-no-overflow.c" 
-    "EF{x < 0}" true;
+  (* can't handle existential non-det assignments *)
+  ("./tests/ctl/sv_comp/Bangalore_false-no-overflow.c", "EF{x < 0}") -- true;
 
   test_cfg 
     "./tests/ctl/sv_comp/Ex02_false-termination_true-no-overflow.c"
@@ -231,7 +230,6 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
     "./tests/ctl/ltl_automizer/coolant_basis_6_unsafe_sfty.c" 
     "AG{OR{limit <= -273 && limit >= 10}{OR{tempIn >= 0}{AF{ warnLED == 1}}}}" false;
 
-
   test_cfg ~precondition:"i == 1 && n >= 0 && i > n"
     "./tests/ctl/ltl_automizer/nestedRandomLoop_true-valid-ltl.c" 
     "AG{i >= n}" true;
@@ -241,10 +239,6 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
 
   (* imprecision due to modulo *)
   ("./tests/ctl/ltl_automizer/togglecounter_true-valid-ltl.c", "AG{AND{AF{t == 1}}{AF{t == 0}}}") -- true;
-
-  test_cfg ~precondition:"i == 1 && n >= 0 && i > n"
-    "./tests/ctl/ltl_automizer/nestedRandomLoop_true-valid-ltl.c" 
-    "AG{i >= n}" true;
 
   test_cfg ~precondition:"t >= 0"
     "./tests/ctl/ltl_automizer/toggletoggle_true-valid-ltl.c" 
