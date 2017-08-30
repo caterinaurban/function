@@ -24,6 +24,8 @@ let make_analyser common_setup ?(setup=[]) filename expected =
     let terminate = ref false in
     let ok_string = "\nAnalysis Result: TRUE" in
     let index = ref 0 in
+    (* Format.fprintf Format.std_formatter "%s " filename; *)
+    (* List.iter(fun s -> Format.fprintf Format.std_formatter "%s " s) common_setup; *)
     Stream.iter (fun c ->
       (* Format.fprintf Format.std_formatter "%c" c; *)
       if !index = String.length ok_string then

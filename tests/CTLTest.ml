@@ -29,6 +29,7 @@ let test_ast file property
     ?setup
   = TestCommon.make_analyser [
     "-minimal";
+    "-time";
     "-ast";
     "-domain"; string_of_domain domain; 
     "-joinbwd"; string_of_int joinbwd; 
@@ -43,6 +44,7 @@ let test_cfg file property
     ?setup
   = TestCommon.make_analyser [
     "-minimal";
+    "-time";
     "-domain"; string_of_domain domain; 
     "-joinbwd"; string_of_int joinbwd; 
     "-precondition"; precondition;
