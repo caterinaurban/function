@@ -83,6 +83,9 @@ let ctl_ast_testcases = "ctl_ast" >:::
     ~precondition: "x==2"
     "./tests/ctl/existential_test3.c" "EF{r==1}" true;
 
+  test_ast ~precondition: "n > 0" "./tests/ctl/fin_ex.c" "EG{EF{n==1}}" true;
+  test_ast ~precondition: "x > y" "./tests/ctl/until_existential.c" "EU{x >= y}{x == y}" true;
+
   test_ast "./tests/ctl/existential_test4.c" "EF{r==1}" true;
   test_ast ~precondition:"a!=1" "./tests/ctl/koskinen/acqrel_mod.c" "AG{OR{a!=1}{AF{r==1}}}" true;
   test_ast 
@@ -139,6 +142,11 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
     "./tests/ctl/existential_test3.c" "EF{r==1}" true;
   test_cfg "./tests/ctl/existential_test4.c" "EF{r==1}" true;
   test_cfg ~precondition:"a!=1" "./tests/ctl/koskinen/acqrel_mod.c" "AG{OR{a!=1}{AF{r==1}}}" true;
+
+  test_cfg ~precondition: "n > 0" "./tests/ctl/fin_ex.c" "EG{EF{n==1}}" true;
+  test_cfg ~precondition: "x > y" "./tests/ctl/until_existential.c" "EU{x >= y}{x == y}" true;
+
+
   test_cfg 
     ~setup:["-ordinals"; "3"] 
     ~precondition:"A==0 && R==0" "./tests/ctl/koskinen/acqrel.c" "AG{OR{A!=1}{AF{R==1}}}" true;
