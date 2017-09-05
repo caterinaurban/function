@@ -349,6 +349,7 @@ let recurrence () =
 let ctl_ast () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property Specified");
+  let starttime = Sys.time () in
   let parsedPrecondition = parsePropertyString !precondition in
   let parsedProperty = parseCTLPropertyString !property in
   let (prog, property) = ItoA.ctl_prog_itoa parsedProperty !main (parseFile !filename) in
@@ -368,6 +369,10 @@ let ctl_ast () =
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in
   let result = analyze ~precondition:precondition program property in
+  if !time then begin
+    let stoptime = Sys.time () in
+    Format.fprintf !fmt "\nTime: %f" (stoptime-.starttime)
+  end;
   if result then 
     Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
   else 
@@ -376,6 +381,7 @@ let ctl_ast () =
 let ctl_cfg () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property Specified");
+  let starttime = Sys.time () in
   let (cfg, getProperty) = Tree_to_cfg.prog (File_parser.parse_file !filename) !main in
   let mainFunc = Cfg.find_func !main cfg in
   let cfg = Cfg.insert_entry_exit_label cfg mainFunc in (* add exit/entry labels to main function *)
@@ -405,6 +411,10 @@ let ctl_cfg () =
   let mainFunc = Cfg.find_func !main cfg in
   let possibleLoopHeads = Loop_detection.possible_loop_heads cfg mainFunc in
   let result = analyze ~precondition:precondition cfg mainFunc possibleLoopHeads ctlProperty in
+  if !time then begin
+    let stoptime = Sys.time () in
+    Format.fprintf !fmt "\nTime: %f" (stoptime-.starttime)
+  end;
   if result then 
     Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
   else 
