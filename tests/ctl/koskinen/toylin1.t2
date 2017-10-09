@@ -1,0 +1,38 @@
+// -CTL="[AF](resp > 5)" 
+
+START: 1;
+
+FROM: 1;
+    assume(c > 5);
+    servers := 4;
+    resp := 0;
+    curr_serv := servers;
+TO: 2;
+
+FROM: 2;
+    assume (curr_serv > 0);
+TO: 3;
+
+FROM: 2;
+    assume (curr_serv <= 0);
+TO: 6;
+
+FROM: 6;
+TO: 6;
+
+FROM: 3;
+TO: 4;
+
+FROM: 4;
+    c := c - 1;
+    curr_serv := curr_serv - 1;
+    resp := resp + 1;
+TO: 2;
+
+FROM: 3;
+    assume (c < curr_serv);
+TO: 5;
+
+FROM: 5;
+    curr_serv := curr_serv - 1;
+TO: 2;
