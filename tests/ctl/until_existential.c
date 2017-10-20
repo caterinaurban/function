@@ -12,6 +12,7 @@ int main() {
             x = x - 1;
         }
         // now x == y
+        while(true){}
     } else {
         // on this trace be break the until property
         x = y - 1;

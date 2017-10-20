@@ -55,6 +55,10 @@ let ctl_ast_testcases = "ctl_ast" >:::
 [
 
   test_ast ~joinbwd:4 "./tests/ctl/global_test_simple.c" "AG{AF{x <= -10}}" true;
+  test_ast ~joinbwd:4 "./tests/ctl/global_test_simple.c" "EG{AF{x <= -10}}" true;
+  test_ast ~joinbwd:4 "./tests/ctl/global_test_simple.c" "AG{EF{x <= -10}}" true;
+  test_ast ~joinbwd:4 "./tests/ctl/global_test_simple.c" "EG{EF{x <= -10}}" true;
+
   test_ast ~precondition:"x == y + 20" "./tests/ctl/until_test.c" "AU{x >= y}{x==y}" true;
   test_ast "./tests/ctl/until_test.c" "AU{x <= y}{x==y}" false;
   (* NOTE: Currently can't use BOXES domain because of missing underapproximation support *)
@@ -68,7 +72,17 @@ let ctl_ast_testcases = "ctl_ast" >:::
   test_ast ~setup:["-ordinals"; "1"] "./tests/sink.c" "AF{x==0}" true;
   test_ast ~setup:["-ordinals"; "1"] "./tests/sink.c" "AG{AF{x==0}}" true;
   test_ast ~precondition: "n > 0" "./tests/ctl/and_test.c" "AND{AG{AF{n==1}}}{AF{n==0}}" true;
+
+  test_ast ~precondition: "n > 0" "./tests/ctl/and_test.c" "EG{AF{n==1}}" true;
+  test_ast ~precondition: "n > 0" "./tests/ctl/and_test.c" "AG{EF{n==1}}" true;
+  test_ast ~precondition: "n > 0" "./tests/ctl/and_test.c" "EG{EF{n==1}}" true;
+
   test_ast "./tests/ctl/or_test.c" "OR{AF{AG{x < -100}}}{AF{x==20}}" true;
+  test_ast "./tests/ctl/or_test.c" "OR{EF{AG{x < -100}}}{AF{x==20}}" true;
+  test_ast "./tests/ctl/or_test.c" "OR{AF{EG{x < -100}}}{AF{x==20}}" true;
+  test_ast "./tests/ctl/or_test.c" "OR{EF{EG{x < -100}}}{AF{x==20}}" true;
+
+
   test_ast ~precondition: "x==1" "./tests/ctl/next.c" "AX{x==0}" true;
   test_ast "./tests/ctl/next.c" "AX{x==0}" false;
   test_ast "./tests/ctl/existential_test1.c" "EF{r==1}" false;
@@ -87,6 +101,8 @@ let ctl_ast_testcases = "ctl_ast" >:::
 
   test_ast ~precondition: "n > 0" "./tests/ctl/fin_ex.c" "EG{EF{n==1}}" true;
   test_ast ~precondition: "x > y" "./tests/ctl/until_existential.c" "EU{x >= y}{x == y}" true;
+
+  test_ast ~precondition: "x > y" "./tests/ctl/until_existential.c" "EF{AG{x == y}}" true;
 
   test_ast "./tests/ctl/existential_test4.c" "EF{r==1}" true;
   test_ast ~precondition:"a!=1" "./tests/ctl/koskinen/acqrel_mod.c" "AG{OR{a!=1}{AF{r==1}}}" true;
@@ -180,17 +196,64 @@ let ctl_cfg_testcases = "ctl_cfg" >:::
     "AF{AG{i==0}}" true;
 
   test_cfg 
+    "./tests/ctl/sv_comp/Ex07_false-termination_true-no-overflow.c"
+    "EF{EG{i==0}}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/Ex07_false-termination_true-no-overflow.c"
+    "EF{AG{i==0}}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/Ex07_false-termination_true-no-overflow.c"
+    "AF{EG{i==0}}" true;
+
+  test_cfg 
     "./tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c"
     "AF{AND{AF{j >= 21}}{i==100}}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c"
+    "AF{AND{EF{j >= 21}}{i==100}}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c"
+    "EF{AND{AF{j >= 21}}{i==100}}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c"
+    "EF{AND{EF{j >= 21}}{i==100}}" true;
 
   test_cfg 
     "./tests/ctl/sv_comp/Madrid_true-no-overflow_false-termination_true-valid-memsafety.c"
     "AF{AND{x==7}{AF{AG{x==2}}}}" true;
 
   test_cfg 
+    "./tests/ctl/sv_comp/Madrid_true-no-overflow_false-termination_true-valid-memsafety.c"
+    "AF{AND{x==7}{AF{EG{x==2}}}}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/Madrid_true-no-overflow_false-termination_true-valid-memsafety.c"
+    "AF{AND{x==7}{EF{AG{x==2}}}}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/Madrid_true-no-overflow_false-termination_true-valid-memsafety.c"
+    "AF{AND{x==7}{EF{EG{x==2}}}}" true;
+
+  test_cfg 
     "./tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c"
     "AF{AG{j==0}}" true;
 
+  test_cfg 
+    "./tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c"
+    "EF{AG{j==0}}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c"
+    "AF{EG{j==0}}" true;
+
+  test_cfg 
+    "./tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c"
+    "EF{EG{j==0}}" true;
 
   (* (1* Testcases from Ultimate LTL Automizer *1) *)
 
