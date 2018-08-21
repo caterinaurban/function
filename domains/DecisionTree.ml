@@ -1036,7 +1036,7 @@ struct
     let rec aux t cs =
       match t with
       | Bot -> Bot
-      | Leaf f -> Leaf (F.bwdAssign f e)
+      | Leaf f -> 
       | Node((c,nc),l,r) -> match (fst e) with
         | A_var variable ->
           if (C.var variable c) then
@@ -1196,9 +1196,9 @@ struct
     | A_FALSE -> { domain = pre; tree = Bot; env = env; vars = vars }
     | A_bunary (o,e) ->
       (match o with
-       | A_NOT -> let (e, _) = negBExp e in filter ?domain:pre t e)
+       | A_NOT -> let (e, _) = negBExp e in filter ?domain:pre ~underapprox:underapprox t e)
     | A_bbinary (o,(e1,_),(e2,_)) ->
-      let t1 = filter ?domain:pre t e1 and t2 = filter ?domain:pre t e2 in
+      let t1 = filter ?domain:pre ~underapprox:underapprox t e1 and t2 = filter ?domain:pre ~underapprox:underapprox t e2 in
       (match o with
        | A_AND -> meet APPROXIMATION t1 t2
        | A_OR -> join APPROXIMATION t1 t2)
