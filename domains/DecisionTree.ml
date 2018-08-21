@@ -1037,6 +1037,7 @@ struct
       match t with
       | Bot -> Bot
       | Leaf f -> 
+          if B.isBot (B.inner env vars cs) then Bot else Leaf (F.bwdAssign f e)
       | Node((c,nc),l,r) -> match (fst e) with
         | A_var variable ->
           if (C.var variable c) then
