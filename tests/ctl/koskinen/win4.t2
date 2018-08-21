@@ -1,0 +1,54 @@
+// -CTL="[AF]([AG](w >= 1))" 
+
+START: 20;
+
+FROM: 20;
+TO: 1;
+
+FROM: 1;
+TO: 2;
+
+FROM: 2;
+  assume (w <= 5);
+TO: 3;
+
+FROM: 2;
+TO: 4;
+
+FROM: 2;
+TO: 9;
+
+FROM: 3;
+TO: 5;
+
+FROM: 4;
+TO: 5;
+
+FROM: 5;
+  assume (w <= 5);
+TO: 6;
+
+FROM: 5;
+  assume (w > 5);
+TO: 7;
+
+FROM: 6;
+TO: 8;
+
+FROM: 7;
+TO: 8;
+
+FROM: 8;
+  w := w + 1;
+TO: 2;
+
+FROM: 9;
+  assume (w > 2);
+TO: 10;
+
+FROM: 10;
+    w := w - 1;
+TO: 9;
+
+FROM: 9;
+TO: 1;

@@ -1072,6 +1072,7 @@ struct
              | [],[] -> merge (aux l cs) (aux r cs) cs
              | [],[y] when (C.isBot y) -> aux l cs
              | [x],[] when (C.isBot x) -> aux r cs
+             | [x],[y] when (C.isBot x && C.isBot y) -> Leaf (F.bot env vars)
              | [x],[y] ->
                let nx = C.negate x in
                let ny = C.negate y in
