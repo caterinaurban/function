@@ -182,13 +182,13 @@ module Single = struct
 
   include Generic
 
-  external round_flt: float -> float = "ml_round_flt" "ml_round_flt_f" "float"
-  external of_int_flt: int -> float = "ml_of_int_flt" "ml_of_int_flt_f" "float"
+  external round_flt: float -> float = "ml_round_flt" "ml_round_flt_f"   [@@unboxed] [@@noalloc]
+  external of_int_flt: int -> float = "ml_of_int_flt" "ml_of_int_flt_f"   [@@noalloc]
 
-  external add_flt: float -> float -> float = "ml_add_flt" "ml_add_flt_f" "float"
-  external sub_flt: float -> float -> float = "ml_sub_flt" "ml_sub_flt_f" "float"
-  external mul_flt: float -> float -> float = "ml_mul_flt" "ml_mul_flt_f" "float"
-  external div_flt: float -> float -> float = "ml_div_flt" "ml_div_flt_f" "float"
+  external add_flt: float -> float -> float = "ml_add_flt" "ml_add_flt_f"   [@@unboxed] [@@noalloc]
+  external sub_flt: float -> float -> float = "ml_sub_flt" "ml_sub_flt_f"   [@@unboxed] [@@noalloc]
+  external mul_flt: float -> float -> float = "ml_mul_flt" "ml_mul_flt_f"   [@@unboxed] [@@noalloc]
+  external div_flt: float -> float -> float = "ml_div_flt" "ml_div_flt_f"   [@@unboxed] [@@noalloc]
 
   let round a = round_flt a
 

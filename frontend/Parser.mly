@@ -55,6 +55,7 @@ open IntermediateSyntax
 
 %token <string> TOK_const
 
+
 %token TOK_EOF
 
 %start <IntermediateSyntax.decl list IntermediateSyntax.annotated> file
@@ -70,11 +71,21 @@ decl:
 global_decl:
 	| t = annotate(global_typ) g = separated_list(TOK_COMMA,declarator) TOK_SEMICOLON					{ t, g }
 	| t = annotate(global_typ) TOK_MULTIPLY g = separated_list(TOK_COMMA,declarator) TOK_SEMICOLON		{ t, g }
+	| t = annotate(global_typ) a = array_typ				               							    { t, a } 
+
+
+
+
+
+	 
 
 global_typ:
 	| TOK_INT	{ I_INT } 
 
+array_typ:
+	| d= annotate (TOK_id) TOK_LBRACKET c = TOK_const TOK_RBRACKET   TOK_SEMICOLON	 {let rec f  n = if n = -1 then []  else (bind d (fun s -> s^"_"^(string_of_int n)),None):: (f (n-1)) in f ((int_of_string c) -1)}  
 declarator:
+    	
 	| d = annotate(TOK_id)										{ d, None }
 	| d = annotate(TOK_id) TOK_EQUAL e = annotate(exp)			{ d, Some e }
 
@@ -122,13 +133,14 @@ jump_stmt:
 
 declaration_stmt:
 	| d = annotate(global_decl)	{ I_local d }
-
+	
 block_stmt:
 	| TOK_LCURLY s = list(annotate(stmt)) TOK_RCURLY	{ s }
 
 exp:
 	| e = logical_or_exp										{ e }
 	| e1 = annotate(unary_exp) o = assign_op e2 = annotate(exp)	{ I_assign (e1,o,e2) }
+
 
 assign_op:
 	| TOK_EQUAL				{ I_EQUAL }
@@ -185,6 +197,7 @@ postfix_exp:
 	| e = annotate(postfix_exp) TOK_PLUS_PLUS														{ I_incr e }
 	| e = annotate(postfix_exp) TOK_MINUS_MINUS														{ I_decr e }
 	| e = annotate(postfix_exp) TOK_LPAREN p = separated_list(TOK_COMMA,annotate(exp)) TOK_RPAREN	{ I_call (e,p) }
+	| e= TOK_id  TOK_LBRACKET c = TOK_const TOK_RBRACKET { I_id (e^"_"^c)}
 
 primary_exp:
 	| TOK_TRUE																										{ I_TRUE }

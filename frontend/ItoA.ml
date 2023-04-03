@@ -21,6 +21,8 @@ let newId () = id := !id + 1; !id
 exception ItoA_error of string
 exception Modulo
 
+
+
 (* environments *)
 type env = {
   globals: var StringMap.t; (* global variables *)
@@ -565,6 +567,9 @@ let functionDecl_itoa env (* env *) ((typ (* Isyntax.typ annotated option *),(x 
     let (stmts,env) = List.fold_left (fun (astmts,aenv) astmt -> let (aastmts,aaenv) = stmt_itoa ctx aenv astmt in (astmts@aastmts,aaenv)) ([],env) stmts in
     let f = { funcName = x; funcTyp = return; funcArgs = vars; funcVars = env.locals; funcBody = block_itoa stmts } in
     StringMap.add x f env.funcs
+
+
+
 
 (* declarations *)
 let decl_itoa env (* env *) stmts (* Asyntax.stmt list *) decl =

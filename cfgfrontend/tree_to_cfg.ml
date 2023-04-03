@@ -33,7 +33,7 @@ module StringMap = Map.Make(String)
 let node_counter = ref 0    
 
 let nodes = ref []
-    
+
 (* create a new node, with a fresh identifier and accumulate into nodes *)
 let create_node (pos:position) =
   incr node_counter;
@@ -220,9 +220,8 @@ let rec int_expr (env:env) (expr:Abstract_syntax_tree.int_expr)
       in
       env, [], CFG_int_const v
 
-  | AST_int_random ->
+  | AST_int_random_u| AST_int_random_c | AST_int_random ->
       env, [], CFG_int_random
-
   | AST_int_interval ((i1,x1),(i2,x2)) ->
       let v1 =
         try Z.of_string i1
@@ -341,12 +340,10 @@ let decls (env:env) (((t,_),l):var_decl) : env * inst ext list =
 
 let rec stat (env:env) (entry:node) (exit:node) (s:stat) : env =
   match s with
-
   | AST_block l ->
-      let env1 = stat_list env entry exit l in
-      (* restore the variable scoping from the begining of the block *)
-      { env1 with env_vars = env.env_vars; }
-
+    let env1 = stat_list env entry exit l in
+    (* restore the variable scoping from the begining of the block *)
+    { env1 with env_vars = env.env_vars}
   | AST_SKIP ->
       add_arc entry exit (CFG_skip "skip");
       env
@@ -361,6 +358,7 @@ let rec stat (env:env) (entry:node) (exit:node) (s:stat) : env =
         with Not_found -> failwith (Printf.sprintf "unknown variable %s at %s" id (string_of_extent x))
       in
       add_arc entry1 exit (CFG_assign (var, e1));
+    
       env1
 
   | AST_increment ((id,x),v) ->
@@ -409,7 +407,6 @@ let rec stat (env:env) (entry:node) (exit:node) (s:stat) : env =
        | None -> failwith "no exit node for function"
        );
        env
-
    | AST_return (Some (expr,x)) ->
        (* return expr is translated as return = expr
           the assignment is connected directly to the function exit
@@ -445,7 +442,8 @@ let rec stat (env:env) (entry:node) (exit:node) (s:stat) : env =
        (* node_t --[s1]--> exit *)
        let env2 = stat env1 node_t exit s1 in
        (* node_f --[s2] --> exit *)
-       stat env2 node_f exit s2
+       let env = (stat env2 node_f exit s2) in 
+       env
          
    | AST_if ((expr,_),(s1,x1),None) ->
        (*
@@ -483,51 +481,49 @@ let rec stat (env:env) (entry:node) (exit:node) (s:stat) : env =
        let env2 = stat { env1 with env_break = Some exit; } node_t entry s1 in
        { env2 with env_break = env1.env_break; }
 
-   | AST_for (init,expr,incr,(s1,x1)) ->
-       (* init *)
-       (* entry --[init]--> head *)
-       let env1, head =
-         if init = []
-         then env, entry
-         else (
-           let head = create_node (fst x1) in
-           stat_list env entry head init, head
-          )
-       in
-       (* conditional *)
-       (*
-         head --[before]--> head1 ---[expr]---> node_t 
-                                  \--[!expr]--> exit
-        *)
-       let env2, before, e =
-         match expr with
-         | None -> env1, [], CFG_bool_const true
-         | Some (expr,_) -> bool_expr env1 expr
-       in
-       let head1 = append_inst head before in
-       let node_t = create_node (fst x1) in
-       add_arc head1 node_t (CFG_guard e);
-       add_arc head1 exit (CFG_guard (CFG_bool_unary (AST_NOT, e)));
-       (* increment *)
-       (* tail --[incr]--> head *)
-       let env3, tail =
-         if incr = []
-         then env2, head
-         else (
-           let tail = create_node (snd x1) in
-           stat_list env2 tail head incr, tail
-          )
-       in
-       (* body *)
-       (* node_t --[s1]--> tail *)
-       let env4 = stat { env3 with env_break = Some exit; } node_t tail s1 in
-       { env4 with env_break = env3.env_break; }
-
+       | AST_for (init,expr,incr,(s1,x1)) ->
+        (* init *)
+        (* entry --[init]--> head *)
+        let env1, head =
+          if init = []
+          then env, entry
+          else (
+            let head = create_node (fst x1) in
+            stat_list env entry head init, head
+           )
+        in
+        (* conditional *)
+        (*
+          head --[before]--> head1 ---[expr]---> node_t 
+                                   \--[!expr]--> exit
+         *)
+        let env2, before, e =
+          match expr with
+          | None -> env1, [], CFG_bool_const true
+          | Some (expr,_) -> bool_expr env1 expr
+        in
+        let head1 = append_inst head before in
+        let node_t = create_node (fst x1) in
+        add_arc head1 node_t (CFG_guard e);
+        add_arc head1 exit (CFG_guard (CFG_bool_unary (AST_NOT, e)));
+        (* increment *)
+        (* tail --[incr]--> head *)
+        let env3, tail =
+          if incr = []
+          then env2, head
+          else (
+            let tail = create_node (snd x1) in
+            stat_list env2 tail head incr, tail
+           )
+        in
+        (* body *)
+        (* node_t --[s1]--> tail *)
+        let env4 = stat { env3 with env_break = Some exit; } node_t tail s1 in
+        { env4 with env_break = env3.env_break; }
    | AST_local_decl (d,_) ->
        let env1, inst = decls env d in
        add_inst entry exit inst;
        env1
-
    | AST_stat_call (idx,exprs) ->
        let env1, inst, _ = call env idx exprs in
        add_inst entry exit inst;
@@ -565,7 +561,8 @@ and stat_list (env:env) (entry:node) (exit:node) (l:stat ext list) : env =
       (* entry --[first]--> next *)
       let env1 = stat env entry next first in
       (* next --[rest]--> exit *)
-      stat_list env1 next exit rest
+       stat_list env1 next exit rest
+      
 
 
 
@@ -638,14 +635,15 @@ let prog ((t,x):toplevel list ext) (main:string) : (cfg * (Abstract_syntax_tree.
     }
   in
   (* translate each toplevel instruction *)
+  
   let env, revinit =
     List.fold_left
       (fun (env, revinit) t -> match t with
          | AST_fun_decl (f,_) ->
            if String.equal main (fst f.fun_name) then 
-             func ~is_main:true env f, revinit
-           else 
-             func env f, revinit
+            func ~is_main:true env f,revinit
+           else
+             func env f,revinit
          | AST_global_decl (d,_) ->
            let env1, inst1 = decls env d in
            env1, List.rev_append inst1 revinit
@@ -660,11 +658,18 @@ let prog ((t,x):toplevel list ext) (main:string) : (cfg * (Abstract_syntax_tree.
   (* extract program info *)
   let vars = List.rev (VarSet.fold (fun a acc -> a::acc) env.env_allvars []) in
   let funcs = List.rev (StringMap.fold (fun _ f acc -> f::acc) env.env_funcs []) in
+  
   ({ cfg_vars = vars;
     cfg_funcs = funcs;
     cfg_init_entry = entry;
     cfg_init_exit = exit;
     cfg_nodes = List.rev !nodes;
     cfg_arcs = List.rev !arcs;
-  }, env.env_get_main_property)
+    }, env.env_get_main_property)
+    
+
+
+    
+
+
     

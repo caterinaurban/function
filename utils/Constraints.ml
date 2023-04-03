@@ -256,7 +256,7 @@ struct
      aux !l1 !l2; c *)
 
   (**)
-
+     
   let print vars fmt c =
     let first = ref true in
     let rec aux c v =
@@ -288,10 +288,11 @@ struct
     Lincons1.iter (fun v x -> 
         try 
           let x = List.find (fun y -> String.compare (Var.to_string x) y.varId = 0) vars in
-          Format.fprintf Format.str_formatter "%s{%s}" x.varId x.varName;
+          Format.fprintf Format.str_formatter "%s{%s}" x.varId   x.varName;
           aux v (Format.flush_str_formatter ())
         with Not_found -> ()
       ) c;
+      
     let k = Coeff.neg (Lincons1.get_cst c) in
     if !first then Format.fprintf fmt "0";
     first := true;

@@ -78,6 +78,8 @@ rule token = parse
 | "]"	 { TOK_RBRACKET }
 | "*"    { TOK_STAR }
 | "?"    { TOK_QUESTIONMARK }
+| "?+"   { TOK_CONTROLLED}
+| "?-"   { TOK_UNCONTROLLED}
 | "+"    { TOK_PLUS }
 | "-"    { TOK_MINUS }
 | "!"    { TOK_EXCLAIM }

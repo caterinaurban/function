@@ -91,7 +91,10 @@ type int_expr =
 
   (* random integer *)
   | AST_int_random 
+  
+  | AST_int_random_c
 
+  | AST_int_random_u
   (* non-deterministic choice between two integers *)
   | AST_int_interval of (string ext) (* lower bound *) * 
                     (string ext) (* upper bound *)

@@ -12,6 +12,7 @@ module Datatypes = Banal_datatypes
 
 include Q
 
+
 type base = t
 
 (* conversions are exact *)
@@ -32,8 +33,7 @@ let sub_down = sub
 let mul_down = mul
 let div_down = div 
 
-let is_finite x = Int.sign x.den <> 0
-
+let is_finite x = Stdlib.(<>) (Int.sign x.den) 0
 
 (* apron and mlgmpidl *)
 

@@ -10,10 +10,9 @@ type extent = position * position  (* start/end *)
 type 'a annotated = 'a * extent
 
 let position_tostring p = Printf.sprintf "%s:%i:%i" p.pos_fname p.pos_lnum (p.pos_cnum - p.pos_bol)
-
+let bind (s: string annotated) f : string annotated = (f (fst s),snd s)
 type typ =
   | I_INT
-
 type unaryOp =
   | I_PLUS  	(* + *)
   | I_MINUS	(* - *)
@@ -63,6 +62,7 @@ type exp =
   | I_or (* logical_or_exp *) of (exp (* logical_and_exp/logical_or_exp *) annotated) * (exp (* logical_and_exp *) annotated)
   (**)
   | I_assign of (exp (* unary_exp *) annotated) * assignOp * (exp annotated)
+  
 
 type property =
   | I_universal of (exp annotated)

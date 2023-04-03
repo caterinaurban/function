@@ -196,7 +196,7 @@ module Make(I : INTERVAL) = struct
   (* constraint linearization 
      returns both the true and false conditions
   *)
-  let rec lin_cons (env:env) ((e,t,x):expr typed) : lincons =
+  let lin_cons (env:env) ((e,t,x):expr typed) : lincons =
     match e with
     | T_binary (op,e1,e2) ->
         let l1, l2 = lin_expr env e1, lin_expr env e2 in

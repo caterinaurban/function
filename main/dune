@@ -1,0 +1,14 @@
+(executable
+ (public_name main)
+ (name main)
+ (promote (until-clean) (into ..))
+  (flags
+         (:standard
+               -open Frontend -open Domains -open Cfgfrontend -open Utils))
+ (libraries frontend cfgfrontend utils domains)
+ )
+
+
+(env
+ (dev
+  (flags (:standard -w -9-27-32-33-35 -warn-error -A))))

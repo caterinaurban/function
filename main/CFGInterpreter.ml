@@ -94,17 +94,16 @@ let execute
     | FORWARD -> getIncomingStates
     | BACKWARD -> getOutgoingStates
   in
-  (** 
+  (*
      array that counts the number of times a node as heen processed
      NOTE: this assumes that nodes have ids numbered from 1...n and that the 
-     array is accessed through this id e.g. processed.(i) where 'i' is the node id
-  *)
+     array is accessed through this id e.g. processed.(i) where 'i' is the node id *)
   let processed = Array.make (nodeCount + 1) 0 in 
-  (** 
+  (*
      auxiliary function that implements the worklist algorithm expressed in tail-recursive form.
      Takes an inital 'nodeMap' as argument that assigns an abstract state to each node and returns a final 'nodeMap'
-     containing the result of the analysis.
-  *)
+     containing the result of the analysis.  *)
+     
   let rec aux (nodeMap: a NodeMap.t): a NodeMap.t = 
     let getState node = NodeMap.find node nodeMap in
     if Queue.is_empty worklist then nodeMap (* Work list is empty => exit *)
@@ -121,7 +120,7 @@ let execute
       let nodeProcessed = processed.(node.node_id) in
       if !trace then begin
         Format.fprintf !fmt "### processing node %d (iter: %d): \n" node.node_id nodeProcessed; 
-        Pervasives.print_newline ();
+        Stdlib.print_newline ();
       end;
       let isLoopHead = NodeMap.find node loop_heads in
       (* run abstract transformer for node to get new abstract state *)

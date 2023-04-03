@@ -8,26 +8,46 @@
 open Apron
 open IntermediateSyntax
 
+
+
+
+
+
+
 (* types *)
 type typ =
   | A_INT
-
+  | A_ARR of int
+  
+  
 let typ_print fmt = function
   | A_INT -> Format.fprintf fmt "int"
-
+  | A_ARR n-> Format.fprintf fmt "int[%d]"  n
+  
 (* variables *)
 type var = {
   varId: string;
   varName: string;
   varTyp: typ;
+  
 }
 
+type arrayvar = {
+  arrName: string;
+  arrId: string;
+  size:int;
+  vars: var list
+}
 let var_print fmt v = Format.fprintf fmt "%s{%s}" v.varId v.varName
 
 module VarMap = Map.Make(
   struct
-    type t = var
-    let compare x1 x2 = compare x1.varId x2.varId
+    type t = Var of var | Arr of arrayvar
+    let compare x1 x2 = match x1,x2  with 
+                        | Arr x1, Var x2 -> compare x1.arrId x2.varId
+                        | Var x1, Arr x2 -> compare x1.varId x2.arrId
+                        | Arr x1, Arr x2 -> compare x1.arrId x2.arrId
+                        | Var x1, Var x2 -> compare x1.varId x2.varId
   end)
 
 (* arithmetic binary operators *)
@@ -58,7 +78,7 @@ let aBinOp_print fmt = function
 (* arithmetic unary operators *)
 type aUnOp =
   | A_UMINUS	(* - *)
-
+  
 let aUnOp_tostring = function
   | A_UMINUS -> "-"
 
@@ -167,7 +187,7 @@ let rec aExp_to_apron e =
      | A_MULTIPLY -> Texpr1.Binop (Texpr1.Mul,e1,e2,Texpr1.Int,Texpr1.Zero)
      | A_DIVIDE -> Texpr1.Binop (Texpr1.Div,e1,e2,Texpr1.Int,Texpr1.Zero))
 
-
+  | _ -> failwith "nyi : array to apron"
 let rec aExp_print fmt (e,_) =
   match e with
   | A_RANDOM -> Format.fprintf fmt "?"
@@ -187,6 +207,7 @@ let rec aExp_print fmt (e,_) =
     if aExp_prec (fst e2) <= aExp_prec e
     then Format.fprintf fmt " (%a)" aExp_print e2
     else Format.fprintf fmt " %a" aExp_print e2
+  
 
 (* boolean expressions *)
 type bExp =

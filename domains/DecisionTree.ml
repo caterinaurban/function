@@ -84,7 +84,7 @@ struct
       | Bot -> Format.fprintf fmt "\n%sNIL" ind
       | Leaf f ->  Format.fprintf fmt "\n%sLEAF %a" ind F.print f
       | Node ((c,_),l,r) -> Format.fprintf fmt "\n%sNODE %a%a%a" ind 
-                              (C.print vars) c (aux (ind ^ "  ")) l (aux (ind ^ "  ")) r
+                              (C.print vars) c (aux (ind ^ " ")) l (aux (ind ^ "  ")) r
     in aux "" fmt t
 
   (**
@@ -1316,15 +1316,17 @@ struct
         | _ -> Node((c,nc),l,r)
     in { domain = domain; tree = aux t.tree []; env = env; vars = vars }
 
-  let rec print fmt t =
+  let  print fmt t =
     let domain = t.domain in
     let env = t.env in
     let vars = t.vars in
-    let print_domain fmt domain =
+   (*
+   let print_domain fmt domain =
       match domain with
       | None -> ()
       | Some domain -> B.print fmt domain
     in
+     *)
     let rec aux t cs =
       match t with
       | Bot ->
@@ -1348,6 +1350,9 @@ struct
 
      NOTE: mask is only monotone w.r.t. the APPROXIMATION order
   *)
+
+
+
   let mask t t_mask =
     let domain = t.domain in 
     let env = t.env in 
@@ -1429,6 +1434,30 @@ struct
     in {domain = domain; tree = aux t.tree; env = env; vars = vars}
     
 
+(*  let rewrite_lincons c v =  match c with 
+    | (c1,c2) -> let c1 =  C.linexpr c1 in let c2 = C.linexpr c2  in 
+                 
+   
+  let lin_elim c v  = []
+
+ let robust t = 
+    
+    let domain = t.domain in 
+    let env = t.env in 
+    let vars = t.vars in 
+    let rec aux tree acc = match tree with 
+    | Bot  -> []
+    | Leaf f when F.isBot f -> []
+    | Leaf f when F.isTop f -> []
+    | Leaf f -> acc
+    | Node (c,l,r) -> let acc = c::acc in  (aux l acc )@(aux r acc)
+    in
+    let c = aux t.tree [] in
+    let c = rewrite_lincons c 
+    in 
+    lin_elim c
+  *)
+   
 end
 
 module TSAB = DecisionTree(AB)

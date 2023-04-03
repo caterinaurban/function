@@ -70,7 +70,7 @@ let parseProperty filename =
     lex.Lexing.lex_curr_p <- { lex.Lexing.lex_curr_p
                                with Lexing.pos_fname = filename; };
     let r = PropertyParser.file PropertyLexer.start lex in
-    close_in f; r
+    close_in f; r 
   with
   | PropertyParser.Error -> Printf.eprintf "Parse Error (Invalid Syntax) near %s\n" (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p);
     failwith "Parse Error"
@@ -130,6 +130,7 @@ let parseCTLPropertyString_plain (property:string) =
 
 
 let parseCTLPropertyString (property:string) =
+    
     CTLProperty.map (fun p -> fst (parsePropertyString p)) @@ parseCTLPropertyString_plain property 
 
 let parse_args () =
@@ -180,8 +181,10 @@ let parse_args () =
     | "-timefwd"::r -> (* track forward analysis time *)
       Iterator.timefwd := true; doit r
     (* CTL arguments ---------------------------------------------------*)
+    
     | "-ctl"::x::r -> (* CTL analysis *)
       analysis := "ctl"; property := x; doit r
+
     | "-ast"::r -> (* use AST instead of CFG for analysis *)
       ctl_analysis_type := "ast"; doit r
     | "-dot"::r -> (* print CFG and decision trees in 'dot' format *)
@@ -197,6 +200,7 @@ let parse_args () =
     | x::r -> filename := x; doit r
     | [] -> ()
   in
+  let _ = List.map print_endline (Array.to_list Sys.argv) in
   doit (List.tl (Array.to_list Sys.argv))
 
 (* do all *)
@@ -319,6 +323,7 @@ let guarantee () =
   in run_analysis (analysis_function property) program ()
 
 
+
 let recurrence () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property File Specified");
@@ -347,6 +352,7 @@ let recurrence () =
   in run_analysis (analysis_function property) program ()
 
 let ctl_ast () =
+
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property Specified");
   let starttime = Sys.time () in
@@ -379,14 +385,17 @@ let ctl_ast () =
     Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
 
 let ctl_cfg () =
+
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property Specified");
   let starttime = Sys.time () in
-  let (cfg, getProperty) = Tree_to_cfg.prog (File_parser.parse_file !filename) !main in
+  let (cfg, getProperty) = Tree_to_cfg.prog (File_parser.parse_file !filename) (!main)  in
   let mainFunc = Cfg.find_func !main cfg in
   let cfg = Cfg.insert_entry_exit_label cfg mainFunc in (* add exit/entry labels to main function *)
   let cfg = if !noinline then cfg else Cfg.inline_function_calls cfg in (* inline all non recursive functions unless -noinline is used *)
   let cfg = Cfg.add_function_call_arcs cfg in (* insert function call edges for remaining function calls *)
+
+
   let ctlProperty = CTLProperty.map File_parser.parse_bool_expression @@ parseCTLPropertyString_plain !property in
   let ctlProperty = CTLProperty.map getProperty ctlProperty in
   let precondition = getProperty @@ File_parser.parse_bool_expression !precondition in
@@ -424,13 +433,16 @@ let ctl_cfg () =
 (*Main entry point for application*)
 let doit () =
   parse_args ();
+  
   match !analysis with
   | "termination" -> termination ()
   | "guarantee" -> guarantee ()
   | "recurrence" -> recurrence ()
+
   | "ctl" -> 
     (match !ctl_analysis_type with 
         | "cfg" -> ctl_cfg ()
+     
         | "ast" -> ctl_ast ()
         | _ -> raise (Invalid_argument "Unknown CTL Analysis")
     )
