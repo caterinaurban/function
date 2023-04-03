@@ -46,7 +46,7 @@ struct
     match c1,c2 with
     | Coeff.Interval c1,Coeff.Interval c2 ->
       let inf = Scalar.cmp c1.Interval.inf c2.Interval.inf in
-      let sup = Scalar.cmp c1.Interval.inf c2.Interval.inf in
+      let sup = Scalar.cmp c1.Interval.sup c2.Interval.sup in
       if (inf = 0)
       then
         if (sup = 0)
