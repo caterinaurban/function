@@ -1461,8 +1461,23 @@ let robust fmt t  =
     List.iteri (fun i c -> Lincons1.array_set arr i c) cons;
     let abs = Abstract1.of_lincons_array manager env arr in 
     let vi,vr = Environment.vars env in 
-    Array.iter (fun x -> Printf.printf "%s constrained: %s"  (Var.to_string x) (string_of_bool (Abstract1.is_variable_unconstrained manager abs  x) ))  vi;
-    Array.iter (fun x -> Printf.printf "%s constrained: %s"  (Var.to_string x) (string_of_bool (Abstract1.is_variable_unconstrained manager abs  x) ))  vr;
+
+
+
+      let un,con = ref [], ref [] in
+      let f = fun x -> 
+              let b = (Abstract1.is_variable_unconstrained manager abs  x) in  
+              if b then 
+                un := (Var.to_string x::!un )  
+              else 
+                con := (Var.to_string x::!con) 
+      in
+      Array.iter (fun x -> f x )  vi;
+      Array.iter (fun x -> f x)  vr;
+      Printf.printf "controlled : ";
+      List.iter (fun x -> Printf.printf "%s" x; Printf.printf ", ") !con;
+      Printf.printf "\nuncontrolled : ";
+      List.iter (fun x -> Printf.printf "%s" x; Printf.printf ", ") !un;
     ()
     
 
