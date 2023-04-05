@@ -34,6 +34,13 @@ struct
     else
       InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.print a) m
 
+
+  let bwdMap_robust fmt m =
+      if !compress then
+        InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.robust (D.compress a)) m
+      else
+        InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.robust a) m
+    
   (* Backward Iterator *)
 
   let rec bwdStm property funcs env vars p s =
@@ -109,7 +116,7 @@ struct
 
   (* Analyzer *)
 
-  let analyze property (vars,stmts,funcs) main =
+  let analyze property (vars,stmts,funcs)  main =
     let rec aux xs env =
       match xs with
       | [] -> env
@@ -147,7 +154,13 @@ struct
           Format.fprintf !fmt "\nBackward Analysis (Time: %f s):\n" (stopbwd-.startbwd)
         else
           Format.fprintf !fmt "\nBackward Analysis:\n";
-        bwdMap_print !fmt !bwdInvMap;
+          bwdMap_print !fmt !bwdInvMap;
+          print_endline "try robust";
+          bwdMap_robust !fmt !bwdInvMap;
+          
+          
+          
+          
       end;
     D.defined i
 

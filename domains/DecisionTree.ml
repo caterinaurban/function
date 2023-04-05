@@ -72,7 +72,7 @@ struct
     env : Environment.t;	(* current APRON environment *)
     vars : var list			(* current list of program variables *)
   }
-
+  
 
   (** The current decision tree. *)
   let tree t = t.tree
@@ -1439,25 +1439,39 @@ struct
                  
    
   let lin_elim c v  = []
+*)
+ 
+let manager = Polka.manager_alloc_strict ()
+let robust fmt t  =
 
- let robust t = 
-    
-    let domain = t.domain in 
     let env = t.env in 
-    let vars = t.vars in 
-    let rec aux tree acc = match tree with 
-    | Bot  -> []
-    | Leaf f when F.isBot f -> []
-    | Leaf f when F.isTop f -> []
-    | Leaf f -> acc
-    | Node (c,l,r) -> let acc = c::acc in  (aux l acc )@(aux r acc)
-    in
-    let c = aux t.tree [] in
-    let c = rewrite_lincons c 
-    in 
-    lin_elim c
-  *)
-   
+    let vars = t.vars in
+    let top = Abstract1.top manager env in 
+    
+    let rec  aux tree acc  = 
+      match tree with 
+      | Bot -> []
+      | Leaf f when F.isBot f -> [] 
+      | Leaf f when F.isTop f -> []
+      | Leaf f -> (acc)
+      | Node ((c,nc),l,r) -> let acc = c::acc in  (aux l acc @ aux r acc)
+  in
+    let cons = aux t.tree [] in 
+    let arr = Lincons1.array_make env (List.length cons) in
+    List.iteri (fun i c -> Lincons1.array_set arr i c) cons;
+    let abs = Abstract1.of_lincons_array manager env arr in 
+    let vi,vr = Environment.vars env in 
+    Array.iter (fun x -> Printf.printf "%s constrained: %s"  (Var.to_string x) (string_of_bool (Abstract1.is_variable_unconstrained manager abs  x) ))  vi;
+    Array.iter (fun x -> Printf.printf "%s constrained: %s"  (Var.to_string x) (string_of_bool (Abstract1.is_variable_unconstrained manager abs  x) ))  vr;
+    ()
+    
+
+
+    
+  
+
+    
+  
 end
 
 module TSAB = DecisionTree(AB)
