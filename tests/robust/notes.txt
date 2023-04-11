@@ -1,0 +1,37 @@
+A) In num 1.2 : we can infer x uncontrolled
+   but in 2.3 we cannot. there are some inequalities to resolve. 
+
+
+B) Close rmk in num4. We have n uncontrolled. But we  need to resolve that.
+
+
+
+C) Should we take l+1 or  l : (4 or 5)
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] $2{i} := ?
+[ 3:] $3{n} := ?
+[ 4:] $4{sn} := 0
+[ 5:] if ( !($3{n} < 1000 && $3{n} >= -1000) ) then
+[ 6:]   $1{$1} := 0
+[ 7:]   return
+[ 8:]
+      else
+[ 9:]
+      endif
+[10:] $2{i} := 1
+[11:] while [12:] ( $2{i} <= $3{n} ) do
+[13:]   $4{sn} := $4{sn} + 2
+[14:]   $2{i} := $2{i} + 1
+[15:]
+      od
+[16:]
+
+
+
+Global scheme: look at the counting function after decls. Look if there exist a decreasing path toward the bug where some variable are non-constraint.
+               If yes these variable could be uncontrolled. Other must be controlled. 
+               Pb: resolve inequalities
+               
+Weak analysis : func1 not able to analyse it. 

@@ -1442,48 +1442,167 @@ struct
 *)
  
 let manager = Polka.manager_alloc_strict ()
-let robust fmt t  =
 
+
+
+
+
+
+let rec insert x lst =
+  match lst with
+  | [] -> [[x]]
+  | h::t -> 
+    (x::lst) :: (List.map (fun el -> h::el) (insert x t));;
+  
+
+
+let rec perm lst =
+    match lst with
+    | [] -> [lst]
+    | h::t -> 
+    List.flatten (List.map (insert h) (perm t));;
+
+
+    let rec find_and_pop acc x nx = 
+      let rec aux acc h = 
+      match acc with 
+      | y::q when x = y -> true,false, h@q 
+      | y::q when nx = y -> false,true, h@q 
+      | y::q -> aux q (h@[y])
+      | [] -> false,false,[]
+      in
+      aux acc []
+let rec find_in_org t0 acc = 
+    match t0 with 
+    | Bot -> failwith "pb"
+    | Leaf f -> Some f
+    | Node ((x,nx),t1,t2) -> let b1,b2,acc = find_and_pop acc x nx
+                             in 
+                             let r = 
+                             if b1 && (not b2) then 
+                              find_in_org t1 acc
+                              else if b2 && (not b1) then
+                                find_in_org t2 acc
+                              else None
+                             in 
+                             r
+
+let fill_btree t0 t  =
+    let rec aux t acc = 
+       match t with 
+       | Leaf f ->  let s =((find_in_org t0 acc)) in  
+                    (match s with 
+                    | None ->   Leaf f
+                    | Some s ->Leaf s)
+       |  Node ((x,nx),t1,t2) ->  Node((x,nx),(aux t1  (x ::acc)), (aux t2  (nx::acc)))
+       | Bot -> failwith "err"
+     in
+      aux t []
+                      
+  
+let rec get_cns  tree = 
+    match tree with 
+    | Bot -> []
+    | Leaf f when F.isBot f -> []
+    | Leaf f when F.isTop f -> []
+    | Leaf f -> []
+    | Node ((c,nc),l,r) ->  (c,nc)::(get_cns r)
+let rec btree  l env vlist = 
+          match l with 
+          | [] ->  Leaf (F.bot env vlist)
+          | x::q -> Node (x,btree q env vlist, btree  q env vlist)
+  
+let rec robust fmt t =   
+
+    let cns =  get_cns  t.tree in 
+    let pe = perm cns in 
+    let trs = List.map (fun l -> btree l t.env t.vars) pe in
+    let trs = List.map (fill_btree t.tree) trs in 
+    
+    List.iter (fun tr -> robust_aux  fmt { t with tree= tr} ;print_endline "\n alt: ";) trs
+
+and
+
+robust_aux fmt t  =
     let env = t.env in 
     let vars = t.vars in
     let top = Abstract1.top manager env in 
+    print_endline "Tree:";
+    print_tree vars fmt t.tree;
+    print_endline "";
     
-    let rec  aux tree acc  = 
-      match tree with 
-      | Bot -> []
-      | Leaf f when F.isBot f -> [] 
-      | Leaf f when F.isTop f -> []
-      | Leaf f -> (acc)
-      | Node ((c,nc),l,r) -> let acc = c::acc in  (aux l acc @ aux r acc)
-  in
-    let cons = aux t.tree [] in 
-    let arr = Lincons1.array_make env (List.length cons) in
-    List.iteri (fun i c -> Lincons1.array_set arr i c) cons;
-    let abs = Abstract1.of_lincons_array manager env arr in 
+    let rec aux con tree = 
+    match tree with 
+    | Bot -> (con)::[]
+    | Leaf f when F.isBot f -> (con)::[]
+    | Leaf f when F.isTop f -> (con)::[]
+    | Leaf f -> []
+    | Node ((c,nc),l,r) ->  let l1 = aux  (c::con) l in 
+                            let l2 = aux (nc::con) r in
+                            match l1,l2 with 
+                            | [],[]  -> []
+                            | [],x::q -> List.map (fun t -> nc::t) (x::q) 
+                            | x::q, [] -> List.map (fun t -> c::t) (x::q)
+                            | h::t, x::q -> l1@l2                                                              
+   
+    in
+    (*List.iteri (fun i l -> List.iter (fun c -> Lincons1.print fmt c;print_string " " )  l;Printf.printf "\n%d:" i) (aux [] t.tree);*)
+    let cons = aux [] t.tree  in 
+
+    let arr = List.map (fun l -> Lincons1.array_make env (List.length l)) cons in
+    let  _  = List.iteri  (fun i a -> List.iteri (fun k c -> Lincons1.array_set a k c) (List.nth cons i)) arr in 
+    let abs =  (List.map (fun a ->  (Abstract1.of_lincons_array manager env a)) arr) in 
+    print_endline "Abstract elements:\n ";
     let vi,vr = Environment.vars env in 
-
-
-
-      let un,con = ref [], ref [] in
-      let f = fun x -> 
-              let b = (Abstract1.is_variable_unconstrained manager abs  x) in  
+    let un ,cn  = ref [], ref [] in 
+    let unl ,cl  = ref [], ref [] in 
+    let f = fun  x a -> 
+              let b = (Abstract1.is_variable_unconstrained manager a  x) in  
+              
               if b then 
-                un := (Var.to_string x::!un )  
+                un := (Var.to_string x)::!un 
+                
               else 
-                con := (Var.to_string x::!con) 
+                cn := (Var.to_string x)::!cn
+    in
+    let _ = List.iter (fun a -> 
+                  Array.iter (fun x -> f  x a )  vi;
+                  Array.iter (fun x -> f x a)  vr;
+                  unl:=  !unl @ [!un] ;
+                  cl:= !cl @ [!cn];
+                  un := [];
+                  cn := []       
+        ) abs
+    in
+    
+    let rec pr l1 l2 n  = match l1,l2 with 
+        |[], [] -> print_endline "No constraints!!! "
+                          
+        | c::q , u::t->  let _ = Printf.printf "controlled : " in
+                         let _ =  List.iter (fun x -> Printf.printf "%s" x; Printf.printf ", ") c in 
+                         let _ = Printf.printf "| uncontrolled : " in
+                         let _ = List.iter (fun x -> Printf.printf "%s" x; Printf.printf ", ") u in 
+                         print_string "Lincons: ";
+                          let _ = Abstract1.print fmt   (List.nth  abs n) in
+                          print_endline "";
+                         pr  q t (n+1)
+        |[],(u ::t)  ->  Printf.printf "| uncontrolled : ";
+                          let _ = List.iter (fun x -> Printf.printf "%s" x; Printf.printf ", ") u in 
+                          print_string "Lincons: ";
+                          let _ = Abstract1.print fmt   (List.nth  abs n) in
+                          print_endline "";
+                          pr  [] t (n+1)
+         | c::q,  []   ->  let _ = Printf.printf "controlled : " in
+                           let _ =  List.iter (fun x -> Printf.printf "%s" x; Printf.printf ", ") c in 
+                           print_string "Lincons: ";
+                           let _ = Abstract1.print fmt   (List.nth  abs n) in
+                          print_endline "";
+                           pr q [] (n+1)
+
       in
-      Array.iter (fun x -> f x )  vi;
-      Array.iter (fun x -> f x)  vr;
-      Printf.printf "controlled : ";
-      List.iter (fun x -> Printf.printf "%s" x; Printf.printf ", ") !con;
-      Printf.printf "\nuncontrolled : ";
-      List.iter (fun x -> Printf.printf "%s" x; Printf.printf ", ") !un;
-    ()
-    
+      pr (!cl) (!unl) 0 
+      
 
-
-    
-  
 
     
   

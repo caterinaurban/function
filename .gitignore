@@ -26,3 +26,5 @@ ocamlbuild.sh
 ocamlbuild_opt.sh
 _tags
 .idea
+phd2015*
+.ocamlformat

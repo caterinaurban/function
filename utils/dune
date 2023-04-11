@@ -1,12 +1,10 @@
 (library
- (name utils )
+ (name utils)
  (libraries frontend)
-   (flags
-         (:standard
-               -open Frontend))
-)
-
+ (flags
+  (:standard -open Frontend)))
 
 (env
  (dev
-  (flags (:standard -w -9-27-32-33-35 -warn-error -A))))
+  (flags
+   (:standard -w -9-27-32-33-35 -warn-error -A))))
