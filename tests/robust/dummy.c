@@ -1,7 +1,7 @@
 int main (){
-    int x = ? ; 
-    int y = ? ;
-    int r ; 
+    int x ;
+    int y;
+    int r;
     if (x >= 3) {
         if (y>= 2) {
             r = 1; 

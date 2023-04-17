@@ -1448,6 +1448,7 @@ let manager = Polka.manager_alloc_strict ()
 
 
 
+
 let rec insert x lst =
   match lst with
   | [] -> [[x]]
@@ -1455,7 +1456,7 @@ let rec insert x lst =
     (x::lst) :: (List.map (fun el -> h::el) (insert x t));;
   
 
-
+(* Compute permuation of a list *)
 let rec perm lst =
     match lst with
     | [] -> [lst]
@@ -1472,9 +1473,11 @@ let rec perm lst =
       | [] -> false,false,[]
       in
       aux acc []
+
+(* Find the value of the in the origin tree *)
 let rec find_in_org t0 acc = 
     match t0 with 
-    | Bot -> failwith "pb"
+    | Bot -> failwith "Should not happen ?"
     | Leaf f -> Some f
     | Node ((x,nx),t1,t2) -> let b1,b2,acc = find_and_pop acc x nx
                              in 
@@ -1487,6 +1490,7 @@ let rec find_in_org t0 acc =
                              in 
                              r
 
+(* Fill all the "bottom" leaf  of t when there exist a defined value in the origin tree (t0)*)
 let fill_btree t0 t  =
     let rec aux t acc = 
        match t with 
@@ -1495,11 +1499,11 @@ let fill_btree t0 t  =
                     | None ->   Leaf f
                     | Some s ->Leaf s)
        |  Node ((x,nx),t1,t2) ->  Node((x,nx),(aux t1  (x ::acc)), (aux t2  (nx::acc)))
-       | Bot -> failwith "err"
+       | Bot -> failwith "err: should not happen"
      in
       aux t []
                       
-  
+(* Get the sequence of linear constraint in the trees.  (When two nodes have the same height they have the same constraint) *)
 let rec get_cns  tree = 
     match tree with 
     | Bot -> []
@@ -1507,103 +1511,100 @@ let rec get_cns  tree =
     | Leaf f when F.isTop f -> []
     | Leaf f -> []
     | Node ((c,nc),l,r) ->  (c,nc)::(get_cns r)
+
+(* Compute a tree from a list of constraint with bottom leaf *)
 let rec btree  l env vlist = 
           match l with 
           | [] ->  Leaf (F.bot env vlist)
           | x::q -> Node (x,btree q env vlist, btree  q env vlist)
   
+(*  On part des sous ensemble maximaux non controllé. *)
+(* Compute all possible configuration from the tree t and do the robust reachability analysis on each of them *)
+
+
+
+let rec powerset  =  function
+  | [] -> [[]]
+  | x :: xs -> 
+     let ps = powerset xs in
+     ps @ List.map (fun ss -> x :: ss) ps
+let rec member  x l  = match l with |[] -> false | y::q -> if y =x then true else member x q  
+let   bitvec v s  =    
+  let rec aux v s =  match v with 
+    | x::q -> let b = if member x s then 1 else 0 in b:: aux q s
+    | []  -> []
+    in
+    match s with 
+    | [] -> (List.map  (fun _ -> 0 ) v )     
+    | _ -> (aux v s) 
+
+
 let rec robust fmt t =   
-
-    let cns =  get_cns  t.tree in 
-    let pe = perm cns in 
-    let trs = List.map (fun l -> btree l t.env t.vars) pe in
-    let trs = List.map (fill_btree t.tree) trs in 
     
-    List.iter (fun tr -> robust_aux  fmt { t with tree= tr} ;print_endline "\n alt: ";) trs
-
-and
-
-robust_aux fmt t  =
-    let env = t.env in 
-    let vars = t.vars in
-    let top = Abstract1.top manager env in 
-    print_endline "Tree:";
-    print_tree vars fmt t.tree;
-    print_endline "";
-    
-    let rec aux con tree = 
-    match tree with 
-    | Bot -> (con)::[]
-    | Leaf f when F.isBot f -> (con)::[]
-    | Leaf f when F.isTop f -> (con)::[]
-    | Leaf f -> []
-    | Node ((c,nc),l,r) ->  let l1 = aux  (c::con) l in 
-                            let l2 = aux (nc::con) r in
-                            match l1,l2 with 
-                            | [],[]  -> []
-                            | [],x::q -> List.map (fun t -> nc::t) (x::q) 
-                            | x::q, [] -> List.map (fun t -> c::t) (x::q)
-                            | h::t, x::q -> l1@l2                                                              
+    let bwAssExpr x =  ( AbstractSyntax.A_var  x, A_RANDOM ) in
+    let rec unconstraint t cns   = match t with 
+      | Bot -> false,[cns]
+      | Leaf f when F.isBot f -> false,[cns]
+      | Leaf f when F.isTop f -> false,[cns]
+      | Leaf f -> true,[cns]
+      | Node ((c,nc),l,r) -> let b,cns1 = unconstraint l (c::cns) in
+                             let b2,cns2= unconstraint r (nc::cns) in
+                             match b,b2 with 
+                             | true,true -> true,(cns1@cns2)
+                             | true,false -> true,cns1
+                             | false,true -> true ,cns2
+                             | false,false -> false,[]
    
-    in
-    (*List.iteri (fun i l -> List.iter (fun c -> Lincons1.print fmt c;print_string " " )  l;Printf.printf "\n%d:" i) (aux [] t.tree);*)
-    let cons = aux [] t.tree  in 
-
-    let arr = List.map (fun l -> Lincons1.array_make env (List.length l)) cons in
-    let  _  = List.iteri  (fun i a -> List.iteri (fun k c -> Lincons1.array_set a k c) (List.nth cons i)) arr in 
-    let abs =  (List.map (fun a ->  (Abstract1.of_lincons_array manager env a)) arr) in 
-    print_endline "Abstract elements:\n ";
-    let vi,vr = Environment.vars env in 
-    let un ,cn  = ref [], ref [] in 
-    let unl ,cl  = ref [], ref [] in 
-    let f = fun  x a -> 
-              let b = (Abstract1.is_variable_unconstrained manager a  x) in  
-              
-              if b then 
-                un := (Var.to_string x)::!un 
-                
-              else 
-                cn := (Var.to_string x)::!cn
-    in
-    let _ = List.iter (fun a -> 
-                  Array.iter (fun x -> f  x a )  vi;
-                  Array.iter (fun x -> f x a)  vr;
-                  unl:=  !unl @ [!un] ;
-                  cl:= !cl @ [!cn];
-                  un := [];
-                  cn := []       
-        ) abs
-    in
+    in  
     
-    let rec pr l1 l2 n  = match l1,l2 with 
-        |[], [] -> print_endline "No constraints!!! "
-                          
-        | c::q , u::t->  let _ = Printf.printf "controlled : " in
-                         let _ =  List.iter (fun x -> Printf.printf "%s" x; Printf.printf ", ") c in 
-                         let _ = Printf.printf "| uncontrolled : " in
-                         let _ = List.iter (fun x -> Printf.printf "%s" x; Printf.printf ", ") u in 
-                         print_string "Lincons: ";
-                          let _ = Abstract1.print fmt   (List.nth  abs n) in
-                          print_endline "";
-                         pr  q t (n+1)
-        |[],(u ::t)  ->  Printf.printf "| uncontrolled : ";
-                          let _ = List.iter (fun x -> Printf.printf "%s" x; Printf.printf ", ") u in 
-                          print_string "Lincons: ";
-                          let _ = Abstract1.print fmt   (List.nth  abs n) in
-                          print_endline "";
-                          pr  [] t (n+1)
-         | c::q,  []   ->  let _ = Printf.printf "controlled : " in
-                           let _ =  List.iter (fun x -> Printf.printf "%s" x; Printf.printf ", ") c in 
-                           print_string "Lincons: ";
-                           let _ = Abstract1.print fmt   (List.nth  abs n) in
-                          print_endline "";
-                           pr q [] (n+1)
+    let v = (List.tl t.vars) in
+    
 
-      in
-      pr (!cl) (!unl) 0 
       
+    (*let vars = List.map (fun s ->  bitvec v s)  vars in  
+    let get_fst t = match t with 
+      | Node ((c,nc),l,r) -> Some c
+      | _ -> None 
+    in
+    let   mem =  ref (List.combine vars (List.init (List.length vars) (fun _ -> None))) in*)
+    let mem = ref [] in
+    (*Printf.printf "ici : len %d \n" (List.length mem );
+    List.iter (fun (l,_) -> List.iter (fun (x) ->Printf.printf  " %d - " x ) l;    print_endline " ") mem ;
+    Printf.printf "iinit : len %d \n" (List.length initz );
+    List.iter (fun (x) ->Printf.printf  " %d - " x ) initz;*)
 
+    let get_fst t = match t with 
+    | Node ((c,nc),l,r) ->  c
+    | _ -> failwith "Not a node ? "
+    in
 
+    let rec aux vars  cur t cns = 
+      match vars with 
+      | [] -> cur,cns
+      | x::q -> 
+          let t' = (bwdAssign t (bwAssExpr x)) in 
+          match member (x::cur) !mem with 
+          | false ->
+            let b,cons = unconstraint t'.tree [] in 
+            if b then               
+              aux q (x::cur) t' (cns@cons)
+            else 
+              let _ = mem := (x::cur)::(!mem) in
+              aux q cur t (cns@cons)
+          | true -> 
+                    aux q cur t cns
+    in
+    let vars = powerset v in 
+    let uncontrolled = List.fold_left (fun a b -> a@[(aux b [] t [])]) [] vars in
+    List.iter (fun (l,cns) -> Printf.printf "\n uncontrolled : "; List.iter (fun x ->Printf.printf "%s{%s}-" (x.varId) (x.varName)) l; 
+                              Printf.printf "\n constraints: ";
+                              List.iter (fun l -> List.iter (fun c -> Lincons1.print Format.std_formatter c; print_string " ") l ; print_endline " or  ") cns; print_endline "")  uncontrolled ; 
+    (*Printf.printf "ici : len %d \n" (List.length !mem );
+    List.iter (fun (l) -> List.iter (fun (x) ->Printf.printf  " %s - " x.varName ) l;    print_endline " ") !mem ;*)
+    print_newline 
+    ()
+    
+    
     
   
 end

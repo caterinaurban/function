@@ -1,13 +1,11 @@
 int main () {
-    int x = ?;
-    int z =?  ; 
-    int y ; 
-    if (x >= 2){
-        y = 2  + z;
-    }
-    else 
-    {
-        y = 3;
-    }
+    int x;
+    int z ; 
+    int y ;     
+    x= ? ; 
+    z = ? ;
+    
+    y = 2  + z  + x; 
+    
     return 0;
 }

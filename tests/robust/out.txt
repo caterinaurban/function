@@ -1,2108 +1,521 @@
 ./main.exe
-tests/robust/dummy.c
+tests/robust/dumm3.c
 -domain
 polyhedra
 -ordinals
 3
 -guarantee
-tests/robust/dummy.txt
+tests/robust/dumm2.txt
 
 Abstract Syntax:
 [ 1:]
 int main( ):
 [ 2:] $2{x} := ?
-[ 3:] $3{y} := ?
-[ 4:] if ( $2{x} >= 3 ) then
-[ 5:]   if ( $3{y} >= 2 ) then
-[ 6:]     $4{r} := 1
-[ 7:]
-        else
-[ 8:]     $4{r} := 2
-[ 9:]
-        endif
-[10:]
+[ 3:] $3{z} := ?
+[ 4:] if ( $2{x} >= 2 ) then
+[ 5:]   $4{y} := 2 + $3{z}
+[ 6:]
       else
-[11:]   if ( $3{y} >= 2 ) then
-[12:]     $4{r} := 2
-[13:]
-        else
-[14:]     $4{r} := 1
-[15:]
-        endif
-[16:]
+[ 7:]   $4{y} := 3
+[ 8:]
       endif
-[17:] $1{$1} := 0
-[18:] return
-[19:]
+[ 9:] $1{$1} := 0
+[10:] return
+[11:]
 
-Property: $4{r} <= 1 && $4{r} >= 1
+Property: $4{y} <= 3 && $4{y} >= 3
 
 Forward Analysis:
 [ 1:]: top
 [ 2:]: top
 [ 3:]: top
 [ 4:]: top
-[ 5:]: $2{x} >= 3
-[ 6:]: $2{x} >= 3 && $3{y} >= 2
-[ 7:]: $2{x} >= 3 && $3{y} >= 2 && $4{r} == 1
-[ 8:]: $2{x} >= 3 && -$3{y} >= -1
-[ 9:]: $2{x} >= 3 && -$3{y} >= -1 && $4{r} == 2
-[10:]: $2{x} >= 3 && $4{r} >= 1 && -$4{r} >= -2
-[11:]: -$2{x} >= -2
-[12:]: $3{y} >= 2 && -$2{x} >= -2
-[13:]: $3{y} >= 2 && -$2{x} >= -2 && $4{r} == 2
-[14:]: -$3{y} >= -1 && -$2{x} >= -2
-[15:]: -$3{y} >= -1 && -$2{x} >= -2 && $4{r} == 1
-[16:]: $4{r} >= 1 && -$4{r} >= -2 && -$2{x} >= -2
-[17:]: $4{r} >= 1 && -$4{r} >= -2
-[18:]: $4{r} >= 1 && -$4{r} >= -2 && $1{$1} == 0
-[19:]: bottom
+[ 5:]: $2{x} >= 2
+[ 6:]: $2{x} >= 2 && -$3{z}+$4{y} == 2
+[ 7:]: -$2{x} >= -1
+[ 8:]: -$2{x} >= -1 && $4{y} == 3
+[ 9:]: top
+[10:]: $1{$1} == 0
+[11:]: bottom
 robustness
 [ 1:]:
-Tree:
 
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
+ uncontrolled : 
+ constraints: 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-
+ constraints: 
+$4-3>=0 -$4+3>=0  or  
 
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
 
- alt: 
+ uncontrolled : 
+ constraints:  or  
+
+
+ uncontrolled : $3{z}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: 
+$4-3>=0 -$4+3>=0  or  
+ or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
+
+
 
 [ 2:]:
-Tree:
 
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
+ uncontrolled : 
+ constraints: 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-
+ constraints: $4-3>=0 -$4+3>=0  or  
 
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
 
- alt: 
+ uncontrolled : 
+ constraints:  or  
+
+
+ uncontrolled : $3{z}-
+ constraints: $4-3>=0 
+-$4+3>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+ or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 
+-$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
+
+
 
 [ 3:]:
-Tree:
 
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
+ uncontrolled : 
+ constraints: 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-
+ constraints: -$2+1>=0 $4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+-$2+1>=0 
+-$4+2>=0 -$4+3>=0  or  
 
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
 
- alt: 
+ uncontrolled : $4{y}-
+ constraints: -$2+1>=0  or  
+
+
+ uncontrolled : $3{z}-$4{y}-
+ constraints: -$2+1>=0  or  
+-$2+1>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+
+$4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+ or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
+
+
 
 [ 4:]:
-Tree:
 
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  NODE $3{y} >= 2
-   NODE $2{x} >= 3
-    LEAF 3
-     LEAF bottom
-    NODE $2{x} >= 3
-     LEAF bottom
-      LEAF 3
-   NODE $3{y} >= 2
-    NODE $2{x} >= 3
-     LEAF 3
-      LEAF bottom
-     NODE $2{x} >= 3
-      LEAF bottom
-       LEAF 3
-  NODE $4{r} >= 1
-   NODE $3{y} >= 2
-    NODE $2{x} >= 3
-     LEAF 0.
-      LEAF 0.
-     NODE $2{x} >= 3
-      LEAF 0.
-       LEAF 0.
-    NODE $3{y} >= 2
-     NODE $2{x} >= 3
-      LEAF 3
-       LEAF bottom
-      NODE $2{x} >= 3
-       LEAF bottom
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; -$4>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; -$4>=0; $2-3>=0|]
-No constraints!!! 
+ uncontrolled : 
+ constraints: 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-
+ constraints: -$2+1>=0 
+$4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+-$2+1>=0 -$4+2>=0 -$4+3>=0  or  
 
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  NODE $3{y} >= 2
-   NODE $2{x} >= 3
-    LEAF 3
-     LEAF bottom
-    NODE $2{x} >= 3
-     LEAF bottom
-      LEAF 3
-   NODE $3{y} >= 2
-    NODE $2{x} >= 3
-     LEAF 0.
-      LEAF 0.
-     NODE $2{x} >= 3
-      LEAF 0.
-       LEAF 0.
-  NODE $4{r} >= 2
-   NODE $3{y} >= 2
-    NODE $2{x} >= 3
-     LEAF 3
-      LEAF bottom
-     NODE $2{x} >= 3
-      LEAF bottom
-       LEAF 3
-    NODE $3{y} >= 2
-     NODE $2{x} >= 3
-      LEAF 3
-       LEAF bottom
-      NODE $2{x} >= 3
-       LEAF bottom
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; -$4>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; -$4>=0; $2-3>=0|]
-No constraints!!! 
 
- alt: 
-Tree:
+ uncontrolled : $4{y}-
+ constraints: -$2+1>=0 $3-2>=0  or  
+$3-1>=0 -$3+1>=0  or  
 
-NODE $4{r} >= 1
- NODE $3{y} >= 2
-  NODE $4{r} >= 2
-   NODE $2{x} >= 3
-    LEAF 3
-     LEAF bottom
-    NODE $2{x} >= 3
-     LEAF 0.
-      LEAF 0.
-   NODE $4{r} >= 2
-    NODE $2{x} >= 3
-     LEAF bottom
-      LEAF 3
-     NODE $2{x} >= 3
-      LEAF 0.
-       LEAF 0.
-  NODE $3{y} >= 2
-   NODE $4{r} >= 2
-    NODE $2{x} >= 3
-     LEAF 3
-      LEAF bottom
-     NODE $2{x} >= 3
-      LEAF 3
-       LEAF bottom
-    NODE $4{r} >= 2
-     NODE $2{x} >= 3
-      LEAF bottom
-       LEAF 3
-      NODE $2{x} >= 3
-       LEAF bottom
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0;
-                                                                  -$4>=0;
-                                                                  $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; -$4>=0; $2-3>=0|]
-No constraints!!! 
+-$2+1>=0 -$3>=0 -$3+1>=0  or  
 
- alt: 
-Tree:
 
-NODE $4{r} >= 1
- NODE $3{y} >= 2
-  NODE $2{x} >= 3
-   NODE $4{r} >= 2
-    LEAF 3
-     LEAF 0.
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF 0.
-   NODE $2{x} >= 3
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF 0.
-     NODE $4{r} >= 2
-      LEAF 3
-       LEAF 0.
-  NODE $3{y} >= 2
-   NODE $2{x} >= 3
-    NODE $4{r} >= 2
-     LEAF 3
-      LEAF 3
-     NODE $4{r} >= 2
-      LEAF bottom
-       LEAF bottom
-    NODE $2{x} >= 3
-     NODE $4{r} >= 2
-      LEAF bottom
-       LEAF bottom
-      NODE $4{r} >= 2
-       LEAF 3
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0;
-                                                                  -$4>=0;
-                                                                  $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; -$4>=0; $2-3>=0|]
-No constraints!!! 
+ uncontrolled : $3{z}-$4{y}-
+ constraints: -$2+1>=0 $3-2>=0  or  
+$3-1>=0 -$3+1>=0  or  
+-$2+1>=0 -$3>=0 -$3+1>=0  or  
 
- alt: 
-Tree:
+-$2+1>=0  or  
 
-NODE $4{r} >= 2
- NODE $3{y} >= 2
-  NODE $4{r} >= 1
-   NODE $2{x} >= 3
-    LEAF 3
-     LEAF bottom
-    NODE $2{x} >= 3
-     LEAF 3
-      LEAF bottom
-   NODE $4{r} >= 1
-    NODE $2{x} >= 3
-     LEAF bottom
-      LEAF 3
-     NODE $2{x} >= 3
-      LEAF bottom
-       LEAF 3
-  NODE $3{y} >= 2
-   NODE $4{r} >= 1
-    NODE $2{x} >= 3
-     LEAF 0.
-      LEAF 0.
-     NODE $2{x} >= 3
-      LEAF 3
-       LEAF bottom
-    NODE $4{r} >= 1
-     NODE $2{x} >= 3
-      LEAF 0.
-       LEAF 0.
-      NODE $2{x} >= 3
-       LEAF bottom
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; -$4>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; -$4>=0; $2-3>=0|]
-No constraints!!! 
 
- alt: 
-Tree:
+ uncontrolled : $2{x}-
+ constraints: $3-1>=0 -$3+1>=0 $4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+$3-1>=0 -$3+1>=0 -$4+2>=0 -$4+3>=0  or  
 
-NODE $3{y} >= 2
- NODE $4{r} >= 2
-  NODE $4{r} >= 1
-   NODE $2{x} >= 3
-    LEAF 3
-     LEAF bottom
-    NODE $2{x} >= 3
-     LEAF 3
-      LEAF bottom
-   NODE $4{r} >= 1
-    NODE $2{x} >= 3
-     LEAF 0.
-      LEAF 0.
-     NODE $2{x} >= 3
-      LEAF 3
-       LEAF bottom
-  NODE $4{r} >= 2
-   NODE $4{r} >= 1
-    NODE $2{x} >= 3
-     LEAF bottom
-      LEAF 3
-     NODE $2{x} >= 3
-      LEAF bottom
-       LEAF 3
-    NODE $4{r} >= 1
-     NODE $2{x} >= 3
-      LEAF 0.
-       LEAF 0.
-      NODE $2{x} >= 3
-       LEAF bottom
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; -$4>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0;
-                                                                 $4-2>=0;
-                                                                 $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; -$4>=0; $2-3>=0|]
-No constraints!!! 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-$2{x}-
+ constraints: 
+$3-1>=0 -$3+1>=0 $4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+$3-1>=0 -$3+1>=0 -$4+2>=0 -$4+3>=0  or  
+$4-3>=0 
+-$4+3>=0  or  
 
-NODE $3{y} >= 2
- NODE $4{r} >= 1
-  NODE $4{r} >= 2
-   NODE $2{x} >= 3
-    LEAF 3
-     LEAF bottom
-    NODE $2{x} >= 3
-     LEAF 0.
-      LEAF 0.
-   NODE $4{r} >= 2
-    NODE $2{x} >= 3
-     LEAF 3
-      LEAF bottom
-     NODE $2{x} >= 3
-      LEAF 3
-       LEAF bottom
-  NODE $4{r} >= 1
-   NODE $4{r} >= 2
-    NODE $2{x} >= 3
-     LEAF bottom
-      LEAF 3
-     NODE $2{x} >= 3
-      LEAF 0.
-       LEAF 0.
-    NODE $4{r} >= 2
-     NODE $2{x} >= 3
-      LEAF bottom
-       LEAF 3
-      NODE $2{x} >= 3
-       LEAF bottom
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; -$4>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0;
-                                                                 $4-2>=0;
-                                                                 $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; -$4>=0; $2-3>=0|]
-No constraints!!! 
 
- alt: 
-Tree:
+ uncontrolled : $4{y}-$2{x}-
+ constraints: $3-1>=0 -$3+1>=0 $4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+$3-1>=0 -$3+1>=0 -$4+2>=0 -$4+3>=0  or  
 
-NODE $3{y} >= 2
- NODE $4{r} >= 1
-  NODE $2{x} >= 3
-   NODE $4{r} >= 2
-    LEAF 3
-     LEAF 0.
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF 0.
-   NODE $2{x} >= 3
-    NODE $4{r} >= 2
-     LEAF 3
-      LEAF 3
-     NODE $4{r} >= 2
-      LEAF bottom
-       LEAF bottom
-  NODE $4{r} >= 1
-   NODE $2{x} >= 3
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF 0.
-     NODE $4{r} >= 2
-      LEAF 3
-       LEAF 0.
-    NODE $2{x} >= 3
-     NODE $4{r} >= 2
-      LEAF bottom
-       LEAF bottom
-      NODE $4{r} >= 2
-       LEAF 3
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; -$4>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0;
-                                                                 $4-2>=0;
-                                                                 $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; -$4>=0; $2-3>=0|]
-No constraints!!! 
+$3-1>=0 -$3+1>=0  or  
 
- alt: 
-Tree:
 
-NODE $4{r} >= 2
- NODE $3{y} >= 2
-  NODE $2{x} >= 3
-   NODE $4{r} >= 1
-    LEAF 3
-     LEAF 3
-    NODE $4{r} >= 1
-     LEAF bottom
-      LEAF bottom
-   NODE $2{x} >= 3
-    NODE $4{r} >= 1
-     LEAF bottom
-      LEAF bottom
-     NODE $4{r} >= 1
-      LEAF 3
-       LEAF 3
-  NODE $3{y} >= 2
-   NODE $2{x} >= 3
-    NODE $4{r} >= 1
-     LEAF 0.
-      LEAF 3
-     NODE $4{r} >= 1
-      LEAF 0.
-       LEAF bottom
-    NODE $2{x} >= 3
-     NODE $4{r} >= 1
-      LEAF 0.
-       LEAF bottom
-      NODE $4{r} >= 1
-       LEAF 0.
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; -$4>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; -$4>=0; $2-3>=0|]
-No constraints!!! 
+ uncontrolled : $4{y}-$2{x}-
+ constraints: $3-1>=0 -$3+1>=0 $4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+$3-1>=0 -$3+1>=0 -$4+2>=0 
+-$4+3>=0  or  
+$3-1>=0 -$3+1>=0  or  
+ or  
 
- alt: 
-Tree:
 
-NODE $3{y} >= 2
- NODE $4{r} >= 2
-  NODE $2{x} >= 3
-   NODE $4{r} >= 1
-    LEAF 3
-     LEAF 3
-    NODE $4{r} >= 1
-     LEAF bottom
-      LEAF bottom
-   NODE $2{x} >= 3
-    NODE $4{r} >= 1
-     LEAF 0.
-      LEAF 3
-     NODE $4{r} >= 1
-      LEAF 0.
-       LEAF bottom
-  NODE $4{r} >= 2
-   NODE $2{x} >= 3
-    NODE $4{r} >= 1
-     LEAF bottom
-      LEAF bottom
-     NODE $4{r} >= 1
-      LEAF 3
-       LEAF 3
-    NODE $2{x} >= 3
-     NODE $4{r} >= 1
-      LEAF 0.
-       LEAF bottom
-      NODE $4{r} >= 1
-       LEAF 0.
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; -$4>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0;
-                                                                 $4-2>=0;
-                                                                 $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; -$4>=0; $2-3>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $3{y} >= 2
- NODE $2{x} >= 3
-  NODE $4{r} >= 2
-   NODE $4{r} >= 1
-    LEAF 3
-     LEAF 3
-    NODE $4{r} >= 1
-     LEAF 0.
-      LEAF 3
-   NODE $4{r} >= 2
-    NODE $4{r} >= 1
-     LEAF bottom
-      LEAF bottom
-     NODE $4{r} >= 1
-      LEAF 0.
-       LEAF bottom
-  NODE $2{x} >= 3
-   NODE $4{r} >= 2
-    NODE $4{r} >= 1
-     LEAF bottom
-      LEAF bottom
-     NODE $4{r} >= 1
-      LEAF 0.
-       LEAF bottom
-    NODE $4{r} >= 2
-     NODE $4{r} >= 1
-      LEAF 3
-       LEAF 3
-      NODE $4{r} >= 1
-       LEAF 0.
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; -$4>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0;
-                                                                 $4-2>=0;
-                                                                 $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; -$4>=0; $2-3>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $3{y} >= 2
- NODE $2{x} >= 3
-  NODE $4{r} >= 1
-   NODE $4{r} >= 2
-    LEAF 3
-     LEAF 0.
-    NODE $4{r} >= 2
-     LEAF 3
-      LEAF 3
-   NODE $4{r} >= 1
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF 0.
-     NODE $4{r} >= 2
-      LEAF bottom
-       LEAF bottom
-  NODE $2{x} >= 3
-   NODE $4{r} >= 1
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF 0.
-     NODE $4{r} >= 2
-      LEAF bottom
-       LEAF bottom
-    NODE $4{r} >= 1
-     NODE $4{r} >= 2
-      LEAF 3
-       LEAF 0.
-      NODE $4{r} >= 2
-       LEAF 3
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; -$4>=0; $3-2>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0;
-                                                                 $4-2>=0;
-                                                                 $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; -$4>=0; $2-3>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  NODE $2{x} >= 3
-   NODE $3{y} >= 2
-    LEAF 3
-     LEAF bottom
-    NODE $3{y} >= 2
-     LEAF bottom
-      LEAF 3
-   NODE $2{x} >= 3
-    NODE $3{y} >= 2
-     LEAF 3
-      LEAF bottom
-     NODE $3{y} >= 2
-      LEAF bottom
-       LEAF 3
-  NODE $4{r} >= 1
-   NODE $2{x} >= 3
-    NODE $3{y} >= 2
-     LEAF 0.
-      LEAF 0.
-     NODE $3{y} >= 2
-      LEAF 0.
-       LEAF 0.
-    NODE $2{x} >= 3
-     NODE $3{y} >= 2
-      LEAF 3
-       LEAF bottom
-      NODE $3{y} >= 2
-       LEAF bottom
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; -$4>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; -$4>=0; $3-2>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  NODE $2{x} >= 3
-   NODE $3{y} >= 2
-    LEAF 3
-     LEAF bottom
-    NODE $3{y} >= 2
-     LEAF bottom
-      LEAF 3
-   NODE $2{x} >= 3
-    NODE $3{y} >= 2
-     LEAF 0.
-      LEAF 0.
-     NODE $3{y} >= 2
-      LEAF 0.
-       LEAF 0.
-  NODE $4{r} >= 2
-   NODE $2{x} >= 3
-    NODE $3{y} >= 2
-     LEAF 3
-      LEAF bottom
-     NODE $3{y} >= 2
-      LEAF bottom
-       LEAF 3
-    NODE $2{x} >= 3
-     NODE $3{y} >= 2
-      LEAF 3
-       LEAF bottom
-      NODE $3{y} >= 2
-       LEAF bottom
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; -$4>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; -$4>=0; $3-2>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $4{r} >= 1
- NODE $2{x} >= 3
-  NODE $4{r} >= 2
-   NODE $3{y} >= 2
-    LEAF 3
-     LEAF bottom
-    NODE $3{y} >= 2
-     LEAF 0.
-      LEAF 0.
-   NODE $4{r} >= 2
-    NODE $3{y} >= 2
-     LEAF bottom
-      LEAF 3
-     NODE $3{y} >= 2
-      LEAF 0.
-       LEAF 0.
-  NODE $2{x} >= 3
-   NODE $4{r} >= 2
-    NODE $3{y} >= 2
-     LEAF 3
-      LEAF bottom
-     NODE $3{y} >= 2
-      LEAF 3
-       LEAF bottom
-    NODE $4{r} >= 2
-     NODE $3{y} >= 2
-      LEAF bottom
-       LEAF 3
-      NODE $3{y} >= 2
-       LEAF bottom
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0;
-                                                                  -$4>=0;
-                                                                  $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; -$4>=0; $3-2>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $4{r} >= 1
- NODE $2{x} >= 3
-  NODE $3{y} >= 2
-   NODE $4{r} >= 2
-    LEAF 3
-     LEAF 0.
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF 0.
-   NODE $3{y} >= 2
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF 0.
-     NODE $4{r} >= 2
-      LEAF 3
-       LEAF 0.
-  NODE $2{x} >= 3
-   NODE $3{y} >= 2
-    NODE $4{r} >= 2
-     LEAF 3
-      LEAF 3
-     NODE $4{r} >= 2
-      LEAF bottom
-       LEAF bottom
-    NODE $3{y} >= 2
-     NODE $4{r} >= 2
-      LEAF bottom
-       LEAF bottom
-      NODE $4{r} >= 2
-       LEAF 3
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0;
-                                                                  -$4>=0;
-                                                                  $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; -$4>=0; $3-2>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $4{r} >= 2
- NODE $2{x} >= 3
-  NODE $4{r} >= 1
-   NODE $3{y} >= 2
-    LEAF 3
-     LEAF bottom
-    NODE $3{y} >= 2
-     LEAF 3
-      LEAF bottom
-   NODE $4{r} >= 1
-    NODE $3{y} >= 2
-     LEAF bottom
-      LEAF 3
-     NODE $3{y} >= 2
-      LEAF bottom
-       LEAF 3
-  NODE $2{x} >= 3
-   NODE $4{r} >= 1
-    NODE $3{y} >= 2
-     LEAF 0.
-      LEAF 0.
-     NODE $3{y} >= 2
-      LEAF 3
-       LEAF bottom
-    NODE $4{r} >= 1
-     NODE $3{y} >= 2
-      LEAF 0.
-       LEAF 0.
-      NODE $3{y} >= 2
-       LEAF bottom
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; -$4>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; -$4>=0; $3-2>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $2{x} >= 3
- NODE $4{r} >= 2
-  NODE $4{r} >= 1
-   NODE $3{y} >= 2
-    LEAF 3
-     LEAF bottom
-    NODE $3{y} >= 2
-     LEAF 3
-      LEAF bottom
-   NODE $4{r} >= 1
-    NODE $3{y} >= 2
-     LEAF 0.
-      LEAF 0.
-     NODE $3{y} >= 2
-      LEAF 3
-       LEAF bottom
-  NODE $4{r} >= 2
-   NODE $4{r} >= 1
-    NODE $3{y} >= 2
-     LEAF bottom
-      LEAF 3
-     NODE $3{y} >= 2
-      LEAF bottom
-       LEAF 3
-    NODE $4{r} >= 1
-     NODE $3{y} >= 2
-      LEAF 0.
-       LEAF 0.
-      NODE $3{y} >= 2
-       LEAF bottom
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; -$4>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0;
-                                                                 $4-2>=0;
-                                                                 $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; -$4>=0; $3-2>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $2{x} >= 3
- NODE $4{r} >= 1
-  NODE $4{r} >= 2
-   NODE $3{y} >= 2
-    LEAF 3
-     LEAF bottom
-    NODE $3{y} >= 2
-     LEAF 0.
-      LEAF 0.
-   NODE $4{r} >= 2
-    NODE $3{y} >= 2
-     LEAF 3
-      LEAF bottom
-     NODE $3{y} >= 2
-      LEAF 3
-       LEAF bottom
-  NODE $4{r} >= 1
-   NODE $4{r} >= 2
-    NODE $3{y} >= 2
-     LEAF bottom
-      LEAF 3
-     NODE $3{y} >= 2
-      LEAF 0.
-       LEAF 0.
-    NODE $4{r} >= 2
-     NODE $3{y} >= 2
-      LEAF bottom
-       LEAF 3
-      NODE $3{y} >= 2
-       LEAF bottom
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; -$4>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0;
-                                                                 $4-2>=0;
-                                                                 $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; -$4>=0; $3-2>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $2{x} >= 3
- NODE $4{r} >= 1
-  NODE $3{y} >= 2
-   NODE $4{r} >= 2
-    LEAF 3
-     LEAF 0.
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF 0.
-   NODE $3{y} >= 2
-    NODE $4{r} >= 2
-     LEAF 3
-      LEAF 3
-     NODE $4{r} >= 2
-      LEAF bottom
-       LEAF bottom
-  NODE $4{r} >= 1
-   NODE $3{y} >= 2
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF 0.
-     NODE $4{r} >= 2
-      LEAF 3
-       LEAF 0.
-    NODE $3{y} >= 2
-     NODE $4{r} >= 2
-      LEAF bottom
-       LEAF bottom
-      NODE $4{r} >= 2
-       LEAF 3
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; -$4>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0;
-                                                                 $4-2>=0;
-                                                                 $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; -$4>=0; $3-2>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $4{r} >= 2
- NODE $2{x} >= 3
-  NODE $3{y} >= 2
-   NODE $4{r} >= 1
-    LEAF 3
-     LEAF 3
-    NODE $4{r} >= 1
-     LEAF bottom
-      LEAF bottom
-   NODE $3{y} >= 2
-    NODE $4{r} >= 1
-     LEAF bottom
-      LEAF bottom
-     NODE $4{r} >= 1
-      LEAF 3
-       LEAF 3
-  NODE $2{x} >= 3
-   NODE $3{y} >= 2
-    NODE $4{r} >= 1
-     LEAF 0.
-      LEAF 3
-     NODE $4{r} >= 1
-      LEAF 0.
-       LEAF bottom
-    NODE $3{y} >= 2
-     NODE $4{r} >= 1
-      LEAF 0.
-       LEAF bottom
-      NODE $4{r} >= 1
-       LEAF 0.
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; $4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; -$4>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0; -$4>=0; $3-2>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $2{x} >= 3
- NODE $4{r} >= 2
-  NODE $3{y} >= 2
-   NODE $4{r} >= 1
-    LEAF 3
-     LEAF 3
-    NODE $4{r} >= 1
-     LEAF bottom
-      LEAF bottom
-   NODE $3{y} >= 2
-    NODE $4{r} >= 1
-     LEAF 0.
-      LEAF 3
-     NODE $4{r} >= 1
-      LEAF 0.
-       LEAF bottom
-  NODE $4{r} >= 2
-   NODE $3{y} >= 2
-    NODE $4{r} >= 1
-     LEAF bottom
-      LEAF bottom
-     NODE $4{r} >= 1
-      LEAF 3
-       LEAF 3
-    NODE $3{y} >= 2
-     NODE $4{r} >= 1
-      LEAF 0.
-       LEAF bottom
-      NODE $4{r} >= 1
-       LEAF 0.
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; -$4>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0;
-                                                                 $4-2>=0;
-                                                                 $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; -$4>=0; $3-2>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $2{x} >= 3
- NODE $3{y} >= 2
-  NODE $4{r} >= 2
-   NODE $4{r} >= 1
-    LEAF 3
-     LEAF 3
-    NODE $4{r} >= 1
-     LEAF 0.
-      LEAF 3
-   NODE $4{r} >= 2
-    NODE $4{r} >= 1
-     LEAF bottom
-      LEAF bottom
-     NODE $4{r} >= 1
-      LEAF 0.
-       LEAF bottom
-  NODE $3{y} >= 2
-   NODE $4{r} >= 2
-    NODE $4{r} >= 1
-     LEAF bottom
-      LEAF bottom
-     NODE $4{r} >= 1
-      LEAF 0.
-       LEAF bottom
-    NODE $4{r} >= 2
-     NODE $4{r} >= 1
-      LEAF 3
-       LEAF 3
-      NODE $4{r} >= 1
-       LEAF 0.
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; -$4>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0;
-                                                                 $4-2>=0;
-                                                                 $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; -$4>=0; $3-2>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $2{x} >= 3
- NODE $3{y} >= 2
-  NODE $4{r} >= 1
-   NODE $4{r} >= 2
-    LEAF 3
-     LEAF 0.
-    NODE $4{r} >= 2
-     LEAF 3
-      LEAF 3
-   NODE $4{r} >= 1
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF 0.
-     NODE $4{r} >= 2
-      LEAF bottom
-       LEAF bottom
-  NODE $3{y} >= 2
-   NODE $4{r} >= 1
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF 0.
-     NODE $4{r} >= 2
-      LEAF bottom
-       LEAF bottom
-    NODE $4{r} >= 1
-     NODE $4{r} >= 2
-      LEAF 3
-       LEAF 0.
-      NODE $4{r} >= 2
-       LEAF 3
-        LEAF 3
-Abstract elements:
- 
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$3+1>=0; $4-2>=0; $2-3>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$3+1>=0; -$4>=0; $2-3>=0|]
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|-$2+2>=0;
-                                                                 $4-2>=0;
-                                                                 $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, $2, | uncontrolled : $1, Lincons: [|
--$2+2>=0; -$4>=0; $3-2>=0|]
-No constraints!!! 
-
- alt: 
 
 [ 5:]:
-Tree:
 
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  NODE $3{y} >= 2
-   LEAF 2
-    LEAF bottom
-   NODE $3{y} >= 2
-    LEAF 2
-     LEAF bottom
-  NODE $4{r} >= 1
-   NODE $3{y} >= 2
-    LEAF 0.
-     LEAF 0.
-    NODE $3{y} >= 2
-     LEAF 2
-      LEAF bottom
-Abstract elements:
- 
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|
--$3+1>=0; $4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|-$3+1>=0; -$4>=0|]
-No constraints!!! 
+ uncontrolled : 
+ constraints: 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-
+ constraints: $4-3>=0 -$4+3>=0  or  
 
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  NODE $3{y} >= 2
-   LEAF 2
-    LEAF bottom
-   NODE $3{y} >= 2
-    LEAF 0.
-     LEAF 0.
-  NODE $4{r} >= 2
-   NODE $3{y} >= 2
-    LEAF 2
-     LEAF bottom
-    NODE $3{y} >= 2
-     LEAF 2
-      LEAF bottom
-Abstract elements:
- 
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|
--$3+1>=0; $4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|-$3+1>=0; -$4>=0|]
-No constraints!!! 
 
- alt: 
-Tree:
+ uncontrolled : $4{y}-
+ constraints: $3-1>=0 -$3+1>=0  or  
 
-NODE $4{r} >= 1
- NODE $3{y} >= 2
-  NODE $4{r} >= 2
-   LEAF 2
-    LEAF 0.
-   NODE $4{r} >= 2
-    LEAF bottom
-     LEAF 0.
-  NODE $3{y} >= 2
-   NODE $4{r} >= 2
-    LEAF 2
-     LEAF 2
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF bottom
-Abstract elements:
- 
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|
--$3+1>=0; $4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|-$3+1>=0; -$4>=0|]
-No constraints!!! 
 
- alt: 
-Tree:
+ uncontrolled : $4{y}-
+ constraints: $3-1>=0 -$3+1>=0  or  
+ or  
 
-NODE $4{r} >= 2
- NODE $3{y} >= 2
-  NODE $4{r} >= 1
-   LEAF 2
-    LEAF 2
-   NODE $4{r} >= 1
-    LEAF bottom
-     LEAF bottom
-  NODE $3{y} >= 2
-   NODE $4{r} >= 1
-    LEAF 0.
-     LEAF 2
-    NODE $4{r} >= 1
-     LEAF 0.
-      LEAF bottom
-Abstract elements:
- 
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|
--$3+1>=0; $4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|-$3+1>=0; -$4>=0|]
-No constraints!!! 
 
- alt: 
-Tree:
+ uncontrolled : $2{x}-
+ constraints: 
+$3-1>=0 -$3+1>=0 $4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+$3-1>=0 -$3+1>=0 -$4+2>=0 -$4+3>=0  or  
 
-NODE $3{y} >= 2
- NODE $4{r} >= 2
-  NODE $4{r} >= 1
-   LEAF 2
-    LEAF 2
-   NODE $4{r} >= 1
-    LEAF 0.
-     LEAF 2
-  NODE $4{r} >= 2
-   NODE $4{r} >= 1
-    LEAF bottom
-     LEAF bottom
-    NODE $4{r} >= 1
-     LEAF 0.
-      LEAF bottom
-Abstract elements:
- 
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|
--$3+1>=0; $4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|-$3+1>=0; -$4>=0|]
-No constraints!!! 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $3-1>=0 
+-$3+1>=0 $4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+$3-1>=0 -$3+1>=0 -$4+2>=0 -$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
 
-NODE $3{y} >= 2
- NODE $4{r} >= 1
-  NODE $4{r} >= 2
-   LEAF 2
-    LEAF 0.
-   NODE $4{r} >= 2
-    LEAF 2
-     LEAF 2
-  NODE $4{r} >= 1
-   NODE $4{r} >= 2
-    LEAF bottom
-     LEAF 0.
-    NODE $4{r} >= 2
-     LEAF bottom
-      LEAF bottom
-Abstract elements:
- 
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|
--$3+1>=0; $4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|-$3+1>=0; -$4>=0|]
-No constraints!!! 
 
- alt: 
+ uncontrolled : $4{y}-$2{x}-
+ constraints: 
+$3-1>=0 -$3+1>=0 $4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+$3-1>=0 -$3+1>=0 -$4+2>=0 -$4+3>=0  or  
+$3-1>=0 
+-$3+1>=0  or  
+
+
+ uncontrolled : $4{y}-$2{x}-
+ constraints: $3-1>=0 -$3+1>=0 $4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+$3-1>=0 -$3+1>=0 -$4+2>=0 -$4+3>=0  or  
+
+$3-1>=0 -$3+1>=0  or  
+ or  
+
+
 
 [ 6:]:
-Tree:
 
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF 1
-   LEAF 1
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF 1
-Abstract elements:
- 
-No constraints!!! 
+ uncontrolled : 
+ constraints: 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-
+ constraints: $4-3>=0 -$4+3>=0  or  
 
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF 1
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF 1
-    LEAF 1
-Abstract elements:
- 
-No constraints!!! 
 
- alt: 
+ uncontrolled : 
+ constraints:  or  
+
+
+ uncontrolled : $3{z}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 
+-$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+ or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
+
+
 
 [ 7:]:
-Tree:
 
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
+ uncontrolled : 
+ constraints: 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-
+ constraints: 
+$4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+-$4+2>=0 -$4+3>=0  or  
 
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
 
- alt: 
+ uncontrolled : $4{y}-
+ constraints:  or  
+
+
+ uncontrolled : $3{z}-$4{y}-
+ constraints:  or  
+ or  
+
+
+ uncontrolled : $2{x}-
+ constraints: $4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+-$4+2>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: 
+$4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+-$4+2>=0 -$4+3>=0  or  
+$4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+-$4+2>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $4{y}-$2{x}-
+ constraints: 
+$4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+-$4+2>=0 -$4+3>=0  or  
+ or  
+
+
+ uncontrolled : $3{z}-$4{y}-$2{x}-
+ constraints: $4-4>=0  or  
+$4-3>=0 -$4+3>=0  or  
+-$4+2>=0 -$4+3>=0  or  
+ or  
+ or  
+
+
 
 [ 8:]:
-Tree:
 
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
+ uncontrolled : 
+ constraints: 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-
+ constraints: 
+$4-3>=0 -$4+3>=0  or  
 
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
 
- alt: 
+ uncontrolled : 
+ constraints:  or  
+
+
+ uncontrolled : $3{z}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: 
+$4-3>=0 -$4+3>=0  or  
+ or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
+
+
 
 [ 9:]:
-Tree:
 
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
+ uncontrolled : 
+ constraints: 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-
+ constraints: $4-3>=0 -$4+3>=0  or  
 
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
 
- alt: 
+ uncontrolled : 
+ constraints:  or  
+
+
+ uncontrolled : $3{z}-
+ constraints: $4-3>=0 
+-$4+3>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+ or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 
+-$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
+
+
 
 [10:]:
-Tree:
 
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
+ uncontrolled : 
+ constraints: 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-
+ constraints: $4-3>=0 -$4+3>=0  or  
 
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
 
- alt: 
+ uncontrolled : 
+ constraints:  or  
+
+
+ uncontrolled : $3{z}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: 
+$4-3>=0 -$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
+
+
+ uncontrolled : $2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+ or  
+
+
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
+
+
 
 [11:]:
-Tree:
 
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  NODE $3{y} >= 2
-   LEAF bottom
-    LEAF 2
-   NODE $3{y} >= 2
-    LEAF bottom
-     LEAF 2
-  NODE $4{r} >= 1
-   NODE $3{y} >= 2
-    LEAF 0.
-     LEAF 0.
-    NODE $3{y} >= 2
-     LEAF bottom
-      LEAF 2
-Abstract elements:
- 
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|
-$4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|-$4>=0; $3-2>=0|]
-No constraints!!! 
+ uncontrolled : 
+ constraints: 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-
+ constraints: 
+$4-3>=0 -$4+3>=0  or  
 
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  NODE $3{y} >= 2
-   LEAF bottom
-    LEAF 2
-   NODE $3{y} >= 2
-    LEAF 0.
-     LEAF 0.
-  NODE $4{r} >= 2
-   NODE $3{y} >= 2
-    LEAF bottom
-     LEAF 2
-    NODE $3{y} >= 2
-     LEAF bottom
-      LEAF 2
-Abstract elements:
- 
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|
-$4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|-$4>=0; $3-2>=0|]
-No constraints!!! 
 
- alt: 
-Tree:
+ uncontrolled : 
+ constraints:  or  
 
-NODE $4{r} >= 1
- NODE $3{y} >= 2
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF 0.
-   NODE $4{r} >= 2
-    LEAF 2
-     LEAF 0.
-  NODE $3{y} >= 2
-   NODE $4{r} >= 2
-    LEAF bottom
-     LEAF bottom
-    NODE $4{r} >= 2
-     LEAF 2
-      LEAF 2
-Abstract elements:
- 
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|
-$4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|-$4>=0; $3-2>=0|]
-No constraints!!! 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-
+ constraints: $4-3>=0 -$4+3>=0  or  
 
-NODE $4{r} >= 2
- NODE $3{y} >= 2
-  NODE $4{r} >= 1
-   LEAF bottom
-    LEAF bottom
-   NODE $4{r} >= 1
-    LEAF 2
-     LEAF 2
-  NODE $3{y} >= 2
-   NODE $4{r} >= 1
-    LEAF 0.
-     LEAF bottom
-    NODE $4{r} >= 1
-     LEAF 0.
-      LEAF 2
-Abstract elements:
- 
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|
-$4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|-$4>=0; $3-2>=0|]
-No constraints!!! 
 
- alt: 
-Tree:
+ uncontrolled : $2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
 
-NODE $3{y} >= 2
- NODE $4{r} >= 2
-  NODE $4{r} >= 1
-   LEAF bottom
-    LEAF bottom
-   NODE $4{r} >= 1
-    LEAF 0.
-     LEAF bottom
-  NODE $4{r} >= 2
-   NODE $4{r} >= 1
-    LEAF 2
-     LEAF 2
-    NODE $4{r} >= 1
-     LEAF 0.
-      LEAF 2
-Abstract elements:
- 
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|
-$4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|-$4>=0; $3-2>=0|]
-No constraints!!! 
 
- alt: 
-Tree:
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
 
-NODE $3{y} >= 2
- NODE $4{r} >= 1
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF 0.
-   NODE $4{r} >= 2
-    LEAF bottom
-     LEAF bottom
-  NODE $4{r} >= 1
-   NODE $4{r} >= 2
-    LEAF 2
-     LEAF 0.
-    NODE $4{r} >= 2
-     LEAF 2
-      LEAF 2
-Abstract elements:
- 
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|
-$4-2>=0; $3-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, $3, | uncontrolled : $2, $1, Lincons: [|-$4>=0; $3-2>=0|]
-No constraints!!! 
 
- alt: 
+ uncontrolled : $2{x}-
+ constraints: 
+$4-3>=0 -$4+3>=0  or  
+ or  
 
-[12:]:
-Tree:
 
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
+ uncontrolled : $3{z}-$2{x}-
+ constraints: $4-3>=0 -$4+3>=0  or  
+$4-3>=0 -$4+3>=0  or  
 
- alt: 
-Tree:
 
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
-
- alt: 
-
-[13:]:
-Tree:
-
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
-
- alt: 
-
-[14:]:
-Tree:
-
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF 1
-   LEAF 1
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF 1
-Abstract elements:
- 
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF 1
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF 1
-    LEAF 1
-Abstract elements:
- 
-No constraints!!! 
-
- alt: 
-
-[15:]:
-Tree:
-
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
-
- alt: 
-
-[16:]:
-Tree:
-
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
-
- alt: 
-
-[17:]:
-Tree:
-
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
-
- alt: 
-
-[18:]:
-Tree:
-
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
-
- alt: 
-
-[19:]:
-Tree:
-
-NODE $4{r} >= 2
- NODE $4{r} >= 1
-  LEAF bottom
-   LEAF bottom
-  NODE $4{r} >= 1
-   LEAF 0.
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
-
- alt: 
-Tree:
-
-NODE $4{r} >= 1
- NODE $4{r} >= 2
-  LEAF bottom
-   LEAF 0.
-  NODE $4{r} >= 2
-   LEAF bottom
-    LEAF bottom
-Abstract elements:
- 
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|
-$4-2>=0|]
-controlled : $4, $3, $2, $1, | uncontrolled : Lincons: bottom
-controlled : $4, | uncontrolled : $3, $2, $1, Lincons: [|-$4>=0|]
-No constraints!!! 
-
- alt: 
 
 Analysis Result: UNKNOWN
 
