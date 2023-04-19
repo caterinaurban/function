@@ -1573,11 +1573,7 @@ let rec robust fmt t =
     Printf.printf "iinit : len %d \n" (List.length initz );
     List.iter (fun (x) ->Printf.printf  " %d - " x ) initz;*)
 
-    let get_fst t = match t with 
-    | Node ((c,nc),l,r) ->  c
-    | _ -> failwith "Not a node ? "
-    in
-
+    
     let rec aux vars  cur t cns = 
       match vars with 
       | [] -> cur,cns
@@ -1595,10 +1591,15 @@ let rec robust fmt t =
                     aux q cur t cns
     in
     let vars = powerset v in 
-    let uncontrolled = List.fold_left (fun a b -> a@[(aux b [] t [])]) [] vars in
-    List.iter (fun (l,cns) -> Printf.printf "\n uncontrolled : "; List.iter (fun x ->Printf.printf "%s{%s}-" (x.varId) (x.varName)) l; 
-                              Printf.printf "\n constraints: ";
-                              List.iter (fun l -> List.iter (fun c -> Lincons1.print Format.std_formatter c; print_string " ") l ; print_endline " or  ") cns; print_endline "")  uncontrolled ; 
+    let uncontrolled = List.fold_left (fun a b -> a@[(aux b [] t [])]) [] vars in 
+    
+    List.iter (fun (l,cns) -> if(l <> [] )  then 
+                              let _ =  Printf.printf "\n uncontrolled : "; List.iter (fun x ->Printf.printf "%s{%s}-" (x.varId) (x.varName)) l in 
+                              let _ = Printf.printf "\n constraints: " in
+                              let _ = List.iter (fun l -> List.iter (fun c -> Lincons1.print Format.std_formatter c; print_string " ") l ; print_endline " or  ") cns in
+                              () 
+                              else ();
+                              print_endline "")  uncontrolled ; 
     (*Printf.printf "ici : len %d \n" (List.length !mem );
     List.iter (fun (l) -> List.iter (fun (x) ->Printf.printf  " %s - " x.varName ) l;    print_endline " ") !mem ;*)
     print_newline 

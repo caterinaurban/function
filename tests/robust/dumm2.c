@@ -4,7 +4,6 @@ int main () {
     int y ;     
     x= ? ; 
     z = ? ;
-    
     y = 2  + z  + x; 
     
     return 0;

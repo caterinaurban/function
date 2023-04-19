@@ -1,7 +1,7 @@
 int main() { 
-  int i = ?;
-  int n=?;
-  int sn=0;
+  int i;
+  int n;
+  int sn;
   if (!(n < 1000 && n >= -1000)) return 0;
   for(i=1; i<=n; i++) {
     sn = sn + 2;

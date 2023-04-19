@@ -1,15 +1,16 @@
 int main() {
-    int x = 0;
-    int m = 0;
-    int n = ?;
-    int nd = ? ;
+    int x ; 
+    int y; 
+    int n ; 
+    int m ; 
+     
     while(x < n) {
         
-	    if(nd) {
+	    if(?) {
     	    m = x;
 	    }
 	    x = x + 1;
-        nd = ? ; 
+        
     }
     
     
