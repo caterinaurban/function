@@ -1558,21 +1558,9 @@ let rec robust fmt t =
     in  
     
     let v = (List.tl t.vars) in
-    
-
-      
-    (*let vars = List.map (fun s ->  bitvec v s)  vars in  
-    let get_fst t = match t with 
-      | Node ((c,nc),l,r) -> Some c
-      | _ -> None 
-    in
-    let   mem =  ref (List.combine vars (List.init (List.length vars) (fun _ -> None))) in*)
+  
     let mem = ref [] in
-    (*Printf.printf "ici : len %d \n" (List.length mem );
-    List.iter (fun (l,_) -> List.iter (fun (x) ->Printf.printf  " %d - " x ) l;    print_endline " ") mem ;
-    Printf.printf "iinit : len %d \n" (List.length initz );
-    List.iter (fun (x) ->Printf.printf  " %d - " x ) initz;*)
-
+  
     
     let rec aux vars  cur t cns = 
       match vars with 
@@ -1592,14 +1580,17 @@ let rec robust fmt t =
     in
     let vars = powerset v in 
     let uncontrolled = List.fold_left (fun a b -> a@[(aux b [] t [])]) [] vars in 
-    
+    let uarr = List.map  (fun (l,c) ->(l,Array.of_list (List.map (fun c ->  Lincons1.array_make t.env (List.length c)) c) )) uncontrolled in
+    let transform  clist arr = List.iteri (fun i c -> Lincons1.array_set arr i c)  clist in
+    let  _  = List.iteri  (fun i (l,ar) -> let cons = snd (List.nth uncontrolled i ) in  List.iteri (fun k c ->transform (c) ar.(k)) cons) uarr  in
+    let uarr =  List.map (fun (l,a) -> (l,Array.map (fun a -> (Abstract1.of_lincons_array manager t.env a)) a)) uarr in 
     List.iter (fun (l,cns) -> if(l <> [] )  then 
                               let _ =  Printf.printf "\n uncontrolled : "; List.iter (fun x ->Printf.printf "%s{%s}-" (x.varId) (x.varName)) l in 
                               let _ = Printf.printf "\n constraints: " in
-                              let _ = List.iter (fun l -> List.iter (fun c -> Lincons1.print Format.std_formatter c; print_string " ") l ; print_endline " or  ") cns in
+                              let _ = Array.iter (fun c -> Abstract1.print Format.std_formatter c;  print_endline " or  ") cns in
                               () 
                               else ();
-                              print_endline "")  uncontrolled ; 
+                              print_endline "")  uarr ; 
     (*Printf.printf "ici : len %d \n" (List.length !mem );
     List.iter (fun (l) -> List.iter (fun (x) ->Printf.printf  " %s - " x.varName ) l;    print_endline " ") !mem ;*)
     print_newline 

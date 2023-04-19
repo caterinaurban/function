@@ -3,7 +3,8 @@ int main() {
     int j;
     int a;
     int b;
-    int flag = ?;
+    int flag ;
+    flag = ?;
     a = 0;
     b = 0;
     j = 1;

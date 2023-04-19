@@ -8,6 +8,8 @@ int main() {
     int nd1; 
     int nd2; 
     int nd3;
+
+    
     x = 0 ;
     y = 0;
     z = 0 ;
