@@ -143,7 +143,7 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
 
   (* Analyzer *)
 
-  let analyze property (vars, stmts, funcs) main =
+  let analyze robust property (vars, stmts, funcs) main =
     let rec aux xs env =
       match xs with
       | [] -> env
@@ -184,9 +184,12 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
         Format.fprintf !fmt "\nBackward Analysis (Time: %f s):\n"
           (stopbwd -. startbwd)
       else
-        (*Format.fprintf !fmt "\nBackward Analysis:\n"; bwdMap_print !fmt
-          !bwdInvMap;*)
-        print_endline "robustness" ;
-      bwdMap_robust !fmt !bwdInvMap ) ;
+        if robust then 
+          let _ = Format.fprintf !fmt "\n Robust reachability Analysis : \n" in
+          bwdMap_robust !fmt !bwdInvMap ) 
+        else 
+          Format.fprintf !fmt "\nBackward Analysis:\n";
+          bwdMap_print !fmt !bwdInvMap;
+        
     D.defined i
 end
