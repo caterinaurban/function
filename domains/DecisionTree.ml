@@ -1538,7 +1538,12 @@ let   bitvec v s  =
     | [] -> (List.map  (fun _ -> 0 ) v )     
     | _ -> (aux v s) 
 
+(* Memoisation of bottom exploration 
+   Double rec 
+   optimisation
 
+   todo : bench 
+*)
 let rec robust fmt t =   
     
     let bwAssExpr x =  ( AbstractSyntax.A_var  x, A_RANDOM ) in
@@ -1559,27 +1564,40 @@ let rec robust fmt t =
     
     let v = (List.tl t.vars) in
   
-    let mem = ref [] in
-  
     
-    let rec aux vars  cur t cns = 
+  
+    let rec aux vars acc t   = 
+      
       match vars with 
-      | [] -> cur,cns
+      | [] ->        
+        []
+      | x::[] ->        
+        
+        let t' = (bwdAssign t (bwAssExpr x)) in 
+        let b,cons = unconstraint t'.tree [] in 
+        let lft = if b then               
+          [(x::acc),cons]
+        else
+          []
+        in
+        let b,cons = unconstraint t.tree [] in 
+        let rght = 
+          if b then               
+            [acc,cons]
+          else
+            []
+          in 
+          lft@rght
       | x::q -> 
-          let t' = (bwdAssign t (bwAssExpr x)) in 
-          match member (x::cur) !mem with 
-          | false ->
-            let b,cons = unconstraint t'.tree [] in 
-            if b then               
-              aux q (x::cur) t' (cns@cons)
-            else 
-              let _ = mem := (x::cur)::(!mem) in
-              aux q cur t (cns@cons)
-          | true -> 
-                    aux q cur t cns
+        let t' = (bwdAssign t (bwAssExpr x)) in 
+        let l1 = (aux q (x::acc) t') in 
+        let l2 = (aux q acc t) 
+        in l1 @ l2 
+        
     in
-    let vars = powerset v in 
-    let uncontrolled = List.fold_left (fun a b -> a@[(aux b [] t [])]) [] vars in 
+        
+
+    let uncontrolled = aux v [] t in
     let uarr = List.map  (fun (l,c) ->(l,Array.of_list (List.map (fun c ->  Lincons1.array_make t.env (List.length c)) c) )) uncontrolled in
     let transform  clist arr = List.iteri (fun i c -> Lincons1.array_set arr i c)  clist in
     let  _  = List.iteri  (fun i (l,ar) -> let cons = snd (List.nth uncontrolled i ) in  List.iteri (fun k c ->transform (c) ar.(k)) cons) uarr  in
@@ -1591,6 +1609,13 @@ let rec robust fmt t =
                               () 
                               else ();
                               print_endline "")  uarr ; 
+   (* List.iter (fun (l,cns) -> if(l <> [] )  then 
+                                let _ =  Printf.printf "\n uncontrolled : "; List.iter (fun x ->Printf.printf "%s{%s}-" (x.varId) (x.varName)) l in 
+                                let _ = Printf.printf "\n constraints: " in
+                                let _ = List.iter (fun l -> List.iter (fun c -> Lincons1.print Format.std_formatter c; print_string " ") l ; print_endline " or  ") cns in
+                                () 
+                                else ();
+                                print_endline "")  uncontrolled ; *)
     (*Printf.printf "ici : len %d \n" (List.length !mem );
     List.iter (fun (l) -> List.iter (fun (x) ->Printf.printf  " %s - " x.varName ) l;    print_endline " ") !mem ;*)
     print_newline 

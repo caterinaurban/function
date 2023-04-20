@@ -11,7 +11,9 @@
 (* parsing *)
 
 let analysis = ref "termination"
-let robust  = ref false
+
+let robust = ref false
+
 let domain = ref "boxes"
 
 let filename = ref ""
@@ -199,12 +201,11 @@ let parse_args () =
         analysis := "guarantee" ;
         property := x ;
         doit r
-
-    | "-robust"::x::r -> 
-       analysis := "guarantee" ;
-       property := x; 
-       robust := true;
-       doit r ; 
+    | "-robust" :: x :: r ->
+        analysis := "guarantee" ;
+        property := x ;
+        robust := true ;
+        doit r
     | "-recurrence" :: x :: r ->
         (* recurrence analysis *)
         analysis := "recurrence" ;
@@ -381,7 +382,7 @@ let guarantee () =
         else GuaranteePolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in
-  run_analysis (analysis_function (!robust ) property) program ()
+  run_analysis (analysis_function !robust property) program ()
 
 let recurrence () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified") ;

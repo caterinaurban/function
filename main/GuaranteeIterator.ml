@@ -25,18 +25,6 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
 
   let addBwdInv l (a : D.t) = bwdInvMap := InvMap.add l a !bwdInvMap
 
-  let bwdMap_print fmt m =
-    if !compress then
-      InvMap.iter
-        (fun l a ->
-          Format.fprintf fmt "%a:\n%a\n" label_print l D.print (D.compress a)
-          )
-        m
-    else
-      InvMap.iter
-        (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.print a)
-        m
-
   let bwdMap_robust fmt m =
     if !compress then
       InvMap.iter
@@ -47,6 +35,19 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
     else
       InvMap.iter
         (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.robust a)
+        m
+
+  let bwdMap_print robust fmt m =
+    if robust then bwdMap_robust fmt m
+    else if !compress then
+      InvMap.iter
+        (fun l a ->
+          Format.fprintf fmt "%a:\n%a\n" label_print l D.print (D.compress a)
+          )
+        m
+    else
+      InvMap.iter
+        (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.print a)
         m
 
   (* Backward Iterator *)
@@ -179,17 +180,10 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
         stmts
     in
     let stopbwd = Sys.time () in
-    if not !minimal then (
+    if not !minimal then
       if !timebwd then
         Format.fprintf !fmt "\nBackward Analysis (Time: %f s):\n"
           (stopbwd -. startbwd)
-      else
-        if robust then 
-          let _ = Format.fprintf !fmt "\n Robust reachability Analysis : \n" in
-          bwdMap_robust !fmt !bwdInvMap ) 
-        else 
-          Format.fprintf !fmt "\nBackward Analysis:\n";
-          bwdMap_print !fmt !bwdInvMap;
-        
+      else bwdMap_print robust !fmt !bwdInvMap ;
     D.defined i
 end

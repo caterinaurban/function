@@ -1,13 +1,13 @@
 
 int main()
 {
-  int k = 0;
-  int n = ?;
-  int x=n;
-  int y=?;
-  
+  int n ; 
+  int x ; 
+  int y ;
+  x=n;
   while(x>0)
   {
+    
     x--;
     y++;
   }

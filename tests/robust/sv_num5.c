@@ -10,7 +10,7 @@ int main() {
 }
 
 
-/* __VERIFIER_assert(sn==n*a || sn == 0);
+/* __VERIFIER_assert(sn==n*2 || sn == 0);
 
 
 Uncontrolled variable : i . 

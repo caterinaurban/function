@@ -4,25 +4,12 @@ int main() {
     int y;
     int z;
     int w;
+    while (? && y < 10000) {
     
-    int nd1; 
-    int nd2; 
-    int nd3;
-
-    
-    x = 0 ;
-    y = 0;
-    z = 0 ;
-    w = 0;
-    
-    nd1 = ?;
-    while (nd1 && y < 10000) {
-    nd2=?;
-    nd3=?;
-	if (nd2) {
+	if (?) {
 	    x = x + 1;
 	    y = y + 100;
-	} else if (nd3) {
+	} else if (?) {
 	    if (x >= 4) {
 		x = x + 1;
 		y = y + 1;
@@ -32,7 +19,7 @@ int main() {
 	}
 	w = w + 1;
 	z = z + 10;
-    nd1=?;
+    
     }
     //__VERIFIER_assert(x >= 4 && y <= 2);
     return 0;

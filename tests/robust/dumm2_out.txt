@@ -4,267 +4,79 @@ tests/robust/dumm2.c
 polyhedra
 -ordinals
 3
--guarantee
+-robust
 tests/robust/dumm2.txt
 
 Abstract Syntax:
 [ 1:]
 int main( ):
-[ 2:] $2{x} := ?
-[ 3:] $3{z} := ?
-[ 4:] $4{y} := (2 + $3{z}) + $2{x}
-[ 5:] $1{$1} := 0
-[ 6:] return
-[ 7:]
+[ 2:] $4{y} := (2 + $3{z}) + $2{x}
+[ 3:] $1{$1} := 0
+[ 4:] return
+[ 5:]
 
 Property: $4{y} <= 3 && $4{y} >= 3
 
 Forward Analysis:
 [ 1:]: top
 [ 2:]: top
-[ 3:]: top
-[ 4:]: top
-[ 5:]: -$2{x}-$3{z}+$4{y} == 2
-[ 6:]: $1{$1} == 0 && -$2{x}-$3{z}+$4{y} == 2
-[ 7:]: bottom
-robustness
+[ 3:]: -$2{x}-$3{z}+$4{y} == 2
+[ 4:]: $1{$1} == 0 && -$2{x}-$3{z}+$4{y} == 2
+[ 5:]: bottom
 [ 1:]:
 
-
- uncontrolled : $3{z}-
- constraints: 
-$4-3>=0 -$4+3>=0  or  
-
+ uncontrolled : $3{z}-$2{x}-
+ constraints: [|
+$4-3=0|] or  
 
 
  uncontrolled : $3{z}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $2{x}-
- constraints: 
-$4-3>=0 -$4+3>=0  or  
- or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
+ constraints: [|$4-3=0|] or  
 
 
 
 [ 2:]:
 
-
- uncontrolled : $3{z}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
+ uncontrolled : $3{z}-$2{x}-
+ constraints: [|$4-3=0|] or  
 
 
  uncontrolled : $3{z}-
- constraints: $4-3>=0 
--$4+3>=0  or  
-
-
- uncontrolled : $2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
- or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: $4-3>=0 
--$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
+ constraints: [|$4-3=0|] or  
 
 
 
 [ 3:]:
 
-
- uncontrolled : $3{z}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
+ uncontrolled : $3{z}-$2{x}-
+ constraints: [|$4-3=0|] or  
 
 
  uncontrolled : $3{z}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: 
-$4-3>=0 -$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
- or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
+ constraints: [|$4-3=0|] or  
 
 
 
 [ 4:]:
 
+ uncontrolled : $3{z}-$2{x}-
+ constraints: [|
+$4-3=0|] or  
+
 
  uncontrolled : $3{z}-
- constraints: 
-$4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $4{y}-
- constraints: $2+$3-1>=0 -$2-$3+1>=0  or  
-
-
- uncontrolled : $4{y}-
- constraints: $2+$3-1>=0 -$2-$3+1>=0  or  
- or  
-
-
- uncontrolled : $2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: 
-$4-3>=0 -$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
- or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
+ constraints: [|$4-3=0|] or  
 
 
 
 [ 5:]:
 
-
- uncontrolled : $3{z}-
- constraints: 
-$4-3>=0 -$4+3>=0  or  
-
+ uncontrolled : $3{z}-$2{x}-
+ constraints: [|$4-3=0|] or  
 
 
  uncontrolled : $3{z}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $2{x}-
- constraints: 
-$4-3>=0 -$4+3>=0  or  
- or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
-
-
-
-[ 6:]:
-
-
- uncontrolled : $3{z}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
-
-
- uncontrolled : $3{z}-
- constraints: $4-3>=0 
--$4+3>=0  or  
-
-
- uncontrolled : $2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
- or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: $4-3>=0 
--$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
-
-
-
-[ 7:]:
-
-
- uncontrolled : $3{z}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
-
-
- uncontrolled : $3{z}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: 
-$4-3>=0 -$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
-
-
- uncontrolled : $2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
- or  
-
-
- uncontrolled : $3{z}-$2{x}-
- constraints: $4-3>=0 -$4+3>=0  or  
-$4-3>=0 -$4+3>=0  or  
+ constraints: [|$4-3=0|] or  
 
 
 
