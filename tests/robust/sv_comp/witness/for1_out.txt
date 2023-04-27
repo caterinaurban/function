@@ -1,0 +1,1085 @@
+./main.exe
+tests/robust/sv_comp/witness/sv_for1.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/sv_comp/witness/for1-1.txt
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] $4{bug1} := 0
+[ 3:] $2{x} := 0
+[ 4:] $3{i} := 0
+[ 5:] while [ 6:] ( true ) do
+[ 7:]   $2{x} := $3{i}
+[ 8:]   if ( $2{x} > 1000 ) then
+[ 9:]     $4{bug1} := 1
+[10:]
+        else
+[11:]
+        endif
+[12:]   $3{i} := $3{i} + 1
+[13:]
+      od
+[14:]
+
+Property: $4{bug1} <= 1 && $4{bug1} >= 1
+[ 1:]:
+
+NODE $4{bug1} >= 2
+ LEAF 4011
+  NODE $4{bug1} >= 1
+   LEAF 0.
+    LEAF 4011
+
+ uncontrolled : $2{x}-$3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|
+$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-2>=0|] or  
+[|
+$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : 
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+
+[ 2:]:
+
+NODE $4{bug1} >= 2
+ LEAF 4011
+  NODE $4{bug1} >= 1
+   LEAF 0.
+    LEAF 4011
+
+ uncontrolled : $2{x}-$3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|
+$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-2>=0|] or  
+[|
+$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : 
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+
+[ 3:]:
+
+NODE $4{bug1} >= 2
+ LEAF 4010
+  NODE $4{bug1} >= 1
+   LEAF 0.
+    LEAF 4010
+
+ uncontrolled : $2{x}-$3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|
+$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-2>=0|] or  
+[|
+$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : 
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+
+[ 4:]:
+
+NODE $4{bug1} >= 2
+ LEAF 4009
+  NODE $4{bug1} >= 1
+   LEAF 0.
+    LEAF 4009
+
+ uncontrolled : $2{x}-$3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|
+$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-2>=0|] or  
+[|
+$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : 
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+
+[ 5:]:
+
+NODE $4{bug1} >= 2
+ NODE $3{i} >= 1001
+  LEAF 4
+   LEAF -4$3{i}+4008
+  NODE $4{bug1} >= 1
+   LEAF 0.
+    NODE $3{i} >= 1001
+     LEAF 4
+      LEAF -4$3{i}+4008
+
+ uncontrolled : $2{x}-$3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$4{bug1}-
+ constraints: [|
+$3-1001>=0|] or  
+[|-$3+1000>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $4{bug1}-
+ constraints: [|$3-1001>=0|] or  
+[|-$3+1000>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|$4-2>=0|] or  
+[|
+$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-2>=0; $3-1001>=0|] or  
+[|
+-$3+1000>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1001>=0|] or  
+[|-$3+1000>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : 
+ constraints: [|
+$4-2>=0; $3-1001>=0|] or  
+[|-$3+1000>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1001>=0|] or  
+[|
+-$3+1000>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+
+[ 6:]:
+
+NODE $4{bug1} >= 2
+ NODE $3{i} >= 1001
+  LEAF 4
+   LEAF -4$3{i}+4008
+  NODE $4{bug1} >= 1
+   LEAF 0
+    NODE $3{i} >= 1001
+     LEAF 4
+      LEAF -4$3{i}+4008
+
+ uncontrolled : $2{x}-$3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$4{bug1}-
+ constraints: [|
+$3-1001>=0|] or  
+[|-$3+1000>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $4{bug1}-
+ constraints: [|$3-1001>=0|] or  
+[|-$3+1000>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|$4-2>=0|] or  
+[|
+$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-2>=0; $3-1001>=0|] or  
+[|
+-$3+1000>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1001>=0|] or  
+[|-$3+1000>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : 
+ constraints: [|
+$4-2>=0; $3-1001>=0|] or  
+[|-$3+1000>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1001>=0|] or  
+[|
+-$3+1000>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+
+[ 7:]:
+
+NODE $4{bug1} >= 2
+ NODE $3{i} >= 1001
+  LEAF 3
+   LEAF -4$3{i}+4007
+  NODE $4{bug1} >= 1
+   LEAF 0.
+    NODE $3{i} >= 1001
+     LEAF 3
+      LEAF -4$3{i}+4007
+
+ uncontrolled : $2{x}-$3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$4{bug1}-
+ constraints: [|
+$3-1001>=0|] or  
+[|-$3+1000>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $4{bug1}-
+ constraints: [|$3-1001>=0|] or  
+[|-$3+1000>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|$4-2>=0|] or  
+[|
+$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-2>=0; $3-1001>=0|] or  
+[|
+-$3+1000>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1001>=0|] or  
+[|-$3+1000>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : 
+ constraints: [|
+$4-2>=0; $3-1001>=0|] or  
+[|-$3+1000>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1001>=0|] or  
+[|
+-$3+1000>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+
+[ 8:]:
+
+NODE $4{bug1} >= 2
+ NODE $3{i} >= 1000
+  NODE $2{x} >= 1001
+   LEAF 2
+    LEAF 6
+   NODE $3{i} >= 999
+    NODE $2{x} >= 1001
+     LEAF 2
+      LEAF 10
+     NODE $2{x} >= 1001
+      LEAF 2
+       LEAF -4$3{i}+4006
+  NODE $4{bug1} >= 1
+   LEAF 0.
+    NODE $3{i} >= 1000
+     NODE $2{x} >= 1001
+      LEAF 2
+       LEAF 6
+      NODE $3{i} >= 999
+       NODE $2{x} >= 1001
+        LEAF 2
+         LEAF 10
+        NODE $2{x} >= 1001
+         LEAF 2
+          LEAF -4$3{i}+4006
+
+ uncontrolled : $2{x}-$3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-$4{bug1}-
+ constraints: [|
+$2-1001>=0|] or  
+[|-$2+1000>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$4{bug1}-
+ constraints: [|$3-1000>=0|] or  
+[|$3-999=0|] or  
+[|-$3+998>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $4{bug1}-
+ constraints: [|
+$3-1000>=0; $2-1001>=0|] or  
+[|-$2+1000>=0; $3-1000>=0|] or  
+[|$3-999=0; $2-1001>=0|] or  
+[|
+$3-999=0; -$2+1000>=0|] or  
+[|-$3+998>=0; $2-1001>=0|] or  
+[|-$2+1000>=0; -$3+998>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|
+$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-2>=0; $2-1001>=0|] or  
+[|-$2+1000>=0; $4-2>=0|] or  
+[|
+$4-1=0|] or  
+[|-$4>=0; $2-1001>=0|] or  
+[|-$2+1000>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-2>=0; $3-1000>=0|] or  
+[|
+$3-999=0; $4-2>=0|] or  
+[|-$3+998>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1000>=0|] or  
+[|
+$3-999=0; -$4>=0|] or  
+[|-$3+998>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : 
+ constraints: [|$4-2>=0; $3-1000>=0; $2-1001>=0|] or  
+[|
+-$2+1000>=0; $4-2>=0; $3-1000>=0|] or  
+[|$3-999=0; $4-2>=0; $2-1001>=0|] or  
+[|
+$3-999=0; -$2+1000>=0; $4-2>=0|] or  
+[|-$3+998>=0; $4-2>=0; $2-1001>=0|] or  
+[|
+-$2+1000>=0; -$3+998>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1000>=0; $2-1001>=0|] or  
+[|
+-$2+1000>=0; -$4>=0; $3-1000>=0|] or  
+[|$3-999=0; -$4>=0; $2-1001>=0|] or  
+[|$3-999=0;
+                                                                   -$2+1000>=0;
+                                                                   -$4>=0|] or  
+[|
+-$3+998>=0; -$4>=0; $2-1001>=0|] or  
+[|-$2+1000>=0; -$3+998>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+
+[ 9:]:
+
+NODE $4{bug1} >= 2
+ LEAF 1
+  NODE $4{bug1} >= 1
+   LEAF 0.
+    LEAF 1
+
+ uncontrolled : $2{x}-$3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|
+$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-2>=0|] or  
+[|
+$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : 
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+
+[10:]:
+
+NODE $4{bug1} >= 2
+ NODE $3{i} >= 1000
+  LEAF 5
+   LEAF -4$3{i}+4005
+  NODE $4{bug1} >= 1
+   LEAF 0.
+    NODE $3{i} >= 1000
+     LEAF 5
+      LEAF -4$3{i}+4005
+
+ uncontrolled : $2{x}-$3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$4{bug1}-
+ constraints: [|
+$3-1000>=0|] or  
+[|-$3+999>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $4{bug1}-
+ constraints: [|$3-1000>=0|] or  
+[|-$3+999>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|$4-2>=0|] or  
+[|
+$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-2>=0; $3-1000>=0|] or  
+[|
+-$3+999>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1000>=0|] or  
+[|-$3+999>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : 
+ constraints: [|
+$4-2>=0; $3-1000>=0|] or  
+[|-$3+999>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1000>=0|] or  
+[|
+-$3+999>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+
+[11:]:
+
+NODE $4{bug1} >= 2
+ NODE $3{i} >= 1000
+  LEAF 5
+   LEAF -4$3{i}+4005
+  NODE $4{bug1} >= 1
+   LEAF 0.
+    NODE $3{i} >= 1000
+     LEAF 5
+      LEAF -4$3{i}+4005
+
+ uncontrolled : $2{x}-$3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$4{bug1}-
+ constraints: [|
+$3-1000>=0|] or  
+[|-$3+999>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $4{bug1}-
+ constraints: [|$3-1000>=0|] or  
+[|-$3+999>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|$4-2>=0|] or  
+[|
+$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-2>=0; $3-1000>=0|] or  
+[|
+-$3+999>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1000>=0|] or  
+[|-$3+999>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : 
+ constraints: [|
+$4-2>=0; $3-1000>=0|] or  
+[|-$3+999>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1000>=0|] or  
+[|
+-$3+999>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+
+[12:]:
+
+NODE $4{bug1} >= 2
+ NODE $3{i} >= 1000
+  LEAF 5
+   LEAF -4$3{i}+4005
+  NODE $4{bug1} >= 1
+   LEAF 0.
+    NODE $3{i} >= 1000
+     LEAF 5
+      LEAF -4$3{i}+4005
+
+ uncontrolled : $2{x}-$3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$4{bug1}-
+ constraints: [|
+$3-1000>=0|] or  
+[|-$3+999>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $4{bug1}-
+ constraints: [|$3-1000>=0|] or  
+[|-$3+999>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|$4-2>=0|] or  
+[|
+$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-2>=0; $3-1000>=0|] or  
+[|
+-$3+999>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1000>=0|] or  
+[|-$3+999>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : 
+ constraints: [|
+$4-2>=0; $3-1000>=0|] or  
+[|-$3+999>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1000>=0|] or  
+[|
+-$3+999>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+
+[13:]:
+
+NODE $4{bug1} >= 2
+ NODE $3{i} >= 1001
+  LEAF 4
+   LEAF -4$3{i}+4008
+  NODE $4{bug1} >= 1
+   LEAF 0.
+    NODE $3{i} >= 1001
+     LEAF 4
+      LEAF -4$3{i}+4008
+
+ uncontrolled : $2{x}-$3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-$4{bug1}-
+ constraints: top or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$4{bug1}-
+ constraints: [|
+$3-1001>=0|] or  
+[|-$3+1000>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $4{bug1}-
+ constraints: [|$3-1001>=0|] or  
+[|-$3+1000>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|$4-2>=0|] or  
+[|
+$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-2>=0; $3-1001>=0|] or  
+[|
+-$3+1000>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1001>=0|] or  
+[|-$3+1000>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+ uncontrolled : 
+ constraints: [|
+$4-2>=0; $3-1001>=0|] or  
+[|-$3+1000>=0; $4-2>=0|] or  
+[|$4-1=0|] or  
+[|-$4>=0; $3-1001>=0|] or  
+[|
+-$3+1000>=0; -$4>=0|] or  
+
+ Join constraint:
+top
+
+
+[14:]:
+
+NODE $4{bug1} >= 2
+ LEAF bottom
+  NODE $4{bug1} >= 1
+   LEAF 0.
+    LEAF bottom
+
+ uncontrolled : $2{x}-$3{i}-
+ constraints: [|
+$4-1=0|] or  
+
+ Join constraint:
+[|$4-1=0|]
+
+ uncontrolled : $3{i}-
+ constraints: [|$4-1=0|] or  
+
+ Join constraint:
+[|$4-1=0|]
+
+ uncontrolled : $2{x}-
+ constraints: [|$4-1=0|] or  
+
+ Join constraint:
+[|$4-1=0|]
+
+ uncontrolled : 
+ constraints: [|$4-1=0|] or  
+
+ Join constraint:
+[|
+$4-1=0|]
+
+
+Analysis Result: TRUE
+
+Done.

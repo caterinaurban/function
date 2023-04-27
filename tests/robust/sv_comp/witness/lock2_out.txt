@@ -1,0 +1,8 @@
+./main.exe
+tests/robust/sv_comp/safe/sv_lock2.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/sv_comp/witness/lock2.txt

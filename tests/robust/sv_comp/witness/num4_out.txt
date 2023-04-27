@@ -1,0 +1,185 @@
+./main.exe
+tests/robust/sv_comp/witness/sv_num4f.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/sv_comp/witness/num4false.txt
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] $5{bug} := 0
+[ 3:] $4{y} := 0
+[ 4:] $3{x} := $2{n}
+[ 5:] while [ 6:] ( $3{x} > 0 ) do
+[ 7:]   $3{x} := $3{x} - 1
+[ 8:]   $4{y} := $4{y} + 1
+[ 9:]
+      od
+[10:] if ( $2{n} <= $4{y} && $2{n} >= $4{y} ) then
+[11:]   $5{bug} := 1
+[12:]
+      else
+[13:]
+      endif
+[14:] $1{$1} := 0
+[15:] return
+[16:]
+
+Property: $5{bug} <= 1 && $5{bug} >= 1
+[ 2:]:
+
+NODE $5{bug} >= 2
+ NODE $2{n} >= 2
+  LEAF top
+   NODE $2{n} >= 1
+    LEAF 9
+     NODE $2{n} >= 0
+      LEAF 6
+       LEAF bottom
+  NODE $5{bug} >= 1
+   NODE $2{n} >= 2
+    LEAF 0.
+     NODE $2{n} >= 1
+      LEAF 0.
+       NODE $2{n} >= 0
+        LEAF 0.
+         LEAF 0.
+    NODE $2{n} >= 2
+     LEAF top
+      NODE $2{n} >= 1
+       LEAF 9
+        NODE $2{n} >= 0
+         LEAF 6
+          LEAF bottom
+
+ --   uncontrolled  -- 
+  $4{y}-$3{x}-$5{bug}-
+  -- constraints   --  
+[|
+$2-1=0|] or  
+[|$2=0|] or  
+
+ -- Join constraint -- 
+[|-$2+1>=0; $2>=0|]
+
+ --   uncontrolled  -- 
+  $3{x}-$5{bug}-
+  -- constraints   --  
+[|$2-1=0|] or  
+[|$2=0|] or  
+
+ -- Join constraint -- 
+[|-$2+1>=0; $2>=0|]
+
+ --   uncontrolled  -- 
+  $4{y}-$5{bug}-
+  -- constraints   --  
+[|
+$2-1=0|] or  
+[|$2=0|] or  
+
+ -- Join constraint -- 
+[|-$2+1>=0; $2>=0|]
+
+ --   uncontrolled  -- 
+  $5{bug}-
+  -- constraints   --  
+[|$2-1=0|] or  
+[|$2=0|] or  
+
+ -- Join constraint -- 
+[|-$2+1>=0; $2>=0|]
+
+ --   uncontrolled  -- 
+  $4{y}-$3{x}-$2{n}-
+  -- constraints   --  
+[|
+$5-1=0|] or  
+
+ -- Join constraint -- 
+[|$5-1=0|]
+
+ --   uncontrolled  -- 
+  $3{x}-$2{n}-
+  -- constraints   --  
+[|$5-1=0|] or  
+
+ -- Join constraint -- 
+[|$5-1=0|]
+
+ --   uncontrolled  -- 
+  $4{y}-$2{n}-
+  -- constraints   --  
+[|$5-1=0|] or  
+
+ -- Join constraint -- 
+[|$5-1=0|]
+
+ --   uncontrolled  -- 
+  $2{n}-
+  -- constraints   --  
+[|$5-1=0|] or  
+
+ -- Join constraint -- 
+[|
+$5-1=0|]
+
+ --   uncontrolled  -- 
+  $4{y}-$3{x}-
+  -- constraints   --  
+[|$2-1=0; $5-2>=0|] or  
+[|$2=0; $5-2>=0|] or  
+[|$5-1=0; $2-2>=0|] or  
+[|$5-1=0;
+                                                                 $2-1=0|] or  
+[|
+$5-1=0; $2=0|] or  
+[|$5-1=0; -$2-1>=0|] or  
+[|$2-1=0; -$5>=0|] or  
+[|$2=0; -$5>=0|] or  
+
+ -- Join constraint -- 
+top
+
+ --   uncontrolled  -- 
+  $3{x}-
+  -- constraints   --  
+[|
+$2-1=0; $5-2>=0|] or  
+[|$2=0; $5-2>=0|] or  
+[|$5-1=0; $2-2>=0|] or  
+[|$5-1=0; $2-1=0|] or  
+[|
+$5-1=0; $2=0|] or  
+[|$5-1=0; -$2-1>=0|] or  
+[|$2-1=0; -$5>=0|] or  
+[|$2=0; -$5>=0|] or  
+
+ -- Join constraint -- 
+top
+
+ --   uncontrolled  -- 
+  $4{y}-
+  -- constraints   --  
+[|
+$2-1=0; $5-2>=0|] or  
+[|$2=0; $5-2>=0|] or  
+[|$5-1=0; $2-2>=0|] or  
+[|$5-1=0; $2-1=0|] or  
+[|
+$5-1=0; $2=0|] or  
+[|$5-1=0; -$2-1>=0|] or  
+[|$2-1=0; -$5>=0|] or  
+[|$2=0; -$5>=0|] or  
+
+ -- Join constraint -- 
+top
+simply reachable ?: true 
+
+
+Analysis Result: UNKNOWN
+
+Done.

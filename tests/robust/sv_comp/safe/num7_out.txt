@@ -1,0 +1,8 @@
+./main.exe
+tests/robust/sv_comp/safe/sv_num7.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/sv_comp/safe/num7.txt

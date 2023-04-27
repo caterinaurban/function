@@ -27,15 +27,15 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
 
   let bwdMap_robust fmt m =
     if !compress then
-      InvMap.iter
-        (fun l a ->
-          Format.fprintf fmt "%a:\n%a\n" label_print l D.robust
-            (D.compress a) )
-        m
+      (*InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l
+        D.robust (D.compress a) ) m*)
+      (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.robust a)
+        2 (InvMap.find 2 m)
     else
-      InvMap.iter
-        (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.robust a)
-        m
+      (*InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l
+        D.robust a) m *)
+      (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.robust a)
+        2 (InvMap.find 2 m)
 
   let bwdMap_print robust fmt m =
     if robust then bwdMap_robust fmt m
@@ -163,12 +163,9 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
     let startfwd = Sys.time () in
     fwdInvMap := ForwardIteratorB.compute (vars, stmts, funcs) main env ;
     let stopfwd = Sys.time () in
-    if not !minimal then (
-      if !timefwd then
-        Format.fprintf !fmt "\nForward Analysis (Time: %f s):\n"
-          (stopfwd -. startfwd)
-      else Format.fprintf !fmt "\nForward Analysis:\n" ;
-      fwdMap_print !fmt !fwdInvMap ) ;
+    (* if not !minimal then ( if !timefwd then Format.fprintf !fmt "\nForward
+       Analysis (Time: %f s):\n" (stopfwd -. startfwd) else Format.fprintf
+       !fmt "\nForward Analysis:\n" ; fwdMap_print !fmt !fwdInvMap ) ; *)
     (* Backward Analysis *)
     if !tracebwd && not !minimal then
       Format.fprintf !fmt "\nBackward Analysis Trace:\n" ;

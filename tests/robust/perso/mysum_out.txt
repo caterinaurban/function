@@ -1,0 +1,94 @@
+./main.exe
+tests/robust/perso/my_sum.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/perso/my_sum.txt
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] $6{i} := 0
+[ 3:] while [ 4:] ( $6{i} < 100 ) do
+[ 5:]   $4{s} := $4{s} + $2{n} * $3{m}
+[ 6:]   $6{i} := $6{i} + 1
+[ 7:]
+      od
+[ 8:] $5{r} := $4{s}
+[ 9:] $1{$1} := 0
+[10:] return
+[11:]
+
+Property: $5{r} >= $2{n}
+[ 2:]:
+
+NODE $2{n}-$5{r} >= 1
+ LEAF bottom
+  LEAF 0.
+
+ --   uncontrolled  -- 
+  $4{s}-$3{m}-$6{i}-
+  -- constraints   --  
+[|
+-$2+$5>=0|] or  
+
+ -- Join constraint -- 
+[|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+  $3{m}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|] or  
+
+ -- Join constraint -- 
+[|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+  $4{s}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|] or  
+
+ -- Join constraint -- 
+[|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+  $6{i}-
+  -- constraints   --  
+[|
+-$2+$5>=0|] or  
+
+ -- Join constraint -- 
+[|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+  $4{s}-$3{m}-
+  -- constraints   --  
+[|-$2+$5>=0|] or  
+
+ -- Join constraint -- 
+[|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+  $3{m}-
+  -- constraints   --  
+[|-$2+$5>=0|] or  
+
+ -- Join constraint -- 
+[|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+  $4{s}-
+  -- constraints   --  
+[|
+-$2+$5>=0|] or  
+
+ -- Join constraint -- 
+[|-$2+$5>=0|]
+simply reachable ?: true 
+
+
+Analysis Result: UNKNOWN
+
+Done.

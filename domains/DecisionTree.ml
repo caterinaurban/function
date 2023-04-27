@@ -1546,6 +1546,8 @@ let   bitvec v s  =
 *)
 let rec robust fmt t =   
     
+    print_tree t.vars fmt t.tree;
+    print_endline "";
     let bwAssExpr x =  ( AbstractSyntax.A_var  x, A_RANDOM ) in
     let rec unconstraint t cns   = match t with 
       | Bot -> false,[cns]
@@ -1564,7 +1566,16 @@ let rec robust fmt t =
     
     let v = (List.tl t.vars) in
   
-    
+    let rec reachable  t =   match t with 
+    | Bot -> false
+    | Leaf f when F.isBot f -> false
+    | Leaf f when F.isTop f -> false
+    | Leaf f -> true
+    | Node ((c,nc),l,r) -> let b  = reachable  l  in
+                           let b2 = reachable r  in 
+                           b  ||  b2 
+    in   
+    let reachable = reachable t.tree in    
   
     let rec aux vars acc t   = 
       
@@ -1574,12 +1585,14 @@ let rec robust fmt t =
       | x::[] ->        
         
         let t' = (bwdAssign t (bwAssExpr x)) in 
+        
         let b,cons = unconstraint t'.tree [] in 
         let lft = if b then               
           [(x::acc),cons]
         else
           []
         in
+        
         let b,cons = unconstraint t.tree [] in 
         let rght = 
           if b then               
@@ -1589,8 +1602,13 @@ let rec robust fmt t =
           in 
           lft@rght
       | x::q -> 
+        
         let t' = (bwdAssign t (bwAssExpr x)) in 
+
         let l1 = (aux q (x::acc) t') in 
+        
+        
+        
         let l2 = (aux q acc t) 
         in l1 @ l2 
         
@@ -1602,13 +1620,26 @@ let rec robust fmt t =
     let transform  clist arr = List.iteri (fun i c -> Lincons1.array_set arr i c)  clist in
     let  _  = List.iteri  (fun i (l,ar) -> let cons = snd (List.nth uncontrolled i ) in  List.iteri (fun k c ->transform (c) ar.(k)) cons) uarr  in
     let uarr =  List.map (fun (l,a) -> (l,Array.map (fun a -> (Abstract1.of_lincons_array manager t.env a)) a)) uarr in 
-    List.iter (fun (l,cns) -> if(l <> [] )  then 
-                              let _ =  Printf.printf "\n uncontrolled : "; List.iter (fun x ->Printf.printf "%s{%s}-" (x.varId) (x.varName)) l in 
-                              let _ = Printf.printf "\n constraints: " in
-                              let _ = Array.iter (fun c -> Abstract1.print Format.std_formatter c;  print_endline " or  ") cns in
-                              () 
-                              else ();
-                              print_endline "")  uarr ; 
+    let join =  List.map (fun (l,a) -> (l, a,Abstract1.join_array manager a )) uarr in 
+    
+    List.iter (fun (l,cns,j) -> 
+                              match l with 
+                              | [] -> Printf.printf "simply reachable ?: %s \n" (string_of_bool reachable) 
+                              | _  -> 
+                              let _ =  Printf.printf "\n --   uncontrolled  -- \n  "; List.iter (fun x ->Printf.printf "%s{%s}-" (x.varId) (x.varName)) l in 
+                              let _ = Printf.printf "\n  -- constraints   --  \n" in
+                             let _ = Array.iter (fun c -> Abstract1.print Format.std_formatter c;  print_endline " or  ") cns in
+                              print_endline "";
+                              print_endline " -- Join constraint -- ";
+                              let _ =  Abstract1.print Format.std_formatter j in  
+                              print_endline ""
+                              )  join ; 
+     (*List.iter (fun (l,cns) -> 
+                                let _ =  Printf.printf "\n uncontrolled : "; List.iter (fun x ->Printf.printf "%s{%s}-" (x.varId) (x.varName)) l in 
+                                let _ = Printf.printf "\n constraints: " in
+                                let _ = Abstract1.print Format.std_formatter  cns in
+                                print_endline "")  join ;*)
+
    (* List.iter (fun (l,cns) -> if(l <> [] )  then 
                                 let _ =  Printf.printf "\n uncontrolled : "; List.iter (fun x ->Printf.printf "%s{%s}-" (x.varId) (x.varName)) l in 
                                 let _ = Printf.printf "\n constraints: " in
