@@ -170,7 +170,8 @@ module CTLIterator (D : RANKING_FUNCTION) = struct
      abstract state to each statement of a program *)
   type inv = D.t InvMap.t
 
-  let printInv ?fwdInvOpt fmt (inv : inv) =
+  let printInv ?fwdInvOpt fmt (inv : inv)  =
+  
     let inv = if !compress then InvMap.map D.compress inv else inv in
     let printState l a =
       if !dot then
@@ -625,6 +626,7 @@ module CTLIterator (D : RANKING_FUNCTION) = struct
     let print_inv property inv =
       if not !minimal then (
         Format.fprintf !fmt "Property: %a\n\n" print_ctl_property property ;
+
         printInv !fmt inv )
     in
     let rec inv (property : ctl_property) : inv =

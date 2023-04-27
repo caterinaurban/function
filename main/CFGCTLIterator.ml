@@ -47,13 +47,21 @@ module CFGCTLIterator (D : RANKING_FUNCTION) = struct
     in
     NodeMap.iter printState inv
 
-  let printInv fmt (inv : inv) =
+  let printInv fmt (inv : inv)  robust =
+    let print = if robust then D.robust else D.print in
     let inv = if !compress then NodeMap.map D.compress inv else inv in
-    let printState node a =
-      if !dot then
-        Format.fprintf fmt "[%d:]:\n%a\nDOT: %a\n" node.node_id D.print a
-          D.print_graphviz_dot a
-      else Format.fprintf fmt "[%d:]:\n%a\n" node.node_id D.print a
+    let printState  node a =   if !dot then
+      Format.fprintf fmt "[%d:]:\n%a\nDOT: %a\n" node.node_id print a
+        D.print_graphviz_dot a
+    else Format.fprintf fmt "[%d:]:\n%a\n" node.node_id print a
+    in
+    let printState =
+      if robust then 
+        fun  node a -> if (node.node_id = 1 ) then      
+                        printState node a 
+                       else ()
+      else                        
+        printState
     in
     NodeMap.iter printState inv
 
@@ -291,14 +299,14 @@ module CFGCTLIterator (D : RANKING_FUNCTION) = struct
     in
     abstract_transformer
 
-  let compute (cfg : cfg) (main : Cfg.func) (loop_heads : bool NodeMap.t)
+  let compute (cfg : cfg) (main : Cfg.func) (loop_heads : bool NodeMap.t)  (robust)
       (property : ctl_property) : inv =
     let backwardAnalysis = CFGInterpreter.backward_analysis in
     let env, vars = Conversion.env_vars_of_cfg cfg in
     let print_inv property inv =
       if not !minimal then (
         Printf.printf "Property: %a\n\n" print_ctl_property property ;
-        printInv !fmt inv )
+        printInv !fmt inv robust )
     in
     let bot = D.bot env vars in
     let zero = D.zero env vars in
@@ -399,10 +407,10 @@ module CFGCTLIterator (D : RANKING_FUNCTION) = struct
     in
     inv property
 
-  let analyze ?(precondition = CFG_bool_const true) (cfg : cfg)
+  let analyze ?(precondition = CFG_bool_const true) (cfg : cfg) robust
       (main : Cfg.func) (loop_heads : bool NodeMap.t)
       (property : ctl_property) =
-    let inv = compute cfg main loop_heads property in
+    let inv = compute cfg main loop_heads  robust property   in
     let programInvariant = NodeMap.find main.func_entry inv in
     let precondition = Conversion.of_bool_expr precondition in
     D.defined ~condition:precondition programInvariant
