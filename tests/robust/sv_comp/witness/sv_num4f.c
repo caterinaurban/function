@@ -7,6 +7,7 @@ int main()
   int bug ;
   bug = 0 ;
   y = 0 ; 
+  if (n <  0) return 0 ; 
   
   x=n;
   while(x>0)

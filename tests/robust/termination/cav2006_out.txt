@@ -1,0 +1,89 @@
+./main.exe
+-domain
+boxes
+-joinbwd
+3
+-ordinals
+1
+-robust_termination
+tests/cav2006.c
+
+Abstract Syntax:
+[ 1:]
+void main( ):
+[ 2:] while [ 3:] ( $1{x} >= 0 ) do
+[ 4:]   if ( $2{y} <= 50 ) then
+[ 5:]     $1{x} := $1{x} + 1
+[ 6:]
+        else
+[ 7:]     $1{x} := $1{x} - 1
+[ 8:]
+        endif
+[ 9:]   $2{y} := $2{y} + 1
+[10:]
+      od
+[11:]
+
+Forward Analysis:
+[ 1:]: top
+[ 2:]: top
+[ 3:]: top
+[ 4:]: $1{x} >= 0
+[ 5:]: -$2{y} >= -50 && $1{x} >= 0
+[ 6:]: -$2{y} >= -50 && $1{x} >= 1
+[ 7:]: $2{y} >= 51 && $1{x} >= 0
+[ 8:]: $2{y} >= 51 && $1{x} >= -1
+[ 9:]: $1{x} >= -1
+[10:]: $1{x} >= -1
+[11:]: -$1{x} >= 1
+
+Backward Analysis:
+[ 2:]:
+
+NODE $2{y} >= 51
+ NODE $1{x} >= 0
+  LEAF 4$1{x}+5
+   LEAF 1
+  NODE $2{y} >= 50
+   NODE $1{x} >= 0
+    LEAF 4$1{x}+13
+     LEAF 1
+    NODE $2{y} >= 49
+     NODE $1{x} >= 0
+      LEAF 4$1{x}+25
+       LEAF 1
+      NODE $1{x} >= 0
+       LEAF 4$1{x}-8$2{y}+421
+        LEAF 1
+ --   uncontrolled  -- 
+ $2{y}-$1{x}-
+  -- constraints   --  
+top
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $1{x}-
+  -- constraints   --  
+[|$2-51>=0|]
+[|
+                                $2-50=0|]
+[|$2-49=0|]
+[|-$2+48>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $2{y}-
+  -- constraints   --  
+[|$1>=0|]
+[|-$1-1>=0|]
+
+ -- Join constraint --  top
+
+simply reachable ?: true 
+
+
+Analysis Result: TRUE
+
+Done.

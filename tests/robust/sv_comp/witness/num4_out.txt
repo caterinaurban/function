@@ -12,21 +12,28 @@ Abstract Syntax:
 int main( ):
 [ 2:] $5{bug} := 0
 [ 3:] $4{y} := 0
-[ 4:] $3{x} := $2{n}
-[ 5:] while [ 6:] ( $3{x} > 0 ) do
-[ 7:]   $3{x} := $3{x} - 1
-[ 8:]   $4{y} := $4{y} + 1
-[ 9:]
-      od
-[10:] if ( $2{n} <= $4{y} && $2{n} >= $4{y} ) then
-[11:]   $5{bug} := 1
-[12:]
+[ 4:] if ( $2{n} < 0 ) then
+[ 5:]   $1{$1} := 0
+[ 6:]   return
+[ 7:]
       else
-[13:]
+[ 8:]
       endif
-[14:] $1{$1} := 0
-[15:] return
-[16:]
+[ 9:] $3{x} := $2{n}
+[10:] while [11:] ( $3{x} > 0 ) do
+[12:]   $3{x} := $3{x} - 1
+[13:]   $4{y} := $4{y} + 1
+[14:]
+      od
+[15:] if ( $2{n} <= $4{y} && $2{n} >= $4{y} ) then
+[16:]   $5{bug} := 1
+[17:]
+      else
+[18:]
+      endif
+[19:] $1{$1} := 0
+[20:] return
+[21:]
 
 Property: $5{bug} <= 1 && $5{bug} >= 1
 [ 2:]:
@@ -35,9 +42,9 @@ NODE $5{bug} >= 2
  NODE $2{n} >= 2
   LEAF top
    NODE $2{n} >= 1
-    LEAF 9
+    LEAF 10
      NODE $2{n} >= 0
-      LEAF 6
+      LEAF 7
        LEAF bottom
   NODE $5{bug} >= 1
    NODE $2{n} >= 2
@@ -50,9 +57,9 @@ NODE $5{bug} >= 2
     NODE $2{n} >= 2
      LEAF top
       NODE $2{n} >= 1
-       LEAF 9
+       LEAF 10
         NODE $2{n} >= 0
-         LEAF 6
+         LEAF 7
           LEAF bottom
 
  --   uncontrolled  -- 

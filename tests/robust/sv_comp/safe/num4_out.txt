@@ -12,21 +12,28 @@ Abstract Syntax:
 int main( ):
 [ 2:] $4{y} := 0
 [ 3:] $5{bug} := 0
-[ 4:] $3{x} := $2{n}
-[ 5:] while [ 6:] ( $3{x} > 0 ) do
-[ 7:]   $3{x} := $3{x} - 1
-[ 8:]   $4{y} := $4{y} + 1
-[ 9:]
-      od
-[10:] if ( $4{y} < $2{n} || $4{y} > $2{n} ) then
-[11:]   $5{bug} := 1
-[12:]
+[ 4:] if ( $2{n} < 0 ) then
+[ 5:]   $1{$1} := 0
+[ 6:]   return
+[ 7:]
       else
-[13:]
+[ 8:]
       endif
-[14:] $1{$1} := 0
-[15:] return
-[16:]
+[ 9:] $3{x} := $2{n}
+[10:] while [11:] ( $3{x} > 0 ) do
+[12:]   $3{x} := $3{x} - 1
+[13:]   $4{y} := $4{y} + 1
+[14:]
+      od
+[15:] if ( $4{y} < $2{n} || $4{y} > $2{n} ) then
+[16:]   $5{bug} := 1
+[17:]
+      else
+[18:]
+      endif
+[19:] $1{$1} := 0
+[20:] return
+[21:]
 
 Property: $5{bug} <= 1 && $5{bug} >= 1
 [ 2:]:
@@ -38,7 +45,7 @@ NODE $5{bug} >= 2
     LEAF bottom
      NODE $2{n} >= 0
       LEAF bottom
-       LEAF 6
+       LEAF bottom
   NODE $5{bug} >= 1
    NODE $2{n} >= 2
     LEAF 0.
@@ -53,118 +60,156 @@ NODE $5{bug} >= 2
        LEAF bottom
         NODE $2{n} >= 0
          LEAF bottom
-          LEAF 6
-
+          LEAF bottom
  --   uncontrolled  -- 
-  $4{y}-$3{x}-$5{bug}-
+ $4{y}-$3{x}-$2{n}-$1{$1}-
   -- constraints   --  
 [|
--$2-1>=0|] or  
+                                                   $5-1=0|]
 
- -- Join constraint -- 
-[|-$2-1>=0|]
-
- --   uncontrolled  -- 
-  $3{x}-$5{bug}-
-  -- constraints   --  
-[|-$2-1>=0|] or  
-
- -- Join constraint -- 
-[|-$2-1>=0|]
+ -- Join constraint --  [|$5-1=0|]
 
  --   uncontrolled  -- 
-  $4{y}-$5{bug}-
-  -- constraints   --  
-[|-$2-1>=0|] or  
-
- -- Join constraint -- 
-[|-$2-1>=0|]
-
- --   uncontrolled  -- 
-  $5{bug}-
+ $3{x}-$2{n}-$1{$1}-
   -- constraints   --  
 [|
--$2-1>=0|] or  
+                                             $5-1=0|]
 
- -- Join constraint -- 
-[|-$2-1>=0|]
+ -- Join constraint --  [|$5-1=0|]
 
  --   uncontrolled  -- 
-  $4{y}-$3{x}-$2{n}-
+ $4{y}-$2{n}-$1{$1}-
   -- constraints   --  
-[|$5-1=0|] or  
+[|
+                                             $5-1=0|]
 
- -- Join constraint -- 
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$1{$1}-
+  -- constraints   --  
 [|$5-1=0|]
 
- --   uncontrolled  -- 
-  $3{x}-$2{n}-
-  -- constraints   --  
-[|$5-1=0|] or  
-
- -- Join constraint -- 
-[|$5-1=0|]
+ -- Join constraint --  [|$5-1=0|]
 
  --   uncontrolled  -- 
-  $4{y}-$2{n}-
-  -- constraints   --  
-[|$5-1=0|] or  
-
- -- Join constraint -- 
-[|
-$5-1=0|]
-
- --   uncontrolled  -- 
-  $2{n}-
-  -- constraints   --  
-[|$5-1=0|] or  
-
- -- Join constraint -- 
-[|$5-1=0|]
-
- --   uncontrolled  -- 
-  $4{y}-$3{x}-
-  -- constraints   --  
-[|-$2-1>=0; $5-2>=0|] or  
-[|$5-1=0; $2-2>=0|] or  
-[|
-$5-1=0; $2-1=0|] or  
-[|$5-1=0; $2=0|] or  
-[|$5-1=0; -$2-1>=0|] or  
-[|-$2-1>=0; -$5>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $3{x}-
+ $4{y}-$3{x}-$1{$1}-
   -- constraints   --  
 [|
--$2-1>=0; $5-2>=0|] or  
-[|$5-1=0; $2-2>=0|] or  
-[|$5-1=0; $2-1=0|] or  
-[|$5-1=0; $2=0|] or  
-[|
-$5-1=0; -$2-1>=0|] or  
-[|-$2-1>=0; -$5>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $4{y}-
-  -- constraints   --  
-[|-$2-1>=0; $5-2>=0|] or  
+                                             $5-1=0; $2-2>=0|]
 [|$5-1=0;
-                                                                $2-2>=0|] or  
+                                                                 $2-1=0|]
 [|
-$5-1=0; $2-1=0|] or  
-[|$5-1=0; $2=0|] or  
-[|$5-1=0; -$2-1>=0|] or  
-[|-$2-1>=0; -$5>=0|] or  
+                                             $5-1=0; $2=0|]
+[|$5-1=0;
+                                                              -$2-1>=0|]
 
- -- Join constraint -- 
-top
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $3{x}-$1{$1}-
+  -- constraints   --  
+[|$5-1=0;
+                                                                 $2-2>=0|]
+[|
+                                       $5-1=0; $2-1=0|]
+[|$5-1=0; $2=0|]
+[|
+                                       $5-1=0; -$2-1>=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $4{y}-$1{$1}-
+  -- constraints   --  
+[|$5-1=0;
+                                                                 $2-2>=0|]
+[|
+                                       $5-1=0; $2-1=0|]
+[|$5-1=0; $2=0|]
+[|
+                                       $5-1=0; -$2-1>=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|$5-1=0; $2-2>=0|]
+[|
+                                 $5-1=0; $2-1=0|]
+[|$5-1=0; $2=0|]
+[|
+                                 $5-1=0; -$2-1>=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $4{y}-$3{x}-$2{n}-
+  -- constraints   --  
+[|
+                                            $5-1=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $3{x}-$2{n}-
+  -- constraints   --  
+[|$5-1=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $4{y}-$2{n}-
+  -- constraints   --  
+[|$5-1=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-
+  -- constraints   --  
+[|$5-1=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $4{y}-$3{x}-
+  -- constraints   --  
+[|$5-1=0;
+                                                                $2-2>=0|]
+[|
+                                      $5-1=0; $2-1=0|]
+[|$5-1=0; $2=0|]
+[|
+                                      $5-1=0; -$2-1>=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $3{x}-
+  -- constraints   --  
+[|$5-1=0; $2-2>=0|]
+[|
+                                $5-1=0; $2-1=0|]
+[|$5-1=0; $2=0|]
+[|$5-1=0;
+                                                                    -$2-1>=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $4{y}-
+  -- constraints   --  
+[|$5-1=0; $2-2>=0|]
+[|
+                                $5-1=0; $2-1=0|]
+[|$5-1=0; $2=0|]
+[|$5-1=0;
+                                                                    -$2-1>=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
 simply reachable ?: true 
 
 

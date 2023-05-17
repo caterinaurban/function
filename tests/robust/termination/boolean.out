@@ -1,0 +1,76 @@
+./main.exe
+-domain
+polyhedra
+-ordinals
+3
+-retrybwd
+3
+-robust_termination
+tests/boolean.c
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] while [ 3:] ( $2{x} < 0 || $2{x} > 0 ) do
+[ 4:]   if ( $2{x} > 0 ) then
+[ 5:]     $2{x} := $2{x} - 1
+[ 6:]
+        else
+[ 7:]     $2{x} := $2{x} + 1
+[ 8:]
+        endif
+[ 9:]
+      od
+[10:] $1{$1} := 0
+[11:] return
+[12:]
+
+Forward Analysis:
+[ 1:]: top
+[ 2:]: top
+[ 3:]: top
+[ 4:]: top
+[ 5:]: $2{x} >= 1
+[ 6:]: $2{x} >= 0
+[ 7:]: -$2{x} >= 0
+[ 8:]: -$2{x} >= -1
+[ 9:]: top
+[10:]: $2{x} == 0
+[11:]: $1{$1} == 0 && $2{x} == 0
+[12:]: bottom
+
+Backward Analysis:
+[ 2:]:
+
+NODE $2{x} >= 1
+ LEAF 3$2{x}+2
+  LEAF -3$2{x}+2
+ --   uncontrolled  -- 
+ $2{x}-$1{$1}-
+  -- constraints   --  
+top
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|$2-1>=0|]
+[|
+                                 -$2>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $2{x}-
+  -- constraints   --  
+top
+
+ -- Join constraint --  top
+
+simply reachable ?: true 
+
+
+Analysis Result: TRUE
+
+Done.

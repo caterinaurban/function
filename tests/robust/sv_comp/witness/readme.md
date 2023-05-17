@@ -7,8 +7,16 @@ Sinon résultat bon
 
 Check d'égualité. Fonctionne bien
 
+# Num 8 
+Ras . Fonctionne bien
+
 # Sum1 
 Pb de précision dans le tree. Mais à priori le résultat est bon . Bug reachable que si on contrôle tout. 
 
 # Sum2 
 Pb de précision dans le tree. Mais à priori le résultat est bon . Bug reachable que si on contrôle tout. 
+
+
+# For 
+  Trivially obtained 
+ 

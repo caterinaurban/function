@@ -1,0 +1,52 @@
+./main.exe
+-domain
+boxes
+-joinbwd
+3
+-ordinals
+1
+-robust_termination
+tests/recursion.c
+
+Abstract Syntax:
+[ 1:]
+int main( int $2{x}; ):
+[ 2:] if ( $2{x} <= 0 ) then
+[ 3:]   $1{$1} := 0
+[ 4:]   return
+[ 5:]
+      else
+[ 6:]   main( $2{x} := $2{x} - 1; )
+[ 7:]
+      endif
+[ 8:]
+
+Forward Analysis:
+[ 1:]: top
+[ 2:]: top
+[ 3:]: -$2{x} >= 0
+[ 4:]: -$2{x} >= 0 && $1{$1} == 0
+[ 5:]: bottom
+[ 6:]: $2{x} >= 1
+[ 7:]: top
+[ 8:]: top
+
+Backward Analysis:
+[ 2:]:
+
+NODE $2{x} >= 1
+ LEAF bottom
+  LEAF 2
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|-$2>=0|]
+
+ -- Join constraint --  [|-$2>=0|]
+
+simply reachable ?: true 
+
+
+Analysis Result: UNKNOWN
+
+Done.

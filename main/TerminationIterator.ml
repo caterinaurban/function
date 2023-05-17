@@ -32,6 +32,12 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
 
   let addBwdInv l (a : D.t) = bwdInvMap := InvMap.add l a !bwdInvMap
 
+
+
+  let bwdMap_robust fmt m =
+    InvMap.iter (fun l a -> if l == 2 then Format.fprintf fmt "%a:\n%a\n" label_print l
+        D.robust (D.compress a)  ) m
+    
   let bwdMap_print fmt m =
     InvMap.iter
       (fun l a -> Format.fprintf fmt "%a: %a\n" label_print l D.print a)
@@ -264,7 +270,7 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
         initStm env vars s ;
         initBlk env vars b
 
-  let analyze (vars, stmts, funcs) main =
+  let analyze (vars, stmts, funcs) main robust =
     let rec aux xs env =
       match xs with
       | [] -> env
@@ -308,6 +314,6 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
         Format.fprintf !fmt "\nBackward Analysis (Time: %f s):\n"
           (stopbwd -. startbwd)
       else Format.fprintf !fmt "\nBackward Analysis:\n" ;
-      bwdMap_print !fmt !bwdInvMap ) ;
+        if robust then  bwdMap_robust !fmt !bwdInvMap else bwdMap_print !fmt !bwdInvMap  ) ;
     D.defined i
 end

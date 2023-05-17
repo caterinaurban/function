@@ -6,16 +6,16 @@ int main(){
    int i; 
    int n; 
    int j;
- 
+   
+   
    if (k){
       n=0;
    } 
    else{
       n=1023;
    }
-
    i=0;
- 
+   
    while ( i <= n){
       i++;
       j= j+2;

@@ -1,0 +1,105 @@
+./main.exe
+-domain
+boxes
+-joinbwd
+2
+-ordinals
+1
+-robust_termination
+tests/cacm2009a.c
+
+Abstract Syntax:
+[ 1:]
+void main( ):
+[ 2:] while [ 3:] ( $1{x} > 0 && $2{y} > 0 ) do
+[ 4:]   if ( ? ) then
+[ 5:]     $1{x} := $1{x} - 1
+[ 6:]     $2{y} := $2{y} + 1
+[ 7:]
+        else
+[ 8:]     $2{y} := $2{y} - 1
+[ 9:]
+        endif
+[10:]
+      od
+[11:]
+
+Forward Analysis:
+[ 1:]: top
+[ 2:]: top
+[ 3:]: top
+[ 4:]: $2{y} >= 1 && $1{x} >= 1
+[ 5:]: $2{y} >= 1 && $1{x} >= 1
+[ 6:]: $2{y} >= 1 && $1{x} >= 0
+[ 7:]: $2{y} >= 2 && $1{x} >= 0
+[ 8:]: $2{y} >= 1 && $1{x} >= 1
+[ 9:]: $2{y} >= 0 && $1{x} >= 1
+[10:]: $2{y} >= 0 && $1{x} >= 0
+[11:]: top
+
+Backward Analysis:
+[ 2:]:
+
+Remove x 
+
+NODE $2{y} >= 1
+ LEAF  (1)⍵ + 2
+  LEAF 2
+ Remove y 
+
+LEAF  (1)⍵ + 3
+ Reste y 
+
+NODE $2{y} >= 1
+ LEAF  (1)⍵ + 2
+  LEAF 2
+ Reste x 
+
+NODE $2{y} >= 1
+ NODE $1{x} >= 1
+  LEAF 7$1{x}+3$2{y}-5
+   LEAF 1
+  LEAF 1
+ Remove y 
+
+NODE $1{x} >= 1
+ LEAF  (1)⍵ + 2
+  LEAF 2
+ Reste y 
+
+NODE $2{y} >= 1
+ NODE $1{x} >= 1
+  LEAF 7$1{x}+3$2{y}-5
+   LEAF 1
+  LEAF 1
+ --   uncontrolled  -- 
+ $2{y}-$1{x}-
+  -- constraints   --  
+top
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $1{x}-
+  -- constraints   --  
+[|$2-1>=0|]
+[|
+                                -$2>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $2{y}-
+  -- constraints   --  
+[|$1-1>=0|]
+[|
+                                -$1>=0|]
+
+ -- Join constraint --  top
+
+simply reachable ?: true 
+
+
+Analysis Result: TRUE
+
+Done.

@@ -1,0 +1,15 @@
+OCAMLRUNPARAM=b  ./main.exe  -domain polyhedra -ordinals 3 -robust_termination  tests/boolean.c > tests/robust/termination/boolean.out
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 2  -ordinals 1 -robust_termination   tests/cacm2009a.c > tests/robust/termination/cacma_out.txt
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 3  -ordinals 1 -robust_termination   tests/cacm2009a.c > tests/robust/termination/cacmb_out.txt
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 3  -ordinals 1 -robust_termination   tests/cav2006.c > tests/robust/termination/cav2006_out.txt
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 3  -ordinals 1 -robust_termination   tests/euclid.c > tests/robust/termination/euclid_out.txt
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 3  -ordinals 1 -robust_termination   tests/example0.c > tests/robust/termination/example0_out.txt
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 3  -ordinals 1 -robust_termination   tests/example1a.c > tests/robust/termination/example1a_out.txt
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 3  -ordinals 1 -robust_termination   tests/example2.c > tests/robust/termination/example2_out.t
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 3  -ordinals 1 -robust_termination   tests/mccarthy91.c > tests/robust/termination/mccarthy91_out.t
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 3  -ordinals 1 -robust_termination   tests/postdecrement.c > tests/robust/termination/postdecrement.out
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 3  -ordinals 1 -robust_termination   tests/recursion.c > tests/robust/termination/recursion.out
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 3  -ordinals 1 -robust_termination   tests/sas2010.c > tests/robust/termination/sas2010.out
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 3  -ordinals 1 -robust_termination   tests/sas2014a.c > tests/robust/termination/sas2014a.out
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 3  -ordinals 1 -robust_termination   tests/sas2014b.c > tests/robust/termination/sas2014b.out
+OCAMLRUNPARAM=b  ./main.exe -domain boxes -joinbwd 3  -ordinals 1 -robust_termination   tests/sas2014c.c > tests/robust/termination/sas2014c.out

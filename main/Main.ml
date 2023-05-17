@@ -211,6 +211,10 @@ let parse_args () =
         property := x ;
         robust := true ;
         doit r
+    | "-robust_termination" :: r ->
+          analysis := "termination" ;
+          robust := true ;
+          doit r
     | "-recurrence" :: x :: r ->
         (* recurrence analysis *)
         analysis := "recurrence" ;
@@ -354,7 +358,8 @@ let termination () =
         else TerminationPolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in
-  run_analysis analysis_function program ()
+
+  run_analysis (fun a b -> analysis_function a b !robust)  program ()
 
 let guarantee () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified") ;

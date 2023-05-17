@@ -6,13 +6,14 @@ int main() {
   int sn;
   int bug1 ; 
   int bug2;
+  if ( n >= 0) return 0;
   sn = 0 ;
-  n = [-1000,9999];
+  
   bug1 = 2 * n ;
   bug2 = 0 ;
   
   
-  for(i=1; i<=n; i++) {
+  for(i=0; i<=n; i++) {
     sn = sn + 2;
   }
   bug1 = sn ;

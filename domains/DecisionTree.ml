@@ -1544,10 +1544,10 @@ let   bitvec v s  =
 
    todo : bench 
 *)
-let rec robust fmt t =   
+let rec robust fmt t  =   
     
     print_tree t.vars fmt t.tree;
-    print_endline "";
+    Format.print_newline () ; 
     let bwAssExpr x =  ( AbstractSyntax.A_var  x, A_RANDOM ) in
     let rec unconstraint t cns   = match t with 
       | Bot -> false,[cns]
@@ -1564,7 +1564,7 @@ let rec robust fmt t =
    
     in  
     
-    let v = (List.tl t.vars) in
+    let v =  t.vars in
   
     let rec reachable  t =   match t with 
     | Bot -> false
@@ -1585,14 +1585,16 @@ let rec robust fmt t =
       | x::[] ->        
         
         let t' = (bwdAssign t (bwAssExpr x)) in 
-        
+        (*Format.printf "\n Remove %s \n" x.varName; 
+        print_tree t.vars fmt t'.tree ; *)
         let b,cons = unconstraint t'.tree [] in 
         let lft = if b then               
           [(x::acc),cons]
         else
           []
         in
-        
+        (*Format.printf "\n Reste %s \n" x.varName;
+        print_tree t.vars fmt t.tree ; *)
         let b,cons = unconstraint t.tree [] in 
         let rght = 
           if b then               
@@ -1604,36 +1606,46 @@ let rec robust fmt t =
       | x::q -> 
         
         let t' = (bwdAssign t (bwAssExpr x)) in 
-
+        (*Format.printf "\nRemove %s \n" x.varName; 
+        print_tree t.vars fmt t'.tree ; *)
         let l1 = (aux q (x::acc) t') in 
-        
-        
-        
+        (*Format.printf "\n Reste %s \n" x.varName;
+        print_tree t.vars fmt t.tree ; *)
         let l2 = (aux q acc t) 
         in l1 @ l2 
         
     in
         
+    let transform  clist arr = List.iteri (fun i c -> Lincons1.array_set arr i c)  clist in
 
     let uncontrolled = aux v [] t in
     let uarr = List.map  (fun (l,c) ->(l,Array.of_list (List.map (fun c ->  Lincons1.array_make t.env (List.length c)) c) )) uncontrolled in
-    let transform  clist arr = List.iteri (fun i c -> Lincons1.array_set arr i c)  clist in
+    
     let  _  = List.iteri  (fun i (l,ar) -> let cons = snd (List.nth uncontrolled i ) in  List.iteri (fun k c ->transform (c) ar.(k)) cons) uarr  in
+    
     let uarr =  List.map (fun (l,a) -> (l,Array.map (fun a -> (Abstract1.of_lincons_array manager t.env a)) a)) uarr in 
+    
     let join =  List.map (fun (l,a) -> (l, a,Abstract1.join_array manager a )) uarr in 
     
-    List.iter (fun (l,cns,j) -> 
-                              match l with 
-                              | [] -> Printf.printf "simply reachable ?: %s \n" (string_of_bool reachable) 
+    Format.printf "@[";
+    List.iter (fun (l,cns,j) -> Format.printf "@[";
+                              let _ = match l with 
+                              | [] -> Format.printf "@[simply reachable ?: %b @]\n" (reachable) 
                               | _  -> 
-                              let _ =  Printf.printf "\n --   uncontrolled  -- \n  "; List.iter (fun x ->Printf.printf "%s{%s}-" (x.varId) (x.varName)) l in 
-                              let _ = Printf.printf "\n  -- constraints   --  \n" in
-                             let _ = Array.iter (fun c -> Abstract1.print Format.std_formatter c;  print_endline " or  ") cns in
-                              print_endline "";
-                              print_endline " -- Join constraint -- ";
+                                
+                              let _ =  Format.printf "@[ --   uncontrolled  -- \n "; List.iter (fun x ->Format.printf "%s{%s}-" (x.varId) (x.varName)) l; Format.printf "@]\n" in 
+                              
+                              let _ = Format.printf "@[  -- constraints   --  \n" in
+                              let _ = Array.iter (fun c -> Abstract1.print Format.std_formatter c;Format.printf "\n") cns in
+                              Format.print_newline ();
+                              Format.printf "@[ -- Join constraint --  ";
                               let _ =  Abstract1.print Format.std_formatter j in  
-                              print_endline ""
+                              Format.printf "@]\n"      in
+                              Format.printf "@]";  
+                              Format.print_newline ();
                               )  join ; 
+                              
+    Format.printf "@]";
      (*List.iter (fun (l,cns) -> 
                                 let _ =  Printf.printf "\n uncontrolled : "; List.iter (fun x ->Printf.printf "%s{%s}-" (x.varId) (x.varName)) l in 
                                 let _ = Printf.printf "\n constraints: " in
@@ -1649,8 +1661,7 @@ let rec robust fmt t =
                                 print_endline "")  uncontrolled ; *)
     (*Printf.printf "ici : len %d \n" (List.length !mem );
     List.iter (fun (l) -> List.iter (fun (x) ->Printf.printf  " %s - " x.varName ) l;    print_endline " ") !mem ;*)
-    print_newline 
-    ()
+    
     
     
     

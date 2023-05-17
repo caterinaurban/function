@@ -1,0 +1,99 @@
+./main.exe
+-domain
+boxes
+-joinbwd
+2
+-ordinals
+1
+-termination
+tests/example0.c
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] while [ 3:] ( $2{x} <= 10 ) do
+[ 4:]   if ( $2{x} <= 9 ) then
+[ 5:]     $2{x} := $2{x} + 2
+[ 6:]
+        else
+[ 7:]
+        endif
+[ 8:]
+      od
+[ 9:] $1{$1} := 0
+[10:] return
+[11:]
+
+Forward Analysis:
+[ 1:]: top
+[ 2:]: top
+[ 3:]: top
+[ 4:]: -$2{x} >= -10
+[ 5:]: -$2{x} >= -9
+[ 6:]: -$2{x} >= -11
+[ 7:]: $2{x} == 10
+[ 8:]: -$2{x} >= -11
+[ 9:]: $2{x} >= 11
+[10:]: $2{x} >= 11 && $1{$1} == 0
+[11:]: bottom
+
+Backward Analysis:
+[ 1:]: -$2{x} >= -7 ? top
+$2{x} == 8 ? bottom
+$2{x} == 9 ? 5
+$2{x} == 10 ? bottom
+$2{x} >= 11 ? 2
+
+[ 2:]: -$2{x} >= -7 ? top
+$2{x} == 8 ? bottom
+$2{x} == 9 ? 5
+$2{x} == 10 ? bottom
+$2{x} >= 11 ? 2
+
+[ 3:]: -$2{x} >= -7 ? top
+$2{x} == 8 ? bottom
+$2{x} == 9 ? 5
+$2{x} == 10 ? bottom
+$2{x} >= 11 ? 2
+
+[ 4:]: -$2{x} >= -5 ? top
+$2{x} == 6 ? bottom
+$2{x} == 7 ? 7
+$2{x} == 8 ? bottom
+$2{x} == 9 ? 4
+$2{x} == 10 ? bottom
+$2{x} >= 11 ? 3
+
+[ 5:]: -$2{x} >= -5 ? top
+$2{x} == 6 ? bottom
+$2{x} == 7 ? 6
+$2{x} == 8 ? bottom
+$2{x} >= 9 ? 3
+
+[ 6:]: -$2{x} >= -7 ? top
+$2{x} == 8 ? bottom
+$2{x} == 9 ? 5
+$2{x} == 10 ? bottom
+$2{x} >= 11 ? 2
+
+[ 7:]: -$2{x} >= -7 ? top
+$2{x} == 8 ? bottom
+$2{x} == 9 ? 5
+$2{x} == 10 ? bottom
+$2{x} >= 11 ? 2
+
+[ 8:]: -$2{x} >= -7 ? top
+$2{x} == 8 ? bottom
+$2{x} == 9 ? 5
+$2{x} == 10 ? bottom
+$2{x} >= 11 ? 2
+
+[ 9:]: top ? 1
+
+[10:]: top ? 0.
+
+[11:]: top ? 0.
+
+Analysis Result: UNKNOWN
+
+Done.
