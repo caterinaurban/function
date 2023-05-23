@@ -47,21 +47,20 @@ module CFGCTLIterator (D : RANKING_FUNCTION) = struct
     in
     NodeMap.iter printState inv
 
-  let printInv fmt (inv : inv)  robust =
-    let print = if robust then D.robust else D.print in
+  let printInv fmt (inv : inv) robust =
+    (* TODO with robust *)
+    let print = if robust then D.print else D.print in
     let inv = if !compress then NodeMap.map D.compress inv else inv in
-    let printState  node a =   if !dot then
-      Format.fprintf fmt "[%d:]:\n%a\nDOT: %a\n" node.node_id print a
-        D.print_graphviz_dot a
-    else Format.fprintf fmt "[%d:]:\n%a\n" node.node_id print a
+    let printState node a =
+      if !dot then
+        Format.fprintf fmt "[%d:]:\n%a\nDOT: %a\n" node.node_id print a
+          D.print_graphviz_dot a
+      else Format.fprintf fmt "[%d:]:\n%a\n" node.node_id print a
     in
     let printState =
-      if robust then 
-        fun  node a -> if (node.node_id = 1 ) then      
-                        printState node a 
-                       else ()
-      else                        
-        printState
+      if robust then fun node a ->
+        if node.node_id = 1 then printState node a else ()
+      else printState
     in
     NodeMap.iter printState inv
 
@@ -152,7 +151,7 @@ module CFGCTLIterator (D : RANKING_FUNCTION) = struct
       let joindOutStates =
         match outStates with
         | [] -> bot
-        | s :: [] -> s
+        | [s] -> s
         | [s1; s2] -> join s1 s2
         | s :: ss -> List.fold_left join s ss
       in
@@ -181,7 +180,7 @@ module CFGCTLIterator (D : RANKING_FUNCTION) = struct
       let joindOutStates =
         match outStates with
         | [] -> current_state
-        | s :: [] -> s
+        | [s] -> s
         | [s1; s2] -> join s1 s2
         | s :: ss -> List.fold_left join s ss
       in
@@ -255,7 +254,7 @@ module CFGCTLIterator (D : RANKING_FUNCTION) = struct
       let joindOutStates =
         match outStates with
         | [] -> current_state
-        | s :: [] -> s
+        | [s] -> s
         | [s1; s2] -> join s1 s2
         | s :: ss -> List.fold_left join s ss
       in
@@ -299,8 +298,8 @@ module CFGCTLIterator (D : RANKING_FUNCTION) = struct
     in
     abstract_transformer
 
-  let compute (cfg : cfg) (main : Cfg.func) (loop_heads : bool NodeMap.t)  (robust)
-      (property : ctl_property) : inv =
+  let compute (cfg : cfg) (main : Cfg.func) (loop_heads : bool NodeMap.t)
+      robust (property : ctl_property) : inv =
     let backwardAnalysis = CFGInterpreter.backward_analysis in
     let env, vars = Conversion.env_vars_of_cfg cfg in
     let print_inv property inv =
@@ -410,7 +409,7 @@ module CFGCTLIterator (D : RANKING_FUNCTION) = struct
   let analyze ?(precondition = CFG_bool_const true) (cfg : cfg) robust
       (main : Cfg.func) (loop_heads : bool NodeMap.t)
       (property : ctl_property) =
-    let inv = compute cfg main loop_heads  robust property   in
+    let inv = compute cfg main loop_heads robust property in
     let programInvariant = NodeMap.find main.func_entry inv in
     let precondition = Conversion.of_bool_expr precondition in
     D.defined ~condition:precondition programInvariant
