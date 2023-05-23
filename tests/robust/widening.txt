@@ -1,5 +1,0 @@
-- example0.c
-- mccarthy91
-- safe/num4.c
-- safe/num6/bottom
-- wittneess/num7

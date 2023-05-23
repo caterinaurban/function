@@ -202,19 +202,19 @@ let parse_args () =
         property := x ;
         doit r
     | "-robust_ctl" :: x :: r ->
-          analysis := "ctl" ;
-          property := x ;
-          robust := true ;
-          doit r
+        analysis := "ctl" ;
+        property := x ;
+        robust := true ;
+        doit r
     | "-robust" :: x :: r ->
         analysis := "guarantee" ;
         property := x ;
         robust := true ;
         doit r
     | "-robust_termination" :: r ->
-          analysis := "termination" ;
-          robust := true ;
-          doit r
+        analysis := "termination" ;
+        robust := true ;
+        doit r
     | "-recurrence" :: x :: r ->
         (* recurrence analysis *)
         analysis := "recurrence" ;
@@ -260,6 +260,11 @@ let parse_args () =
     | "-noinline" :: r ->
         (* don't inline function calls, only for CFG based analysis *)
         noinline := true ;
+        doit r
+    | "-cda" :: x :: r ->
+        Iterator.cda := true ;
+        Iterator.size := int_of_string x ;
+        Iterator.refine := true ;
         doit r
     | x :: r ->
         filename := x ;
@@ -358,8 +363,7 @@ let termination () =
         else TerminationPolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in
-
-  run_analysis (fun a b -> analysis_function a b !robust)  program ()
+  run_analysis (fun a b -> analysis_function a b !robust) program ()
 
 let guarantee () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified") ;
@@ -465,7 +469,7 @@ let ctl_ast () =
   if result then Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
   else Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
 
-let ctl_cfg  () =
+let ctl_cfg () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified") ;
   if !property = "" then raise (Invalid_argument "No Property Specified") ;
   let starttime = Sys.time () in
@@ -510,7 +514,7 @@ let ctl_cfg  () =
   let mainFunc = Cfg.find_func !main cfg in
   let possibleLoopHeads = Loop_detection.possible_loop_heads cfg mainFunc in
   let result =
-    analyze ~precondition cfg !robust  mainFunc possibleLoopHeads ctlProperty
+    analyze ~precondition cfg !robust mainFunc possibleLoopHeads ctlProperty
   in
   ( if !time then
     let stoptime = Sys.time () in
@@ -527,7 +531,7 @@ let doit () =
   | "recurrence" -> recurrence ()
   | "ctl" -> (
     match !ctl_analysis_type with
-    | "cfg" -> ctl_cfg () 
+    | "cfg" -> ctl_cfg ()
     | "ast" -> ctl_ast ()
     | _ -> raise (Invalid_argument "Unknown CTL Analysis") )
   | _ -> raise (Invalid_argument "Unknown Analysis")

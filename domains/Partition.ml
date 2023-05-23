@@ -30,11 +30,15 @@ module type PARTITION = sig
 
   val top : Environment.t -> var list -> t
 
+  val bound : Environment.t -> var list -> C.t list -> t
+
   val isBot : t -> bool
 
   val isLeq : t -> t -> bool
 
   val join : t -> t -> t
+
+  val assume : t -> t * t
 
   val widen : t -> t -> t
 

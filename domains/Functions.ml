@@ -41,6 +41,8 @@ module type FUNCTION = sig
 
   val extend : B.t -> B.t -> f -> f -> f
 
+  val reinit : f -> f
+
   val reset : f -> f
 
   val predecessor : f -> f

@@ -19,6 +19,7 @@ module OrdinalValued (F : FUNCTION) : FUNCTION = struct
   let vars (f, _) = F.vars f
 
   (**)
+  let reinit (f, ff) = (F.reinit f, ff)
 
   let bot e vs = (F.bot e vs, [])
 

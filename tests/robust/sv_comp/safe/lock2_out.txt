@@ -1,8 +1,1 @@
-./main.exe
-tests/robust/sv_comp/safe/sv_lock2.c
--domain
-polyhedra
--ordinals
-3
--robust
-tests/robust/sv_comp/safe/lock2.txt
+ELINA Polyhedra does not work with strict mode yet!

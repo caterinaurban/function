@@ -29,12 +29,13 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
     if !compress then
       (*InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l
         D.robust (D.compress a) ) m*)
-      (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.robust a)      2 (InvMap.find 2 m)
+      (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.robust a)
+        2 (InvMap.find 2 m)
     else
-      
       (*InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l
         D.robust a) m *)
-      (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.robust a) 2 (InvMap.find 2 m)
+      (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.robust a)
+        2 (InvMap.find 2 m)
 
   let bwdMap_print robust fmt m =
     if robust then bwdMap_robust fmt m
@@ -120,9 +121,12 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
   and bwdBlk property funcs env vars (p : D.t) (b : block) : D.t =
     match b with
     | A_empty l ->
-        let a = try InvMap.find l !fwdInvMap 
-               with Not_found ->   let l = string_of_int  l in  failwith l
-            in
+        let a =
+          try InvMap.find l !fwdInvMap
+          with Not_found ->
+            let l = string_of_int l in
+            failwith l
+        in
         let p = if !refine then D.refine p a else p in
         let p = D.reset p (fst (StringMap.find "" property)) in
         if !tracebwd && not !minimal then
@@ -163,11 +167,10 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
       Format.fprintf !fmt "\nForward Analysis Trace:\n" ;
     (*let startfwd = Sys.time () in*)
     fwdInvMap := ForwardIteratorB.compute (vars, stmts, funcs) main env ;
-    (*let stopfwd = Sys.time () in
-     if not !minimal then ( if !timefwd then Format.fprintf !fmt "\nForward
-       Analysis (Time: %f s):\n" (stopfwd -. startfwd) else Format.fprintf
-       !fmt "\nForward Analysis:\n" ; fwdMap_print !fmt !fwdInvMap ) ; 
-       *)
+    (*let stopfwd = Sys.time () in if not !minimal then ( if !timefwd then
+      Format.fprintf !fmt "\nForward Analysis (Time: %f s):\n" (stopfwd -.
+      startfwd) else Format.fprintf !fmt "\nForward Analysis:\n" ;
+      fwdMap_print !fmt !fwdInvMap ) ; *)
     (* Backward Analysis *)
     if !tracebwd && not !minimal then
       Format.fprintf !fmt "\nBackward Analysis Trace:\n" ;

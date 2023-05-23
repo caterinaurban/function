@@ -34,7 +34,7 @@ int main()
 
         lk2 = 0; // initially lock is open      
         lk1 = 1; // acquire lock
-        } else {}
+        if(p1!=0){ lk1 =1; } else {}
 
         if (p2 != 0) {
             lk2 = 1; // acquire lock
@@ -64,7 +64,7 @@ int main()
         if (p3 != 0) {
             if (lk3 != 1) BUG = 1 ; // assertion failure
             lk3 = 0;
-        } else cond{}
+        } else {}
         if (p4 != 0) {
               if (lk4 != 1) BUG = 1 ; // assertion failure
             lk4 = 0;

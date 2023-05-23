@@ -39,7 +39,7 @@ let dominator (cfg : cfg) (mainFunc : func) : NodeSet.t NodeMap.t =
   let intersection sets =
     match sets with
     | [] -> NodeSet.empty
-    | x :: [] -> x
+    | [x] -> x
     | x :: xs -> List.fold_left NodeSet.inter x xs
   in
   let dom = ref NodeMap.empty in

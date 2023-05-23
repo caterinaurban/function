@@ -38,11 +38,17 @@ module type RANKING_FUNCTION = sig
 
   val defined : ?condition:bExp -> t -> bool
 
+  val terminating : t -> bool
+
+  val conflict : t -> B.t list
+
   val complement : t -> t
 
   val bwdAssign : ?domain:B.t -> ?underapprox:bool -> t -> aExp * aExp -> t
 
   val filter : ?domain:B.t -> ?underapprox:bool -> t -> bExp -> t
+
+  val reinit : t -> t
 
   val reset : ?mask:t -> t -> bExp -> t
 

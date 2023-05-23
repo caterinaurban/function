@@ -1248,8 +1248,49 @@ struct
         filter t' b (* filte tree with optional condition *)
       | None -> t
     in aux t.tree []
+  let bound d t e v =  {
+    domain= d;	
+    tree = t;		
+    env = e;
+    vars =v
+  }
+  let terminating t =
+    let domain = t.domain in
+    let env = t.env in
+    let vars = t.vars in
+    let rec aux t cs =
+      match t with
+      | Bot ->
+        let b = match domain with | None -> B.bound env vars cs  | Some domain -> B.meet (B.bound env vars cs) domain in B.isBot b
+      | Leaf f ->
+        (match domain with
+        | None -> F.defined f || B.isBot (B.bound env vars cs)
+        | Some domain -> F.defined f || B.isBot (B.meet (B.bound env vars cs) domain))
+      | Node ((c,nc),l,r) -> (aux l (c::cs)) && (aux r (nc::cs))
+  in aux t.tree []
 
-
+  let reinit t =
+		let rec aux t =
+			match t with
+			| Bot -> Bot
+			| Leaf f -> Leaf (F.reinit f)
+			| Node(c,l,r) -> Node(c,aux l,aux r)
+		in { domain = t.domain; tree = aux t.tree; env = t.env; vars = t.vars }
+    let conflict t =
+      let domain = t.domain in
+      let env = t.env in
+      let vars = t.vars in
+      let rec aux t cs =
+        match t with
+        | Bot ->
+          let b = match domain with | None -> B.bound env vars cs | Some domain -> B.meet (B.bound env vars cs) domain in
+          if B.isBot b then [] else [b]
+        | Leaf f ->
+          let b = match domain with | None -> B.bound env vars cs | Some domain -> B.meet (B.bound env vars cs) domain in
+          if F.defined f || B.isBot b then [] else [b]
+        | Node ((c,nc),l,r) -> (aux l (c::cs)) @ (aux r (nc::cs))
+      in aux t.tree []
+  
 
 
   (* NOTE: reset underapproximates the filter operation to guarantee soundness. 
@@ -1442,13 +1483,6 @@ struct
 *)
  
 let manager = Polka.manager_alloc_strict ()
-
-
-
-
-
-
-
 let rec insert x lst =
   match lst with
   | [] -> [[x]]

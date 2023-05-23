@@ -35,6 +35,8 @@ module Numerical (N : NUMERICAL) (C : CONSTRAINT) : PARTITION = struct
     ; env: Environment.t (* APRON environment *)
     ; vars: var list (* list of variables in the APRON environment *) }
 
+  let bound e vs cs = {constraints= cs; env= e; vars= vs}
+
   type apron_t = N.lib Abstract1.t
 
   (** The current representation as list of linear constraints. *)
@@ -383,6 +385,109 @@ module Numerical (N : NUMERICAL) (C : CONSTRAINT) : PARTITION = struct
             {constraints= !cs; env; vars} )
 
   (**)
+  let assume b =
+    let addScalar c1 c2 =
+      match (c1, c2) with
+      | Scalar.Float c1, Scalar.Float c2 -> Scalar.Float (c1 +. c2)
+      | Scalar.Float c1, Scalar.Mpqf c2 ->
+          Scalar.Float (c1 +. Mpqf.to_float c2)
+      | Scalar.Float c1, Scalar.Mpfrf c2 ->
+          Scalar.Float (c1 +. Mpfrf.to_float c2)
+      | Scalar.Mpqf c1, Scalar.Float c2 ->
+          Scalar.Float (Mpqf.to_float c1 +. c2)
+      | Scalar.Mpqf c1, Scalar.Mpqf c2 -> Scalar.Mpqf (Mpqf.add c1 c2)
+      | Scalar.Mpqf c1, Scalar.Mpfrf c2 ->
+          Scalar.Mpqf (Mpqf.add c1 (Mpfrf.to_mpqf c2))
+      | Scalar.Mpfrf c1, Scalar.Float c2 ->
+          Scalar.Float (Mpfrf.to_float c1 +. c2)
+      | Scalar.Mpfrf c1, Scalar.Mpqf c2 ->
+          Scalar.Mpqf (Mpqf.add (Mpfrf.to_mpqf c1) c2)
+      | Scalar.Mpfrf c1, Scalar.Mpfrf c2 ->
+          Scalar.Mpfrf (Mpfrf.add c1 c2 Mpfr.Zero)
+    in
+    let env = b.env in
+    let vars = b.vars in
+    (* count occurrences of variables within the polyhedral constraints *)
+    let occ =
+      List.map
+        (fun x ->
+          let o =
+            List.fold_left
+              (fun ao c -> if C.var x c then ao + 1 else ao)
+              0 b.constraints
+          in
+          (x, o) )
+        vars
+    in
+    (* selecting the variable with less occurrences *)
+    let x =
+      fst
+        (List.hd
+           (List.sort
+              (fun (x1, o1) (x2, o2) ->
+                if x1.varName = x1.varId && x2.varName != x2.varId then 1
+                else if x1.varName != x1.varId && x2.varName = x2.varId then
+                  -1
+                else compare o1 o2 )
+              occ ) )
+    in
+    (* creating an APRON variable *)
+    let v = Var.of_string x.varId in
+    (* creating an APRON polyhedra *)
+    let a = Lincons1.array_make env (List.length b.constraints) in
+    let i = ref 0 in
+    List.iter
+      (fun c ->
+        Lincons1.array_set a !i c ;
+        i := !i + 1 )
+      b.constraints ;
+    let p = Abstract1.of_lincons_array manager env a in
+    (* creating an APRON polyhedra *)
+    (* getting the interval of variation of the variable in the polyhedra *)
+    let i = Abstract1.bound_variable manager p v in
+    (* splitting the interval making assumtions *)
+    let inf = i.Interval.inf in
+    let sup = i.Interval.sup in
+    if 1 = Scalar.is_infty sup then (
+      if -1 = Scalar.is_infty inf then (
+        let e = Linexpr1.make env in
+        Linexpr1.set_coeff e v (Coeff.s_of_int 1) ;
+        Linexpr1.set_cst e (Coeff.s_of_int (-1)) ;
+        let c = Lincons1.make e Lincons1.SUPEQ in
+        ( {constraints= c :: b.constraints; env; vars}
+        , {constraints= C.negate c :: b.constraints; env; vars} ) )
+      else
+        let e = Linexpr1.make env in
+        Linexpr1.set_coeff e v (Coeff.s_of_int 1) ;
+        Linexpr1.set_cst e
+          (Coeff.Scalar (Scalar.neg (addScalar inf (Scalar.of_int 1)))) ;
+        let c = Lincons1.make e Lincons1.SUPEQ in
+        let e1 = Linexpr1.make env in
+        Linexpr1.set_coeff e1 v (Coeff.s_of_int 1) ;
+        Linexpr1.set_cst e1 (Coeff.Scalar (Scalar.neg inf)) ;
+        let c1 = Lincons1.make e1 Lincons1.SUPEQ in
+        let e2 = Linexpr1.make env in
+        Linexpr1.set_coeff e2 v (Coeff.s_of_int (-1)) ;
+        Linexpr1.set_cst e2 (Coeff.Scalar inf) ;
+        let c2 = Lincons1.make e2 Lincons1.SUPEQ in
+        ( {constraints= c1 :: c2 :: b.constraints; env; vars}
+        , {constraints= c :: b.constraints; env; vars} ) )
+    else if -1 = Scalar.is_infty inf then (
+      let e = Linexpr1.make env in
+      Linexpr1.set_coeff e v (Coeff.s_of_int (-1)) ;
+      Linexpr1.set_cst e (Coeff.Scalar (addScalar sup (Scalar.of_int (-1)))) ;
+      let c = Lincons1.make e Lincons1.SUPEQ in
+      let e1 = Linexpr1.make env in
+      Linexpr1.set_coeff e1 v (Coeff.s_of_int 1) ;
+      Linexpr1.set_cst e1 (Coeff.Scalar (Scalar.neg sup)) ;
+      let c1 = Lincons1.make e1 Lincons1.SUPEQ in
+      let e2 = Linexpr1.make env in
+      Linexpr1.set_coeff e2 v (Coeff.s_of_int (-1)) ;
+      Linexpr1.set_cst e2 (Coeff.Scalar sup) ;
+      let c2 = Lincons1.make e2 Lincons1.SUPEQ in
+      ( {constraints= c1 :: c2 :: b.constraints; env; vars}
+      , {constraints= c :: b.constraints; env; vars} ) )
+    else raise (Invalid_argument "TODO")
 
   let print fmt b =
     let vars = b.vars in

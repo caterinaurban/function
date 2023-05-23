@@ -27,6 +27,10 @@ module Affine (B : PARTITION) : FUNCTION = struct
   let vars f = f.vars
 
   (**)
+  let reinit f =
+    match f.ranking with
+    | Top -> {ranking= Bot; env= f.env; vars= f.vars}
+    | _ -> f
 
   let bot e vs = {ranking= Bot; env= e; vars= vs}
 

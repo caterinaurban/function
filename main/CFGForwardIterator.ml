@@ -34,7 +34,7 @@ module CFGForwardIterator (B : PARTITION) = struct
     let newState =
       match inStates with
       | [] -> current_state
-      | s :: [] -> s
+      | [s] -> s
       | [s1; s2] -> B.join s1 s2
       | s :: ss -> List.fold_left B.join s ss
     in
