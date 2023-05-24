@@ -26,16 +26,42 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
   let addBwdInv l (a : D.t) = bwdInvMap := InvMap.add l a !bwdInvMap
 
   let bwdMap_robust fmt m =
-    if !compress then
-      (*InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l
-        D.robust (D.compress a) ) m*)
-      (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.robust a)
-        2 (InvMap.find 2 m)
-    else
-      (*InvMap.iter (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l
-        D.robust a) m *)
-      (fun l a -> Format.fprintf fmt "%a:\n%a\n" label_print l D.robust a)
-        2 (InvMap.find 2 m)
+    let print fmt join =
+      Format.printf "@[" ;
+      List.iter
+        (fun (l, cns, j) ->
+          Format.printf "@[" ;
+          let _ =
+            match l with
+            | [] -> Format.printf "robust finished \n "
+            | _ ->
+                let _ =
+                  Format.printf "@[ --   uncontrolled  -- \n " ;
+                  List.iter
+                    (fun x -> Format.printf "%s{%s}-" x.varId x.varName)
+                    l ;
+                  Format.printf "@]\n"
+                in
+                let _ = Format.printf "@[  -- constraints   --  \n" in
+                let _ =
+                  Array.iter
+                    (fun c ->
+                      Abstract1.print Format.std_formatter c ;
+                      Format.printf "\n" )
+                    cns
+                in
+                Format.print_newline () ;
+                Format.printf "@[ -- Join constraint --  " ;
+                let _ = Abstract1.print Format.std_formatter j in
+                Format.printf "@]\n"
+          in
+          Format.printf "@]" ; Format.print_newline () )
+        join ;
+      Format.printf "@]"
+    in
+    let m = InvMap.find 2 m in
+    let m = if !compress then D.robust (D.compress m) else D.robust m in
+    print fmt m
 
   let bwdMap_print robust fmt m =
     if robust then bwdMap_robust fmt m

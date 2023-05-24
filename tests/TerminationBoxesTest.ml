@@ -8,7 +8,7 @@
 (*                                         *)
 (*******************************************)
 
-open OUnit
+open OUnit2
 
 (* default analyzer configuration *)
 let ( => ) =

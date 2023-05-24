@@ -1,4 +1,4 @@
-open OUnit
+open OUnit2
 
 let parseFile filename =
   let f = open_in filename in

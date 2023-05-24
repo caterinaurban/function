@@ -487,7 +487,26 @@ module Numerical (N : NUMERICAL) (C : CONSTRAINT) : PARTITION = struct
       let c2 = Lincons1.make e2 Lincons1.SUPEQ in
       ( {constraints= c1 :: c2 :: b.constraints; env; vars}
       , {constraints= c :: b.constraints; env; vars} ) )
-    else raise (Invalid_argument "TODO")
+    else
+      let e = Linexpr1.make env in
+      Linexpr1.set_coeff e v (Coeff.s_of_int (-1)) ;
+      Linexpr1.set_cst e (Coeff.Scalar (addScalar sup (Scalar.of_int (-1)))) ;
+      let c = Lincons1.make e Lincons1.SUPEQ in
+      let e1 = Linexpr1.make env in
+      Linexpr1.set_coeff e1 v (Coeff.s_of_int 1) ;
+      Linexpr1.set_cst e
+        (Coeff.Scalar (Scalar.neg (addScalar inf (Scalar.of_int 1)))) ;
+      let c1 = Lincons1.make e Lincons1.SUPEQ in
+      let e3 = Linexpr1.make env in
+      Linexpr1.set_coeff e3 v (Coeff.s_of_int 1) ;
+      Linexpr1.set_cst e3 (Coeff.Scalar inf) ;
+      let c2 = Lincons1.make e3 Lincons1.SUPEQ in
+      let e4 = Linexpr1.make env in
+      Linexpr1.set_coeff e4 v (Coeff.s_of_int (-1)) ;
+      Linexpr1.set_cst e4 (Coeff.Scalar sup) ;
+      let c3 = Lincons1.make e4 Lincons1.SUPEQ in
+      ( {constraints= c2 :: c3 :: b.constraints; env; vars}
+      , {constraints= c :: c1 :: b.constraints; env; vars} )
 
   let print fmt b =
     let vars = b.vars in

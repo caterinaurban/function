@@ -64,5 +64,10 @@ module type RANKING_FUNCTION = sig
 
   val print_graphviz_dot : Format.formatter -> t -> unit
 
-  val robust : Format.formatter -> t -> unit
+  val robust :
+       t
+    -> ( var list
+       * Polka.strict Polka.t Abstract1.t array
+       * Polka.strict Polka.t Abstract1.t )
+       list
 end

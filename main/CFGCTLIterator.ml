@@ -48,7 +48,8 @@ module CFGCTLIterator (D : RANKING_FUNCTION) = struct
     NodeMap.iter printState inv
 
   let printInv fmt (inv : inv) robust =
-    let print = if robust then D.robust else D.print in
+    (* TODO with robust *)
+    let print = if robust then D.print else D.print in
     let inv = if !compress then NodeMap.map D.compress inv else inv in
     let printState node a =
       if !dot then
