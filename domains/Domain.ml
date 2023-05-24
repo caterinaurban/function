@@ -39,7 +39,7 @@ module type RANKING_FUNCTION = sig
   val defined : ?condition:bExp -> t -> bool
 
   val terminating : t -> bool
-
+  val learn: t -> t -> t
   val conflict : t -> B.t list
 
   val complement : t -> t

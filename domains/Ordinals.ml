@@ -122,6 +122,51 @@ module OrdinalValued (F : FUNCTION) : FUNCTION = struct
       if List.length ff > !max then (f, []) else (F.zero env vars, ff)
     else (f, [])
 
+  let learn b (f1, ff1) (f2, ff2) =
+    let env = B.env b in
+    let vars = B.vars b in
+    let rec aux i ff1 ff2 =
+      match (ff1, ff2) with
+      | [], [] -> (
+        match i with 0 -> [] | _ -> [F.successor (F.zero env vars)] )
+      | [], y :: ys -> (
+          let x = F.zero env vars in
+          let z = F.learn b x y in
+          match i with
+          | 0 -> if F.defined z then z :: aux 0 [] ys else x :: aux 1 [] ys
+          | _ ->
+              if F.defined z then F.successor z :: aux 0 [] ys
+              else F.successor x :: aux 1 [] ys )
+      | x :: xs, [] -> (
+          let y = F.zero env vars in
+          let z = F.learn b x y in
+          match i with
+          | 0 -> if F.defined z then z :: aux 0 xs [] else y :: aux 1 xs []
+          | _ ->
+              if F.defined z then F.successor z :: aux 0 xs []
+              else F.successor y :: aux 1 xs [] )
+      | x :: xs, y :: ys -> (
+          let z = F.learn b x y in
+          match i with
+          | 0 ->
+              if F.defined z then z :: aux 0 xs ys
+              else F.zero env vars :: aux 1 xs ys
+          | _ ->
+              if F.defined z then F.successor z :: aux 0 xs ys
+              else F.successor (F.zero env vars) :: aux 1 xs ys )
+    in
+    let f = F.learn b f1 f2 in
+    if F.defined f then
+      let ff = aux 0 ff1 ff2 in
+      if List.length ff > !max then (F.top env vars, []) else (f, ff)
+    else if (* f = Bot OR f = Top *)
+            F.isBot f then (f, []) (* f = Bot *)
+    else if (* f = Top *)
+            F.defined f1 && F.defined f2 then
+      let ff = aux 1 ff1 ff2 in
+      if List.length ff > !max then (f, []) else (F.zero env vars, ff)
+    else (f, [])
+
   let widen ?(jokers = 0) b (f1, ff1) (f2, ff2) =
     let env = B.env b in
     let vars = B.vars b in

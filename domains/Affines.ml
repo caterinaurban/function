@@ -235,6 +235,143 @@ module Affine (B : PARTITION) : FUNCTION = struct
     { ranking= join_ranking k b f1.ranking f2.ranking
     ; env= f1.env
     ; vars= f1.vars }
+  let rational = ref false
+  let mulScalar c1 c2 =
+    match (c1, c2) with
+    | Scalar.Float c1, Scalar.Float c2 -> Scalar.Float (c1 *. c2)
+    | Scalar.Float c1, Scalar.Mpqf c2 -> Scalar.Float (c1 *. Mpqf.to_float c2)
+    | Scalar.Float c1, Scalar.Mpfrf c2 ->
+        Scalar.Float (c1 *. Mpfrf.to_float c2)
+    | Scalar.Mpqf c1, Scalar.Float c2 -> Scalar.Float (Mpqf.to_float c1 *. c2)
+    | Scalar.Mpqf c1, Scalar.Mpqf c2 -> Scalar.Mpqf (Mpqf.mul c1 c2)
+    | Scalar.Mpqf c1, Scalar.Mpfrf c2 ->
+        Scalar.Mpqf (Mpqf.mul c1 (Mpfrf.to_mpqf c2))
+    | Scalar.Mpfrf c1, Scalar.Float c2 ->
+        Scalar.Float (Mpfrf.to_float c1 *. c2)
+    | Scalar.Mpfrf c1, Scalar.Mpqf c2 ->
+        Scalar.Mpqf (Mpqf.mul (Mpfrf.to_mpqf c1) c2)
+    | Scalar.Mpfrf c1, Scalar.Mpfrf c2 ->
+        Scalar.Mpfrf (Mpfrf.mul c1 c2 Mpfr.Zero)
+
+  let mulCoeff c1 c2 =
+    match (c1, c2) with
+    | Coeff.Scalar c1, Coeff.Scalar c2 -> Coeff.Scalar (mulScalar c1 c2)
+    | Coeff.Scalar c1, Coeff.Interval c2 | Coeff.Interval c2, Coeff.Scalar c1
+      ->
+        let s = Scalar.sgn c1 in
+        if s < 0 then
+          Coeff.reduce
+            (Coeff.i_of_scalar
+               (mulScalar c1 c2.Interval.sup)
+               (mulScalar c1 c2.Interval.inf) )
+        else if s = 0 then Coeff.Scalar (Scalar.of_int 0)
+        else
+          Coeff.reduce
+            (Coeff.i_of_scalar
+               (mulScalar c1 c2.Interval.inf)
+               (mulScalar c1 c2.Interval.sup) )
+    | Coeff.Interval c1, Coeff.Interval c2 ->
+        let x1 = mulScalar c1.Interval.inf c2.Interval.inf in
+        let x2 = mulScalar c1.Interval.inf c2.Interval.sup in
+        let x3 = mulScalar c1.Interval.sup c2.Interval.inf in
+        let x4 = mulScalar c1.Interval.sup c2.Interval.sup in
+        let smin x y = if Scalar.cmp x y < 0 then x else y in
+        let smax x y = if Scalar.cmp x y < 0 then y else x in
+        Coeff.reduce
+          (Coeff.i_of_scalar
+             (smin x1 (smin x2 (smin x3 x4)))
+             (smax x1 (smax x2 (smax x3 x4))) )
+
+  let invScalar = function
+    | Scalar.Float c -> Scalar.Float (1. /. c)
+    | Scalar.Mpqf f -> Scalar.Mpqf (Mpqf.inv f)
+    | Scalar.Mpfrf f ->
+        Scalar.Mpfrf (raise (Invalid_argument "invScalar: mpfrf"))
+
+  let invCoeff = function
+    | Coeff.Scalar s -> Coeff.Scalar (invScalar s)
+    | _ -> raise (Invalid_argument "invCoeff: interval")
+
+  let remove_special v f =
+    let cf = Coeff.neg (invCoeff (Linexpr1.get_coeff f v)) in
+    Linexpr1.set_coeff f v (Coeff.s_of_int 0) ;
+    if !rational then (
+      Linexpr1.iter
+        (fun coeff var -> Linexpr1.set_coeff f var (mulCoeff coeff cf))
+        f ;
+      Linexpr1.set_cst f (mulCoeff cf (Linexpr1.get_cst f)) )
+
+  let learn_ranking b f1 f2 =
+    (* b = domain of first/second function, f1/f2 = value of first/second
+       function *)
+    let aux a c =
+      (* checking if constraint c belongs to set of constraints a *)
+      let l = Lincons1.array_length a in
+      let b = ref false in
+      for i = 0 to l - 1 do
+        if c = Lincons1.array_get a i then b := true
+      done ;
+      !b
+    in
+    (*REMOVE?*)
+    match (f1, f2) with
+    | Fun f1, Fun f2 ->
+        let env = Environment.add (B.env b) [|v|] [||] in
+        (* adding special variable # to environment of b *)
+        let l = List.length (B.constraints b) + 1 in
+        (* l = |b| + 1 *)
+        let a = Lincons1.array_make env (l - 1) in
+        (*REMOVE?*)
+        let a1 = Lincons1.array_make env l
+        and a2 = Lincons1.array_make env l in
+        let i = ref 0 in
+        List.iter
+          (fun c ->
+            Lincons1.array_set a !i (Lincons1.extend_environment c env) ;
+            (*REMOVE?*)
+            Lincons1.array_set a1 !i (Lincons1.extend_environment c env) ;
+            Lincons1.array_set a2 !i (Lincons1.extend_environment c env) ;
+            i := !i + 1 )
+          (B.constraints b) ;
+        (* copying constraints from b to a1 and a2 *)
+        let f1 = Linexpr1.copy f1 and f2 = Linexpr1.copy f2 in
+        (* creating copies of f1 and f2 *)
+        Linexpr1.set_coeff f1 v (Coeff.s_of_int (-1)) ;
+        Lincons1.array_set a1 (l - 1) (Lincons1.make f1 Lincons1.SUPEQ) ;
+        (* adding constraint # <= f1 to a1 *)
+        Linexpr1.set_coeff f2 v (Coeff.s_of_int (-1)) ;
+        Lincons1.array_set a2 (l - 1) (Lincons1.make f2 Lincons1.SUPEQ) ;
+        (* adding constraint # <= f2 to a2 *)
+        let p1 = Abstract1.of_lincons_array manager env a1 in
+        (* p1 = polyhedra represented by a1 *)
+        let p2 = Abstract1.of_lincons_array manager env a2 in
+        (* p2 = polyhedra represented by a2 *)
+        let p = Abstract1.join manager p1 p2 in
+        (* p = convex-hull *)
+        let p = Abstract1.to_lincons_array manager p in
+        (* converting p into set of constraints *)
+        let f = ref [] in
+        for i = 0 to Lincons1.array_length p - 1 do
+          let c = Lincons1.array_get p i in
+          try
+            if
+              (not (Coeff.is_zero (Lincons1.get_coeff c v)))
+              && (*REMOVE?*) not (aux a c)
+            then f := c :: !f
+          with _ -> ()
+        done ;
+        (* f = list of constraints on special variable # *)
+        if 1 = List.length !f (* if there is only one constraint on # *) then (
+          let f = Lincons1.get_linexpr1 (List.hd !f) in
+          remove_special v f ; Fun f (* defined join function *) )
+        else Top (* otherwise *)
+    | Bot, _ | Top, _ | _, Top -> f2
+    | _, Bot -> f1
+
+  let learn b f1 f2 =
+    { ranking= learn_ranking b f1.ranking f2.ranking
+    ; env= f1.env
+    ; vars= f1.vars }
 
   let widen_ranking b f1 f2 =
     (* b = domain of first/second function, f1/f2 = value of first/second

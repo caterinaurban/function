@@ -491,7 +491,6 @@ module Numerical (N : NUMERICAL) (C : CONSTRAINT) : PARTITION = struct
       , {constraints= c :: b.constraints; env; vars} ) )
     else
       if Scalar.equal inf sup then 
-        
         let e = Linexpr1.make env in
         Linexpr1.set_coeff e v (Coeff.s_of_int 1) ;
         Linexpr1.set_cst e (Coeff.Scalar inf) ;
