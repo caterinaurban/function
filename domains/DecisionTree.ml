@@ -1319,7 +1319,7 @@ struct
 			| Node((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isEq c1 c2) -> (isEq (l1,l2) (c1::cs)) && (isEq (r1,r2) (nc2::cs))
 			| _ -> false
 		in
-
+(*
     Format.printf "\nTree 1 :\n";
     print_tree  t1.vars Format.std_formatter t1.tree;
     
@@ -1340,7 +1340,7 @@ struct
     else if isBot t1.tree then t2 
     else
       join LEARNING t1 t2 
-   (*
+   *)
 		let rec aux (t1,t2) cs =
 			match t1,t2 with
 			| Bot,Bot -> Bot
@@ -1429,7 +1429,7 @@ struct
         Format.fprintf Format.std_formatter "t: DOMAIN = {%a}%a\n" print_domain domain1 (print_tree vars) (t);
       end;
     { domain = domain1; tree = t; env = env; vars = vars }
-*)    
+
 
     (*
 		if isBot t1.tree then t2 else
