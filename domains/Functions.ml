@@ -5,7 +5,7 @@ open AbstractSyntax
 open Apron
 open Partition
 
-type kind = APPROXIMATION | COMPUTATIONAL
+type kind = APPROXIMATION | COMPUTATIONAL | LEARNING
 
 module type FUNCTION = sig
   module B : PARTITION
@@ -36,7 +36,9 @@ module type FUNCTION = sig
   val isLeq : kind -> B.t -> f -> f -> bool
 
   val join : kind -> B.t -> f -> f -> f
-  val learn: B.t -> f -> f -> f (* conflict-driven analysis *)
+
+  val learn : B.t -> f -> f -> f (* conflict-driven analysis *)
+
   val widen : ?jokers:int -> B.t -> f -> f -> f
 
   val extend : B.t -> B.t -> f -> f -> f

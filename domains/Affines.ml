@@ -154,9 +154,21 @@ module Affine (B : PARTITION) : FUNCTION = struct
         (* p2 = polyhedra represented by a2 *)
         Abstract1.is_leq manager p1 p2
     | Bot, Fun _ -> (
-      match k with APPROXIMATION -> false | COMPUTATIONAL -> true )
+      match k with
+      | APPROXIMATION | LEARNING -> false
+      | COMPUTATIONAL -> true )
     | Fun _, Bot -> (
-      match k with APPROXIMATION -> true | COMPUTATIONAL -> false )
+      match k with
+      | APPROXIMATION -> true
+      | COMPUTATIONAL | LEARNING -> false )
+    | Top, Fun _ -> (
+      match k with
+      | APPROXIMATION -> false
+      | COMPUTATIONAL | LEARNING -> true )
+    | Fun _, Top -> (
+      match k with
+      | APPROXIMATION | COMPUTATIONAL -> true
+      | LEARNING -> false )
     | Bot, _ | _, Top -> true
     | _ -> false
 
@@ -227,15 +239,24 @@ module Affine (B : PARTITION) : FUNCTION = struct
           Linexpr1.set_coeff f v (Coeff.s_of_int 0) ;
           Fun f (* defined join function *) )
         else Top (* otherwise *)
-    | Bot, _ -> ( match k with APPROXIMATION -> Bot | COMPUTATIONAL -> f2 )
-    | _, Bot -> ( match k with APPROXIMATION -> Bot | COMPUTATIONAL -> f1 )
+    | Bot, (Fun _ as f) | (Fun _ as f), Bot -> (
+      match k with APPROXIMATION -> Bot | COMPUTATIONAL | LEARNING -> f )
+    | Top, (Fun _ as f) | (Fun _  as f), Top  -> (
+      match k with APPROXIMATION | COMPUTATIONAL -> Top | LEARNING -> f )
+     
+    | Bot, _ -> (
+      match k with APPROXIMATION | LEARNING -> Bot | COMPUTATIONAL -> f2 )
+    | _, Bot -> (
+      match k with APPROXIMATION | LEARNING -> Bot | COMPUTATIONAL -> f1 )
     | _ -> Top
 
   let join k b f1 f2 =
     { ranking= join_ranking k b f1.ranking f2.ranking
     ; env= f1.env
     ; vars= f1.vars }
+
   let rational = ref false
+
   let mulScalar c1 c2 =
     match (c1, c2) with
     | Scalar.Float c1, Scalar.Float c2 -> Scalar.Float (c1 *. c2)
@@ -365,7 +386,7 @@ module Affine (B : PARTITION) : FUNCTION = struct
           let f = Lincons1.get_linexpr1 (List.hd !f) in
           remove_special v f ; Fun f (* defined join function *) )
         else Top (* otherwise *)
-    | Bot, _ | Top, _ | _, Top -> f2
+    | Bot, _ | Top, _ | _, Top   -> f2
     | _, Bot -> f1
 
   let learn b f1 f2 =

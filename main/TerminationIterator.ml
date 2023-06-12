@@ -66,9 +66,7 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
         join ;
       Format.printf "@]"
     in
-    
     let m = D.robust (InvMap.find 2 m) in
-    
     printl fmt m
 
   let bwdMap_print fmt m =
@@ -311,6 +309,9 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
       bwdInvMap := InvMap.map (fun a -> D.reinit a) !bwdInvMap
     in
     let rec aux b p n =
+      Format.printf "\n Tree cutted: \n";
+      D.print Format.std_formatter p;
+      Format.print_newline ();
       (* Forward Analysis *)
       if !tracefwd && not !minimal then
         Format.fprintf !fmt "\nForward Analysis[%i] Trace:\n" n ;
@@ -344,33 +345,38 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
         if D.terminating i then
           Format.fprintf !fmt "Analysis[%i] Result: TRUE\n" n
         else Format.fprintf !fmt "Analysis[%i] Result: UNKNOWN\n" n ;
-      if D.terminating i || n > !size then 
-        
-        (* End if we can already infer termination or if max number of iteration is reached*)
+      if D.terminating i || n > !size then
+        (* End if we can already infer termination or if max number of
+           iteration is reached*)
         D.learn p (D.compress i)
       else (
         learn := true ;
-        (* Cumulate the constraints along the path too an undefined piece of the ranking function *)
+        (* Cumulate the constraints along the path too an undefined piece of
+           the ranking function *)
         let bs = D.conflict i in
         if not !minimal then (
           Format.fprintf !fmt "CONFLICTS: { " ;
           List.iter (fun b -> Format.fprintf !fmt "%a; " B.print b) bs ;
           Format.fprintf !fmt "}\n" ) ;
+
+   
         let i =
           List.fold_left
-
             (fun ai ab ->
-              (* ai is a tree, ab is a contraint toward an undefined part of the ranking function *)
+              (* ai is a tree, ab is a contraint toward an undefined part of
+                 the ranking function *)
               if
                 B.isLeq b ab
-                (* Check if we are already precise enough if not we divide the constraint and relaunch the analysis *)
+                (* Check if we are already precise enough if not we divide
+                   the constraint and relaunch the analysis *)
               then (
+                
                 let b1, b2 = B.assume ab in
                 reinit () ;
                 compress () ;
                 if not !minimal then
                   Format.fprintf !fmt "\nASSUME-1: %a\n" B.print b1 ;
-                (* restart  with b1 *)
+                (* restart with b1 *)
                 let i = aux b1 ai (n + 1) in
                 reinit () ;
                 compress () ;
@@ -386,8 +392,8 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
                 aux ab ai (n + 1) ) )
             i bs
         in
-        
-        D.learn p (D.compress i))
+        D.learn  p (D.compress i)
+      )
     in
     aux (B.top env vars) (D.bot env vars) 1
 
@@ -408,17 +414,13 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
     initBlk env vars s ;
     (* TODO: handle functions calls *)
     (* Forward Analysis *)
-    if !cda  then (
+    if !cda then (
       let i = cda_recursive robust funcs env vars s stmts in
       if not !minimal then
-          
-          Format.fprintf !fmt "\nConflict-Driven Analysis Result: %a@." D.print
-            (D.compress i) ;
-          
-          if robust then bwdMap_robust fmt (InvMap.add 2 i (InvMap.empty));
-        
+        Format.fprintf !fmt "\nConflict-Driven Analysis Result: %a@." D.print
+          i ;
+      if robust then bwdMap_robust fmt (InvMap.add 2 i InvMap.empty) ;
       D.defined i )
-    
     else (
       if !tracefwd && not !minimal then
         Format.fprintf !fmt "\nForward Analysis Trace:\n" ;

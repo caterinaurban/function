@@ -191,12 +191,15 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
     (* Forward Analysis *)
     if !tracefwd && not !minimal then
       Format.fprintf !fmt "\nForward Analysis Trace:\n" ;
-    (*let startfwd = Sys.time () in*)
+    let startfwd = Sys.time () in
     fwdInvMap := ForwardIteratorB.compute (vars, stmts, funcs) main env ;
-    (*let stopfwd = Sys.time () in if not !minimal then ( if !timefwd then
-      Format.fprintf !fmt "\nForward Analysis (Time: %f s):\n" (stopfwd -.
-      startfwd) else Format.fprintf !fmt "\nForward Analysis:\n" ;
-      fwdMap_print !fmt !fwdInvMap ) ; *)
+    let stopfwd = Sys.time () in
+    if not !minimal then (
+      if !timefwd then
+        Format.fprintf !fmt "\nForward Analysis (Time: %f s):\n"
+          (stopfwd -. startfwd)
+      else Format.fprintf !fmt "\nForward Analysis:\n" ;
+      fwdMap_print !fmt !fwdInvMap ) ;
     (* Backward Analysis *)
     if !tracebwd && not !minimal then
       Format.fprintf !fmt "\nBackward Analysis Trace:\n" ;

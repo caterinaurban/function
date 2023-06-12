@@ -35,8 +35,6 @@ module Numerical (N : NUMERICAL) (C : CONSTRAINT) : PARTITION = struct
     ; env: Environment.t (* APRON environment *)
     ; vars: var list (* list of variables in the APRON environment *) }
 
-  let bound e vs cs = {constraints= cs; env= e; vars= vs}
-
   type apron_t = N.lib Abstract1.t
 
   (** The current representation as list of linear constraints. *)
@@ -150,8 +148,6 @@ module Numerical (N : NUMERICAL) (C : CONSTRAINT) : PARTITION = struct
     done ;
     {constraints= !cs; env; vars}
 
-
-  
   let widen b1 b2 =
     let env = b1.env in
     let vars = b1.vars in
@@ -489,33 +485,37 @@ module Numerical (N : NUMERICAL) (C : CONSTRAINT) : PARTITION = struct
       let c2 = Lincons1.make e2 Lincons1.SUPEQ in
       ( {constraints= c1 :: c2 :: b.constraints; env; vars}
       , {constraints= c :: b.constraints; env; vars} ) )
+    else if Scalar.equal inf sup then (
+      let e = Linexpr1.make env in
+      Linexpr1.set_coeff e v (Coeff.s_of_int 1) ;
+      Linexpr1.set_cst e (Coeff.Scalar inf) ;
+      let c = Lincons1.make e Lincons1.SUPEQ in
+      ( {constraints= c :: b.constraints; env; vars}
+      , {constraints= C.negate c :: b.constraints; env; vars} ) )
     else
-      if Scalar.equal inf sup then 
-        let e = Linexpr1.make env in
-        Linexpr1.set_coeff e v (Coeff.s_of_int 1) ;
-        Linexpr1.set_cst e (Coeff.Scalar inf) ;
-        let c = Lincons1.make e Lincons1.SUPEQ in
-        ( {constraints= c :: b.constraints; env; vars}
-        , {constraints= C.negate c :: b.constraints; env; vars} ) 
-      else
-        let e = Linexpr1.make env in
-        Linexpr1.set_coeff e v (Coeff.s_of_int (1)) ;
-        Linexpr1.set_cst e (Coeff.Scalar (addScalar sup (addScalar (Scalar.neg  inf)  (Scalar.of_int (1))))) ;
-        let c = Lincons1.make e Lincons1.SUPEQ in
-        let e2 = Linexpr1.make env in
-        Linexpr1.set_coeff e2 v (Coeff.s_of_int (-1)) ;
-        Linexpr1.set_cst e2 (Coeff.Scalar sup) ;
-        let c2 = Lincons1.make e2 Lincons1.SUPEQ in
-        let e3 = Linexpr1.make env in
-        Linexpr1.set_coeff e3 v (Coeff.s_of_int (-1)) ;
-        Linexpr1.set_cst e3 (Coeff.Scalar (addScalar sup (addScalar (Scalar.neg  inf)  (Scalar.of_int (1))))) ;
-        let c3 = Lincons1.make e3 Lincons1.SUPEQ in
-        let e4 = Linexpr1.make env in
-        Linexpr1.set_coeff e4 v (Coeff.s_of_int (1)) ;
-        Linexpr1.set_cst e4 (Coeff.Scalar inf) ;
-        let c4 = Lincons1.make e2 Lincons1.SUPEQ in
-        ( {constraints= c :: c2 :: b.constraints; env; vars}
-        , {constraints= c3 :: c4 :: b.constraints; env; vars} ) 
+      
+      let e = Linexpr1.make env in
+      Linexpr1.set_coeff e v (Coeff.s_of_int 1) ;
+      Linexpr1.set_cst e
+        (Coeff.Scalar
+           (addScalar sup (addScalar (Scalar.neg inf) (Scalar.of_int 1))) ) ;
+      let c = Lincons1.make e Lincons1.SUPEQ in
+      let e2 = Linexpr1.make env in
+      Linexpr1.set_coeff e2 v (Coeff.s_of_int (-1)) ;
+      Linexpr1.set_cst e2 (Coeff.Scalar sup) ;
+      let c2 = Lincons1.make e2 Lincons1.SUPEQ in
+      let e3 = Linexpr1.make env in
+      Linexpr1.set_coeff e3 v (Coeff.s_of_int (-1)) ;
+      Linexpr1.set_cst e3
+        (Coeff.Scalar
+           (addScalar sup (addScalar (Scalar.neg inf) (Scalar.of_int 1))) ) ;
+      let c3 = Lincons1.make e3 Lincons1.SUPEQ in
+      let e4 = Linexpr1.make env in
+      Linexpr1.set_coeff e4 v (Coeff.s_of_int 1) ;
+      Linexpr1.set_cst e4 (Coeff.Scalar inf) ;
+      let c4 = Lincons1.make e2 Lincons1.SUPEQ in
+      ( {constraints= c :: c2 :: b.constraints; env; vars}
+      , {constraints= c3 :: c4 :: b.constraints; env; vars} )
 
   let print fmt b =
     let vars = b.vars in

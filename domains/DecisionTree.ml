@@ -518,7 +518,9 @@ struct
                else true
              else false
            | COMPUTATIONAL -> 
-             F.isLeq k b f1 f2 (* forall x: f1(x) <= f2(x) *))
+             F.isLeq k b f1 f2 (* forall x: f1(x) <= f2(x) *)
+           | _  -> raise (Invalid_argument ("Learning order not defined for tree")) )
+            
       | Node ((c1,nc1),l1,r1), Node((c2,nc2),l2,r2) when (C.isEq c1 c2) ->
         (aux (l1,l2) (c1::cs)) && (aux (r1,r2) (nc1::cs))
       | _ -> raise (Invalid_argument "isLeq:")
@@ -618,6 +620,7 @@ struct
     let fBotLeftRight = match k with
       | APPROXIMATION -> fun _ _ -> Bot (* use NIL if at least one leaf is NIL *)
       | COMPUTATIONAL -> fun _ _ -> botLeaf (* use bottom leaf if at least one leaf is nil*)
+      | _ -> raise (Invalid_argument "Should not call Learning meet on decision trees")
     in
     let fLeaf cs f1 f2 = 
       let b = match domain with 
@@ -770,6 +773,7 @@ struct
        domain_widen t1 *) t2
 
   let widen ?(jokers=0) t1 t2 =
+    
     let domain = t1.domain in
     let env = t1.env in
     let vars = t1.vars in
@@ -780,6 +784,7 @@ struct
         let b = match domain with 
           | None -> B.inner env vars cs 
           | Some domain -> B.meet (B.inner env vars cs) domain in
+          
         if F.isLeq COMPUTATIONAL b f1 f2 then t2 
         else Leaf (F.top env vars)
       | Node((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isEq c1 c2) (* c1 = c2 *) ->
@@ -1261,11 +1266,11 @@ struct
     let rec aux t cs =
       match t with
       | Bot ->
-        let b = match domain with | None -> B.bound env vars cs  | Some domain -> B.meet (B.bound env vars cs) domain in B.isBot b
+        let b = match domain with | None -> B.inner env vars cs  | Some domain -> B.meet (B.inner env vars cs) domain in B.isBot b
       | Leaf f ->
         (match domain with
-        | None -> F.defined f || B.isBot (B.bound env vars cs)
-        | Some domain -> F.defined f || B.isBot (B.meet (B.bound env vars cs) domain))
+        | None -> F.defined f || B.isBot (B.inner env vars cs)
+        | Some domain -> F.defined f || B.isBot (B.meet (B.inner env vars cs) domain))
       | Node ((c,nc),l,r) -> (aux l (c::cs)) && (aux r (nc::cs))
   in aux t.tree []
 
@@ -1287,10 +1292,10 @@ struct
     let rec aux t cs =
       match t with
       | Bot ->
-       let b = match domain with | None -> B.bound env vars cs | Some domain -> B.meet (B.bound env vars cs) domain in
+       let b = match domain with | None -> B.inner env vars cs | Some domain -> B.meet (B.inner env vars cs) domain in
        if B.isBot b then [] else [b]
       | Leaf f ->
-        let b = match domain with | None -> B.bound env vars cs | Some domain -> B.meet (B.bound env vars cs) domain in
+        let b = match domain with | None -> B.inner env vars cs | Some domain -> B.meet (B.inner env vars cs) domain in
         if F.defined f || B.isBot b then [] else [b]
       | Node ((c,nc),l,r) -> (aux l (c::cs)) @ (aux r (nc::cs))
     in 
@@ -1298,9 +1303,8 @@ struct
   
 
 
-
   let learn t1 t2 = (* t1 learns t2 *)
-		let domain1 = t1.domain and domain2 = t2.domain in (* t2.domain \subseteq t1.domain *)
+		let domain1 = t1.domain and domain2 = t2.domain (*in  t2.domain \subseteq t1.domain *) in
 		let env = t1.env in
 		let vars = t1.vars in
 		let isBot t =
@@ -1311,50 +1315,73 @@ struct
 		let rec isEq (t1,t2) cs =
 			match t1,t2 with
 			| Bot,Bot -> true
-			| Leaf f1,Leaf f2 -> F.isEq (B.bound env vars cs) f1 f2
+			| Leaf f1,Leaf f2 -> F.isEq (B.inner env vars cs) f1 f2
 			| Node((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isEq c1 c2) -> (isEq (l1,l2) (c1::cs)) && (isEq (r1,r2) (nc2::cs))
 			| _ -> false
 		in
+
+    Format.printf "\nTree 1 :\n";
+    print_tree  t1.vars Format.std_formatter t1.tree;
+    
+    Format.printf "\nTree 2 :\n";
+    print_tree  t2.vars Format.std_formatter t2.tree;
+    Format.printf "\n unification \n";
+    let t1,t2 = 
+      let tree1,tree2 = tree_unification t1.tree t2.tree t1.env t1.vars
+      in
+      {t1 with tree= tree1},{t2 with tree= tree2}
+    in
+    Format.printf "\nTree 1 :\n";
+    print_tree  t1.vars Format.std_formatter t1.tree;
+    
+    Format.printf "\nTree 2 :\n";
+    print_tree  t2.vars Format.std_formatter t2.tree;
+    if isEq (t1.tree,t2.tree) [] || isBot t2.tree then t1 
+    else if isBot t1.tree then t2 
+    else
+      join LEARNING t1 t2 
+   (*
 		let rec aux (t1,t2) cs =
 			match t1,t2 with
 			| Bot,Bot -> Bot
 			| Leaf _,Bot ->
-				let b1 = match domain1 with | None -> B.bound env vars cs | Some domain1 -> B.meet (B.bound env vars cs) domain1 in
+        
+				let b1 = match domain1 with | None -> B.inner env vars cs | Some domain1 -> B.meet (B.inner env vars cs) domain1 in
 				if B.isBot b1 then Bot else t1
 			| Bot,Leaf _ ->
-				let b2 = match domain2 with | None -> B.bound env vars cs | Some domain2 -> B.meet (B.bound env vars cs) domain2 in
+				let b2 = match domain2 with | None -> B.inner env vars cs | Some domain2 -> B.meet (B.inner env vars cs) domain2 in
 				if B.isBot b2 then t1 else
-						let b1 = match domain1 with | None -> B.bound env vars cs | Some domain1 -> B.meet (B.bound env vars cs) domain1 in
+						let b1 = match domain1 with | None -> B.inner env vars cs | Some domain1 -> B.meet (B.inner env vars cs) domain1 in
 						if B.isBot b1 then Bot else t2
-				| Leaf f1,Leaf f2 ->
-					let b2 = match domain2 with | None -> B.bound env vars cs | Some domain2 -> B.meet (B.bound env vars cs) domain2 in
-					if B.isBot b2 then t1 else
-						let b1 = match domain1 with | None -> B.bound env vars cs | Some domain1 -> B.meet (B.bound env vars cs) domain1 in
-						if B.isBot b1 then Bot else Leaf (F.learn b1 f1 f2)
-				| Node ((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isEq c1 c2) (* c1 = c2 *) ->
-					let l = aux (l1,l2) (c1::cs) in
-					let r = aux (r1,r2) (nc1::cs) in
+			| Leaf f1,Leaf f2 ->
+				let b2 = match domain2 with | None -> B.inner env vars cs | Some domain2 -> B.meet (B.inner env vars cs) domain2 in
+				if B.isBot b2 then t1 else
+					let b1 = match domain1 with | None -> B.inner env vars cs | Some domain1 -> B.meet (B.inner env vars cs) domain1 in
+					if B.isBot b1 then Bot else Leaf (F.learn b1 f1 f2)
+			| Node ((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isEq c1 c2) (* c1 = c2 *) ->
+			 	let l = aux (l1,l2) (c1::cs) in
+				let r = aux (r1,r2) (nc1::cs) in
+				Node ((c1,nc1),l,r)
+			| Node ((c1,nc1),l1,r1),Node((c2,_),_,_) when (C.isLeq c1 c2) (* c1 < c2 *) ->
+				let bcs = B.inner env vars cs in
+				let bc1 = B.inner env vars [c1] in
+				if (B.isLeq bcs bc1)
+				then (* c1 is redundant *) aux (l1,t2) cs
+				else (* c1 is not redundant *)
+					let bnc1 = B.inner env vars [nc1] in
+					if (B.isLeq bcs bnc1)
+				then (* nc1 is redundant *) aux (r1,t2) cs
+				else (* nc1 is not redundant *)
+					let l = aux (l1,t2) (c1::cs) in
+					let r = aux (r1,t2) (nc1::cs) in
 					Node ((c1,nc1),l,r)
-				| Node ((c1,nc1),l1,r1),Node((c2,_),_,_) when (C.isLeq c1 c2) (* c1 < c2 *) ->
-					let bcs = B.bound env vars cs in
-					let bc1 = B.bound env vars [c1] in
-					if (B.isLeq bcs bc1)
-					then (* c1 is redundant *) aux (l1,t2) cs
-					else (* c1 is not redundant *)
-						let bnc1 = B.bound env vars [nc1] in
-						if (B.isLeq bcs bnc1)
-					then (* nc1 is redundant *) aux (r1,t2) cs
-					else (* nc1 is not redundant *)
-						let l = aux (l1,t2) (c1::cs) in
-						let r = aux (r1,t2) (nc1::cs) in
-						Node ((c1,nc1),l,r)
 			| Node ((c1,_),_,_),Node((c2,nc2),l2,r2) when (C.isLeq c2 c1) (* c1 > c2 *) ->
-				let bcs = B.bound env vars cs in
-				let bc2 = B.bound env vars [c2] in
+				let bcs = B.inner env vars cs in
+				let bc2 = B.inner env vars [c2] in
 				if (B.isLeq bcs bc2)
 				then (* c2 is redundant *) aux (t1,l2) cs
 				else (* c2 is not redundant *)
-					let bnc2 = B.bound env vars [nc2] in
+					let bnc2 = B.inner env vars [nc2] in
 					if (B.isLeq bcs bnc2)
 					then (* nc2 is redundant *) aux (t1,r2) cs
 					else (* nc2 is not redundant *)
@@ -1362,12 +1389,12 @@ struct
 						let r = aux (t1,r2) (nc2::cs) in
 						Node ((c2,nc2),l,r)
 			| Node ((c1,nc1),l1,r1),_ ->
-				let bcs = B.bound env vars cs in
-				let bc1 = B.bound env vars [c1] in
+				let bcs = B.inner env vars cs in
+				let bc1 = B.inner env vars [c1] in
 				if (B.isLeq bcs bc1)
 				then (* c1 is redundant *) aux (l1,t2) cs
 				else (* c1 is not redundant *)
-					let bnc1 = B.bound env vars [nc1] in
+					let bnc1 = B.inner env vars [nc1] in
 					if (B.isLeq bcs bnc1)
 					then (* nc1 is redundant *) aux (r1,t2) cs
 					else (* nc1 is not redundant *)
@@ -1375,12 +1402,12 @@ struct
 						let r = aux (r1,t2) (nc1::cs) in
 						Node ((c1,nc1),l,r)
 			| _,Node((c2,nc2),l2,r2) ->
-				let bcs = B.bound env vars cs in
-				let bc2 = B.bound env vars [c2] in
+				let bcs = B.inner env vars cs in
+				let bc2 = B.inner env vars [c2] in
 				if (B.isLeq bcs bc2)
 				then (* c2 is redundant *) aux (t1,l2) cs
 				else (* c2 is not redundant *)
-					let bnc2 = B.bound env vars [nc2] in
+					let bnc2 = B.inner env vars [nc2] in
 					if (B.isLeq bcs bnc2)
 					then (* nc2 is redundant *) aux (t1,r2) cs
 					else (* nc2 is not redundant *)
@@ -1388,9 +1415,26 @@ struct
 						let r = aux (t1,r2) (nc2::cs) in
 						Node ((c2,nc2),l,r)
 		in
+    let print_domain fmt domain =
+      match domain with
+      | None -> ()
+      | Some domain -> B.print fmt domain
+    in
+    let t = aux  (tree_unification t1.tree t2.tree t1.env t1.vars) [] in
+    if true then
+      begin
+        Format.fprintf Format.std_formatter "\nLEARN:\n";
+        Format.fprintf Format.std_formatter "t1: DOMAIN = {%a}%a\n\n" print_domain domain1 (print_tree vars) t1.tree;
+        Format.fprintf Format.std_formatter "t2: DOMAIN = {%a}%a\n\n" print_domain domain2 (print_tree vars) t2.tree;
+        Format.fprintf Format.std_formatter "t: DOMAIN = {%a}%a\n" print_domain domain1 (print_tree vars) (t);
+      end;
+    { domain = domain1; tree = t; env = env; vars = vars }
+*)    
+
+    (*
 		if isBot t1.tree then t2 else
 			match domain1,domain2 with
-			| None,None ->
+			| None,None ->if B.isBot (B.meet bc bcs)
 				let print_domain fmt domain =
 					match domain with
 					| None -> ()
@@ -1403,8 +1447,8 @@ struct
 						Format.fprintf Format.std_formatter "t2: DOMAIN = {%a}%a\n\n" print_domain domain2 (print_tree vars) t2.tree
 					end;
 				{ domain = domain1; tree = aux (t1.tree,t2.tree) []; env = env; vars = vars }
-			| Some domain1,Some domain2 when B.isLeq domain1 domain2 ->
-				let print_domain fmt domain =
+		  | Some domain1,Some domain2 when B.isLeq domain1 domain2 ->
+        let print_domain fmt domain =
 					match domain with
 					| None -> ()
 					| Some domain -> B.print fmt domain
@@ -1424,12 +1468,25 @@ struct
 				in
 				if true then
 					begin
-						Format.fprintf Format.std_formatter "\nLEARN:\n";
+						Format.fprintf Format.std_formatter "\nLEARNce:\n";
 						Format.fprintf Format.std_formatter "t1: DOMAIN = {%a}%a\n\n" print_domain (Some domain1) (print_tree vars) t1.tree;
 						Format.fprintf Format.std_formatter "t2: DOMAIN = {%a}%a\n\n" print_domain (Some domain2) (print_tree vars) t2.tree
 					end;
 				t1
 			| _ ->
+        Format.printf "\n unification \n";
+        let tt1,tt2 = 
+          let tree1,tree2 = tree_unification t1.tree t2.tree t1.env t1.vars
+        in
+        {t1 with tree= tree1},{t2 with tree= tree2}
+        in  
+        Format.printf "\nTree 1 :\n";
+        print_tree  tt1.vars Format.std_formatter tt1.tree;
+        Format.printf "\nTree 2 :\n";
+        print_tree  tt2.vars Format.std_formatter tt2.tree;
+        Format.printf "\nTree aux :\n";
+        print_tree  tt2.vars Format.std_formatter (aux (tt1.tree,tt2.tree) []);
+        
 				(* handling the case when t2.domain is defined by constraints not present in the tree(s) *)
 				let ls1 = match domain1 with | None -> LSet.empty | Some domain1 ->
 					List.fold_left (fun s c ->
@@ -1439,7 +1496,8 @@ struct
 						else (* c is not normalized *) LSet.add (nc,c) s
 					) (tree_labels t1.tree) (B.constraints domain1)
 				in
-				let ls2 = match domain2 with | None -> LSet.empty | Some domain2 ->
+				let ls2 = match domain2 with | None ->
+          LSet.empty | Some domain2 ->
 					List.fold_left (fun s c ->
 						let nc = C.negate c in
 						if (C.isLeq nc c)
@@ -1470,10 +1528,10 @@ struct
 						| [] -> t
 						| (x,nx)::xs ->
 							let b = match domain with | None -> B.top env vars | Some domain -> domain in
-							let bx = B.bound env vars [x] in
+							let bx = B.inner env vars [x] in
 							if B.isLeq b bx
 							then (* x is wanted *)
-								let bcs = B.bound env vars cs in
+								let bcs = B.inner env vars cs in
 								if B.isLeq bcs bx
 								then (* x is redundant *) aux t xs cs
 								else (* x is not redundant *)
@@ -1487,7 +1545,7 @@ struct
 											| Bot -> Bot
 											| _ -> Node((c,nc),l,Bot))
 										| Node((c,nc),l,r) when (C.isLeq c x) (* c < x *) ->
-											let bc = B.bound env vars [c] in
+											let bc = B.inner env vars [c] in
 											if B.isLeq bcs bc
 											then (* c is redundant *) aux l bs cs
 											else (* c is not redundant *)
@@ -1506,7 +1564,7 @@ struct
 											| Bot -> Bot
 											| _ -> Node((x,nx),l,Bot)))
 							else (* nx is wanted *)
-								let bcs = B.bound env vars cs in
+								let bcs = B.inner env vars cs in
 								if B.isLeq bcs bx
 								then (* x is redundant *) Bot
 								else (* x is not redundant *)
@@ -1520,7 +1578,7 @@ struct
 											| Bot -> Bot
 											| _ -> Node((c,nc),Bot,r))
 										| Node((c,nc),l,r) when (C.isLeq c x) (* c < x *) ->
-											let bc = B.bound env vars [c] in
+											let bc = B.inner env vars [c] in
 											if B.isLeq bcs bc
 											then (* c is redundant *) aux l bs cs
 											else (* c is not redundant *)
@@ -1547,8 +1605,7 @@ struct
 						Format.fprintf Format.std_formatter "t: DOMAIN = {%a}%a\n" print_domain domain1 (print_tree vars) (aux (t1.tree,tree2) [])
 					end;
 				{ domain = domain1; tree = aux (t1.tree,tree2) []; env = env; vars = vars }
-
-
+*)
   (* NOTE: reset underapproximates the filter operation to guarantee soundness. 
      Currently this limits the set of supported domains to polyhedra *)
 
@@ -1753,8 +1810,8 @@ let rec perm lst =
     | h::t -> 
     List.flatten (List.map (insert h) (perm t));;
 
-
-    let rec find_and_pop acc x nx = 
+(*
+let rec find_and_pop acc x nx = 
       let rec aux acc h = 
       match acc with 
       | y::q when x = y -> true,false, h@q 
@@ -1834,7 +1891,9 @@ let   bitvec v s  =
 
    todo : bench 
 *)
-let rec robust  t  =   
+
+*)
+let robust  t  =   
     
     print_tree t.vars Format.std_formatter t.tree;
     Format.print_newline () ; 
@@ -1862,16 +1921,16 @@ let rec robust  t  =
       | x::[] ->        
         
         let t' = (bwdAssign t (bwAssExpr x)) in 
-        (*Format.printf "\n Remove %s \n" x.varName; 
-        print_tree t.vars fmt t'.tree ; *)
+        Format.printf "\n Remove %s \n" x.varName; 
+        print_tree t.vars Format.std_formatter t'.tree ; 
         let b,cons = unconstraint t'.tree [] in 
         let lft = if b then               
           [(x::acc),cons]
         else
           []
         in
-        (*Format.printf "\n Reste %s \n" x.varName;
-        print_tree t.vars fmt t.tree ; *)
+        Format.printf "\n Reste %s \n" x.varName;
+        print_tree t.vars Format.std_formatter t.tree ; 
         let b,cons = unconstraint t.tree [] in 
         let rght = 
           if b then               
@@ -1883,11 +1942,11 @@ let rec robust  t  =
       | x::q -> 
         
         let t' = (bwdAssign t (bwAssExpr x)) in 
-        (*Format.printf "\nRemove %s \n" x.varName; 
-        print_tree t.vars fmt t'.tree ; *)
+        Format.printf "\nRemove %s \n" x.varName; 
+        print_tree t.vars Format.std_formatter t'.tree ; 
         let l1 = (aux q (x::acc) t') in 
-        (*Format.printf "\n Reste %s \n" x.varName;
-        print_tree t.vars fmt t.tree ; *)
+        Format.printf "\n Reste %s \n" x.varName;
+        print_tree t.vars Format.std_formatter t.tree ; 
         let l2 = (aux q acc t) 
         in l1 @ l2 
         

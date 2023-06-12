@@ -29,7 +29,6 @@ int main( ):
 [16:]
 
 Property: $3{lab} >= 1025
-[ 1:]:
 
 NODE $6{j} >= 1025
  NODE $3{lab} >= 1025
@@ -54,4298 +53,2245 @@ NODE $6{j} >= 1025
         NODE $2{k} >= 0
          LEAF top
           LEAF bottom
-Len 24
 
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-[|-$6+1024>=0;
-                                                        $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                                   -$6+1024>=0;
-                                                                   $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                        $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $2-1>=0|] or  
-[|$2=0; $6-1025>=0|] or  
-[|
--$2-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $2-1>=0|] or  
-[|$2=0;
-                                                            -$6+1024>=0;
-                                                            $6-1023>=0|] or  
-[|
--$2-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $2-1>=0|] or  
-[|
-$2=0; $6-1025>=0|] or  
-[|-$2-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $2-1>=0|] or  
-[|
-$2=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$2-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $2-1>=0|] or  
-[|
-$2=0; -$3+1024>=0; $6-1025>=0|] or  
-[|-$2-1>=0; -$3+1024>=0; $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0; $6-1023>=0;
-                                       $2-1>=0|] or  
-[|$2=0; -$3+1024>=0;
-                                                  -$6+1024>=0; $6-1023>=0|] or  
-[|
--$2-1>=0; -$3+1024>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $2-1>=0|] or  
-[|$2=0;
-                                                              -$3+1024>=0;
-                                                              $6-1025>=0|] or  
-[|
--$2-1>=0; -$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|
--$3+1024>=0; -$6+1024>=0; $6-1023>=0; $2-1>=0|] or  
-[|$2=0; -$3+1024>=0;
-                                                 -$6+1024>=0; $6-1023>=0|] or  
-[|
--$2-1>=0; -$3+1024>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-[|-$6+1024>=0;
-                                                        $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                                   -$6+1024>=0;
-                                                                   $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                        $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-
-  -- constraints   --  
-[|$6-1025>=0; $2-1>=0|] or  
-[|$2=0; $6-1025>=0|] or  
-[|
--$2-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $2-1>=0|] or  
-[|$2=0;
-                                                            -$6+1024>=0;
-                                                            $6-1023>=0|] or  
-[|
--$2-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-
-  -- constraints   --  
-[|$6-1025>=0; $2-1>=0|] or  
-[|
-$2=0; $6-1025>=0|] or  
-[|-$2-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $2-1>=0|] or  
-[|
-$2=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$2-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $2-1>=0|] or  
-[|
-$2=0; -$3+1024>=0; $6-1025>=0|] or  
-[|-$2-1>=0; -$3+1024>=0; $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0; $6-1023>=0;
-                                       $2-1>=0|] or  
-[|$2=0; -$3+1024>=0;
-                                                  -$6+1024>=0; $6-1023>=0|] or  
-[|
--$2-1>=0; -$3+1024>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-simply reachable ?: true 
-
-
-[ 2:]:
+Remove $1 
 
 NODE $6{j} >= 1025
  NODE $3{lab} >= 1025
-  LEAF 0.
+  LEAF 1
    NODE $2{k} >= 1
-    LEAF 8
+    LEAF 9
      NODE $2{k} >= 0
-      LEAF 3077
-       LEAF 8
+      LEAF 3078
+       LEAF 9
   NODE $6{j} >= 1023
    NODE $3{lab} >= 1025
-    LEAF 0.
+    LEAF 1
      NODE $2{k} >= 1
-      LEAF 8
+      LEAF 9
        NODE $2{k} >= 0
-        LEAF 3077
-         LEAF 8
+        LEAF 3078
+         LEAF 9
     NODE $3{lab} >= 1025
-     LEAF 0.
+     LEAF 1
       NODE $2{k} >= 1
        LEAF bottom
         NODE $2{k} >= 0
          LEAF top
           LEAF bottom
-Len 24
+Remove i 
 
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-[|-$6+1024>=0;
-                                                        $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                                   -$6+1024>=0;
-                                                                   $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                        $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $2-1>=0|] or  
-[|$2=0; $6-1025>=0|] or  
-[|
--$2-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $2-1>=0|] or  
-[|$2=0;
-                                                            -$6+1024>=0;
-                                                            $6-1023>=0|] or  
-[|
--$2-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $2-1>=0|] or  
-[|
-$2=0; $6-1025>=0|] or  
-[|-$2-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $2-1>=0|] or  
-[|
-$2=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$2-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $2-1>=0|] or  
-[|
-$2=0; -$3+1024>=0; $6-1025>=0|] or  
-[|-$2-1>=0; -$3+1024>=0; $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0; $6-1023>=0;
-                                       $2-1>=0|] or  
-[|$2=0; -$3+1024>=0;
-                                                  -$6+1024>=0; $6-1023>=0|] or  
-[|
--$2-1>=0; -$3+1024>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $2-1>=0|] or  
-[|$2=0;
-                                                              -$3+1024>=0;
-                                                              $6-1025>=0|] or  
-[|
--$2-1>=0; -$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|
--$3+1024>=0; -$6+1024>=0; $6-1023>=0; $2-1>=0|] or  
-[|$2=0; -$3+1024>=0;
-                                                 -$6+1024>=0; $6-1023>=0|] or  
-[|
--$2-1>=0; -$3+1024>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-[|-$6+1024>=0;
-                                                        $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                                   -$6+1024>=0;
-                                                                   $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                        $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-
-  -- constraints   --  
-[|$6-1025>=0; $2-1>=0|] or  
-[|$2=0; $6-1025>=0|] or  
-[|
--$2-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $2-1>=0|] or  
-[|$2=0;
-                                                            -$6+1024>=0;
-                                                            $6-1023>=0|] or  
-[|
--$2-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-
-  -- constraints   --  
-[|$6-1025>=0; $2-1>=0|] or  
-[|
-$2=0; $6-1025>=0|] or  
-[|-$2-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $2-1>=0|] or  
-[|
-$2=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$2-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $2-1>=0|] or  
-[|
-$2=0; -$3+1024>=0; $6-1025>=0|] or  
-[|-$2-1>=0; -$3+1024>=0; $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0; $6-1023>=0;
-                                       $2-1>=0|] or  
-[|$2=0; -$3+1024>=0;
-                                                  -$6+1024>=0; $6-1023>=0|] or  
-[|
--$2-1>=0; -$3+1024>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-simply reachable ?: true 
-
-
-[ 3:]:
-
-NODE $6{j} >= 1023
+NODE $6{j} >= 1025
  NODE $3{lab} >= 1025
-  LEAF 0.
-   LEAF 7
-  NODE $3{lab} >= 1025
-   LEAF 0.
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
+    NODE $3{lab} >= 1025
+     LEAF 2
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove j 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove k 
+
+NODE $3{lab} >= 1025
+ LEAF 4
+  LEAF bottom
+Remove lab 
+
+LEAF bottom
+ Remove n 
+
+LEAF bottom
+ Reste n 
+
+LEAF bottom
+ Reste lab 
+
+NODE $3{lab} >= 1025
+ LEAF 4
+  LEAF bottom
+ Remove n 
+
+NODE $3{lab} >= 1025
+ LEAF 5
+  LEAF bottom
+ Reste n 
+
+NODE $3{lab} >= 1025
+ LEAF 4
+  LEAF bottom
+ Reste k 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove lab 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
     LEAF bottom
-Len 24
+ Remove n 
 
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste n 
 
- -- Join constraint -- 
-[|$3-1025>=0|]
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste lab 
 
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
+NODE $3{lab} >= 1025
+ LEAF 3
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Remove n 
 
- -- Join constraint -- 
-[|$3-1025>=0|]
+NODE $3{lab} >= 1025
+ LEAF 4
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste n 
 
- --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                        $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|
-$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-
-  -- constraints   --  
-[|
-$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                        $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-simply reachable ?: true 
-
-
-[ 4:]:
+NODE $3{lab} >= 1025
+ LEAF 3
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste j 
 
 NODE $6{j} >= 1025
- NODE $5{n} >= 0
-  NODE $3{lab} >= 1025
-   LEAF 0.
-    LEAF 3$5{n}+6
-   NODE $3{lab} >= 1025
-    LEAF 0.
-     LEAF 3
-  NODE $6{j} >= 1023
-   NODE $5{n} >= 0
-    NODE $3{lab} >= 1025
-     LEAF 0.
-      LEAF 3$5{n}+6
-     NODE $3{lab} >= 1025
-      LEAF 0.
-       LEAF bottom
-    NODE $5{n} >= 1
-     NODE $3{lab} >= 1025
-      LEAF 0.
-       LEAF top
-      NODE $5{n} >= 0
-       NODE $3{lab} >= 1025
-        LEAF 0.
-         LEAF bottom
-        NODE $3{lab} >= 1025
-         LEAF 0.
-          LEAF bottom
-Len 24
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$5-1>=0; $3-1025>=0|] or  
-[|$5=0; $3-1025>=0|] or  
-[|
--$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$5-1>=0;
-                                                                  $3-1025>=0|] or  
-[|
-$5=0; $3-1025>=0|] or  
-[|-$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $5>=0|] or  
-[|-$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0;
-                                                           $6-1023>=0; 
-                                                           $5>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $5>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $5>=0|] or  
-[|-$5-1>=0;
-                                                                   $6-1025>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$3+1024>=0; -$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0;
-                                     $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0;
-                                                   $6-1023>=0; $5>=0|] or  
-[|
--$5-1>=0; -$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0; $5-1>=0;
-                                                 $3-1025>=0|] or  
-[|$5=0;
-                                                               -$6+1022>=0;
-                                                               $3-1025>=0|] or  
-[|
--$5-1>=0; -$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0;
-                                                                    $5>=0|] or  
-[|
--$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $5>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $5>=0|] or  
-[|-$5-1>=0;
-                                                                   $6-1025>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$3+1024>=0; -$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0;
-                                     $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0;
-                                                   $6-1023>=0; $5>=0|] or  
-[|
--$5-1>=0; -$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0; $5-1>=0;
-                                                 $3-1025>=0|] or  
-[|$5=0;
-                                                               -$6+1022>=0;
-                                                               $3-1025>=0|] or  
-[|
--$5-1>=0; -$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$5-1>=0;
-                                                                    $3-1025>=0|] or  
-[|
-$5=0; $3-1025>=0|] or  
-[|-$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|$5-1>=0; $3-1025>=0|] or  
-[|$5=0; $3-1025>=0|] or  
-[|-$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $5>=0|] or  
-[|-$5-1>=0;
-                                                               $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $5>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|
--$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                  $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|
-$6-1025>=0; $5>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $5>=0|] or  
-[|-$5-1>=0;
-                                                                   $6-1025>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$3+1024>=0; -$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0;
-                                     $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0;
-                                                   $6-1023>=0; $5>=0|] or  
-[|
--$5-1>=0; -$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0; $5-1>=0;
-                                                 $3-1025>=0|] or  
-[|$5=0;
-                                                               -$6+1022>=0;
-                                                               $3-1025>=0|] or  
-[|
--$5-1>=0; -$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-
-  -- constraints   --  
-[|$6-1025>=0;
-                                                                    $5>=0|] or  
-[|
--$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-simply reachable ?: true 
-
-
-[ 5:]:
-
-NODE $6{j} >= 1023
  NODE $3{lab} >= 1025
-  LEAF 0.
-   LEAF 3076
-  NODE $3{lab} >= 1025
-   LEAF 0.
-    LEAF top
-Len 24
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                        $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|
-$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-
-  -- constraints   --  
-[|
-$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                        $6-1023>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-simply reachable ?: true 
-
-
-[ 6:]:
-
-NODE $6{j} >= 1025
- NODE $5{n} >= 0
-  NODE $3{lab} >= 1025
-   LEAF 0.
-    LEAF 3$5{n}+6
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
    NODE $3{lab} >= 1025
-    LEAF 0.
-     LEAF 3
-  NODE $6{j} >= 1023
-   NODE $5{n} >= 0
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
     NODE $3{lab} >= 1025
-     LEAF 0.
-      LEAF 3$5{n}+6
-     NODE $3{lab} >= 1025
-      LEAF 0.
+     LEAF 2
+      NODE $2{k} >= 1
        LEAF bottom
-    NODE $5{n} >= 1
-     NODE $3{lab} >= 1025
-      LEAF 0.
-       LEAF top
-      NODE $5{n} >= 0
-       NODE $3{lab} >= 1025
-        LEAF 0.
-         LEAF bottom
-        NODE $3{lab} >= 1025
-         LEAF 0.
+        NODE $2{k} >= 0
+         LEAF top
           LEAF bottom
-Len 24
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$5-1>=0; $3-1025>=0|] or  
-[|$5=0; $3-1025>=0|] or  
-[|
--$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$5-1>=0;
-                                                                  $3-1025>=0|] or  
-[|
-$5=0; $3-1025>=0|] or  
-[|-$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $5>=0|] or  
-[|-$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0;
-                                                           $6-1023>=0; 
-                                                           $5>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $5>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $5>=0|] or  
-[|-$5-1>=0;
-                                                                   $6-1025>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$3+1024>=0; -$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0;
-                                     $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0;
-                                                   $6-1023>=0; $5>=0|] or  
-[|
--$5-1>=0; -$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0; $5-1>=0;
-                                                 $3-1025>=0|] or  
-[|$5=0;
-                                                               -$6+1022>=0;
-                                                               $3-1025>=0|] or  
-[|
--$5-1>=0; -$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0;
-                                                                    $5>=0|] or  
-[|
--$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $5>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $5>=0|] or  
-[|-$5-1>=0;
-                                                                   $6-1025>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$3+1024>=0; -$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0;
-                                     $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0;
-                                                   $6-1023>=0; $5>=0|] or  
-[|
--$5-1>=0; -$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0; $5-1>=0;
-                                                 $3-1025>=0|] or  
-[|$5=0;
-                                                               -$6+1022>=0;
-                                                               $3-1025>=0|] or  
-[|
--$5-1>=0; -$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$5-1>=0;
-                                                                    $3-1025>=0|] or  
-[|
-$5=0; $3-1025>=0|] or  
-[|-$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|$5-1>=0; $3-1025>=0|] or  
-[|$5=0; $3-1025>=0|] or  
-[|-$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $5>=0|] or  
-[|-$5-1>=0;
-                                                               $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $5>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|
--$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                  $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|
-$6-1025>=0; $5>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $5>=0|] or  
-[|-$5-1>=0;
-                                                                   $6-1025>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$3+1024>=0; -$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0;
-                                     $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0;
-                                                   $6-1023>=0; $5>=0|] or  
-[|
--$5-1>=0; -$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0; $5-1>=0;
-                                                 $3-1025>=0|] or  
-[|$5=0;
-                                                               -$6+1022>=0;
-                                                               $3-1025>=0|] or  
-[|
--$5-1>=0; -$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-
-  -- constraints   --  
-[|$6-1025>=0;
-                                                                    $5>=0|] or  
-[|
--$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-simply reachable ?: true 
-
-
-[ 7:]:
+Remove k 
 
 NODE $6{j} >= 1025
- NODE $5{n} >= 0
-  NODE $3{lab} >= 1025
-   LEAF 0.
-    LEAF 3$5{n}+6
+ NODE $3{lab} >= 1025
+  LEAF 3
+   LEAF 3080
+  NODE $6{j} >= 1023
    NODE $3{lab} >= 1025
-    LEAF 0.
-     LEAF 3
-  NODE $6{j} >= 1023
-   NODE $5{n} >= 0
-    NODE $3{lab} >= 1025
-     LEAF 0.
-      LEAF 3$5{n}+6
-     NODE $3{lab} >= 1025
-      LEAF 0.
-       LEAF bottom
-    NODE $5{n} >= 1
-     NODE $3{lab} >= 1025
-      LEAF 0.
-       LEAF top
-      NODE $5{n} >= 0
-       NODE $3{lab} >= 1025
-        LEAF 0.
-         LEAF bottom
-        NODE $3{lab} >= 1025
-         LEAF 0.
-          LEAF bottom
-Len 24
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$5-1>=0; $3-1025>=0|] or  
-[|$5=0; $3-1025>=0|] or  
-[|
--$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$5-1>=0;
-                                                                  $3-1025>=0|] or  
-[|
-$5=0; $3-1025>=0|] or  
-[|-$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $5>=0|] or  
-[|-$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0;
-                                                           $6-1023>=0; 
-                                                           $5>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $5>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $5>=0|] or  
-[|-$5-1>=0;
-                                                                   $6-1025>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$3+1024>=0; -$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0;
-                                     $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0;
-                                                   $6-1023>=0; $5>=0|] or  
-[|
--$5-1>=0; -$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0; $5-1>=0;
-                                                 $3-1025>=0|] or  
-[|$5=0;
-                                                               -$6+1022>=0;
-                                                               $3-1025>=0|] or  
-[|
--$5-1>=0; -$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0;
-                                                                    $5>=0|] or  
-[|
--$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $5>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $5>=0|] or  
-[|-$5-1>=0;
-                                                                   $6-1025>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$3+1024>=0; -$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0;
-                                     $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0;
-                                                   $6-1023>=0; $5>=0|] or  
-[|
--$5-1>=0; -$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0; $5-1>=0;
-                                                 $3-1025>=0|] or  
-[|$5=0;
-                                                               -$6+1022>=0;
-                                                               $3-1025>=0|] or  
-[|
--$5-1>=0; -$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$5-1>=0;
-                                                                    $3-1025>=0|] or  
-[|
-$5=0; $3-1025>=0|] or  
-[|-$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|$5-1>=0; $3-1025>=0|] or  
-[|$5=0; $3-1025>=0|] or  
-[|-$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $5>=0|] or  
-[|-$5-1>=0;
-                                                               $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $5>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|
--$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                  $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|
-$6-1025>=0; $5>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0; $5>=0|] or  
-[|-$5-1>=0;
-                                                                   $6-1025>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$3+1024>=0; -$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0;
-                                     $3-1025>=0|] or  
-[|-$3+1024>=0; -$6+1024>=0;
-                                                   $6-1023>=0; $5>=0|] or  
-[|
--$5-1>=0; -$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0; $5-1>=0;
-                                                 $3-1025>=0|] or  
-[|$5=0;
-                                                               -$6+1022>=0;
-                                                               $3-1025>=0|] or  
-[|
--$5-1>=0; -$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-
-  -- constraints   --  
-[|$6-1025>=0;
-                                                                    $5>=0|] or  
-[|
--$5-1>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $5>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-simply reachable ?: true 
-
-
-[ 8:]:
-
-NODE $6{j} >= 1025
- NODE $4{i}-$5{n} >= 1
-  NODE $3{lab} >= 1025
-   LEAF 0.
-    LEAF 2
-   NODE $4{i}-$5{n} >= 0
-    NODE $3{lab} >= 1025
-     LEAF 0.
-      LEAF 5
-     NODE $3{lab} >= 1025
-      LEAF 0.
-       LEAF -3$4{i}+3$5{n}+5
-  NODE $6{j} >= 1023
-   NODE $4{i}-$5{n} >= 1
-    NODE $3{lab} >= 1025
-     LEAF 0.
-      LEAF bottom
-     NODE $4{i}-$5{n} >= 0
-      NODE $3{lab} >= 1025
-       LEAF 0.
-        LEAF 5
-       NODE $3{lab} >= 1025
-        LEAF 0.
-         LEAF -3$4{i}+3$5{n}+5
-    NODE $4{i}-$5{n} >= 1
-     NODE $3{lab} >= 1025
-      LEAF 0.
-       LEAF bottom
-      NODE $4{i}-$5{n} >= 0
-       NODE $3{lab} >= 1025
-        LEAF 0.
-         LEAF bottom
-        NODE $3{lab} >= 1025
-         LEAF 0.
-          LEAF top
-Len 24
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0;
-                                                        $3-1025>=0|] or  
-[|
--$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                  $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$4-$5-1>=0; $3-1025>=0|] or  
-[|-$4+$5=0; $3-1025>=0|] or  
-[|
--$4+$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|
-$4-$5-1>=0; $3-1025>=0|] or  
-[|-$4+$5=0; $3-1025>=0|] or  
-[|-$4+$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $4-$5-1>=0|] or  
-[|-$4+$5=0;
-                                                                    $6-1025>=0|] or  
-[|
--$4+$5-1>=0; $6-1025>=0|] or  
-[|-$4+$5=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$4+$5-1>=0;
-                                                                -$6+1024>=0;
-                                                                $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0;
-                                                                   $6-1023>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $4-$5-1>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                                    $6-1025>=0;
-                                                                    $4-$5-1>=0|] or  
-[|
--$4+$5=0; $6-1025>=0; $3-1025>=0|] or  
-[|-$4+$5=0; -$3+1024>=0; $6-1025>=0|] or  
-[|
--$4+$5-1>=0; $6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; -$4+$5-1>=0; $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $4-$5-1>=0; $3-1025>=0|] or  
-[|-$4+$5=0; -$6+1024>=0;
-                                                   $6-1023>=0; $3-1025>=0|] or  
-[|
--$4+$5=0; -$3+1024>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$4+$5-1>=0; -$6+1024>=0;
-                                                  $6-1023>=0; $3-1025>=0|] or  
-[|
--$3+1024>=0; -$4+$5-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $4-$5-1>=0;
-                                                     $3-1025>=0|] or  
-[|-$4+$5=0;
-                                                                   -$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$4+$5-1>=0; -$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-
-  -- constraints   --  
-[|
-$6-1025>=0; $4-$5-1>=0|] or  
-[|-$4+$5=0; $6-1025>=0|] or  
-[|-$4+$5-1>=0; $6-1025>=0|] or  
-[|
--$4+$5=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$4+$5-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0;
-                                                                   $6-1023>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-simply reachable ?: true 
-
-
-[ 9:]:
-
-NODE $6{j} >= 1025
- NODE $4{i}-$5{n} >= 1
-  NODE $3{lab} >= 1025
-   LEAF 0
-    LEAF 2
-   NODE $4{i}-$5{n} >= 0
-    NODE $3{lab} >= 1025
-     LEAF 0
-      LEAF 5
-     NODE $3{lab} >= 1025
-      LEAF 0
-       LEAF -3$4{i}+3$5{n}+5
-  NODE $6{j} >= 1023
-   NODE $4{i}-$5{n} >= 1
-    NODE $3{lab} >= 1025
-     LEAF 0
-      LEAF bottom
-     NODE $4{i}-$5{n} >= 0
-      NODE $3{lab} >= 1025
-       LEAF 0
-        LEAF 5
-       NODE $3{lab} >= 1025
-        LEAF 0
-         LEAF -3$4{i}+3$5{n}+5
-    NODE $4{i}-$5{n} >= 1
-     NODE $3{lab} >= 1025
-      LEAF 0
-       LEAF bottom
-      NODE $4{i}-$5{n} >= 0
-       NODE $3{lab} >= 1025
-        LEAF 0
-         LEAF bottom
-        NODE $3{lab} >= 1025
-         LEAF 0
-          LEAF top
-Len 24
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0;
-                                                        $3-1025>=0|] or  
-[|
--$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                  $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$4-$5-1>=0; $3-1025>=0|] or  
-[|-$4+$5=0; $3-1025>=0|] or  
-[|
--$4+$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|
-$4-$5-1>=0; $3-1025>=0|] or  
-[|-$4+$5=0; $3-1025>=0|] or  
-[|-$4+$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $4-$5-1>=0|] or  
-[|-$4+$5=0;
-                                                                    $6-1025>=0|] or  
-[|
--$4+$5-1>=0; $6-1025>=0|] or  
-[|-$4+$5=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$4+$5-1>=0;
-                                                                -$6+1024>=0;
-                                                                $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0;
-                                                                   $6-1023>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $4-$5-1>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                                    $6-1025>=0;
-                                                                    $4-$5-1>=0|] or  
-[|
--$4+$5=0; $6-1025>=0; $3-1025>=0|] or  
-[|-$4+$5=0; -$3+1024>=0; $6-1025>=0|] or  
-[|
--$4+$5-1>=0; $6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; -$4+$5-1>=0; $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $4-$5-1>=0; $3-1025>=0|] or  
-[|-$4+$5=0; -$6+1024>=0;
-                                                   $6-1023>=0; $3-1025>=0|] or  
-[|
--$4+$5=0; -$3+1024>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$4+$5-1>=0; -$6+1024>=0;
-                                                  $6-1023>=0; $3-1025>=0|] or  
-[|
--$3+1024>=0; -$4+$5-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $4-$5-1>=0;
-                                                     $3-1025>=0|] or  
-[|-$4+$5=0;
-                                                                   -$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$4+$5-1>=0; -$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-
-  -- constraints   --  
-[|
-$6-1025>=0; $4-$5-1>=0|] or  
-[|-$4+$5=0; $6-1025>=0|] or  
-[|-$4+$5-1>=0; $6-1025>=0|] or  
-[|
--$4+$5=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$4+$5-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0;
-                                                                   $6-1023>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-simply reachable ?: true 
-
-
-[10:]:
-
-NODE $6{j} >= 1023
- NODE $4{i}-$5{n} >= 0
-  NODE $3{lab} >= 1025
-   LEAF 0.
-    LEAF 4
-   NODE $4{i}-$5{n} >= -1
-    NODE $3{lab} >= 1025
-     LEAF 0.
-      LEAF 7
-     NODE $3{lab} >= 1025
-      LEAF 0.
-       LEAF -3$4{i}+3$5{n}+4
-  NODE $6{j} >= 1021
-   NODE $4{i}-$5{n} >= 0
-    NODE $3{lab} >= 1025
-     LEAF 0.
-      LEAF bottom
-     NODE $4{i}-$5{n} >= -1
-      NODE $3{lab} >= 1025
-       LEAF 0.
-        LEAF 7
-       NODE $3{lab} >= 1025
-        LEAF 0.
-         LEAF -3$4{i}+3$5{n}+4
-    NODE $4{i}-$5{n} >= 0
-     NODE $3{lab} >= 1025
-      LEAF 0.
-       LEAF bottom
-      NODE $4{i}-$5{n} >= -1
-       NODE $3{lab} >= 1025
-        LEAF 0.
-         LEAF bottom
-        NODE $3{lab} >= 1025
-         LEAF 0.
-          LEAF top
-Len 24
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|
--$6+1022>=0; $6-1021>=0; $3-1025>=0|] or  
-[|-$6+1020>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $6-1021>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1020>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$4{i}-
-  -- constraints   --  
-[|
-$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0;
-                                                        $3-1025>=0|] or  
-[|
--$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $6-1021>=0; $3-1025>=0|] or  
-[|-$6+1020>=0;
-                                                                  $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|
-$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $6-1021>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1020>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$4-$5>=0; $3-1025>=0|] or  
-[|-$4+$5-1=0; $3-1025>=0|] or  
-[|
--$4+$5-2>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|
-$4-$5>=0; $3-1025>=0|] or  
-[|-$4+$5-1=0; $3-1025>=0|] or  
-[|-$4+$5-2>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1023>=0; $4-$5>=0|] or  
-[|-$4+$5-1=0;
-                                                                  $6-1023>=0|] or  
-[|
--$4+$5-2>=0; $6-1023>=0|] or  
-[|-$4+$5-1=0; -$6+1022>=0; $6-1021>=0|] or  
-[|-$4+$5-2>=0;
-                                                                  -$6+1022>=0;
-                                                                  $6-1021>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1021>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0;
-                                                                   $6-1021>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$6+1020>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|$6-1023>=0; $4-$5>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                                  $6-1023>=0;
-                                                                  $4-$5>=0|] or  
-[|
--$4+$5-1=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$4+$5-1=0; -$3+1024>=0; $6-1023>=0|] or  
-[|
--$4+$5-2>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; -$4+$5-2>=0; $6-1023>=0|] or  
-[|
--$6+1022>=0; $6-1021>=0; $4-$5>=0; $3-1025>=0|] or  
-[|-$4+$5-1=0; -$6+1022>=0;
-                                                 $6-1021>=0; $3-1025>=0|] or  
-[|
--$4+$5-1=0; -$3+1024>=0; -$6+1022>=0; $6-1021>=0|] or  
-[|-$4+$5-2>=0; -$6+1022>=0;
-                                                    $6-1021>=0; $3-1025>=0|] or  
-[|
--$3+1024>=0; -$4+$5-2>=0; -$6+1022>=0; $6-1021>=0|] or  
-[|-$6+1020>=0; $4-$5>=0;
-                                                     $3-1025>=0|] or  
-[|-$4+$5-1=0;
-                                                                   -$6+1020>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$4+$5-2>=0; -$6+1020>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-
-  -- constraints   --  
-[|
-$6-1023>=0; $4-$5>=0|] or  
-[|-$4+$5-1=0; $6-1023>=0|] or  
-[|-$4+$5-2>=0; $6-1023>=0|] or  
-[|
--$4+$5-1=0; -$6+1022>=0; $6-1021>=0|] or  
-[|-$4+$5-2>=0; -$6+1022>=0; $6-1021>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1021>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0;
-                                                                   $6-1021>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$6+1020>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-simply reachable ?: true 
-
-
-[11:]:
-
-NODE $6{j} >= 1023
- NODE $4{i}-$5{n} >= 1
-  NODE $3{lab} >= 1025
-   LEAF 0.
     LEAF 3
-   NODE $4{i}-$5{n} >= 0
+     LEAF 3080
     NODE $3{lab} >= 1025
-     LEAF 0.
-      LEAF 6
-     NODE $3{lab} >= 1025
-      LEAF 0.
-       LEAF -3$4{i}+3$5{n}+6
-  NODE $6{j} >= 1021
-   NODE $4{i}-$5{n} >= 1
-    NODE $3{lab} >= 1025
-     LEAF 0.
+     LEAF 3
       LEAF bottom
-     NODE $4{i}-$5{n} >= 0
-      NODE $3{lab} >= 1025
-       LEAF 0.
-        LEAF 6
-       NODE $3{lab} >= 1025
-        LEAF 0.
-         LEAF -3$4{i}+3$5{n}+6
-    NODE $4{i}-$5{n} >= 1
-     NODE $3{lab} >= 1025
-      LEAF 0.
-       LEAF bottom
-      NODE $4{i}-$5{n} >= 0
-       NODE $3{lab} >= 1025
-        LEAF 0.
-         LEAF bottom
-        NODE $3{lab} >= 1025
-         LEAF 0.
-          LEAF top
-Len 24
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|
--$6+1022>=0; $6-1021>=0; $3-1025>=0|] or  
-[|-$6+1020>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $6-1021>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1020>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$4{i}-
-  -- constraints   --  
-[|
-$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|$6-1023>=0;
-                                                        $3-1025>=0|] or  
-[|
--$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $6-1021>=0; $3-1025>=0|] or  
-[|-$6+1020>=0;
-                                                                  $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|
-$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $6-1021>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1020>=0;
-                                                                   $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$4-$5-1>=0; $3-1025>=0|] or  
-[|-$4+$5=0; $3-1025>=0|] or  
-[|
--$4+$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|
-$4-$5-1>=0; $3-1025>=0|] or  
-[|-$4+$5=0; $3-1025>=0|] or  
-[|-$4+$5-1>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1023>=0; $4-$5-1>=0|] or  
-[|-$4+$5=0;
-                                                                    $6-1023>=0|] or  
-[|
--$4+$5-1>=0; $6-1023>=0|] or  
-[|-$4+$5=0; -$6+1022>=0; $6-1021>=0|] or  
-[|-$4+$5-1>=0;
-                                                                -$6+1022>=0;
-                                                                $6-1021>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1021>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0;
-                                                                   $6-1021>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$6+1020>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|$6-1023>=0; $4-$5-1>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                                    $6-1023>=0;
-                                                                    $4-$5-1>=0|] or  
-[|
--$4+$5=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$4+$5=0; -$3+1024>=0; $6-1023>=0|] or  
-[|
--$4+$5-1>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; -$4+$5-1>=0; $6-1023>=0|] or  
-[|
--$6+1022>=0; $6-1021>=0; $4-$5-1>=0; $3-1025>=0|] or  
-[|-$4+$5=0; -$6+1022>=0;
-                                                   $6-1021>=0; $3-1025>=0|] or  
-[|
--$4+$5=0; -$3+1024>=0; -$6+1022>=0; $6-1021>=0|] or  
-[|-$4+$5-1>=0; -$6+1022>=0;
-                                                  $6-1021>=0; $3-1025>=0|] or  
-[|
--$3+1024>=0; -$4+$5-1>=0; -$6+1022>=0; $6-1021>=0|] or  
-[|-$6+1020>=0; $4-$5-1>=0;
-                                                     $3-1025>=0|] or  
-[|-$4+$5=0;
-                                                                   -$6+1020>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$4+$5-1>=0; -$6+1020>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-
-  -- constraints   --  
-[|$6-1023>=0|] or  
-
- -- Join constraint -- 
-[|$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-
-  -- constraints   --  
-[|
-$6-1023>=0; $4-$5-1>=0|] or  
-[|-$4+$5=0; $6-1023>=0|] or  
-[|-$4+$5-1>=0; $6-1023>=0|] or  
-[|
--$4+$5=0; -$6+1022>=0; $6-1021>=0|] or  
-[|-$4+$5-1>=0; -$6+1022>=0; $6-1021>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1021>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|$6-1023>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0;
-                                                                   $6-1021>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$6+1020>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-simply reachable ?: true 
-
-
-[12:]:
+Remove lab 
 
 NODE $6{j} >= 1025
- NODE $4{i}-$5{n} >= 1
-  NODE $3{lab} >= 1025
-   LEAF 0.
-    LEAF 2
-   NODE $4{i}-$5{n} >= 0
-    NODE $3{lab} >= 1025
-     LEAF 0.
-      LEAF 5
-     NODE $3{lab} >= 1025
-      LEAF 0.
-       LEAF -3$4{i}+3$5{n}+5
+ LEAF 3081
   NODE $6{j} >= 1023
-   NODE $4{i}-$5{n} >= 1
+   LEAF 3081
+    LEAF bottom
+ Remove n 
+
+NODE $6{j} >= 1025
+ LEAF 3082
+  NODE $6{j} >= 1023
+   LEAF 3082
+    LEAF bottom
+ Reste n 
+
+NODE $6{j} >= 1025
+ LEAF 3081
+  NODE $6{j} >= 1023
+   LEAF 3081
+    LEAF bottom
+ Reste lab 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 3
+   LEAF 3080
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 3
+     LEAF 3080
     NODE $3{lab} >= 1025
-     LEAF 0.
+     LEAF 3
       LEAF bottom
-     NODE $4{i}-$5{n} >= 0
-      NODE $3{lab} >= 1025
-       LEAF 0.
-        LEAF 5
-       NODE $3{lab} >= 1025
-        LEAF 0.
-         LEAF -3$4{i}+3$5{n}+5
-    NODE $4{i}-$5{n} >= 1
-     NODE $3{lab} >= 1025
-      LEAF 0.
+ Remove n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 4
+   LEAF 3081
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 4
+     LEAF 3081
+    NODE $3{lab} >= 1025
+     LEAF 4
+      LEAF bottom
+ Reste n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 3
+   LEAF 3080
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 3
+     LEAF 3080
+    NODE $3{lab} >= 1025
+     LEAF 3
+      LEAF bottom
+ Reste k 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
+    NODE $3{lab} >= 1025
+     LEAF 2
+      NODE $2{k} >= 1
        LEAF bottom
-      NODE $4{i}-$5{n} >= 0
-       NODE $3{lab} >= 1025
-        LEAF 0.
-         LEAF bottom
-        NODE $3{lab} >= 1025
-         LEAF 0.
-          LEAF top
-Len 24
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove lab 
 
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 11
+   NODE $2{k} >= 0
+    LEAF 3080
+     LEAF 11
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 11
+     NODE $2{k} >= 0
+      LEAF 3080
+       LEAF 11
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Remove n 
 
- -- Join constraint -- 
-[|$3-1025>=0|]
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 12
+   NODE $2{k} >= 0
+    LEAF 3081
+     LEAF 12
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 12
+     NODE $2{k} >= 0
+      LEAF 3081
+       LEAF 12
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste n 
 
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 11
+   NODE $2{k} >= 0
+    LEAF 3080
+     LEAF 11
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 11
+     NODE $2{k} >= 0
+      LEAF 3080
+       LEAF 11
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste lab 
 
- -- Join constraint -- 
-[|$3-1025>=0|]
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
+    NODE $3{lab} >= 1025
+     LEAF 2
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Remove n 
 
- --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 3
+   NODE $2{k} >= 1
+    LEAF 11
+     NODE $2{k} >= 0
+      LEAF 3080
+       LEAF 11
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 3
+     NODE $2{k} >= 1
+      LEAF 11
+       NODE $2{k} >= 0
+        LEAF 3080
+         LEAF 11
+    NODE $3{lab} >= 1025
+     LEAF 3
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste n 
 
- -- Join constraint -- 
-[|
-$3-1025>=0|]
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
+    NODE $3{lab} >= 1025
+     LEAF 2
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste i 
 
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove j 
 
- -- Join constraint -- 
-[|$3-1025>=0|]
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove k 
 
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+Remove lab 
 
- -- Join constraint -- 
-[|$6-1025>=0|]
+LEAF bottom
+ Remove n 
 
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0|] or  
+LEAF bottom
+ Reste n 
 
- -- Join constraint -- 
-[|$6-1025>=0|]
+LEAF bottom
+ Reste lab 
 
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0; $3-1025>=0|] or  
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+ Remove n 
 
- -- Join constraint -- 
-top
+NODE $3{lab} >= 1025
+ LEAF 4
+  LEAF bottom
+ Reste n 
 
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+ Reste k 
 
- -- Join constraint -- 
-top
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove lab 
 
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0|] or  
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Remove n 
 
- -- Join constraint -- 
-[|$6-1025>=0|]
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste n 
 
- --   uncontrolled  -- 
-  $3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste lab 
 
- -- Join constraint -- 
-[|$6-1025>=0|]
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Remove n 
 
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0;
-                                                        $3-1025>=0|] or  
-[|
--$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0; $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                  $3-1025>=0|] or  
+NODE $3{lab} >= 1025
+ LEAF 3
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste n 
 
- -- Join constraint -- 
-top
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste j 
 
- --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $6-1023>=0;
-                                                     $3-1025>=0|] or  
-[|-$6+1022>=0;
-                                                                   $3-1025>=0|] or  
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove k 
 
- -- Join constraint -- 
-top
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+Remove lab 
 
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|
-$3-1025>=0|] or  
+NODE $6{j} >= 1025
+ LEAF 3080
+  NODE $6{j} >= 1023
+   LEAF 3080
+    LEAF bottom
+ Remove n 
 
- -- Join constraint -- 
-[|$3-1025>=0|]
+NODE $6{j} >= 1025
+ LEAF 3081
+  NODE $6{j} >= 1023
+   LEAF 3081
+    LEAF bottom
+ Reste n 
 
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$4-$5-1>=0; $3-1025>=0|] or  
-[|-$4+$5=0; $3-1025>=0|] or  
-[|
--$4+$5-1>=0; $3-1025>=0|] or  
+NODE $6{j} >= 1025
+ LEAF 3080
+  NODE $6{j} >= 1023
+   LEAF 3080
+    LEAF bottom
+ Reste lab 
 
- -- Join constraint -- 
-[|$3-1025>=0|]
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+ Remove n 
 
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 3
+   LEAF 3080
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 3
+     LEAF 3080
+    NODE $3{lab} >= 1025
+     LEAF 3
+      LEAF bottom
+ Reste n 
 
- -- Join constraint -- 
-[|$3-1025>=0|]
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+ Reste k 
 
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|
-$4-$5-1>=0; $3-1025>=0|] or  
-[|-$4+$5=0; $3-1025>=0|] or  
-[|-$4+$5-1>=0; $3-1025>=0|] or  
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove lab 
 
- -- Join constraint -- 
-[|
-$3-1025>=0|]
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 10
+   NODE $2{k} >= 0
+    LEAF 3079
+     LEAF 10
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Remove n 
 
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 11
+   NODE $2{k} >= 0
+    LEAF 3080
+     LEAF 11
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 11
+     NODE $2{k} >= 0
+      LEAF 3080
+       LEAF 11
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste n 
 
- -- Join constraint -- 
-[|$6-1025>=0|]
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 10
+   NODE $2{k} >= 0
+    LEAF 3079
+     LEAF 10
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste lab 
 
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $4-$5-1>=0|] or  
-[|-$4+$5=0;
-                                                                    $6-1025>=0|] or  
-[|
--$4+$5-1>=0; $6-1025>=0|] or  
-[|-$4+$5=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$4+$5-1>=0;
-                                                                -$6+1024>=0;
-                                                                $6-1023>=0|] or  
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Remove n 
 
- -- Join constraint -- 
-[|
-$6-1023>=0|]
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
+    NODE $3{lab} >= 1025
+     LEAF 2
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste n 
 
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0;
-                                                                   $6-1023>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $4-$5-1>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                                    $6-1025>=0;
-                                                                    $4-$5-1>=0|] or  
-[|
--$4+$5=0; $6-1025>=0; $3-1025>=0|] or  
-[|-$4+$5=0; -$3+1024>=0; $6-1025>=0|] or  
-[|
--$4+$5-1>=0; $6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; -$4+$5-1>=0; $6-1025>=0|] or  
-[|
--$6+1024>=0; $6-1023>=0; $4-$5-1>=0; $3-1025>=0|] or  
-[|-$4+$5=0; -$6+1024>=0;
-                                                   $6-1023>=0; $3-1025>=0|] or  
-[|
--$4+$5=0; -$3+1024>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$4+$5-1>=0; -$6+1024>=0;
-                                                  $6-1023>=0; $3-1025>=0|] or  
-[|
--$3+1024>=0; -$4+$5-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$6+1022>=0; $4-$5-1>=0;
-                                                     $3-1025>=0|] or  
-[|-$4+$5=0;
-                                                                   -$6+1022>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$4+$5-1>=0; -$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-
-  -- constraints   --  
-[|
-$6-1025>=0; $4-$5-1>=0|] or  
-[|-$4+$5=0; $6-1025>=0|] or  
-[|-$4+$5-1>=0; $6-1025>=0|] or  
-[|
--$4+$5=0; -$6+1024>=0; $6-1023>=0|] or  
-[|-$4+$5-1>=0; -$6+1024>=0; $6-1023>=0|] or  
-
- -- Join constraint -- 
-[|
-$6-1023>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0;
-                                                                   $6-1023>=0;
-                                                                   $3-1025>=0|] or  
-[|
--$6+1022>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-simply reachable ?: true 
-
-
-[13:]:
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste $1 
 
 NODE $6{j} >= 1025
  NODE $3{lab} >= 1025
   LEAF 0.
-   LEAF 1
-  NODE $3{lab} >= 1025
-   LEAF 0.
+   NODE $2{k} >= 1
+    LEAF 8
+     NODE $2{k} >= 0
+      LEAF 3077
+       LEAF 8
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 0.
+     NODE $2{k} >= 1
+      LEAF 8
+       NODE $2{k} >= 0
+        LEAF 3077
+         LEAF 8
+    NODE $3{lab} >= 1025
+     LEAF 0.
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove i 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove j 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove k 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+Remove lab 
+
+LEAF bottom
+ Remove n 
+
+LEAF bottom
+ Reste n 
+
+LEAF bottom
+ Reste lab 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+ Remove n 
+
+NODE $3{lab} >= 1025
+ LEAF 4
+  LEAF bottom
+ Reste n 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+ Reste k 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove lab 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
     LEAF bottom
-Len 24
+ Remove n 
 
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste n 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste lab 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Remove n 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste n 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste j 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove k 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+Remove lab 
+
+NODE $6{j} >= 1025
+ LEAF 3080
+  NODE $6{j} >= 1023
+   LEAF 3080
+    LEAF bottom
+ Remove n 
+
+NODE $6{j} >= 1025
+ LEAF 3081
+  NODE $6{j} >= 1023
+   LEAF 3081
+    LEAF bottom
+ Reste n 
+
+NODE $6{j} >= 1025
+ LEAF 3080
+  NODE $6{j} >= 1023
+   LEAF 3080
+    LEAF bottom
+ Reste lab 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+ Remove n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 3
+   LEAF 3080
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 3
+     LEAF 3080
+    NODE $3{lab} >= 1025
+     LEAF 3
+      LEAF bottom
+ Reste n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+ Reste k 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove lab 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 10
+   NODE $2{k} >= 0
+    LEAF 3079
+     LEAF 10
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Remove n 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 11
+   NODE $2{k} >= 0
+    LEAF 3080
+     LEAF 11
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 11
+     NODE $2{k} >= 0
+      LEAF 3080
+       LEAF 11
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste n 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 10
+   NODE $2{k} >= 0
+    LEAF 3079
+     LEAF 10
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste lab 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Remove n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
+    NODE $3{lab} >= 1025
+     LEAF 2
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste i 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 0.
+   NODE $2{k} >= 1
+    LEAF 8
+     NODE $2{k} >= 0
+      LEAF 3077
+       LEAF 8
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 0.
+     NODE $2{k} >= 1
+      LEAF 8
+       NODE $2{k} >= 0
+        LEAF 3077
+         LEAF 8
+    NODE $3{lab} >= 1025
+     LEAF 0.
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove j 
+
+NODE $3{lab} >= 1025
+ LEAF 1
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove k 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  LEAF bottom
+Remove lab 
+
+LEAF bottom
+ Remove n 
+
+LEAF bottom
+ Reste n 
+
+LEAF bottom
+ Reste lab 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  LEAF bottom
+ Remove n 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+ Reste n 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  LEAF bottom
+ Reste k 
+
+NODE $3{lab} >= 1025
+ LEAF 1
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove lab 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Remove n 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste n 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste lab 
+
+NODE $3{lab} >= 1025
+ LEAF 1
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Remove n 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste n 
+
+NODE $3{lab} >= 1025
+ LEAF 1
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste j 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 0.
+   NODE $2{k} >= 1
+    LEAF 8
+     NODE $2{k} >= 0
+      LEAF 3077
+       LEAF 8
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 0.
+     NODE $2{k} >= 1
+      LEAF 8
+       NODE $2{k} >= 0
+        LEAF 3077
+         LEAF 8
+    NODE $3{lab} >= 1025
+     LEAF 0.
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove k 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   LEAF 3078
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     LEAF 3078
+    NODE $3{lab} >= 1025
+     LEAF 1
+      LEAF bottom
+Remove lab 
+
+NODE $6{j} >= 1025
+ LEAF 3079
+  NODE $6{j} >= 1023
+   LEAF 3079
+    LEAF bottom
+ Remove n 
+
+NODE $6{j} >= 1025
+ LEAF 3080
+  NODE $6{j} >= 1023
+   LEAF 3080
+    LEAF bottom
+ Reste n 
+
+NODE $6{j} >= 1025
+ LEAF 3079
+  NODE $6{j} >= 1023
+   LEAF 3079
+    LEAF bottom
+ Reste lab 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   LEAF 3078
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     LEAF 3078
+    NODE $3{lab} >= 1025
+     LEAF 1
+      LEAF bottom
+ Remove n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+ Reste n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   LEAF 3078
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     LEAF 3078
+    NODE $3{lab} >= 1025
+     LEAF 1
+      LEAF bottom
+ Reste k 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 0.
+   NODE $2{k} >= 1
+    LEAF 8
+     NODE $2{k} >= 0
+      LEAF 3077
+       LEAF 8
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 0.
+     NODE $2{k} >= 1
+      LEAF 8
+       NODE $2{k} >= 0
+        LEAF 3077
+         LEAF 8
+    NODE $3{lab} >= 1025
+     LEAF 0.
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove lab 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 9
+   NODE $2{k} >= 0
+    LEAF 3078
+     LEAF 9
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Remove n 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 10
+   NODE $2{k} >= 0
+    LEAF 3079
+     LEAF 10
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste n 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 9
+   NODE $2{k} >= 0
+    LEAF 3078
+     LEAF 9
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste lab 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 0.
+   NODE $2{k} >= 1
+    LEAF 8
+     NODE $2{k} >= 0
+      LEAF 3077
+       LEAF 8
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 0.
+     NODE $2{k} >= 1
+      LEAF 8
+       NODE $2{k} >= 0
+        LEAF 3077
+         LEAF 8
+    NODE $3{lab} >= 1025
+     LEAF 0.
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Remove n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 0.
+   NODE $2{k} >= 1
+    LEAF 8
+     NODE $2{k} >= 0
+      LEAF 3077
+       LEAF 8
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 0.
+     NODE $2{k} >= 1
+      LEAF 8
+       NODE $2{k} >= 0
+        LEAF 3077
+         LEAF 8
+    NODE $3{lab} >= 1025
+     LEAF 0.
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
  --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
+ $5{n}-$2{k}-$6{j}-$4{i}-$1{$1}-
   -- constraints   --  
 [|
-$3-1025>=0|] or  
+                                                         $3-1025>=0|]
 
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
+ -- Join constraint --  [|$3-1025>=0|]
 
  --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-$4{i}-
+ $2{k}-$6{j}-$4{i}-$1{$1}-
   -- constraints   --  
 [|
-$6-1025>=0|] or  
+                                                   $3-1025>=0|]
 
- -- Join constraint -- 
-[|$6-1025>=0|]
+ -- Join constraint --  [|$3-1025>=0|]
 
  --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
+ $5{n}-$6{j}-$4{i}-$1{$1}-
   -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
 [|
--$6+1024>=0; $3-1025>=0|] or  
+                                                   $3-1025>=0|]
 
- -- Join constraint -- 
-top
+ -- Join constraint --  [|$3-1025>=0|]
 
  --   uncontrolled  -- 
-  $2{k}-$4{i}-
+ $6{j}-$4{i}-$1{$1}-
   -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0;
-                                                        $6-1025>=0|] or  
 [|
--$6+1024>=0; $3-1025>=0|] or  
+                                             $3-1025>=0|]
 
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$4{i}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
+ -- Join constraint --  [|$3-1025>=0|]
 
  --   uncontrolled  -- 
-  $3{lab}-$4{i}-
+ $5{n}-$3{lab}-$2{k}-$4{i}-$1{$1}-
   -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
 [|
-$6-1025>=0|]
+                                                           $6-1025>=0|]
+[|
+                                                           -$6+1024>=0;
+                                                           $6-1023>=0|]
+
+ -- Join constraint --  [|$6-1023>=0|]
 
  --   uncontrolled  -- 
-  $5{n}-$4{i}-
+ $3{lab}-$2{k}-$4{i}-$1{$1}-
   -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
+[|
+                                                     $6-1025>=0|]
 [|-$6+1024>=0;
-                                                                   $3-1025>=0|] or  
+                                                                    $6-1023>=0|]
 
- -- Join constraint -- 
-top
+ -- Join constraint --  [|$6-1023>=0|]
 
  --   uncontrolled  -- 
-  $4{i}-
+ $5{n}-$2{k}-$4{i}-$1{$1}-
   -- constraints   --  
 [|
-$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|-$6+1024>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
+                                                   $6-1025>=0; $3-1025>=0|]
 [|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
+                                                   -$3+1024>=0; $6-1025>=0|]
 [|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $3{lab}-$2{k}-
-  -- constraints   --  
-[|
-$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
-[|
--$6+1024>=0; $3-1025>=0|] or  
-
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
+                                                   -$6+1024>=0; $6-1023>=0;
+                                                   $3-1025>=0|]
 [|-$3+1024>=0;
-                                                        $6-1025>=0|] or  
+                                                                  -$6+1024>=0;
+                                                                  $6-1023>=0|]
 [|
--$6+1024>=0; $3-1025>=0|] or  
+                                                   -$6+1022>=0; $3-1025>=0|]
 
- -- Join constraint -- 
-top
-
- --   uncontrolled  -- 
-  $5{n}-$3{lab}-
-  -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
-[|$6-1025>=0|]
+ -- Join constraint --  top
 
  --   uncontrolled  -- 
-  $3{lab}-
+ $2{k}-$4{i}-$1{$1}-
   -- constraints   --  
-[|$6-1025>=0|] or  
-
- -- Join constraint -- 
 [|
-$6-1025>=0|]
+                                             $6-1025>=0; $3-1025>=0|]
+[|
+                                             -$3+1024>=0; $6-1025>=0|]
+[|
+                                             -$6+1024>=0; $6-1023>=0;
+                                             $3-1025>=0|]
+[|-$3+1024>=0;
+                                                            -$6+1024>=0;
+                                                            $6-1023>=0|]
+[|
+                                             -$6+1022>=0; $3-1025>=0|]
+
+ -- Join constraint --  top
 
  --   uncontrolled  -- 
-  $5{n}-
+ $5{n}-$3{lab}-$4{i}-$1{$1}-
   -- constraints   --  
-[|$6-1025>=0; $3-1025>=0|] or  
-[|-$3+1024>=0; $6-1025>=0|] or  
+[|
+                                                     $6-1025>=0; $2-1>=0|]
+[|
+                                                     $2=0; $6-1025>=0|]
+[|
+                                                     -$2-1>=0; $6-1025>=0|]
+[|
+                                                     -$6+1024>=0; $6-1023>=0;
+                                                     $2-1>=0|]
+[|$2=0;
+                                                                 -$6+1024>=0;
+                                                                 $6-1023>=0|]
+[|
+                                                     -$2-1>=0; -$6+1024>=0;
+                                                     $6-1023>=0|]
+
+ -- Join constraint --  [|$6-1023>=0|]
+
+ --   uncontrolled  -- 
+ $3{lab}-$4{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                               $6-1025>=0; $2-1>=0|]
+[|
+                                               $2=0; $6-1025>=0|]
+[|-$2-1>=0;
+                                                                    $6-1025>=0|]
+[|
+                                               -$6+1024>=0; $6-1023>=0;
+                                               $2-1>=0|]
+[|$2=0; -$6+1024>=0;
+                                                           $6-1023>=0|]
+[|
+                                               -$2-1>=0; -$6+1024>=0;
+                                               $6-1023>=0|]
+
+ -- Join constraint --  [|$6-1023>=0|]
+
+ --   uncontrolled  -- 
+ $5{n}-$4{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $6-1025>=0; $3-1025>=0|]
+[|
+                                             -$3+1024>=0; $6-1025>=0; 
+                                             $2-1>=0|]
+[|$2=0; -$3+1024>=0;
+                                                         $6-1025>=0|]
+[|
+                                             -$2-1>=0; -$3+1024>=0;
+                                             $6-1025>=0|]
 [|-$6+1024>=0;
-                                                                   $3-1025>=0|] or  
+                                                            $6-1023>=0;
+                                                            $3-1025>=0|]
+[|
+                                             -$3+1024>=0; -$6+1024>=0;
+                                             $6-1023>=0; $2-1>=0|]
+[|
+                                             $2=0; -$3+1024>=0; -$6+1024>=0;
+                                             $6-1023>=0|]
+[|-$2-1>=0;
+                                                            -$3+1024>=0;
+                                                            -$6+1024>=0;
+                                                            $6-1023>=0|]
+[|
+                                             -$6+1022>=0; $3-1025>=0|]
 
- -- Join constraint -- 
-top
-simply reachable ?: true 
-
-
-[14:]:
-
-NODE $3{lab} >= 1025
- LEAF 0.
-  LEAF bottom
-Len 16
+ -- Join constraint --  top
 
  --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
+ $4{i}-$1{$1}-
+  -- constraints   --  
+[|$6-1025>=0;
+                                                                 $3-1025>=0|]
+[|
+                                       -$3+1024>=0; $6-1025>=0; $2-1>=0|]
+[|
+                                       $2=0; -$3+1024>=0; $6-1025>=0|]
+[|
+                                       -$2-1>=0; -$3+1024>=0; $6-1025>=0|]
+[|
+                                       -$6+1024>=0; $6-1023>=0; $3-1025>=0|]
+[|
+                                       -$3+1024>=0; -$6+1024>=0; $6-1023>=0;
+                                       $2-1>=0|]
+[|$2=0; -$3+1024>=0;
+                                                   -$6+1024>=0; $6-1023>=0|]
+[|
+                                       -$2-1>=0; -$3+1024>=0; -$6+1024>=0;
+                                       $6-1023>=0|]
+[|-$6+1022>=0; $3-1025>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{n}-$2{k}-$6{j}-$1{$1}-
   -- constraints   --  
 [|
-$3-1025>=0|] or  
+                                                   $3-1025>=0|]
 
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
+ -- Join constraint --  [|$3-1025>=0|]
 
  --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
+ $2{k}-$6{j}-$1{$1}-
   -- constraints   --  
 [|
-$3-1025>=0|] or  
+                                             $3-1025>=0|]
 
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
+ -- Join constraint --  [|$3-1025>=0|]
 
  --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
+ $5{n}-$6{j}-$1{$1}-
   -- constraints   --  
 [|
-$3-1025>=0|] or  
+                                             $3-1025>=0|]
 
- -- Join constraint -- 
+ -- Join constraint --  [|$3-1025>=0|]
+
+ --   uncontrolled  -- 
+ $6{j}-$1{$1}-
+  -- constraints   --  
 [|$3-1025>=0|]
 
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
+ -- Join constraint --  [|$3-1025>=0|]
 
  --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-simply reachable ?: true 
-
-
-[15:]:
-
-NODE $3{lab} >= 1025
- LEAF 0.
-  LEAF bottom
-Len 16
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
+ $5{n}-$3{lab}-$2{k}-$1{$1}-
   -- constraints   --  
 [|
-$3-1025>=0|] or  
+                                                     $6-1025>=0|]
+[|-$6+1024>=0;
+                                                                    $6-1023>=0|]
 
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
+ -- Join constraint --  [|$6-1023>=0|]
 
  --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$4{i}-
+ $3{lab}-$2{k}-$1{$1}-
   -- constraints   --  
 [|
-$3-1025>=0|] or  
+                                               $6-1025>=0|]
+[|-$6+1024>=0;
+                                                              $6-1023>=0|]
 
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
+ -- Join constraint --  [|$6-1023>=0|]
 
  --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
+ $5{n}-$2{k}-$1{$1}-
   -- constraints   --  
 [|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
+                                             $6-1025>=0; $3-1025>=0|]
 [|
-$3-1025>=0|]
+                                             -$3+1024>=0; $6-1025>=0|]
+[|
+                                             -$6+1024>=0; $6-1023>=0;
+                                             $3-1025>=0|]
+[|-$3+1024>=0;
+                                                            -$6+1024>=0;
+                                                            $6-1023>=0|]
+[|
+                                             -$6+1022>=0; $3-1025>=0|]
+
+ -- Join constraint --  top
 
  --   uncontrolled  -- 
-  $2{k}-
+ $2{k}-$1{$1}-
   -- constraints   --  
-[|$3-1025>=0|] or  
+[|$6-1025>=0;
+                                                                 $3-1025>=0|]
+[|
+                                       -$3+1024>=0; $6-1025>=0|]
+[|-$6+1024>=0;
+                                                                   $6-1023>=0;
+                                                                   $3-1025>=0|]
+[|
+                                       -$3+1024>=0; -$6+1024>=0; $6-1023>=0|]
+[|
+                                       -$6+1022>=0; $3-1025>=0|]
 
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-simply reachable ?: true 
-
-
-[16:]:
-
-NODE $3{lab} >= 1025
- LEAF 0.
-  LEAF bottom
-Len 16
+ -- Join constraint --  top
 
  --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-$4{i}-
+ $5{n}-$3{lab}-$1{$1}-
   -- constraints   --  
 [|
-$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
+                                               $6-1025>=0; $2-1>=0|]
 [|
-$3-1025>=0|]
+                                               $2=0; $6-1025>=0|]
+[|-$2-1>=0;
+                                                                    $6-1025>=0|]
+[|
+                                               -$6+1024>=0; $6-1023>=0;
+                                               $2-1>=0|]
+[|$2=0; -$6+1024>=0;
+                                                           $6-1023>=0|]
+[|
+                                               -$2-1>=0; -$6+1024>=0;
+                                               $6-1023>=0|]
+
+ -- Join constraint --  [|$6-1023>=0|]
 
  --   uncontrolled  -- 
-  $6{j}-$4{i}-
+ $3{lab}-$1{$1}-
   -- constraints   --  
-[|$3-1025>=0|] or  
+[|$6-1025>=0;
+                                                                   $2-1>=0|]
+[|
+                                         $2=0; $6-1025>=0|]
+[|-$2-1>=0;
+                                                              $6-1025>=0|]
+[|
+                                         -$6+1024>=0; $6-1023>=0; $2-1>=0|]
+[|
+                                         $2=0; -$6+1024>=0; $6-1023>=0|]
+[|
+                                         -$2-1>=0; -$6+1024>=0; $6-1023>=0|]
 
- -- Join constraint -- 
-[|$3-1025>=0|]
+ -- Join constraint --  [|$6-1023>=0|]
 
  --   uncontrolled  -- 
-  $5{n}-$2{k}-$4{i}-
+ $5{n}-$1{$1}-
   -- constraints   --  
-[|$3-1025>=0|] or  
+[|$6-1025>=0;
+                                                                 $3-1025>=0|]
+[|
+                                       -$3+1024>=0; $6-1025>=0; $2-1>=0|]
+[|
+                                       $2=0; -$3+1024>=0; $6-1025>=0|]
+[|
+                                       -$2-1>=0; -$3+1024>=0; $6-1025>=0|]
+[|
+                                       -$6+1024>=0; $6-1023>=0; $3-1025>=0|]
+[|
+                                       -$3+1024>=0; -$6+1024>=0; $6-1023>=0;
+                                       $2-1>=0|]
+[|$2=0; -$3+1024>=0;
+                                                   -$6+1024>=0; $6-1023>=0|]
+[|
+                                       -$2-1>=0; -$3+1024>=0; -$6+1024>=0;
+                                       $6-1023>=0|]
+[|-$6+1022>=0; $3-1025>=0|]
 
- -- Join constraint -- 
-[|$3-1025>=0|]
+ -- Join constraint --  top
 
  --   uncontrolled  -- 
-  $2{k}-$4{i}-
+ $1{$1}-
+  -- constraints   --  
+[|$6-1025>=0;
+                                                           $3-1025>=0|]
+[|
+                                 -$3+1024>=0; $6-1025>=0; $2-1>=0|]
+[|
+                                 $2=0; -$3+1024>=0; $6-1025>=0|]
+[|-$2-1>=0;
+                                                                   -$3+1024>=0;
+                                                                   $6-1025>=0|]
+[|
+                                 -$6+1024>=0; $6-1023>=0; $3-1025>=0|]
+[|
+                                 -$3+1024>=0; -$6+1024>=0; $6-1023>=0;
+                                 $2-1>=0|]
+[|$2=0; -$3+1024>=0; -$6+1024>=0;
+                                             $6-1023>=0|]
+[|-$2-1>=0;
+                                                            -$3+1024>=0;
+                                                            -$6+1024>=0;
+                                                            $6-1023>=0|]
+[|
+                                 -$6+1022>=0; $3-1025>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{n}-$2{k}-$6{j}-$4{i}-
   -- constraints   --  
 [|
-$3-1025>=0|] or  
+                                                  $3-1025>=0|]
 
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
+ -- Join constraint --  [|$3-1025>=0|]
 
  --   uncontrolled  -- 
-  $4{i}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|
-$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $2{k}-$6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $5{n}-$6{j}-
+ $2{k}-$6{j}-$4{i}-
   -- constraints   --  
 [|
-$3-1025>=0|] or  
+                                            $3-1025>=0|]
 
- -- Join constraint -- 
-[|$3-1025>=0|]
-
- --   uncontrolled  -- 
-  $6{j}-
-  -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
-[|$3-1025>=0|]
+ -- Join constraint --  [|$3-1025>=0|]
 
  --   uncontrolled  -- 
-  $5{n}-$2{k}-
+ $5{n}-$6{j}-$4{i}-
   -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
 [|
-$3-1025>=0|]
+                                            $3-1025>=0|]
+
+ -- Join constraint --  [|$3-1025>=0|]
 
  --   uncontrolled  -- 
-  $2{k}-
+ $6{j}-$4{i}-
   -- constraints   --  
-[|$3-1025>=0|] or  
-
- -- Join constraint -- 
 [|$3-1025>=0|]
+
+ -- Join constraint --  [|$3-1025>=0|]
 
  --   uncontrolled  -- 
-  $5{n}-
+ $5{n}-$3{lab}-$2{k}-$4{i}-
   -- constraints   --  
-[|$3-1025>=0|] or  
+[|
+                                                    $6-1025>=0|]
+[|-$6+1024>=0;
+                                                                   $6-1023>=0|]
 
- -- Join constraint -- 
+ -- Join constraint --  [|$6-1023>=0|]
+
+ --   uncontrolled  -- 
+ $3{lab}-$2{k}-$4{i}-
+  -- constraints   --  
+[|
+                                              $6-1025>=0|]
+[|-$6+1024>=0;
+                                                             $6-1023>=0|]
+
+ -- Join constraint --  [|$6-1023>=0|]
+
+ --   uncontrolled  -- 
+ $5{n}-$2{k}-$4{i}-
+  -- constraints   --  
+[|
+                                            $6-1025>=0; $3-1025>=0|]
+[|
+                                            -$3+1024>=0; $6-1025>=0|]
+[|
+                                            -$6+1024>=0; $6-1023>=0;
+                                            $3-1025>=0|]
+[|-$3+1024>=0;
+                                                           -$6+1024>=0;
+                                                           $6-1023>=0|]
+[|
+                                            -$6+1022>=0; $3-1025>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $2{k}-$4{i}-
+  -- constraints   --  
+[|$6-1025>=0;
+                                                                $3-1025>=0|]
+[|
+                                      -$3+1024>=0; $6-1025>=0|]
+[|-$6+1024>=0;
+                                                                  $6-1023>=0;
+                                                                  $3-1025>=0|]
+[|
+                                      -$3+1024>=0; -$6+1024>=0; $6-1023>=0|]
+[|
+                                      -$6+1022>=0; $3-1025>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{n}-$3{lab}-$4{i}-
+  -- constraints   --  
+[|
+                                              $6-1025>=0; $2-1>=0|]
+[|
+                                              $2=0; $6-1025>=0|]
+[|-$2-1>=0;
+                                                                   $6-1025>=0|]
+[|
+                                              -$6+1024>=0; $6-1023>=0;
+                                              $2-1>=0|]
+[|$2=0; -$6+1024>=0;
+                                                          $6-1023>=0|]
+[|
+                                              -$2-1>=0; -$6+1024>=0;
+                                              $6-1023>=0|]
+
+ -- Join constraint --  [|$6-1023>=0|]
+
+ --   uncontrolled  -- 
+ $3{lab}-$4{i}-
+  -- constraints   --  
+[|$6-1025>=0;
+                                                                  $2-1>=0|]
+[|
+                                        $2=0; $6-1025>=0|]
+[|-$2-1>=0;
+                                                             $6-1025>=0|]
+[|
+                                        -$6+1024>=0; $6-1023>=0; $2-1>=0|]
+[|
+                                        $2=0; -$6+1024>=0; $6-1023>=0|]
+[|
+                                        -$2-1>=0; -$6+1024>=0; $6-1023>=0|]
+
+ -- Join constraint --  [|$6-1023>=0|]
+
+ --   uncontrolled  -- 
+ $5{n}-$4{i}-
+  -- constraints   --  
+[|$6-1025>=0;
+                                                                $3-1025>=0|]
+[|
+                                      -$3+1024>=0; $6-1025>=0; $2-1>=0|]
+[|
+                                      $2=0; -$3+1024>=0; $6-1025>=0|]
+[|
+                                      -$2-1>=0; -$3+1024>=0; $6-1025>=0|]
+[|
+                                      -$6+1024>=0; $6-1023>=0; $3-1025>=0|]
+[|
+                                      -$3+1024>=0; -$6+1024>=0; $6-1023>=0;
+                                      $2-1>=0|]
+[|$2=0; -$3+1024>=0;
+                                                  -$6+1024>=0; $6-1023>=0|]
+[|
+                                      -$2-1>=0; -$3+1024>=0; -$6+1024>=0;
+                                      $6-1023>=0|]
+[|-$6+1022>=0; $3-1025>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $4{i}-
+  -- constraints   --  
+[|$6-1025>=0;
+                                                          $3-1025>=0|]
+[|
+                                -$3+1024>=0; $6-1025>=0; $2-1>=0|]
+[|
+                                $2=0; -$3+1024>=0; $6-1025>=0|]
+[|-$2-1>=0;
+                                                                  -$3+1024>=0;
+                                                                  $6-1025>=0|]
+[|
+                                -$6+1024>=0; $6-1023>=0; $3-1025>=0|]
+[|
+                                -$3+1024>=0; -$6+1024>=0; $6-1023>=0; 
+                                $2-1>=0|]
+[|$2=0; -$3+1024>=0; -$6+1024>=0;
+                                            $6-1023>=0|]
+[|-$2-1>=0;
+                                                           -$3+1024>=0;
+                                                           -$6+1024>=0;
+                                                           $6-1023>=0|]
+[|
+                                -$6+1022>=0; $3-1025>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{n}-$2{k}-$6{j}-
+  -- constraints   --  
+[|
+                                            $3-1025>=0|]
+
+ -- Join constraint --  [|$3-1025>=0|]
+
+ --   uncontrolled  -- 
+ $2{k}-$6{j}-
+  -- constraints   --  
 [|$3-1025>=0|]
-simply reachable ?: true 
 
+ -- Join constraint --  [|$3-1025>=0|]
 
+ --   uncontrolled  -- 
+ $5{n}-$6{j}-
+  -- constraints   --  
+[|$3-1025>=0|]
+
+ -- Join constraint --  [|$3-1025>=0|]
+
+ --   uncontrolled  -- 
+ $6{j}-
+  -- constraints   --  
+[|$3-1025>=0|]
+
+ -- Join constraint --  [|$3-1025>=0|]
+
+ --   uncontrolled  -- 
+ $5{n}-$3{lab}-$2{k}-
+  -- constraints   --  
+[|
+                                              $6-1025>=0|]
+[|-$6+1024>=0;
+                                                             $6-1023>=0|]
+
+ -- Join constraint --  [|$6-1023>=0|]
+
+ --   uncontrolled  -- 
+ $3{lab}-$2{k}-
+  -- constraints   --  
+[|$6-1025>=0|]
+[|
+                                        -$6+1024>=0; $6-1023>=0|]
+
+ -- Join constraint --  [|$6-1023>=0|]
+
+ --   uncontrolled  -- 
+ $5{n}-$2{k}-
+  -- constraints   --  
+[|$6-1025>=0;
+                                                                $3-1025>=0|]
+[|
+                                      -$3+1024>=0; $6-1025>=0|]
+[|-$6+1024>=0;
+                                                                  $6-1023>=0;
+                                                                  $3-1025>=0|]
+[|
+                                      -$3+1024>=0; -$6+1024>=0; $6-1023>=0|]
+[|
+                                      -$6+1022>=0; $3-1025>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $2{k}-
+  -- constraints   --  
+[|$6-1025>=0;
+                                                          $3-1025>=0|]
+[|
+                                -$3+1024>=0; $6-1025>=0|]
+[|-$6+1024>=0;
+                                                            $6-1023>=0;
+                                                            $3-1025>=0|]
+[|
+                                -$3+1024>=0; -$6+1024>=0; $6-1023>=0|]
+[|
+                                -$6+1022>=0; $3-1025>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{n}-$3{lab}-
+  -- constraints   --  
+[|$6-1025>=0;
+                                                                  $2-1>=0|]
+[|
+                                        $2=0; $6-1025>=0|]
+[|-$2-1>=0;
+                                                             $6-1025>=0|]
+[|
+                                        -$6+1024>=0; $6-1023>=0; $2-1>=0|]
+[|
+                                        $2=0; -$6+1024>=0; $6-1023>=0|]
+[|
+                                        -$2-1>=0; -$6+1024>=0; $6-1023>=0|]
+
+ -- Join constraint --  [|$6-1023>=0|]
+
+ --   uncontrolled  -- 
+ $3{lab}-
+  -- constraints   --  
+[|$6-1025>=0;
+                                                            $2-1>=0|]
+[|
+                                  $2=0; $6-1025>=0|]
+[|-$2-1>=0; $6-1025>=0|]
+[|
+                                  -$6+1024>=0; $6-1023>=0; $2-1>=0|]
+[|
+                                  $2=0; -$6+1024>=0; $6-1023>=0|]
+[|-$2-1>=0;
+                                                                    -$6+1024>=0;
+                                                                    $6-1023>=0|]
+
+ -- Join constraint --  [|$6-1023>=0|]
+
+ --   uncontrolled  -- 
+ $5{n}-
+  -- constraints   --  
+[|$6-1025>=0;
+                                                          $3-1025>=0|]
+[|
+                                -$3+1024>=0; $6-1025>=0; $2-1>=0|]
+[|
+                                $2=0; -$3+1024>=0; $6-1025>=0|]
+[|-$2-1>=0;
+                                                                  -$3+1024>=0;
+                                                                  $6-1025>=0|]
+[|
+                                -$6+1024>=0; $6-1023>=0; $3-1025>=0|]
+[|
+                                -$3+1024>=0; -$6+1024>=0; $6-1023>=0; 
+                                $2-1>=0|]
+[|$2=0; -$3+1024>=0; -$6+1024>=0;
+                                            $6-1023>=0|]
+[|-$2-1>=0;
+                                                           -$3+1024>=0;
+                                                           -$6+1024>=0;
+                                                           $6-1023>=0|]
+[|
+                                -$6+1022>=0; $3-1025>=0|]
+
+ -- Join constraint --  top
+
+robust finished 
+ 
 Analysis Result: UNKNOWN
 
 Done.
