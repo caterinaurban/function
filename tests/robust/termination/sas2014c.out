@@ -26,11 +26,7 @@ Forward Analysis:
 [ 6:]: -$1{x} >= 0
 
 Backward Analysis:
-[ 2:]:
 
-NODE $1{x} >= 1
- LEAF bottom
-  LEAF 1.
  --   uncontrolled  -- 
  $2{y}-
   -- constraints   --  
@@ -38,9 +34,8 @@ NODE $1{x} >= 1
 
  -- Join constraint --  [|-$1>=0|]
 
-simply reachable ?: true 
-
-
+robust finished 
+ 
 Analysis Result: UNKNOWN
 
 Done.
