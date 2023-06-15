@@ -2,8 +2,10 @@
 tests/robust/sv_comp/witness/sv_sum2.c
 -domain
 polyhedra
--ordinals
-3
 -cda
--robust
+3
+-joinbwd
+3
+-minimal
+-guarantee
 tests/robust/sv_comp/witness/sum2.txt

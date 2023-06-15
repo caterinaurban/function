@@ -172,6 +172,96 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
             Format.fprintf !fmt "### %a ###:\n%a\n" label_print l D.print p ;
           addBwdInv l p ;
           p
+  (* CDA *)
+
+  let cda_recursive robust property funcs env vars s stmts main =
+    let compress () =
+      bwdInvMap := InvMap.map (fun a -> D.compress a) !bwdInvMap
+    in
+    let reinit () =
+      bwdInvMap := InvMap.map (fun a -> D.reinit a) !bwdInvMap
+    in
+    let rec aux b p n =
+      (* Forward Analysis *)
+      if !tracefwd && not !minimal then
+        Format.fprintf !fmt "\nForward Analysis[%i] Trace:\n" n ;
+      let startfwd = Sys.time () in
+      fwdInvMap := ForwardIteratorB.compute (vars, stmts, funcs) main env ;
+      let stopfwd = Sys.time () in
+      if not !minimal then (
+        if !timefwd then
+          Format.fprintf !fmt "\nForward Analysis[%i] (Time: %f s):\n" n
+            (stopfwd -. startfwd)
+        else Format.fprintf !fmt "\nForward Analysis[%i]:\n" n ;
+        fwdMap_print !fmt !fwdInvMap ) ;
+      (* Backward Analysis *)
+      if !tracebwd && not !minimal then
+        Format.fprintf !fmt "\nBackward Analysis[%i] Trace:\n" n ;
+      start := Sys.time () ;
+      let startbwd = Sys.time () in
+      let i =
+        bwdBlk property funcs env vars
+          (bwdBlk property funcs env vars (D.zero env vars) s)
+          stmts
+      in
+      let stopbwd = Sys.time () in
+      if not !minimal then (
+        if !timebwd then
+          Format.fprintf !fmt "\nBackward Analysis[%i] (Time: %f s):\n" n
+            (stopbwd -. startbwd)
+        else Format.fprintf !fmt "\nBackward Analysis[%i]:\n" n ;
+        bwdMap_print robust !fmt !bwdInvMap ) ;
+      if not !minimal then
+        if D.terminating i then
+          Format.fprintf !fmt "Analysis[%i] Result: TRUE\n" n
+        else Format.fprintf !fmt "Analysis[%i] Result: UNKNOWN\n" n ;
+      if D.terminating i || n > !size then
+        (* End if we can already infer termination or if max number of
+           iteration is reached*)
+        D.learn p (D.compress i)
+      else (
+        learn := true ;
+        (* Cumulate the constraints along the path too an undefined piece of
+           the ranking function *)
+        let bs = D.conflict i in
+        if not !minimal then (
+          Format.fprintf !fmt "CONFLICTS: { " ;
+          List.iter (fun b -> Format.fprintf !fmt "%a; " B.print b) bs ;
+          Format.fprintf !fmt "}\n" ) ;
+        let i =
+          List.fold_left
+            (fun ai ab ->
+              (* ai is a tree, ab is a contraint toward an undefined part of
+                 the ranking function *)
+              if
+                B.isLeq b ab
+                (* Check if we are already precise enough if not we divide
+                   the constraint and relaunch the analysis *)
+              then (
+                let b1, b2 = B.assume ab in
+                reinit () ;
+                compress () ;
+                if not !minimal then
+                  Format.fprintf !fmt "\nASSUME-1: %a\n" B.print b1 ;
+                (* restart with b1 *)
+                let i = aux b1 ai (n + 1) in
+                reinit () ;
+                compress () ;
+                if not !minimal then
+                  Format.fprintf !fmt "\nASSUME-2: %a\n" B.print b2 ;
+                (* continue with b2*)
+                aux b2 i (n + 1) )
+              else (
+                reinit () ;
+                compress () ;
+                if not !minimal then
+                  Format.fprintf !fmt "\nASSUME: %a\n" B.print ab ;
+                aux ab ai (n + 1) ) )
+            i bs
+        in
+        D.learn p (D.compress i) )
+    in
+    aux (B.top env vars) (D.bot env vars) 1
 
   (* Analyzer *)
 
@@ -189,32 +279,40 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
     let env = aux vars (Environment.make [||] [||]) in
     let s = f.funcBody in
     (* Forward Analysis *)
-    if !tracefwd && not !minimal then
-      Format.fprintf !fmt "\nForward Analysis Trace:\n" ;
-    let startfwd = Sys.time () in
-    fwdInvMap := ForwardIteratorB.compute (vars, stmts, funcs) main env ;
-    let stopfwd = Sys.time () in
-    if not !minimal then (
-      if !timefwd then
-        Format.fprintf !fmt "\nForward Analysis (Time: %f s):\n"
-          (stopfwd -. startfwd)
-      else Format.fprintf !fmt "\nForward Analysis:\n" ;
-      fwdMap_print !fmt !fwdInvMap ) ;
-    (* Backward Analysis *)
-    if !tracebwd && not !minimal then
-      Format.fprintf !fmt "\nBackward Analysis Trace:\n" ;
-    start := Sys.time () ;
-    let startbwd = Sys.time () in
-    let i =
-      bwdBlk property funcs env vars
-        (bwdBlk property funcs env vars (D.bot env vars) s)
-        stmts
-    in
-    let stopbwd = Sys.time () in
-    if not !minimal then
-      if !timebwd then
-        Format.fprintf !fmt "\nBackward Analysis (Time: %f s):\n"
-          (stopbwd -. startbwd)
-      else bwdMap_print robust !fmt !bwdInvMap ;
-    D.defined i
+    if !cda then (
+      let i = cda_recursive robust property funcs env vars s stmts main in
+      if not !minimal then
+        Format.fprintf !fmt "\nConflict-Driven Analysis Result: %a@." D.print
+          i ;
+      if robust then bwdMap_robust fmt (InvMap.add 2 i InvMap.empty) ;
+      D.defined i )
+    else (
+      if !tracefwd && not !minimal then
+        Format.fprintf !fmt "\nForward Analysis Trace:\n" ;
+      let startfwd = Sys.time () in
+      fwdInvMap := ForwardIteratorB.compute (vars, stmts, funcs) main env ;
+      let stopfwd = Sys.time () in
+      if not !minimal then (
+        if !timefwd then
+          Format.fprintf !fmt "\nForward Analysis (Time: %f s):\n"
+            (stopfwd -. startfwd)
+        else Format.fprintf !fmt "\nForward Analysis:\n" ;
+        fwdMap_print !fmt !fwdInvMap ) ;
+      (* Backward Analysis *)
+      if !tracebwd && not !minimal then
+        Format.fprintf !fmt "\nBackward Analysis Trace:\n" ;
+      start := Sys.time () ;
+      let startbwd = Sys.time () in
+      let i =
+        bwdBlk property funcs env vars
+          (bwdBlk property funcs env vars (D.bot env vars) s)
+          stmts
+      in
+      let stopbwd = Sys.time () in
+      if not !minimal then
+        if !timebwd then
+          Format.fprintf !fmt "\nBackward Analysis (Time: %f s):\n"
+            (stopbwd -. startbwd)
+        else bwdMap_print robust !fmt !bwdInvMap ;
+      D.defined i )
 end
