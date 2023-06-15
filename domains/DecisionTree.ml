@@ -1712,6 +1712,20 @@ let robust  t  =
                              | false,false -> false,[]
    
     in  
+    let rec unconstraint' t cns   = match t with 
+      | Bot -> false,[cns]
+      | Leaf f when F.isBot f -> false,[cns]
+      | Leaf f when F.isTop f -> false,[cns]
+      | Leaf f -> true,[cns]
+      | Node ((c,nc),l,r) -> let b,cns1 = unconstraint l (c::cns) in
+                             let b2,cns2= unconstraint r (nc::cns) in
+                             match b,b2 with 
+                             | true,true -> true,(cns1@cns2)
+                             | true,false -> false,cns1
+                             | false,true -> false ,cns2
+                             | false,false -> false,[]
+   
+    in  
     let v =  t.vars in
     let rec aux vars acc t   = 
       
@@ -1719,14 +1733,17 @@ let robust  t  =
       | [] ->        
         []
       | x::[] ->        
-        
-        let t' = (bwdAssign t (bwAssExpr x)) in 
-        Format.printf "\n Remove %s \n" x.varName; 
-        print_tree t.vars Format.std_formatter t'.tree ; 
-        let b,cons = unconstraint t'.tree [] in 
-        let lft = if b then               
-          [(x::acc),cons]
-        else
+        let b,cons = unconstraint' t.tree [] in
+        if b then 
+          [(x::acc),[]]
+        else 
+         let t' = (bwdAssign t (bwAssExpr x)) in 
+         Format.printf "\n Remove %s \n" x.varName; 
+         print_tree t.vars Format.std_formatter t'.tree ; 
+         let b,cons = unconstraint t'.tree [] in 
+         let lft = if b then               
+           [(x::acc),cons]
+         else
           []
         in
         Format.printf "\n Reste %s \n" x.varName;
@@ -1757,7 +1774,7 @@ let robust  t  =
     let uarr = List.map  (fun (l,c) ->(l,Array.of_list (List.map (fun c ->  Lincons1.array_make t.env (List.length c)) c) )) uncontrolled in
     let  _  = List.iteri  (fun i (l,ar) -> let cons = snd (List.nth uncontrolled i ) in  List.iteri (fun k c ->transform (c) ar.(k)) cons) uarr  in 
     let uarr =  List.map (fun (l,a) -> (l,Array.map (fun a -> (Abstract1.of_lincons_array manager t.env a)) a)) uarr in 
-    let join =  List.map (fun (l,a) -> (l, a,Abstract1.join_array manager a )) uarr in 
+    let join =  List.map (fun (l,a) -> (l, a, if Array.length a > 0 then Abstract1.join_array manager a else (Abstract1.top manager t.env) )) uarr in
     join
     
   
