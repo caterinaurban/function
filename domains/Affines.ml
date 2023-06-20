@@ -588,6 +588,7 @@ module Affine (B : PARTITION) : FUNCTION = struct
     {ranking= successor_ranking f.ranking; env= f.env; vars= f.vars}
 
   let bwdAssign_ranking f (x, e) =
+    
     match x with
     | A_var x -> (
       match f with

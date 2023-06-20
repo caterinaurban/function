@@ -66,7 +66,7 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
         join ;
       Format.printf "@]"
     in
-    let m = D.robust (InvMap.find 2 m) in
+    let m = if !cda then  D.robust (InvMap.find 2 m) else D.robust (InvMap.find 1 m) in
     printl fmt m
 
   let bwdMap_print fmt m =

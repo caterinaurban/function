@@ -1695,8 +1695,8 @@ let   bitvec v s  =
 *)
 let robust  t  =   
     
-    print_tree t.vars Format.std_formatter t.tree;
-    Format.print_newline () ; 
+    (*print_tree t.vars Format.std_formatter t.tree;
+    Format.print_newline () ; *)
     let bwAssExpr x =  ( AbstractSyntax.A_var  x, A_RANDOM ) in
     let rec unconstraint t cns   = match t with 
       | Bot -> false,[cns]
@@ -1712,7 +1712,7 @@ let robust  t  =
                              | false,false -> false,[]
    
     in  
-    let rec unconstraint' t cns   = match t with 
+    let rec unconstraint' t cns   = match t with  
       | Bot -> false,[cns]
       | Leaf f when F.isBot f -> false,[cns]
       | Leaf f when F.isTop f -> false,[cns]
@@ -1738,16 +1738,16 @@ let robust  t  =
           [(x::acc),[]]
         else 
          let t' = (bwdAssign t (bwAssExpr x)) in 
-         Format.printf "\n Remove %s \n" x.varName; 
-         print_tree t.vars Format.std_formatter t'.tree ; 
+         (*Format.printf "\n Remove %s \n" x.varName; 
+         print_tree t.vars Format.std_formatter t'.tree ; *)
          let b,cons = unconstraint t'.tree [] in 
          let lft = if b then               
            [(x::acc),cons]
          else
           []
         in
-        Format.printf "\n Reste %s \n" x.varName;
-        print_tree t.vars Format.std_formatter t.tree ; 
+        (*Format.printf "\n Reste %s \n" x.varName;
+        print_tree t.vars Format.std_formatter t.tree ; *)
         let b,cons = unconstraint t.tree [] in 
         let rght = 
           if b then               
@@ -1759,23 +1759,30 @@ let robust  t  =
       | x::q -> 
         
         let t' = (bwdAssign t (bwAssExpr x)) in 
-        Format.printf "\nRemove %s \n" x.varName; 
-        print_tree t.vars Format.std_formatter t'.tree ; 
+        (*Format.printf "\nRemove %s \n" x.varName; 
+        print_tree t.vars Format.std_formatter t'.tree ; *)
         let l1 = (aux q (x::acc) t') in 
-        Format.printf "\n Reste %s \n" x.varName;
-        print_tree t.vars Format.std_formatter t.tree ; 
+        (*Format.printf "\n Reste %s \n" x.varName;
+        print_tree t.vars Format.std_formatter t.tree ; *)
         let l2 = (aux q acc t) 
         in l1 @ l2 
         
     in
         
     let transform  clist arr = List.iteri (fun i c -> Lincons1.array_set arr i c)  clist in
-    let uncontrolled = aux v [] t in
-    let uarr = List.map  (fun (l,c) ->(l,Array.of_list (List.map (fun c ->  Lincons1.array_make t.env (List.length c)) c) )) uncontrolled in
-    let  _  = List.iteri  (fun i (l,ar) -> let cons = snd (List.nth uncontrolled i ) in  List.iteri (fun k c ->transform (c) ar.(k)) cons) uarr  in 
-    let uarr =  List.map (fun (l,a) -> (l,Array.map (fun a -> (Abstract1.of_lincons_array manager t.env a)) a)) uarr in 
-    let join =  List.map (fun (l,a) -> (l, a, if Array.length a > 0 then Abstract1.join_array manager a else (Abstract1.top manager t.env) )) uarr in
-    join
+    aux v [] t 
+    |>
+     fun uncontrolled  ->List.map  (fun (l,c) ->(l,Array.of_list (List.map (fun c ->  Lincons1.array_make t.env (List.length c)) c) )) uncontrolled
+    |> fun arr ->
+    List.iteri  (fun i (l,ar) -> let cons = snd (List.nth uncontrolled i ) in  List.iteri (fun k c ->transform (c) ar.(k)) cons) arr  
+    |> fun () -> List.map (fun (l,a) -> (l,Array.map (fun a -> (Abstract1.of_lincons_array manager t.env a)) a)) arr 
+    |>
+    fun arr -> List.map (fun (l,a) -> (l, a, if Array.length a > 0 then Abstract1.join_array manager a else (Abstract1.top manager t.env) )) arr 
+    |>
+    fun j -> List.fold_left (fun (a:(var list * Polka.strict Polka.t Abstract1.t array * Polka.strict Polka.t Abstract1.t) list ) (b,arr,abs)-> 
+                                  if List.exists (fun (l,_,_) -> List.compare_lengths l b > 0 && (List.for_all (fun el -> List.mem  el l ) b) )  a then a else (b,arr,abs)::a ) 
+                                  [] j
+    
     
   
 end
