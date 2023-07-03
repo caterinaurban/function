@@ -28,3 +28,5 @@ _tags
 .idea
 phd2015*
 main.exe
+/scripts
+/results
