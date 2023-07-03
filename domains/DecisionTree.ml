@@ -22,6 +22,9 @@ open Domain
 open Functions
 open Ordinals
 
+let evolve = ref false
+let evolvethr = ref 0 
+
 let tracebwd = ref false
 let retrybwd = ref 5
 
@@ -638,7 +641,55 @@ struct
   let left_unification ?(join_kind = COMPUTATIONAL) t1 t2 domain env vars =
     let ls1 = tree_labels t1 in
     let ls2 = tree_labels t2 in
-    let ls = LSet.diff ls2 ls1 in
+    
+    
+    let evolve_map = ref CMap.empty in 
+
+    (* Compute evovled constraints*) 
+    let evolve_cns linexp =  
+      let c1 = Lincons1.make (Linexpr1.copy linexp) Lincons1.SUPEQ in
+			let c2 = Lincons1.make (Linexpr1.copy linexp) Lincons1.SUPEQ in
+			Lincons1.set_cst c1 (Coeff.Scalar (Scalar.of_int 0));
+			Lincons1.set_cst c2 (Coeff.Scalar (Scalar.of_int (-1)));
+			(c1, c2)
+		in
+    let add_evolve linexp = 
+      let c1,c2 = evolve_cns linexp in 
+      let n1 = try CMap.find c1 !evolve_map with Not_found -> 0 in 
+      let n2 = try CMap.find c2 !evolve_map with Not_found -> 0 in 
+      evolve_map := CMap.add (c1) (n1+ 1) !evolve_map;
+      evolve_map := CMap.add (c2) (n1+ 1) !evolve_map;
+      
+    in
+    let rec evolve_all t cs =
+			match t with
+			| Bot | Leaf _ -> ()
+			| Node ((c, nc), l, r) ->
+				List.iter (fun c1 ->
+					add_evolve (C.evolve (C.linexpr c) (C.linexpr c1));
+					add_evolve (C.evolve (C.linexpr nc) (C.linexpr c1));
+					add_evolve (C.evolve (C.linexpr c1) (C.linexpr c));
+					add_evolve (C.evolve (C.linexpr c1) (C.linexpr nc))
+				) cs;
+				evolve_all l (c :: cs);
+				evolve_all r (nc :: cs)
+		in
+    let nls1 = if !evolve then 
+       begin
+        evolve_all t1 [];
+        CMap.fold (fun c count ls ->
+          if count >= !evolvethr then
+            LSet.add (let nc = C.negate c in
+            if C.isLeq nc c then (c, nc) else (nc, c)) ls
+          else
+            ls
+          ) !evolve_map ls1
+      end else ls1 in
+    let _ = if !tracebwd then 
+      Format.printf "Evolved constraint %d\n" ((LSet.cardinal nls1) - (LSet.cardinal ls1))
+      
+    in  
+    let ls = LSet.diff ls2 nls1 in
     (* Checks whether constraint c is redundant, given the constraints cs *)
     let is_redundant c cs =
       let bcs = B.inner env vars cs in
@@ -1695,8 +1746,8 @@ let   bitvec v s  =
 *)
 let robust  t  =   
     
-    (*print_tree t.vars Format.std_formatter t.tree;
-    Format.print_newline () ; *)
+    print_tree t.vars Format.std_formatter t.tree;
+    Format.print_newline () ; 
     let bwAssExpr x =  ( AbstractSyntax.A_var  x, A_RANDOM ) in
     let rec unconstraint t cns   = match t with 
       | Bot -> false,[cns]
@@ -1717,8 +1768,8 @@ let robust  t  =
       | Leaf f when F.isBot f -> false,[cns]
       | Leaf f when F.isTop f -> false,[cns]
       | Leaf f -> true,[cns]
-      | Node ((c,nc),l,r) -> let b,cns1 = unconstraint l (c::cns) in
-                             let b2,cns2= unconstraint r (nc::cns) in
+      | Node ((c,nc),l,r) -> let b,cns1 = unconstraint' l (c::cns) in
+                             let b2,cns2= unconstraint' r (nc::cns) in
                              match b,b2 with 
                              | true,true -> true,(cns1@cns2)
                              | true,false -> false,cns1
@@ -1735,10 +1786,15 @@ let robust  t  =
       | x::[] ->        
         let b,cons = unconstraint' t.tree [] in
         if b then 
-          [(x::acc),[]]
+          begin
+          
+          (*Format.printf "\n Remove prime %s \n" x.varName; 
+          print_tree t.vars Format.std_formatter t.tree ;*)
+          [(x::acc),cons]
+          end
         else 
          let t' = (bwdAssign t (bwAssExpr x)) in 
-         (*Format.printf "\n Remove %s \n" x.varName; 
+         (*Format.printf "\n Remove last %s \n" x.varName; 
          print_tree t.vars Format.std_formatter t'.tree ; *)
          let b,cons = unconstraint t'.tree [] in 
          let lft = if b then               
@@ -1746,7 +1802,7 @@ let robust  t  =
          else
           []
         in
-        (*Format.printf "\n Reste %s \n" x.varName;
+        (*Format.printf "\n Reste last %s \n" x.varName;
         print_tree t.vars Format.std_formatter t.tree ; *)
         let b,cons = unconstraint t.tree [] in 
         let rght = 
@@ -1768,10 +1824,11 @@ let robust  t  =
         in l1 @ l2 
         
     in
-        
+    
     let transform  clist arr = List.iteri (fun i c -> Lincons1.array_set arr i c)  clist in
     aux v [] t 
     |>
+     
      fun uncontrolled  ->List.map  (fun (l,c) ->(l,Array.of_list (List.map (fun c ->  Lincons1.array_make t.env (List.length c)) c) )) uncontrolled
     |> fun arr ->
     List.iteri  (fun i (l,ar) -> let cons = snd (List.nth uncontrolled i ) in  List.iteri (fun k c ->transform (c) ar.(k)) cons) arr  

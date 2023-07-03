@@ -179,6 +179,13 @@ let parse_args () =
         Iterator.retrybwd := int_of_string x ;
         DecisionTree.retrybwd := int_of_string x ;
         doit r
+
+    | "-evolve"::x::r -> 
+        Iterator.evolve := true; 
+        DecisionTree.evolve := true;
+        Iterator.evolvethr := int_of_string x;
+        DecisionTree.evolvethr := int_of_string x;
+        doit r
     | "-tracebwd" :: r ->
         (* backward analysis trace *)
         Iterator.tracebwd := true ;
@@ -190,6 +197,8 @@ let parse_args () =
         (* forward analysis trace *)
         Iterator.tracefwd := true ;
         doit r
+
+
     (* Termination arguments -------------------------------*)
     | "-termination" :: r ->
         (* guarantee analysis *)

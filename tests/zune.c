@@ -8,7 +8,7 @@ suggested parameters:
 */
 
 int main() {
-  int days;
+  int days; 
   int year = 1980;
   while (days > 365) {
     if ( isLeapYear(year) ) {

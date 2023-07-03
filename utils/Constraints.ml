@@ -26,7 +26,7 @@ module type CONSTRAINT = sig
   (* val variant : t -> t -> bool (* widening *) *)
 
   val negate : t -> t
-
+  val evolve : Linexpr1.t -> Linexpr1.t ->  Linexpr1.t
   val expand : t -> t * t
   (* val widen : t -> t -> t (* widening *) *)
 
@@ -176,6 +176,23 @@ module Constraint : CONSTRAINT = struct
     | Scalar.Mpfrf c1, Scalar.Mpfrf c2 ->
         Scalar.Mpfrf (Mpfrf.add c1 c2 Mpfr.Zero)
 
+  let mulScalar c1 c2 =
+    match (c1, c2) with
+    | Scalar.Float c1, Scalar.Float c2 -> Scalar.Float (c1 *. c2)
+    | Scalar.Float c1, Scalar.Mpqf c2 -> Scalar.Float (c1 *. Mpqf.to_float c2)
+    | Scalar.Float c1, Scalar.Mpfrf c2 ->
+        Scalar.Float (c1 *. Mpfrf.to_float c2)
+    | Scalar.Mpqf c1, Scalar.Float c2 -> Scalar.Float (Mpqf.to_float c1 *. c2)
+    | Scalar.Mpqf c1, Scalar.Mpqf c2 -> Scalar.Mpqf (Mpqf.mul c1 c2)
+    | Scalar.Mpqf c1, Scalar.Mpfrf c2 ->
+        Scalar.Mpqf (Mpqf.mul c1 (Mpfrf.to_mpqf c2))
+    | Scalar.Mpfrf c1, Scalar.Float c2 ->
+        Scalar.Float (Mpfrf.to_float c1 *. c2)
+    | Scalar.Mpfrf c1, Scalar.Mpqf c2 ->
+        Scalar.Mpqf (Mpqf.mul (Mpfrf.to_mpqf c1) c2)
+    | Scalar.Mpfrf c1, Scalar.Mpfrf c2 ->
+        Scalar.Mpfrf (Mpfrf.mul c1 c2 Mpfr.Zero)
+
   let addCoeff c1 c2 =
     match (c1, c2) with
     | Coeff.Scalar c1, Coeff.Scalar c2 -> Coeff.Scalar (addScalar c1 c2)
@@ -194,6 +211,56 @@ module Constraint : CONSTRAINT = struct
           (Coeff.i_of_scalar
              (addScalar c1.Interval.inf c2.Interval.inf)
              (addScalar c1.Interval.sup c2.Interval.sup) )
+
+  let mulCoeff c1 c2 =
+    match (c1, c2) with
+    | Coeff.Scalar c1, Coeff.Scalar c2 -> Coeff.Scalar (mulScalar c1 c2)
+    | Coeff.Scalar c1, Coeff.Interval c2 | Coeff.Interval c2, Coeff.Scalar c1
+      ->
+        let s = Scalar.sgn c1 in
+        if s < 0 then
+          Coeff.reduce
+            (Coeff.i_of_scalar
+               (mulScalar c1 c2.Interval.sup)
+               (mulScalar c1 c2.Interval.inf) )
+        else if s = 0 then Coeff.Scalar (Scalar.of_int 0)
+        else
+          Coeff.reduce
+            (Coeff.i_of_scalar
+               (mulScalar c1 c2.Interval.inf)
+               (mulScalar c1 c2.Interval.sup) )
+    | Coeff.Interval c1, Coeff.Interval c2 ->
+        let x1 = mulScalar c1.Interval.inf c2.Interval.inf in
+        let x2 = mulScalar c1.Interval.inf c2.Interval.sup in
+        let x3 = mulScalar c1.Interval.sup c2.Interval.inf in
+        let x4 = mulScalar c1.Interval.sup c2.Interval.sup in
+        let smin x y = if Scalar.cmp x y < 0 then x else y in
+        let smax x y = if Scalar.cmp x y < 0 then y else x in
+        Coeff.reduce
+          (Coeff.i_of_scalar
+             (smin x1 (smin x2 (smin x3 x4)))
+             (smax x1 (smax x2 (smax x3 x4))) )
+
+  type sgn = Zero | Positive | Negative | Unknown
+
+  let mulSign sgn1 sgn2 =
+    match (sgn1, sgn2) with
+    | Zero, _ | _, Zero -> Zero
+    | Positive, Positive | Negative, Negative -> Positive
+    | Positive, Negative | Negative, Positive -> Negative
+    | Unknown, _ | _, Unknown -> Unknown
+
+  let sgnCoeff = function
+    | Coeff.Scalar c ->
+        let s = Scalar.sgn c in
+        if s > 0 then Positive else if s = 0 then Zero else Negative
+    | Coeff.Interval c ->
+        let si = Scalar.sgn c.Interval.inf in
+        let ss = Scalar.sgn c.Interval.sup in
+        if si > 0 then Positive
+        else if ss < 0 then Negative
+        else if si = 0 && ss = 0 then Zero
+        else Unknown
 
   let negate c =
     let n = Lincons1.copy c in
@@ -224,6 +291,30 @@ module Constraint : CONSTRAINT = struct
     | Lincons1.SUP -> raise (Invalid_argument "SUP")
     | Lincons1.DISEQ -> raise (Invalid_argument "DISEQ")
     | Lincons1.EQMOD _ -> raise (Invalid_argument "EQMOD")
+
+  let evolve e1 e2 =
+    let result = Linexpr1.copy e1 in
+    Linexpr1.iter
+      (fun ci1 vi ->
+        let ci2 = Linexpr1.get_coeff e2 vi in
+        try
+          Linexpr1.iter
+            (fun cj1 vj ->
+              let cj2 = Linexpr1.get_coeff e2 vj in
+              let det =
+                addCoeff (mulCoeff ci1 cj2) (Coeff.neg (mulCoeff ci2 cj1))
+              in
+              let sdet = sgnCoeff det in
+              if
+                mulSign sdet (mulSign (sgnCoeff ci1) (sgnCoeff cj1))
+                = Negative
+              then (
+                Linexpr1.set_coeff result vi (Coeff.Scalar (Scalar.of_int 0)) ;
+                raise Exit (* Abort the loop *) ) )
+            e1
+        with Exit -> () )
+      e1 ;
+    result
 
   (* let widen c1 (* a_1x_1 + ... + a_nx_n >= a_n+1 *) c2 (* b_1x_1 + ... +
      b_nx_n >= b_n+1 *) = (* (b_1 - a_1)x_1 + ... + (b_n - a_n)x_n >=
