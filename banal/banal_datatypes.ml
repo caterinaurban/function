@@ -105,3 +105,5 @@ let debot = function Nb x -> x | Bot -> raise Bot_found
 let rebot f x = try f x with Bot_found -> Bot
 
 let bot_to_string f = function Bot -> "_|_" | Nb x -> f x
+
+let ( let* ) = Option.bind
