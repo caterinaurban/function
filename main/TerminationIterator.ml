@@ -32,21 +32,32 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
 
   let addBwdInv l (a : D.t) = bwdInvMap := InvMap.add l a !bwdInvMap
 
-  let bwdMap_robust fmt m =
+  let bwdMap_robust  fmt vars m  =
+    Format.printf "@[ environnment ";
+    List.iter (fun s  -> Format.printf "%s " s.varName) vars;
+    Format.printf "@]\n";
+
     let printl fmt join =
       Format.printf "@[" ;
       List.iter
-        (fun (l, cns, j) ->
+        (fun (l, nl,cns, j) ->
           Format.printf "@[" ;
           let _ =
             match l with
             | [] -> Format.printf "robust finished \n "
             | _ ->
                 let _ =
-                  Format.printf "@[ --   uncontrolled  -- \n " ;
+                  Format.printf "@[ uncontrolled  \n " ;
                   List.iter
                     (fun x -> Format.printf "%s{%s}-" x.varId x.varName)
                     l ;
+                  Format.printf "@]\n"
+                in
+                let _ =
+                  Format.printf "@[ controlled \n " ;
+                  List.iter
+                    (fun x -> Format.printf "%s{%s}-" x.varId x.varName)
+                    nl ;
                   Format.printf "@]\n"
                 in
                 let _ = Format.printf "@[  -- constraints   --  \n" in
@@ -398,6 +409,7 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
     aux (B.top env vars) (D.bot env vars) 1
 
   let analyze (vars, stmts, funcs) main robust =
+    let sv = vars in
     let rec aux xs env =
       match xs with
       | [] -> env
@@ -419,7 +431,7 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
       if not !minimal then
         Format.fprintf !fmt "\nConflict-Driven Analysis Result: %a@." D.print
           i ;
-      if robust then bwdMap_robust fmt (InvMap.add 2 i InvMap.empty) ;
+      if robust then bwdMap_robust  fmt vars (InvMap.add 2 i InvMap.empty) ;
       D.defined i )
     else (
       if !tracefwd && not !minimal then
@@ -453,7 +465,7 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
           Format.fprintf !fmt "\nBackward Analysis (Time: %f s):\n"
             (stopbwd -. startbwd)
         else Format.fprintf !fmt "\nBackward Analysis:\n" ;
-        if robust then bwdMap_robust !fmt !bwdInvMap
+        if robust then bwdMap_robust !fmt  vars !bwdInvMap
         else bwdMap_print !fmt !bwdInvMap ) ;
       D.defined i )
 end

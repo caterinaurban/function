@@ -637,13 +637,17 @@ struct
       vars = vars 
     }
     
-
+  
   let left_unification ?(join_kind = COMPUTATIONAL) t1 t2 domain env vars =
     let ls1 = tree_labels t1 in
     let ls2 = tree_labels t2 in
     
-    
-    let evolve_map = ref CMap.empty in 
+    let make_label c =
+			let nc = C.negate c in
+			if C.isLeq nc c then (c, nc) else (nc, c)
+		in
+    let module LMap = Map.Make(L) in
+    let evolve_map = ref LMap.empty in 
 
     (* Compute evovled constraints*) 
     let evolve_cns linexp =  
@@ -651,14 +655,14 @@ struct
 			let c2 = Lincons1.make (Linexpr1.copy linexp) Lincons1.SUPEQ in
 			Lincons1.set_cst c1 (Coeff.Scalar (Scalar.of_int 0));
 			Lincons1.set_cst c2 (Coeff.Scalar (Scalar.of_int (-1)));
-			(c1, c2)
+			(make_label c1,  make_label c2)
 		in
     let add_evolve linexp = 
       let c1,c2 = evolve_cns linexp in 
-      let n1 = try CMap.find c1 !evolve_map with Not_found -> 0 in 
-      let n2 = try CMap.find c2 !evolve_map with Not_found -> 0 in 
-      evolve_map := CMap.add (c1) (n1+ 1) !evolve_map;
-      evolve_map := CMap.add (c2) (n1+ 1) !evolve_map;
+      let n1 = try LMap.find c1 !evolve_map with Not_found -> 0 in 
+      let n2 = try LMap.find c2 !evolve_map with Not_found -> 0 in 
+      evolve_map := LMap.add (c1) (n1+ 1) !evolve_map;
+      evolve_map := LMap.add (c2) (n2+ 1) !evolve_map;
       
     in
     let rec evolve_all t cs =
@@ -675,21 +679,33 @@ struct
 				evolve_all r (nc :: cs)
 		in
     let nls1 = if !evolve then 
-       begin
-        evolve_all t1 [];
-        CMap.fold (fun c count ls ->
-          if count >= !evolvethr then
-            LSet.add (let nc = C.negate c in
-            if C.isLeq nc c then (c, nc) else (nc, c)) ls
-          else
-            ls
-          ) !evolve_map ls1
-      end else ls1 in
-    let _ = if !tracebwd then 
-      Format.printf "Evolved constraint %d\n" ((LSet.cardinal nls1) - (LSet.cardinal ls1))
+      begin
+       evolve_all t1 [];
+       LMap.fold (fun (c,nc) count ls ->
+         if count >= !evolvethr then
+           LSet.add (if C.isLeq nc c then (c, nc) else (nc, c)) ls
+         else
+           ls
+         ) !evolve_map ls1
+     end else ls1 in
+    let ls = if !evolve then LSet.diff ls2 nls1 else LSet.diff ls2 ls1 in
+    let allowed =    (LMap.filter (fun _ n -> n >= !evolvethr) !evolve_map)in
+    let replace = ref LMap.empty in
+    let _ = LSet.iter (fun (c2,nc2)  ->  try (LMap.iter (fun (c,nc) m -> match LMap.find_opt (c2,c) allowed  with None -> () | Some v -> replace := LMap.add  (c2,nc2)   (c,nc) !replace; raise Exit ) allowed) with Exit -> () ) ls  in
+ 
+    let _ = 
+      begin
+      ignore(Format.printf "Evolved constraint %d\n" ((LSet.cardinal nls1) - (LSet.cardinal ls1)));
+      ignore(Format.printf "Replace set %d\n" ((LMap.cardinal !replace)));
+      ignore(Format.printf "Allowed set %d\n" ((LMap.cardinal allowed)));
+      ignore(LMap.iter (fun (c,nc) n -> Format.printf "label ("; Lincons1.print Format.std_formatter c; Format.printf ","; Lincons1.print Format.std_formatter nc; Format.printf " : %d \n" n) allowed);
+      
+      ignore(Format.printf "Evolve map %d\n" ((LMap.cardinal  !evolve_map)));
+      ignore(LMap.iter (fun (c,nc) n -> Format.printf "label ("; Lincons1.print Format.std_formatter c; Format.printf ","; Lincons1.print Format.std_formatter nc; Format.printf " : %d \n" n) !evolve_map)
+      end
       
     in  
-    let ls = LSet.diff ls2 nls1 in
+    
     (* Checks whether constraint c is redundant, given the constraints cs *)
     let is_redundant c cs =
       let bcs = B.inner env vars cs in
@@ -762,9 +778,22 @@ struct
       match t with
       | Bot | Leaf _ -> t
       | Node ((c, nc), l, r) ->
-        let ll = rebalance_tree l (c :: cs) in
-        let rr = rebalance_tree r (nc :: cs) in
-        make_node (c, nc) (ll, rr) cs
+        let rec add_list t cl cs =
+					match cl with
+					| [] -> t
+					| (c, nc) :: cls ->
+            Format.printf "\naleeeeeeeeeeeeeeeed\n";
+            Format.printf "label ("; Lincons1.print Format.std_formatter c; Format.printf ","; Lincons1.print Format.std_formatter nc; Format.printf " \n" ;
+            Format.printf "\n passsss \n";
+						let ll = add_list t cls (c :: cs) in
+						let rr = add_list t cls (nc :: cs) in
+						make_node (c, nc) (ll, rr) cs
+				in
+				let ll = rebalance_tree l (c :: cs) in
+				let rr = rebalance_tree r (nc :: cs) in
+				let nt = make_node (c, nc) (ll, rr) cs in
+				let to_add = try [LMap.find (c, nc) !replace] with Not_found -> [] in
+				add_list nt to_add cs
     in
     (* Collapse all leaves of t into a single one, making sure
        * all labels that are to be removed are deleted
@@ -802,7 +831,7 @@ struct
         add_node (c1, nc1) (lunify l1 t2 (c1 :: cs), lunify r1 t2 (nc1 :: cs)) cs
       | (Bot | Leaf _), Node ((c2, nc2), l2, r2) ->
         if LSet.mem (c2, nc2) ls then
-          collapse t2 cs
+            collapse t2 cs
         else
           add_node (c2, nc2) (lunify t1 l2 (c2 :: cs), lunify t1 r2 (nc2 :: cs)) cs
       | Node ((c1, nc1), l1, r1), Node ((c2, nc2), l2, r2) ->
@@ -1788,22 +1817,23 @@ let robust  t  =
         if b then 
           begin
           
-          (*Format.printf "\n Remove prime %s \n" x.varName; 
-          print_tree t.vars Format.std_formatter t.tree ;*)
-          [(x::acc),cons]
+
+          Format.printf "\n Remove prime %s \n" x.varName; 
+          print_tree t.vars Format.std_formatter t.tree ;
+          [(x::acc),[]]
           end
         else 
          let t' = (bwdAssign t (bwAssExpr x)) in 
-         (*Format.printf "\n Remove last %s \n" x.varName; 
-         print_tree t.vars Format.std_formatter t'.tree ; *)
+         Format.printf "\n Remove last %s \n" x.varName; 
+         print_tree t.vars Format.std_formatter t'.tree ; 
          let b,cons = unconstraint t'.tree [] in 
          let lft = if b then               
            [(x::acc),cons]
          else
           []
         in
-        (*Format.printf "\n Reste last %s \n" x.varName;
-        print_tree t.vars Format.std_formatter t.tree ; *)
+        Format.printf "\n Reste last %s \n" x.varName;
+        print_tree t.vars Format.std_formatter t.tree ; 
         let b,cons = unconstraint t.tree [] in 
         let rght = 
           if b then               
@@ -1815,11 +1845,11 @@ let robust  t  =
       | x::q -> 
         
         let t' = (bwdAssign t (bwAssExpr x)) in 
-        (*Format.printf "\nRemove %s \n" x.varName; 
-        print_tree t.vars Format.std_formatter t'.tree ; *)
+        Format.printf "\nRemove %s \n" x.varName; 
+        print_tree t.vars Format.std_formatter t'.tree ; 
         let l1 = (aux q (x::acc) t') in 
-        (*Format.printf "\n Reste %s \n" x.varName;
-        print_tree t.vars Format.std_formatter t.tree ; *)
+        Format.printf "\n Reste %s \n" x.varName;
+        print_tree t.vars Format.std_formatter t.tree ;
         let l2 = (aux q acc t) 
         in l1 @ l2 
         
@@ -1839,7 +1869,8 @@ let robust  t  =
     fun j -> List.fold_left (fun (a:(var list * Polka.strict Polka.t Abstract1.t array * Polka.strict Polka.t Abstract1.t) list ) (b,arr,abs)-> 
                                   if List.exists (fun (l,_,_) -> List.compare_lengths l b > 0 && (List.for_all (fun el -> List.mem  el l ) b) )  a then a else (b,arr,abs)::a ) 
                                   [] j
-    
+    |> 
+    fun j -> List.map (fun (b,arr,abs) ->  let nb =(List.filter (fun x ->  (not (List.mem x  b))) t.vars  )  in (b,nb,arr,abs))   j
     
   
 end

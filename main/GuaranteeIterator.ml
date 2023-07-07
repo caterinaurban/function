@@ -29,7 +29,7 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
     let print fmt join =
       Format.printf "@[" ;
       List.iter
-        (fun (l, cns, j) ->
+        (fun (l, nl, cns, j) ->
           Format.printf "@[" ;
           let _ =
             match l with
@@ -40,6 +40,13 @@ module GuaranteeIterator (D : RANKING_FUNCTION) = struct
                   List.iter
                     (fun x -> Format.printf "%s{%s}-" x.varId x.varName)
                     l ;
+                  Format.printf "@]\n"
+                in
+                let _ =
+                  Format.printf "@[ --   controlled  -- \n " ;
+                  List.iter
+                    (fun x -> Format.printf "%s{%s}-" x.varId x.varName)
+                    nl ;
                   Format.printf "@]\n"
                 in
                 let _ = Format.printf "@[  -- constraints   --  \n" in
