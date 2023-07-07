@@ -200,3 +200,14 @@ let filter_eq (i1 : t) (i2 : t) : (t * t) bot =
 let filter_neq ((l1, _) as i1 : t) ((l2, _) as i2 : t) : (t * t) bot =
   if is_singleton i1 && is_singleton i2 && R.equal l1 l2 then Bot
   else Nb (i1, i2)
+
+
+
+let to_rat_opt (l,h:t) : Rat.t option =
+  if Rat.equal l h then Some l else None
+
+(* convert an interval to an integer if it is a integer singleton,
+   otherwise return `None` *)
+let to_int_exact_opt (itv:t) : Int.t option =
+  let* r = to_rat_opt itv in if r.den = Z.one then Some r.num else None
+
