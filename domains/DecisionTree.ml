@@ -784,8 +784,8 @@ struct
 					| (c, nc) :: cls ->
             (* Format.printf "\naleeeeeeeeeeeeeeeed\n";
             Format.printf "label ("; Lincons1.print Format.std_formatter c; Format.printf ","; Lincons1.print Format.std_formatter nc; Format.printf " \n" ;
-            Format.printf "\n passsss \n";
-						let ll = add_list t cls (c :: cs) in *)
+            Format.printf "\n passsss \n";*)
+						let ll = add_list t cls (c :: cs) in 
 						let rr = add_list t cls (nc :: cs) in
 						make_node (c, nc) (ll, rr) cs
 				in
@@ -1384,8 +1384,7 @@ struct
   let learn t1 t2 = (* t1 learns t2 *)
 		let domain1 = t1.domain and domain2 = t2.domain (*in  t2.domain \subseteq t1.domain *) in
 		let env = t1.env in
-		let vars = t1.vars in
-
+		let vars = t1.vars in  
     let rec aux (t1,t2) cs =
 			match t1,t2 with
 			| Bot,Bot -> Bot
@@ -1394,13 +1393,15 @@ struct
 				let b1 = match domain1 with | None -> B.inner env vars cs | Some domain1 -> B.meet (B.inner env vars cs) domain1 in
 				if B.isBot b1 then Bot else t1
 			| Bot,Leaf _ ->
+        
 				let b2 = match domain2 with | None -> B.inner env vars cs | Some domain2 -> B.meet (B.inner env vars cs) domain2 in
 				if B.isBot b2 then t1 else
 						let b1 = match domain1 with | None -> B.inner env vars cs | Some domain1 -> B.meet (B.inner env vars cs) domain1 in
 						if B.isBot b1 then Bot else t2
 			| Leaf f1,Leaf f2 ->
+        
 				let b2 = match domain2 with | None -> B.inner env vars cs | Some domain2 -> B.meet (B.inner env vars cs) domain2 in
-				if B.isBot b2 then t1 else
+				if B.isBot b2 then  t1 else
 					let b1 = match domain1 with | None -> B.inner env vars cs | Some domain1 -> B.meet (B.inner env vars cs) domain1 in
 					if B.isBot b1 then Bot else Leaf (F.learn b1 f1 f2)
 			| Node ((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isEq c1 c2) (* c1 = c2 *) ->
@@ -1460,20 +1461,130 @@ struct
 						let r = aux (t1,r2) (nc2::cs) in
 						Node ((c2,nc2),l,r)
 		in
+    let (t1,t2) =  (tree_unification t1.tree t2.tree t1.env t1.vars) |> fun (tree1,tree2) -> {t1 with tree = tree1 } , {t2 with tree = tree2}  in
+    (* handling the case when t2.domain is defined by constraints not present in the tree(s) *)
+    let ls1 = match domain1 with | None -> LSet.empty | Some domain1 ->
+      List.fold_left (fun s c ->
+        let nc = C.negate c in
+        if (C.isLeq nc c)
+        then (* c is normalized *) LSet.add (c,nc) s
+        else (* c is not normalized *) LSet.add (nc,c) s
+      ) (tree_labels t1.tree) (B.constraints domain1)
+    in
+    let ls2 = match domain2 with | None -> LSet.empty | Some domain2 ->
+      List.fold_left (fun s c ->
+        let nc = C.negate c in
+        if (C.isLeq nc c)
+        then (* c is normalized *) LSet.add (c,nc) s
+        else (* c is not normalized *) LSet.add (nc,c) s
+      ) LSet.empty (B.constraints domain2)
+    in
+    let ls = LSet.elements (LSet.diff ls2 ls1) in (* labels that need to be explicitely added to the tree(s) *)
     let print_domain fmt domain =
       match domain with
       | None -> ()
       | Some domain -> B.print fmt domain
     in
-    let t = aux  (tree_unification t1.tree t2.tree t1.env t1.vars) [] in
-    if !tracebwd then
+    if true  then
       begin
-        Format.fprintf Format.std_formatter "\nLEARN:\n";
+        Format.fprintf Format.std_formatter "\nLEARN :\n";
         Format.fprintf Format.std_formatter "t1: DOMAIN = {%a}%a\n\n" print_domain domain1 (print_tree vars) t1.tree;
         Format.fprintf Format.std_formatter "t2: DOMAIN = {%a}%a\n\n" print_domain domain2 (print_tree vars) t2.tree;
-        Format.fprintf Format.std_formatter "t: DOMAIN = {%a}%a\n" print_domain domain1 (print_tree vars) (t);
+        List.iter (fun (c,nc) ->
+          C.print vars Format.std_formatter c;
+          Format.fprintf Format.std_formatter "\n"
+        ) ls;
+        Format.fprintf Format.std_formatter "\n"
       end;
-    { domain = domain1; tree = t; env = env; vars = vars }
+    let add t domain bs = (* explicitely adding constraints to t *)
+      let rec aux t bs cs =
+        match bs with
+        | [] -> t
+        | (x,nx)::xs ->
+          let b = match domain with | None -> B.top env vars | Some domain -> domain in
+          let bx = B.inner env vars [x] in
+          if B.isLeq b bx
+          then (* x is wanted *)
+            let bcs = B.inner env vars cs in
+            if B.isLeq bcs bx
+            then (* x is redundant *) aux t xs cs
+            else (* x is not redundant *)
+              if B.isBot (B.meet bx bcs)
+              then (* x is conflicting *) Bot
+              else (* x is neither redundant nor conflicting *)
+                (match t with
+                | Node((c,nc),l,r) when (C.isEq c x) (* c = x *) ->
+                  let l = aux l xs (c::cs) in
+                  (match l with
+                  | Bot -> Bot
+                  | _ -> Node((c,nc),l,Bot))
+                | Node((c,nc),l,r) when (C.isLeq c x) (* c < x *) ->
+                  let bc = B.inner env vars [c] in
+                  if B.isLeq bcs bc
+                  then (* c is redundant *) aux l bs cs
+                  else (* c is not redundant *)
+                    if B.isBot (B.meet bc bcs)
+                    then (* c is conflicting *) aux r bs cs
+                    else (* c is neither redundant nor conflicting *)
+                      let l = aux l bs (c::cs) in
+                      let r = aux r bs (nc::cs) in
+                      (match l,r with
+                      | Bot,Bot -> Bot
+                      | Bot,Node(_,Bot,_) -> r
+                      | _ -> Node((c,nc),l,r))
+                | _ ->
+                  let l = aux t xs (x::cs) in
+                  (match l with
+                  | Bot -> Bot
+                  | _ -> Node((x,nx),l,Bot)))
+          else (* nx is wanted *)
+            let bcs = B.inner env vars cs in
+            if B.isLeq bcs bx
+            then (* x is redundant *) Bot
+            else (* x is not redundant *)
+              if B.isBot (B.meet bx bcs)
+              then (* x is conflicting *) aux t xs cs
+              else (* x is neither redundant nor conflicting *)
+                (match t with
+                | Node((c,nc),l,r) when (C.isEq c x) (* c = x *) ->
+                  let r = aux r xs (nc::cs) in
+                  (match r with
+                  | Bot -> Bot
+                  | _ -> Node((c,nc),Bot,r))
+                | Node((c,nc),l,r) when (C.isLeq c x) (* c < x *) ->
+                  let bc = B.inner env vars [c] in
+                  if B.isLeq bcs bc
+                  then (* c is redundant *) aux l bs cs
+                  else (* c is not redundant *)
+                    if B.isBot (B.meet bc bcs)
+                    then (* c is conflicting *) aux r bs cs
+                    else (* c is neither redundant nor conflicting *)
+                      let l = aux l bs (c::cs) in
+                      let r = aux r bs (nc::cs) in
+                      (match l,r with
+                      | Bot,Bot -> Bot
+                      | Bot,Node(_,Bot,_) -> r
+                      | _ -> Node((c,nc),l,r))
+                | _ ->
+                  let r = aux t xs (nx::cs) in
+                  (match r with
+                  | Bot -> Bot
+                  | _ -> Node((x,nx),Bot,r)))
+      in aux t bs []
+    in
+    
+    let tree2 = 
+      match ls with 
+    | [] -> t2.tree
+    | _ ->  add t2.tree domain2 ls in
+    if true then
+      begin
+        Format.fprintf Format.std_formatter "t0: DOMAIN = {%a}%a\n\n" print_domain domain2 (print_tree vars) t2.tree;
+        Format.fprintf Format.std_formatter "t2: DOMAIN = {%a}%a\n\n" print_domain domain2 (print_tree vars) tree2;
+        Format.fprintf Format.std_formatter "t: DOMAIN = {%a}%a\n" print_domain domain1 (print_tree vars) (aux (t1.tree,tree2) [])
+      end;
+    { domain = domain1; tree = aux ((t1.tree,tree2)) []; env = env; vars = vars }
+
 
   (* NOTE: reset underapproximates the filter operation to guarantee soundness. 
      Currently this limits the set of supported domains to polyhedra *)
