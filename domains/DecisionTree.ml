@@ -693,7 +693,7 @@ struct
     let replace = ref LMap.empty in
     let _ = LSet.iter (fun (c2,nc2)  ->  try (LMap.iter (fun (c,nc) m -> match LMap.find_opt (c2,c) allowed  with None -> () | Some v -> replace := LMap.add  (c2,nc2)   (c,nc) !replace; raise Exit ) allowed) with Exit -> () ) ls  in
  
-    let _ = 
+    (* let _ = 
       begin
       ignore(Format.printf "Evolved constraint %d\n" ((LSet.cardinal nls1) - (LSet.cardinal ls1)));
       ignore(Format.printf "Replace set %d\n" ((LMap.cardinal !replace)));
@@ -704,7 +704,7 @@ struct
       ignore(LMap.iter (fun (c,nc) n -> Format.printf "label ("; Lincons1.print Format.std_formatter c; Format.printf ","; Lincons1.print Format.std_formatter nc; Format.printf " : %d \n" n) !evolve_map)
       end
       
-    in  
+    in   *)
     
     (* Checks whether constraint c is redundant, given the constraints cs *)
     let is_redundant c cs =
@@ -782,10 +782,10 @@ struct
 					match cl with
 					| [] -> t
 					| (c, nc) :: cls ->
-            Format.printf "\naleeeeeeeeeeeeeeeed\n";
+            (* Format.printf "\naleeeeeeeeeeeeeeeed\n";
             Format.printf "label ("; Lincons1.print Format.std_formatter c; Format.printf ","; Lincons1.print Format.std_formatter nc; Format.printf " \n" ;
             Format.printf "\n passsss \n";
-						let ll = add_list t cls (c :: cs) in
+						let ll = add_list t cls (c :: cs) in *)
 						let rr = add_list t cls (nc :: cs) in
 						make_node (c, nc) (ll, rr) cs
 				in
@@ -1385,18 +1385,7 @@ struct
 		let domain1 = t1.domain and domain2 = t2.domain (*in  t2.domain \subseteq t1.domain *) in
 		let env = t1.env in
 		let vars = t1.vars in
-		let isBot t =
-			match t with
-			| Leaf f -> (match domain1 with | None -> F.isBot f | Some domain -> false)
-			| _ -> false
-		in
-		let rec isEq (t1,t2) cs =
-			match t1,t2 with
-			| Bot,Bot -> true
-			| Leaf f1,Leaf f2 -> F.isEq (B.inner env vars cs) f1 f2
-			| Node((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isEq c1 c2) -> (isEq (l1,l2) (c1::cs)) && (isEq (r1,r2) (nc2::cs))
-			| _ -> false
-		in
+
     let rec aux (t1,t2) cs =
 			match t1,t2 with
 			| Bot,Bot -> Bot
@@ -1477,7 +1466,7 @@ struct
       | Some domain -> B.print fmt domain
     in
     let t = aux  (tree_unification t1.tree t2.tree t1.env t1.vars) [] in
-    if true then
+    if !tracebwd then
       begin
         Format.fprintf Format.std_formatter "\nLEARN:\n";
         Format.fprintf Format.std_formatter "t1: DOMAIN = {%a}%a\n\n" print_domain domain1 (print_tree vars) t1.tree;
@@ -1775,7 +1764,7 @@ let   bitvec v s  =
 *)
 let robust  t  =   
     
-    print_tree t.vars Format.std_formatter t.tree;
+    print_tree t.vars Format.std_formatter (compress t).tree ;
     Format.print_newline () ; 
     let bwAssExpr x =  ( AbstractSyntax.A_var  x, A_RANDOM ) in
     let rec unconstraint t cns   = match t with 
@@ -1818,22 +1807,22 @@ let robust  t  =
           begin
           
 
-          Format.printf "\n Remove prime %s \n" x.varName; 
-          print_tree t.vars Format.std_formatter t.tree ;
+          (*Format.printf "\n Remove prime %s \n" x.varName; 
+          print_tree t.vars Format.std_formatter t.tree ;*)
           [(x::acc),[]]
           end
         else 
          let t' = (bwdAssign t (bwAssExpr x)) in 
-         Format.printf "\n Remove last %s \n" x.varName; 
-         print_tree t.vars Format.std_formatter t'.tree ; 
+         (*Format.printf "\n Remove last %s \n" x.varName; 
+         print_tree t.vars Format.std_formatter t'.tree ; *)
          let b,cons = unconstraint t'.tree [] in 
          let lft = if b then               
            [(x::acc),cons]
          else
           []
         in
-        Format.printf "\n Reste last %s \n" x.varName;
-        print_tree t.vars Format.std_formatter t.tree ; 
+        (*Format.printf "\n Reste last %s \n" x.varName;
+        print_tree t.vars Format.std_formatter t.tree ; *)
         let b,cons = unconstraint t.tree [] in 
         let rght = 
           if b then               
@@ -1845,16 +1834,16 @@ let robust  t  =
       | x::q -> 
         
         let t' = (bwdAssign t (bwAssExpr x)) in 
-        Format.printf "\nRemove %s \n" x.varName; 
-        print_tree t.vars Format.std_formatter t'.tree ; 
+        (*Format.printf "\nRemove %s \n" x.varName; 
+        print_tree t.vars Format.std_formatter t'.tree ; *)
         let l1 = (aux q (x::acc) t') in 
-        Format.printf "\n Reste %s \n" x.varName;
-        print_tree t.vars Format.std_formatter t.tree ;
+        (*Format.printf "\n Reste %s \n" x.varName;
+=        print_tree t.vars Format.std_formatter t.tree ;*)
         let l2 = (aux q acc t) 
         in l1 @ l2 
         
     in
-    
+    let module BanalApron = Banal_apron_domain.PolkaDomain  in
     let transform  clist arr = List.iteri (fun i c -> Lincons1.array_set arr i c)  clist in
     aux v [] t 
     |>
@@ -1864,9 +1853,9 @@ let robust  t  =
     List.iteri  (fun i (l,ar) -> let cons = snd (List.nth uncontrolled i ) in  List.iteri (fun k c ->transform (c) ar.(k)) cons) arr  
     |> fun () -> List.map (fun (l,a) -> (l,Array.map (fun a -> (Abstract1.of_lincons_array manager t.env a)) a)) arr 
     |>
-    fun arr -> List.map (fun (l,a) -> (l, a, if Array.length a > 0 then Abstract1.join_array manager a else (Abstract1.top manager t.env) )) arr 
+    fun arr -> List.map (fun (l,(a:Polka.strict Polka.t Abstract1.t array)) -> (l, a, if Array.length a > 0 then let vset = Banal.Banal_typed_syntax.VSet.of_list (List.map Banal.Function_banal_converter.var_to_banal t.vars) in Array.fold_left (fun acc b ->  BanalApron.bwd_join (acc,vset) (b ,vset) (BanalApron.top_apron t.env, vset) |> fst )  (BanalApron.bot_apron  t.env)  a  else (BanalApron.top_apron t.env) )) arr 
     |>
-    fun j -> List.fold_left (fun (a:(var list * Polka.strict Polka.t Abstract1.t array * Polka.strict Polka.t Abstract1.t) list ) (b,arr,abs)-> 
+    fun j -> List.fold_left (fun (a:(var list * Polka.strict Polka.t Abstract1.t array * BanalApron.t) list ) (b,arr,abs)-> 
                                   if List.exists (fun (l,_,_) -> List.compare_lengths l b > 0 && (List.for_all (fun el -> List.mem  el l ) b) )  a then a else (b,arr,abs)::a ) 
                                   [] j
     |> 

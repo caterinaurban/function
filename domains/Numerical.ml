@@ -26,7 +26,8 @@ end
 module Numerical (N : NUMERICAL) (C : CONSTRAINT) : PARTITION = struct
   (** Linear constraints used to represent the partition. *)
   module C = C
-
+  
+  module PolkaBanal = Banal_apron_domain.PolkaDomain 
   module BanalApron = Banal_apron_domain.ApronDomain (N)
 
   (** An element of the numerical abstract domain. *)

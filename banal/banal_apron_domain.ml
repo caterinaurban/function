@@ -25,7 +25,10 @@ module ApronDomain (Param : Banal_apron_utils.APRON_PARAM) = struct
   let man = Param.manager
 
   type t = Param.lib Abstract1.t
-
+  let top_apron env = Abstract1.top man env
+  let bot_apron env = Abstract1.bottom man env
+  let of_apron v env = Abstract1.join man v (bot_apron env)
+  
   (*************)
   (* UTILITIES *)
   (*************)
@@ -962,6 +965,7 @@ module ApronDomain (Param : Banal_apron_utils.APRON_PARAM) = struct
     bwd_trace "meet" (Abstract1.meet man pre) post
 
 	let bwd_join ((_,vset) as post1: t * VSet.t) (post2 : t * VSet.t) ((pre,_) : t * VSet.t)  =
+  
 	let lift_vset2 f (a,v) (b,_) = f a b, v in
     lift_vset2 (fun post1 post2 ->
       (* check if one element is contained in the other *)

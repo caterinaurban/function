@@ -465,7 +465,7 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
           Format.fprintf !fmt "\nBackward Analysis (Time: %f s):\n"
             (stopbwd -. startbwd)
         else Format.fprintf !fmt "\nBackward Analysis:\n" ;
-        if robust then bwdMap_robust !fmt  vars !bwdInvMap
-        else bwdMap_print !fmt !bwdInvMap ) ;
+           bwdMap_print !fmt !bwdInvMap ) ;
+           if robust then bwdMap_robust !fmt  vars !bwdInvMap;
       D.defined i )
 end

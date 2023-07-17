@@ -70,6 +70,6 @@ module type RANKING_FUNCTION = sig
        t
     -> ( var list * var list
        * Polka.strict Polka.t Abstract1.t array
-       * Polka.strict Polka.t Abstract1.t )
+       * Banal_apron_domain.PolkaDomain.t )
        list
 end

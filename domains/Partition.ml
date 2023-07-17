@@ -15,8 +15,9 @@ open Constraints
 (** Signature for a single partition of the domain of a ranking function. *)
 module type PARTITION = sig
   module C : CONSTRAINT
-
+  module BanalApron: Banal_domain.ABSTRACT_DOMAIN
   type t
+  
 
   val constraints : t -> C.t list
 
