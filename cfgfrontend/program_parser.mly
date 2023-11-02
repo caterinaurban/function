@@ -26,8 +26,6 @@ open Abstract_syntax_tree
 %token TOK_FALSE
 %token TOK_RAND
 %token TOK_QUESTIONMARK
-%token TOK_CONTROLLED
-%token TOK_UNCONTROLLED
 %token TOK_BRAND
 %token TOK_FOR
 %token TOK_WHILE
@@ -148,10 +146,7 @@ int_expr:
 
 | e=ext(TOK_QUESTIONMARK)
     { AST_int_random }
-| e=ext(TOK_CONTROLLED)
-   { AST_int_random_c }
-| e=ext(TOK_UNCONTROLLED)     
-    { AST_int_random_u }
+    
 | e=ext(TOK_RAND) TOK_LPAREN TOK_RPAREN
     { AST_int_random }
 

@@ -18,10 +18,13 @@ cfgfrontend/program_lexer.ml
 cfgfrontend/program_parser.ml
 cfgfrontend/program_parser.mli
 cfgfrontend/Parser.conflicts
+results*/*
 examples/**
 _build/**
+.metals/
 *.byte
 *.native
+.vscode/
 ocamlbuild.sh
 ocamlbuild_opt.sh
 _tags
