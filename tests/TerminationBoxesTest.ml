@@ -55,7 +55,7 @@ let ( @@+=> ) (filename, conditionalTerminationProperty) =
 
 let ( -- ) filename expected =
   filename
-  >:: fun test_ctxt ->
+  >:: fun _ ->
   assert_bool "Test marked as not working but non-terminating" expected ;
   todo (filename ^ "Doesn't work yet")
 

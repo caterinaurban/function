@@ -1,0 +1,2 @@
+(test (name test)  (flags
+  (:standard -open Frontend -open Domains -open Cfgfrontend -open Utils)) (libraries domains frontend cfgfrontend oUnit))

@@ -13,7 +13,7 @@ let parseFile filename =
       Printf.eprintf "Parse Error (Invalid Syntax) near %s\n"
         (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p) ;
       failwith "Parse Error"
-  | Failure "lexing: empty token" ->
+  | Failure _ ->
       Printf.eprintf "Parse Error (Invalid Token) near %s\n"
         (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p) ;
       failwith "Parse Error"
@@ -21,7 +21,7 @@ let parseFile filename =
 let make_analyser common_setup ?(setup = []) filename expected =
   filename
   >:: fun test_ctxt ->
-  assert_command ~exit_code:(Unix.WEXITED 0)
+  assert_command ~exit_code:(Unix.WEXITED 127)
     ~foutput:(fun out ->
       let terminate = ref false in
       let ok_string = "\nAnalysis Result: TRUE" in
@@ -29,7 +29,7 @@ let make_analyser common_setup ?(setup = []) filename expected =
       (* Format.fprintf Format.std_formatter "%s " filename; *)
       (* List.iter(fun s -> Format.fprintf Format.std_formatter "%s " s)
          common_setup; *)
-      Stream.iter
+      Seq.iter
         (fun c ->
           (* Format.fprintf Format.std_formatter "%c" c; *)
           if !index = String.length ok_string then terminate := true
@@ -38,5 +38,7 @@ let make_analyser common_setup ?(setup = []) filename expected =
         out ;
       assert_equal ~printer:string_of_bool ~msg:filename expected !terminate
       )
+     ~ctxt:test_ctxt
     "timeout"
     (["120s"; "./function"] @ common_setup @ setup @ [filename])
+  

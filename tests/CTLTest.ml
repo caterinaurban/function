@@ -15,9 +15,9 @@ type domain = BOXES | POLYHEDRA
 let string_of_domain d =
   match d with BOXES -> "boxes" | POLYHEDRA -> "polyhedra"
 
-let ( -- ) (filename, property) expected =
+let ( -- ) (filename, _) expected =
   filename
-  >:: fun test_ctxt ->
+  >:: fun _ ->
   assert_bool "Test marked as not working but non-terminating" expected ;
   todo (filename ^ "Doesn't work yet")
 
