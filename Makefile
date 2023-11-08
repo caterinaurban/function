@@ -115,8 +115,8 @@ MLFILES = \
   main/TerminationIterator.ml \
   main/GuaranteeIterator.ml \
   main/RecurrenceIterator.ml \
+  main/ASTCTLIterator.ml \
   main/CTLIterator.ml \
-  main/CFGCTLIterator.ml \
 
 MLIFILES = \
   frontend/Parser.mli \

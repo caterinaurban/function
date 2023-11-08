@@ -9,7 +9,7 @@
 
 // Benchmark: fig8-2007.c
 //
-// -ctl_cfg "OR{set==0}{AF{unset == 1}}"
+// -ctl "OR{set==0}{AF{unset == 1}}"
 
 int i; int Pdolen; int DName;
 int status;

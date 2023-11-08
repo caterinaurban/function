@@ -292,10 +292,10 @@ let result = ref false
 let run_analysis analysis_function program () =
   try
     let start = Sys.time () in
-    let terminating = analysis_function program !main in
+    let result = analysis_function program !main in
     let stop = Sys.time () in
     Format.fprintf !fmt "Analysis Result: " ;
-    let result = if terminating then "TRUE" else "UNKNOWN" in
+    let result = if result then "TRUE" else "UNKNOWN" in
     Format.fprintf !fmt "%s\n" result ;
     if !time then Format.fprintf !fmt "Time: %f s\n" (stop -. start) ;
     Format.fprintf !fmt "\nDone.\n"
@@ -391,45 +391,7 @@ let recurrence () =
   in
   run_analysis (analysis_function property) program ()
 
-let ctl_ast () =
-  if !filename = "" then raise (Invalid_argument "No Source File Specified") ;
-  if !property = "" then raise (Invalid_argument "No Property Specified") ;
-  let starttime = Sys.time () in
-  let parsedPrecondition = parsePropertyString !precondition in
-  let parsedProperty = parseCTLPropertyString !property in
-  let prog, property =
-    ItoA.ctl_prog_itoa parsedProperty !main (parseFile !filename)
-  in
-  let precondition =
-    fst
-    @@ AbstractSyntax.StringMap.find ""
-    @@ ItoA.property_itoa_of_prog prog !main parsedPrecondition
-  in
-  if not !minimal then (
-    Format.fprintf !fmt "\nAbstract Syntax:\n" ;
-    AbstractSyntax.prog_print !fmt prog ;
-    Format.fprintf !fmt "\n" ) ;
-  let program = CTLIterator.program_of_prog prog !main in
-  let analyze =
-    match !domain with
-    | "boxes" ->
-        if !ordinals then CTLBoxesOrdinals.analyze else CTLBoxes.analyze
-    | "octagons" ->
-        if !ordinals then CTLOctagonsOrdinals.analyze
-        else CTLOctagons.analyze
-    | "polyhedra" ->
-        if !ordinals then CTLPolyhedraOrdinals.analyze
-        else CTLPolyhedra.analyze
-    | _ -> raise (Invalid_argument "Unknown Abstract Domain")
-  in
-  let result = analyze ~precondition program property in
-  ( if !time then
-    let stoptime = Sys.time () in
-    Format.fprintf !fmt "\nTime: %f" (stoptime -. starttime) ) ;
-  if result then Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
-  else Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
-
-let ctl_cfg () =
+let ctl () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified") ;
   if !property = "" then raise (Invalid_argument "No Property Specified") ;
   let starttime = Sys.time () in
@@ -454,14 +416,11 @@ let ctl_cfg () =
   let analyze =
     match !domain with
     | "boxes" ->
-        if !ordinals then CFGCTLBoxesOrdinals.analyze
-        else CFGCTLBoxes.analyze
+        if !ordinals then CTLBoxesOrdinals.analyze else CTLBoxes.analyze
     | "octagons" ->
-        if !ordinals then CFGCTLOctagonsOrdinals.analyze
-        else CFGCTLOctagons.analyze
+        if !ordinals then CTLOctagonsOrdinals.analyze else CTLOctagons.analyze
     | "polyhedra" ->
-        if !ordinals then CFGCTLPolyhedraOrdinals.analyze
-        else CFGCTLPolyhedra.analyze
+        if !ordinals then CTLPolyhedraOrdinals.analyze else CTLPolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in
   if not !minimal then (
@@ -489,11 +448,47 @@ let doit () =
   | "termination" -> termination ()
   | "guarantee" -> guarantee ()
   | "recurrence" -> recurrence ()
-  | "ctl" -> (
-    match !ctl_analysis_type with
-    | "cfg" -> ctl_cfg ()
-    | "ast" -> ctl_ast ()
-    | _ -> raise (Invalid_argument "Unknown CTL Analysis") )
+  | "ctl" -> ctl ()
   | _ -> raise (Invalid_argument "Unknown Analysis")
 
 let _ = doit ()
+
+(* DEPRECATED STUFF BELOW *)
+
+let ctl_ast () =
+  if !filename = "" then raise (Invalid_argument "No Source File Specified") ;
+  if !property = "" then raise (Invalid_argument "No Property Specified") ;
+  let starttime = Sys.time () in
+  let parsedPrecondition = parsePropertyString !precondition in
+  let parsedProperty = parseCTLPropertyString !property in
+  let prog, property =
+    ItoA.ctl_prog_itoa parsedProperty !main (parseFile !filename)
+  in
+  let precondition =
+    fst
+    @@ AbstractSyntax.StringMap.find ""
+    @@ ItoA.property_itoa_of_prog prog !main parsedPrecondition
+  in
+  if not !minimal then (
+    Format.fprintf !fmt "\nAbstract Syntax:\n" ;
+    AbstractSyntax.prog_print !fmt prog ;
+    Format.fprintf !fmt "\n" ) ;
+  let program = ASTCTLIterator.program_of_prog prog !main in
+  let analyze =
+    match !domain with
+    | "boxes" ->
+        if !ordinals then ASTCTLBoxesOrdinals.analyze else ASTCTLBoxes.analyze
+    | "octagons" ->
+        if !ordinals then ASTCTLOctagonsOrdinals.analyze
+        else ASTCTLOctagons.analyze
+    | "polyhedra" ->
+        if !ordinals then ASTCTLPolyhedraOrdinals.analyze
+        else ASTCTLPolyhedra.analyze
+    | _ -> raise (Invalid_argument "Unknown Abstract Domain")
+  in
+  let result = analyze ~precondition program property in
+  ( if !time then
+    let stoptime = Sys.time () in
+    Format.fprintf !fmt "\nTime: %f" (stoptime -. starttime) ) ;
+  if result then Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
+  else Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"

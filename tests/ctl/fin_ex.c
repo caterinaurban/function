@@ -1,5 +1,5 @@
 // FuncTion arguments:
-// -ctl_cfg "EG{EF{n==1}}
+// -ctl "EG{EF{n==1}}
 // -precondition n > 0
 // -domain polyhedra
 

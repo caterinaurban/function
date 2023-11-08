@@ -2,7 +2,7 @@
 //
 //
 // '[AG](varA != 1 || [EF](varR == 1))'
-// -ctl_cfg "OR{varA != 1}{EF{varR==1}"
+// -ctl "OR{varA != 1}{EF{varR==1}"
 // -precondition "varA == 0 && varR == 0"
 //
 

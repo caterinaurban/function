@@ -3,20 +3,15 @@ import sys
 import re
 
 content = []
+start = False
 for line in sys.stdin:
     l = line.rstrip()
-    if l != '':
+    if line.startswith("CFG"):
+        start = True
+    if start and l != '':
         content.append(l)
 
-
-# with open("test.out") as f:
-#     content = f.readlines()
-# # you may also want to remove whitespace characters like `\n` at the end of each line
-# content = [x.strip() for x in content]
-
-
 label_pattern = re.compile('(\[\s*(\d+):\]):')
-
 
 cfg = []
 fwd = []

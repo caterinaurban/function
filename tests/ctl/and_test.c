@@ -1,5 +1,5 @@
 // FuncTion arguments:
-// -ctl_cfg "AND{AG{AF{n==1}}}{AF{n==0}}"
+// -ctl "AND{AG{AF{n==1}}}{AF{n==0}}"
 // -precondition n > 0
 
 void main() {

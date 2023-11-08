@@ -2,7 +2,7 @@
 //
 //@ ltl invariant positive: AP(init == 0) U( (AP(init == 1) U [] AP(init == 3)) || [] AP(init == 1));
 //
-// -ctl_cfg  AU{init == 0}{OR{AU{init == 1}{AG{init == 3}}}{AG{init == 1}}};
+// -ctl  AU{init == 0}{OR{AU{init == 1}{AG{init == 3}}}{AG{init == 1}}};
 
 #include <stdio.h> 
 

@@ -1,6 +1,6 @@
 // OK
 // -precondition "varN > 0"
-// -ctl_cfg "EF{AND{varA == 1}{AG{varR != 1}}"
+// -ctl "EF{AND{varA == 1}{AG{varR != 1}}"
 
 void main() {
 

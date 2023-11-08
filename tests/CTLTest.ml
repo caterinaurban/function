@@ -122,8 +122,8 @@ let ctl_ast_testcases =
        ; test_ast "./tests/ctl/koskinen/win4.c" "AF{AG{WItemsNum >= 1}}" true
        ]
 
-let ctl_cfg_testcases =
-  "ctl_cfg"
+let ctl_testcases =
+  "ctl"
   >::: [ (* Test Cases for the report*)
          test_cfg ~precondition:"x >= y" "./tests/ctl/report/test_until.c"
            "AU{x >= y}{x==y}" true

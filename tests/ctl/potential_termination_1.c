@@ -2,7 +2,7 @@
 /**
  * Samuel Ueltschi: example for potential termination
  *
- * -ctl_cfg "EF{exit: true}"
+ * -ctl "EF{exit: true}"
  */
 
 int main() {

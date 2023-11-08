@@ -1,5 +1,5 @@
 // FuncTion arguments:
-// -ctl_cfg "AG{AF{x <= -10}}" 
+// -ctl "AG{AF{x <= -10}}" 
 // -joinbwd 4
 int main() {
     int x;

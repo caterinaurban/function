@@ -2,8 +2,8 @@
  * Samuel Ueltschi: multiple branches with initial non-det choice
  *
  * FuncTion arguments: 
- * -ctl_cfg AF{OR{x==4}{x==-4}}
- * -ctl_cfg EF{x==-4}
+ * -ctl AF{OR{x==4}{x==-4}}
+ * -ctl EF{x==-4}
  *
  */
 

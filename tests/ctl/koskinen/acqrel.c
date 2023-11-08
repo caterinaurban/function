@@ -11,7 +11,7 @@
 // Property: AG(a => AF r)
 
 // FuncTion arguments:
-// -ctl_cfg "AG{OR{A!=1}{AF{R==1}}}" 
+// -ctl "AG{OR{A!=1}{AF{R==1}}}" 
 // -precondition "A==0 && R==0"
 
 

@@ -1,6 +1,6 @@
 // OK
 // (varC <= 5) || ([AF](varR > 5))
-// -ctl_cfg "OR{varC <= 5}{AF{varR > 5}}
+// -ctl "OR{varC <= 5}{AF{varR > 5}}
 // -joinbwd 6
 
 void main() {

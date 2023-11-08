@@ -3,7 +3,7 @@
 //
 // (varC > 5) && [EG](varR <= 5)
 //
-// -ctl_cfg "OR{varC > 5}{EG{varR <= 5}}
+// -ctl "OR{varC > 5}{EG{varR <= 5}}
 void main() {
 
     int varC; // assume varC >= 1
