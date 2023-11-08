@@ -56,7 +56,10 @@ FuncTion requires the following applications and libraries:
 	```
 	(sudo) apt-get install opam
 	```
-  
+* Dune: Ocaml build system
+
+	```
+	opam install dune
 * OUnit
 
 	```
@@ -78,10 +81,10 @@ FuncTion requires the following applications and libraries:
 
 # Compiling FuncTion
 
-Once all required libraries are installed, FuncTion can be compiled with 'make':
+Once all required libraries are installed, FuncTion can be compiled with 'dune':
 
 ```
-make
+dune build
 ```
 
 This will generate the command line program 'function' in the project directory. 

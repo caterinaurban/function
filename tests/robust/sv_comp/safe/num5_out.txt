@@ -1,0 +1,142 @@
+./main.exe
+tests/robust/sv_comp/safe/sv_num5.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/sv_comp/safe/num5.txt
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] if ( $3{n} >= 0 ) then
+[ 3:]   $1{$1} := 0
+[ 4:]   return
+[ 5:]
+      else
+[ 6:]
+      endif
+[ 7:] $4{sn} := 0
+[ 8:] $5{bug1} := 2 * $3{n}
+[ 9:] $6{bug2} := 0
+[10:] $2{i} := 0
+[11:] while [12:] ( $2{i} <= $3{n} ) do
+[13:]   $4{sn} := $4{sn} + 2
+[14:]   $2{i} := $2{i} + 1
+[15:]
+      od
+[16:] $5{bug1} := $4{sn}
+[17:] $6{bug2} := $4{sn}
+[18:]
+
+Property: ($5{bug1} < 2 * $3{n} || $5{bug1} > 2 * $3{n}) && ($6{bug2} < 0 || $6{bug2} > 0)
+[ 2:]:
+
+NODE $6{bug2} >= 1
+ NODE $3{n} >= 0
+  NODE 2$3{n}-$5{bug1} >= 1
+   LEAF 0.
+    NODE 2$3{n}-$5{bug1} >= 0
+     LEAF bottom
+      LEAF 0.
+   NODE 2$3{n}-$5{bug1} >= 1
+    LEAF 0.
+     NODE 2$3{n}-$5{bug1} >= 0
+      LEAF bottom
+       LEAF 0.
+  NODE $6{bug2} >= 0
+   NODE $3{n} >= 0
+    NODE 2$3{n}-$5{bug1} >= 1
+     LEAF bottom
+      NODE 2$3{n}-$5{bug1} >= 0
+       LEAF bottom
+        LEAF bottom
+     NODE 2$3{n}-$5{bug1} >= 1
+      LEAF bottom
+       NODE 2$3{n}-$5{bug1} >= 0
+        LEAF bottom
+         LEAF bottom
+    NODE $3{n} >= 0
+     NODE 2$3{n}-$5{bug1} >= 1
+      LEAF 0.
+       NODE 2$3{n}-$5{bug1} >= 0
+        LEAF bottom
+         LEAF 0.
+      NODE 2$3{n}-$5{bug1} >= 1
+       LEAF 0.
+        NODE 2$3{n}-$5{bug1} >= 0
+         LEAF bottom
+          LEAF 0.
+
+ --   uncontrolled  -- 
+  $4{sn}-$2{i}-
+  -- constraints   --  
+[|
+$6-1>=0; $3>=0; 2$3-$5-1>=0|] or  
+[|-2$3+$5-1>=0; $6-1>=0; $3>=0|] or  
+[|-$3-1>=0;
+                                                               $6-1>=0;
+                                                               2$3-$5-1>=0|] or  
+[|
+-2$3+$5-1>=0; -$3-1>=0; $6-1>=0|] or  
+[|-$6-1>=0; $3>=0; 2$3-$5-1>=0|] or  
+[|-2$3+$5-1>=0;
+                                                                   -$6-1>=0;
+                                                                   $3>=0|] or  
+[|
+-$3-1>=0; -$6-1>=0; 2$3-$5-1>=0|] or  
+[|-2$3+$5-1>=0; -$3-1>=0; -$6-1>=0|] or  
+
+ -- Join constraint -- 
+top
+
+ --   uncontrolled  -- 
+  $2{i}-
+  -- constraints   --  
+[|
+$6-1>=0; $3>=0; 2$3-$5-1>=0|] or  
+[|-2$3+$5-1>=0; $6-1>=0; $3>=0|] or  
+[|-$3-1>=0;
+                                                               $6-1>=0;
+                                                               2$3-$5-1>=0|] or  
+[|
+-2$3+$5-1>=0; -$3-1>=0; $6-1>=0|] or  
+[|-$6-1>=0; $3>=0; 2$3-$5-1>=0|] or  
+[|-2$3+$5-1>=0;
+                                                                   -$6-1>=0;
+                                                                   $3>=0|] or  
+[|
+-$3-1>=0; -$6-1>=0; 2$3-$5-1>=0|] or  
+[|-2$3+$5-1>=0; -$3-1>=0; -$6-1>=0|] or  
+
+ -- Join constraint -- 
+top
+
+ --   uncontrolled  -- 
+  $4{sn}-
+  -- constraints   --  
+[|
+$6-1>=0; $3>=0; 2$3-$5-1>=0|] or  
+[|-2$3+$5-1>=0; $6-1>=0; $3>=0|] or  
+[|-$3-1>=0;
+                                                               $6-1>=0;
+                                                               2$3-$5-1>=0|] or  
+[|
+-2$3+$5-1>=0; -$3-1>=0; $6-1>=0|] or  
+[|-$6-1>=0; $3>=0; 2$3-$5-1>=0|] or  
+[|-2$3+$5-1>=0;
+                                                                   -$6-1>=0;
+                                                                   $3>=0|] or  
+[|
+-$3-1>=0; -$6-1>=0; 2$3-$5-1>=0|] or  
+[|-2$3+$5-1>=0; -$3-1>=0; -$6-1>=0|] or  
+
+ -- Join constraint -- 
+top
+simply reachable ?: true 
+
+
+Analysis Result: UNKNOWN
+
+Done.

@@ -1,0 +1,2464 @@
+./main.exe
+tests/robust/perso/my_sum.c
+-domain
+polyhedra
+-joinbwd
+2
+-ordinals
+3
+-robust
+tests/robust/perso/my_sum.txt
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] $6{i} := 0
+[ 3:] while [ 4:] ( $6{i} < 100 ) do
+[ 5:]   $4{s} := $4{s} + $2{n}
+[ 6:]   $6{i} := $6{i} + 1
+[ 7:]
+      od
+[ 8:] $5{r} := $4{s}
+[ 9:] $1{$1} := 0
+[10:] return
+[11:]
+
+Property: $5{r} >= $2{n}
+
+Forward Analysis:
+[ 1:]: top
+[ 2:]: top
+[ 3:]: $6{i} == 0
+[ 4:]: $6{i} >= 0
+[ 5:]: $6{i} >= 0 && -$6{i} >= -99
+[ 6:]: $6{i} >= 0 && -$6{i} >= -99
+[ 7:]: $6{i} >= 1 && -$6{i} >= -100
+[ 8:]: $6{i} >= 100
+[ 9:]: $6{i} >= 100 && -$4{s}+$5{r} == 0
+[10:]: $6{i} >= 100 && $1{$1} == 0 && -$4{s}+$5{r} == 0
+[11:]: bottom
+Label search : 11Label search : 7Label search : 7Label search : 7Label search : 7Label search : 7Label search : 1[ 1:]:
+
+NODE $2{n}-$5{r} >= 1
+ LEAF top
+  LEAF 0.
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-
+  -- constraints   --  
+[|
+                                            -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+simply reachable ?: true 
+
+
+[ 2:]:
+
+NODE $2{n}-$5{r} >= 1
+ LEAF top
+  LEAF 0.
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-
+  -- constraints   --  
+[|
+                                            -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+simply reachable ?: true 
+
+
+[ 3:]:
+
+NODE $6{i} >= 100
+ NODE $2{n}-$4{s} >= 1
+  NODE $2{n}-$5{r} >= 1
+   LEAF bottom
+    LEAF 0.
+   NODE $2{n}-$5{r} >= 1
+    LEAF 2
+     LEAF 0.
+  NODE $6{i} >= 99
+   NODE $4{s} >= 0
+    NODE $2{n}-$5{r} >= 1
+     LEAF 5
+      LEAF 0.
+     NODE $2{n}-$5{r} >= 1
+      LEAF bottom
+       LEAF 0.
+    NODE $2{n}-$5{r} >= 1
+     LEAF top
+      LEAF 0.
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0; $4>=0; $2-$4-1>=0|]
+[|
+                                             -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|
+                                             -$2+$5>=0; -$4-1>=0; $2-$4-1>=0|]
+[|
+                                             -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $4>=0;
+                                                                 $2-$4-1>=0|]
+[|
+                                       -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|
+                                       -$2+$5>=0; -$4-1>=0; $2-$4-1>=0|]
+[|
+                                       -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$4>=0; $6-100>=0|]
+[|
+                                             $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0; $6-100>=0|]
+[|
+                                             $6-99=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                                    -$6+98>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $6-100>=0;
+                                                                 $2-$4-1>=0|]
+[|
+                                       -$2+$4>=0; $6-100>=0; $2-$5-1>=0|]
+[|
+                                       -$2+$5>=0; -$2+$4>=0; $6-100>=0|]
+[|
+                                       $6-99=0; $4>=0; $2-$5-1>=0|]
+[|
+                                       $6-99=0; -$2+$5>=0; $4>=0|]
+[|
+                                       $6-99=0; -$2+$5>=0; -$4-1>=0|]
+[|
+                                       -$2+$5>=0; -$6+98>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$1{$1}-
+  -- constraints   --  
+[|$6-99=0;
+                                                                 $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$1{$1}-
+  -- constraints   --  
+[|-$2+$4>=0;
+                                                                 $6-100>=0|]
+[|
+                                       $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $6-100>=0|]
+[|
+                                       $6-99=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                              -$6+98>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                           $6-100>=0;
+                                                           $2-$4-1>=0|]
+[|
+                                 -$2+$4>=0; $6-100>=0; $2-$5-1>=0|]
+[|
+                                 -$2+$5>=0; -$2+$4>=0; $6-100>=0|]
+[|
+                                 $6-99=0; $4>=0; $2-$5-1>=0|]
+[|$6-99=0;
+                                                                -$2+$5>=0;
+                                                                $4>=0|]
+[|
+                                 $6-99=0; -$2+$5>=0; -$4-1>=0|]
+[|-$2+$5>=0;
+                                                                  -$6+98>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-
+  -- constraints   --  
+[|
+                                            -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                $4>=0;
+                                                                $2-$4-1>=0|]
+[|
+                                      -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|
+                                      -$2+$5>=0; -$4-1>=0; $2-$4-1>=0|]
+[|
+                                      -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-
+  -- constraints   --  
+[|-$2+$5>=0; 
+                                                          $4>=0; $2-$4-1>=0|]
+[|
+                                -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|-$2+$5>=0;
+                                                                -$4-1>=0;
+                                                                $2-$4-1>=0|]
+[|
+                                -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$3{m}-
+  -- constraints   --  
+[|
+                                            $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$3{m}-
+  -- constraints   --  
+[|$6-99=0;
+                                                                $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-
+  -- constraints   --  
+[|-$2+$4>=0;
+                                                                $6-100>=0|]
+[|
+                                      $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                $6-100>=0|]
+[|
+                                      $6-99=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                             -$6+98>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                          $6-100>=0;
+                                                          $2-$4-1>=0|]
+[|
+                                -$2+$4>=0; $6-100>=0; $2-$5-1>=0|]
+[|
+                                -$2+$5>=0; -$2+$4>=0; $6-100>=0|]
+[|$6-99=0;
+                                                                    $4>=0;
+                                                                    $2-$5-1>=0|]
+[|
+                                $6-99=0; -$2+$5>=0; $4>=0|]
+[|$6-99=0;
+                                                              -$2+$5>=0;
+                                                              -$4-1>=0|]
+[|
+                                -$2+$5>=0; -$6+98>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-
+  -- constraints   --  
+[|$6-99=0;
+                                                                $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-
+  -- constraints   --  
+[|$6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-
+  -- constraints   --  
+[|-$2+$4>=0;
+                                                          $6-100>=0|]
+[|
+                                $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                          $6-100>=0|]
+[|
+                                $6-99=0; -$2+$5>=0|]
+[|-$2+$5>=0; -$6+98>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+simply reachable ?: true 
+
+
+[ 4:]:
+
+NODE $6{i} >= 100
+ NODE $2{n}-$4{s} >= 1
+  NODE $2{n}-$5{r} >= 1
+   LEAF bottom
+    LEAF 0
+   NODE $2{n}-$5{r} >= 1
+    LEAF 2
+     LEAF 0
+  NODE $6{i} >= 99
+   NODE $4{s} >= 0
+    NODE $2{n}-$5{r} >= 1
+     LEAF 5
+      LEAF 0
+     NODE $2{n}-$5{r} >= 1
+      LEAF bottom
+       LEAF 0
+    NODE $2{n}-$5{r} >= 1
+     LEAF top
+      LEAF 0
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0; $4>=0; $2-$4-1>=0|]
+[|
+                                             -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|
+                                             -$2+$5>=0; -$4-1>=0; $2-$4-1>=0|]
+[|
+                                             -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $4>=0;
+                                                                 $2-$4-1>=0|]
+[|
+                                       -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|
+                                       -$2+$5>=0; -$4-1>=0; $2-$4-1>=0|]
+[|
+                                       -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$4>=0; $6-100>=0|]
+[|
+                                             $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0; $6-100>=0|]
+[|
+                                             $6-99=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                                    -$6+98>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $6-100>=0;
+                                                                 $2-$4-1>=0|]
+[|
+                                       -$2+$4>=0; $6-100>=0; $2-$5-1>=0|]
+[|
+                                       -$2+$5>=0; -$2+$4>=0; $6-100>=0|]
+[|
+                                       $6-99=0; $4>=0; $2-$5-1>=0|]
+[|
+                                       $6-99=0; -$2+$5>=0; $4>=0|]
+[|
+                                       $6-99=0; -$2+$5>=0; -$4-1>=0|]
+[|
+                                       -$2+$5>=0; -$6+98>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$1{$1}-
+  -- constraints   --  
+[|$6-99=0;
+                                                                 $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$1{$1}-
+  -- constraints   --  
+[|-$2+$4>=0;
+                                                                 $6-100>=0|]
+[|
+                                       $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $6-100>=0|]
+[|
+                                       $6-99=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                              -$6+98>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                           $6-100>=0;
+                                                           $2-$4-1>=0|]
+[|
+                                 -$2+$4>=0; $6-100>=0; $2-$5-1>=0|]
+[|
+                                 -$2+$5>=0; -$2+$4>=0; $6-100>=0|]
+[|
+                                 $6-99=0; $4>=0; $2-$5-1>=0|]
+[|$6-99=0;
+                                                                -$2+$5>=0;
+                                                                $4>=0|]
+[|
+                                 $6-99=0; -$2+$5>=0; -$4-1>=0|]
+[|-$2+$5>=0;
+                                                                  -$6+98>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-
+  -- constraints   --  
+[|
+                                            -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                $4>=0;
+                                                                $2-$4-1>=0|]
+[|
+                                      -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|
+                                      -$2+$5>=0; -$4-1>=0; $2-$4-1>=0|]
+[|
+                                      -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-
+  -- constraints   --  
+[|-$2+$5>=0; 
+                                                          $4>=0; $2-$4-1>=0|]
+[|
+                                -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|-$2+$5>=0;
+                                                                -$4-1>=0;
+                                                                $2-$4-1>=0|]
+[|
+                                -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$3{m}-
+  -- constraints   --  
+[|
+                                            $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$3{m}-
+  -- constraints   --  
+[|$6-99=0;
+                                                                $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-
+  -- constraints   --  
+[|-$2+$4>=0;
+                                                                $6-100>=0|]
+[|
+                                      $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                $6-100>=0|]
+[|
+                                      $6-99=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                             -$6+98>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                          $6-100>=0;
+                                                          $2-$4-1>=0|]
+[|
+                                -$2+$4>=0; $6-100>=0; $2-$5-1>=0|]
+[|
+                                -$2+$5>=0; -$2+$4>=0; $6-100>=0|]
+[|$6-99=0;
+                                                                    $4>=0;
+                                                                    $2-$5-1>=0|]
+[|
+                                $6-99=0; -$2+$5>=0; $4>=0|]
+[|$6-99=0;
+                                                              -$2+$5>=0;
+                                                              -$4-1>=0|]
+[|
+                                -$2+$5>=0; -$6+98>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-
+  -- constraints   --  
+[|$6-99=0;
+                                                                $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-
+  -- constraints   --  
+[|$6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-
+  -- constraints   --  
+[|-$2+$4>=0;
+                                                          $6-100>=0|]
+[|
+                                $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                          $6-100>=0|]
+[|
+                                $6-99=0; -$2+$5>=0|]
+[|-$2+$5>=0; -$6+98>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+simply reachable ?: true 
+
+
+[ 5:]:
+
+NODE $6{i} >= 99
+ NODE $4{s} >= 0
+  NODE $2{n}-$5{r} >= 1
+   LEAF 4
+    LEAF 0.
+   NODE $2{n}-$5{r} >= 1
+    LEAF bottom
+     LEAF 0.
+  NODE $6{i} >= 98
+   NODE $2{n}-$5{r} >= 1
+    NODE $2{n}+$4{s} >= 0
+     LEAF 7
+      LEAF bottom
+     LEAF 0.
+    NODE $2{n}-$5{r} >= 1
+     LEAF top
+      LEAF 0.
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0; $4>=0|]
+[|-$2+$5>=0;
+                                                                  -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $4>=0|]
+[|
+                                       -$2+$5>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   $6-99>=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $6-99>=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $6-99>=0; $4>=0|]
+[|$6-98=0;
+                                                                 $2+$4>=0|]
+
+ -- Join constraint --  [|$6-98>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0; $6-99>=0|]
+[|
+                                             $6-98=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                                    -$6+97>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$1{$1}-
+  -- constraints   --  
+[|$6-99>=0;
+                                                                 $4>=0;
+                                                                 $2-$5-1>=0|]
+[|
+                                       -$2+$5>=0; $6-99>=0; $4>=0|]
+[|
+                                       -$2+$5>=0; -$4-1>=0; $6-99>=0|]
+[|
+                                       $6-98=0; $2-$5-1>=0; $2+$4>=0|]
+[|
+                                       $6-98=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                              -$6+97>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $6-99>=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$1{$1}-
+  -- constraints   --  
+[|$6-99>=0;
+                                                                 $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$1{$1}-
+  -- constraints   --  
+[|$6-99>=0;
+                                                                 $4>=0|]
+[|
+                                       $6-98=0; $2+$4>=0|]
+
+ -- Join constraint --  [|$6-98>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $6-99>=0|]
+[|
+                                       $6-98=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                              -$6+97>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|$6-99>=0; 
+                                                           $4>=0; $2-$5-1>=0|]
+[|
+                                 -$2+$5>=0; $6-99>=0; $4>=0|]
+[|-$2+$5>=0;
+                                                                -$4-1>=0;
+                                                                $6-99>=0|]
+[|
+                                 $6-98=0; $2-$5-1>=0; $2+$4>=0|]
+[|$6-98=0;
+                                                                   -$2+$5>=0|]
+[|
+                                 -$2+$5>=0; -$6+97>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-
+  -- constraints   --  
+[|
+                                            -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                $4>=0|]
+[|
+                                      -$2+$5>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-
+  -- constraints   --  
+[|-$2+$5>=0; $4>=0|]
+[|
+                                -$2+$5>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$3{m}-
+  -- constraints   --  
+[|
+                                            $6-99>=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$3{m}-
+  -- constraints   --  
+[|$6-99>=0;
+                                                                $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-
+  -- constraints   --  
+[|$6-99>=0;
+                                                                $4>=0|]
+[|
+                                      $6-98=0; $2+$4>=0|]
+
+ -- Join constraint --  [|$6-98>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                $6-99>=0|]
+[|
+                                      $6-98=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                             -$6+97>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-
+  -- constraints   --  
+[|$6-99>=0; $4>=0;
+                                                          $2-$5-1>=0|]
+[|
+                                -$2+$5>=0; $6-99>=0; $4>=0|]
+[|-$2+$5>=0;
+                                                               -$4-1>=0;
+                                                               $6-99>=0|]
+[|
+                                $6-98=0; $2-$5-1>=0; $2+$4>=0|]
+[|$6-98=0;
+                                                                  -$2+$5>=0|]
+[|
+                                -$2+$5>=0; -$6+97>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-
+  -- constraints   --  
+[|$6-99>=0;
+                                                                $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-
+  -- constraints   --  
+[|$6-99>=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-
+  -- constraints   --  
+[|$6-99>=0; $4>=0|]
+[|
+                                $6-98=0; $2+$4>=0|]
+
+ -- Join constraint --  [|$6-98>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-
+  -- constraints   --  
+[|-$2+$5>=0; $6-99>=0|]
+[|
+                                $6-98=0; -$2+$5>=0|]
+[|-$2+$5>=0; -$6+97>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+simply reachable ?: true 
+
+
+[ 6:]:
+
+NODE $6{i} >= 99
+ NODE $2{n}-$4{s} >= 1
+  NODE $2{n}-$5{r} >= 1
+   LEAF bottom
+    LEAF 0.
+   NODE $2{n}-$5{r} >= 1
+    LEAF 3
+     LEAF 0.
+  NODE $6{i} >= 98
+   NODE $4{s} >= 0
+    NODE $2{n}-$5{r} >= 1
+     LEAF 6
+      LEAF 0.
+     NODE $2{n}-$5{r} >= 1
+      LEAF bottom
+       LEAF 0.
+    NODE $2{n}-$5{r} >= 1
+     LEAF top
+      LEAF 0.
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0; $4>=0; $2-$4-1>=0|]
+[|
+                                             -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|
+                                             -$2+$5>=0; -$4-1>=0; $2-$4-1>=0|]
+[|
+                                             -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $4>=0;
+                                                                 $2-$4-1>=0|]
+[|
+                                       -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|
+                                       -$2+$5>=0; -$4-1>=0; $2-$4-1>=0|]
+[|
+                                       -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   $6-98=0; $4>=0|]
+
+ -- Join constraint --  [|$6-98=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $6-98=0; $4>=0|]
+
+ -- Join constraint --  [|$6-98=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$4>=0; $6-99>=0|]
+[|
+                                             $6-98=0; $4>=0|]
+
+ -- Join constraint --  [|$6-98>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0; $6-99>=0|]
+[|
+                                             $6-98=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                                    -$6+97>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $6-99>=0;
+                                                                 $2-$4-1>=0|]
+[|
+                                       -$2+$4>=0; $6-99>=0; $2-$5-1>=0|]
+[|
+                                       -$2+$5>=0; -$2+$4>=0; $6-99>=0|]
+[|
+                                       $6-98=0; $4>=0; $2-$5-1>=0|]
+[|
+                                       $6-98=0; -$2+$5>=0; $4>=0|]
+[|
+                                       $6-98=0; -$2+$5>=0; -$4-1>=0|]
+[|
+                                       -$2+$5>=0; -$6+97>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $6-98=0; $4>=0|]
+
+ -- Join constraint --  [|$6-98=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$1{$1}-
+  -- constraints   --  
+[|$6-98=0;
+                                                                 $4>=0|]
+
+ -- Join constraint --  [|$6-98=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$1{$1}-
+  -- constraints   --  
+[|-$2+$4>=0;
+                                                                 $6-99>=0|]
+[|
+                                       $6-98=0; $4>=0|]
+
+ -- Join constraint --  [|$6-98>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $6-99>=0|]
+[|
+                                       $6-98=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                              -$6+97>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                           $6-99>=0;
+                                                           $2-$4-1>=0|]
+[|
+                                 -$2+$4>=0; $6-99>=0; $2-$5-1>=0|]
+[|
+                                 -$2+$5>=0; -$2+$4>=0; $6-99>=0|]
+[|$6-98=0;
+                                                                    $4>=0;
+                                                                    $2-$5-1>=0|]
+[|
+                                 $6-98=0; -$2+$5>=0; $4>=0|]
+[|$6-98=0;
+                                                               -$2+$5>=0;
+                                                               -$4-1>=0|]
+[|
+                                 -$2+$5>=0; -$6+97>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-
+  -- constraints   --  
+[|
+                                            -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                $4>=0;
+                                                                $2-$4-1>=0|]
+[|
+                                      -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|
+                                      -$2+$5>=0; -$4-1>=0; $2-$4-1>=0|]
+[|
+                                      -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-
+  -- constraints   --  
+[|-$2+$5>=0; 
+                                                          $4>=0; $2-$4-1>=0|]
+[|
+                                -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|-$2+$5>=0;
+                                                                -$4-1>=0;
+                                                                $2-$4-1>=0|]
+[|
+                                -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$3{m}-
+  -- constraints   --  
+[|
+                                            $6-98=0; $4>=0|]
+
+ -- Join constraint --  [|$6-98=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$3{m}-
+  -- constraints   --  
+[|$6-98=0;
+                                                                $4>=0|]
+
+ -- Join constraint --  [|$6-98=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-
+  -- constraints   --  
+[|-$2+$4>=0;
+                                                                $6-99>=0|]
+[|
+                                      $6-98=0; $4>=0|]
+
+ -- Join constraint --  [|$6-98>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                $6-99>=0|]
+[|
+                                      $6-98=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                             -$6+97>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                          $6-99>=0;
+                                                          $2-$4-1>=0|]
+[|
+                                -$2+$4>=0; $6-99>=0; $2-$5-1>=0|]
+[|-$2+$5>=0;
+                                                                    -$2+$4>=0;
+                                                                    $6-99>=0|]
+[|
+                                $6-98=0; $4>=0; $2-$5-1>=0|]
+[|$6-98=0;
+                                                               -$2+$5>=0;
+                                                               $4>=0|]
+[|
+                                $6-98=0; -$2+$5>=0; -$4-1>=0|]
+[|-$2+$5>=0;
+                                                                 -$6+97>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-
+  -- constraints   --  
+[|$6-98=0;
+                                                                $4>=0|]
+
+ -- Join constraint --  [|$6-98=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-
+  -- constraints   --  
+[|$6-98=0; $4>=0|]
+
+ -- Join constraint --  [|$6-98=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-
+  -- constraints   --  
+[|-$2+$4>=0; $6-99>=0|]
+[|
+                                $6-98=0; $4>=0|]
+
+ -- Join constraint --  [|$6-98>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-
+  -- constraints   --  
+[|-$2+$5>=0; $6-99>=0|]
+[|
+                                $6-98=0; -$2+$5>=0|]
+[|-$2+$5>=0; -$6+97>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+simply reachable ?: true 
+
+
+[ 7:]:
+
+NODE $6{i} >= 100
+ NODE $2{n}-$4{s} >= 1
+  NODE $2{n}-$5{r} >= 1
+   LEAF bottom
+    LEAF 0.
+   NODE $2{n}-$5{r} >= 1
+    LEAF 2
+     LEAF 0.
+  NODE $6{i} >= 99
+   NODE $4{s} >= 0
+    NODE $2{n}-$5{r} >= 1
+     LEAF 5
+      LEAF 0.
+     NODE $2{n}-$5{r} >= 1
+      LEAF bottom
+       LEAF 0.
+    NODE $2{n}-$5{r} >= 1
+     LEAF top
+      LEAF 0.
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0; $4>=0; $2-$4-1>=0|]
+[|
+                                             -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|
+                                             -$2+$5>=0; -$4-1>=0; $2-$4-1>=0|]
+[|
+                                             -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $4>=0;
+                                                                 $2-$4-1>=0|]
+[|
+                                       -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|
+                                       -$2+$5>=0; -$4-1>=0; $2-$4-1>=0|]
+[|
+                                       -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$4>=0; $6-100>=0|]
+[|
+                                             $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0; $6-100>=0|]
+[|
+                                             $6-99=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                                    -$6+98>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $6-100>=0;
+                                                                 $2-$4-1>=0|]
+[|
+                                       -$2+$4>=0; $6-100>=0; $2-$5-1>=0|]
+[|
+                                       -$2+$5>=0; -$2+$4>=0; $6-100>=0|]
+[|
+                                       $6-99=0; $4>=0; $2-$5-1>=0|]
+[|
+                                       $6-99=0; -$2+$5>=0; $4>=0|]
+[|
+                                       $6-99=0; -$2+$5>=0; -$4-1>=0|]
+[|
+                                       -$2+$5>=0; -$6+98>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$1{$1}-
+  -- constraints   --  
+[|$6-99=0;
+                                                                 $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$1{$1}-
+  -- constraints   --  
+[|-$2+$4>=0;
+                                                                 $6-100>=0|]
+[|
+                                       $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $6-100>=0|]
+[|
+                                       $6-99=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                              -$6+98>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                           $6-100>=0;
+                                                           $2-$4-1>=0|]
+[|
+                                 -$2+$4>=0; $6-100>=0; $2-$5-1>=0|]
+[|
+                                 -$2+$5>=0; -$2+$4>=0; $6-100>=0|]
+[|
+                                 $6-99=0; $4>=0; $2-$5-1>=0|]
+[|$6-99=0;
+                                                                -$2+$5>=0;
+                                                                $4>=0|]
+[|
+                                 $6-99=0; -$2+$5>=0; -$4-1>=0|]
+[|-$2+$5>=0;
+                                                                  -$6+98>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-
+  -- constraints   --  
+[|
+                                            -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                $4>=0;
+                                                                $2-$4-1>=0|]
+[|
+                                      -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|
+                                      -$2+$5>=0; -$4-1>=0; $2-$4-1>=0|]
+[|
+                                      -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-
+  -- constraints   --  
+[|-$2+$5>=0; 
+                                                          $4>=0; $2-$4-1>=0|]
+[|
+                                -$2+$5>=0; -$2+$4>=0; $4>=0|]
+[|-$2+$5>=0;
+                                                                -$4-1>=0;
+                                                                $2-$4-1>=0|]
+[|
+                                -$2+$5>=0; -$2+$4>=0; -$4-1>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-$3{m}-
+  -- constraints   --  
+[|
+                                            $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$3{m}-
+  -- constraints   --  
+[|$6-99=0;
+                                                                $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-
+  -- constraints   --  
+[|-$2+$4>=0;
+                                                                $6-100>=0|]
+[|
+                                      $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                $6-100>=0|]
+[|
+                                      $6-99=0; -$2+$5>=0|]
+[|-$2+$5>=0;
+                                                             -$6+98>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                          $6-100>=0;
+                                                          $2-$4-1>=0|]
+[|
+                                -$2+$4>=0; $6-100>=0; $2-$5-1>=0|]
+[|
+                                -$2+$5>=0; -$2+$4>=0; $6-100>=0|]
+[|$6-99=0;
+                                                                    $4>=0;
+                                                                    $2-$5-1>=0|]
+[|
+                                $6-99=0; -$2+$5>=0; $4>=0|]
+[|$6-99=0;
+                                                              -$2+$5>=0;
+                                                              -$4-1>=0|]
+[|
+                                -$2+$5>=0; -$6+98>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$2{n}-
+  -- constraints   --  
+[|$6-99=0;
+                                                                $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-
+  -- constraints   --  
+[|$6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99=0; $4>=0|]
+
+ --   uncontrolled  -- 
+ $5{r}-
+  -- constraints   --  
+[|-$2+$4>=0;
+                                                          $6-100>=0|]
+[|
+                                $6-99=0; $4>=0|]
+
+ -- Join constraint --  [|$6-99>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                          $6-100>=0|]
+[|
+                                $6-99=0; -$2+$5>=0|]
+[|-$2+$5>=0; -$6+98>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+simply reachable ?: true 
+
+
+[ 8:]:
+
+NODE $2{n}-$4{s} >= 1
+ NODE $2{n}-$5{r} >= 1
+  LEAF bottom
+   LEAF 0.
+  NODE $2{n}-$5{r} >= 1
+   LEAF 1
+    LEAF 0.
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   -$2+$4>=0|]
+
+ -- Join constraint --  [|-$2+$4>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0; $2-$4-1>=0|]
+[|
+                                             -$2+$4>=0; $2-$5-1>=0|]
+[|
+                                             -$2+$5>=0; -$2+$4>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$4>=0|]
+
+ -- Join constraint --  [|-$2+$4>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $2-$4-1>=0|]
+[|
+                                       -$2+$4>=0; $2-$5-1>=0|]
+[|-$2+$5>=0;
+                                                                 -$2+$4>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$4>=0|]
+
+ -- Join constraint --  [|-$2+$4>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                 $2-$4-1>=0|]
+[|
+                                       -$2+$4>=0; $2-$5-1>=0|]
+[|-$2+$5>=0;
+                                                                 -$2+$4>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$1{$1}-
+  -- constraints   --  
+[|-$2+$4>=0|]
+
+ -- Join constraint --  [|-$2+$4>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                           $2-$4-1>=0|]
+[|
+                                 -$2+$4>=0; $2-$5-1>=0|]
+[|-$2+$5>=0;
+                                                           -$2+$4>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-$6{i}-
+  -- constraints   --  
+[|
+                                            -$2+$4>=0|]
+
+ -- Join constraint --  [|-$2+$4>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-
+  -- constraints   --  
+[|
+                                            -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                                $2-$4-1>=0|]
+[|
+                                      -$2+$4>=0; $2-$5-1>=0|]
+[|-$2+$5>=0;
+                                                                -$2+$4>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$6{i}-
+  -- constraints   --  
+[|-$2+$4>=0|]
+
+ -- Join constraint --  [|-$2+$4>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                          $2-$4-1>=0|]
+[|
+                                -$2+$4>=0; $2-$5-1>=0|]
+[|-$2+$5>=0;
+                                                          -$2+$4>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-$3{m}-
+  -- constraints   --  
+[|-$2+$4>=0|]
+
+ -- Join constraint --  [|-$2+$4>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-
+  -- constraints   --  
+[|-$2+$5>=0;
+                                                          $2-$4-1>=0|]
+[|
+                                -$2+$4>=0; $2-$5-1>=0|]
+[|-$2+$5>=0;
+                                                          -$2+$4>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $5{r}-
+  -- constraints   --  
+[|-$2+$4>=0|]
+
+ -- Join constraint --  [|-$2+$4>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+simply reachable ?: true 
+
+
+[ 9:]:
+
+NODE $2{n}-$5{r} >= 1
+ LEAF bottom
+  LEAF 0.
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-
+  -- constraints   --  
+[|
+                                            -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+simply reachable ?: true 
+
+
+[10:]:
+
+NODE $2{n}-$5{r} >= 1
+ LEAF bottom
+  LEAF 0.
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-
+  -- constraints   --  
+[|
+                                            -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+simply reachable ?: true 
+
+
+[11:]:
+
+NODE $2{n}-$5{r} >= 1
+ LEAF bottom
+  LEAF 0.
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$1{$1}-
+  -- constraints   --  
+[|
+                                             -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-$6{i}-
+  -- constraints   --  
+[|
+                                            -$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $6{i}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-$3{m}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $3{m}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+ --   uncontrolled  -- 
+ $4{s}-
+  -- constraints   --  
+[|-$2+$5>=0|]
+
+ -- Join constraint --  [|-$2+$5>=0|]
+
+simply reachable ?: true 
+
+
+Analysis Result: UNKNOWN
+
+Done.

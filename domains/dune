@@ -1,0 +1,11 @@
+(library
+ (name domains)
+ (libraries utils frontend banal apron apron.boxMPQ apron.octMPQ
+   apron.polkaMPQ)
+ (flags
+  (:standard -open Utils -open Banal -open Frontend -open Apron)))
+
+(env
+ (dev
+  (flags
+   (:standard -w -9-27-32-33-35 -warn-error -A))))

@@ -1,0 +1,150 @@
+./main.exe
+tests/robust/perso/dummy.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/perso/dummy.txt
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] if ( $2{x} >= 3 ) then
+[ 3:]   if ( $3{y} >= 2 ) then
+[ 4:]     $4{r} := 1
+[ 5:]
+        else
+[ 6:]     if ( $3{y} >= -12 ) then
+[ 7:]       $4{r} := 2
+[ 8:]
+          else
+[ 9:]       $4{r} := 0
+[10:]
+          endif
+[11:]
+        endif
+[12:]
+      else
+[13:]   if ( $3{y} >= 2 ) then
+[14:]     $4{r} := 2
+[15:]
+        else
+[16:]     if ( $3{y} < 0 ) then
+[17:]       $4{r} := 2
+[18:]
+          else
+[19:]       $4{r} := 0
+[20:]
+          endif
+[21:]
+        endif
+[22:]
+      endif
+[23:] $1{$1} := 0
+[24:] return
+[25:]
+
+Property: $4{r} > 0
+[ 2:]:
+
+NODE $4{r} >= 1
+ NODE $3{y} >= 2
+  NODE $2{x} >= 3
+   LEAF 0.
+    LEAF 0.
+   NODE $3{y} >= 0
+    NODE $2{x} >= 3
+     LEAF 0.
+      LEAF 0.
+     NODE $3{y} >= -12
+      NODE $2{x} >= 3
+       LEAF 0.
+        LEAF 0.
+       NODE $2{x} >= 3
+        LEAF 0.
+         LEAF 0.
+  NODE $3{y} >= 2
+   NODE $2{x} >= 3
+    LEAF 3
+     LEAF 3
+    NODE $3{y} >= 0
+     NODE $2{x} >= 3
+      LEAF 4
+       LEAF bottom
+      NODE $3{y} >= -12
+       NODE $2{x} >= 3
+        LEAF 4
+         LEAF 4
+        NODE $2{x} >= 3
+         LEAF bottom
+          LEAF 4
+
+ --   uncontrolled  -- 
+  $2{x}-$4{r}-
+  -- constraints   --  
+[|
+$3-2>=0|] or  
+[|-$3-1>=0; $3+12>=0|] or  
+
+ -- Join constraint -- 
+[|$3+12>=0|]
+
+ --   uncontrolled  -- 
+  $4{r}-
+  -- constraints   --  
+[|$3-2>=0; $2-3>=0|] or  
+[|-$2+2>=0;
+                                                                 $3-2>=0|] or  
+[|
+-$3+1>=0; $3>=0; $2-3>=0|] or  
+[|-$3-1>=0; $3+12>=0; $2-3>=0|] or  
+[|-$2+2>=0;
+                                                           -$3-1>=0; 
+                                                           $3+12>=0|] or  
+[|
+-$2+2>=0; -$3-13>=0|] or  
+
+ -- Join constraint -- 
+top
+
+ --   uncontrolled  -- 
+  $3{y}-$2{x}-
+  -- constraints   --  
+[|$4-1>=0|] or  
+
+ -- Join constraint -- 
+[|$4-1>=0|]
+
+ --   uncontrolled  -- 
+  $2{x}-
+  -- constraints   --  
+[|$4-1>=0; $3-2>=0|] or  
+[|-$3+1>=0;
+                                                                    $4-1>=0;
+                                                                    $3>=0|] or  
+[|
+-$3-1>=0; $4-1>=0; $3+12>=0|] or  
+[|-$3-13>=0; $4-1>=0|] or  
+[|-$4>=0; $3-2>=0|] or  
+[|
+-$3-1>=0; -$4>=0; $3+12>=0|] or  
+
+ -- Join constraint -- 
+top
+
+ --   uncontrolled  -- 
+  $3{y}-
+  -- constraints   --  
+[|$4-1>=0; $2-3>=0|] or  
+[|-$2+2>=0; $4-1>=0|] or  
+
+ -- Join constraint -- 
+[|
+$4-1>=0|]
+simply reachable ?: true 
+
+
+Analysis Result: UNKNOWN
+
+Done.

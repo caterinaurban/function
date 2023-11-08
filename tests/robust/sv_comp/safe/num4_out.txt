@@ -1,0 +1,218 @@
+./main.exe
+tests/robust/sv_comp/safe/sv_num4.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/sv_comp/safe/num4.txt
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] $4{y} := 0
+[ 3:] $5{bug} := 0
+[ 4:] if ( $2{n} < 0 ) then
+[ 5:]   $1{$1} := 0
+[ 6:]   return
+[ 7:]
+      else
+[ 8:]
+      endif
+[ 9:] $3{x} := $2{n}
+[10:] while [11:] ( $3{x} > 0 ) do
+[12:]   $3{x} := $3{x} - 1
+[13:]   $4{y} := $4{y} + 1
+[14:]
+      od
+[15:] if ( $4{y} < $2{n} || $4{y} > $2{n} ) then
+[16:]   $5{bug} := 1
+[17:]
+      else
+[18:]
+      endif
+[19:] $1{$1} := 0
+[20:] return
+[21:]
+
+Property: $5{bug} <= 1 && $5{bug} >= 1
+[ 2:]:
+
+NODE $5{bug} >= 2
+ NODE $2{n} >= 2
+  LEAF top
+   NODE $2{n} >= 1
+    LEAF bottom
+     NODE $2{n} >= 0
+      LEAF bottom
+       LEAF bottom
+  NODE $5{bug} >= 1
+   NODE $2{n} >= 2
+    LEAF 0.
+     NODE $2{n} >= 1
+      LEAF 0.
+       NODE $2{n} >= 0
+        LEAF 0.
+         LEAF 0.
+    NODE $2{n} >= 2
+     LEAF top
+      NODE $2{n} >= 1
+       LEAF bottom
+        NODE $2{n} >= 0
+         LEAF bottom
+          LEAF bottom
+ --   uncontrolled  -- 
+ $4{y}-$3{x}-$2{n}-$1{$1}-
+  -- constraints   --  
+[|
+                                                   $5-1=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $3{x}-$2{n}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $5-1=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $4{y}-$2{n}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $5-1=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-$1{$1}-
+  -- constraints   --  
+[|$5-1=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $4{y}-$3{x}-$1{$1}-
+  -- constraints   --  
+[|
+                                             $5-1=0; $2-2>=0|]
+[|$5-1=0;
+                                                                 $2-1=0|]
+[|
+                                             $5-1=0; $2=0|]
+[|$5-1=0;
+                                                              -$2-1>=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $3{x}-$1{$1}-
+  -- constraints   --  
+[|$5-1=0;
+                                                                 $2-2>=0|]
+[|
+                                       $5-1=0; $2-1=0|]
+[|$5-1=0; $2=0|]
+[|
+                                       $5-1=0; -$2-1>=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $4{y}-$1{$1}-
+  -- constraints   --  
+[|$5-1=0;
+                                                                 $2-2>=0|]
+[|
+                                       $5-1=0; $2-1=0|]
+[|$5-1=0; $2=0|]
+[|
+                                       $5-1=0; -$2-1>=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|$5-1=0; $2-2>=0|]
+[|
+                                 $5-1=0; $2-1=0|]
+[|$5-1=0; $2=0|]
+[|
+                                 $5-1=0; -$2-1>=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $4{y}-$3{x}-$2{n}-
+  -- constraints   --  
+[|
+                                            $5-1=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $3{x}-$2{n}-
+  -- constraints   --  
+[|$5-1=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $4{y}-$2{n}-
+  -- constraints   --  
+[|$5-1=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $2{n}-
+  -- constraints   --  
+[|$5-1=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $4{y}-$3{x}-
+  -- constraints   --  
+[|$5-1=0;
+                                                                $2-2>=0|]
+[|
+                                      $5-1=0; $2-1=0|]
+[|$5-1=0; $2=0|]
+[|
+                                      $5-1=0; -$2-1>=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $3{x}-
+  -- constraints   --  
+[|$5-1=0; $2-2>=0|]
+[|
+                                $5-1=0; $2-1=0|]
+[|$5-1=0; $2=0|]
+[|$5-1=0;
+                                                                    -$2-1>=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $4{y}-
+  -- constraints   --  
+[|$5-1=0; $2-2>=0|]
+[|
+                                $5-1=0; $2-1=0|]
+[|$5-1=0; $2=0|]
+[|$5-1=0;
+                                                                    -$2-1>=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+simply reachable ?: true 
+
+
+Analysis Result: UNKNOWN
+
+Done.

@@ -1,0 +1,230 @@
+./main.exe
+tests/robust/sv_comp/witness/sv_sum.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/sv_comp/witness/sum.txt
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] $3{j} := 10
+[ 3:] $5{sn} := 0
+[ 4:] $6{bug} := 0
+[ 5:] if ( $4{n} < 0 ) then
+[ 6:]   $1{$1} := 0
+[ 7:]   return
+[ 8:]
+      else
+[ 9:]
+      endif
+[10:] $2{i} := 0
+[11:] while [12:] ( $2{i} < $4{n} ) do
+[13:]   if ( $2{i} < $3{j} ) then
+[14:]     $5{sn} := $5{sn} + 2
+[15:]
+        else
+[16:]
+        endif
+[17:]   $3{j} := $3{j} - 1
+[18:]   $2{i} := $2{i} + 1
+[19:]
+      od
+[20:] if ( ($5{sn} < $4{n} * 2 || $5{sn} > $4{n} * 2) && ($5{sn} < 0 || $5{sn} > 0) ) then
+[21:]   $6{bug} := 1
+[22:]
+      else
+[23:]
+      endif
+[24:]
+
+Property: $6{bug} <= 1 && $6{bug} >= 1
+[ 2:]:
+
+NODE $6{bug} >= 2
+ NODE $4{n} >= 2
+  LEAF top
+   NODE $4{n} >= 1
+    LEAF bottom
+     NODE $4{n} >= 0
+      LEAF bottom
+       LEAF bottom
+  NODE $6{bug} >= 1
+   NODE $4{n} >= 2
+    LEAF 0.
+     NODE $4{n} >= 1
+      LEAF 0.
+       NODE $4{n} >= 0
+        LEAF 0.
+         LEAF 0.
+    NODE $4{n} >= 2
+     LEAF top
+      NODE $4{n} >= 1
+       LEAF bottom
+        NODE $4{n} >= 0
+         LEAF bottom
+          LEAF bottom
+
+ --   uncontrolled  -- 
+  $5{sn}-$4{n}-$3{j}-$2{i}-
+  -- constraints   --  
+[|
+$6-1=0|] or  
+
+ -- Join constraint -- 
+[|$6-1=0|]
+
+ --   uncontrolled  -- 
+  $4{n}-$3{j}-$2{i}-
+  -- constraints   --  
+[|$6-1=0|] or  
+
+ -- Join constraint -- 
+[|$6-1=0|]
+
+ --   uncontrolled  -- 
+  $5{sn}-$3{j}-$2{i}-
+  -- constraints   --  
+[|$6-1=0; $4-2>=0|] or  
+[|$6-1=0; $4-1=0|] or  
+[|
+$6-1=0; $4=0|] or  
+[|$6-1=0; -$4-1>=0|] or  
+
+ -- Join constraint -- 
+[|$6-1=0|]
+
+ --   uncontrolled  -- 
+  $3{j}-$2{i}-
+  -- constraints   --  
+[|$6-1=0; $4-2>=0|] or  
+[|$6-1=0;
+                                                                 $4-1=0|] or  
+[|
+$6-1=0; $4=0|] or  
+[|$6-1=0; -$4-1>=0|] or  
+
+ -- Join constraint -- 
+[|$6-1=0|]
+
+ --   uncontrolled  -- 
+  $5{sn}-$4{n}-$2{i}-
+  -- constraints   --  
+[|$6-1=0|] or  
+
+ -- Join constraint -- 
+[|$6-1=0|]
+
+ --   uncontrolled  -- 
+  $4{n}-$2{i}-
+  -- constraints   --  
+[|$6-1=0|] or  
+
+ -- Join constraint -- 
+[|
+$6-1=0|]
+
+ --   uncontrolled  -- 
+  $5{sn}-$2{i}-
+  -- constraints   --  
+[|$6-1=0; $4-2>=0|] or  
+[|$6-1=0; $4-1=0|] or  
+[|$6-1=0; $4=0|] or  
+[|$6-1=0;
+                                                               -$4-1>=0|] or  
+
+ -- Join constraint -- 
+[|
+$6-1=0|]
+
+ --   uncontrolled  -- 
+  $2{i}-
+  -- constraints   --  
+[|$6-1=0; $4-2>=0|] or  
+[|$6-1=0; $4-1=0|] or  
+[|$6-1=0; $4=0|] or  
+[|$6-1=0;
+                                                               -$4-1>=0|] or  
+
+ -- Join constraint -- 
+[|
+$6-1=0|]
+
+ --   uncontrolled  -- 
+  $5{sn}-$4{n}-$3{j}-
+  -- constraints   --  
+[|$6-1=0|] or  
+
+ -- Join constraint -- 
+[|$6-1=0|]
+
+ --   uncontrolled  -- 
+  $4{n}-$3{j}-
+  -- constraints   --  
+[|$6-1=0|] or  
+
+ -- Join constraint -- 
+[|$6-1=0|]
+
+ --   uncontrolled  -- 
+  $5{sn}-$3{j}-
+  -- constraints   --  
+[|$6-1=0; $4-2>=0|] or  
+[|
+$6-1=0; $4-1=0|] or  
+[|$6-1=0; $4=0|] or  
+[|$6-1=0; -$4-1>=0|] or  
+
+ -- Join constraint -- 
+[|$6-1=0|]
+
+ --   uncontrolled  -- 
+  $3{j}-
+  -- constraints   --  
+[|$6-1=0;
+                                                                $4-2>=0|] or  
+[|
+$6-1=0; $4-1=0|] or  
+[|$6-1=0; $4=0|] or  
+[|$6-1=0; -$4-1>=0|] or  
+
+ -- Join constraint -- 
+[|$6-1=0|]
+
+ --   uncontrolled  -- 
+  $5{sn}-$4{n}-
+  -- constraints   --  
+[|$6-1=0|] or  
+
+ -- Join constraint -- 
+[|
+$6-1=0|]
+
+ --   uncontrolled  -- 
+  $4{n}-
+  -- constraints   --  
+[|$6-1=0|] or  
+
+ -- Join constraint -- 
+[|$6-1=0|]
+
+ --   uncontrolled  -- 
+  $5{sn}-
+  -- constraints   --  
+[|$6-1=0; $4-2>=0|] or  
+[|$6-1=0; $4-1=0|] or  
+[|$6-1=0;
+                                                                   $4=0|] or  
+[|
+$6-1=0; -$4-1>=0|] or  
+
+ -- Join constraint -- 
+[|$6-1=0|]
+simply reachable ?: true 
+
+
+Analysis Result: UNKNOWN
+
+Done.

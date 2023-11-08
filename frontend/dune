@@ -1,0 +1,14 @@
+(library
+ (name frontend)
+ (libraries apron))
+
+(ocamllex
+ (modules Lexer PropertyLexer CTLPropertyLexer))
+
+(menhir
+ (modules Parser PropertyParser CTLPropertyParser))
+
+(env
+ (dev
+  (flags
+   (:standard -w -9-27-32-33-35 -warn-error -A))))

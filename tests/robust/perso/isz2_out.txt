@@ -1,0 +1,130 @@
+./main.exe
+tests/robust/perso/isz2.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/perso/isz1.txt
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] if ( $2{x} >= 2 ) then
+[ 3:]   $4{y} := 2 + $3{z}
+[ 4:]
+      else
+[ 5:]   $4{y} := 0
+[ 6:]
+      endif
+[ 7:] $1{$1} := 0
+[ 8:] return
+[ 9:]
+
+Property: $4{y} <= 0 && $4{y} >= 0
+[ 2:]:
+
+NODE $4{y} >= 1
+ NODE $3{z} >= -1
+  NODE $2{x} >= 2
+   LEAF bottom
+    LEAF 2
+   NODE $3{z} >= -2
+    NODE $2{x} >= 2
+     LEAF 2
+      LEAF 2
+     NODE $2{x} >= 2
+      LEAF bottom
+       LEAF 2
+  NODE $4{y} >= 0
+   NODE $3{z} >= -1
+    NODE $2{x} >= 2
+     LEAF 0.
+      LEAF 0.
+     NODE $3{z} >= -2
+      NODE $2{x} >= 2
+       LEAF 0.
+        LEAF 0.
+       NODE $2{x} >= 2
+        LEAF 0.
+         LEAF 0.
+    NODE $3{z} >= -1
+     NODE $2{x} >= 2
+      LEAF bottom
+       LEAF 2
+      NODE $3{z} >= -2
+       NODE $2{x} >= 2
+        LEAF 2
+         LEAF 2
+        NODE $2{x} >= 2
+         LEAF bottom
+          LEAF 2
+
+ --   uncontrolled  -- 
+  $4{y}-$2{x}-
+  -- constraints   --  
+[|
+$3+2=0|] or  
+
+ -- Join constraint -- 
+[|$3+2=0|]
+
+ --   uncontrolled  -- 
+  $3{z}-$2{x}-
+  -- constraints   --  
+[|$4=0|] or  
+
+ -- Join constraint -- 
+[|$4=0|]
+
+ --   uncontrolled  -- 
+  $2{x}-
+  -- constraints   --  
+[|$3+2=0; $4-1>=0|] or  
+[|$4=0; $3+1>=0|] or  
+[|
+$4=0; $3+2=0|] or  
+[|$4=0; -$3-3>=0|] or  
+[|$3+2=0; -$4-1>=0|] or  
+
+ -- Join constraint -- 
+top
+
+ --   uncontrolled  -- 
+  $3{z}-$4{y}-
+  -- constraints   --  
+[|-$2+1>=0|] or  
+
+ -- Join constraint -- 
+[|
+-$2+1>=0|]
+
+ --   uncontrolled  -- 
+  $4{y}-
+  -- constraints   --  
+[|-$2+1>=0; $3+1>=0|] or  
+[|$3+2=0; $2-2>=0|] or  
+[|$3+2=0; -$2+1>=0|] or  
+[|
+-$2+1>=0; -$3-3>=0|] or  
+
+ -- Join constraint -- 
+top
+
+ --   uncontrolled  -- 
+  $3{z}-
+  -- constraints   --  
+[|-$2+1>=0; $4-1>=0|] or  
+[|$4=0; $2-2>=0|] or  
+[|$4=0; -$2+1>=0|] or  
+[|
+-$2+1>=0; -$4-1>=0|] or  
+
+ -- Join constraint -- 
+top
+simply reachable ?: true 
+
+
+Analysis Result: UNKNOWN
+
+Done.

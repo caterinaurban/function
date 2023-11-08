@@ -1,15 +1,6 @@
-(*
+(* 'A' stands for 'all paths' 'E' stands for 'exists a path'
 
-   'A' stands for 'all paths'
-   'E' stands for 'exists a path'
-
-   Operators
-   X: next
-   F: future/eventually
-   G: global/always
-   U: until
-   
-*)
+   Operators X: next F: future/eventually G: global/always U: until *)
 
 type 'a generic_property =
   | Atomic of ('a * string option) (* atomic property with optional label *)
@@ -25,7 +16,8 @@ type 'a generic_property =
   | OR of ('a generic_property * 'a generic_property) (* or *)
   | NOT of 'a generic_property (* not *)
 
-let rec map f property = match property with
+let rec map f property =
+  match property with
   | Atomic (x, l) -> Atomic (f x, l)
   | AX e -> AX (map f e)
   | AF e -> AF (map f e)
@@ -38,4 +30,3 @@ let rec map f property = match property with
   | AND (e1, e2) -> AND (map f e1, map f e2)
   | OR (e1, e2) -> OR (map f e1, map f e2)
   | NOT e -> NOT (map f e)
-

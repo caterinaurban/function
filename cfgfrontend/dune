@@ -1,0 +1,18 @@
+(library
+ (name cfgfrontend)
+ (libraries zarith utils frontend)
+ (flags
+  (:standard -open Utils -open Frontend)))
+
+(ocamllex
+ (modules program_lexer))
+
+(menhir
+ (modules program_parser))
+
+;;(flags --explain))
+
+(env
+ (dev
+  (flags
+   (:standard -w -9-27-32-33-35 -warn-error -A))))

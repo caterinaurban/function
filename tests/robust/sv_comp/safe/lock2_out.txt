@@ -1,0 +1,1 @@
+ELINA Polyhedra does not work with strict mode yet!

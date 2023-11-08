@@ -1,0 +1,67 @@
+./main.exe
+tests/robust/sv_comp/witness/sv_for1.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/sv_comp/witness/for1-1.txt
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] $3{bug1} := 0
+[ 3:] $2{x} := 0
+[ 4:] while [ 5:] ( true ) do
+[ 6:]   $2{x} := $2{x} + 1
+[ 7:]   if ( $2{x} > 1000 ) then
+[ 8:]     $3{bug1} := 1
+[ 9:]
+        else
+[10:]
+        endif
+[11:]
+      od
+[12:]
+
+Property: $3{bug1} <= 1 && $3{bug1} >= 1
+[ 2:]:
+
+NODE $3{bug1} >= 2
+ LEAF 3006
+  NODE $3{bug1} >= 1
+   LEAF 0.
+    LEAF 3006
+
+ --   uncontrolled  -- 
+  $2{x}-$3{bug1}-
+  -- constraints   --  
+top or  
+
+ -- Join constraint -- 
+top
+
+ --   uncontrolled  -- 
+  $3{bug1}-
+  -- constraints   --  
+top or  
+
+ -- Join constraint -- 
+top
+
+ --   uncontrolled  -- 
+  $2{x}-
+  -- constraints   --  
+[|
+$3-2>=0|] or  
+[|$3-1=0|] or  
+[|-$3>=0|] or  
+
+ -- Join constraint -- 
+top
+simply reachable ?: true 
+
+
+Analysis Result: TRUE
+
+Done.

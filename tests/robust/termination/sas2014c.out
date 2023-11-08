@@ -1,0 +1,41 @@
+./main.exe
+-domain
+boxes
+-joinbwd
+3
+-ordinals
+1
+-robust_termination
+tests/sas2014c.c
+
+Abstract Syntax:
+[ 1:]
+void main( ):
+[ 2:] while [ 3:] ( $1{x} > 0 ) do
+[ 4:]   $1{x} := $1{x} - $2{y}
+[ 5:]
+      od
+[ 6:]
+
+Forward Analysis:
+[ 1:]: top
+[ 2:]: top
+[ 3:]: top
+[ 4:]: $1{x} >= 1
+[ 5:]: top
+[ 6:]: -$1{x} >= 0
+
+Backward Analysis:
+
+ --   uncontrolled  -- 
+ $2{y}-
+  -- constraints   --  
+[|-$1>=0|]
+
+ -- Join constraint --  [|-$1>=0|]
+
+robust finished 
+ 
+Analysis Result: UNKNOWN
+
+Done.

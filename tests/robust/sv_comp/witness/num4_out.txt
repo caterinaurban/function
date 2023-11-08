@@ -1,0 +1,106 @@
+./main.exe
+tests/robust/sv_comp/witness/sv_num4f.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/sv_comp/witness/num4false.txt
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] $5{bug} := 0
+[ 3:] $4{y} := 0
+[ 4:] if ( $2{n} < 0 ) then
+[ 5:]   $1{$1} := 0
+[ 6:]   return
+[ 7:]
+      else
+[ 8:]
+      endif
+[ 9:] $3{x} := $2{n}
+[10:] while [11:] ( $3{x} > 0 ) do
+[12:]   $3{x} := $3{x} - 1
+[13:]   $4{y} := $4{y} + 1
+[14:]
+      od
+[15:] if ( $2{n} <= $4{y} && $2{n} >= $4{y} ) then
+[16:]   $5{bug} := 1
+[17:]
+      else
+[18:]
+      endif
+[19:] $1{$1} := 0
+[20:] return
+[21:]
+
+Property: $5{bug} <= 1 && $5{bug} >= 1
+
+Forward Analysis:
+[ 1:]: top
+[ 2:]: top
+[ 3:]: $5{bug} == 0
+[ 4:]: $4{y} == 0 && $5{bug} == 0
+[ 5:]: -$2{n} >= 1 && $4{y} == 0 && $5{bug} == 0
+[ 6:]: -$2{n} >= 1 && $1{$1} == 0 && $4{y} == 0 && $5{bug} == 0
+[ 7:]: bottom
+[ 8:]: $2{n} >= 0 && $4{y} == 0 && $5{bug} == 0
+[ 9:]: $2{n} >= 0 && $4{y} == 0 && $5{bug} == 0
+[10:]: $2{n} >= 0 && $4{y} == 0 && $5{bug} == 0 && -$2{n}+$3{x} == 0
+[11:]: $2{n}-$3{x} >= 0 && $3{x} >= 0 && $5{bug} == 0 && -$2{n}+$3{x}+$4{y} == 0
+[12:]: $2{n}-$3{x} >= 0 && $3{x} >= 1 && $5{bug} == 0 && -$2{n}+$3{x}+$4{y} == 0
+[13:]: $2{n}-$3{x} >= 1 && $3{x} >= 0 && $5{bug} == 0 && -$2{n}+$3{x}+$4{y} == -1
+[14:]: $2{n}-$3{x} >= 1 && $3{x} >= 0 && $5{bug} == 0 && -$2{n}+$3{x}+$4{y} == 0
+[15:]: $2{n} >= 0 && $3{x} == 0 && $5{bug} == 0 && -$2{n}+$4{y} == 0
+[16:]: $2{n} >= 0 && $3{x} == 0 && $5{bug} == 0 && -$2{n}+$4{y} == 0
+[17:]: $2{n} >= 0 && $3{x} == 0 && $5{bug} == 1 && -$2{n}+$4{y} == 0
+[18:]: bottom
+[19:]: $2{n} >= 0 && $3{x} == 0 && $5{bug} == 1 && -$2{n}+$4{y} == 0
+[20:]: $2{n} >= 0 && $1{$1} == 0 && $3{x} == 0 && $5{bug} == 1 && -$2{n}+$4{y} == 0
+[21:]: bottom
+Evolved constraint 0
+Replace set 0
+Allowed set 0
+Evolve map 0
+Evolved constraint 0
+Replace set 0
+Allowed set 0
+Evolve map 0
+Evolved constraint 0
+Replace set 0
+Allowed set 0
+Evolve map 0
+Evolved constraint 0
+Replace set 0
+Allowed set 0
+Evolve map 0
+Evolved constraint 0
+Replace set 0
+Allowed set 0
+Evolve map 0
+
+ --   uncontrolled  -- 
+ $4{y}-$3{x}-$2{n}-$1{$1}-
+ --   controlled  -- 
+ $5{bug}-
+
+  -- constraints   --  
+[|$5-1=0|]
+
+ -- Join constraint --  [|$5-1=0|]
+
+ --   uncontrolled  -- 
+ $4{y}-$3{x}-$5{bug}-$1{$1}-
+ --   controlled  -- 
+ $2{n}-
+
+  -- constraints   --  
+[|$2-1=0|]
+[|$2=0|]
+
+ -- Join constraint --  [|-$2+1>=0; $2>=0|]
+
+Analysis Result: UNKNOWN
+
+Done.

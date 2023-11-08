@@ -1,0 +1,1660 @@
+./main.exe
+tests/robust/sv_comp/witness/sv_num7.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/sv_comp/witness/num7.txt
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] if ( $2{k} < 0 || $2{k} > 0 ) then
+[ 3:]   $5{n} := 0
+[ 4:]
+      else
+[ 5:]   $5{n} := 1023
+[ 6:]
+      endif
+[ 7:] $4{i} := 0
+[ 8:] while [ 9:] ( $4{i} <= $5{n} ) do
+[10:]   $4{i} := $4{i} + 1
+[11:]   $6{j} := $6{j} + 2
+[12:]
+      od
+[13:] $3{lab} := $6{j}
+[14:] $1{$1} := 0
+[15:] return
+[16:]
+
+Property: $3{lab} >= 1025
+
+Forward Analysis:
+[ 1:]: top
+[ 2:]: top
+[ 3:]: top
+[ 4:]: $5{n} == 0
+[ 5:]: $2{k} == 0
+[ 6:]: $2{k} == 0 && $5{n} == 1023
+[ 7:]: $5{n} >= 0 && -$5{n} >= -1023
+[ 8:]: $5{n} >= 0 && -$5{n} >= -1023 && $4{i} == 0
+[ 9:]: $4{i} >= 0 && $5{n} >= 0 && -$5{n} >= -1023
+[10:]: $4{i} >= 0 && -$5{n} >= -1023 && -$4{i}+$5{n} >= 0
+[11:]: $4{i} >= 1 && -$5{n} >= -1023 && -$4{i}+$5{n} >= -1
+[12:]: $4{i} >= 1 && -$5{n} >= -1023 && -$4{i}+$5{n} >= -1
+[13:]: $4{i}-$5{n} >= 1 && $5{n} >= 0 && -$5{n} >= -1023
+[14:]: $4{i}-$5{n} >= 1 && $5{n} >= 0 && -$5{n} >= -1023 && -$3{lab}+$6{j} == 0
+[15:]: $4{i}-$5{n} >= 1 && $5{n} >= 0 && -$5{n} >= -1023 && $1{$1} == 0 && -$3{lab}+$6{j} == 0
+[16:]: bottom
+Evolved constraint 0
+Replace set 0
+Allowed set 0
+Evolve map 0
+Evolved constraint 0
+Replace set 0
+Allowed set 0
+Evolve map 0
+Evolved constraint 0
+Replace set 0
+Allowed set 0
+Evolve map 0
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 0.
+   NODE $2{k} >= 1
+    LEAF 8
+     NODE $2{k} >= 0
+      LEAF 3077
+       LEAF 8
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 0.
+     NODE $2{k} >= 1
+      LEAF 8
+       NODE $2{k} >= 0
+        LEAF 3077
+         LEAF 8
+    NODE $3{lab} >= 1025
+     LEAF 0.
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+
+Remove $1 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove i 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
+    NODE $3{lab} >= 1025
+     LEAF 2
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove j 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove k 
+
+NODE $3{lab} >= 1025
+ LEAF 4
+  LEAF bottom
+Remove lab 
+
+LEAF bottom
+ Remove last n 
+
+LEAF bottom
+ Reste last n 
+
+LEAF bottom
+ Reste lab 
+
+NODE $3{lab} >= 1025
+ LEAF 4
+  LEAF bottom
+ Remove last n 
+
+NODE $3{lab} >= 1025
+ LEAF 5
+  LEAF bottom
+ Reste last n 
+
+NODE $3{lab} >= 1025
+ LEAF 4
+  LEAF bottom
+ Reste k 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove lab 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Remove last n 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste last n 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste lab 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Remove last n 
+
+NODE $3{lab} >= 1025
+ LEAF 4
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste last n 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste j 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
+    NODE $3{lab} >= 1025
+     LEAF 2
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove k 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 3
+   LEAF 3080
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 3
+     LEAF 3080
+    NODE $3{lab} >= 1025
+     LEAF 3
+      LEAF bottom
+Remove lab 
+
+NODE $6{j} >= 1025
+ LEAF 3081
+  NODE $6{j} >= 1023
+   LEAF 3081
+    LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ LEAF 3082
+  NODE $6{j} >= 1023
+   LEAF 3082
+    LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ LEAF 3081
+  NODE $6{j} >= 1023
+   LEAF 3081
+    LEAF bottom
+ Reste lab 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 3
+   LEAF 3080
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 3
+     LEAF 3080
+    NODE $3{lab} >= 1025
+     LEAF 3
+      LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 4
+   LEAF 3081
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 4
+     LEAF 3081
+    NODE $3{lab} >= 1025
+     LEAF 4
+      LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 3
+   LEAF 3080
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 3
+     LEAF 3080
+    NODE $3{lab} >= 1025
+     LEAF 3
+      LEAF bottom
+ Reste k 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
+    NODE $3{lab} >= 1025
+     LEAF 2
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove lab 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 11
+   NODE $2{k} >= 0
+    LEAF 3080
+     LEAF 11
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 11
+     NODE $2{k} >= 0
+      LEAF 3080
+       LEAF 11
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 12
+   NODE $2{k} >= 0
+    LEAF 3081
+     LEAF 12
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 12
+     NODE $2{k} >= 0
+      LEAF 3081
+       LEAF 12
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 11
+   NODE $2{k} >= 0
+    LEAF 3080
+     LEAF 11
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 11
+     NODE $2{k} >= 0
+      LEAF 3080
+       LEAF 11
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste lab 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
+    NODE $3{lab} >= 1025
+     LEAF 2
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 3
+   NODE $2{k} >= 1
+    LEAF 11
+     NODE $2{k} >= 0
+      LEAF 3080
+       LEAF 11
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 3
+     NODE $2{k} >= 1
+      LEAF 11
+       NODE $2{k} >= 0
+        LEAF 3080
+         LEAF 11
+    NODE $3{lab} >= 1025
+     LEAF 3
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
+    NODE $3{lab} >= 1025
+     LEAF 2
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste i 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove j 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove k 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+Remove lab 
+
+LEAF bottom
+ Remove last n 
+
+LEAF bottom
+ Reste last n 
+
+LEAF bottom
+ Reste lab 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+ Remove last n 
+
+NODE $3{lab} >= 1025
+ LEAF 4
+  LEAF bottom
+ Reste last n 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+ Reste k 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove lab 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Remove last n 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste last n 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste lab 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Remove last n 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste last n 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste j 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove k 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+Remove lab 
+
+NODE $6{j} >= 1025
+ LEAF 3080
+  NODE $6{j} >= 1023
+   LEAF 3080
+    LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ LEAF 3081
+  NODE $6{j} >= 1023
+   LEAF 3081
+    LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ LEAF 3080
+  NODE $6{j} >= 1023
+   LEAF 3080
+    LEAF bottom
+ Reste lab 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 3
+   LEAF 3080
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 3
+     LEAF 3080
+    NODE $3{lab} >= 1025
+     LEAF 3
+      LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+ Reste k 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove lab 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 10
+   NODE $2{k} >= 0
+    LEAF 3079
+     LEAF 10
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 11
+   NODE $2{k} >= 0
+    LEAF 3080
+     LEAF 11
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 11
+     NODE $2{k} >= 0
+      LEAF 3080
+       LEAF 11
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 10
+   NODE $2{k} >= 0
+    LEAF 3079
+     LEAF 10
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste lab 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
+    NODE $3{lab} >= 1025
+     LEAF 2
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste $1 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 0.
+   NODE $2{k} >= 1
+    LEAF 8
+     NODE $2{k} >= 0
+      LEAF 3077
+       LEAF 8
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 0.
+     NODE $2{k} >= 1
+      LEAF 8
+       NODE $2{k} >= 0
+        LEAF 3077
+         LEAF 8
+    NODE $3{lab} >= 1025
+     LEAF 0.
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove i 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove j 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove k 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+Remove lab 
+
+LEAF bottom
+ Remove last n 
+
+LEAF bottom
+ Reste last n 
+
+LEAF bottom
+ Reste lab 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+ Remove last n 
+
+NODE $3{lab} >= 1025
+ LEAF 4
+  LEAF bottom
+ Reste last n 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+ Reste k 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove lab 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Remove last n 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste last n 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste lab 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Remove last n 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste last n 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste j 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove k 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+Remove lab 
+
+NODE $6{j} >= 1025
+ LEAF 3080
+  NODE $6{j} >= 1023
+   LEAF 3080
+    LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ LEAF 3081
+  NODE $6{j} >= 1023
+   LEAF 3081
+    LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ LEAF 3080
+  NODE $6{j} >= 1023
+   LEAF 3080
+    LEAF bottom
+ Reste lab 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 3
+   LEAF 3080
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 3
+     LEAF 3080
+    NODE $3{lab} >= 1025
+     LEAF 3
+      LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+ Reste k 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove lab 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 10
+   NODE $2{k} >= 0
+    LEAF 3079
+     LEAF 10
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 11
+   NODE $2{k} >= 0
+    LEAF 3080
+     LEAF 11
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 11
+     NODE $2{k} >= 0
+      LEAF 3080
+       LEAF 11
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 10
+   NODE $2{k} >= 0
+    LEAF 3079
+     LEAF 10
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste lab 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     NODE $2{k} >= 1
+      LEAF 10
+       NODE $2{k} >= 0
+        LEAF 3079
+         LEAF 10
+    NODE $3{lab} >= 1025
+     LEAF 2
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste i 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 0.
+   NODE $2{k} >= 1
+    LEAF 8
+     NODE $2{k} >= 0
+      LEAF 3077
+       LEAF 8
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 0.
+     NODE $2{k} >= 1
+      LEAF 8
+       NODE $2{k} >= 0
+        LEAF 3077
+         LEAF 8
+    NODE $3{lab} >= 1025
+     LEAF 0.
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove j 
+
+NODE $3{lab} >= 1025
+ LEAF 1
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove k 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  LEAF bottom
+Remove lab 
+
+LEAF bottom
+ Remove last n 
+
+LEAF bottom
+ Reste last n 
+
+LEAF bottom
+ Reste lab 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  LEAF bottom
+ Remove last n 
+
+NODE $3{lab} >= 1025
+ LEAF 3
+  LEAF bottom
+ Reste last n 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  LEAF bottom
+ Reste k 
+
+NODE $3{lab} >= 1025
+ LEAF 1
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+Remove lab 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Remove last n 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste last n 
+
+NODE $2{k} >= 1
+ LEAF bottom
+  NODE $2{k} >= 0
+   LEAF top
+    LEAF bottom
+ Reste lab 
+
+NODE $3{lab} >= 1025
+ LEAF 1
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Remove last n 
+
+NODE $3{lab} >= 1025
+ LEAF 2
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste last n 
+
+NODE $3{lab} >= 1025
+ LEAF 1
+  NODE $2{k} >= 1
+   LEAF bottom
+    NODE $2{k} >= 0
+     LEAF top
+      LEAF bottom
+ Reste j 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 0.
+   NODE $2{k} >= 1
+    LEAF 8
+     NODE $2{k} >= 0
+      LEAF 3077
+       LEAF 8
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 0.
+     NODE $2{k} >= 1
+      LEAF 8
+       NODE $2{k} >= 0
+        LEAF 3077
+         LEAF 8
+    NODE $3{lab} >= 1025
+     LEAF 0.
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove k 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   LEAF 3078
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     LEAF 3078
+    NODE $3{lab} >= 1025
+     LEAF 1
+      LEAF bottom
+Remove lab 
+
+NODE $6{j} >= 1025
+ LEAF 3079
+  NODE $6{j} >= 1023
+   LEAF 3079
+    LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ LEAF 3080
+  NODE $6{j} >= 1023
+   LEAF 3080
+    LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ LEAF 3079
+  NODE $6{j} >= 1023
+   LEAF 3079
+    LEAF bottom
+ Reste lab 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   LEAF 3078
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     LEAF 3078
+    NODE $3{lab} >= 1025
+     LEAF 1
+      LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 2
+   LEAF 3079
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 2
+     LEAF 3079
+    NODE $3{lab} >= 1025
+     LEAF 2
+      LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   LEAF 3078
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     LEAF 3078
+    NODE $3{lab} >= 1025
+     LEAF 1
+      LEAF bottom
+ Reste k 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 0.
+   NODE $2{k} >= 1
+    LEAF 8
+     NODE $2{k} >= 0
+      LEAF 3077
+       LEAF 8
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 0.
+     NODE $2{k} >= 1
+      LEAF 8
+       NODE $2{k} >= 0
+        LEAF 3077
+         LEAF 8
+    NODE $3{lab} >= 1025
+     LEAF 0.
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+Remove lab 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 9
+   NODE $2{k} >= 0
+    LEAF 3078
+     LEAF 9
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 10
+   NODE $2{k} >= 0
+    LEAF 3079
+     LEAF 10
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 10
+     NODE $2{k} >= 0
+      LEAF 3079
+       LEAF 10
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ NODE $2{k} >= 1
+  LEAF 9
+   NODE $2{k} >= 0
+    LEAF 3078
+     LEAF 9
+  NODE $6{j} >= 1023
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+    NODE $2{k} >= 1
+     LEAF bottom
+      NODE $2{k} >= 0
+       LEAF top
+        LEAF bottom
+ Reste lab 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 0.
+   NODE $2{k} >= 1
+    LEAF 8
+     NODE $2{k} >= 0
+      LEAF 3077
+       LEAF 8
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 0.
+     NODE $2{k} >= 1
+      LEAF 8
+       NODE $2{k} >= 0
+        LEAF 3077
+         LEAF 8
+    NODE $3{lab} >= 1025
+     LEAF 0.
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Remove last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 1
+   NODE $2{k} >= 1
+    LEAF 9
+     NODE $2{k} >= 0
+      LEAF 3078
+       LEAF 9
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 1
+     NODE $2{k} >= 1
+      LEAF 9
+       NODE $2{k} >= 0
+        LEAF 3078
+         LEAF 9
+    NODE $3{lab} >= 1025
+     LEAF 1
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ Reste last n 
+
+NODE $6{j} >= 1025
+ NODE $3{lab} >= 1025
+  LEAF 0.
+   NODE $2{k} >= 1
+    LEAF 8
+     NODE $2{k} >= 0
+      LEAF 3077
+       LEAF 8
+  NODE $6{j} >= 1023
+   NODE $3{lab} >= 1025
+    LEAF 0.
+     NODE $2{k} >= 1
+      LEAF 8
+       NODE $2{k} >= 0
+        LEAF 3077
+         LEAF 8
+    NODE $3{lab} >= 1025
+     LEAF 0.
+      NODE $2{k} >= 1
+       LEAF bottom
+        NODE $2{k} >= 0
+         LEAF top
+          LEAF bottom
+ --   uncontrolled  -- 
+ $5{n}-$3{lab}-$2{k}-$4{i}-$1{$1}-
+ --   controlled  -- 
+ $6{j}-
+
+  -- constraints   --  
+[|$6-1025>=0|]
+[|-$6+1024>=0; $6-1023>=0|]
+
+ -- Join constraint --  [|$6-1025>=0|]
+
+ --   uncontrolled  -- 
+ $5{n}-$2{k}-$6{j}-$4{i}-$1{$1}-
+ --   controlled  -- 
+ $3{lab}-
+
+  -- constraints   --  
+[|$3-1025>=0|]
+
+ -- Join constraint --  [|$3-1025>=0|]
+
+Analysis Result: UNKNOWN
+
+Done.

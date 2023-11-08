@@ -1,0 +1,123 @@
+./main.exe
+-domain
+boxes
+-joinbwd
+3
+-ordinals
+1
+-robust_termination
+tests/sas2010.c
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] while [ 3:] ( $2{x1} >= 0 && $3{x2} >= 0 ) do
+[ 4:]   if ( ? ) then
+[ 5:]     while [ 6:] ( $3{x2} <= 10 ) do
+[ 7:]       $3{x2} := $3{x2} + 1
+[ 8:]
+          od
+[ 9:]     $2{x1} := $2{x1} - 1
+[10:]
+        else
+[11:]
+        endif
+[12:]   $3{x2} := $3{x2} - 1
+[13:]
+      od
+[14:] $1{$1} := 0
+[15:] return
+[16:]
+
+Forward Analysis:
+[ 1:]: top
+[ 2:]: top
+[ 3:]: top
+[ 4:]: $3{x2} >= 0 && $2{x1} >= 0
+[ 5:]: $3{x2} >= 0 && $2{x1} >= 0
+[ 6:]: $3{x2} >= 0 && $2{x1} >= 0
+[ 7:]: -$3{x2} >= -10 && $3{x2} >= 0 && $2{x1} >= 0
+[ 8:]: -$3{x2} >= -11 && $3{x2} >= 1 && $2{x1} >= 0
+[ 9:]: $3{x2} >= 11 && $2{x1} >= 0
+[10:]: $3{x2} >= 11 && $2{x1} >= -1
+[11:]: $3{x2} >= 0 && $2{x1} >= 0
+[12:]: $3{x2} >= 0 && $2{x1} >= -1
+[13:]: $3{x2} >= -1 && $2{x1} >= -1
+[14:]: top
+[15:]: $1{$1} == 0
+[16:]: bottom
+
+Backward Analysis:
+[ 2:]:
+
+NODE $3{x2} >= 0
+ NODE $2{x1} >= 0
+  LEAF 57$2{x1}+3$3{x2}+29
+   LEAF 2
+  LEAF 2
+ --   uncontrolled  -- 
+ $3{x2}-$2{x1}-$1{$1}-
+  -- constraints   --  
+top
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $2{x1}-$1{$1}-
+  -- constraints   --  
+[|$3>=0|]
+[|
+                                        -$3-1>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $3{x2}-$1{$1}-
+  -- constraints   --  
+[|$2>=0|]
+[|
+                                        -$2-1>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $1{$1}-
+  -- constraints   --  
+[|$3>=0; $2>=0|]
+[|
+                                 -$2-1>=0; $3>=0|]
+[|-$3-1>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $3{x2}-$2{x1}-
+  -- constraints   --  
+top
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $2{x1}-
+  -- constraints   --  
+[|$3>=0|]
+[|
+                                 -$3-1>=0|]
+
+ -- Join constraint --  top
+
+ --   uncontrolled  -- 
+ $3{x2}-
+  -- constraints   --  
+[|$2>=0|]
+[|
+                                 -$2-1>=0|]
+
+ -- Join constraint --  top
+
+simply reachable ?: true 
+
+
+Analysis Result: TRUE
+
+Done.

@@ -1,0 +1,4 @@
+OCAMLRUNPARAM=b  ./main.exe tests/robust/sv_comp/safe/sv_lock2.c -domain polyhedra -ordinals 3 -robust tests/robust/sv_comp/safe/lock2.txt  > tests/robust/sv_comp/safe/lock2_out.txt 
+OCAMLRUNPARAM=b  ./main.exe tests/robust/sv_comp/safe/sv_num4.c -domain polyhedra -ordinals 3 -robust tests/robust/sv_comp/safe/num4.txt  > tests/robust/sv_comp/safe/num4_out.txt 
+OCAMLRUNPARAM=b  ./main.exe tests/robust/sv_comp/safe/sv_num5.c -domain polyhedra -ordinals 3 -robust tests/robust/sv_comp/safe/num5.txt  > tests/robust/sv_comp/safe/num5_out.txt 
+OCAMLRUNPARAM=b  ./main.exe tests/robust/sv_comp/safe/sv_num6.c -domain polyhedra -ordinals 3 -robust tests/robust/sv_comp/safe/num6.txt  > tests/robust/sv_comp/safe/num6_out.txt 

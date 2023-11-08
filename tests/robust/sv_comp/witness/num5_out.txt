@@ -1,0 +1,8 @@
+./main.exe
+tests/robust/sv_comp/witness/sv_num5.c
+-domain
+polyhedra
+-ordinals
+3
+-robust
+tests/robust/sv_comp/witness/num5.txt
