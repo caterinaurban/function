@@ -1,15 +1,15 @@
 open Apron
 open AbstractSyntax
-open Cfg
-open Abstract_syntax_tree
+open ControlFlowGraph
+open AbstractSyntaxTree
 
 (* Some utility functions to convert from new Cfg expressions to old AbstractSyntax expressions
    NOTE: this quite a mess, ideally one would unify the two syntaxes but this is a lot of work
 *)
 
-let varId_of_var (var: Cfg.var) = "$" ^ string_of_int var.var_id
+let varId_of_var (var: ControlFlowGraph.var) = "$" ^ string_of_int var.var_id
 
-let of_var (var: Cfg.var): AbstractSyntax.var =
+let of_var (var: ControlFlowGraph.var): AbstractSyntax.var =
     {
       AbstractSyntax.varId = varId_of_var var;
       AbstractSyntax.varName = var.var_name;
@@ -49,7 +49,7 @@ let rec of_int_expr expr = match expr with
   | CFG_int_interval (l, u) -> A_interval (Z.to_int l, Z.to_int u)
 
 
-let rec of_bool_expr (expr:Cfg.bool_expr): bExp = match expr with
+let rec of_bool_expr (expr:ControlFlowGraph.bool_expr): bExp = match expr with
   | CFG_bool_unary (AST_NOT, e) -> 
     A_bunary (A_NOT, annotate @@ of_bool_expr e)
   | CFG_bool_binary (AST_AND, e1, e2) -> 

@@ -1,14 +1,19 @@
 (*
   Cours "Sémantique et Application à la Vérification de programmes"
-  
-  Antoine Miné 2015
-  Ecole normale supérieure, Paris, France / CNRS / INRIA
-*)
 
-(* 
   Definition of the abstract syntax trees output by the parser.
-*)
+  
+    Antoine Miné 2015
+    Ecole normale supérieure, Paris, France / CNRS / INRIA
 
+  Modified and adapted by 
+
+    Samuel Marco Ueltschi 2017
+    ETH Zurich, Switzerland 
+
+    Caterina Urban 2023
+    Inria & École Normale Supérieure, France 
+*)
 
 open Lexing
 

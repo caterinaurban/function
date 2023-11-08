@@ -5,10 +5,10 @@
   (:standard -open Utils -open Frontend)))
 
 (ocamllex
- (modules program_lexer))
+ (modules ProgramLexer))
 
 (menhir
- (modules program_parser))
+ (modules ProgramParser))
 
 ;;(flags --explain))
 

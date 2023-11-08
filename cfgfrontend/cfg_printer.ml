@@ -12,8 +12,8 @@
 
 
 open Lexing
-open Abstract_syntax_tree
-open Cfg
+open AbstractSyntaxTree
+open ControlFlowGraph
 
 
   

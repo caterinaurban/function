@@ -8,7 +8,7 @@
 (*                                                 *)
 (***************************************************)
 
-open Cfg
+open ControlFlowGraph
 open Iterator
 
 (* log worklist algorithm *)

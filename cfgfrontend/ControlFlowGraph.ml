@@ -1,11 +1,6 @@
 (*
   Cours "Sémantique et Application à la Vérification de programmes"
   
-  Antoine Miné 2015
-  Ecole normale supérieure, Paris, France / CNRS / INRIA
-*)
-
-(* 
    Control-flow graphs (CFG).
 
    The CFG representation is much simpler than the tree representation:
@@ -13,12 +8,13 @@
    - variables are desambiguated;
    - the binding of formal and actual arguments is explicit (as assignments);
    - the control structures are translated into jumps between nodes.
- *)
-
-
+  
+    Antoine Miné 2015
+    Ecole normale supérieure, Paris, France / CNRS / INRIA
+*)
 
 open Lexing
-open Abstract_syntax_tree
+open AbstractSyntaxTree
 
   
   

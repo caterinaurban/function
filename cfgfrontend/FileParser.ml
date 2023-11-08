@@ -1,15 +1,13 @@
 (*
   Cours "Sémantique et Application à la Vérification de programmes"
-  
-  Antoine Miné 2015
-  Ecole normale supérieure, Paris, France / CNRS / INRIA
-*)
 
-(*
   Opens and parses a file given as argument.
+  
+    Antoine Miné 2015
+    Ecole normale supérieure, Paris, France / CNRS / INRIA
 *)
 
-open Abstract_syntax_tree
+open AbstractSyntaxTree
 open Cfg_printer
 open Lexing
 
@@ -20,9 +18,9 @@ let parse_file (filename:string) : prog =
   let lex = from_channel f in
   try
     lex.lex_curr_p <- { lex.lex_curr_p with pos_fname = filename; };
-    Program_parser.file Program_lexer.token lex
+    ProgramParser.file ProgramLexer.token lex
   with
-  | Program_parser.Error ->
+  | ProgramParser.Error ->
       Printf.eprintf "Parse error (invalid syntax) near %s\n" 
         (string_of_position lex.lex_start_p);
       failwith "Parse error"
@@ -36,9 +34,9 @@ let parse_file (filename:string) : prog =
 
 let parse_bool_expression (bexp:string) =
   let lex = from_string bexp in
-  try fst @@ Program_parser.expression Program_lexer.token lex
+  try fst @@ ProgramParser.expression ProgramLexer.token lex
   with
-  | Program_parser.Error ->
+  | ProgramParser.Error ->
       Printf.eprintf "Parse error (invalid syntax) near %s\n" 
         (string_of_position lex.lex_start_p);
       failwith "Parse error"

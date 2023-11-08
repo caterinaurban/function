@@ -56,22 +56,22 @@ AUTOGEN = \
   frontend/CTLPropertyLexer.ml \
   frontend/CTLPropertyParser.ml \
   frontend/CTLPropertyParser.mli \
-  cfgfrontend/program_lexer.ml \
-  cfgfrontend/program_parser.ml \
-  cfgfrontend/program_parser.mli \
+  cfgfrontend/ProgramLexer.ml \
+  cfgfrontend/ProgramParser.ml \
+  cfgfrontend/ProgramParser.mli \
   
 MLFILES = \
   utils/setext.ml \
   utils/mapext.ml \
   utils/Constraints.ml \
   utils/InvMap.ml \
-  cfgfrontend/abstract_syntax_tree.ml \
-  cfgfrontend/program_parser.ml \
-  cfgfrontend/program_lexer.ml \
-  cfgfrontend/cfg.ml \
+  cfgfrontend/AbstractSyntaxTree.ml \
+  cfgfrontend/ProgramParser.ml \
+  cfgfrontend/ProgramLexer.ml \
+  cfgfrontend/ControlFlowGraph.ml \
   cfgfrontend/cfg_printer.ml \
   cfgfrontend/tree_to_cfg.ml \
-  cfgfrontend/file_parser.ml \
+  cfgfrontend/FileParser.ml \
   cfgfrontend/loop_detection.ml \
   frontend/IntermediateSyntax.ml \
   frontend/CTLProperty.ml \
@@ -121,7 +121,7 @@ MLFILES = \
 MLIFILES = \
   frontend/Parser.mli \
   frontend/PropertyParser.mli \
-  cfgfrontend/program_parser.mli \
+  cfgfrontend/ProgramParser.mli \
 
 CMDMLFILES = main/Main.ml
 TSTMLFILES = \

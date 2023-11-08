@@ -1,19 +1,25 @@
 (*
   Cours "Sémantique et Application à la Vérification de programmes"
-  
-  Antoine Miné 2015
-  Ecole normale supérieure, Paris, France / CNRS / INRIA
-*)
 
-(*
   Lexer for a very simple C-like "curly bracket" language.
   This version has local variables, function calls, and returns.
+  
+    Antoine Miné 2015
+    École normale supérieure, Paris, France / CNRS / INRIA
+
+  Modified and adapted by 
+
+    Samuel Marco Ueltschi 2017
+    ETH Zurich, Switzerland 
+
+    Caterina Urban 2023
+    Inria & École Normale Supérieure, France 
 *)
-    
+
 {
 open Lexing
-open Abstract_syntax_tree
-open Program_parser
+open AbstractSyntaxTree
+open ProgramParser
 
 (* keyword table *)
 let kwd_table = Hashtbl.create 10

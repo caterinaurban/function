@@ -10,7 +10,7 @@
 
 (* parsing *)
 open Iterators
-let analysis = ref "termination"
+let analysis = ref "ctl"
 
 let robust = ref false
 
@@ -26,7 +26,7 @@ let minimal = ref false
 
 let ordinals = ref false
 
-let property = ref ""
+let property = ref "AF{exit: true}"
 
 let precondition = ref "true"
 
@@ -434,22 +434,22 @@ let ctl_cfg () =
   if !property = "" then raise (Invalid_argument "No Property Specified") ;
   let starttime = Sys.time () in
   let cfg, getProperty =
-    Tree_to_cfg.prog (File_parser.parse_file !filename) !main
+    Tree_to_cfg.prog (FileParser.parse_file !filename) !main
   in
-  let mainFunc = Cfg.find_func !main cfg in
-  let cfg = Cfg.insert_entry_exit_label cfg mainFunc in
+  let mainFunc = ControlFlowGraph.find_func !main cfg in
+  let cfg = ControlFlowGraph.insert_entry_exit_label cfg mainFunc in
   (* add exit/entry labels to main function *)
-  let cfg = if !noinline then cfg else Cfg.inline_function_calls cfg in
+  let cfg = if !noinline then cfg else ControlFlowGraph.inline_function_calls cfg in
   (* inline all non recursive functions unless -noinline is used *)
-  let cfg = Cfg.add_function_call_arcs cfg in
+  let cfg = ControlFlowGraph.add_function_call_arcs cfg in
   (* insert function call edges for remaining function calls *)
   let ctlProperty =
-    CTLProperty.map File_parser.parse_bool_expression
+    CTLProperty.map FileParser.parse_bool_expression
     @@ parseCTLPropertyString_plain !property
   in
   let ctlProperty = CTLProperty.map getProperty ctlProperty in
   let precondition =
-    getProperty @@ File_parser.parse_bool_expression !precondition
+    getProperty @@ FileParser.parse_bool_expression !precondition
   in
   let analyze =
     match !domain with
@@ -471,7 +471,7 @@ let ctl_cfg () =
   if (not !minimal) && !Iterator.dot then (
     Printf.printf "CFG_DOT:\n %a" Cfg_printer.output_dot cfg ;
     Printf.printf "\n" ) ;
-  let mainFunc = Cfg.find_func !main cfg in
+  let mainFunc = ControlFlowGraph.find_func !main cfg in
   let possibleLoopHeads = Loop_detection.possible_loop_heads cfg mainFunc in
   let result =
     analyze ~precondition cfg !robust mainFunc possibleLoopHeads ctlProperty

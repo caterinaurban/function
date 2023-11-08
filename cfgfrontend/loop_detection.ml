@@ -1,4 +1,4 @@
-open Cfg
+open ControlFlowGraph
 
 (* Computes reverse-post-order (starting from 1) for the 
    nodes of 'cfg' starting from 'initial_node' 

@@ -14,8 +14,8 @@
 
 
 open Lexing
-open Abstract_syntax_tree
-open Cfg
+open AbstractSyntaxTree
+open ControlFlowGraph
 open Cfg_printer
   
 
@@ -176,7 +176,7 @@ type env =
       env_allvars: VarSet.t;               (* set of all variables *)
       env_labels: node StringMap.t;        (* labels *)
       env_gotos: (node * string ext) list; (* gotos *)
-      env_get_main_property: Abstract_syntax_tree.bool_expr -> bool_expr;
+      env_get_main_property: AbstractSyntaxTree.bool_expr -> bool_expr;
     }
 
 
@@ -194,7 +194,7 @@ let add_to_vars (env:env) (v:var) : env =
   extracted from the expression.
 *)
     
-let rec int_expr (env:env) (expr:Abstract_syntax_tree.int_expr)
+let rec int_expr (env:env) (expr:AbstractSyntaxTree.int_expr)
     : env * inst ext list * int_expr =
   match expr with
   | AST_int_unary (o,(e1,_)) ->
@@ -248,7 +248,7 @@ let rec int_expr (env:env) (expr:Abstract_syntax_tree.int_expr)
       )
 
         
-and bool_expr (env:env) (expr:Abstract_syntax_tree.bool_expr)
+and bool_expr (env:env) (expr:AbstractSyntaxTree.bool_expr)
     : env * inst ext list * bool_expr =
   match expr with
   | AST_bool_unary (o,(e1,_)) ->
@@ -275,7 +275,7 @@ and bool_expr (env:env) (expr:Abstract_syntax_tree.bool_expr)
 
 (* Translate a call. *)
         
-and call (env:env) ((id,x):id ext) (exprs:Abstract_syntax_tree.int_expr ext list)
+and call (env:env) ((id,x):id ext) (exprs:AbstractSyntaxTree.int_expr ext list)
     : env * inst ext list * func =
   let f =
     try StringMap.find id env.env_funcs
@@ -621,7 +621,7 @@ let func ?(is_main = false) (env:env) (f:fun_decl) : env =
 
 (* Translate a whole program *)        
 
-let prog ((t,x):toplevel list ext) (main:string) : (cfg * (Abstract_syntax_tree.bool_expr -> Cfg.bool_expr)) =
+let prog ((t,x):toplevel list ext) (main:string) : (cfg * (AbstractSyntaxTree.bool_expr -> ControlFlowGraph.bool_expr)) =
   (* initial environment *)
   arcs := [];
   nodes := [];

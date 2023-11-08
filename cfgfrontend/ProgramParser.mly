@@ -1,20 +1,25 @@
 (*
   Cours "Sémantique et Application à la Vérification de programmes"
-  
-  Antoine Miné 2015
-  Ecole normale supérieure, Paris, France / CNRS / INRIA
-*)
 
-
-(*
   Parser for a very simple C-like "curly bracket" language.
   
   There should be exactly one shift/reduce conflict, due to nested 
   if-then-else constructs. The resolution picked by menhir should be correct.
- *)
+  
+    Antoine Miné 2015
+    École normale supérieure, Paris, France / CNRS / INRIA
+
+  Modified and adapted by 
+
+    Samuel Marco Ueltschi 2017
+    ETH Zurich, Switzerland 
+
+    Caterina Urban 2023
+    Inria & École Normale Supérieure, France 
+*)
 
 %{
-open Abstract_syntax_tree
+open AbstractSyntaxTree
 %}
 
 /* tokens */
@@ -84,8 +89,8 @@ open Abstract_syntax_tree
 /* entry-points */
 /****************/
 
-%start<Abstract_syntax_tree.toplevel list Abstract_syntax_tree.ext> file
-%start<Abstract_syntax_tree.bool_expr Abstract_syntax_tree.ext> expression
+%start<AbstractSyntaxTree.toplevel list AbstractSyntaxTree.ext> file
+%start<AbstractSyntaxTree.bool_expr AbstractSyntaxTree.ext> expression
 
 
 %%
@@ -224,20 +229,20 @@ fun_decl:
 | t=ext(typ_or_void) i=ext(TOK_id)
          TOK_LPAREN p=separated_list(TOK_COMMA,param_decl) TOK_RPAREN 
          TOK_LCURLY l=list(ext(stat)) TOK_RCURLY
-  { { Abstract_syntax_tree.fun_name = i;
-      Abstract_syntax_tree.fun_typ = t;
-      Abstract_syntax_tree.fun_args = p;
-      Abstract_syntax_tree.fun_body = l;
-      Abstract_syntax_tree.fun_ext = ($startpos, $endpos); }
+  { { AbstractSyntaxTree.fun_name = i;
+      AbstractSyntaxTree.fun_typ = t;
+      AbstractSyntaxTree.fun_args = p;
+      AbstractSyntaxTree.fun_body = l;
+      AbstractSyntaxTree.fun_ext = ($startpos, $endpos); }
   }
 | t=ext(typ_or_void) i=ext(TOK_id)
          TOK_LPAREN TOK_VOID TOK_RPAREN 
          TOK_LCURLY l=list(ext(stat)) TOK_RCURLY
-  { { Abstract_syntax_tree.fun_name = i;
-      Abstract_syntax_tree.fun_typ = t;
-      Abstract_syntax_tree.fun_args = [];
-      Abstract_syntax_tree.fun_body = l;
-      Abstract_syntax_tree.fun_ext = ($startpos, $endpos); }
+  { { AbstractSyntaxTree.fun_name = i;
+      AbstractSyntaxTree.fun_typ = t;
+      AbstractSyntaxTree.fun_args = [];
+      AbstractSyntaxTree.fun_body = l;
+      AbstractSyntaxTree.fun_ext = ($startpos, $endpos); }
   }
 
 param_decl:

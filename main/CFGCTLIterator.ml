@@ -1,4 +1,4 @@
-open Cfg
+open ControlFlowGraph
 open Cfg_printer
 open CTLProperty
 open Apron
@@ -8,9 +8,9 @@ open Functions
 open Iterator
 open ForwardIterator
 
-(* type for CTL properties, instantiated with Cfg.bool_expr for atomic
+(* type for CTL properties, instantiated with ControlFlowGraph.bool_expr for atomic
    propositions *)
-type ctl_property = Cfg.bool_expr CTLProperty.generic_property
+type ctl_property = ControlFlowGraph.bool_expr CTLProperty.generic_property
 
 let rec print_ctl_property ch (property : ctl_property) =
   match property with
@@ -298,7 +298,7 @@ module CFGCTLIterator (D : RANKING_FUNCTION) = struct
     in
     abstract_transformer
 
-  let compute (cfg : cfg) (main : Cfg.func) (loop_heads : bool NodeMap.t)
+  let compute (cfg : cfg) (main : ControlFlowGraph.func) (loop_heads : bool NodeMap.t)
       robust (property : ctl_property) : inv =
     let backwardAnalysis = CFGInterpreter.backward_analysis in
     let env, vars = Conversion.env_vars_of_cfg cfg in
@@ -407,7 +407,7 @@ module CFGCTLIterator (D : RANKING_FUNCTION) = struct
     inv property
 
   let analyze ?(precondition = CFG_bool_const true) (cfg : cfg) robust
-      (main : Cfg.func) (loop_heads : bool NodeMap.t)
+      (main : ControlFlowGraph.func) (loop_heads : bool NodeMap.t)
       (property : ctl_property) =
     let inv = compute cfg main loop_heads robust property in
     let programInvariant = NodeMap.find main.func_entry inv in

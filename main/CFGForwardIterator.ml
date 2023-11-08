@@ -1,7 +1,7 @@
 (* ********* CFG based Forward Iterator ************ Copyright (C) 2017
    Samuel Ueltschi ETH Zurich *)
 
-open Cfg
+open ControlFlowGraph
 open CFGInterpreter
 open Partition
 open Iterator

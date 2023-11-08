@@ -26,8 +26,9 @@ FuncTion's main website is: http://www.di.ens.fr/~urban/FuncTion.html
 	
 ## Contributors
 
+	Naïm Moussaoui Remil, École Normale Supérieure
 	Samuel Ueltschi, ETH Zurich
-	Nathanaël Courant, École Normale Supérieure
+	Nathanaëlle Courant, École Normale Supérieure
 	
 # Installation
 
