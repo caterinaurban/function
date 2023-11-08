@@ -47,25 +47,25 @@ double ml_div_flt_f(double a, double b)
 value ml_add_flt(value a, value b)
 {
   CAMLparam2(a,b);
-  CAMLreturn(copy_double((float)(Double_val(a) + Double_val(b))));
+  CAMLreturn(caml_copy_double((float)(Double_val(a) + Double_val(b))));
 }
 
 value ml_sub_flt(value a, value b)
 {
   CAMLparam2(a,b);
-  CAMLreturn(copy_double((float)(Double_val(a) - Double_val(b))));
+  CAMLreturn(caml_copy_double((float)(Double_val(a) - Double_val(b))));
 }
 
 value ml_mul_flt(value a, value b)
 {
   CAMLparam2(a,b);
-  CAMLreturn(copy_double((float)(Double_val(a) * Double_val(b))));
+  CAMLreturn(caml_copy_double((float)(Double_val(a) * Double_val(b))));
 }
 
 value ml_div_flt(value a, value b)
 {
   CAMLparam2(a,b);
-  CAMLreturn(copy_double((float)(Double_val(a) / Double_val(b))));
+  CAMLreturn(caml_copy_double((float)(Double_val(a) / Double_val(b))));
 }
 
 double ml_round_flt_f(double a)
@@ -76,7 +76,7 @@ double ml_round_flt_f(double a)
 value ml_round_flt(value a)
 {
   CAMLparam1(a);
-  CAMLreturn(copy_double((float)(Double_val(a))));
+  CAMLreturn(caml_copy_double((float)(Double_val(a))));
 }
 
 double ml_of_int_flt_f(value a)
@@ -86,5 +86,5 @@ double ml_of_int_flt_f(value a)
 value ml_of_int_flt(value a)
 {
   CAMLparam1(a);
-  CAMLreturn(copy_double((float)(Long_val(a))));
+  CAMLreturn(caml_copy_double((float)(Long_val(a))));
 }
