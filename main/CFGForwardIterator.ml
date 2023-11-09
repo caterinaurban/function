@@ -65,7 +65,7 @@ module CFGForwardIterator (B : PARTITION) = struct
       (false, newState')
 
   (* compute invariant map based on forward analysis *)
-  let compute (cfg : cfg) (main : func) (loop_heads : bool NodeMap.t) :
+  let compute (cfg : cfg) (main : func) (loop_heads : bool NodeMap.t) (domSets : NodeSet.t NodeMap.t) :
       B.t NodeMap.t =
     let env, vars = Conversion.env_vars_of_cfg cfg in
     let bot = B.bot env vars in
@@ -78,10 +78,10 @@ module CFGForwardIterator (B : PARTITION) = struct
     let initialState = NodeMap.add cfg.cfg_init_entry top initialState in
     let fwdInv =
       forward_analysis abstract_transformer initialState cfg.cfg_init_entry
-        cfg loop_heads
+        cfg loop_heads domSets
     in
     let mainStartState = NodeMap.find cfg.cfg_init_exit fwdInv in
     let initialState = NodeMap.add main.func_entry mainStartState fwdInv in
     forward_analysis abstract_transformer initialState main.func_entry cfg
-      loop_heads
+      loop_heads domSets
 end

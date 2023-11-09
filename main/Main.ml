@@ -432,8 +432,9 @@ let ctl () =
     Printf.printf "\n" ) ;
   let mainFunc = ControlFlowGraph.find_func !main cfg in
   let possibleLoopHeads = Loop_detection.possible_loop_heads cfg mainFunc in
+  let domSets = Loop_detection.dominator cfg mainFunc in
   let result =
-    analyze ~precondition cfg !robust mainFunc possibleLoopHeads ctlProperty
+    analyze ~precondition cfg !robust mainFunc possibleLoopHeads domSets ctlProperty
   in
   ( if !time then
     let stoptime = Sys.time () in
