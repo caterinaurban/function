@@ -8,7 +8,7 @@
 *)
 
 open AbstractSyntaxTree
-open Cfg_printer
+open CFGPrinter
 open Lexing
 
 (* parsing, with nice error messages *)

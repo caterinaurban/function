@@ -1,15 +1,16 @@
 (*
   Cours "Sémantique et Application à la Vérification de programmes"
-  
-  Antoine Miné 2015
-  Ecole normale supérieure, Paris, France / CNRS / INRIA
+
+  Pretty-printer for control-flow graphs.
+
+    Antoine Miné 2015
+    Ecole normale supérieure, Paris, France / CNRS / INRIA
+
+  Modified and adapted by
+
+    Caterina Urban 2023
+    Inria & École Normale Supérieure, France
 *)
-
-(* 
-   Pretty-printer for control-flow graphs.
- *)
-
-
 
 open Lexing
 open AbstractSyntaxTree
@@ -109,7 +110,6 @@ let string_of_type t =
   match t with
   | AST_TYP_INT -> "int"
 
-        
 let rec print_int_expr ch e = 
   match e with
     
@@ -137,8 +137,24 @@ let rec print_int_expr ch e =
         
   | CFG_int_var v -> print_var ch v
 
+  | CFG_arr_elm (v,e) -> Printf.fprintf ch "%a[%a]" print_var v print_int_expr e
+
         
-and print_bool_expr ch e = 
+and print_arr_expr ch e =
+  match e with
+
+  | CFG_arr_int es ->
+      Printf.fprintf ch "{";
+      List.iter
+      (fun e ->
+        Printf.fprintf ch "  %a, " print_int_expr e
+      ) es;
+      Printf.fprintf ch "}"
+
+  | CFG_arr_var v -> print_var ch v
+
+
+and print_bool_expr ch e =
   match e with
     
   | CFG_bool_unary (op,e1) ->
@@ -179,6 +195,9 @@ let print_inst ch i =
   match i with
   | CFG_skip msg -> Printf.fprintf ch "%s" msg
   | CFG_assign (v,e) -> Printf.fprintf ch "%a = %a" print_var v print_int_expr e
+  | CFG_elm_assign (v,i,e) ->
+      Printf.fprintf ch "%a[%a] = %a" print_var v print_int_expr i print_int_expr e
+  | CFG_arr_assign (v,e) -> Printf.fprintf ch "%a[] = %a" print_var v print_arr_expr e
   | CFG_guard b -> Printf.fprintf ch "%a ?" print_bool_expr b
   | CFG_assert b -> Printf.fprintf ch "assert %a" print_bool_expr b
   | CFG_call f -> Printf.fprintf ch "call %s" f.func_name

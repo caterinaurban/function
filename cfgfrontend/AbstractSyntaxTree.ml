@@ -106,6 +106,14 @@ type int_expr =
                      (int_expr ext list) (* arguments *)
 
 
+type init_expr =
+  (* integer expression *)
+  | AST_int_init of int_expr ext
+
+  (* array expression *)
+  | AST_arr_init of int_expr ext list
+
+
 type bool_expr =
   (* unary operation *)
   | AST_bool_unary of bool_unary_op * (bool_expr ext)
@@ -155,7 +163,7 @@ type stat =
   | AST_assert of bool_expr ext
 
   (* declaration of a local variable, live until the end of the current block *)
-  | AST_local_decl of var_decl ext
+  | AST_local_decl of loc_decl ext
 
   (* calls a function with arguments (no return value) *)
   | AST_stat_call of (id ext) (* function name *) * 
@@ -178,11 +186,12 @@ type stat =
 
 
 (* declare some variables with a common type *)
-and var_decl = (typ ext) (* type *) * (var_init list) (* variable list *)
+and loc_decl = (typ ext) (* type *) * (loc_init list) (* variable list *)
 
 (* each declared variable has an optional initializer *)
-and var_init = (id ext) (* declared variable *) * 
-               (int_expr ext option)  (* initializer *)
+and loc_init = (id ext) (* declared variable *) *
+               (int_expr ext option) (* length for arrays *) *
+               (init_expr ext option)  (* initializer *)
 
 
 (* function declaration 
@@ -211,7 +220,7 @@ type fun_decl =
 type toplevel =
     
   (* global variable declaration *)
-  | AST_global_decl of var_decl ext
+  | AST_global_decl of loc_decl ext
     
   (* function declaration *)
   | AST_fun_decl of fun_decl ext

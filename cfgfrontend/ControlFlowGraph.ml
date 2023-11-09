@@ -28,10 +28,11 @@ open AbstractSyntaxTree
    at different point with the same name.
  *)
 type var =
-    { var_id: int;       (* unique variable identifier *)
-      var_name: id;      (* original name, in the program *)
-      var_type: typ;     (* variable type *)
-      var_pos: extent;   (* position of the variable declaration *)
+    { var_id: int;              (* unique variable identifier *)
+      var_name: id;             (* original name, in the program *)
+      var_type: typ;            (* variable type *)
+      var_len: int option;      (* variable length (if known) *)
+      var_pos: extent;          (* position of the variable declaration *)
     }
     
 let unique_var_name v = Printf.sprintf "$%i{%s}" v.var_id v.var_name 
@@ -72,7 +73,19 @@ type int_expr =
   (* non-deterministic choice between two integers *)
   | CFG_int_interval of Z.t (* lower bound *) * Z.t (* upper bound *)
 
+  (* array element access *)
+  | CFG_arr_elm of var * int_expr
+
         
+type arr_expr =
+
+  (* integer list array initializer *)
+  | CFG_arr_int of int_expr list
+
+  (* array variable use *)
+  | CFG_arr_var of var
+
+
 type bool_expr =
 
   (* unary operation *)
@@ -111,8 +124,14 @@ type inst =
   (* equivalent to skip but has name of label definiton as value *)
   | CFG_label of string
     
-  (* assignment *)
+  (* variable assignment *)
   | CFG_assign of var * int_expr
+
+  (* array element assignment *)
+  | CFG_elm_assign of var * int_expr * int_expr
+
+  (* array assignment *)
+  | CFG_arr_assign of var * arr_expr
 
   (* guard: test that must be satisfied to make a transition *)
   | CFG_guard of bool_expr

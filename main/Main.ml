@@ -396,7 +396,7 @@ let ctl () =
   if !property = "" then raise (Invalid_argument "No Property Specified") ;
   let starttime = Sys.time () in
   let cfg, getProperty =
-    Tree_to_cfg.prog (FileParser.parse_file !filename) !main
+    ASTtoCFG.prog (FileParser.parse_file !filename) !main
   in
   let mainFunc = ControlFlowGraph.find_func !main cfg in
   let cfg = ControlFlowGraph.insert_entry_exit_label cfg mainFunc in
@@ -425,10 +425,10 @@ let ctl () =
   in
   if not !minimal then (
     Printf.printf "\nCFG:\n" ;
-    Printf.printf "%a" Cfg_printer.print_cfg cfg ;
+    Printf.printf "%a" CFGPrinter.print_cfg cfg ;
     Printf.printf "\n" ) ;
   if (not !minimal) && !Iterator.dot then (
-    Printf.printf "CFG_DOT:\n %a" Cfg_printer.output_dot cfg ;
+    Printf.printf "CFG_DOT:\n %a" CFGPrinter.output_dot cfg ;
     Printf.printf "\n" ) ;
   let mainFunc = ControlFlowGraph.find_func !main cfg in
   let possibleLoopHeads = Loop_detection.possible_loop_heads cfg mainFunc in

@@ -47,6 +47,8 @@ let rec of_int_expr expr = match expr with
   | CFG_int_const c -> A_const (Z.to_int c)
   | CFG_int_random -> A_RANDOM
   | CFG_int_interval (l, u) -> A_interval (Z.to_int l, Z.to_int u)
+  | CFG_arr_elm (var,idx) ->
+    raise (Invalid_argument "array element is not yet supported")
 
 
 let rec of_bool_expr (expr:ControlFlowGraph.bool_expr): bExp = match expr with

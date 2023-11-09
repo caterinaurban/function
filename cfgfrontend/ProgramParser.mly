@@ -106,7 +106,7 @@ expression: t=ext(bool_expr) TOK_EOF { t }
 
 
 toplevel:
-| d=ext(var_decl)           { AST_global_decl d }
+| d=ext(loc_decl)           { AST_global_decl d }
 | d=ext(fun_decl)           { AST_fun_decl d }
 
     
@@ -117,61 +117,44 @@ toplevel:
 bool_expr:
 | TOK_LPAREN e=bool_expr TOK_RPAREN
     { e }
-    
 | TOK_TRUE
     { AST_bool_const true }
-    
 | TOK_FALSE
     { AST_bool_const false }
-    
 | o=bool_unary_op e=ext(bool_expr)
     { AST_bool_unary (o,e) }
-    
 | e1=ext(bool_expr) o=bool_binary_op e2=ext(bool_expr)
     { AST_bool_binary (o,e1,e2) }
-    
 | e1=ext(int_expr) o=compare_op e2=ext(int_expr)
     { AST_compare (o,e1,e2) }
-    
 | TOK_BRAND
     { AST_bool_rand }
-
 | e=ext(int_expr)
     { AST_compare (AST_NOT_EQUAL, e, add_extend_unknown (AST_int_const (add_extend_unknown "0"))) }
     
 int_expr:    
 | TOK_LPAREN e=int_expr TOK_RPAREN
     { e }
-    
 | e=ext(TOK_int)
     { AST_int_const e }
-    
 | e=ext(TOK_id)
     { AST_int_identifier e }
-
 | e=ext(TOK_QUESTIONMARK)
     { AST_int_random }
-    
 | e=ext(TOK_RAND) TOK_LPAREN TOK_RPAREN
     { AST_int_random }
-
 | o=int_unary_op e=ext(int_expr)
     { AST_int_unary (o,e) }
-    
 | e1=ext(int_expr) o=int_binary_op e2=ext(int_expr)
     { AST_int_binary (o,e1,e2) }
-    
 | TOK_LBRACKET e1=ext(sign_int_literal)  
            TOK_COMMA  e2=ext(sign_int_literal) TOK_RBRACKET
     { AST_int_interval (e1, e2) }
-
 | e=ext(TOK_id) TOK_LPAREN l=int_expr_list TOK_RPAREN
     { AST_expr_call (e, l) }
 
-
 int_expr_list:
     l=separated_list(TOK_COMMA,ext(int_expr))  { l }
-    
     
 /* integer with optional sign */
 sign_int_literal:
@@ -212,18 +195,26 @@ sign_int_literal:
 | TOK_AND_AND        { AST_AND }
 | TOK_BAR_BAR        { AST_OR }
 
-
+init_expr:
+| i=ext(int_expr)                           { AST_int_init i }
+| TOK_LCURLY l=int_expr_list TOK_RCURLY     { AST_arr_init l }
 
 /* declarations */
 /****************/
 
-var_decl:
+loc_decl:
 | s=ext(typ) i=separated_list(TOK_COMMA,init_declarator) TOK_SEMICOLON
   { s, i }
 
 init_declarator:
-| v=ext(TOK_id)                             { v, None }
-| v=ext(TOK_id) TOK_EQUAL i=ext(int_expr)   { v, Some i }
+| v=ext(TOK_id)                              { v, None, None }
+| v=ext(TOK_id) TOK_EQUAL i=ext(init_expr)   { v, None, Some i }
+| v=ext(TOK_id) TOK_LBRACKET n=ext(int_expr) TOK_LBRACKET
+    { v, Some n, None }
+| v=ext(TOK_id) TOK_LBRACKET TOK_RBRACKET TOK_EQUAL i=ext(init_expr)
+    { v, None, Some i }
+| v=ext(TOK_id) TOK_LBRACKET n=ext(int_expr) TOK_RBRACKET TOK_EQUAL i=ext(init_expr)
+    { v, Some n, Some i }
 
 fun_decl:
 | t=ext(typ_or_void) i=ext(TOK_id)
@@ -284,7 +275,7 @@ stat:
 | a=assign TOK_SEMICOLON
     { a }
 
-| d=ext(var_decl)
+| d=ext(loc_decl)
     { AST_local_decl d }
 
 | TOK_LCURLY l=list(ext(stat)) TOK_RCURLY

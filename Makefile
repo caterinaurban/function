@@ -69,8 +69,8 @@ MLFILES = \
   cfgfrontend/ProgramParser.ml \
   cfgfrontend/ProgramLexer.ml \
   cfgfrontend/ControlFlowGraph.ml \
-  cfgfrontend/cfg_printer.ml \
-  cfgfrontend/tree_to_cfg.ml \
+  cfgfrontend/CFGPrinter.ml \
+  cfgfrontend/ASTtoCFG.ml \
   cfgfrontend/FileParser.ml \
   cfgfrontend/loop_detection.ml \
   frontend/IntermediateSyntax.ml \

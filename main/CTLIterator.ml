@@ -1,5 +1,5 @@
 open ControlFlowGraph
-open Cfg_printer
+open CFGPrinter
 open CTLProperty
 open Apron
 open Domain
@@ -132,6 +132,10 @@ module CTLIterator (D : RANKING_FUNCTION) = struct
         bwdAssign out_state
           ( AbstractSyntax.A_var (Conversion.of_var var)
           , Conversion.of_int_expr expr )
+    | CFG_elm_assign (var, idx, expr) ->
+        raise (Invalid_argument "array element assignment is not yet supported")
+    | CFG_arr_assign (var, aexpr) ->
+        raise (Invalid_argument "array assignment is not yet supported")
     | CFG_guard bexpr -> filter out_state @@ Conversion.of_bool_expr bexpr
     | CFG_assert bexpr -> filter out_state @@ Conversion.of_bool_expr bexpr
     | CFG_call bexpr ->

@@ -1,22 +1,24 @@
 (*
   Cours "Sémantique et Application à la Vérification de programmes"
-  
-  Antoine Miné 2015
-  Ecole normale supérieure, Paris, France / CNRS / INRIA
+
+  Converts an abstract syntax tree to a control-flow-graph.
+  CFG arcs use a simpler language.
+  The conversion takes care of splitting complex statements and
+  expressions, and introducing temporaries if necessary.
+
+    Antoine Miné 2015
+    Ecole normale supérieure, Paris, France / CNRS / INRIA
+
+  Modified and adapted by
+
+    Caterina Urban 2023
+    Inria & École Normale Supérieure, France
 *)
-
-(* 
-   Converts an abstract syntax tree to a control-flow-graph.
-   CFG arcs use a simpler language.
-   The conversion takes care of splitting complex statements and
-   expressions, and introducing temporaries if necessary.
- *)
-
 
 open Lexing
 open AbstractSyntaxTree
 open ControlFlowGraph
-open Cfg_printer
+open CFGPrinter
   
 
 (* map variable and function names to structures *)    
@@ -75,11 +77,12 @@ let add_arc (src:node) (dst:node) (inst:inst) =
 let var_counter = ref 0
 
 (* create a variable structure, assigning it a fresh identifier *)    
-let create_var (name:string) (pos:extent) (typ:typ) =
+let create_var ?length (name:string) (pos:extent) (typ:typ) =
   incr var_counter;
   { var_id = !var_counter;
     var_name = name;
     var_pos = pos;
+    var_len = length;
     var_type = typ;
   }
 
@@ -316,20 +319,32 @@ and call (env:env) ((id,x):id ext) (exprs:AbstractSyntaxTree.int_expr ext list)
    Create the variable structure, remember it in the environment,
    and translate initialization into assignments.
  *)
-let decls (env:env) (((t,_),l):var_decl) : env * inst ext list =
+let decls (env:env) (((t,_),l):loc_decl) : env * inst ext list =
   List.fold_left
-    (fun (env,inst) ((id,x),init) ->
+    (fun (env,inst) ((id,x),len,init) ->
       let var = create_var id x t in
       let env1 = add_to_vars env var in
       match init with
       | None -> env1, inst
-      | Some (expr,x1) ->
-          let env2, before, e = int_expr env1 expr in
-          env2, before @ [CFG_assign (var,e), x1] @ inst
+      | Some (expr,x3) ->
+          (match expr with
+          | AST_int_init (intexpr,x1) ->
+              let env2, before, e = int_expr env1 intexpr in
+              env2, before @ [CFG_assign (var,e), x3] @ inst
+          | AST_arr_init arrexpr ->
+              let env2, before, es =
+                List.fold_left
+                  (fun (aenv2,abefore,aes) (e,x2) ->
+                    let env2', before', e' = int_expr aenv2 e in
+                    (env2',abefore @ before', aes @ [e'])
+                  )
+                (env1,[],[]) arrexpr
+              in
+              env2, before @ [CFG_arr_assign (var,CFG_arr_int es), x3] @ inst
+          )
     )
     (env,[]) l
 
-        
                 
 (*
   Translate a statement.
