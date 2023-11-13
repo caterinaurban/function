@@ -31,8 +31,8 @@ module type ABSTRACT_DOMAIN = sig
   val top : t -> t
 
   val top_apron : Environment.t -> t
+
   val bot_apron : Environment.t -> t
-  
 
   (* queries *)
   (* ******* *)
@@ -85,7 +85,9 @@ module type ABSTRACT_DOMAIN = sig
   val bwd_del_var : t -> var -> t -> t
 
   val bwd_meet : t -> t -> merge_type -> t
-  val bwd_join : (t*VSet.t) -> (t*VSet.t) -> (t*VSet.t) -> (t*VSet.t) 
+
+  val bwd_join : t * VSet.t -> t * VSet.t -> t * VSet.t -> t * VSet.t
+
   val bwd_assign : t -> error -> assign_dst -> expr typed -> t -> t
 
   val bwd_filter : t -> t -> error -> expr typed -> filter_type -> t -> t

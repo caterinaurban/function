@@ -22,13 +22,17 @@ module Lin = Linearization.Make (Itv_rat)
 
 module ApronDomain (Param : Banal_apron_utils.APRON_PARAM) = struct
   module U = Banal_apron_utils.Make (Param) (Itv_rat)
+
   let man = Param.manager
 
   type t = Param.lib Abstract1.t
+
   let top_apron env = Abstract1.top man env
+
   let bot_apron env = Abstract1.bottom man env
+
   let of_apron v env = Abstract1.join man v (bot_apron env)
-  
+
   (*************)
   (* UTILITIES *)
   (*************)
@@ -964,38 +968,43 @@ module ApronDomain (Param : Banal_apron_utils.APRON_PARAM) = struct
     in
     bwd_trace "meet" (Abstract1.meet man pre) post
 
-	let bwd_join ((_,vset) as post1: t * VSet.t) (post2 : t * VSet.t) ((pre,_) : t * VSet.t)  =
-  
-	let lift_vset2 f (a,v) (b,_) = f a b, v in
-    lift_vset2 (fun post1 post2 ->
-      (* check if one element is contained in the other *)
-      if Abstract1.is_leq man post1 post2 then post2 else
-      if Abstract1.is_leq man post2 post1 then post1 else
-
-      (* HEURISTIC -> perform the refinement only if the result has some "reasonable"
-         directions, namely the ones of the `pre` and `post{1,2}` (in both polarities). *)
-      let allowed_dirs = U.get_directions pre @ U.get_directions post1 @ U.get_directions post2 in
-      let check_dirs a  =
-        let dirs = U.get_directions a in
-        List.for_all (fun d1 -> List.exists (fun d2 -> d1 = d2 || U.neg_linexpr d2 = d1) allowed_dirs) dirs
-      in
-
-      (* try refinement of poly with singleton components differing by +-1 *)
-      match U.refine_singleton vset post1 post2 with
-      | Some post1 when check_dirs post1 -> post1
-      | _ ->
-
-      (* try refinement of poly by adding behind some constraint *)
-      match U.refine_behind_cons vset post1 post2 with
-      | Some post1 when check_dirs post1 -> post1
-      | _ ->
-
-      (* refinemenet failed.. *)
-      post1
-
-    ) post1 post2
-
-
+  let bwd_join ((_, vset) as post1 : t * VSet.t) (post2 : t * VSet.t)
+      ((pre, _) : t * VSet.t) =
+    let lift_vset2 f (a, v) (b, _) = (f a b, v) in
+    lift_vset2
+      (fun post1 post2 ->
+        (* check if one element is contained in the other *)
+        if Abstract1.is_leq man post1 post2 then post2
+        else if Abstract1.is_leq man post2 post1 then post1
+        else
+          (* HEURISTIC -> perform the refinement only if the result has some
+             "reasonable" directions, namely the ones of the `pre` and
+             `post{1,2}` (in both polarities). *)
+          let allowed_dirs =
+            U.get_directions pre @ U.get_directions post1
+            @ U.get_directions post2
+          in
+          let check_dirs a =
+            let dirs = U.get_directions a in
+            List.for_all
+              (fun d1 ->
+                List.exists
+                  (fun d2 -> d1 = d2 || U.neg_linexpr d2 = d1)
+                  allowed_dirs )
+              dirs
+          in
+          (* try refinement of poly with singleton components differing by
+             +-1 *)
+          match U.refine_singleton vset post1 post2 with
+          | Some post1 when check_dirs post1 -> post1
+          | _ -> (
+            (* try refinement of poly by adding behind some constraint *)
+            match U.refine_behind_cons vset post1 post2 with
+            | Some post1 when check_dirs post1 -> post1
+            | _ ->
+                (* refinemenet failed.. *)
+                post1 ) )
+      post1 post2
 end
 
 (* INSTANTIATIONS *)

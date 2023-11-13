@@ -84,9 +84,11 @@ type prog =
 (* variables *)
 
 module Var = struct
-	type t = var
-	let compare x y = String.compare x.var_id y.var_id
-	let to_string x = x.var_name
+  type t = var
+
+  let compare x y = String.compare x.var_id y.var_id
+
+  let to_string x = x.var_name
 end
 
 module VSet = Set.Make (Var)

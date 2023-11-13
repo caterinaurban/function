@@ -26,7 +26,9 @@ module type CONSTRAINT = sig
   (* val variant : t -> t -> bool (* widening *) *)
 
   val negate : t -> t
-  val evolve : Linexpr1.t -> Linexpr1.t ->  Linexpr1.t
+
+  val evolve : Linexpr1.t -> Linexpr1.t -> Linexpr1.t
+
   val expand : t -> t * t
   (* val widen : t -> t -> t (* widening *) *)
 
