@@ -16,7 +16,8 @@ module CFGForwardIterator (B : PARTITION) = struct
           ( AbstractSyntax.A_var (Conversion.of_var var)
           , Conversion.of_int_expr expr )
     | CFG_elm_assign (var, idx, expr) ->
-        raise (Invalid_argument "array element assignment is not yet supported")
+        raise
+          (Invalid_argument "array element assignment is not yet supported")
     | CFG_arr_assign (var, aexpr) ->
         raise (Invalid_argument "array assignment is not yet supported")
     | CFG_guard bexpr -> B.filter in_state @@ Conversion.of_bool_expr bexpr
@@ -65,8 +66,8 @@ module CFGForwardIterator (B : PARTITION) = struct
       (false, newState')
 
   (* compute invariant map based on forward analysis *)
-  let compute (cfg : cfg) (main : func) (loop_heads : bool NodeMap.t) (domSets : NodeSet.t NodeMap.t) :
-      B.t NodeMap.t =
+  let compute (cfg : cfg) (main : func) (loop_heads : bool NodeMap.t)
+      (domSets : NodeSet.t NodeMap.t) : B.t NodeMap.t =
     let env, vars = Conversion.env_vars_of_cfg cfg in
     let bot = B.bot env vars in
     let top = B.top env vars in

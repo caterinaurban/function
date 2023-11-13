@@ -1,4 +1,4 @@
-
+(* 
 (*******************************************)
 (*                CTL Test                 *)
 (*                                         *)
@@ -485,4 +485,4 @@ let%test "sv_comp_NO_02_false-termination_true-no-overflow3" = testit  ~prop:"EF
         ; test_cfg "./tests/ctl/ltl_automizer/simple-2.c" "AF{x > 100}" true
         ; test_cfg ~precondition:"ap==0"
             "./tests/ctl/ltl_automizer/Bug_NoLoopAtEndForTerminatingPrograms_safe.c"
-            "NOT{AF{ap > 2}}" true ] *) 
+            "NOT{AF{ap > 2}}" true ] *)  *)

@@ -68,7 +68,8 @@ module type RANKING_FUNCTION = sig
 
   val robust :
        t
-    -> ( var list * var list
+    -> ( var list
+       * var list
        * Polka.strict Polka.t Abstract1.t array
        * Banal_apron_domain.PolkaDomain.t )
        list

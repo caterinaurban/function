@@ -1,6 +1,8 @@
 (library
  (name tests)
- (libraries driver cfgfrontend domains)
- (flags (:standard -open Driver  -open Cfgfrontend -open Domains ))
- (inline_tests  )
- (preprocess (pps ppx_inline_test)))
+ (libraries driver cfgfrontend domains frontend)
+ (flags
+  (:standard -open Driver -open Cfgfrontend -open Domains -open Frontend))
+ (inline_tests)
+ (preprocess
+  (pps ppx_inline_test)))

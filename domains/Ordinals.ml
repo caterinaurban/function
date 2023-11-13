@@ -229,7 +229,6 @@ module OrdinalValued (F : FUNCTION) : FUNCTION = struct
   let successor (f, ff) = (F.successor f, ff)
 
   let bwdAssign (f, ff) e =
-    
     let env = F.env f in
     let vars = F.vars f in
     let rec aux i ff =

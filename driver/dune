@@ -1,11 +1,11 @@
 (library
  (name driver)
- 
  (flags
   (:standard -open Frontend -open Domains -open Cfgfrontend -open Utils))
  (libraries frontend cfgfrontend utils domains)
  (inline_tests)
- (preprocess (pps ppx_inline_test)))
+ (preprocess
+  (pps ppx_inline_test)))
 
 (env
  (dev

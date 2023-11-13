@@ -235,7 +235,9 @@ module Affine (B : PARTITION) : FUNCTION = struct
     { ranking= join_ranking k b f1.ranking f2.ranking
     ; env= f1.env
     ; vars= f1.vars }
+
   let rational = ref false
+
   let mulScalar c1 c2 =
     match (c1, c2) with
     | Scalar.Float c1, Scalar.Float c2 -> Scalar.Float (c1 *. c2)
@@ -588,7 +590,6 @@ module Affine (B : PARTITION) : FUNCTION = struct
     {ranking= successor_ranking f.ranking; env= f.env; vars= f.vars}
 
   let bwdAssign_ranking f (x, e) =
-    
     match x with
     | A_var x -> (
       match f with

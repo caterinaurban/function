@@ -9,7 +9,9 @@ suggested parameters:
 
 int main() {
   int x, y;
-  while (x <= 10) 
-    y += x++;
+  while (x <= 10) {
+    y = y +  x++;
+  }
   return 0;
+
 }

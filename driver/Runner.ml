@@ -10,6 +10,7 @@
 
 (* parsing *)
 open Iterators
+
 let analysis = ref "ctl"
 
 let robust = ref false
@@ -179,12 +180,11 @@ let parse_args () =
         Iterator.retrybwd := int_of_string x ;
         DecisionTree.retrybwd := int_of_string x ;
         doit r
-
-    | "-evolve"::x::r -> 
-        Iterator.evolve := true; 
-        DecisionTree.evolve := true;
-        Iterator.evolvethr := int_of_string x;
-        DecisionTree.evolvethr := int_of_string x;
+    | "-evolve" :: x :: r ->
+        Iterator.evolve := true ;
+        DecisionTree.evolve := true ;
+        Iterator.evolvethr := int_of_string x ;
+        DecisionTree.evolvethr := int_of_string x ;
         doit r
     | "-tracebwd" :: r ->
         (* backward analysis trace *)
@@ -197,8 +197,6 @@ let parse_args () =
         (* forward analysis trace *)
         Iterator.tracefwd := true ;
         doit r
-
-
     (* Termination arguments -------------------------------*)
     | "-termination" :: r ->
         (* guarantee analysis *)
@@ -285,23 +283,24 @@ let parse_args () =
 
 (* do all *)
 
-
-
 let result = ref false
 
 let run_analysis analysis_function program () =
   try
     let start = Sys.time () in
     let result = analysis_function program !main in
+    let ret = result in
     let stop = Sys.time () in
-    Format.fprintf !fmt "Analysis Result: " ;
+    if not !minimal then Format.fprintf !fmt "Analysis Result: " ;
     let result = if result then "TRUE" else "UNKNOWN" in
-    Format.fprintf !fmt "%s\n" result ;
+    if not !minimal then Format.fprintf !fmt "%s\n" result ;
     if !time then Format.fprintf !fmt "Time: %f s\n" (stop -. start) ;
-    Format.fprintf !fmt "\nDone.\n"
+    if not !minimal then Format.fprintf !fmt "\nDone.\n" ;
+    ret
   with Iterator.Timeout ->
     Format.fprintf !fmt "\nThe Analysis Timed Out!\n" ;
-    Format.fprintf !fmt "\nDone.\n"
+    Format.fprintf !fmt "\nDone.\n" ;
+    false
 
 let termination () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified") ;
@@ -401,7 +400,9 @@ let ctl () =
   let mainFunc = ControlFlowGraph.find_func !main cfg in
   let cfg = ControlFlowGraph.insert_entry_exit_label cfg mainFunc in
   (* add exit/entry labels to main function *)
-  let cfg = if !noinline then cfg else ControlFlowGraph.inline_function_calls cfg in
+  let cfg =
+    if !noinline then cfg else ControlFlowGraph.inline_function_calls cfg
+  in
   (* inline all non recursive functions unless -noinline is used *)
   let cfg = ControlFlowGraph.add_function_call_arcs cfg in
   (* insert function call edges for remaining function calls *)
@@ -418,9 +419,11 @@ let ctl () =
     | "boxes" ->
         if !ordinals then CTLBoxesOrdinals.analyze else CTLBoxes.analyze
     | "octagons" ->
-        if !ordinals then CTLOctagonsOrdinals.analyze else CTLOctagons.analyze
+        if !ordinals then CTLOctagonsOrdinals.analyze
+        else CTLOctagons.analyze
     | "polyhedra" ->
-        if !ordinals then CTLPolyhedraOrdinals.analyze else CTLPolyhedra.analyze
+        if !ordinals then CTLPolyhedraOrdinals.analyze
+        else CTLPolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in
   if not !minimal then (
@@ -434,22 +437,18 @@ let ctl () =
   let possibleLoopHeads = Loop_detection.possible_loop_heads cfg mainFunc in
   let domSets = Loop_detection.dominator cfg mainFunc in
   let result =
-    analyze ~precondition cfg !robust mainFunc possibleLoopHeads domSets ctlProperty
+    analyze ~precondition cfg !robust mainFunc possibleLoopHeads domSets
+      ctlProperty
   in
   ( if !time then
     let stoptime = Sys.time () in
     Format.fprintf !fmt "\nTime: %f" (stoptime -. starttime) ) ;
-  let _ = 
-      if not !minimal then 
-        if result then Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
-        else Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n" in
+  let _ =
+    if not !minimal then
+      if result then Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
+      else Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
+  in
   result
-
-
-
-
-
-
 
 (* DEPRECATED STUFF BELOW *)
 
@@ -475,7 +474,8 @@ let ctl_ast () =
   let analyze =
     match !domain with
     | "boxes" ->
-        if !ordinals then ASTCTLBoxesOrdinals.analyze else ASTCTLBoxes.analyze
+        if !ordinals then ASTCTLBoxesOrdinals.analyze
+        else ASTCTLBoxes.analyze
     | "octagons" ->
         if !ordinals then ASTCTLOctagonsOrdinals.analyze
         else ASTCTLOctagons.analyze
