@@ -1,4 +1,4 @@
-(*******************************************)
+(* *****************************************
 (*                                         *)
 (*        Termination Polyhedra Test       *)
 (*                                         *)
@@ -182,4 +182,4 @@ let polyhedra =
        ; ("./tests/example7.c", "x > 6") @@=> true
        ; ("./tests/issue8.c", "y >= z || x > 0 || -y >= 2") @@=> true
        ; ("./tests/sas2014a.c", "r <= 0") @@=> true
-       ; ("./tests/vmcai2004b.c", "x != 3") @@+=> true ]
+       ; ("./tests/vmcai2004b.c", "x != 3") @@+=> true ] *)

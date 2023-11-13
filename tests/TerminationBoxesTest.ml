@@ -1,4 +1,4 @@
-(*******************************************)
+(* *****************************************
 (*                                         *)
 (*          Termination Boxes Test         *)
 (*                                         *)
@@ -181,4 +181,4 @@ let boxes =
        ; (* CTL conditional termination tests *)
          ("./tests/example0.c", "x > 10") @@=> true
        ; ("./tests/example5.c", "x > 0") @@+=> true
-       ; ("./tests/example7.c", "x > 6") @@=> true ]
+       ; ("./tests/example7.c", "x > 6") @@=> true ] *)

@@ -301,6 +301,7 @@ let max_node_id cfg = List.fold_left
 
 (* Insert 'exit' label befor exit node and 'entry' label before entry node in 'func' *)
 let insert_entry_exit_label (cfg:cfg) (func:func) = 
+  
   let maxNodeId = List.fold_left 
       (fun currentMax node -> if node.node_id > currentMax then node.node_id else currentMax) 
       0 cfg.cfg_nodes in

@@ -5,8 +5,9 @@
   (until-clean)
   (into ..))
  (flags
-  (:standard -open Frontend -open Domains -open Cfgfrontend -open Utils))
- (libraries frontend cfgfrontend utils domains))
+  (:standard -open Driver ))
+ (libraries driver )
+ )
 
 (env
  (dev
