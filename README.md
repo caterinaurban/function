@@ -126,13 +126,11 @@ FuncTion can analyze the following properties:
 * Termination
 * Guarantee / Recurrence 
 * Computation-Tree-Logic (CTL) 
+## Tests
 
+To check run the (ppx) inline_tests, call the analyzer with the following call pattern:
 
-# Tests
-Inline tests with ppx_inline_test sare available in tests/TestCTL, tests/TerminationBoxesTest.ml, tests/TerminationBoxesTest.ml. To launch them you must call the following command: 
 	dune runtest
-
-
 ## Termination
 
 To check for termination, call the analyzer with the following call pattern:
