@@ -1,4 +1,4 @@
-(* 
+
 (*******************************************)
 (*                CTL Test                 *)
 (*                                         *)
@@ -64,7 +64,6 @@ let%test "sv_comp_NO_02_false-termination_true-no-overflow" = testit  ~prop:"AF{
 let%test "sv_comp_NO_02_false-termination_true-no-overflow2" = testit  ~prop:"EF{AG{j==0}}"   ~dom:POLYHEDRA ~analysis_type:"ctl" "ctl/sv_comp/NO_02_false-termination_true-no-overflow.c"
 let%test "sv_comp_NO_02_false-termination_true-no-overflow3" = testit  ~prop:"EF{EG{j==0}}"   ~dom:POLYHEDRA ~analysis_type:"ctl" "ctl/sv_comp/NO_02_false-termination_true-no-overflow.c" 
 
-   
 (*
     (*Samuel's comment :TODO performs realy bad, I suspect because of a problem in 'dual_widen' *)
     let%test "LTLaut_coolant_basis_4_unsafe_sfty" = testit  ~prop:"AG{OR{init != 3}{OR{temp <= limit}{AF{AG{chainBroken == 1}}}}}" ~precond:"init == 0 && temp < limit"  ~dom:POLYHEDRA ~analysis_type:"ctl" "ctl/ltl_automizer/coolant_basis_4_unsafe_sfty.c" = false 
@@ -485,4 +484,4 @@ let%test "sv_comp_NO_02_false-termination_true-no-overflow3" = testit  ~prop:"EF
         ; test_cfg "./tests/ctl/ltl_automizer/simple-2.c" "AF{x > 100}" true
         ; test_cfg ~precondition:"ap==0"
             "./tests/ctl/ltl_automizer/Bug_NoLoopAtEndForTerminatingPrograms_safe.c"
-            "NOT{AF{ap > 2}}" true ] *)  *)
+            "NOT{AF{ap > 2}}" true ] *)  

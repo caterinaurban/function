@@ -406,8 +406,6 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
     aux (B.top env vars) (D.bot env vars) 1
 
   let analyze (vars, stmts, funcs) main robust =
-    fwdInvMap := InvMap.empty ;
-    bwdInvMap := InvMap.empty ;
     let sv = vars in
     let rec aux xs env =
       match xs with
