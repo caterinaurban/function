@@ -121,7 +121,7 @@ let execute
       let nodeProcessed = processed.(node.node_id) in
       if !trace then begin
         Format.fprintf !fmt "### processing node %d (iter: %d): \n" node.node_id nodeProcessed; 
-        Pervasives.print_newline ();
+        Stdlib.print_newline ();
       end;
       let isLoopHead = NodeMap.find node loop_heads in
       (* run abstract transformer for node to get new abstract state *)
