@@ -10,6 +10,6 @@ suggested parameters:
 int main() {
   int x, y;
   while (x <= 10) 
-    y += ++x;
+    y = y + (++x);
   return 0;
 }

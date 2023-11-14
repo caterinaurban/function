@@ -46,8 +46,8 @@ let tracebwd = ref false
 let dot = ref false (* output trees in graphviz dot format *)
 
 let evolve = ref false
-let evolvethr = ref 0 
 
+let evolvethr = ref 0
 
 exception Abort
 

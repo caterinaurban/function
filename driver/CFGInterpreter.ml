@@ -71,20 +71,24 @@ let execute (type a)
     List.iter
       (fun arc ->
         let predecessor = arc.arc_src in
-        if not inWorklist.(predecessor.node_id) then (
-          (* if the predecessor is a loop head we do NOT add it to the worklist
-          if the worklist still contains nodes that are dominated by it *)
-          let unfinished = if NodeMap.find predecessor loop_heads then (
-            Queue.fold (fun status node ->
-            let domSet = NodeMap.find node domSets in
-            status || (NodeSet.mem predecessor domSet)
-            ) false worklist
-          ) else ( false ) in
+        if not inWorklist.(predecessor.node_id) then
+          (* if the predecessor is a loop head we do NOT add it to the
+             worklist if the worklist still contains nodes that are dominated
+             by it *)
+          let unfinished =
+            if NodeMap.find predecessor loop_heads then
+              Queue.fold
+                (fun status node ->
+                  let domSet = NodeMap.find node domSets in
+                  status || NodeSet.mem predecessor domSet )
+                false worklist
+            else false
+          in
           if not unfinished then (
-          Queue.add predecessor worklist ;
-          (* add predecessor to worklist *)
-          inWorklist.(predecessor.node_id) <-
-            true (* update inWorklist array*) ) ) )
+            Queue.add predecessor worklist ;
+            (* add predecessor to worklist *)
+            inWorklist.(predecessor.node_id) <-
+              true (* update inWorklist array*) ) )
       node.node_in
   in
   (* add all successors of 'node' to worklist if they are not already in it*)

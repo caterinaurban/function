@@ -1,0 +1,13 @@
+(library
+ (name driver)
+ (flags
+  (:standard -open Frontend -open Domains -open Cfgfrontend -open Utils))
+ (libraries frontend cfgfrontend utils domains)
+ (inline_tests)
+ (preprocess
+  (pps ppx_inline_test)))
+
+(env
+ (dev
+  (flags
+   (:standard -w -9-27-32-33-35 -warn-error -A))))

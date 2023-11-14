@@ -8,8 +8,8 @@ open Functions
 open Iterator
 open ForwardIterator
 
-(* type for CTL properties, instantiated with ControlFlowGraph.bool_expr for atomic
-   propositions *)
+(* type for CTL properties, instantiated with ControlFlowGraph.bool_expr for
+   atomic propositions *)
 type ctl_property = ControlFlowGraph.bool_expr CTLProperty.generic_property
 
 let rec print_ctl_property ch (property : ctl_property) =
@@ -133,7 +133,8 @@ module CTLIterator (D : RANKING_FUNCTION) = struct
           ( AbstractSyntax.A_var (Conversion.of_var var)
           , Conversion.of_int_expr expr )
     | CFG_elm_assign (var, idx, expr) ->
-        raise (Invalid_argument "array element assignment is not yet supported")
+        raise
+          (Invalid_argument "array element assignment is not yet supported")
     | CFG_arr_assign (var, aexpr) ->
         raise (Invalid_argument "array assignment is not yet supported")
     | CFG_guard bexpr -> filter out_state @@ Conversion.of_bool_expr bexpr
@@ -302,9 +303,9 @@ module CTLIterator (D : RANKING_FUNCTION) = struct
     in
     abstract_transformer
 
-  let compute (cfg : cfg) (main : ControlFlowGraph.func) (loop_heads : bool NodeMap.t)
-      (domSets : NodeSet.t NodeMap.t)
-      robust (property : ctl_property) : inv =
+  let compute (cfg : cfg) (main : ControlFlowGraph.func)
+      (loop_heads : bool NodeMap.t) (domSets : NodeSet.t NodeMap.t) robust
+      (property : ctl_property) : inv =
     let backwardAnalysis = CFGInterpreter.backward_analysis in
     let env, vars = Conversion.env_vars_of_cfg cfg in
     let print_inv property inv =
@@ -413,8 +414,7 @@ module CTLIterator (D : RANKING_FUNCTION) = struct
 
   let analyze ?(precondition = CFG_bool_const true) (cfg : cfg) robust
       (main : ControlFlowGraph.func) (loop_heads : bool NodeMap.t)
-      (domSets : NodeSet.t NodeMap.t)
-      (property : ctl_property) =
+      (domSets : NodeSet.t NodeMap.t) (property : ctl_property) =
     let inv = compute cfg main loop_heads domSets robust property in
     let programInvariant = NodeMap.find main.func_entry inv in
     let precondition = Conversion.of_bool_expr precondition in

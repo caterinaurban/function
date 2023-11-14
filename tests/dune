@@ -1,2 +1,8 @@
-(test (name test)  (flags
-  (:standard -open Frontend -open Domains -open Cfgfrontend -open Utils)) (libraries domains frontend cfgfrontend oUnit))
+(library
+ (name tests)
+ (libraries driver cfgfrontend domains frontend)
+ (flags
+  (:standard -open Driver -open Cfgfrontend -open Domains -open Frontend))
+ (inline_tests)
+ (preprocess
+  (pps ppx_inline_test)))

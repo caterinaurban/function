@@ -1,44 +1,42 @@
-open OUnit2
+open Runner
+open Driver
 
-let parseFile filename =
-  let f = open_in filename in
-  let lex = Lexing.from_channel f in
-  try
-    lex.Lexing.lex_curr_p <-
-      {lex.Lexing.lex_curr_p with Lexing.pos_fname= filename} ;
-    let r = Parser.file Lexer.start lex in
-    close_in f ; r
-  with
-  | Parser.Error ->
-      Printf.eprintf "Parse Error (Invalid Syntax) near %s\n"
-        (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p) ;
-      failwith "Parse Error"
-  | Failure _ ->
-      Printf.eprintf "Parse Error (Invalid Token) near %s\n"
-        (IntermediateSyntax.position_tostring lex.Lexing.lex_start_p) ;
-      failwith "Parse Error"
+type domain = BOXES | OCTAGON | POLYHEDRA
 
-let make_analyser common_setup ?(setup = []) filename expected =
-  filename
-  >:: fun test_ctxt ->
-  assert_command ~exit_code:(Unix.WEXITED 127)
-    ~foutput:(fun out ->
-      let terminate = ref false in
-      let ok_string = "\nAnalysis Result: TRUE" in
-      let index = ref 0 in
-      (* Format.fprintf Format.std_formatter "%s " filename; *)
-      (* List.iter(fun s -> Format.fprintf Format.std_formatter "%s " s)
-         common_setup; *)
-      Seq.iter
-        (fun c ->
-          (* Format.fprintf Format.std_formatter "%c" c; *)
-          if !index = String.length ok_string then terminate := true
-          else if c = ok_string.[!index] then incr index
-          else index := if c = '\n' then 1 else 0 )
-        out ;
-      assert_equal ~printer:string_of_bool ~msg:filename expected !terminate
-      )
-     ~ctxt:test_ctxt
-    "timeout"
-    (["120s"; "./function"] @ common_setup @ setup @ [filename])
-  
+let string_of_domain d =
+  match d with
+  | BOXES -> "boxes"
+  | POLYHEDRA -> "polyhedra"
+  | OCTAGON -> "octagons"
+
+let testit ?(timeout = 2.) ?(joinbwd = 2) ?(precond = "true")
+    ?(ctl_eq = false) ?(dom = BOXES) ?(ord = (false, 0)) ?(rob = false)
+    ?(prop = "") ?(retrybwd = 0) ~analysis_type file =
+  ItoA.zeroId () ;
+  ASTtoCFG.node_counter := 0 ;
+  domain := string_of_domain dom ;
+  precondition := precond ;
+  analysis := analysis_type ;
+  filename := file ;
+  minimal := true ;
+  ordinals := fst ord ;
+  Ordinals.max := snd ord ;
+  robust := rob ;
+  Iterator.minimal := true ;
+  Iterator.retrybwd := retrybwd ;
+  Iterator.refine := true ;
+  Iterator.joinbwd := joinbwd ;
+  Iterator.timeout := timeout ;
+  Iterator.ctl_existential_equivalence := ctl_eq ;
+  match !analysis with
+  | "ctl" ->
+      property := prop ;
+      ctl ()
+  | "termination" -> termination ()
+  | "guarantee" ->
+      property := "AF{" ^ prop ^ "}" ;
+      ctl ()
+  | "recurrence" ->
+      property := "AG{AF{" ^ prop ^ "}}" ;
+      ctl ()
+  | _ -> raise (Invalid_argument "Unknown Analysis")
