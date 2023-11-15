@@ -20,9 +20,9 @@ let parse_file (filename:string) : prog =
   let lex = from_channel f in
   try
     lex.lex_curr_p <- { lex.lex_curr_p with pos_fname = filename; };
-    ProgramParser.file Program_lexer.token lex
+    Program_parser.file Program_lexer.token lex
   with
-  | ProgramParser.Error ->
+  | Program_parser.Error ->
       Printf.eprintf "Parse error (invalid syntax) near %s\n" 
         (string_of_position lex.lex_start_p);
       failwith "Parse error"
@@ -36,9 +36,9 @@ let parse_file (filename:string) : prog =
 
 let parse_bool_expression (bexp:string) =
   let lex = from_string bexp in
-  try fst @@ ProgramParser.expression Program_lexer.token lex
+  try fst @@ Program_parser.expression Program_lexer.token lex
   with
-  | ProgramParser.Error ->
+  | Program_parser.Error ->
       Printf.eprintf "Parse error (invalid syntax) near %s\n" 
         (string_of_position lex.lex_start_p);
       failwith "Parse error"

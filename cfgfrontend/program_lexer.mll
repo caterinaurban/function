@@ -13,7 +13,7 @@
 {
 open Lexing
 open Abstract_syntax_tree
-open ProgramParser
+open Program_parser
 
 (* keyword table *)
 let kwd_table = Hashtbl.create 10
@@ -28,9 +28,9 @@ let _ =
      "true",      TOK_TRUE;
      "false",     TOK_FALSE;
      
-(*     (* expression operators *) *)
-(*     "rand",      TOK_RAND; *)
-(*     "brand",     TOK_BRAND; *)
+     (* expression operators *)
+     "rand",      TOK_RAND;
+     "brand",     TOK_BRAND;
 
      (* control flow *)
      "for",       TOK_FOR;

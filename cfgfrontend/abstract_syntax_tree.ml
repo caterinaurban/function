@@ -76,12 +76,12 @@ type bool_binary_op =
 
 (* expressions *)
 
-type expr = 
+type int_expr = 
   (* unary operation *)
-  | AST_int_unary of int_unary_op * (expr ext)
+  | AST_int_unary of int_unary_op * (int_expr ext)
 
   (* binary operation *)
-  | AST_int_binary of int_binary_op * (expr ext) * (expr ext)
+  | AST_int_binary of int_binary_op * (int_expr ext) * (int_expr ext)
 
   (* variable use *)
   | AST_int_identifier of id ext
@@ -89,8 +89,8 @@ type expr =
   (* constants (integers are still in their string representation) *)
   | AST_int_const of string ext
 
-  (* random value *)
-  | AST_random
+  (* random integer *)
+  | AST_int_random 
 
   (* non-deterministic choice between two integers *)
   | AST_int_interval of (string ext) (* lower bound *) * 
@@ -98,21 +98,22 @@ type expr =
 
   (* calls a function with arguments and return value *)
   | AST_expr_call of (id ext) (* function name *) * 
-                     (expr ext list) (* arguments *)
+                     (int_expr ext list) (* arguments *)
 
 
-
+type bool_expr =
   (* unary operation *)
-  | AST_bool_unary of bool_unary_op * (expr ext)
+  | AST_bool_unary of bool_unary_op * (bool_expr ext)
 
   (* binary operation *)
-  | AST_bool_binary of bool_binary_op * (expr ext) * (expr ext)
-  | AST_compare of compare_op * (expr ext) * (expr ext)
+  | AST_bool_binary of bool_binary_op * (bool_expr ext) * (bool_expr ext)
+  | AST_compare of compare_op * (int_expr ext) * (int_expr ext)
 
   (* constants *)
   | AST_bool_const of bool
 
-
+  (* non-deterministic choice *)
+  | AST_bool_rand
       
 
 (* statements *)
@@ -122,41 +123,41 @@ type stat =
   | AST_block of stat ext list
 
   (* assignment  lvalue = expr *)
-  | AST_assign of (id ext) * (expr ext)
+  | AST_assign of (id ext) * (int_expr ext)
 
   (* assignment lvalue op= expr *)
-  | AST_assign_op of (id ext) * int_binary_op * (expr ext)
+  | AST_assign_op of (id ext) * int_binary_op * (int_expr ext)
 
   (* increment lvalue += cst *)
   | AST_increment of (id ext) * int
 
   (* if-then-else; the else branch is optional *)
-  | AST_if of (expr ext) (* condition *) * 
+  | AST_if of (bool_expr ext) (* condition *) * 
               (stat ext) (* then branch *) * 
               (stat ext option) (* optional else *)
 
   (* while loop *)
-  | AST_while of (expr ext) (* condition *) * 
+  | AST_while of (bool_expr ext) (* condition *) * 
                  (stat ext) (* body *)
 
   (* for loop *)
   | AST_for of (stat ext list) (* init *) *
-               (expr ext option) (* condition *) *
+               (bool_expr ext option) (* condition *) *
                (stat ext list) (* increment *) *
                (stat ext) (* body *)
         
   (* assertion: fail if the boolean expression does not hold *)
-  | AST_assert of expr ext
+  | AST_assert of bool_expr ext
 
   (* declaration of a local variable, live until the end of the current block *)
   | AST_local_decl of var_decl ext
 
   (* calls a function with arguments (no return value) *)
   | AST_stat_call of (id ext) (* function name *) * 
-                     (expr ext list) (* arguments *)
+                     (int_expr ext list) (* arguments *)
 
   (* exits form the function, with optional return value *)
-  | AST_return of expr ext option
+  | AST_return of int_expr ext option
 
   (* exits from the innermost while loop *)
   | AST_break of unit ext
@@ -176,7 +177,7 @@ and var_decl = (typ ext) (* type *) * (var_init list) (* variable list *)
 
 (* each declared variable has an optional initializer *)
 and var_init = (id ext) (* declared variable *) * 
-               (expr ext option)  (* initializer *)
+               (int_expr ext option)  (* initializer *)
 
 
 (* function declaration 

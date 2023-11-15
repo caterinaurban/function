@@ -8,7 +8,7 @@
  (modules program_lexer))
 
 (menhir
- (modules ProgramParser))
+ (modules program_parser))
 
 ;;(flags --explain))
 
