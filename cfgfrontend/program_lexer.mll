@@ -27,10 +27,6 @@ let _ =
      (* constants *)
      "true",      TOK_TRUE;
      "false",     TOK_FALSE;
-     
-     (* expression operators *)
-     "rand",      TOK_RAND;
-     "brand",     TOK_BRAND;
 
      (* control flow *)
      "for",       TOK_FOR;
