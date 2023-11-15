@@ -1,6 +1,5 @@
 // -domain polyhedra
 // -ctl "AND{EF{x == 2}}{EF{x==3}}"
-// TODO: fix, now it only works with -ast for some reason!
 
 int main() {
   int x;
