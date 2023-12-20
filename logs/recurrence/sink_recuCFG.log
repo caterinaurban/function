@@ -1,0 +1,212 @@
+
+CFG:
+List of variables:
+  $1{x}:int at tests/sink.c:11.6-7
+
+List of functions:
+  1: main() -> void at tests/sink.c:10.0-21.1, entry: 12, exit: 11, calls:
+
+List of nodes:
+  12: at :0:-1, in: out:1 
+  11: at :0:-1, in: 2 out:
+  1: at tests/sink.c:10:0, in: 12 out:3 
+  2: at tests/sink.c:21:1, in: 3 out:11 
+  3: at tests/sink.c:11:8, in: 5 1 out:2 4 
+  4: at tests/sink.c:12:15, in: 3 out:5 
+  5: at tests/sink.c:13:10, in: 7 8 4 out:3 6 
+  6: at tests/sink.c:14:19, in: 5 out:7 8 
+  7: at tests/sink.c:18:8, in: 6 out:5 
+  8: at tests/sink.c:16:8, in: 6 out:5 
+  9: at tests/sink.c:10:0, in: out:10 
+  10: at tests/sink.c:21:1, in: 9 out:
+
+List of arcs:
+  12 -> 1: label entry
+  2 -> 11: label exit
+  1 -> 3: skip
+  3 -> 4: true ?
+  3 -> 2: ! (true) ?
+  4 -> 5: $1{x} = ?
+  5 -> 6: $1{x} != 0 ?
+  5 -> 3: ! ($1{x} != 0) ?
+  6 -> 8: $1{x} > 0 ?
+  6 -> 7: ! ($1{x} > 0) ?
+  8 -> 5: $1{x} = $1{x} - 1
+  7 -> 5: $1{x} = $1{x} + 1
+  9 -> 10: skip
+
+
+Property: $1{x} == 0
+
+[1:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[2:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[3:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[4:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[5:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[6:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[7:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[8:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[9:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[10:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[11:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[12:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+Property: AF{$1{x} == 0}
+
+[1:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[2:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[3:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[4:]:
+-$1{x} >= 1 ? top
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? top
+
+[5:]:
+-$1{x} >= 0 ? -3$1{x}+0
+$1{x} >= 1 ? 3$1{x}+0
+
+[6:]:
+-$1{x} >= 1 ? -3$1{x}-1
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? 3$1{x}-1
+
+[7:]:
+-$1{x} >= 1 ? -3$1{x}-2
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? 3$1{x}+4
+
+[8:]:
+-$1{x} >= 1 ? -3$1{x}+4
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? 3$1{x}-2
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? bottom
+
+[11:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[12:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+Property: AG{AF{$1{x} == 0}}
+
+[1:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[4:]:
+-$1{x} >= 1 ? top
+$1{x} == 0 ? bottom
+$1{x} >= 1 ? top
+
+[5:]:
+-$1{x} >= 0 ? -3$1{x}+0
+$1{x} >= 1 ? 3$1{x}+0
+
+[6:]:
+-$1{x} >= 1 ? -3$1{x}-1
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? 3$1{x}-1
+
+[7:]:
+-$1{x} >= 1 ? -3$1{x}-2
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? 3$1{x}+4
+
+[8:]:
+-$1{x} >= 1 ? -3$1{x}+4
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? 3$1{x}-2
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? bottom
+
+[11:]:
+top ? bottom
+
+[12:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+
+Analysis Result: UNKNOWN
