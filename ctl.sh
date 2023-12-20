@@ -84,21 +84,22 @@
 
 ##########
 
-#### CTL-CFG with default setting:
-#### -domain polyhedra
-#### -joinbwd 2
+#### CTL-CFG
 
 ./function tests/ctl/and_ef_test.c -domain polyhedra -ctl "AND{EF{x == 2}}{EF{x==3}}" > logs/ctl/and_ef_testCFG.log
+# ./function tests/ctl/and_test.c -domain polyhedra -ctl "AND{AG{AF{n==1}}}{AF{n==0}}" -precondition "n > 0" > logs/ctl/and_test_1CFG.log		# TODO: ?
+# ./function tests/ctl/and_test.c -domain polyhedra -ctl "EG{AF{n==1}}" -precondition "n > 0" > logs/ctl/and_test_2CFG.log					# TODO: ?
+# ./function tests/ctl/and_test.c -domain polyhedra -ctl "AG{EF{n==1}}" -precondition "n > 0" > logs/ctl/and_test_3CFG.log					# TODO: ?
+# ./function tests/ctl/and_test.c -domain polyhedra -ctl "EG{EF{n==1}}" -precondition "n > 0" > logs/ctl/and_test_4CFG.log					# TODO: ?
 
-#### CTL-CFG with default setting:
-#### -domain polyhedra
-#### -joinbwd 2
+#### CTL-AST
 
 ./function tests/ctl/and_ef_test.c -domain polyhedra -ctl "AND{EF{x == 2}}{EF{x==3}}" -ast > logs/ctl/and_ef_testAST.log
+./function tests/ctl/and_test.c -domain polyhedra -ctl "AND{AG{AF{n==1}}}{AF{n==0}}" -ast -precondition "n > 0" > logs/ctl/and_test_1AST.log
+./function tests/ctl/and_test.c -domain polyhedra -ctl "EG{AF{n==1}}" -ast -precondition "n > 0" > logs/ctl/and_test_2AST.log
+./function tests/ctl/and_test.c -domain polyhedra -ctl "AG{EF{n==1}}" -ast -precondition "n > 0" > logs/ctl/and_test_3AST.log
+./function tests/ctl/and_test.c -domain polyhedra -ctl "EG{EF{n==1}}" -ast -precondition "n > 0" > logs/ctl/and_test_4AST.log
 
-
-
-#-rw-r--r--  1 Caterina  staff  142 Dec  1 15:47 and_ef_test.c
 #-rw-r--r--  1 Caterina  staff  226 Dec  1 15:47 and_test.c
 #-rw-r--r--@ 1 Caterina  staff  184 Apr  3  2023 and_test.ltl.c
 #-rw-r--r--@ 1 Caterina  staff  188 Apr  3  2023 existential_test1.c
@@ -120,11 +121,6 @@
 
 ##########
 
-#### CTL (CFG) with default setting:
-#### -domain polyhedra
-#### -joinbwd 2
-#
-#./function tests/ctl/and_ef_test.c -domain polyhedra -ctl "AND{EF{x == 2}}{EF{x==3}}" > logs/ctl/and_ef_test.log														# TRUE
 #./function tests/ctl/and_test.c -domain polyhedra -ctl "AND{AG{AF{n==1}}}{AF{n==0}}" -precondition "n > 0" > logs/ctl/and_test.log										# TRUE
 #./function tests/ctl/existential_test1.c -domain polyhedra -ctl "EF{r==1}" -precondition "2*x <= y+3" > logs/ctl/existential_test1.log									#
 #./function tests/ctl/existential_test2.c -domain polyhedra -ctl "EF{r==1}" > logs/ctl/existential_test2.log
