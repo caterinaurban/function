@@ -116,6 +116,9 @@
 # ./function tests/ctl/until_existential.c -domain polyhedra -ctl "EF{AG{x == y}}" -precondition "x > y" > logs/ctl/until_existential_2CFG.log		# TODO: ?
 ./function tests/ctl/until_test.c -domain polyhedra -ctl "AU{x >= y}{x==y}" -precondition "x == y + 20" > logs/ctl/until_testCFG.log
 
+./function tests/ctl/koskinen/acqrel.c -domain polyhedra -ctl "AG{OR{A!=1}{AF{R==1}}}" -precondition "A!=1" -ordinals 1 > logs/ctl/acqrelCFG.log
+./function tests/ctl/koskinen/acqrel_mod.c -domain polyhedra -ctl "AG{OR{a!=1}{AF{r==1}}}" -precondition "a!=1" -ordinals 1 > logs/ctl/acqrel_modCFG.log
+
 #### CTL-AST
 
 ./function tests/ctl/and_ef_test.c -domain polyhedra -ctl "AND{EF{x == 2}}{EF{x==3}}" -ast > logs/ctl/and_ef_testAST.log
@@ -148,9 +151,18 @@
 ./function tests/ctl/until_existential.c -domain polyhedra -ctl "EF{AG{x == y}}" -ast -precondition "x > y" > logs/ctl/until_existential_2AST.log
 ./function tests/ctl/until_test.c -domain polyhedra -ctl "AU{x >= y}{x==y}" -ast -precondition "x == y + 20" > logs/ctl/until_testAST.log
 
+./function tests/ctl/koskinen/acqrel.c -domain polyhedra -ctl "AG{OR{A!=1}{AF{R==1}}}" -ast -precondition "A!=1" -ordinals 1 > logs/ctl/acqrelAST.log
+./function tests/ctl/koskinen/acqrel_mod.c -domain polyhedra -ctl "AG{OR{a!=1}{AF{r==1}}}" -ast -precondition "a!=1" -ordinals 1 > logs/ctl/acqrel_modAST.log
+
 ##########
 
 ## drwxr-xr-x@ 17 Caterina  staff     544 Apr  3  2023 koskinen
+
+# -rw-r--r--  1 Caterina  staff  784 Dec  1 15:47 fig8-2007.c
+# -rw-r--r--  1 Caterina  staff  881 Dec  1 15:47 fig8-2007_mod.c
+# -rw-r--r--  1 Caterina  staff  594 Dec  1 15:47 toylin1.c
+# -rw-r--r--@ 1 Caterina  staff  722 Apr  3  2023 win4.c
+
 ## drwxr-xr-x@ 32 Caterina  staff    1024 Apr  3  2023 ltl_automizer
 ## drwxr-xr-x@  6 Caterina  staff     192 Apr  3  2023 report
 ## drwxr-xr-x@ 19 Caterina  staff     608 Apr  3  2023 sv_comp
