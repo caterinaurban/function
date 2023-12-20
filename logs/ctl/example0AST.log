@@ -1,0 +1,125 @@
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] while [ 3:] ( $2{x} <= 10 ) do
+[ 4:]   if ( $2{x} <= 9 ) then
+[ 5:]     $2{x} := $2{x} + 2
+[ 6:]
+        else
+[ 7:]
+        endif
+[ 8:]
+      od
+[ 9:] $1{$1} := 0
+[10:] return
+[11:]
+
+Property: exit: true
+
+[ -2:]:
+top ? 0.
+
+[ -1:]:
+top ? 0.
+
+[ 2:]:
+top ? bottom
+
+[ 3:]:
+top ? bottom
+
+[ 4:]:
+top ? bottom
+
+[ 5:]:
+top ? bottom
+
+[ 6:]:
+top ? bottom
+
+[ 7:]:
+top ? bottom
+
+[ 8:]:
+top ? bottom
+
+[ 9:]:
+top ? bottom
+
+[10:]:
+top ? bottom
+
+[11:]:
+top ? bottom
+
+Property: AF{exit: true}
+
+[ -2:]:
+top ? 0.
+
+[ -1:]:
+top ? 0.
+
+[ 2:]:
+-$2{x} >= -7 ? top
+$2{x} == 8 ? bottom
+$2{x} == 9 ? 5
+$2{x} == 10 ? bottom
+$2{x} >= 11 ? 2
+
+[ 3:]:
+-$2{x} >= -7 ? top
+$2{x} == 8 ? bottom
+$2{x} == 9 ? 5
+$2{x} == 10 ? bottom
+$2{x} >= 11 ? 2
+
+[ 4:]:
+-$2{x} >= -5 ? top
+$2{x} == 6 ? bottom
+$2{x} == 7 ? 7
+$2{x} == 8 ? bottom
+$2{x} == 9 ? 4
+$2{x} == 10 ? bottom
+$2{x} >= 11 ? 3
+
+[ 5:]:
+-$2{x} >= -5 ? top
+$2{x} == 6 ? bottom
+$2{x} == 7 ? 6
+$2{x} == 8 ? bottom
+$2{x} >= 9 ? 3
+
+[ 6:]:
+-$2{x} >= -7 ? top
+$2{x} == 8 ? bottom
+$2{x} == 9 ? 5
+$2{x} == 10 ? bottom
+$2{x} >= 11 ? 2
+
+[ 7:]:
+-$2{x} >= -7 ? top
+$2{x} == 8 ? bottom
+$2{x} == 9 ? 5
+$2{x} == 10 ? bottom
+$2{x} >= 11 ? 2
+
+[ 8:]:
+-$2{x} >= -7 ? top
+$2{x} == 8 ? bottom
+$2{x} == 9 ? 5
+$2{x} == 10 ? bottom
+$2{x} >= 11 ? 2
+
+[ 9:]:
+top ? 1
+
+[10:]:
+top ? bottom
+
+[11:]:
+top ? bottom
+
+
+Analysis Result: TRUE
