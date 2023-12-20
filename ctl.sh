@@ -99,6 +99,10 @@
 ./function tests/ctl/existential_test4.c -domain polyhedra -ctl "EF{r==1}" > logs/ctl/existential_test4CFG.log
 # ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EF{n==1}" -precondition "n > 0" > logs/ctl/fin_ex_1CFG.log							# TODO: ?
 # ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EG{EF{n==1}}" -precondition "n > 0" > logs/ctl/fin_ex_2CFG.log						# TODO: ?
+# ./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "AG{AF{x <= -10}}" -joinbwd 6 > logs/ctl/global_test_simple_1CFG.log		# TODO: ?
+# ./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "EG{AF{x <= -10}}" -joinbwd 6 > logs/ctl/global_test_simple_2CFG.log		# TODO: ?
+# ./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "AG{EF{x <= -10}}" -joinbwd 6 > logs/ctl/global_test_simple_3CFG.log		# TODO: ?
+# ./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "EG{EF{x <= -10}}" -joinbwd 6 > logs/ctl/global_test_simple_4CFG.log		# TODO: ?
 
 #### CTL-AST
 
@@ -115,6 +119,10 @@
 ./function tests/ctl/existential_test4.c -domain polyhedra -ctl "EF{r==1}" -ast > logs/ctl/existential_test4CFG.log
 ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EF{n==1}" -ast -precondition "n > 0" > logs/ctl/fin_ex_1AST.log
 ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EG{EF{n==1}}" -ast -precondition "n > 0" > logs/ctl/fin_ex_2AST.log
+./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "AG{AF{x <= -10}}" -ast -joinbwd 4 > logs/ctl/global_test_simple_1AST.log
+./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "EG{AF{x <= -10}}" -ast -joinbwd 4 > logs/ctl/global_test_simple_2AST.log
+./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "AG{EF{x <= -10}}" -ast -joinbwd 4 > logs/ctl/global_test_simple_3AST.log
+./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "EG{EF{x <= -10}}" -ast -joinbwd 4 > logs/ctl/global_test_simple_4AST.log
 
 #-rw-r--r--  1 Caterina  staff  229 Dec  1 15:47 global_test_simple.c
 #-rw-r--r--  1 Caterina  staff  476 Dec  1 15:47 multi_branch_choice.c
@@ -126,8 +134,6 @@
 
 ##########
 
-## ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EF{n==1}" -precondition "n > 0" > logs/ctl/fin_ex.log
-## ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EG{EF{n==1}}" -precondition "n > 0" > logs/ctl/fin_ex.log
 #./function tests/ctl/global_test_simple.c -domain polyhedra -joinbwd 4 -ctl "AG{AF{x <= -10}}" > logs/ctl/global_test_simple.log											#
 #./function tests/ctl/global_test_simple.c -domain polyhedra -joinbwd 6 -ctl "AG{AF{x <= -10}}" > logs/ctl/global_test_simple_join6.log									# TRUE
 #./function tests/ctl/global_test_simple.c -domain polyhedra -joinbwd 10 -ctl "AG{AF{x <= -10}}" > logs/ctl/global_test_simple_join10.log								# TRUE
