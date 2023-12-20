@@ -91,6 +91,11 @@
 # ./function tests/ctl/and_test.c -domain polyhedra -ctl "EG{AF{n==1}}" -precondition "n > 0" > logs/ctl/and_test_2CFG.log					# TODO: ?
 # ./function tests/ctl/and_test.c -domain polyhedra -ctl "AG{EF{n==1}}" -precondition "n > 0" > logs/ctl/and_test_3CFG.log					# TODO: ?
 # ./function tests/ctl/and_test.c -domain polyhedra -ctl "EG{EF{n==1}}" -precondition "n > 0" > logs/ctl/and_test_4CFG.log					# TODO: ?
+# ./function tests/ctl/existential_test1.c -domain polyhedra -ctl "EF{r==1}" -precondition "2*x <= y+3" > logs/ctl/existential_test1CFG.log	# TODO: ?
+# ./function tests/ctl/existential_test2.c -domain polyhedra -ctl "EF{r==1}" > logs/ctl/existential_test2CFG.log							# UNKNOWN
+# ./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" > logs/ctl/existential_test3_1CFG.log		# TODO: ?
+./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" -ctl_existential_equivalence > logs/ctl/existential_test3_1CFG_exeq.log
+./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x == 2" > logs/ctl/existential_test3_2CFG.log
 
 #### CTL-AST
 
@@ -99,12 +104,13 @@
 ./function tests/ctl/and_test.c -domain polyhedra -ctl "EG{AF{n==1}}" -ast -precondition "n > 0" > logs/ctl/and_test_2AST.log
 ./function tests/ctl/and_test.c -domain polyhedra -ctl "AG{EF{n==1}}" -ast -precondition "n > 0" > logs/ctl/and_test_3AST.log
 ./function tests/ctl/and_test.c -domain polyhedra -ctl "EG{EF{n==1}}" -ast -precondition "n > 0" > logs/ctl/and_test_4AST.log
+./function tests/ctl/existential_test1.c -domain polyhedra -ctl "EF{r==1}" -ast -precondition "2*x <= y+3" > logs/ctl/existential_test1AST.log
+#./function tests/ctl/existential_test2.c -domain polyhedra -ctl "EF{r==1}" > logs/ctl/existential_test2AST.log								# UNKNOWN
+# ./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" > logs/ctl/existential_test3_1AST.log		# TODO: ?
+./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" -ctl_existential_equivalence > logs/ctl/existential_test3_1AST_exeq.log
+./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x == 2" -joinbwd 3 > logs/ctl/existential_test3_2AST_join3.log
 
-#-rw-r--r--  1 Caterina  staff  226 Dec  1 15:47 and_test.c
-#-rw-r--r--@ 1 Caterina  staff  184 Apr  3  2023 and_test.ltl.c
-#-rw-r--r--@ 1 Caterina  staff  188 Apr  3  2023 existential_test1.c
-#-rw-r--r--@ 1 Caterina  staff  360 Apr  3  2023 existential_test2.c
-#-rw-r--r--@ 1 Caterina  staff  386 Apr  3  2023 existential_test3.c
+
 #-rw-r--r--@ 1 Caterina  staff  168 Apr  3  2023 existential_test4.c
 #-rw-r--r--  1 Caterina  staff  327 Dec  1 15:48 fin_ex.c
 #-rw-r--r--  1 Caterina  staff  229 Dec  1 15:47 global_test_simple.c
@@ -121,11 +127,6 @@
 
 ##########
 
-#./function tests/ctl/and_test.c -domain polyhedra -ctl "AND{AG{AF{n==1}}}{AF{n==0}}" -precondition "n > 0" > logs/ctl/and_test.log										# TRUE
-#./function tests/ctl/existential_test1.c -domain polyhedra -ctl "EF{r==1}" -precondition "2*x <= y+3" > logs/ctl/existential_test1.log									#
-#./function tests/ctl/existential_test2.c -domain polyhedra -ctl "EF{r==1}" > logs/ctl/existential_test2.log
-#./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" > logs/ctl/existential_test3.log
-#./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" -ctl_existential_equivalence > logs/ctl/existential_test3_exeq.log		# TRUE
 #./function tests/ctl/existential_test4.c -domain polyhedra -ctl "EF{r==1}" > logs/ctl/existential_test4.log																# TRUE
 ## ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EF{n==1}" -precondition "n > 0" > logs/ctl/fin_ex.log
 ## ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EG{EF{n==1}}" -precondition "n > 0" > logs/ctl/fin_ex.log
