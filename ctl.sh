@@ -66,6 +66,22 @@
 #./function tests/widening3.c -domain polyhedra -ctl "AF{exit: true}" -ast -precondition "y > 0" > logs/ctl/widening3_2AST.log               # TODO: ?
 #./function tests/zune.c -domain polyhedra -ctl "AF{exit: true}" -ast -precondition "days <= 365" > logs/ctl/zuneAST.log				              # TODO: call to unknown functions should be approximated with non-determinism
 
+# conditional guarantee (CFG)
+
+#./function tests/simple.c -ctl "AF{x == 3}" -domain polyhedra -precondition "x <= 3" > logs/ctl/simple_1CFG.log                      # TODO: ?
+
+# conditional guarantee (AST)
+
+./function tests/simple.c -ctl "AF{x == 3}" -ast -domain polyhedra -precondition "x <= 3" > logs/ctl/simple_1AST.log
+
+# conditional recurrence (CFG)
+
+# ./function tests/simple.c -ctl "AG{AF{x == 3}}" -domain polyhedra -joinbwd 3 -precondition "x < 0" > logs/recurrence/simple_2CFG.log      # TODO: ?
+
+# conditional recurrence (AST)
+
+ ./function tests/simple.c -ctl "AG{AF{x == 3}}" -ast -domain polyhedra -joinbwd 3 -precondition "x < 0" > logs/ctl/simple_2CFG.log
+
 ##########
 #
 #### CTL (CFG) with default setting:
