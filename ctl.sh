@@ -103,6 +103,9 @@
 # ./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "EG{AF{x <= -10}}" -joinbwd 6 > logs/ctl/global_test_simple_2CFG.log		# TODO: ?
 # ./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "AG{EF{x <= -10}}" -joinbwd 6 > logs/ctl/global_test_simple_3CFG.log		# TODO: ?
 # ./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "EG{EF{x <= -10}}" -joinbwd 6 > logs/ctl/global_test_simple_4CFG.log		# TODO: ?
+./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "AF{OR{x==4}{x==-4}}" > logs/ctl/multi_branch_choice_1CFG.log
+./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "EF{x==-4}" > logs/ctl/multi_branch_choice_2CFG.log
+./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "AND{EF{x==4}}{EF{x==-4}}" > logs/ctl/multi_branch_choice_3CFG.log
 
 #### CTL-AST
 
@@ -123,9 +126,10 @@
 ./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "EG{AF{x <= -10}}" -ast -joinbwd 4 > logs/ctl/global_test_simple_2AST.log
 ./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "AG{EF{x <= -10}}" -ast -joinbwd 4 > logs/ctl/global_test_simple_3AST.log
 ./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "EG{EF{x <= -10}}" -ast -joinbwd 4 > logs/ctl/global_test_simple_4AST.log
+./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "AF{OR{x==4}{x==-4}}" -ast > logs/ctl/multi_branch_choice_1AST.log
+./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "EF{x==-4}" -ast > logs/ctl/multi_branch_choice_2AST.log
+./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "AND{EF{x==4}}{EF{x==-4}}" -ast > logs/ctl/multi_branch_choice_3AST.log
 
-#-rw-r--r--  1 Caterina  staff  229 Dec  1 15:47 global_test_simple.c
-#-rw-r--r--  1 Caterina  staff  476 Dec  1 15:47 multi_branch_choice.c
 #-rw-r--r--@ 1 Caterina  staff   89 Apr  3  2023 next.c
 #-rw-r--r--@ 1 Caterina  staff  155 Apr  3  2023 or_test.c
 #-rwxr-xr-x  1 Caterina  staff  264 Dec  1 15:47 potential_termination_1.c
@@ -134,11 +138,6 @@
 
 ##########
 
-#./function tests/ctl/global_test_simple.c -domain polyhedra -joinbwd 4 -ctl "AG{AF{x <= -10}}" > logs/ctl/global_test_simple.log											#
-#./function tests/ctl/global_test_simple.c -domain polyhedra -joinbwd 6 -ctl "AG{AF{x <= -10}}" > logs/ctl/global_test_simple_join6.log									# TRUE
-#./function tests/ctl/global_test_simple.c -domain polyhedra -joinbwd 10 -ctl "AG{AF{x <= -10}}" > logs/ctl/global_test_simple_join10.log								# TRUE
-#./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "AF{OR{x==4}{x==-4}}" > logs/ctl/multi_branch_choice1.log												# TRUE
-#./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "EF{x==-4}" > logs/ctl/multi_branch_choice2.log														#
 #./function tests/ctl/next.c -domain polyhedra -ctl "AX{x==0}" -precondition "x == 1" > logs/ctl/next.log																#
 #./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{AF{AG{x < -100}}}{AF{x==20}}" > logs/ctl/or_test.log													      # TRUE
 #./function tests/ctl/potential_termination_1.c -domain polyhedra -ctl "EF{exit: true}" > logs/ctl/potential_termination_1.log
@@ -150,8 +149,3 @@
 ## drwxr-xr-x@  6 Caterina  staff     192 Apr  3  2023 report
 ## drwxr-xr-x@ 19 Caterina  staff     608 Apr  3  2023 sv_comp
 ## drwxr-xr-x@ 11 Caterina  staff     352 Apr  3  2023 t2_cav13
-#
-### conditional termination
-
-
-
