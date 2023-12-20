@@ -55,8 +55,8 @@
 ### -joinbwd 2
 ### -ordinals 1
 
-./function tests/sink.c -ctl "AF{x == 0}" -ast -domain polyhedra -ordinals 1 > logs/guarantee/sink_guarAST.log    # TODO: ?
+./function tests/sink.c -ctl "AF{x == 0}" -ast -domain polyhedra -ordinals 1 > logs/guarantee/sink_guarAST.log
 
 # conditional guarantee (CTL-AST)
 
- ./function tests/simple.c -ctl "AF{x == 3}" -ast -domain polyhedra > logs/guarantee/simple_guarAST.log           # TODO: ?
+./function tests/simple.c -ctl "AF{x == 3}" -ast -domain polyhedra > logs/guarantee/simple_guarAST.log            # x <= 3
