@@ -1,25 +1,59 @@
 #!/bin/sh
 
-### recurrence (AST) with polyhedra:
+### recurrence with polyhedra:
 ### -domain polyhedra
 ### -joinbwd 2
 
-./function tests/countdown.c -recurrence tests/countdown.txt -domain polyhedra > logs/recurrence/countdown_recuAST.log		# TRUE
-./function tests/peterson.c -recurrence tests/peterson.txt -domain polyhedra > logs/recurrence/peterson_recuAST.log			# TRUE
+./function tests/countdown.c -recurrence tests/countdown.txt -domain polyhedra > logs/recurrence/countdown_recu.log
+./function tests/peterson.c -recurrence tests/peterson.txt -domain polyhedra > logs/recurrence/peterson_recu.log
 
-# conditional recurrence (AST)
+### recurrence with polyhedra and ordinals:
+### -domain polyhedra
+### -joinbwd 2
+### -ordinals 1
 
-./function tests/simple.c -recurrence tests/simple.txt -domain polyhedra -joinbwd 3 > logs/recurrence/simple_recuAST.log
-./function tests/sink.c -recurrence tests/sink.txt -domain polyhedra > logs/recurrence/sink_recuAST.log
+./function tests/sink.c -recurrence tests/sink.txt -domain polyhedra -ordinals 1 > logs/recurrence/sink_recu.log
 
-### recurrence (CFG) with polyhedra:
+# conditional recurrence
+
+./function tests/simple.c -recurrence tests/simple.txt -domain polyhedra -joinbwd 3 > logs/recurrence/simple_recu.log     # x < 0
+
+###
+
+### recurrence (CTL-CFG) with polyhedra:
 ### -domain polyhedra
 ### -joinbwd 2
 
-# ./function tests/countdown.c -ctl "AG{AF{x == 0}}" -domain polyhedra > logs/recurrence/countdown_recuCFG.log				# TODO: ?
-./function tests/peterson.c -ctl "AG{AF{C1: true}}" -domain polyhedra > logs/recurrence/peterson_recuCFG.log				# TRUE
+# ./function tests/countdown.c -ctl "AG{AF{x == 0}}" -domain polyhedra > logs/recurrence/countdown_recuCFG.log				      # TODO: ?
+./function tests/peterson.c -ctl "AG{AF{C1: true}}" -domain polyhedra > logs/recurrence/peterson_recuCFG.log
 
-# conditional recurrence (CFG)
+### recurrence (CTL-CFG) with polyhedra and ordinals:
+### -domain polyhedra
+### -joinbwd 2
+### -ordinals 1
 
-# ./function tests/simple.c -ctl "AG{AF{x == 3}}" -domain polyhedra -joinbwd 3 > logs/recurrence/simple_guarCFG.log			# TODO: ?
-./function tests/sink.c -ctl "AG{AF{x == 0}}" -domain polyhedra > logs/recurrence/sink_recuCFG.log
+#./function tests/sink.c -ctl "AG{AF{x == 0}}" -domain polyhedra -ordinals 1 > logs/recurrence/sink_recuCFG.log            # TODO: ?
+
+# conditional recurrence (CTL-CFG)
+
+#./function tests/simple.c -ctl "AG{AF{x == 3}}" -domain polyhedra -joinbwd 3 > logs/recurrence/simple_recuCFG.log			    # TODO: ?
+
+###
+
+### recurrence (CTL-AST) with polyhedra:
+### -domain polyhedra
+### -joinbwd 2
+
+ ./function tests/countdown.c -ctl "AG{AF{x == 0}}" -ast -domain polyhedra > logs/recurrence/countdown_recuAST.log
+./function tests/peterson.c -ctl "AG{AF{C1: true}}" -ast -domain polyhedra > logs/recurrence/peterson_recuAST.log
+
+### recurrence (CTL-AST) with polyhedra and ordinals:
+### -domain polyhedra
+### -joinbwd 2
+### -ordinals 1
+
+./function tests/sink.c -ctl "AG{AF{x == 0}}" -ast -domain polyhedra -ordinals 1 > logs/recurrence/sink_recuAST.log
+
+# conditional recurrence (CTL-AST)
+
+./function tests/simple.c -ctl "AG{AF{x == 3}}" -ast -domain polyhedra -joinbwd 3 > logs/recurrence/simple_recuAST.log        # x < 0
