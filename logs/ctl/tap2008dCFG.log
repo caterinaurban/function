@@ -1,0 +1,169 @@
+
+CFG:
+List of variables:
+  $1{__return_main}:int at tests/tap2008d.c:10.0-26.1
+  $2{x}:int at tests/tap2008d.c:11.6-7
+  $3{up}:int at tests/tap2008d.c:11.9-11
+
+List of functions:
+  1: main() -> $1{__return_main}:int at tests/tap2008d.c:10.0-26.1, entry: 15, exit: 14, calls:
+
+List of nodes:
+  15: at :0:-1, in: out:1 
+  14: at :0:-1, in: 2 out:
+  1: at tests/tap2008d.c:10:0, in: 15 out:3 
+  2: at tests/tap2008d.c:26:1, in: 4 out:14 
+  3: at tests/tap2008d.c:11:16, in: 10 11 1 out:4 5 
+  4: at tests/tap2008d.c:24:3, in: 3 out:2 
+  5: at tests/tap2008d.c:12:16, in: 3 out:6 7 
+  6: at tests/tap2008d.c:15:5, in: 7 5 out:8 9 
+  7: at tests/tap2008d.c:13:16, in: 5 out:6 
+  8: at tests/tap2008d.c:18:5, in: 9 6 out:10 11 
+  9: at tests/tap2008d.c:16:17, in: 6 out:8 
+  10: at tests/tap2008d.c:21:11, in: 8 out:3 
+  11: at tests/tap2008d.c:19:17, in: 8 out:3 
+  12: at tests/tap2008d.c:10:0, in: out:13 
+  13: at tests/tap2008d.c:26:1, in: 12 out:
+
+List of arcs:
+  15 -> 1: label entry
+  2 -> 14: label exit
+  1 -> 3: $3{up} = 0
+  3 -> 5: $2{x} > 0 ?
+  3 -> 4: ! ($2{x} > 0) ?
+  5 -> 7: $2{x} == 1 ?
+  5 -> 6: ! ($2{x} == 1) ?
+  7 -> 6: $3{up} = 1
+  6 -> 9: $2{x} == 10 ?
+  6 -> 8: ! ($2{x} == 10) ?
+  9 -> 8: $3{up} = 0
+  8 -> 11: $3{up} == 1 ?
+  8 -> 10: ! ($3{up} == 1) ?
+  11 -> 3: $2{x} = $2{x} + 1
+  10 -> 3: $2{x} = $2{x} - 1
+  4 -> 2: $1{__return_main} = 0
+  12 -> 13: skip
+
+
+Property: exit: true
+
+[1:]:
+top ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+top ? bottom
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? bottom
+
+[11:]:
+top ? bottom
+
+[12:]:
+top ? bottom
+
+[13:]:
+top ? bottom
+
+[14:]:
+top ? 0.
+
+[15:]:
+top ? bottom
+
+Property: AF{exit: true}
+
+[1:]:
+-$2{x} >= 0 ? 3
+$2{x} >= 1 ? bottom
+
+[2:]:
+top ? 0.
+
+[3:]:
+-$3{up} >= 0 && -$2{x} >= 0 ? 2
+$2{x} >= 1 && -$3{up} >= 0 ? bottom
+-$2{x} >= 0 && $3{up} == 1 ? 2
+$2{x} >= 1 && $3{up} == 1 ? bottom
+$3{up} >= 2 && -$2{x} >= 0 ? 2
+$2{x} >= 1 && $3{up} >= 2 ? bottom
+
+[4:]:
+top ? 1
+
+[5:]:
+-$3{up} >= 0 && -$2{x} >= 0 ? 6
+$2{x} >= 1 && -$3{up} >= 0 ? bottom
+-$2{x} >= 1 && $3{up} == 1 ? 6
+$2{x} >= 0 && $3{up} == 1 ? bottom
+$3{up} >= 2 && -$2{x} >= 0 ? 6
+$2{x} >= 1 && $3{up} >= 2 ? bottom
+
+[6:]:
+-$3{up} >= 0 && -$2{x} >= -1 ? 5
+$2{x} >= 2 && -$3{up} >= 0 ? bottom
+-$2{x} >= 1 && $3{up} == 1 ? 5
+$2{x} >= 0 && $3{up} == 1 ? bottom
+$3{up} >= 2 && -$2{x} >= -1 ? 5
+$2{x} >= 2 && $3{up} >= 2 ? bottom
+
+[7:]:
+-$2{x} >= 1 ? 6
+$2{x} >= 0 ? bottom
+
+[8:]:
+-$3{up} >= 0 && -$2{x} >= -1 ? 4
+$2{x} >= 2 && -$3{up} >= 0 ? bottom
+-$2{x} >= 1 && $3{up} == 1 ? 4
+$2{x} >= 0 && $3{up} == 1 ? bottom
+$3{up} >= 2 && -$2{x} >= -1 ? 4
+$2{x} >= 2 && $3{up} >= 2 ? bottom
+
+[9:]:
+-$2{x} >= -1 ? 5
+$2{x} >= 2 ? bottom
+
+[10:]:
+-$2{x} >= -1 ? 3
+$2{x} >= 2 ? bottom
+
+[11:]:
+-$2{x} >= 1 ? 3
+$2{x} >= 0 ? bottom
+
+[12:]:
+top ? bottom
+
+[13:]:
+top ? bottom
+
+[14:]:
+top ? 0.
+
+[15:]:
+-$2{x} >= 0 ? 3
+$2{x} >= 1 ? bottom
+
+
+Analysis Result: TRUE
