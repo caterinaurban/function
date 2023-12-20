@@ -112,6 +112,9 @@
 ./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{AF{EG{x < -100}}}{AF{x==20}}" > logs/ctl/or_test_3CFG.log
 ./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{EF{EG{x < -100}}}{AF{x==20}}" > logs/ctl/or_test_4CFG.log
 # ./function tests/ctl/potential_termination_1.c -domain polyhedra -ctl "EF{exit: true}" > logs/ctl/potential_termination_1CFG.log			# TODO: ?
+# ./function tests/ctl/until_existential.c -domain polyhedra -ctl "EU{x >= y}{x == y}" -precondition "x > y" > logs/ctl/until_existential_1CFG.log	# TODO: ?
+# ./function tests/ctl/until_existential.c -domain polyhedra -ctl "EF{AG{x == y}}" -precondition "x > y" > logs/ctl/until_existential_2CFG.log		# TODO: ?
+./function tests/ctl/until_test.c -domain polyhedra -ctl "AU{x >= y}{x==y}" -precondition "x == y + 20" > logs/ctl/until_testCFG.log
 
 #### CTL-AST
 
@@ -141,17 +144,12 @@
 ./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{AF{EG{x < -100}}}{AF{x==20}}" -ast > logs/ctl/or_test_3AST.log
 ./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{EF{EG{x < -100}}}{AF{x==20}}" -ast > logs/ctl/or_test_4AST.log
 # ./function tests/ctl/potential_termination_1.c -domain polyhedra -ctl "EF{exit: true}" -ast > logs/ctl/potential_termination_1CFG.log		# TODO: ?
-
-
-
-#-rw-r--r--@ 1 Caterina  staff  376 Apr  3  2023 until_existential.c
-#-rw-r--r--@ 1 Caterina  staff  205 Apr  3  2023 until_test.c
+./function tests/ctl/until_existential.c -domain polyhedra -ctl "EU{x >= y}{x == y}" -ast -precondition "x > y" > logs/ctl/until_existential_1AST.log
+./function tests/ctl/until_existential.c -domain polyhedra -ctl "EF{AG{x == y}}" -ast -precondition "x > y" > logs/ctl/until_existential_2AST.log
+./function tests/ctl/until_test.c -domain polyhedra -ctl "AU{x >= y}{x==y}" -ast -precondition "x == y + 20" > logs/ctl/until_testAST.log
 
 ##########
 
-#./function tests/ctl/until_existential.c -domain polyhedra -ctl "EU{x >= y}{x == y}" -precondition "x > y" > logs/ctl/until_existential.log								#
-#./function tests/ctl/until_test.c -domain polyhedra -ctl "AU{x >= y}{x==y}" -precondition "x == y + 20" > logs/ctl/until_test.log										# TRUE
-#
 ## drwxr-xr-x@ 17 Caterina  staff     544 Apr  3  2023 koskinen
 ## drwxr-xr-x@ 32 Caterina  staff    1024 Apr  3  2023 ltl_automizer
 ## drwxr-xr-x@  6 Caterina  staff     192 Apr  3  2023 report
