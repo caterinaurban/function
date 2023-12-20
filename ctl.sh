@@ -164,6 +164,55 @@
 # -rw-r--r--@ 1 Caterina  staff  722 Apr  3  2023 win4.c
 
 ## drwxr-xr-x@ 32 Caterina  staff    1024 Apr  3  2023 ltl_automizer
+
+# -rw-r--r--@ 1 Caterina  staff   260 Apr  3  2023 Bug_NoLoopAtEndForTerminatingPrograms_safe.c
+# -rw-r--r--@ 1 Caterina  staff   355 Apr  3  2023 PotentialMinimizeSEVPABug.c
+# -rw-r--r--@ 1 Caterina  staff   346 Apr  3  2023 cav2015.c
+# -rw-r--r--@ 1 Caterina  staff  1326 Apr  3  2023 coolant_basis_1_safe_sfty.c
+# -rw-r--r--@ 1 Caterina  staff  1332 Apr  3  2023 coolant_basis_1_unsafe_sfty.c
+# -rw-r--r--@ 1 Caterina  staff  1260 Apr  3  2023 coolant_basis_2_safe_lifeness.c
+# -rw-r--r--@ 1 Caterina  staff  1268 Apr  3  2023 coolant_basis_2_unsafe_lifeness.c
+# -rw-r--r--@ 1 Caterina  staff  1213 Apr  3  2023 coolant_basis_3_safe_sfty.c
+# -rw-r--r--@ 1 Caterina  staff  1223 Apr  3  2023 coolant_basis_3_unsafe_sfty.c
+# -rw-r--r--@ 1 Caterina  staff  1242 Apr  3  2023 coolant_basis_4_safe_sfty.c
+# -rw-r--r--@ 1 Caterina  staff  1312 Apr  3  2023 coolant_basis_4_unsafe_sfty.c
+# -rw-r--r--  1 Caterina  staff  1434 Dec  1 15:47 coolant_basis_5_safe_cheat.c
+# -rw-r--r--@ 1 Caterina  staff  1244 Apr  3  2023 coolant_basis_5_safe_sfty.c
+# -rw-r--r--@ 1 Caterina  staff  1246 Apr  3  2023 coolant_basis_5_unsafe_sfty.c
+# -rw-r--r--@ 1 Caterina  staff  1243 Apr  3  2023 coolant_basis_6_safe_sfty.c
+# -rw-r--r--@ 1 Caterina  staff  1239 Apr  3  2023 coolant_basis_6_unsafe_sfty.c
+# -rw-r--r--@ 1 Caterina  staff   263 Apr  3  2023 nestedRandomLoop_true-valid-ltl.c
+# -rw-r--r--@ 1 Caterina  staff   183 Apr  3  2023 simple-1.c
+# -rw-r--r--@ 1 Caterina  staff   196 Apr  3  2023 simple-2.c
+# -rw-r--r--@ 1 Caterina  staff   261 Apr  3  2023 someNonterminating.c
+# -rw-r--r--@ 1 Caterina  staff   744 Apr  3  2023 timer-intermediate.c
+# -rw-r--r--@ 1 Caterina  staff   382 Apr  3  2023 timer-simple.c
+
 ## drwxr-xr-x@  6 Caterina  staff     192 Apr  3  2023 report
+
+# -rw-r--r--@ 1 Caterina  staff  190 Apr  3  2023 test_existential2.c
+# -rw-r--r--@ 1 Caterina  staff  386 Apr  3  2023 test_existential3.c
+# -rw-r--r--@ 1 Caterina  staff  191 Apr  3  2023 test_global.c
+# -rw-r--r--@ 1 Caterina  staff  200 Apr  3  2023 test_until.c
+
 ## drwxr-xr-x@ 19 Caterina  staff     608 Apr  3  2023 sv_comp
+
+# -rw-r--r--@ 1 Caterina  staff  391 Apr  3  2023 Bangalore_false-no-overflow.c
+# -rwxr-xr-x@ 1 Caterina  staff  238 Apr  3  2023 Ex02_false-termination_true-no-overflow.c
+# -rwxr-xr-x@ 1 Caterina  staff  325 Apr  3  2023 Ex02_false-termination_true-no-overflow.ltl.c
+# -rwxr-xr-x@ 1 Caterina  staff  291 Apr  3  2023 Ex07_false-termination_true-no-overflow.c
+# -rwxr-xr-x@ 1 Caterina  staff  303 Apr  3  2023 Ex07_false-termination_true-no-overflow.ltl.c
+# -rw-r--r--@ 1 Caterina  staff  225 Apr  3  2023 Madrid_true-no-overflow_false-termination_true-valid-memsafety.c
+# -rw-r--r--@ 1 Caterina  staff  288 Apr  3  2023 Madrid_true-no-overflow_false-termination_true-valid-memsafety.ltl.c
+# -rwxr-xr-x@ 1 Caterina  staff  261 Apr  3  2023 NO_02_false-termination_true-no-overflow.c
+# -rwxr-xr-x@ 1 Caterina  staff  309 Apr  3  2023 NO_02_false-termination_true-no-overflow.ltl.c
+# -rwxr-xr-x@ 1 Caterina  staff  293 Apr  3  2023 java_Sequence_true-termination_true-no-overflow.c
+# -rwxr-xr-x@ 1 Caterina  staff  366 Apr  3  2023 java_Sequence_true-termination_true-no-overflow.ltl.c
+
 ## drwxr-xr-x@ 11 Caterina  staff     352 Apr  3  2023 t2_cav13
+
+# -rw-r--r--  1 Caterina  staff  453 Dec  1 15:47 P25.c
+# -rw-r--r--  1 Caterina  staff  526 Dec  1 15:47 P26.c
+# -rw-r--r--  1 Caterina  staff  299 Dec  1 15:47 P3.c
+# -rw-r--r--  1 Caterina  staff  542 Dec  1 15:47 P3_cheat.c
+# -rw-r--r--  1 Caterina  staff  277 Dec  1 15:47 P4.c
