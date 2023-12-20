@@ -106,6 +106,12 @@
 ./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "AF{OR{x==4}{x==-4}}" > logs/ctl/multi_branch_choice_1CFG.log
 ./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "EF{x==-4}" > logs/ctl/multi_branch_choice_2CFG.log
 ./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "AND{EF{x==4}}{EF{x==-4}}" > logs/ctl/multi_branch_choice_3CFG.log
+./function tests/ctl/next.c -domain polyhedra -ctl "AX{AX{AX{x==0}}}" -precondition "x == 1" > logs/ctl/nextCFG.log
+./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{AF{AG{x < -100}}}{AF{x==20}}" > logs/ctl/or_test_1CFG.log
+./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{EF{AG{x < -100}}}{AF{x==20}}" > logs/ctl/or_test_2CFG.log
+./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{AF{EG{x < -100}}}{AF{x==20}}" > logs/ctl/or_test_3CFG.log
+./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{EF{EG{x < -100}}}{AF{x==20}}" > logs/ctl/or_test_4CFG.log
+# ./function tests/ctl/potential_termination_1.c -domain polyhedra -ctl "EF{exit: true}" > logs/ctl/potential_termination_1CFG.log			# TODO: ?
 
 #### CTL-AST
 
@@ -129,18 +135,20 @@
 ./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "AF{OR{x==4}{x==-4}}" -ast > logs/ctl/multi_branch_choice_1AST.log
 ./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "EF{x==-4}" -ast > logs/ctl/multi_branch_choice_2AST.log
 ./function tests/ctl/multi_branch_choice.c -domain polyhedra -ctl "AND{EF{x==4}}{EF{x==-4}}" -ast > logs/ctl/multi_branch_choice_3AST.log
+./function tests/ctl/next.c -domain polyhedra -ctl "AX{x==0}" -ast -precondition "x == 1" > logs/ctl/nextAST.log
+./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{AF{AG{x < -100}}}{AF{x==20}}" -ast > logs/ctl/or_test_1AST.log
+./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{EF{AG{x < -100}}}{AF{x==20}}" -ast > logs/ctl/or_test_2AST.log
+./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{AF{EG{x < -100}}}{AF{x==20}}" -ast > logs/ctl/or_test_3AST.log
+./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{EF{EG{x < -100}}}{AF{x==20}}" -ast > logs/ctl/or_test_4AST.log
+# ./function tests/ctl/potential_termination_1.c -domain polyhedra -ctl "EF{exit: true}" -ast > logs/ctl/potential_termination_1CFG.log		# TODO: ?
 
-#-rw-r--r--@ 1 Caterina  staff   89 Apr  3  2023 next.c
-#-rw-r--r--@ 1 Caterina  staff  155 Apr  3  2023 or_test.c
-#-rwxr-xr-x  1 Caterina  staff  264 Dec  1 15:47 potential_termination_1.c
+
+
 #-rw-r--r--@ 1 Caterina  staff  376 Apr  3  2023 until_existential.c
 #-rw-r--r--@ 1 Caterina  staff  205 Apr  3  2023 until_test.c
 
 ##########
 
-#./function tests/ctl/next.c -domain polyhedra -ctl "AX{x==0}" -precondition "x == 1" > logs/ctl/next.log																#
-#./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{AF{AG{x < -100}}}{AF{x==20}}" > logs/ctl/or_test.log													      # TRUE
-#./function tests/ctl/potential_termination_1.c -domain polyhedra -ctl "EF{exit: true}" > logs/ctl/potential_termination_1.log
 #./function tests/ctl/until_existential.c -domain polyhedra -ctl "EU{x >= y}{x == y}" -precondition "x > y" > logs/ctl/until_existential.log								#
 #./function tests/ctl/until_test.c -domain polyhedra -ctl "AU{x >= y}{x==y}" -precondition "x == y + 20" > logs/ctl/until_test.log										# TRUE
 #
