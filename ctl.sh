@@ -96,6 +96,9 @@
 # ./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" > logs/ctl/existential_test3_1CFG.log		# TODO: ?
 ./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" -ctl_existential_equivalence > logs/ctl/existential_test3_1CFG_exeq.log
 ./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x == 2" > logs/ctl/existential_test3_2CFG.log
+./function tests/ctl/existential_test4.c -domain polyhedra -ctl "EF{r==1}" > logs/ctl/existential_test4CFG.log
+# ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EF{n==1}" -precondition "n > 0" > logs/ctl/fin_ex_1CFG.log							# TODO: ?
+# ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EG{EF{n==1}}" -precondition "n > 0" > logs/ctl/fin_ex_2CFG.log						# TODO: ?
 
 #### CTL-AST
 
@@ -109,25 +112,20 @@
 # ./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" > logs/ctl/existential_test3_1AST.log		# TODO: ?
 ./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" -ctl_existential_equivalence > logs/ctl/existential_test3_1AST_exeq.log
 ./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x == 2" -joinbwd 3 > logs/ctl/existential_test3_2AST_join3.log
+./function tests/ctl/existential_test4.c -domain polyhedra -ctl "EF{r==1}" -ast > logs/ctl/existential_test4CFG.log
+./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EF{n==1}" -ast -precondition "n > 0" > logs/ctl/fin_ex_1AST.log
+./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EG{EF{n==1}}" -ast -precondition "n > 0" > logs/ctl/fin_ex_2AST.log
 
-
-#-rw-r--r--@ 1 Caterina  staff  168 Apr  3  2023 existential_test4.c
-#-rw-r--r--  1 Caterina  staff  327 Dec  1 15:48 fin_ex.c
 #-rw-r--r--  1 Caterina  staff  229 Dec  1 15:47 global_test_simple.c
-#-rw-r--r--@ 1 Caterina  staff  212 Apr  3  2023 global_test_simple.ltl.c
 #-rw-r--r--  1 Caterina  staff  476 Dec  1 15:47 multi_branch_choice.c
-#-rw-r--r--@ 1 Caterina  staff  468 Apr  3  2023 multi_branch_choice.ltl.c
 #-rw-r--r--@ 1 Caterina  staff   89 Apr  3  2023 next.c
 #-rw-r--r--@ 1 Caterina  staff  155 Apr  3  2023 or_test.c
-#-rw-r--r--@ 1 Caterina  staff  177 Apr  3  2023 or_test.ltl.c
 #-rwxr-xr-x  1 Caterina  staff  264 Dec  1 15:47 potential_termination_1.c
 #-rw-r--r--@ 1 Caterina  staff  376 Apr  3  2023 until_existential.c
 #-rw-r--r--@ 1 Caterina  staff  205 Apr  3  2023 until_test.c
-#-rw-r--r--@ 1 Caterina  staff  206 Apr  3  2023 until_test.ltl.c
 
 ##########
 
-#./function tests/ctl/existential_test4.c -domain polyhedra -ctl "EF{r==1}" > logs/ctl/existential_test4.log																# TRUE
 ## ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EF{n==1}" -precondition "n > 0" > logs/ctl/fin_ex.log
 ## ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EG{EF{n==1}}" -precondition "n > 0" > logs/ctl/fin_ex.log
 #./function tests/ctl/global_test_simple.c -domain polyhedra -joinbwd 4 -ctl "AG{AF{x <= -10}}" > logs/ctl/global_test_simple.log											#
