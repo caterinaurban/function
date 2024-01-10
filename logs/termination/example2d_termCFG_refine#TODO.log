@@ -1,0 +1,444 @@
+
+CFG:
+List of variables:
+  $1{x}:int at tests/example2d.c:11.17-18
+  $2{__return_get_step}:int at tests/example2d.c:11.0-20.1
+  $3{__return_main}:int at tests/example2d.c:22.0-33.1
+  $4{y}:int at tests/example2d.c:23.6-7
+  $5{x}:int at tests/example2d.c:23.9-10
+  $6{step}:int at tests/example2d.c:23.12-16
+  $7{__ret_get_step}:int at tests/example2d.c:27.14-22
+  $8{__ret_get_step}:int at tests/example2d.c:29.14-22
+
+List of functions:
+  1: get_step($1{x}:int) -> $2{__return_get_step}:int at tests/example2d.c:11.0-20.1, entry: 1, exit: 2, calls: 20->21 17->18
+  2: main() -> $3{__return_main}:int at tests/example2d.c:22.0-33.1, entry: 26, exit: 25, calls:
+
+List of nodes:
+  26: at :0:-1, in: out:9 
+  25: at :0:-1, in: 10 out:
+  1: at tests/example2d.c:11:0, in: out:4 5 
+  2: at tests/example2d.c:20:1, in: 3 8 7 5 out:
+  3: at tests/example2d.c:18:3, in: 6 out:2 
+  4: at tests/example2d.c:14:9, in: 1 out:6 7 
+  5: at tests/example2d.c:12:14, in: 1 out:2 
+  6: at tests/example2d.c:16:9, in: 4 out:3 8 
+  7: at tests/example2d.c:14:21, in: 4 out:2 
+  8: at tests/example2d.c:16:21, in: 6 out:2 
+  9: at tests/example2d.c:22:0, in: 26 out:11 
+  10: at tests/example2d.c:33:1, in: 13 out:25 
+  11: at tests/example2d.c:23:17, in: 9 out:12 
+  12: at tests/example2d.c:24:8, in: 22 19 11 out:13 14 
+  13: at tests/example2d.c:31:3, in: 12 out:10 
+  14: at tests/example2d.c:25:25, in: 12 out:15 16 
+  15: at tests/example2d.c:28:11, in: 14 out:20 
+  16: at tests/example2d.c:26:15, in: 14 out:17 
+  17: at tests/example2d.c:27:24, in: 16 out:27 
+  18: at tests/example2d.c:27:22, in: 28 out:19 
+  19: at tests/example2d.c:27:22, in: 18 out:12 
+  20: at tests/example2d.c:29:25, in: 15 out:35 
+  21: at tests/example2d.c:29:22, in: 36 out:22 
+  22: at tests/example2d.c:29:22, in: 21 out:12 
+  23: at tests/example2d.c:11:0, in: out:24 
+  24: at tests/example2d.c:33:1, in: 23 out:
+  27: at tests/example2d.c:11:0, in: 17 out:30 31 
+  28: at tests/example2d.c:20:1, in: 29 34 33 31 out:18 
+  29: at tests/example2d.c:18:3, in: 32 out:28 
+  30: at tests/example2d.c:14:9, in: 27 out:32 33 
+  31: at tests/example2d.c:12:14, in: 27 out:28 
+  32: at tests/example2d.c:16:9, in: 30 out:29 34 
+  33: at tests/example2d.c:14:21, in: 30 out:28 
+  34: at tests/example2d.c:16:21, in: 32 out:28 
+  35: at tests/example2d.c:11:0, in: 20 out:38 39 
+  36: at tests/example2d.c:20:1, in: 37 42 41 39 out:21 
+  37: at tests/example2d.c:18:3, in: 40 out:36 
+  38: at tests/example2d.c:14:9, in: 35 out:40 41 
+  39: at tests/example2d.c:12:14, in: 35 out:36 
+  40: at tests/example2d.c:16:9, in: 38 out:37 42 
+  41: at tests/example2d.c:14:21, in: 38 out:36 
+  42: at tests/example2d.c:16:21, in: 40 out:36 
+
+List of arcs:
+  36 -> 21: return: get_step
+  20 -> 35: call: get_step
+  28 -> 18: return: get_step
+  17 -> 27: call: get_step
+  26 -> 9: label entry
+  10 -> 25: label exit
+  1 -> 5: $1{x} > 30 ?
+  1 -> 4: ! ($1{x} > 30) ?
+  5 -> 2: $2{__return_get_step} = 4
+  4 -> 7: $1{x} > 20 ?
+  4 -> 6: ! ($1{x} > 20) ?
+  7 -> 2: $2{__return_get_step} = 3
+  6 -> 8: $1{x} > 10 ?
+  6 -> 3: ! ($1{x} > 10) ?
+  8 -> 2: $2{__return_get_step} = 2
+  3 -> 2: $2{__return_get_step} = 1
+  9 -> 11: skip
+  11 -> 12: $5{x} = $4{y}
+  12 -> 14: $4{y} < - 4 || $4{y} > 4 ?
+  12 -> 13: ! ($4{y} < - 4 || $4{y} > 4) ?
+  14 -> 16: $5{x} > 0 ?
+  14 -> 15: ! ($5{x} > 0) ?
+  16 -> 17: $1{x} = $5{x}
+  18 -> 19: $7{__ret_get_step} = $2{__return_get_step}
+  19 -> 12: $4{y} = $4{y} - $7{__ret_get_step}
+  15 -> 20: $1{x} = - $5{x}
+  21 -> 22: $8{__ret_get_step} = $2{__return_get_step}
+  22 -> 12: $4{y} = $4{y} + $8{__ret_get_step}
+  13 -> 10: $3{__return_main} = 0
+  23 -> 24: skip
+  27 -> 30: ! ($1{x} > 30) ?
+  27 -> 31: $1{x} > 30 ?
+  29 -> 28: $2{__return_get_step} = 1
+  30 -> 32: ! ($1{x} > 20) ?
+  30 -> 33: $1{x} > 20 ?
+  31 -> 28: $2{__return_get_step} = 4
+  32 -> 29: ! ($1{x} > 10) ?
+  32 -> 34: $1{x} > 10 ?
+  33 -> 28: $2{__return_get_step} = 3
+  34 -> 28: $2{__return_get_step} = 2
+  35 -> 38: ! ($1{x} > 30) ?
+  35 -> 39: $1{x} > 30 ?
+  37 -> 36: $2{__return_get_step} = 1
+  38 -> 40: ! ($1{x} > 20) ?
+  38 -> 41: $1{x} > 20 ?
+  39 -> 36: $2{__return_get_step} = 4
+  40 -> 37: ! ($1{x} > 10) ?
+  40 -> 42: $1{x} > 10 ?
+  41 -> 36: $2{__return_get_step} = 3
+  42 -> 36: $2{__return_get_step} = 2
+
+
+Forwad Analysis: 
+[1]: bottom
+[2]: bottom
+[3]: bottom
+[4]: bottom
+[5]: bottom
+[6]: bottom
+[7]: bottom
+[8]: bottom
+[9]: top
+[10]: -$4{y} >= -4 && $4{y} >= -4 && $3{__return_main} == 0
+[11]: top
+[12]: top
+[13]: -$4{y} >= -4 && $4{y} >= -4
+[14]: top
+[15]: -$5{x} >= 0
+[16]: $5{x} >= 1
+[17]: $5{x} >= 1 && $1{x} >= 1
+[18]: $5{x} >= 1 && -$2{__return_get_step} >= -4 && $2{__return_get_step} >= 1 && $1{x} >= 1
+[19]: -$7{__ret_get_step} >= -4 && $7{__ret_get_step} >= 1 && $5{x} >= 1 && -$2{__return_get_step} >= -4 && $2{__return_get_step} >= 1 && $1{x} >= 1
+[20]: -$5{x} >= 0 && $1{x} >= 0
+[21]: -$5{x} >= 0 && -$2{__return_get_step} >= -4 && $2{__return_get_step} >= 1 && $1{x} >= 0
+[22]: -$8{__ret_get_step} >= -4 && $8{__ret_get_step} >= 1 && -$5{x} >= 0 && -$2{__return_get_step} >= -4 && $2{__return_get_step} >= 1 && $1{x} >= 0
+[23]: top
+[24]: top
+[25]: -$4{y} >= -4 && $4{y} >= -4 && $3{__return_main} == 0
+[26]: top
+[27]: $5{x} >= 1 && $1{x} >= 1
+[28]: $5{x} >= 1 && -$2{__return_get_step} >= -4 && $2{__return_get_step} >= 1 && $1{x} >= 1
+[29]: $5{x} >= 1 && -$1{x} >= -10 && $1{x} >= 1
+[30]: $5{x} >= 1 && -$1{x} >= -30 && $1{x} >= 1
+[31]: $5{x} >= 1 && $1{x} >= 31
+[32]: $5{x} >= 1 && -$1{x} >= -20 && $1{x} >= 1
+[33]: $5{x} >= 1 && -$1{x} >= -30 && $1{x} >= 21
+[34]: $5{x} >= 1 && -$1{x} >= -20 && $1{x} >= 11
+[35]: -$5{x} >= 0 && $1{x} >= 0
+[36]: -$5{x} >= 0 && -$2{__return_get_step} >= -4 && $2{__return_get_step} >= 1 && $1{x} >= 0
+[37]: -$5{x} >= 0 && -$1{x} >= -10 && $1{x} >= 0
+[38]: -$5{x} >= 0 && -$1{x} >= -30 && $1{x} >= 0
+[39]: -$5{x} >= 0 && $1{x} >= 31
+[40]: -$5{x} >= 0 && -$1{x} >= -20 && $1{x} >= 0
+[41]: -$5{x} >= 0 && -$1{x} >= -30 && $1{x} >= 21
+[42]: -$5{x} >= 0 && -$1{x} >= -20 && $1{x} >= 11
+ 
+Property: exit: true
+
+[1:]:
+top ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+top ? bottom
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? bottom
+
+[11:]:
+top ? bottom
+
+[12:]:
+top ? bottom
+
+[13:]:
+top ? bottom
+
+[14:]:
+top ? bottom
+
+[15:]:
+top ? bottom
+
+[16:]:
+top ? bottom
+
+[17:]:
+top ? bottom
+
+[18:]:
+top ? bottom
+
+[19:]:
+top ? bottom
+
+[20:]:
+top ? bottom
+
+[21:]:
+top ? bottom
+
+[22:]:
+top ? bottom
+
+[23:]:
+top ? bottom
+
+[24:]:
+top ? bottom
+
+[25:]:
+top ? 0.
+
+[26:]:
+top ? bottom
+
+[27:]:
+top ? bottom
+
+[28:]:
+top ? bottom
+
+[29:]:
+top ? bottom
+
+[30:]:
+top ? bottom
+
+[31:]:
+top ? bottom
+
+[32:]:
+top ? bottom
+
+[33:]:
+top ? bottom
+
+[34:]:
+top ? bottom
+
+[35:]:
+top ? bottom
+
+[36:]:
+top ? bottom
+
+[37:]:
+top ? bottom
+
+[38:]:
+top ? bottom
+
+[39:]:
+top ? bottom
+
+[40:]:
+top ? bottom
+
+[41:]:
+top ? bottom
+
+[42:]:
+top ? bottom
+
+Property: AF{exit: true}
+
+[1:]:
+top ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+top ? bottom
+
+[8:]:
+top ? bottom
+
+[9:]:
+-$4{y} >= 5 ? bottom
+-$4{y} >= -4 && $4{y} >= -4 ? 3
+$4{y} >= 5 ? bottom
+
+[10:]:
+-$4{y} >= -4 && $4{y} >= -4 && $3{__return_main} == 0 ? 0.
+
+[11:]:
+-$4{y} >= 5 ? bottom
+-$4{y} >= -4 && $4{y} >= -4 ? 3
+$4{y} >= 5 ? bottom
+
+[12:]:
+-$5{x} >= 31 && -$4{y} >= 5 ? bottom
+-$5{x} >= 31 && -$4{y} >= -4 && $4{y} >= -4 ? 2
+-$5{x} >= 31 && $4{y} >= 5 ? bottom
+-$5{x} >= 21 && $5{x} >= -30 && -$4{y} >= 5 ? bottom
+-$5{x} >= 21 && $5{x} >= -30 && -$4{y} >= -4 && $4{y} >= -4 ? 2
+-$5{x} >= 21 && $5{x} >= -30 && $4{y} >= 5 ? bottom
+-$5{x} >= 11 && $5{x} >= -20 && -$4{y} >= 5 ? bottom
+-$5{x} >= 11 && $5{x} >= -20 && -$4{y} >= -4 && $4{y} >= -4 ? 2
+-$5{x} >= 11 && $5{x} >= -20 && $4{y} >= 5 ? bottom
+-$5{x} >= 0 && $5{x} >= -10 && -$4{y} >= 5 ? bottom
+-$5{x} >= 0 && $5{x} >= -10 && -$4{y} >= -4 && $4{y} >= -4 ? 2
+-$5{x} >= 0 && $5{x} >= -10 && $4{y} >= 5 ? bottom
+-$5{x} >= -10 && $5{x} >= 1 && -$4{y} >= 5 ? bottom
+-$5{x} >= -10 && $5{x} >= 1 && -$4{y} >= -4 && $4{y} >= -4 ? 2
+-$5{x} >= -10 && $5{x} >= 1 && $4{y} >= 5 ? bottom
+-$5{x} >= -20 && $5{x} >= 11 && -$4{y} >= 5 ? bottom
+-$5{x} >= -20 && $5{x} >= 11 && -$4{y} >= -4 && $4{y} >= -4 ? 2
+-$5{x} >= -20 && $5{x} >= 11 && $4{y} >= 5 ? bottom
+-$5{x} >= -30 && $5{x} >= 21 && -$4{y} >= 5 ? bottom
+-$5{x} >= -30 && $5{x} >= 21 && -$4{y} >= -4 && $4{y} >= -4 ? 2
+-$5{x} >= -30 && $5{x} >= 21 && $4{y} >= 5 ? bottom
+$5{x} >= 31 && -$4{y} >= 5 ? bottom
+$5{x} >= 31 && -$4{y} >= -4 && $4{y} >= -4 ? 2
+$5{x} >= 31 && $4{y} >= 5 ? bottom
+
+[13:]:
+-$4{y} >= -4 && $4{y} >= -4 ? 1
+
+[14:]:
+top ? bottom
+
+[15:]:
+-$5{x} >= 0 ? bottom
+
+[16:]:
+$5{x} >= 1 ? bottom
+
+[17:]:
+$5{x} >= 1 && $1{x} >= 1 ? bottom
+
+[18:]:
+$5{x} >= 1 && -$2{__return_get_step} >= -4 && $2{__return_get_step} >= 1 && $1{x} >= 1 ? bottom
+
+[19:]:
+-$7{__ret_get_step} >= -4 && $7{__ret_get_step} >= 1 && $5{x} >= 1 && -$2{__return_get_step} >= -4 && $2{__return_get_step} >= 1 && $1{x} >= 1 ? bottom
+
+[20:]:
+-$5{x} >= 0 && $1{x} >= 0 ? bottom
+
+[21:]:
+-$5{x} >= 0 && -$2{__return_get_step} >= -4 && $2{__return_get_step} >= 1 && $1{x} >= 0 ? bottom
+
+[22:]:
+-$8{__ret_get_step} >= -4 && $8{__ret_get_step} >= 1 && -$5{x} >= 0 && -$2{__return_get_step} >= -4 && $2{__return_get_step} >= 1 && $1{x} >= 0 ? bottom
+
+[23:]:
+top ? bottom
+
+[24:]:
+top ? bottom
+
+[25:]:
+-$4{y} >= -4 && $4{y} >= -4 && $3{__return_main} == 0 ? 0.
+
+[26:]:
+-$4{y} >= 5 ? bottom
+-$4{y} >= -4 && $4{y} >= -4 ? 3
+$4{y} >= 5 ? bottom
+
+[27:]:
+$5{x} >= 1 && $1{x} >= 1 ? bottom
+
+[28:]:
+$5{x} >= 1 && -$2{__return_get_step} >= -4 && $2{__return_get_step} >= 1 && $1{x} >= 1 ? bottom
+
+[29:]:
+$5{x} >= 1 && -$1{x} >= -10 && $1{x} >= 1 ? bottom
+
+[30:]:
+$5{x} >= 1 && -$1{x} >= -30 && $1{x} >= 1 ? bottom
+
+[31:]:
+$5{x} >= 1 && $1{x} >= 31 ? bottom
+
+[32:]:
+$5{x} >= 1 && -$1{x} >= -20 && $1{x} >= 1 ? bottom
+
+[33:]:
+$5{x} >= 1 && -$1{x} >= -30 && $1{x} >= 21 ? bottom
+
+[34:]:
+$5{x} >= 1 && -$1{x} >= -20 && $1{x} >= 11 ? bottom
+
+[35:]:
+-$5{x} >= 0 && $1{x} >= 0 ? bottom
+
+[36:]:
+-$5{x} >= 0 && -$2{__return_get_step} >= -4 && $2{__return_get_step} >= 1 && $1{x} >= 0 ? bottom
+
+[37:]:
+-$5{x} >= 0 && -$1{x} >= -10 && $1{x} >= 0 ? bottom
+
+[38:]:
+-$5{x} >= 0 && -$1{x} >= -30 && $1{x} >= 0 ? bottom
+
+[39:]:
+-$5{x} >= 0 && $1{x} >= 31 ? bottom
+
+[40:]:
+-$5{x} >= 0 && -$1{x} >= -20 && $1{x} >= 0 ? bottom
+
+[41:]:
+-$5{x} >= 0 && -$1{x} >= -30 && $1{x} >= 21 ? bottom
+
+[42:]:
+-$5{x} >= 0 && -$1{x} >= -20 && $1{x} >= 11 ? bottom
+
+
+Analysis Result: UNKNOWN

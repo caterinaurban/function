@@ -53,7 +53,7 @@
 # ./function tests/postincrement.c -ctl "AF{exit: true}" > logs/termination/postincrement_termCFG.log	# TODO: fix parser?
 # ./function tests/predecrement.c -ctl "AF{exit: true}" > logs/termination/predecrement_termCFG.log		# TODO: fix parser?
 # ./function tests/preincrement.c -ctl "AF{exit: true}" > logs/termination/preincrement_termCFG.log		# TODO: fix parser?
-# ./function tests/sas2010.c -ctl "AF{exit: true}" > logs/termination/sas2010_termCFG.log				# TODO: ?
+ ./function tests/sas2010.c -ctl "AF{exit: true}" > logs/termination/sas2010_termCFG#TODO.log				# TODO: ?
 ./function tests/tacas2013a.c -ctl "AF{exit: true}" > logs/termination/tacas2013a_termCFG.log		# TRUE
 
 ## conditional termination
@@ -161,11 +161,11 @@
 ### -joinbwd 2
 ### -refine
 
-# ./function tests/example2b.c -refine -ctl "AF{exit: true}" > logs/termination/example2b_termCFG_refine.log		# TODO: ?
-# ./function tests/example2c.c -refine -ctl "AF{exit: true}" > logs/termination/example2c_termCFG_refine.log		# TODO: ?
-# ./function tests/example2d.c -refine -ctl "AF{exit: true}" > logs/termination/example2d_termCFG_refine.log		# TODO: ?
-# ./function tests/example2e.c -refine -ctl "AF{exit: true}" > logs/termination/example2e_termCFG_refine.log		# TODO: ?
-# ./function tests/sas2014b.c -refine -ctl "AF{exit: true}" > logs/termination/sas2014b_termCFG_refine.log			# TODO: ?
+./function tests/example2b.c -refine -ctl "AF{exit: true}" > logs/termination/example2b_termCFG_refine#TODO.log		# TODO: ?
+./function tests/example2c.c -refine -ctl "AF{exit: true}" > logs/termination/example2c_termCFG_refine#TODO.log		# TODO: ?
+./function tests/example2d.c -refine -ctl "AF{exit: true}" > logs/termination/example2d_termCFG_refine#TODO.log		# TODO: ?
+./function tests/example2e.c -refine -ctl "AF{exit: true}" > logs/termination/example2e_termCFG_refine#TODO.log		# TODO: ?
+./function tests/sas2014b.c -refine -ctl "AF{exit: true}" > logs/termination/sas2014b_termCFG_refine#TODO.log			# TODO: ?
 
 #################################################################################
 
