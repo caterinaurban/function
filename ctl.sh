@@ -148,6 +148,12 @@
 # ./function tests/ctl/ltl_automizer/togglecounter_true-valid-ltl.c -domain polyhedra -ctl "AG{AND{AF{t == 1}}{AF{t == 0}}}" > logs/ctl/togglecounter_true-valid-ltlCFG.log	# TODO: ?
 ./function tests/ctl/ltl_automizer/toggletoggle_true-valid-ltl.c -domain polyhedra -ctl "AG{AND{AF{t==1}}{AF{t==0}}}" -precondition "t >= 0" > logs/ctl/toggletoggle_true-valid-ltlCFG.log
 
+./function tests/ctl/report/test_existential2.c -domain polyhedra -ctl "EF{r==1}" -precondition "x < 200" > logs/ctl/test_existential2CFG.log
+./function tests/ctl/report/test_existential3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x == 2" > logs/ctl/test_existential3_1CFG.log
+./function tests/ctl/report/test_existential3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" -ctl_existential_equivalence > logs/ctl/test_existential3_2CFG.log
+# ./function tests/ctl/report/test_global.c -domain polyhedra -ctl "AF{AG{y > 0}}" -precondition "x < 10" > logs/ctl/test_globalCFG.log		# TODO: ?
+./function tests/ctl/report/test_until.c -domain polyhedra -ctl "AU{x >= y}{x==y}" -precondition "x >= y" > logs/ctl/test_untilCFG.log
+
 #### CTL-AST
 
 ./function tests/ctl/and_ef_test.c -domain polyhedra -ctl "AND{EF{x == 2}}{EF{x==3}}" -ast > logs/ctl/and_ef_testAST.log
@@ -212,14 +218,13 @@
 # ./function tests/ctl/ltl_automizer/togglecounter_true-valid-ltl.c -domain polyhedra -ctl "AG{AND{AF{t == 1}}{AF{t == 0}}}" -ast > logs/ctl/togglecounter_true-valid-ltlAST.log	# TODO: ?
 ./function tests/ctl/ltl_automizer/toggletoggle_true-valid-ltl.c -domain polyhedra -ctl "AG{AND{AF{t==1}}{AF{t==0}}}" -ast -precondition "t >= 0" > logs/ctl/toggletoggle_true-valid-ltlAST.log
 
+# ./function tests/ctl/report/test_existential2.c -domain polyhedra -ctl "EF{r==1}" -ast -precondition "x < 200" > logs/ctl/test_existential2AST.log	# TODO: ?
+# ./function tests/ctl/report/test_existential3.c -domain polyhedra -ctl "EF{r==1}" -ast -precondition "x == 2" > logs/ctl/test_existential3_1CFG.log		# TODO: ?
+# ./function tests/ctl/report/test_existential3.c -domain polyhedra -ctl "EF{r==1}" -ast -precondition "x > 0" -ctl_existential_equivalence > logs/ctl/test_existential3_2CFG.log		# TODO: ?
+./function tests/ctl/report/test_global.c -domain polyhedra -ctl "AF{AG{y > 0}}" -ast -precondition "x < 10" > logs/ctl/test_globalAST.log
+./function tests/ctl/report/test_until.c -domain polyhedra -ctl "AU{x >= y}{x==y}" -ast -precondition "x >= y" > logs/ctl/test_untilAST.log
+
 ##########
-
-## drwxr-xr-x@  6 Caterina  staff     192 Apr  3  2023 report
-
-# -rw-r--r--@ 1 Caterina  staff  190 Apr  3  2023 test_existential2.c
-# -rw-r--r--@ 1 Caterina  staff  386 Apr  3  2023 test_existential3.c
-# -rw-r--r--@ 1 Caterina  staff  191 Apr  3  2023 test_global.c
-# -rw-r--r--@ 1 Caterina  staff  200 Apr  3  2023 test_until.c
 
 ## drwxr-xr-x@ 19 Caterina  staff     608 Apr  3  2023 sv_comp
 
