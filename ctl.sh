@@ -87,15 +87,15 @@
 #### CTL-CFG
 
 ./function tests/ctl/and_ef_test.c -domain polyhedra -ctl "AND{EF{x == 2}}{EF{x==3}}" > logs/ctl/and_ef_testCFG.log
-# ./function tests/ctl/and_test.c -domain polyhedra -ctl "AND{AG{AF{n==1}}}{AF{n==0}}" -precondition "n > 0" > logs/ctl/and_test_1CFG.log		# TODO: ?
-# ./function tests/ctl/and_test.c -domain polyhedra -ctl "EG{AF{n==1}}" -precondition "n > 0" > logs/ctl/and_test_2CFG.log					# TODO: ?
-# ./function tests/ctl/and_test.c -domain polyhedra -ctl "AG{EF{n==1}}" -precondition "n > 0" > logs/ctl/and_test_3CFG.log					# TODO: ?
-# ./function tests/ctl/and_test.c -domain polyhedra -ctl "EG{EF{n==1}}" -precondition "n > 0" > logs/ctl/and_test_4CFG.log					# TODO: ?
-# ./function tests/ctl/existential_test1.c -domain polyhedra -ctl "EF{r==1}" -precondition "2*x <= y+3" > logs/ctl/existential_test1CFG.log	# TODO: ?
+ ./function tests/ctl/and_test.c -domain polyhedra -ctl "AND{AG{AF{n==1}}}{AF{n==0}}" -precondition "n > 0" > logs/ctl/and_test_1CFG#TODO.log		# TODO: ?
+ ./function tests/ctl/and_test.c -domain polyhedra -ctl "EG{AF{n==1}}" -precondition "n > 0" > logs/ctl/and_test_2CFG#TODO.log					# TODO: ?
+ ./function tests/ctl/and_test.c -domain polyhedra -ctl "AG{EF{n==1}}" -precondition "n > 0" > logs/ctl/and_test_3CFG#TODO.log					# TODO: ?
+ ./function tests/ctl/and_test.c -domain polyhedra -ctl "EG{EF{n==1}}" -precondition "n > 0" > logs/ctl/and_test_4CFG#TODO.log					# TODO: ?
+ ./function tests/ctl/existential_test1.c -domain polyhedra -ctl "EF{r==1}" -precondition "2*x <= y+3" > logs/ctl/existential_test1CFG#TODO.log	# TODO: ?
 # ./function tests/ctl/existential_test2.c -domain polyhedra -ctl "EF{r==1}" > logs/ctl/existential_test2CFG.log							# UNKNOWN
 # ./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" > logs/ctl/existential_test3_1CFG.log		# TODO: ?
 ./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" -ctl_existential_equivalence > logs/ctl/existential_test3_1CFG_exeq.log
-./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x == 2" > logs/ctl/existential_test3_2CFG.log
+./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x == 2" -joinbwd 3 > logs/ctl/existential_test3_2CFG_join3.log
 ./function tests/ctl/existential_test4.c -domain polyhedra -ctl "EF{r==1}" > logs/ctl/existential_test4CFG.log
 # ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EF{n==1}" -precondition "n > 0" > logs/ctl/fin_ex_1CFG.log							# TODO: ?
 # ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EG{EF{n==1}}" -precondition "n > 0" > logs/ctl/fin_ex_2CFG.log						# TODO: ?
@@ -188,11 +188,11 @@
 ./function tests/ctl/and_test.c -domain polyhedra -ctl "AG{EF{n==1}}" -ast -precondition "n > 0" > logs/ctl/and_test_3AST.log
 ./function tests/ctl/and_test.c -domain polyhedra -ctl "EG{EF{n==1}}" -ast -precondition "n > 0" > logs/ctl/and_test_4AST.log
 ./function tests/ctl/existential_test1.c -domain polyhedra -ctl "EF{r==1}" -ast -precondition "2*x <= y+3" > logs/ctl/existential_test1AST.log
-#./function tests/ctl/existential_test2.c -domain polyhedra -ctl "EF{r==1}" > logs/ctl/existential_test2AST.log								# UNKNOWN
-# ./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" > logs/ctl/existential_test3_1AST.log		# TODO: ?
-./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x > 0" -ctl_existential_equivalence > logs/ctl/existential_test3_1AST_exeq.log
-./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -precondition "x == 2" -joinbwd 3 > logs/ctl/existential_test3_2AST_join3.log
-./function tests/ctl/existential_test4.c -domain polyhedra -ctl "EF{r==1}" -ast > logs/ctl/existential_test4CFG.log
+#./function tests/ctl/existential_test2.c -domain polyhedra -ctl "EF{r==1}" -ast > logs/ctl/existential_test2AST.log								# UNKNOWN
+#./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -ast -precondition "x > 0" > logs/ctl/existential_test3_1AST.log		# TODO: ?
+./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -ast -precondition "x > 0" -ctl_existential_equivalence > logs/ctl/existential_test3_1AST_exeq.log
+./function tests/ctl/existential_test3.c -domain polyhedra -ctl "EF{r==1}" -ast -precondition "x == 2" -joinbwd 3 > logs/ctl/existential_test3_2AST_join3.log
+./function tests/ctl/existential_test4.c -domain polyhedra -ctl "EF{r==1}" -ast > logs/ctl/existential_test4AST.log
 ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EF{n==1}" -ast -precondition "n > 0" > logs/ctl/fin_ex_1AST.log
 ./function tests/ctl/fin_ex.c -domain polyhedra -ctl "EG{EF{n==1}}" -ast -precondition "n > 0" > logs/ctl/fin_ex_2AST.log
 ./function tests/ctl/global_test_simple.c -domain polyhedra -ctl "AG{AF{x <= -10}}" -ast -joinbwd 4 > logs/ctl/global_test_simple_1AST.log
@@ -207,7 +207,7 @@
 ./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{EF{AG{x < -100}}}{AF{x==20}}" -ast > logs/ctl/or_test_2AST.log
 ./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{AF{EG{x < -100}}}{AF{x==20}}" -ast > logs/ctl/or_test_3AST.log
 ./function tests/ctl/or_test.c -domain polyhedra -ctl "OR{EF{EG{x < -100}}}{AF{x==20}}" -ast > logs/ctl/or_test_4AST.log
-# ./function tests/ctl/potential_termination_1.c -domain polyhedra -ctl "EF{exit: true}" -ast > logs/ctl/potential_termination_1CFG.log		# TODO: ?
+# ./function tests/ctl/potential_termination_1.c -domain polyhedra -ctl "EF{exit: true}" -ast > logs/ctl/potential_termination_1AST.log		# TODO: ?
 ./function tests/ctl/until_existential.c -domain polyhedra -ctl "EU{x >= y}{x == y}" -ast -precondition "x > y" > logs/ctl/until_existential_1AST.log
 ./function tests/ctl/until_existential.c -domain polyhedra -ctl "EF{AG{x == y}}" -ast -precondition "x > y" > logs/ctl/until_existential_2AST.log
 ./function tests/ctl/until_test.c -domain polyhedra -ctl "AU{x >= y}{x==y}" -ast -precondition "x == y + 20" > logs/ctl/until_testAST.log
@@ -222,7 +222,7 @@
 ./function tests/ctl/ltl_automizer/Bug_NoLoopAtEndForTerminatingPrograms_safe.c -domain polyhedra -ctl "NOT{AF{ap > 2}}" -ast -precondition "ap == 0" > logs/ctl/Bug_NoLoopAtEndForTerminatingPrograms_safeAST.log
 ./function tests/ctl/ltl_automizer/PotentialMinimizeSEVPABug.c -domain polyhedra -ctl "AG{OR{x <= 0}{AF{y == 0}}}" -ast -precondition "x < 0" -ordinals 1 > logs/ctl/PotentialMinimizeSEVPABugAST.log
 ./function tests/ctl/ltl_automizer/cav2015.c -domain polyhedra -ctl "AG{OR{x <= 0}{AF{y == 0}}}" -ast -precondition "x < 0" -ordinals 1 > logs/ctl/cav2015AST.log
-# ./function tests/ctl/ltl_automizer/coolant_basis_1_safe_sfty.c -domain polyhedra -ctl "AG{OR{chainBroken != 1}{AG{chainBroken == 1}}}" -ast -precondition "chainBroken == 0" > logs/ctl/coolant_basis_1_safe_sftyAST.log # TODO: ?
+ ./function tests/ctl/ltl_automizer/coolant_basis_1_safe_sfty.c -domain polyhedra -ctl "AG{OR{chainBroken != 1}{AG{chainBroken == 1}}}" -ast -precondition "chainBroken == 0" > logs/ctl/coolant_basis_1_safe_sftyAST#TODO.log # TODO: ?
 # ./function tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c -domain polyhedra -ctl "AG{OR{chainBroken != 1}{AG{chainBroken == 1}}}" -ast -precondition "chainBroken == 0" > logs/ctl/coolant_basis_1_unsafe_sftyAST.log		# UNKNOWN?
 # ./function tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c -domain polyhedra -ctl "AG{AF{otime < time}}" -ast > logs/ctl/coolant_basis_2_safe_lifenessAST.log	# TODO: ?
 # ./function tests/ctl/ltl_automizer/coolant_basis_2_unsafe_lifeness.c -domain polyhedra -ctl "AG{AF{otime < time}}" -ast > logs/ctl/coolant_basis_2_unsafe_lifenessAST.log	# UNKNOWN
@@ -245,8 +245,8 @@
 ./function tests/ctl/ltl_automizer/toggletoggle_true-valid-ltl.c -domain polyhedra -ctl "AG{AND{AF{t==1}}{AF{t==0}}}" -ast -precondition "t >= 0" > logs/ctl/toggletoggle_true-valid-ltlAST.log
 
 # ./function tests/ctl/report/test_existential2.c -domain polyhedra -ctl "EF{r==1}" -ast -precondition "x < 200" > logs/ctl/test_existential2AST.log	# TODO: ?
-# ./function tests/ctl/report/test_existential3.c -domain polyhedra -ctl "EF{r==1}" -ast -precondition "x == 2" > logs/ctl/test_existential3_1CFG.log		# TODO: ?
-# ./function tests/ctl/report/test_existential3.c -domain polyhedra -ctl "EF{r==1}" -ast -precondition "x > 0" -ctl_existential_equivalence > logs/ctl/test_existential3_2CFG.log		# TODO: ?
+# ./function tests/ctl/report/test_existential3.c -domain polyhedra -ctl "EF{r==1}" -ast -precondition "x == 2" > logs/ctl/test_existential3_1AST.log		# TODO: ?
+# ./function tests/ctl/report/test_existential3.c -domain polyhedra -ctl "EF{r==1}" -ast -precondition "x > 0" -ctl_existential_equivalence > logs/ctl/test_existential3_2AST.log		# TODO: ?
 ./function tests/ctl/report/test_global.c -domain polyhedra -ctl "AF{AG{y > 0}}" -ast -precondition "x < 10" > logs/ctl/test_globalAST.log
 ./function tests/ctl/report/test_until.c -domain polyhedra -ctl "AU{x >= y}{x==y}" -ast -precondition "x >= y" > logs/ctl/test_untilAST.log
 
