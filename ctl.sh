@@ -160,6 +160,26 @@
 ./function tests/ctl/t2_cav13/P3_cheat.c -domain polyhedra -ctl "OR{varA != 1}{EF{varR==1}}" -precondition "varA == 0" > logs/ctl/P3_cheatCFG.log
 ./function tests/ctl/t2_cav13/P4.c -domain polyhedra -ctl "EF{AND{varA == 1}{AG{varR != 1}}}" -precondition "varN > 0" > logs/ctl/P4CFG.log
 
+# ./function tests/ctl/sv_comp/Bangalore_false-no-overflow.c -domain polyhedra -ctl "EF{x < 0}" > logs/ctl/Bangalore_false-no-overflowCFG.log		# TODO: ?
+./function tests/ctl/sv_comp/Bangalore_false-no-overflow.c -domain polyhedra -ctl "EF{x < 0}" -ctl_existential_equivalence > logs/ctl/Bangalore_false-no-overflowCFG_exeq.log
+./function tests/ctl/sv_comp/Ex02_false-termination_true-no-overflow.c -domain polyhedra -ctl "OR{i >= 5}{AF{exit: true}}" > logs/ctl/Ex02_false-termination_true-no-overflowCFG.log
+./function tests/ctl/sv_comp/Ex07_false-termination_true-no-overflow.c -domain polyhedra -ctl "AF{AG{i==0}}" > logs/ctl/Ex07_false-termination_true-no-overflow_1CFG.log
+./function tests/ctl/sv_comp/Ex07_false-termination_true-no-overflow.c -domain polyhedra -ctl "EF{EG{i==0}}" > logs/ctl/Ex07_false-termination_true-no-overflow_2CFG.log
+./function tests/ctl/sv_comp/Ex07_false-termination_true-no-overflow.c -domain polyhedra -ctl "EF{AG{i==0}}" > logs/ctl/Ex07_false-termination_true-no-overflow_3CFG.log
+./function tests/ctl/sv_comp/Ex07_false-termination_true-no-overflow.c -domain polyhedra -ctl "AF{EG{i==0}}" > logs/ctl/Ex07_false-termination_true-no-overflow_4CFG.log
+# ./function tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c -domain polyhedra -ctl "AF{AND{AF{j >= 21}}{i==100}}" > logs/ctl/java_Sequence_true-termination_true-no-overflow_1CFG.log	# TODO: ?
+# ./function tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c -domain polyhedra -ctl "AF{AND{EF{j >= 21}}{i==100}}" > logs/ctl/java_Sequence_true-termination_true-no-overflow_2CFG.log	# TODO: ?
+# ./function tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c -domain polyhedra -ctl "EF{AND{AF{j >= 21}}{i==100}}" > logs/ctl/java_Sequence_true-termination_true-no-overflow_3CFG.log	# TODO: ?
+# ./function tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c -domain polyhedra -ctl "EF{AND{EF{j >= 21}}{i==100}}" > logs/ctl/java_Sequence_true-termination_true-no-overflow_4CFG.log	# TODO: ?
+./function tests/ctl/sv_comp/Madrid_true-no-overflow_false-termination_true-valid-memsafety.c -domain polyhedra -ctl "AF{AND{x==7}{AF{AG{x==2}}}}" > logs/ctl/Madrid_true-no-overflow_false-termination_true-valid-memsafety_1CFG.log
+./function tests/ctl/sv_comp/Madrid_true-no-overflow_false-termination_true-valid-memsafety.c -domain polyhedra -ctl "AF{AND{x==7}{AF{EG{x==2}}}}" > logs/ctl/Madrid_true-no-overflow_false-termination_true-valid-memsafety_2CFG.log
+./function tests/ctl/sv_comp/Madrid_true-no-overflow_false-termination_true-valid-memsafety.c -domain polyhedra -ctl "AF{AND{x==7}{EF{AG{x==2}}}}" > logs/ctl/Madrid_true-no-overflow_false-termination_true-valid-memsafety_3CFG.log
+./function tests/ctl/sv_comp/Madrid_true-no-overflow_false-termination_true-valid-memsafety.c -domain polyhedra -ctl "AF{AND{x==7}{EF{EG{x==2}}}}" > logs/ctl/Madrid_true-no-overflow_false-termination_true-valid-memsafety_4CFG.log
+# ./function tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c -domain polyhedra -ctl "AF{AG{j==0}}" > logs/ctl/NO_02_false-termination_true-no-overflow_1CFG.log	# TODO: ?
+# ./function tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c -domain polyhedra -ctl "EF{AG{j==0}}" > logs/ctl/NO_02_false-termination_true-no-overflow_2CFG.log	# TODO: ?
+# ./function tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c -domain polyhedra -ctl "AF{EG{j==0}}" > logs/ctl/NO_02_false-termination_true-no-overflow_3CFG.log	# TODO: ?
+# ./function tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c -domain polyhedra -ctl "EF{EG{j==0}}" > logs/ctl/NO_02_false-termination_true-no-overflow_4CFG.log	# TODO: ?
+
 #### CTL-AST
 
 ./function tests/ctl/and_ef_test.c -domain polyhedra -ctl "AND{EF{x == 2}}{EF{x==3}}" -ast > logs/ctl/and_ef_testAST.log
@@ -236,18 +256,22 @@
 ./function tests/ctl/t2_cav13/P3_cheat.c -domain polyhedra -ctl "OR{varA != 1}{EF{varR==1}}" -ast -precondition "varA == 0" > logs/ctl/P3_cheatAST.log
 ./function tests/ctl/t2_cav13/P4.c -domain polyhedra -ctl "EF{AND{varA == 1}{AG{varR != 1}}}" -ast -precondition "varN > 0" > logs/ctl/P4AST.log
 
-##########
-
-## drwxr-xr-x@ 19 Caterina  staff     608 Apr  3  2023 sv_comp
-
-# -rw-r--r--@ 1 Caterina  staff  391 Apr  3  2023 Bangalore_false-no-overflow.c
-# -rwxr-xr-x@ 1 Caterina  staff  238 Apr  3  2023 Ex02_false-termination_true-no-overflow.c
-# -rwxr-xr-x@ 1 Caterina  staff  325 Apr  3  2023 Ex02_false-termination_true-no-overflow.ltl.c
-# -rwxr-xr-x@ 1 Caterina  staff  291 Apr  3  2023 Ex07_false-termination_true-no-overflow.c
-# -rwxr-xr-x@ 1 Caterina  staff  303 Apr  3  2023 Ex07_false-termination_true-no-overflow.ltl.c
-# -rw-r--r--@ 1 Caterina  staff  225 Apr  3  2023 Madrid_true-no-overflow_false-termination_true-valid-memsafety.c
-# -rw-r--r--@ 1 Caterina  staff  288 Apr  3  2023 Madrid_true-no-overflow_false-termination_true-valid-memsafety.ltl.c
-# -rwxr-xr-x@ 1 Caterina  staff  261 Apr  3  2023 NO_02_false-termination_true-no-overflow.c
-# -rwxr-xr-x@ 1 Caterina  staff  309 Apr  3  2023 NO_02_false-termination_true-no-overflow.ltl.c
-# -rwxr-xr-x@ 1 Caterina  staff  293 Apr  3  2023 java_Sequence_true-termination_true-no-overflow.c
-# -rwxr-xr-x@ 1 Caterina  staff  366 Apr  3  2023 java_Sequence_true-termination_true-no-overflow.ltl.c
+# ./function tests/ctl/sv_comp/Bangalore_false-no-overflow.c -domain polyhedra -ctl "EF{x < 0}" -ast > logs/ctl/Bangalore_false-no-overflowAST.log		# TODO: ?
+./function tests/ctl/sv_comp/Bangalore_false-no-overflow.c -domain polyhedra -ctl "EF{x < 0}" -ast -ctl_existential_equivalence > logs/ctl/Bangalore_false-no-overflowAST_exeq.log
+./function tests/ctl/sv_comp/Ex02_false-termination_true-no-overflow.c -domain polyhedra -ctl "OR{i >= 5}{AF{exit: true}}" -ast > logs/ctl/Ex02_false-termination_true-no-overflowAST.log
+./function tests/ctl/sv_comp/Ex07_false-termination_true-no-overflow.c -domain polyhedra -ctl "AF{AG{i==0}}" -ast > logs/ctl/Ex07_false-termination_true-no-overflow_1AST.log
+./function tests/ctl/sv_comp/Ex07_false-termination_true-no-overflow.c -domain polyhedra -ctl "EF{EG{i==0}}" -ast > logs/ctl/Ex07_false-termination_true-no-overflow_2AST.log
+./function tests/ctl/sv_comp/Ex07_false-termination_true-no-overflow.c -domain polyhedra -ctl "EF{AG{i==0}}" -ast > logs/ctl/Ex07_false-termination_true-no-overflow_3AST.log
+./function tests/ctl/sv_comp/Ex07_false-termination_true-no-overflow.c -domain polyhedra -ctl "AF{EG{i==0}}" -ast > logs/ctl/Ex07_false-termination_true-no-overflow_4AST.log
+./function tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c -domain polyhedra -ctl "AF{AND{AF{j >= 21}}{i==100}}" -ast > logs/ctl/java_Sequence_true-termination_true-no-overflow_1AST.log
+./function tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c -domain polyhedra -ctl "AF{AND{EF{j >= 21}}{i==100}}" -ast > logs/ctl/java_Sequence_true-termination_true-no-overflow_2AST.log
+./function tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c -domain polyhedra -ctl "EF{AND{AF{j >= 21}}{i==100}}" -ast > logs/ctl/java_Sequence_true-termination_true-no-overflow_3AST.log
+./function tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c -domain polyhedra -ctl "EF{AND{EF{j >= 21}}{i==100}}" -ast > logs/ctl/java_Sequence_true-termination_true-no-overflow_4AST.log
+./function tests/ctl/sv_comp/Madrid_true-no-overflow_false-termination_true-valid-memsafety.c -domain polyhedra -ctl "AF{AND{x==7}{AF{AG{x==2}}}}" -ast > logs/ctl/Madrid_true-no-overflow_false-termination_true-valid-memsafety_1AST.log
+./function tests/ctl/sv_comp/Madrid_true-no-overflow_false-termination_true-valid-memsafety.c -domain polyhedra -ctl "AF{AND{x==7}{AF{EG{x==2}}}}" -ast > logs/ctl/Madrid_true-no-overflow_false-termination_true-valid-memsafety_2AST.log
+./function tests/ctl/sv_comp/Madrid_true-no-overflow_false-termination_true-valid-memsafety.c -domain polyhedra -ctl "AF{AND{x==7}{EF{AG{x==2}}}}" -ast > logs/ctl/Madrid_true-no-overflow_false-termination_true-valid-memsafety_3AST.log
+./function tests/ctl/sv_comp/Madrid_true-no-overflow_false-termination_true-valid-memsafety.c -domain polyhedra -ctl "AF{AND{x==7}{EF{EG{x==2}}}}" -ast > logs/ctl/Madrid_true-no-overflow_false-termination_true-valid-memsafety_4AST.log
+./function tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c -domain polyhedra -ctl "AF{AG{j==0}}" -ast > logs/ctl/NO_02_false-termination_true-no-overflow_1AST.log
+./function tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c -domain polyhedra -ctl "EF{AG{j==0}}" -ast > logs/ctl/NO_02_false-termination_true-no-overflow_2AST.log
+./function tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c -domain polyhedra -ctl "AF{EG{j==0}}" -ast > logs/ctl/NO_02_false-termination_true-no-overflow_3AST.log
+./function tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c -domain polyhedra -ctl "EF{EG{j==0}}" -ast > logs/ctl/NO_02_false-termination_true-no-overflow_4AST.log
