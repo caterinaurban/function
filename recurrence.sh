@@ -24,7 +24,7 @@
 ### -domain polyhedra
 ### -joinbwd 2
 
-# ./function tests/countdown.c -ctl "AG{AF{x == 0}}" -domain polyhedra > logs/recurrence/countdown_recuCFG.log				      # TODO: ?
+./function tests/countdown.c -ctl "AG{AF{x == 0}}" -domain polyhedra > logs/recurrence/countdown_recuCFG#TODO.log				      # TODO: ?
 ./function tests/peterson.c -ctl "AG{AF{C1: true}}" -domain polyhedra > logs/recurrence/peterson_recuCFG.log
 
 ### recurrence (CTL-CFG) with polyhedra and ordinals:
@@ -32,11 +32,11 @@
 ### -joinbwd 2
 ### -ordinals 1
 
-#./function tests/sink.c -ctl "AG{AF{x == 0}}" -domain polyhedra -ordinals 1 > logs/recurrence/sink_recuCFG.log            # TODO: ?
+./function tests/sink.c -ctl "AG{AF{x == 0}}" -domain polyhedra -ordinals 1 > logs/recurrence/sink_recuCFG#TODO.log            # TODO: ?
 
 # conditional recurrence (CTL-CFG)
 
-#./function tests/simple.c -ctl "AG{AF{x == 3}}" -domain polyhedra -joinbwd 3 > logs/recurrence/simple_recuCFG.log			    # TODO: ?
+./function tests/simple.c -ctl "AG{AF{x == 3}}" -domain polyhedra -joinbwd 3 > logs/recurrence/simple_recuCFG#TODO.log			    # TODO: ?
 
 ###
 
