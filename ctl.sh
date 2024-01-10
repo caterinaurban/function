@@ -118,6 +118,10 @@
 
 ./function tests/ctl/koskinen/acqrel.c -domain polyhedra -ctl "AG{OR{A!=1}{AF{R==1}}}" -precondition "A!=1" -ordinals 1 > logs/ctl/acqrelCFG.log
 ./function tests/ctl/koskinen/acqrel_mod.c -domain polyhedra -ctl "AG{OR{a!=1}{AF{r==1}}}" -precondition "a!=1" -ordinals 1 > logs/ctl/acqrel_modCFG.log
+./function tests/ctl/koskinen/fig8-2007.c -domain polyhedra -ctl "OR{set==0}{AF{unset == 1}}" > logs/ctl/fig8-2007CFG.log
+./function tests/ctl/koskinen/fig8-2007_mod.c -domain polyhedra -ctl "OR{set==0}{AF{unset == 1}}" > logs/ctl/fig8-2007_modCFG.log
+# ./function tests/ctl/koskinen/toylin1.c -domain polyhedra -ctl "AF{resp > 5}" -precondition "c > 5" > logs/ctl/toylin1CFG.log					# TODO: ?
+# ./function tests/ctl/koskinen/win4.c -domain polyhedra -ctl "AF{AG{WItemsNum >= 1}}" > logs/ctl/win4CFG.log										# TODO: ?
 
 #### CTL-AST
 
@@ -153,15 +157,12 @@
 
 ./function tests/ctl/koskinen/acqrel.c -domain polyhedra -ctl "AG{OR{A!=1}{AF{R==1}}}" -ast -precondition "A!=1" -ordinals 1 > logs/ctl/acqrelAST.log
 ./function tests/ctl/koskinen/acqrel_mod.c -domain polyhedra -ctl "AG{OR{a!=1}{AF{r==1}}}" -ast -precondition "a!=1" -ordinals 1 > logs/ctl/acqrel_modAST.log
+# ./function tests/ctl/koskinen/fig8-2007.c -domain polyhedra -ctl "OR{set==0}{AF{unset == 1}}" > logs/ctl/fig8-2007AST.log					# TODO: goto support
+# ./function tests/ctl/koskinen/fig8-2007_mod.c -domain polyhedra -ctl "OR{set==0}{AF{unset == 1}}" > logs/ctl/fig8-2007_modAST.log			# TODO: goto support
+# ./function tests/ctl/koskinen/toylin1.c -domain polyhedra -ctl "AF{resp > 5}" -ast -precondition "c > 5" > logs/ctl/toylin1AST.log					# TODO: ?
+./function tests/ctl/koskinen/win4.c -domain polyhedra -ctl "AF{AG{WItemsNum >= 1}}" -ast > logs/ctl/win4AST.log
 
 ##########
-
-## drwxr-xr-x@ 17 Caterina  staff     544 Apr  3  2023 koskinen
-
-# -rw-r--r--  1 Caterina  staff  784 Dec  1 15:47 fig8-2007.c
-# -rw-r--r--  1 Caterina  staff  881 Dec  1 15:47 fig8-2007_mod.c
-# -rw-r--r--  1 Caterina  staff  594 Dec  1 15:47 toylin1.c
-# -rw-r--r--@ 1 Caterina  staff  722 Apr  3  2023 win4.c
 
 ## drwxr-xr-x@ 32 Caterina  staff    1024 Apr  3  2023 ltl_automizer
 
