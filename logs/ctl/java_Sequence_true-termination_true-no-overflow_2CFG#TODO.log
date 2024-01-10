@@ -1,0 +1,505 @@
+
+CFG:
+List of variables:
+  $1{__return_main}:int at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:5.0-20.1
+  $2{i}:int at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:6.8-9
+  $3{j}:int at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:6.11-12
+  $4{c}:int at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:7.8-9
+
+List of functions:
+  1: main() -> $1{__return_main}:int at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:5.0-20.1, entry: 17, exit: 16, calls:
+
+List of nodes:
+  17: at :0:-1, in: out:1 
+  16: at :0:-1, in: 2 out:
+  1: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:5:0, in: 17 out:3 
+  2: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:20:1, in: 11 out:16 
+  3: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:6:13, in: 1 out:4 
+  4: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:7:10, in: 3 out:5 
+  5: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:8:10, in: 4 out:6 
+  6: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:9:10, in: 9 5 out:7 8 
+  7: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:13:5, in: 6 out:10 
+  8: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:10:20, in: 6 out:9 
+  9: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:11:18, in: 8 out:6 
+  10: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:14:10, in: 13 7 out:11 12 
+  11: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:18:5, in: 10 out:2 
+  12: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:15:19, in: 10 out:13 
+  13: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:16:18, in: 12 out:10 
+  14: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:5:0, in: out:15 
+  15: at tests/ctl/sv_comp/java_Sequence_true-termination_true-no-overflow.c:20:1, in: 14 out:
+
+List of arcs:
+  17 -> 1: label entry
+  2 -> 16: label exit
+  1 -> 3: skip
+  3 -> 4: skip
+  4 -> 5: $4{c} = 0
+  5 -> 6: $2{i} = 0
+  6 -> 8: $2{i} < 100 ?
+  6 -> 7: ! ($2{i} < 100) ?
+  8 -> 9: $4{c} = $4{c} + 1
+  9 -> 6: $2{i} = $2{i} + 1
+  7 -> 10: $3{j} = 5
+  10 -> 12: $3{j} < 21 ?
+  10 -> 11: ! ($3{j} < 21) ?
+  12 -> 13: $4{c} = $4{c} + 1
+  13 -> 10: $3{j} = $3{j} + 3
+  11 -> 2: $1{__return_main} = 0
+  14 -> 15: skip
+
+
+Property: $2{i} == 100
+
+[1:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[2:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[3:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[4:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[5:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[6:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[7:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[8:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[9:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[10:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[11:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[12:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[13:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[14:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[15:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[16:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+[17:]:
+-$2{i} >= -99 ? bottom
+$2{i} == 100 ? 0.
+$2{i} >= 101 ? bottom
+
+Property: $3{j} >= 21
+
+[1:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[2:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[3:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[4:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[5:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[6:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[7:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[8:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[9:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[10:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[11:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[12:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[13:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[14:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[15:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[16:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[17:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+Property: EF{$3{j} >= 21}
+
+[1:]:
+top ? bottom
+
+[2:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+-$3{j} >= -20 ? 19
+$3{j} >= 21 ? 0.
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+-$3{j} >= -11 ? -$3{j}+23
+$3{j} >= 12 && -$3{j} >= -14 ? 9
+$3{j} >= 15 && -$3{j} >= -17 ? 6
+$3{j} >= 18 && -$3{j} >= -20 ? 3
+$3{j} >= 21 ? 0.
+
+[11:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[12:]:
+-$3{j} >= -11 ? -$3{j}+22
+$3{j} >= 12 && -$3{j} >= -14 ? 8
+$3{j} >= 15 && -$3{j} >= -17 ? 5
+$3{j} >= 18 && -$3{j} >= -20 ? 2
+$3{j} >= 21 ? 0.
+
+[13:]:
+-$3{j} >= -11 ? -$3{j}+21
+$3{j} >= 12 && -$3{j} >= -14 ? 7
+$3{j} >= 15 && -$3{j} >= -17 ? 4
+$3{j} >= 18 && -$3{j} >= -20 ? 1
+$3{j} >= 21 ? 0.
+
+[14:]:
+top ? bottom
+
+[15:]:
+top ? bottom
+
+[16:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 ? 0.
+
+[17:]:
+top ? bottom
+
+Property: AND{EF{$3{j} >= 21}}{$2{i} == 100}
+
+[1:]:
+top ? bottom
+
+[2:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+-$3{j} >= -20 && -$2{i} >= -99 ? bottom
+-$3{j} >= -20 && $2{i} == 100 ? 19
+$2{i} >= 101 && -$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+-$3{j} >= -11 && -$2{i} >= -99 ? bottom
+-$3{j} >= -11 && $2{i} == 100 ? -$3{j}+23
+$2{i} >= 101 && -$3{j} >= -11 ? bottom
+$3{j} >= 12 && -$3{j} >= -14 && -$2{i} >= -99 ? bottom
+$3{j} >= 12 && -$3{j} >= -14 && $2{i} == 100 ? 9
+$2{i} >= 101 && $3{j} >= 12 && -$3{j} >= -14 ? bottom
+$3{j} >= 15 && -$3{j} >= -17 && -$2{i} >= -99 ? bottom
+$3{j} >= 15 && -$3{j} >= -17 && $2{i} == 100 ? 6
+$2{i} >= 101 && $3{j} >= 15 && -$3{j} >= -17 ? bottom
+$3{j} >= 18 && -$3{j} >= -20 && -$2{i} >= -99 ? bottom
+$3{j} >= 18 && -$3{j} >= -20 && $2{i} == 100 ? 3
+$2{i} >= 101 && $3{j} >= 18 && -$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[11:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[12:]:
+-$3{j} >= -11 && -$2{i} >= -99 ? bottom
+-$3{j} >= -11 && $2{i} == 100 ? -$3{j}+22
+$2{i} >= 101 && -$3{j} >= -11 ? bottom
+$3{j} >= 12 && -$3{j} >= -14 && -$2{i} >= -99 ? bottom
+$3{j} >= 12 && -$3{j} >= -14 && $2{i} == 100 ? 8
+$2{i} >= 101 && $3{j} >= 12 && -$3{j} >= -14 ? bottom
+$3{j} >= 15 && -$3{j} >= -17 && -$2{i} >= -99 ? bottom
+$3{j} >= 15 && -$3{j} >= -17 && $2{i} == 100 ? 5
+$2{i} >= 101 && $3{j} >= 15 && -$3{j} >= -17 ? bottom
+$3{j} >= 18 && -$3{j} >= -20 && -$2{i} >= -99 ? bottom
+$3{j} >= 18 && -$3{j} >= -20 && $2{i} == 100 ? 2
+$2{i} >= 101 && $3{j} >= 18 && -$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[13:]:
+-$3{j} >= -11 && -$2{i} >= -99 ? bottom
+-$3{j} >= -11 && $2{i} == 100 ? -$3{j}+21
+$2{i} >= 101 && -$3{j} >= -11 ? bottom
+$3{j} >= 12 && -$3{j} >= -14 && -$2{i} >= -99 ? bottom
+$3{j} >= 12 && -$3{j} >= -14 && $2{i} == 100 ? 7
+$2{i} >= 101 && $3{j} >= 12 && -$3{j} >= -14 ? bottom
+$3{j} >= 15 && -$3{j} >= -17 && -$2{i} >= -99 ? bottom
+$3{j} >= 15 && -$3{j} >= -17 && $2{i} == 100 ? 4
+$2{i} >= 101 && $3{j} >= 15 && -$3{j} >= -17 ? bottom
+$3{j} >= 18 && -$3{j} >= -20 && -$2{i} >= -99 ? bottom
+$3{j} >= 18 && -$3{j} >= -20 && $2{i} == 100 ? 1
+$2{i} >= 101 && $3{j} >= 18 && -$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[14:]:
+top ? bottom
+
+[15:]:
+top ? bottom
+
+[16:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[17:]:
+top ? bottom
+
+Property: AF{AND{EF{$3{j} >= 21}}{$2{i} == 100}}
+
+[1:]:
+top ? bottom
+
+[2:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+-$3{j} >= -20 && -$2{i} >= -99 ? bottom
+-$3{j} >= -20 && $2{i} == 100 ? 0.
+$2{i} >= 101 && -$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+-$3{j} >= -8 && -$2{i} >= -99 ? bottom
+-$3{j} >= -8 && $2{i} == 100 ? 0.
+$2{i} >= 101 && -$3{j} >= -8 ? bottom
+$3{j} >= 9 && -$3{j} >= -11 && -$2{i} >= -99 ? bottom
+$3{j} >= 9 && -$3{j} >= -11 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 9 && -$3{j} >= -11 ? bottom
+$3{j} >= 12 && -$3{j} >= -14 && -$2{i} >= -99 ? bottom
+$3{j} >= 12 && -$3{j} >= -14 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 12 && -$3{j} >= -14 ? bottom
+$3{j} >= 15 && -$3{j} >= -17 && -$2{i} >= -99 ? bottom
+$3{j} >= 15 && -$3{j} >= -17 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 15 && -$3{j} >= -17 ? bottom
+$3{j} >= 18 && -$3{j} >= -20 && -$2{i} >= -99 ? bottom
+$3{j} >= 18 && -$3{j} >= -20 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 18 && -$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[11:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[12:]:
+-$3{j} >= -8 && -$2{i} >= -99 ? bottom
+-$3{j} >= -8 && $2{i} == 100 ? 0.
+$2{i} >= 101 && -$3{j} >= -8 ? bottom
+$3{j} >= 9 && -$3{j} >= -11 && -$2{i} >= -99 ? bottom
+$3{j} >= 9 && -$3{j} >= -11 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 9 && -$3{j} >= -11 ? bottom
+$3{j} >= 12 && -$3{j} >= -14 && -$2{i} >= -99 ? bottom
+$3{j} >= 12 && -$3{j} >= -14 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 12 && -$3{j} >= -14 ? bottom
+$3{j} >= 15 && -$3{j} >= -17 && -$2{i} >= -99 ? bottom
+$3{j} >= 15 && -$3{j} >= -17 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 15 && -$3{j} >= -17 ? bottom
+$3{j} >= 18 && -$3{j} >= -20 && -$2{i} >= -99 ? bottom
+$3{j} >= 18 && -$3{j} >= -20 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 18 && -$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[13:]:
+-$3{j} >= -8 && -$2{i} >= -99 ? bottom
+-$3{j} >= -8 && $2{i} == 100 ? 0.
+$2{i} >= 101 && -$3{j} >= -8 ? bottom
+$3{j} >= 9 && -$3{j} >= -11 && -$2{i} >= -99 ? bottom
+$3{j} >= 9 && -$3{j} >= -11 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 9 && -$3{j} >= -11 ? bottom
+$3{j} >= 12 && -$3{j} >= -14 && -$2{i} >= -99 ? bottom
+$3{j} >= 12 && -$3{j} >= -14 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 12 && -$3{j} >= -14 ? bottom
+$3{j} >= 15 && -$3{j} >= -17 && -$2{i} >= -99 ? bottom
+$3{j} >= 15 && -$3{j} >= -17 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 15 && -$3{j} >= -17 ? bottom
+$3{j} >= 18 && -$3{j} >= -20 && -$2{i} >= -99 ? bottom
+$3{j} >= 18 && -$3{j} >= -20 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 18 && -$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[14:]:
+top ? bottom
+
+[15:]:
+top ? bottom
+
+[16:]:
+-$3{j} >= -20 ? bottom
+$3{j} >= 21 && -$2{i} >= -99 ? bottom
+$3{j} >= 21 && $2{i} == 100 ? 0.
+$2{i} >= 101 && $3{j} >= 21 ? bottom
+
+[17:]:
+top ? bottom
+
+
+Analysis Result: UNKNOWN

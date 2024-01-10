@@ -1,0 +1,249 @@
+
+CFG:
+List of variables:
+  $1{__return_main}:int at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:5.0-19.1
+  $2{i}:int at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:6.8-9
+  $3{j}:int at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:7.8-9
+
+List of functions:
+  1: main() -> $1{__return_main}:int at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:5.0-19.1, entry: 14, exit: 13, calls:
+
+List of nodes:
+  14: at :0:-1, in: out:1 
+  13: at :0:-1, in: 2 out:
+  1: at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:5:0, in: 14 out:3 
+  2: at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:19:1, in: 6 out:13 
+  3: at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:6:10, in: 1 out:4 
+  4: at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:7:10, in: 3 out:5 
+  5: at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:8:10, in: 9 4 out:6 7 
+  6: at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:16:5, in: 5 out:2 
+  7: at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:10:20, in: 5 out:8 
+  8: at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:11:14, in: 10 7 out:9 10 
+  9: at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:14:9, in: 8 out:5 
+  10: at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:12:22, in: 8 out:8 
+  11: at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:5:0, in: out:12 
+  12: at tests/ctl/sv_comp/NO_02_false-termination_true-no-overflow.c:19:1, in: 11 out:
+
+List of arcs:
+  14 -> 1: label entry
+  2 -> 13: label exit
+  1 -> 3: skip
+  3 -> 4: skip
+  4 -> 5: $2{i} = 0
+  5 -> 7: $2{i} < 100 ?
+  5 -> 6: ! ($2{i} < 100) ?
+  7 -> 8: $3{j} = 0
+  8 -> 10: $3{j} < 1 ?
+  8 -> 9: ! ($3{j} < 1) ?
+  10 -> 8: $3{j} = $3{j} + 0
+  9 -> 5: $2{i} = $2{i} + 1
+  6 -> 2: $1{__return_main} = 0
+  11 -> 12: skip
+
+
+Property: $3{j} == 0
+
+[1:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[2:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[3:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[4:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[5:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[6:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[7:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[8:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[9:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[10:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[11:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[12:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[13:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[14:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+Property: AG{$3{j} == 0}
+
+[1:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[4:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[5:]:
+-$3{j} >= 1 ? bottom
+-$2{i} >= -99 && $3{j} == 0 ? 0.
+$2{i} >= 100 && $3{j} == 0 ? bottom
+$3{j} >= 1 ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[8:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[9:]:
+-$3{j} >= 1 ? bottom
+-$2{i} >= -98 && $3{j} == 0 ? 0.
+$2{i} >= 99 && $3{j} == 0 ? bottom
+$3{j} >= 1 ? bottom
+
+[10:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[11:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[12:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[13:]:
+top ? bottom
+
+[14:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+Property: AF{AG{$3{j} == 0}}
+
+[1:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[4:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[5:]:
+-$3{j} >= 1 ? bottom
+-$2{i} >= -99 && $3{j} == 0 ? 0.
+$2{i} >= 100 && $3{j} == 0 ? bottom
+$3{j} >= 1 ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+-$3{j} >= 1 ? 1
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? 1
+
+[8:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[9:]:
+-$3{j} >= 1 ? bottom
+-$2{i} >= -98 && $3{j} == 0 ? 0.
+$2{i} >= 99 && $3{j} == 0 ? bottom
+$3{j} >= 1 ? bottom
+
+[10:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+[11:]:
+top ? bottom
+
+[12:]:
+top ? bottom
+
+[13:]:
+top ? bottom
+
+[14:]:
+-$3{j} >= 1 ? bottom
+$3{j} == 0 ? 0.
+$3{j} >= 1 ? bottom
+
+
+Analysis Result: UNKNOWN

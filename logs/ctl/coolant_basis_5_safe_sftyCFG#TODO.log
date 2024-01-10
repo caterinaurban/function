@@ -1,0 +1,4880 @@
+
+CFG:
+List of variables:
+  $1{error}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:11.4-9
+  $2{tempDisplay}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:11.11-22
+  $3{warnLED}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:11.24-31
+  $4{tempIn}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:11.33-39
+  $5{chainBroken}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:11.41-52
+  $6{warnLight}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:12.0-9
+  $7{temp}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:12.11-15
+  $8{otime}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:12.17-22
+  $9{time}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:12.28-32
+  $10{limit}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:12.38-43
+  $11{init}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:12.45-49
+  $12{tempdiff}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:15.17-25
+  $13{warning}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:15.31-38
+  $14{kelvin}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:21.18-24
+  $15{__return_vinToCels}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:21.0-29.1
+  $16{__ret_vinToCels}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:38.9-18
+  $17{__return_main}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:46.0-75.1
+  $18{limit}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:61.6-11
+
+List of functions:
+  3: coolantControl() -> void at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:31.0-44.1, entry: 11, exit: 12, calls: 46->23
+  1: display($12{tempdiff}:int,$13{warning}:int) -> void at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:15.0-19.1, entry: 1, exit: 2, calls: 45->33 42->40 10->6
+  4: main() -> $17{__return_main}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:46.0-75.1, entry: 52, exit: 51, calls:
+  2: vinToCels($14{kelvin}:int) -> $15{__return_vinToCels}:int at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:21.0-29.1, entry: 4, exit: 5, calls: 18->19
+
+List of nodes:
+  52: at :0:-1, in: out:22 
+  51: at :0:-1, in: 23 out:
+  1: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:15:0, in: out:3 
+  2: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:19:1, in: 3 out:
+  3: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:17:24, in: 1 out:2 
+  4: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:21:0, in: out:6 7 
+  5: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:29:1, in: 6 out:
+  6: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:27:2, in: 54 4 out:5 
+  7: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:24:1, in: 4 out:8 
+  8: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:25:12, in: 7 out:9 
+  9: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:26:29, in: 8 out:10 
+  10: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:26:22, in: 9 out:53 
+  11: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:31:0, in: 21 17 out:12 13 
+  12: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:44:1, in: 11 out:
+  13: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:34:1, in: 11 out:14 
+  14: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:35:15, in: 13 out:15 
+  15: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:36:18, in: 14 out:16 
+  16: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:37:35, in: 15 out:18 
+  17: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:38:27, in: 20 out:11 21 
+  18: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:38:25, in: 16 out:62 
+  19: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:38:18, in: 63 out:20 
+  20: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:38:18, in: 19 out:17 
+  21: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:40:2, in: 17 out:11 
+  22: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:46:0, in: 52 out:24 
+  23: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:75:1, in: 73 out:51 
+  24: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:48:13, in: 22 out:25 
+  25: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:49:20, in: 24 out:26 
+  26: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:50:16, in: 25 out:27 
+  27: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:51:15, in: 26 out:28 
+  28: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:52:14, in: 27 out:29 
+  29: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:53:20, in: 28 out:30 
+  30: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:54:18, in: 29 out:31 
+  31: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:55:13, in: 30 out:32 
+  32: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:56:14, in: 31 out:33 
+  33: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:57:13, in: 60 32 out:34 35 
+  34: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:71:2, in: 40 33 out:46 
+  35: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:60:1, in: 33 out:36 
+  36: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:61:38, in: 35 out:37 38 
+  37: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:67:9, in: 36 out:43 
+  38: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:63:2, in: 36 out:39 
+  39: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:64:13, in: 38 out:41 
+  40: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:65:21, in: 57 out:34 
+  41: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:65:19, in: 39 out:42 
+  42: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:65:12, in: 41 out:56 
+  43: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:68:13, in: 37 out:44 
+  44: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:69:19, in: 43 out:45 
+  45: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:69:12, in: 44 out:59 
+  46: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:73:10, in: 34 out:72 
+  47: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:11:0, in: out:49 
+  48: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:75:1, in: 50 out:
+  49: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:12:53, in: 47 out:50 
+  50: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:12:36, in: 49 out:48 
+  53: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:15:0, in: 10 out:55 
+  54: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:19:1, in: 55 out:6 
+  55: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:17:24, in: 53 out:54 
+  56: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:15:0, in: 42 out:58 
+  57: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:19:1, in: 58 out:40 
+  58: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:17:24, in: 56 out:57 
+  59: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:15:0, in: 45 out:61 
+  60: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:19:1, in: 61 out:33 
+  61: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:17:24, in: 59 out:60 
+  62: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:21:0, in: 18 out:64 65 
+  63: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:29:1, in: 64 out:19 
+  64: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:27:2, in: 70 62 out:63 
+  65: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:24:1, in: 62 out:66 
+  66: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:25:12, in: 65 out:67 
+  67: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:26:29, in: 66 out:68 
+  68: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:26:22, in: 67 out:69 
+  69: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:15:0, in: 68 out:71 
+  70: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:19:1, in: 71 out:64 
+  71: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:17:24, in: 69 out:70 
+  72: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:31:0, in: 46 82 78 out:73 74 
+  73: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:44:1, in: 72 out:23 
+  74: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:34:1, in: 72 out:75 
+  75: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:35:15, in: 74 out:76 
+  76: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:36:18, in: 75 out:77 
+  77: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:37:35, in: 76 out:79 
+  78: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:38:27, in: 81 out:72 82 
+  79: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:38:25, in: 77 out:83 
+  80: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:38:18, in: 84 out:81 
+  81: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:38:18, in: 80 out:78 
+  82: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:40:2, in: 78 out:72 
+  83: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:21:0, in: 79 out:85 86 
+  84: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:29:1, in: 85 out:80 
+  85: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:27:2, in: 91 83 out:84 
+  86: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:24:1, in: 83 out:87 
+  87: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:25:12, in: 86 out:88 
+  88: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:26:29, in: 87 out:89 
+  89: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:26:22, in: 88 out:90 
+  90: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:15:0, in: 89 out:92 
+  91: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:19:1, in: 92 out:85 
+  92: at tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c:17:24, in: 90 out:91 
+
+List of arcs:
+  73 -> 23: return: coolantControl
+  46 -> 72: call: coolantControl
+  63 -> 19: return: vinToCels
+  18 -> 62: call: vinToCels
+  60 -> 33: return: display
+  45 -> 59: call: display
+  57 -> 40: return: display
+  42 -> 56: call: display
+  54 -> 6: return: display
+  10 -> 53: call: display
+  52 -> 22: label entry
+  23 -> 51: label exit
+  1 -> 3: $2{tempDisplay} = $12{tempdiff}
+  3 -> 2: $3{warnLED} = $13{warning}
+  4 -> 7: $7{temp} < 0 ?
+  4 -> 6: ! ($7{temp} < 0) ?
+  7 -> 8: $1{error} = 1
+  8 -> 9: $13{warning} = $1{error}
+  9 -> 10: $12{tempdiff} = $14{kelvin} - 273
+  6 -> 5: $15{__return_vinToCels} = $14{kelvin} - 273
+  11 -> 13: 1 != 0 ?
+  11 -> 12: ! (1 != 0) ?
+  13 -> 14: $8{otime} = $9{time}
+  14 -> 15: $9{time} = $8{otime} + 1
+  15 -> 16: $4{tempIn} = ?
+  16 -> 18: $14{kelvin} = $4{tempIn}
+  19 -> 20: $16{__ret_vinToCels} = $15{__return_vinToCels}
+  20 -> 17: $7{temp} = $16{__ret_vinToCels}
+  17 -> 21: $7{temp} > $10{limit} ?
+  17 -> 11: ! ($7{temp} > $10{limit}) ?
+  21 -> 11: $5{chainBroken} = 1
+  22 -> 24: $11{init} = 0
+  24 -> 25: $2{tempDisplay} = 0
+  25 -> 26: $3{warnLED} = 1
+  26 -> 27: $4{tempIn} = 0
+  27 -> 28: $1{error} = 0
+  28 -> 29: $5{chainBroken} = 0
+  29 -> 30: $6{warnLight} = 0
+  30 -> 31: $7{temp} = 0
+  31 -> 32: $10{limit} = 8
+  32 -> 33: $11{init} = 1
+  33 -> 35: 1 != 0 ?
+  33 -> 34: ! (1 != 0) ?
+  35 -> 36: $18{limit} = ?
+  36 -> 38: $18{limit} < 10 && $18{limit} > - 273 ?
+  36 -> 37: ! ($18{limit} < 10 && $18{limit} > - 273) ?
+  38 -> 39: $1{error} = 0
+  39 -> 41: $13{warning} = $1{error}
+  41 -> 42: $12{tempdiff} = 0
+  40 -> 34: skip: break
+  37 -> 43: $1{error} = 1
+  43 -> 44: $13{warning} = $1{error}
+  44 -> 45: $12{tempdiff} = 0
+  34 -> 46: $11{init} = 3
+  47 -> 49: $11{init} = 0
+  49 -> 50: $9{time} = 0
+  50 -> 48: $8{otime} = 0
+  53 -> 55: $2{tempDisplay} = $12{tempdiff}
+  55 -> 54: $3{warnLED} = $13{warning}
+  56 -> 58: $2{tempDisplay} = $12{tempdiff}
+  58 -> 57: $3{warnLED} = $13{warning}
+  59 -> 61: $2{tempDisplay} = $12{tempdiff}
+  61 -> 60: $3{warnLED} = $13{warning}
+  62 -> 64: ! ($7{temp} < 0) ?
+  62 -> 65: $7{temp} < 0 ?
+  64 -> 63: $15{__return_vinToCels} = $14{kelvin} - 273
+  65 -> 66: $1{error} = 1
+  66 -> 67: $13{warning} = $1{error}
+  67 -> 68: $12{tempdiff} = $14{kelvin} - 273
+  68 -> 69: call: display
+  69 -> 71: $2{tempDisplay} = $12{tempdiff}
+  70 -> 64: return: display
+  71 -> 70: $3{warnLED} = $13{warning}
+  72 -> 73: ! (1 != 0) ?
+  72 -> 74: 1 != 0 ?
+  74 -> 75: $8{otime} = $9{time}
+  75 -> 76: $9{time} = $8{otime} + 1
+  76 -> 77: $4{tempIn} = ?
+  77 -> 79: $14{kelvin} = $4{tempIn}
+  78 -> 72: ! ($7{temp} > $10{limit}) ?
+  78 -> 82: $7{temp} > $10{limit} ?
+  79 -> 83: call: vinToCels
+  80 -> 81: $16{__ret_vinToCels} = $15{__return_vinToCels}
+  81 -> 78: $7{temp} = $16{__ret_vinToCels}
+  82 -> 72: $5{chainBroken} = 1
+  83 -> 85: ! ($7{temp} < 0) ?
+  83 -> 86: $7{temp} < 0 ?
+  84 -> 80: return: vinToCels
+  85 -> 84: $15{__return_vinToCels} = $14{kelvin} - 273
+  86 -> 87: $1{error} = 1
+  87 -> 88: $13{warning} = $1{error}
+  88 -> 89: $12{tempdiff} = $14{kelvin} - 273
+  89 -> 90: call: display
+  90 -> 92: $2{tempDisplay} = $12{tempdiff}
+  91 -> 85: return: display
+  92 -> 91: $3{warnLED} = $13{warning}
+
+
+Property: $11{init} == 1
+
+[1:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[2:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[3:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[4:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[5:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[6:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[7:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[8:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[9:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[10:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[11:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[12:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[13:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[14:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[15:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[16:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[17:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[18:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[19:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[20:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[21:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[22:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[23:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[24:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[25:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[26:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[27:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[28:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[29:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[30:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[31:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[32:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[33:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[34:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[35:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[36:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[37:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[38:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[39:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[40:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[41:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[42:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[43:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[44:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[45:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[46:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[47:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[48:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[49:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[50:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[51:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[52:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[53:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[54:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[55:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[56:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[57:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[58:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[59:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[60:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[61:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[62:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[63:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[64:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[65:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[66:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[67:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[68:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[69:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[70:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[71:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[72:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[73:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[74:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[75:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[76:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[77:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[78:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[79:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[80:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[81:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[82:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[83:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[84:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[85:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[86:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[87:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[88:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[89:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[90:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[91:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[92:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+Property: AG{$11{init} == 1}
+
+[1:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[2:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[3:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[4:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[5:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[6:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[7:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[8:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[9:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[10:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[11:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[12:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[13:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[14:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[15:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[16:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[17:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[18:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[19:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[20:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[21:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[22:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[23:]:
+top ? bottom
+
+[24:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[25:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[26:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[27:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[28:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[29:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[30:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[31:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[32:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[33:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[34:]:
+top ? bottom
+
+[35:]:
+top ? bottom
+
+[36:]:
+-$18{limit} >= -9 && -$11{init} >= 0 ? bottom
+-$18{limit} >= -9 && $11{init} == 1 ? 0.
+$11{init} >= 2 && -$18{limit} >= -9 ? bottom
+$18{limit} >= 10 && -$11{init} >= 0 ? bottom
+$18{limit} >= 10 && $11{init} == 1 ? 0.
+$11{init} >= 2 && $18{limit} >= 10 ? bottom
+
+[37:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[38:]:
+top ? bottom
+
+[39:]:
+top ? bottom
+
+[40:]:
+top ? bottom
+
+[41:]:
+top ? bottom
+
+[42:]:
+top ? bottom
+
+[43:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[44:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[45:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[46:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[47:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[48:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[49:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[50:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[51:]:
+top ? bottom
+
+[52:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[53:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[54:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[55:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[56:]:
+top ? bottom
+
+[57:]:
+top ? bottom
+
+[58:]:
+top ? bottom
+
+[59:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[60:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[61:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[62:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[63:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[64:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[65:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[66:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[67:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[68:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[69:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[70:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[71:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[72:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+$11{init} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$11{init} >= 2 && $7{temp} >= 0 ? bottom
+
+[73:]:
+top ? bottom
+
+[74:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+$11{init} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$11{init} >= 2 && $7{temp} >= 0 ? bottom
+
+[75:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+$11{init} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$11{init} >= 2 && $7{temp} >= 0 ? bottom
+
+[76:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+$11{init} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$11{init} >= 2 && $7{temp} >= 0 ? bottom
+
+[77:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+$11{init} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$11{init} >= 2 && $7{temp} >= 0 ? bottom
+
+[78:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[79:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+$11{init} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$11{init} >= 2 && $7{temp} >= 0 ? bottom
+
+[80:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[81:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[82:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[83:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+$11{init} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$11{init} >= 2 && $7{temp} >= 0 ? bottom
+
+[84:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[85:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[86:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[87:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[88:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[89:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[90:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[91:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[92:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+Property: $11{init} == 3
+
+[1:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[2:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[3:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[4:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[5:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[6:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[7:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[8:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[9:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[10:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[11:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[12:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[13:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[14:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[15:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[16:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[17:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[18:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[19:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[20:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[21:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[22:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[23:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[24:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[25:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[26:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[27:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[28:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[29:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[30:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[31:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[32:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[33:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[34:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[35:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[36:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[37:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[38:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[39:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[40:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[41:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[42:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[43:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[44:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[45:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[46:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[47:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[48:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[49:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[50:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[51:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[52:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[53:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[54:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[55:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[56:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[57:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[58:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[59:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[60:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[61:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[62:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[63:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[64:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[65:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[66:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[67:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[68:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[69:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[70:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[71:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[72:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[73:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[74:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[75:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[76:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[77:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[78:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[79:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[80:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[81:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[82:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[83:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[84:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[85:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[86:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[87:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[88:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[89:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[90:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[91:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[92:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+Property: AG{$11{init} == 3}
+
+[1:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[2:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[3:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[4:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[5:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[6:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[7:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[8:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[9:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[10:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[11:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[12:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[13:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[14:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[15:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[16:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[17:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[18:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[19:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[20:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[21:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[22:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[23:]:
+top ? bottom
+
+[24:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[25:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[26:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[27:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[28:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[29:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[30:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[31:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[32:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[33:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[34:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[35:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[36:]:
+-$18{limit} >= 273 && -$11{init} >= -2 ? bottom
+-$18{limit} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$18{limit} >= 273 ? bottom
+$18{limit} >= -272 && -$18{limit} >= -9 && -$11{init} >= -2 ? bottom
+$18{limit} >= -272 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= -272 && -$18{limit} >= -9 ? bottom
+$18{limit} >= 10 && -$11{init} >= -2 ? bottom
+$18{limit} >= 10 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= 10 ? bottom
+
+[37:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[38:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[39:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[40:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[41:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[42:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[43:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[44:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[45:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[46:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[47:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[48:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[49:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[50:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[51:]:
+top ? bottom
+
+[52:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[53:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[54:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[55:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[56:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[57:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[58:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[59:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[60:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[61:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[62:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[63:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[64:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[65:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[66:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[67:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[68:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[69:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[70:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[71:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[72:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[73:]:
+top ? bottom
+
+[74:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[75:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[76:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[77:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[78:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[79:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[80:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[81:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[82:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[83:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[84:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[85:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[86:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[87:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[88:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[89:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[90:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[91:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+[92:]:
+-$11{init} >= -2 ? bottom
+$11{init} == 3 ? 0.
+$11{init} >= 4 ? bottom
+
+Property: $11{init} == 1
+
+[1:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[2:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[3:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[4:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[5:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[6:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[7:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[8:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[9:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[10:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[11:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[12:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[13:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[14:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[15:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[16:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[17:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[18:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[19:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[20:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[21:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[22:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[23:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[24:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[25:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[26:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[27:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[28:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[29:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[30:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[31:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[32:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[33:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[34:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[35:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[36:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[37:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[38:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[39:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[40:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[41:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[42:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[43:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[44:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[45:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[46:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[47:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[48:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[49:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[50:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[51:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[52:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[53:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[54:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[55:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[56:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[57:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[58:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[59:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[60:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[61:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[62:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[63:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[64:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[65:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[66:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[67:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[68:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[69:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[70:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[71:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[72:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[73:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[74:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[75:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[76:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[77:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[78:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[79:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[80:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[81:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[82:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[83:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[84:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[85:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[86:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[87:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[88:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[89:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[90:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[91:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[92:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+Property: AU{$11{init} == 1}{AG{$11{init} == 3}}
+
+[1:]:
+top ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+top ? bottom
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? bottom
+
+[11:]:
+top ? bottom
+
+[12:]:
+top ? bottom
+
+[13:]:
+top ? bottom
+
+[14:]:
+top ? bottom
+
+[15:]:
+top ? bottom
+
+[16:]:
+top ? bottom
+
+[17:]:
+top ? bottom
+
+[18:]:
+top ? bottom
+
+[19:]:
+top ? bottom
+
+[20:]:
+top ? bottom
+
+[21:]:
+top ? bottom
+
+[22:]:
+top ? bottom
+
+[23:]:
+top ? bottom
+
+[24:]:
+top ? bottom
+
+[25:]:
+top ? bottom
+
+[26:]:
+top ? bottom
+
+[27:]:
+top ? bottom
+
+[28:]:
+top ? bottom
+
+[29:]:
+top ? bottom
+
+[30:]:
+top ? bottom
+
+[31:]:
+top ? bottom
+
+[32:]:
+top ? bottom
+
+[33:]:
+top ? bottom
+
+[34:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 1
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 1
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[35:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[36:]:
+-$7{temp} >= 1 && -$18{limit} >= 273 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$18{limit} >= 273 ? bottom
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && -$11{init} >= 0 ? bottom
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 1 ? 7
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 2 ? bottom
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 ? bottom
+$18{limit} >= 10 && -$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+$18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= 10 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$18{limit} >= 273 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$18{limit} >= 273 ? bottom
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && -$11{init} >= 0 ? bottom
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 1 ? 7
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 2 ? bottom
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 ? bottom
+$18{limit} >= 10 && $7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= 10 && $7{temp} >= 0 ? bottom
+
+[37:]:
+top ? bottom
+
+[38:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 6
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 6
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[39:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 5
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 5
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[40:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 1
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 1
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[41:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 4
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 4
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[42:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 3
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 3
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[43:]:
+top ? bottom
+
+[44:]:
+top ? bottom
+
+[45:]:
+top ? bottom
+
+[46:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[47:]:
+top ? bottom
+
+[48:]:
+top ? bottom
+
+[49:]:
+top ? bottom
+
+[50:]:
+top ? bottom
+
+[51:]:
+top ? bottom
+
+[52:]:
+top ? bottom
+
+[53:]:
+top ? bottom
+
+[54:]:
+top ? bottom
+
+[55:]:
+top ? bottom
+
+[56:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 3
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 3
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[57:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 1
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 1
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[58:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 2
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 2
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[59:]:
+top ? bottom
+
+[60:]:
+top ? bottom
+
+[61:]:
+top ? bottom
+
+[62:]:
+top ? bottom
+
+[63:]:
+top ? bottom
+
+[64:]:
+top ? bottom
+
+[65:]:
+top ? bottom
+
+[66:]:
+top ? bottom
+
+[67:]:
+top ? bottom
+
+[68:]:
+top ? bottom
+
+[69:]:
+top ? bottom
+
+[70:]:
+top ? bottom
+
+[71:]:
+top ? bottom
+
+[72:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[73:]:
+top ? bottom
+
+[74:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[75:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[76:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[77:]:
+-$7{temp} >= 1 && -$4{tempIn} >= -272 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && -$4{tempIn} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$4{tempIn} >= -272 ? bottom
+$4{tempIn} >= 273 && -$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+$4{tempIn} >= 273 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $4{tempIn} >= 273 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$4{tempIn} >= -272 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && -$4{tempIn} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$4{tempIn} >= -272 ? bottom
+$4{tempIn} >= 273 && $7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$4{tempIn} >= 273 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $4{tempIn} >= 273 && $7{temp} >= 0 ? bottom
+
+[78:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[79:]:
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 && $7{temp} >= 0 ? bottom
+
+[80:]:
+-$15{__return_vinToCels} >= 1 && -$11{init} >= -2 ? bottom
+-$15{__return_vinToCels} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$15{__return_vinToCels} >= 1 ? bottom
+$15{__return_vinToCels} >= 0 && -$11{init} >= -2 ? bottom
+$15{__return_vinToCels} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $15{__return_vinToCels} >= 0 ? bottom
+
+[81:]:
+-$16{__ret_vinToCels} >= 1 && -$11{init} >= -2 ? bottom
+-$16{__ret_vinToCels} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$16{__ret_vinToCels} >= 1 ? bottom
+$16{__ret_vinToCels} >= 0 && -$11{init} >= -2 ? bottom
+$16{__ret_vinToCels} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $16{__ret_vinToCels} >= 0 ? bottom
+
+[82:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[83:]:
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 && $7{temp} >= 0 ? bottom
+
+[84:]:
+-$15{__return_vinToCels} >= 1 && -$11{init} >= -2 ? bottom
+-$15{__return_vinToCels} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$15{__return_vinToCels} >= 1 ? bottom
+$15{__return_vinToCels} >= 0 && -$11{init} >= -2 ? bottom
+$15{__return_vinToCels} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $15{__return_vinToCels} >= 0 ? bottom
+
+[85:]:
+-$14{kelvin} >= -272 && -$11{init} >= -2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= -2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[86:]:
+-$14{kelvin} >= -272 && -$11{init} >= -2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= -2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[87:]:
+-$14{kelvin} >= -272 && -$11{init} >= -2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= -2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[88:]:
+-$14{kelvin} >= -272 && -$11{init} >= -2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= -2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[89:]:
+-$14{kelvin} >= -272 && -$11{init} >= -2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= -2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[90:]:
+-$14{kelvin} >= -272 && -$11{init} >= -2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= -2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[91:]:
+-$14{kelvin} >= -272 && -$11{init} >= -2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= -2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[92:]:
+-$14{kelvin} >= -272 && -$11{init} >= -2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= -2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+Property: OR{AU{$11{init} == 1}{AG{$11{init} == 3}}}{AG{$11{init} == 1}}
+
+[1:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[2:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[3:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[4:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[5:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[6:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[7:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[8:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[9:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[10:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[11:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[12:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[13:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[14:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[15:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[16:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[17:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[18:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[19:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[20:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[21:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[22:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[23:]:
+top ? bottom
+
+[24:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[25:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[26:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[27:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[28:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[29:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[30:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[31:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[32:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[33:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[34:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 1
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 1
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[35:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[36:]:
+-$7{temp} >= 1 && -$18{limit} >= 273 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$18{limit} >= 273 ? bottom
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && -$11{init} >= 0 ? bottom
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 1 ? 7
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 2 ? bottom
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 ? bottom
+$18{limit} >= 10 && -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+$18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 1 ? 0.
+$18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 2 ? bottom
+$18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= 10 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$18{limit} >= 273 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$18{limit} >= 273 ? bottom
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && -$11{init} >= 0 ? bottom
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 1 ? 7
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 2 ? bottom
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 ? bottom
+$18{limit} >= 10 && $7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 1 ? 0.
+$18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 2 ? bottom
+$18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= 10 && $7{temp} >= 0 ? bottom
+
+[37:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[38:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 6
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 6
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[39:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 5
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 5
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[40:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 1
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 1
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[41:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 4
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 4
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[42:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 3
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 3
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[43:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[44:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[45:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[46:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[47:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[48:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[49:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[50:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[51:]:
+top ? bottom
+
+[52:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[53:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[54:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[55:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[56:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 3
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 3
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[57:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 1
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 1
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[58:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 2
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 2
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[59:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[60:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[61:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[62:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[63:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[64:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[65:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[66:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[67:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[68:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[69:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[70:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[71:]:
+-$11{init} >= 0 ? bottom
+$11{init} == 1 ? 0.
+$11{init} >= 2 ? bottom
+
+[72:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[73:]:
+top ? bottom
+
+[74:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[75:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[76:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[77:]:
+-$7{temp} >= 1 && -$4{tempIn} >= -272 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && -$4{tempIn} >= -272 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && -$4{tempIn} >= -272 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && -$4{tempIn} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$4{tempIn} >= -272 ? bottom
+$4{tempIn} >= 273 && -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+$4{tempIn} >= 273 && -$7{temp} >= 1 && $11{init} == 1 ? 0.
+$4{tempIn} >= 273 && -$7{temp} >= 1 && $11{init} == 2 ? bottom
+$4{tempIn} >= 273 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $4{tempIn} >= 273 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$4{tempIn} >= -272 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && -$4{tempIn} >= -272 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && -$4{tempIn} >= -272 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && -$4{tempIn} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$4{tempIn} >= -272 ? bottom
+$4{tempIn} >= 273 && $7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$4{tempIn} >= 273 && $7{temp} >= 0 && $11{init} == 1 ? 0.
+$4{tempIn} >= 273 && $7{temp} >= 0 && $11{init} == 2 ? bottom
+$4{tempIn} >= 273 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $4{tempIn} >= 273 && $7{temp} >= 0 ? bottom
+
+[78:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[79:]:
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 && $7{temp} >= 0 ? bottom
+
+[80:]:
+-$15{__return_vinToCels} >= 1 && -$11{init} >= 0 ? bottom
+-$15{__return_vinToCels} >= 1 && $11{init} == 1 ? 0.
+-$15{__return_vinToCels} >= 1 && $11{init} == 2 ? bottom
+-$15{__return_vinToCels} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$15{__return_vinToCels} >= 1 ? bottom
+$15{__return_vinToCels} >= 0 && -$11{init} >= 0 ? bottom
+$15{__return_vinToCels} >= 0 && $11{init} == 1 ? 0.
+$15{__return_vinToCels} >= 0 && $11{init} == 2 ? bottom
+$15{__return_vinToCels} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $15{__return_vinToCels} >= 0 ? bottom
+
+[81:]:
+-$16{__ret_vinToCels} >= 1 && -$11{init} >= 0 ? bottom
+-$16{__ret_vinToCels} >= 1 && $11{init} == 1 ? 0.
+-$16{__ret_vinToCels} >= 1 && $11{init} == 2 ? bottom
+-$16{__ret_vinToCels} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$16{__ret_vinToCels} >= 1 ? bottom
+$16{__ret_vinToCels} >= 0 && -$11{init} >= 0 ? bottom
+$16{__ret_vinToCels} >= 0 && $11{init} == 1 ? 0.
+$16{__ret_vinToCels} >= 0 && $11{init} == 2 ? bottom
+$16{__ret_vinToCels} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $16{__ret_vinToCels} >= 0 ? bottom
+
+[82:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[83:]:
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 && $7{temp} >= 0 ? bottom
+
+[84:]:
+-$15{__return_vinToCels} >= 1 && -$11{init} >= 0 ? bottom
+-$15{__return_vinToCels} >= 1 && $11{init} == 1 ? 0.
+-$15{__return_vinToCels} >= 1 && $11{init} == 2 ? bottom
+-$15{__return_vinToCels} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$15{__return_vinToCels} >= 1 ? bottom
+$15{__return_vinToCels} >= 0 && -$11{init} >= 0 ? bottom
+$15{__return_vinToCels} >= 0 && $11{init} == 1 ? 0.
+$15{__return_vinToCels} >= 0 && $11{init} == 2 ? bottom
+$15{__return_vinToCels} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $15{__return_vinToCels} >= 0 ? bottom
+
+[85:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[86:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[87:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[88:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[89:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[90:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[91:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[92:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+Property: $11{init} == 0
+
+[1:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[2:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[3:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[4:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[5:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[6:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[7:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[8:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[9:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[10:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[11:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[12:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[13:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[14:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[15:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[16:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[17:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[18:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[19:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[20:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[21:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[22:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[23:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[24:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[25:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[26:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[27:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[28:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[29:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[30:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[31:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[32:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[33:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[34:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[35:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[36:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[37:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[38:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[39:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[40:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[41:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[42:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[43:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[44:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[45:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[46:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[47:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[48:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[49:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[50:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[51:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[52:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[53:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[54:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[55:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[56:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[57:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[58:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[59:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[60:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[61:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[62:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[63:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[64:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[65:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[66:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[67:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[68:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[69:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[70:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[71:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[72:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[73:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[74:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[75:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[76:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[77:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[78:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[79:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[80:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[81:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[82:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[83:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[84:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[85:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[86:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[87:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[88:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[89:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[90:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[91:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+[92:]:
+-$11{init} >= 1 ? bottom
+$11{init} == 0 ? 0.
+$11{init} >= 1 ? bottom
+
+Property: AU{$11{init} == 0}{OR{AU{$11{init} == 1}{AG{$11{init} == 3}}}{AG{$11{init} == 1}}}
+
+[1:]:
+top ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+top ? bottom
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? bottom
+
+[11:]:
+top ? bottom
+
+[12:]:
+top ? bottom
+
+[13:]:
+top ? bottom
+
+[14:]:
+top ? bottom
+
+[15:]:
+top ? bottom
+
+[16:]:
+top ? bottom
+
+[17:]:
+top ? bottom
+
+[18:]:
+top ? bottom
+
+[19:]:
+top ? bottom
+
+[20:]:
+top ? bottom
+
+[21:]:
+top ? bottom
+
+[22:]:
+top ? bottom
+
+[23:]:
+top ? bottom
+
+[24:]:
+top ? bottom
+
+[25:]:
+top ? bottom
+
+[26:]:
+top ? bottom
+
+[27:]:
+top ? bottom
+
+[28:]:
+top ? bottom
+
+[29:]:
+top ? bottom
+
+[30:]:
+top ? bottom
+
+[31:]:
+top ? bottom
+
+[32:]:
+top ? bottom
+
+[33:]:
+top ? bottom
+
+[34:]:
+-$7{temp} >= 1 && -$11{init} >= 1 ? bottom
+-$7{temp} >= 1 && $11{init} == 0 ? 1
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 1 ? bottom
+$7{temp} >= 0 && $11{init} == 0 ? 1
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[35:]:
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[36:]:
+-$7{temp} >= 1 && -$18{limit} >= 273 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$18{limit} >= 273 ? bottom
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && -$11{init} >= 1 ? bottom
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 0 ? 7
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 1 ? 0.
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 2 ? bottom
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 ? bottom
+$18{limit} >= 10 && -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+$18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 1 ? 0.
+$18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 2 ? bottom
+$18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= 10 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$18{limit} >= 273 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$18{limit} >= 273 ? bottom
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && -$11{init} >= 1 ? bottom
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 0 ? 7
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 1 ? 0.
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 2 ? bottom
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 ? bottom
+$18{limit} >= 10 && $7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 1 ? 0.
+$18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 2 ? bottom
+$18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= 10 && $7{temp} >= 0 ? bottom
+
+[37:]:
+top ? bottom
+
+[38:]:
+-$7{temp} >= 1 && -$11{init} >= 1 ? bottom
+-$7{temp} >= 1 && $11{init} == 0 ? 6
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 1 ? bottom
+$7{temp} >= 0 && $11{init} == 0 ? 6
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[39:]:
+-$7{temp} >= 1 && -$11{init} >= 1 ? bottom
+-$7{temp} >= 1 && $11{init} == 0 ? 5
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 1 ? bottom
+$7{temp} >= 0 && $11{init} == 0 ? 5
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[40:]:
+-$7{temp} >= 1 && -$11{init} >= 1 ? bottom
+-$7{temp} >= 1 && $11{init} == 0 ? 1
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 1 ? bottom
+$7{temp} >= 0 && $11{init} == 0 ? 1
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[41:]:
+-$7{temp} >= 1 && -$11{init} >= 1 ? bottom
+-$7{temp} >= 1 && $11{init} == 0 ? 4
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 1 ? bottom
+$7{temp} >= 0 && $11{init} == 0 ? 4
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[42:]:
+-$7{temp} >= 1 && -$11{init} >= 1 ? bottom
+-$7{temp} >= 1 && $11{init} == 0 ? 3
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 1 ? bottom
+$7{temp} >= 0 && $11{init} == 0 ? 3
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[43:]:
+top ? bottom
+
+[44:]:
+top ? bottom
+
+[45:]:
+top ? bottom
+
+[46:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[47:]:
+top ? bottom
+
+[48:]:
+top ? bottom
+
+[49:]:
+top ? bottom
+
+[50:]:
+top ? bottom
+
+[51:]:
+top ? bottom
+
+[52:]:
+top ? bottom
+
+[53:]:
+top ? bottom
+
+[54:]:
+top ? bottom
+
+[55:]:
+top ? bottom
+
+[56:]:
+-$7{temp} >= 1 && -$11{init} >= 1 ? bottom
+-$7{temp} >= 1 && $11{init} == 0 ? 3
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 1 ? bottom
+$7{temp} >= 0 && $11{init} == 0 ? 3
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[57:]:
+-$7{temp} >= 1 && -$11{init} >= 1 ? bottom
+-$7{temp} >= 1 && $11{init} == 0 ? 1
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 1 ? bottom
+$7{temp} >= 0 && $11{init} == 0 ? 1
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[58:]:
+-$7{temp} >= 1 && -$11{init} >= 1 ? bottom
+-$7{temp} >= 1 && $11{init} == 0 ? 2
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 1 ? bottom
+$7{temp} >= 0 && $11{init} == 0 ? 2
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[59:]:
+top ? bottom
+
+[60:]:
+top ? bottom
+
+[61:]:
+top ? bottom
+
+[62:]:
+top ? bottom
+
+[63:]:
+top ? bottom
+
+[64:]:
+top ? bottom
+
+[65:]:
+top ? bottom
+
+[66:]:
+top ? bottom
+
+[67:]:
+top ? bottom
+
+[68:]:
+top ? bottom
+
+[69:]:
+top ? bottom
+
+[70:]:
+top ? bottom
+
+[71:]:
+top ? bottom
+
+[72:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[73:]:
+top ? bottom
+
+[74:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[75:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[76:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[77:]:
+-$7{temp} >= 1 && -$4{tempIn} >= -272 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && -$4{tempIn} >= -272 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && -$4{tempIn} >= -272 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && -$4{tempIn} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$4{tempIn} >= -272 ? bottom
+$4{tempIn} >= 273 && -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+$4{tempIn} >= 273 && -$7{temp} >= 1 && $11{init} == 1 ? 0.
+$4{tempIn} >= 273 && -$7{temp} >= 1 && $11{init} == 2 ? bottom
+$4{tempIn} >= 273 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $4{tempIn} >= 273 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$4{tempIn} >= -272 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && -$4{tempIn} >= -272 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && -$4{tempIn} >= -272 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && -$4{tempIn} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$4{tempIn} >= -272 ? bottom
+$4{tempIn} >= 273 && $7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$4{tempIn} >= 273 && $7{temp} >= 0 && $11{init} == 1 ? 0.
+$4{tempIn} >= 273 && $7{temp} >= 0 && $11{init} == 2 ? bottom
+$4{tempIn} >= 273 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $4{tempIn} >= 273 && $7{temp} >= 0 ? bottom
+
+[78:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[79:]:
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 && $7{temp} >= 0 ? bottom
+
+[80:]:
+-$15{__return_vinToCels} >= 1 && -$11{init} >= 0 ? bottom
+-$15{__return_vinToCels} >= 1 && $11{init} == 1 ? 0.
+-$15{__return_vinToCels} >= 1 && $11{init} == 2 ? bottom
+-$15{__return_vinToCels} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$15{__return_vinToCels} >= 1 ? bottom
+$15{__return_vinToCels} >= 0 && -$11{init} >= 0 ? bottom
+$15{__return_vinToCels} >= 0 && $11{init} == 1 ? 0.
+$15{__return_vinToCels} >= 0 && $11{init} == 2 ? bottom
+$15{__return_vinToCels} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $15{__return_vinToCels} >= 0 ? bottom
+
+[81:]:
+-$16{__ret_vinToCels} >= 1 && -$11{init} >= 0 ? bottom
+-$16{__ret_vinToCels} >= 1 && $11{init} == 1 ? 0.
+-$16{__ret_vinToCels} >= 1 && $11{init} == 2 ? bottom
+-$16{__ret_vinToCels} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$16{__ret_vinToCels} >= 1 ? bottom
+$16{__ret_vinToCels} >= 0 && -$11{init} >= 0 ? bottom
+$16{__ret_vinToCels} >= 0 && $11{init} == 1 ? 0.
+$16{__ret_vinToCels} >= 0 && $11{init} == 2 ? bottom
+$16{__ret_vinToCels} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $16{__ret_vinToCels} >= 0 ? bottom
+
+[82:]:
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
+
+[83:]:
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && -$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && -$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 && $7{temp} >= 0 ? bottom
+
+[84:]:
+-$15{__return_vinToCels} >= 1 && -$11{init} >= 0 ? bottom
+-$15{__return_vinToCels} >= 1 && $11{init} == 1 ? 0.
+-$15{__return_vinToCels} >= 1 && $11{init} == 2 ? bottom
+-$15{__return_vinToCels} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$15{__return_vinToCels} >= 1 ? bottom
+$15{__return_vinToCels} >= 0 && -$11{init} >= 0 ? bottom
+$15{__return_vinToCels} >= 0 && $11{init} == 1 ? 0.
+$15{__return_vinToCels} >= 0 && $11{init} == 2 ? bottom
+$15{__return_vinToCels} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $15{__return_vinToCels} >= 0 ? bottom
+
+[85:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[86:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[87:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[88:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[89:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[90:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[91:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+[92:]:
+-$14{kelvin} >= -272 && -$11{init} >= 0 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 1 ? 0.
+-$14{kelvin} >= -272 && $11{init} == 2 ? bottom
+-$14{kelvin} >= -272 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$14{kelvin} >= -272 ? bottom
+$14{kelvin} >= 273 && -$11{init} >= 0 ? bottom
+$14{kelvin} >= 273 && $11{init} == 1 ? 0.
+$14{kelvin} >= 273 && $11{init} == 2 ? bottom
+$14{kelvin} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $14{kelvin} >= 273 ? bottom
+
+
+Analysis Result: UNKNOWN
