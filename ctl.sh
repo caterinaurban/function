@@ -154,6 +154,12 @@
 # ./function tests/ctl/report/test_global.c -domain polyhedra -ctl "AF{AG{y > 0}}" -precondition "x < 10" > logs/ctl/test_globalCFG.log		# TODO: ?
 ./function tests/ctl/report/test_until.c -domain polyhedra -ctl "AU{x >= y}{x==y}" -precondition "x >= y" > logs/ctl/test_untilCFG.log
 
+./function tests/ctl/t2_cav13/P25.c -domain polyhedra -ctl "OR{varC <= 5}{AF{varR > 5}}" -joinbwd 6 > logs/ctl/P25CFG.log
+# ./function tests/ctl/t2_cav13/P26.c -domain polyhedra -ctl "OR{varC > 5}{EG{varR <= 5}}" -precondition "varC >= 1" > logs/ctl/P25CFG.log	# TODO: may not be possible to fix
+# ./function tests/ctl/t2_cav13/P3.c -domain polyhedra -ctl "OR{varA != 1}{EF{varR==1}}" -precondition "varA == 0" > logs/ctl/P3CFG.log	# TODO: ?
+./function tests/ctl/t2_cav13/P3_cheat.c -domain polyhedra -ctl "OR{varA != 1}{EF{varR==1}}" -precondition "varA == 0" > logs/ctl/P3_cheatCFG.log
+./function tests/ctl/t2_cav13/P4.c -domain polyhedra -ctl "EF{AND{varA == 1}{AG{varR != 1}}}" -precondition "varN > 0" > logs/ctl/P4CFG.log
+
 #### CTL-AST
 
 ./function tests/ctl/and_ef_test.c -domain polyhedra -ctl "AND{EF{x == 2}}{EF{x==3}}" -ast > logs/ctl/and_ef_testAST.log
@@ -224,6 +230,12 @@
 ./function tests/ctl/report/test_global.c -domain polyhedra -ctl "AF{AG{y > 0}}" -ast -precondition "x < 10" > logs/ctl/test_globalAST.log
 ./function tests/ctl/report/test_until.c -domain polyhedra -ctl "AU{x >= y}{x==y}" -ast -precondition "x >= y" > logs/ctl/test_untilAST.log
 
+./function tests/ctl/t2_cav13/P25.c -domain polyhedra -ctl "OR{varC <= 5}{AF{varR > 5}}" -ast -joinbwd 6 > logs/ctl/P25AST.log
+# ./function tests/ctl/t2_cav13/P26.c -domain polyhedra -ctl "OR{varC > 5}{EG{varR <= 5}}" -ast -precondition "varC >= 1" > logs/ctl/P25AST.log	# TODO: may not be possible to fix
+./function tests/ctl/t2_cav13/P3.c -domain polyhedra -ctl "OR{varA != 1}{EF{varR==1}}" -ast -precondition "varA == 0" > logs/ctl/P3AST.log
+./function tests/ctl/t2_cav13/P3_cheat.c -domain polyhedra -ctl "OR{varA != 1}{EF{varR==1}}" -ast -precondition "varA == 0" > logs/ctl/P3_cheatAST.log
+./function tests/ctl/t2_cav13/P4.c -domain polyhedra -ctl "EF{AND{varA == 1}{AG{varR != 1}}}" -ast -precondition "varN > 0" > logs/ctl/P4AST.log
+
 ##########
 
 ## drwxr-xr-x@ 19 Caterina  staff     608 Apr  3  2023 sv_comp
@@ -239,11 +251,3 @@
 # -rwxr-xr-x@ 1 Caterina  staff  309 Apr  3  2023 NO_02_false-termination_true-no-overflow.ltl.c
 # -rwxr-xr-x@ 1 Caterina  staff  293 Apr  3  2023 java_Sequence_true-termination_true-no-overflow.c
 # -rwxr-xr-x@ 1 Caterina  staff  366 Apr  3  2023 java_Sequence_true-termination_true-no-overflow.ltl.c
-
-## drwxr-xr-x@ 11 Caterina  staff     352 Apr  3  2023 t2_cav13
-
-# -rw-r--r--  1 Caterina  staff  453 Dec  1 15:47 P25.c
-# -rw-r--r--  1 Caterina  staff  526 Dec  1 15:47 P26.c
-# -rw-r--r--  1 Caterina  staff  299 Dec  1 15:47 P3.c
-# -rw-r--r--  1 Caterina  staff  542 Dec  1 15:47 P3_cheat.c
-# -rw-r--r--  1 Caterina  staff  277 Dec  1 15:47 P4.c

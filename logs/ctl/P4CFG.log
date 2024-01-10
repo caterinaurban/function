@@ -1,0 +1,613 @@
+
+CFG:
+List of variables:
+  $1{varN}:int at tests/ctl/t2_cav13/P4.c:7.8-12
+  $2{varA}:int at tests/ctl/t2_cav13/P4.c:8.8-12
+  $3{varR}:int at tests/ctl/t2_cav13/P4.c:9.8-12
+
+List of functions:
+  1: main() -> void at tests/ctl/t2_cav13/P4.c:5.0-20.1, entry: 15, exit: 14, calls:
+
+List of nodes:
+  15: at :0:-1, in: out:1 
+  14: at :0:-1, in: 2 out:
+  1: at tests/ctl/t2_cav13/P4.c:5:0, in: 15 out:3 
+  2: at tests/ctl/t2_cav13/P4.c:20:1, in: 5 out:14 
+  3: at tests/ctl/t2_cav13/P4.c:7:13, in: 1 out:4 
+  4: at tests/ctl/t2_cav13/P4.c:8:17, in: 3 out:5 
+  5: at tests/ctl/t2_cav13/P4.c:9:17, in: 11 4 out:2 6 
+  6: at tests/ctl/t2_cav13/P4.c:11:16, in: 5 out:7 
+  7: at tests/ctl/t2_cav13/P4.c:12:17, in: 6 out:8 
+  8: at tests/ctl/t2_cav13/P4.c:13:17, in: 10 7 out:9 10 
+  9: at tests/ctl/t2_cav13/P4.c:14:26, in: 8 out:11 
+  10: at tests/ctl/t2_cav13/P4.c:14:24, in: 8 out:8 
+  11: at tests/ctl/t2_cav13/P4.c:15:17, in: 9 out:5 
+  12: at tests/ctl/t2_cav13/P4.c:5:0, in: out:13 
+  13: at tests/ctl/t2_cav13/P4.c:20:1, in: 12 out:
+
+List of arcs:
+  15 -> 1: label entry
+  2 -> 14: label exit
+  1 -> 3: skip
+  3 -> 4: $2{varA} = 0
+  4 -> 5: $3{varR} = 0
+  5 -> 6: true ?
+  5 -> 2: ! (true) ?
+  6 -> 7: $2{varA} = 1
+  7 -> 8: $2{varA} = 0
+  8 -> 10: $1{varN} > 0 ?
+  8 -> 9: ! ($1{varN} > 0) ?
+  10 -> 8: skip
+  9 -> 11: $3{varR} = 1
+  11 -> 5: $3{varR} = 0
+  12 -> 13: skip
+
+
+Property: $3{varR} != 1
+
+[1:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[2:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[3:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[4:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[5:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[6:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[7:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[8:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[9:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[10:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[11:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[12:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[13:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[14:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[15:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+Property: AG{$3{varR} != 1}
+
+[1:]:
+-$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 ? 0.
+
+[2:]:
+top ? bottom
+
+[3:]:
+-$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 ? 0.
+
+[4:]:
+-$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 ? 0.
+
+[5:]:
+-$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 ? 0.
+
+[6:]:
+-$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 ? 0.
+
+[7:]:
+-$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 ? 0.
+
+[8:]:
+-$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 ? 0.
+
+[9:]:
+top ? bottom
+
+[10:]:
+-$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 ? 0.
+
+[11:]:
+-$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 ? 0.
+
+[12:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[13:]:
+-$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 ? 0.
+
+[14:]:
+top ? bottom
+
+[15:]:
+-$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 ? 0.
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 ? 0.
+
+Property: $2{varA} == 1
+
+[1:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[2:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[3:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[4:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[5:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[6:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[7:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[8:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[9:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[10:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[11:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[12:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[13:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[14:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+[15:]:
+-$2{varA} >= 0 ? bottom
+$2{varA} == 1 ? 0.
+$2{varA} >= 2 ? bottom
+
+Property: AND{$2{varA} == 1}{AG{$3{varR} != 1}}
+
+[1:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= -1 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= -1 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[4:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= -1 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[5:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= -1 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[6:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= -1 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[7:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= -1 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[8:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= -1 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= -1 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[11:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= -1 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[12:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[13:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[14:]:
+top ? bottom
+
+[15:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= -1 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+Property: EF{AND{$2{varA} == 1}{AG{$3{varR} != 1}}}
+
+[1:]:
+-$3{varR} >= 0 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && -$2{varA} >= 0 ? 4
+-$3{varR} >= 0 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && -$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && -$3{varR} >= 0 ? 4
+-$2{varA} >= 0 && -$1{varN} >= 0 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && -$2{varA} >= 0 && $3{varR} == 1 ? 4
+-$1{varN} >= 0 && $2{varA} == 1 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && $2{varA} == 1 && $3{varR} == 1 ? 4
+$2{varA} >= 2 && -$1{varN} >= 0 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} == 1 ? 4
+$3{varR} >= 2 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && -$2{varA} >= 0 ? 4
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && $3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} >= 2 ? 4
+
+[2:]:
+top ? bottom
+
+[3:]:
+-$3{varR} >= 0 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && -$2{varA} >= 0 ? 4
+-$3{varR} >= 0 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && -$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && -$3{varR} >= 0 ? 4
+-$2{varA} >= 0 && -$1{varN} >= 0 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && -$2{varA} >= 0 && $3{varR} == 1 ? 4
+-$1{varN} >= 0 && $2{varA} == 1 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && $2{varA} == 1 && $3{varR} == 1 ? 4
+$2{varA} >= 2 && -$1{varN} >= 0 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} == 1 ? 4
+$3{varR} >= 2 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && -$2{varA} >= 0 ? 4
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && $3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} >= 2 ? 4
+
+[4:]:
+-$3{varR} >= 0 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && -$2{varA} >= 0 ? 3
+-$3{varR} >= 0 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && -$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && -$3{varR} >= 0 ? 3
+-$2{varA} >= 0 && -$1{varN} >= 0 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && -$2{varA} >= 0 && $3{varR} == 1 ? 3
+-$1{varN} >= 0 && $2{varA} == 1 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && $2{varA} == 1 && $3{varR} == 1 ? 1
+$2{varA} >= 2 && -$1{varN} >= 0 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} == 1 ? 3
+$3{varR} >= 2 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && -$2{varA} >= 0 ? 3
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && $3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} >= 2 ? 3
+
+[5:]:
+-$3{varR} >= 0 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && -$2{varA} >= 0 ? 2
+-$3{varR} >= 0 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && -$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && -$3{varR} >= 0 ? 2
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && -$2{varA} >= 0 ? 2
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && $3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} >= 2 ? 2
+
+[6:]:
+-$3{varR} >= 0 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && -$2{varA} >= 0 ? 1
+-$3{varR} >= 0 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && -$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && -$3{varR} >= 0 ? 1
+$3{varR} == 1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && -$2{varA} >= 0 ? 1
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && $3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} >= 2 ? 1
+
+[7:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= -1 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[8:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= -1 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[9:]:
+-$3{varR} >= 0 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && -$2{varA} >= 0 ? 4
+-$3{varR} >= 0 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && $2{varA} == 1 ? 2
+$2{varA} >= 2 && -$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && -$3{varR} >= 0 ? 4
+-$2{varA} >= 0 && -$1{varN} >= 0 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && -$2{varA} >= 0 && $3{varR} == 1 ? 4
+-$1{varN} >= 0 && $2{varA} == 1 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && $2{varA} == 1 && $3{varR} == 1 ? 2
+$2{varA} >= 2 && -$1{varN} >= 0 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} == 1 ? 4
+$3{varR} >= 2 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && -$2{varA} >= 0 ? 4
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 2
+$2{varA} >= 2 && $3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} >= 2 ? 4
+
+[10:]:
+-$3{varR} >= -1 && -$2{varA} >= 0 ? bottom
+-$3{varR} >= -1 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= -1 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && -$3{varR} >= -1 ? bottom
+$3{varR} >= 2 && -$2{varA} >= 0 ? bottom
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && $3{varR} >= 2 ? bottom
+
+[11:]:
+-$3{varR} >= 0 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && -$2{varA} >= 0 ? 3
+-$3{varR} >= 0 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && -$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && -$3{varR} >= 0 ? 3
+-$2{varA} >= 0 && -$1{varN} >= 0 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && -$2{varA} >= 0 && $3{varR} == 1 ? 3
+-$1{varN} >= 0 && $2{varA} == 1 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && $2{varA} == 1 && $3{varR} == 1 ? 1
+$2{varA} >= 2 && -$1{varN} >= 0 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} == 1 ? 3
+$3{varR} >= 2 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && -$2{varA} >= 0 ? 3
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && $3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} >= 2 ? 3
+
+[12:]:
+top ? bottom
+
+[13:]:
+top ? bottom
+
+[14:]:
+top ? bottom
+
+[15:]:
+-$3{varR} >= 0 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && -$2{varA} >= 0 ? 4
+-$3{varR} >= 0 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && -$3{varR} >= 0 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && -$3{varR} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && -$3{varR} >= 0 ? 4
+-$2{varA} >= 0 && -$1{varN} >= 0 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && -$2{varA} >= 0 && $3{varR} == 1 ? 4
+-$1{varN} >= 0 && $2{varA} == 1 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && $2{varA} == 1 && $3{varR} == 1 ? 4
+$2{varA} >= 2 && -$1{varN} >= 0 && $3{varR} == 1 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} == 1 ? 4
+$3{varR} >= 2 && -$2{varA} >= 0 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && -$2{varA} >= 0 ? 4
+$3{varR} >= 2 && -$1{varN} >= 0 && $2{varA} == 1 ? bottom
+$1{varN} >= 1 && $3{varR} >= 2 && $2{varA} == 1 ? 0.
+$2{varA} >= 2 && $3{varR} >= 2 && -$1{varN} >= 0 ? bottom
+$1{varN} >= 1 && $2{varA} >= 2 && $3{varR} >= 2 ? 4
+
+
+Analysis Result: TRUE
