@@ -1,0 +1,214 @@
+
+CFG:
+List of variables:
+  $1{x}:int at tests/ctl/ltl_automizer/simple-2.c:5.4-5
+
+List of functions:
+  1: foo() -> void at tests/ctl/ltl_automizer/simple-2.c:7.0-14.1, entry: 1, exit: 2, calls: 8->6
+  2: main() -> void at tests/ctl/ltl_automizer/simple-2.c:16.0-21.1, entry: 12, exit: 11, calls:
+
+List of nodes:
+  12: at :0:-1, in: out:6 
+  11: at :0:-1, in: 7 out:
+  1: at tests/ctl/ltl_automizer/simple-2.c:7:0, in: out:4 5 
+  2: at tests/ctl/ltl_automizer/simple-2.c:14:1, in: 3 out:
+  3: at tests/ctl/ltl_automizer/simple-2.c:12:2, in: 4 5 out:2 
+  4: at tests/ctl/ltl_automizer/simple-2.c:10:8, in: 1 out:3 
+  5: at tests/ctl/ltl_automizer/simple-2.c:8:9, in: 1 out:3 
+  6: at tests/ctl/ltl_automizer/simple-2.c:16:0, in: 14 12 out:7 8 
+  7: at tests/ctl/ltl_automizer/simple-2.c:21:1, in: 6 out:11 
+  8: at tests/ctl/ltl_automizer/simple-2.c:18:12, in: 6 out:13 
+  9: at tests/ctl/ltl_automizer/simple-2.c:5:0, in: out:10 
+  10: at tests/ctl/ltl_automizer/simple-2.c:21:1, in: 9 out:
+  13: at tests/ctl/ltl_automizer/simple-2.c:7:0, in: 8 out:16 17 
+  14: at tests/ctl/ltl_automizer/simple-2.c:14:1, in: 15 out:6 
+  15: at tests/ctl/ltl_automizer/simple-2.c:12:2, in: 16 17 out:14 
+  16: at tests/ctl/ltl_automizer/simple-2.c:10:8, in: 13 out:15 
+  17: at tests/ctl/ltl_automizer/simple-2.c:8:9, in: 13 out:15 
+
+List of arcs:
+  14 -> 6: return: foo
+  8 -> 13: call: foo
+  12 -> 6: label entry
+  7 -> 11: label exit
+  1 -> 5: $1{x} < 10 ?
+  1 -> 4: ! ($1{x} < 10) ?
+  5 -> 3: $1{x} = $1{x} + 1
+  4 -> 3: $1{x} = $1{x} * 5
+  3 -> 2: $1{x} = $1{x} + 1
+  6 -> 8: 1 != 0 ?
+  6 -> 7: ! (1 != 0) ?
+  9 -> 10: $1{x} = 0
+  13 -> 16: ! ($1{x} < 10) ?
+  13 -> 17: $1{x} < 10 ?
+  15 -> 14: $1{x} = $1{x} + 1
+  16 -> 15: $1{x} = $1{x} * 5
+  17 -> 15: $1{x} = $1{x} + 1
+
+
+Property: $1{x} > 100
+
+[1:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[2:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[3:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[4:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[5:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[6:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[7:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[8:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[9:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[10:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[11:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[12:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[13:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[14:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[15:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[16:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[17:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+Property: AF{$1{x} > 100}
+
+[1:]:
+top ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+-$1{x} >= -7 ? -2$1{x}+73
+$1{x} >= 8 && -$1{x} >= -9 ? 11
+$1{x} >= 10 && -$1{x} >= -19 ? 7
+$1{x} == 20 ? 4
+$1{x} >= 21 && -$1{x} >= -100 ? 3
+$1{x} >= 101 ? 0.
+
+[7:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[8:]:
+-$1{x} >= -7 ? -2$1{x}+72
+$1{x} >= 8 && -$1{x} >= -9 ? 10
+$1{x} >= 10 && -$1{x} >= -19 ? 6
+$1{x} == 20 ? 3
+$1{x} >= 21 && -$1{x} >= -100 ? 2
+$1{x} >= 101 ? 0.
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? bottom
+
+[11:]:
+-$1{x} >= -100 ? bottom
+$1{x} >= 101 ? 0.
+
+[12:]:
+-$1{x} >= -9 ? -2$1{x}+73
+$1{x} >= 10 && -$1{x} >= -19 ? 7
+$1{x} == 20 ? 4
+$1{x} >= 21 && -$1{x} >= -100 ? 3
+$1{x} >= 101 ? 0.
+
+[13:]:
+-$1{x} >= -7 ? -2$1{x}+72
+$1{x} >= 8 && -$1{x} >= -9 ? 10
+$1{x} >= 10 && -$1{x} >= -19 ? 6
+$1{x} == 20 ? 3
+$1{x} >= 21 && -$1{x} >= -100 ? 2
+$1{x} >= 101 ? 0.
+
+[14:]:
+-$1{x} >= -9 ? -2$1{x}+73
+$1{x} >= 10 && -$1{x} >= -19 ? 7
+$1{x} == 20 ? 4
+$1{x} >= 21 && -$1{x} >= -100 ? 3
+$1{x} >= 101 ? 0.
+
+[15:]:
+-$1{x} >= -8 ? -2$1{x}+72
+$1{x} >= 9 && -$1{x} >= -18 ? 8
+$1{x} == 19 ? 5
+$1{x} >= 20 && -$1{x} >= -99 ? 4
+$1{x} == 100 ? 1
+$1{x} >= 101 ? 0.
+
+[16:]:
+-$1{x} >= -1 ? -10$1{x}+73
+$1{x} >= 2 && -$1{x} >= -3 ? 9
+$1{x} >= 4 && -$1{x} >= -19 ? 5
+$1{x} == 20 ? 2
+$1{x} >= 21 && -$1{x} >= -100 ? 1
+$1{x} >= 101 ? 0.
+
+[17:]:
+-$1{x} >= -7 ? -2$1{x}+71
+$1{x} >= 8 && -$1{x} >= -17 ? 9
+$1{x} == 18 ? 6
+$1{x} >= 19 && -$1{x} >= -98 ? 5
+$1{x} == 99 ? 2
+$1{x} == 100 ? 1
+$1{x} >= 101 ? 0.
+
+
+Analysis Result: TRUE

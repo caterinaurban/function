@@ -1,0 +1,182 @@
+
+Abstract Syntax:
+[ 1:]
+int main( ):
+[ 2:] $2{ap} := 0
+[ 3:] $1{loop_counter} := 1
+[ 4:] while [ 5:] ( $1{loop_counter} > 0 ) do
+[ 6:]   $1{loop_counter} := $1{loop_counter} - 1
+[ 7:]   $2{ap} := $2{ap} + 1
+[ 8:]
+      od
+[ 9:]
+
+Property: $2{ap} > 2
+
+[ -1:]:
+-$2{ap} >= -2 ? bottom
+$2{ap} >= 3 ? 0.
+
+[ 2:]:
+-$2{ap} >= -2 ? bottom
+$2{ap} >= 3 ? 0.
+
+[ 3:]:
+-$2{ap} >= -2 ? bottom
+$2{ap} >= 3 ? 0.
+
+[ 4:]:
+-$2{ap} >= -2 ? bottom
+$2{ap} >= 3 ? 0.
+
+[ 5:]:
+-$2{ap} >= -2 ? bottom
+$2{ap} >= 3 ? 0.
+
+[ 6:]:
+-$2{ap} >= -2 ? bottom
+$2{ap} >= 3 ? 0.
+
+[ 7:]:
+-$2{ap} >= -2 ? bottom
+$2{ap} >= 3 ? 0.
+
+[ 8:]:
+-$2{ap} >= -2 ? bottom
+$2{ap} >= 3 ? 0.
+
+[ 9:]:
+-$2{ap} >= -2 ? bottom
+$2{ap} >= 3 ? 0.
+
+Property: AF{$2{ap} > 2}
+
+[ -1:]:
+-$2{ap} >= -2 ? bottom
+$2{ap} >= 3 ? 0.
+
+[ 2:]:
+-$2{ap} >= -2 ? bottom
+$2{ap} >= 3 ? 0.
+
+[ 3:]:
+-$2{ap} >= -1 ? bottom
+$2{ap} == 2 ? 4
+$2{ap} >= 3 ? 0.
+
+[ 4:]:
+-$2{ap} >= 0 && -$1{loop_counter} >= -1 ? bottom
+$1{loop_counter} >= 2 && -$2{ap} >= 0 ? top
+-$1{loop_counter} >= -1 && $2{ap} == 1 ? bottom
+$1{loop_counter} >= 2 && $2{ap} == 1 ? 6
+-$1{loop_counter} >= 0 && $2{ap} == 2 ? bottom
+$1{loop_counter} >= 1 && $2{ap} == 2 ? 3
+$2{ap} >= 3 ? 0.
+
+[ 5:]:
+-$2{ap} >= 0 && -$1{loop_counter} >= -1 ? bottom
+$1{loop_counter} >= 2 && -$2{ap} >= 0 ? top
+-$1{loop_counter} >= -1 && $2{ap} == 1 ? bottom
+$1{loop_counter} >= 2 && $2{ap} == 1 ? 6
+-$1{loop_counter} >= 0 && $2{ap} == 2 ? bottom
+$1{loop_counter} >= 1 && $2{ap} == 2 ? 3
+$2{ap} >= 3 ? 0
+
+[ 6:]:
+-$2{ap} >= 1 && -$1{loop_counter} >= -2 ? bottom
+$1{loop_counter} >= 3 && -$2{ap} >= 1 ? top
+-$1{loop_counter} >= -2 && $2{ap} == 0 ? bottom
+$1{loop_counter} >= 3 && $2{ap} == 0 ? 8
+-$1{loop_counter} >= -1 && $2{ap} == 1 ? bottom
+$1{loop_counter} >= 2 && $2{ap} == 1 ? 5
+$2{ap} == 2 ? 2
+$2{ap} >= 3 ? 0.
+
+[ 7:]:
+-$2{ap} >= 1 && -$1{loop_counter} >= -1 ? bottom
+$1{loop_counter} >= 2 && -$2{ap} >= 1 ? top
+-$1{loop_counter} >= -1 && $2{ap} == 0 ? bottom
+$1{loop_counter} >= 2 && $2{ap} == 0 ? 7
+-$1{loop_counter} >= 0 && $2{ap} == 1 ? bottom
+$1{loop_counter} >= 1 && $2{ap} == 1 ? 4
+$2{ap} == 2 ? 1
+$2{ap} >= 3 ? 0.
+
+[ 8:]:
+-$2{ap} >= 0 && -$1{loop_counter} >= -1 ? bottom
+$1{loop_counter} >= 2 && -$2{ap} >= 0 ? top
+-$1{loop_counter} >= -1 && $2{ap} == 1 ? bottom
+$1{loop_counter} >= 2 && $2{ap} == 1 ? 6
+-$1{loop_counter} >= 0 && $2{ap} == 2 ? bottom
+$1{loop_counter} >= 1 && $2{ap} == 2 ? 3
+$2{ap} >= 3 ? 0.
+
+[ 9:]:
+-$2{ap} >= -2 ? bottom
+$2{ap} >= 3 ? 0.
+
+Property: NOT{AF{$2{ap} > 2}}
+
+[ -1:]:
+-$2{ap} >= -2 ? 0.
+$2{ap} >= 3 ? bottom
+
+[ 2:]:
+-$2{ap} >= -2 ? 0.
+$2{ap} >= 3 ? bottom
+
+[ 3:]:
+-$2{ap} >= -1 ? 0.
+$2{ap} >= 2 ? bottom
+
+[ 4:]:
+-$2{ap} >= 0 && -$1{loop_counter} >= -1 ? 0.
+$1{loop_counter} >= 2 && -$2{ap} >= 0 ? top
+-$1{loop_counter} >= -1 && $2{ap} == 1 ? 0.
+$1{loop_counter} >= 2 && $2{ap} == 1 ? bottom
+-$1{loop_counter} >= 0 && $2{ap} == 2 ? 0.
+$1{loop_counter} >= 1 && $2{ap} == 2 ? bottom
+$2{ap} >= 3 ? bottom
+
+[ 5:]:
+-$2{ap} >= 0 && -$1{loop_counter} >= -1 ? 0.
+$1{loop_counter} >= 2 && -$2{ap} >= 0 ? top
+-$1{loop_counter} >= -1 && $2{ap} == 1 ? 0.
+$1{loop_counter} >= 2 && $2{ap} == 1 ? bottom
+-$1{loop_counter} >= 0 && $2{ap} == 2 ? 0.
+$1{loop_counter} >= 1 && $2{ap} == 2 ? bottom
+$2{ap} >= 3 ? bottom
+
+[ 6:]:
+-$2{ap} >= 1 && -$1{loop_counter} >= -2 ? 0.
+$1{loop_counter} >= 3 && -$2{ap} >= 1 ? top
+-$1{loop_counter} >= -2 && $2{ap} == 0 ? 0.
+$1{loop_counter} >= 3 && $2{ap} == 0 ? bottom
+-$1{loop_counter} >= -1 && $2{ap} == 1 ? 0.
+$1{loop_counter} >= 2 && $2{ap} == 1 ? bottom
+$2{ap} >= 2 ? bottom
+
+[ 7:]:
+-$2{ap} >= 1 && -$1{loop_counter} >= -1 ? 0.
+$1{loop_counter} >= 2 && -$2{ap} >= 1 ? top
+-$1{loop_counter} >= -1 && $2{ap} == 0 ? 0.
+$1{loop_counter} >= 2 && $2{ap} == 0 ? bottom
+-$1{loop_counter} >= 0 && $2{ap} == 1 ? 0.
+$1{loop_counter} >= 1 && $2{ap} == 1 ? bottom
+$2{ap} >= 2 ? bottom
+
+[ 8:]:
+-$2{ap} >= 0 && -$1{loop_counter} >= -1 ? 0.
+$1{loop_counter} >= 2 && -$2{ap} >= 0 ? top
+-$1{loop_counter} >= -1 && $2{ap} == 1 ? 0.
+$1{loop_counter} >= 2 && $2{ap} == 1 ? bottom
+-$1{loop_counter} >= 0 && $2{ap} == 2 ? 0.
+$1{loop_counter} >= 1 && $2{ap} == 2 ? bottom
+$2{ap} >= 3 ? bottom
+
+[ 9:]:
+-$2{ap} >= -2 ? 0.
+$2{ap} >= 3 ? bottom
+
+
+Analysis Result: TRUE

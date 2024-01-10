@@ -123,6 +123,31 @@
 # ./function tests/ctl/koskinen/toylin1.c -domain polyhedra -ctl "AF{resp > 5}" -precondition "c > 5" > logs/ctl/toylin1CFG.log					# TODO: ?
 # ./function tests/ctl/koskinen/win4.c -domain polyhedra -ctl "AF{AG{WItemsNum >= 1}}" > logs/ctl/win4CFG.log										# TODO: ?
 
+./function tests/ctl/ltl_automizer/Bug_NoLoopAtEndForTerminatingPrograms_safe.c -domain polyhedra -ctl "NOT{AF{ap > 2}}" -precondition "ap == 0" > logs/ctl/Bug_NoLoopAtEndForTerminatingPrograms_safeCFG.log
+./function tests/ctl/ltl_automizer/PotentialMinimizeSEVPABug.c -domain polyhedra -ctl "AG{OR{x <= 0}{AF{y == 0}}}" -precondition "x < 0"  > logs/ctl/PotentialMinimizeSEVPABugCFG.log
+./function tests/ctl/ltl_automizer/cav2015.c -domain polyhedra -ctl "AG{OR{x <= 0}{AF{y == 0}}}" -precondition "x < 0" > logs/ctl/cav2015CFG.log
+./function tests/ctl/ltl_automizer/coolant_basis_1_safe_sfty.c -domain polyhedra -ctl "AG{OR{chainBroken != 1}{AG{chainBroken == 1}}}" -precondition "chainBroken == 0" > logs/ctl/coolant_basis_1_safe_sftyCFG.log
+# ./function tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c -domain polyhedra -ctl "AG{OR{chainBroken != 1}{AG{chainBroken == 1}}}" -precondition "chainBroken == 0" > logs/ctl/coolant_basis_1_unsafe_sftyCFG.log		# TODO: not supposed to be true?
+# ./function tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c -domain polyhedra -ctl "AG{AF{otime < time}}" > logs/ctl/coolant_basis_2_safe_lifenessCFG.log	# TODO: ?
+# ./function tests/ctl/ltl_automizer/coolant_basis_2_unsafe_lifeness.c -domain polyhedra -ctl "AG{AF{otime < time}}"  > logs/ctl/coolant_basis_2_unsafe_lifenessCFG.log	# UNKNOWN
+# ./function tests/ctl/ltl_automizer/coolant_basis_3_safe_sfty.c -domain polyhedra -ctl "AG{OR{init != 3}{AG{AF{time > otime}}}}" -precondition "init == 0" > logs/ctl/coolant_basis_3_safe_sftyCFG.log
+# ./function tests/ctl/ltl_automizer/coolant_basis_3_unsafe_sfty.c -domain polyhedra -ctl "AG{OR{init != 3}{AG{AF{time > otime}}}}" -precondition "init == 0" > logs/ctl/coolant_basis_3_unsafe_sftyCFG.log	# TODO: not supposed to be true?
+# ./function tests/ctl/ltl_automizer/coolant_basis_4_safe_sfty.c -domain polyhedra -ctl "AG{OR{init != 3}{OR{temp <= limit}{AF{AG{chainBroken == 1}}}}}" -precondition "init == 0 && temp < limit" > logs/ctl/coolant_basis_4_safe_sftyCFG.log
+# ./function tests/ctl/ltl_automizer/coolant_basis_4_unsafe_sfty.c -domain polyhedra -ctl "AG{OR{init != 3}{OR{temp <= limit}{AF{AG{chainBroken == 1}}}}}" -precondition "init == 0 && temp < limit" > logs/ctl/coolant_basis_4_unsafe_sftyCFG.log	# TODO: not supposed to be true? + very bad performance 
+# ./function tests/ctl/ltl_automizer/coolant_basis_5_safe_cheat.c -domain polyhedra -ctl "AU{init == 0}{OR{AU{init == 1}{AG{init == 3}}}{AG{init == 1}}}" -precondition "init == 0" > logs/ctl/coolant_basis_5_safe_cheatCFG.log	# TODO: ?
+# ./function tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c -domain polyhedra -ctl "AU{init == 0}{OR{AU{init == 1}{AG{init == 3}}}{AG{init == 1}}}" -precondition "init == 0" > logs/ctl/coolant_basis_5_safe_sftyCFG.log	# TODO: ?
+# ./function tests/ctl/ltl_automizer/coolant_basis_5_unsafe_sfty.c -domain polyhedra -ctl "AU{init == 0}{OR{AU{init == 1}{AG{init == 3}}}{AG{init == 1}}}" -precondition "init == 0" > logs/ctl/coolant_basis_5_unsafe_sftyCFG.log	# UNKNOWN ?
+# ./function tests/ctl/ltl_automizer/coolant_basis_6_safe_sfty.c -domain polyhedra -ctl "AG{OR{limit <= -273 && limit >= 10}{OR{tempIn >= 0}{AF{ warnLED == 1}}}}" -precondition "init == 0 && temp < limit" > logs/ctl/coolant_basis_6_safe_sftyCFG.log	# TODO: ?
+# ./function tests/ctl/ltl_automizer/coolant_basis_6_unsafe_sfty.c -domain polyhedra -ctl "AG{OR{limit <= -273 && limit >= 10}{OR{tempIn >= 0}{AF{ warnLED == 1}}}}" -precondition "init == 0 && temp < limit" > logs/ctl/coolant_basis_6_unsafe_sftyCFG.log	# UNKNOWN ?
+./function tests/ctl/ltl_automizer/nestedRandomLoop_true-valid-ltl.c -domain polyhedra -ctl "AG{i >= n}" -precondition "i == 1 && n >= 0 && i > n" > logs/ctl/nestedRandomLoop_true-valid-ltlCFG.log
+./function tests/ctl/ltl_automizer/simple-1.c -domain polyhedra -ctl "AF{x > 10000}" > logs/ctl/simple-1CFG.log
+./function tests/ctl/ltl_automizer/simple-2.c -domain polyhedra -ctl "AF{x > 100}" > logs/ctl/simple-2CFG.log
+# ./function tests/ctl/ltl_automizer/someNonterminating.c -domain polyhedra -ctl "EG{x > 0}" -precondition "x > 0" > logs/ctl/someNonterminatingCFG.log	# TODO: cda?
+# ./function tests/ctl/ltl_automizer/timer-intermediate.c -domain polyhedra -ctl "AG{OR{input_1 >= 1000}{AF{output_1 == 1}}}" > logs/ctl/timer-intermediateCFG.log	# TODO: assume
+# ./function tests/ctl/ltl_automizer/timer-simple.c -domain polyhedra -ctl "NOT{AG{OR{timer_1 != 0}{AF{output_1 == 1}}}}" > logs/ctl/timer-simpleCFG.log		# TODO: ?
+# ./function tests/ctl/ltl_automizer/togglecounter_true-valid-ltl.c -domain polyhedra -ctl "AG{AND{AF{t == 1}}{AF{t == 0}}}" > logs/ctl/togglecounter_true-valid-ltlCFG.log	# TODO: ?
+./function tests/ctl/ltl_automizer/toggletoggle_true-valid-ltl.c -domain polyhedra -ctl "AG{AND{AF{t==1}}{AF{t==0}}}" -precondition "t >= 0" > logs/ctl/toggletoggle_true-valid-ltlCFG.log
+
 #### CTL-AST
 
 ./function tests/ctl/and_ef_test.c -domain polyhedra -ctl "AND{EF{x == 2}}{EF{x==3}}" -ast > logs/ctl/and_ef_testAST.log
@@ -162,32 +187,32 @@
 # ./function tests/ctl/koskinen/toylin1.c -domain polyhedra -ctl "AF{resp > 5}" -ast -precondition "c > 5" > logs/ctl/toylin1AST.log					# TODO: ?
 ./function tests/ctl/koskinen/win4.c -domain polyhedra -ctl "AF{AG{WItemsNum >= 1}}" -ast > logs/ctl/win4AST.log
 
+./function tests/ctl/ltl_automizer/Bug_NoLoopAtEndForTerminatingPrograms_safe.c -domain polyhedra -ctl "NOT{AF{ap > 2}}" -ast -precondition "ap == 0" > logs/ctl/Bug_NoLoopAtEndForTerminatingPrograms_safeAST.log
+./function tests/ctl/ltl_automizer/PotentialMinimizeSEVPABug.c -domain polyhedra -ctl "AG{OR{x <= 0}{AF{y == 0}}}" -ast -precondition "x < 0" -ordinals 1 > logs/ctl/PotentialMinimizeSEVPABugAST.log
+./function tests/ctl/ltl_automizer/cav2015.c -domain polyhedra -ctl "AG{OR{x <= 0}{AF{y == 0}}}" -ast -precondition "x < 0" -ordinals 1 > logs/ctl/cav2015AST.log
+# ./function tests/ctl/ltl_automizer/coolant_basis_1_safe_sfty.c -domain polyhedra -ctl "AG{OR{chainBroken != 1}{AG{chainBroken == 1}}}" -ast -precondition "chainBroken == 0" > logs/ctl/coolant_basis_1_safe_sftyAST.log # TODO: ?
+# ./function tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c -domain polyhedra -ctl "AG{OR{chainBroken != 1}{AG{chainBroken == 1}}}" -ast -precondition "chainBroken == 0" > logs/ctl/coolant_basis_1_unsafe_sftyAST.log		# UNKNOWN?
+# ./function tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c -domain polyhedra -ctl "AG{AF{otime < time}}" -ast > logs/ctl/coolant_basis_2_safe_lifenessAST.log	# TODO: ?
+# ./function tests/ctl/ltl_automizer/coolant_basis_2_unsafe_lifeness.c -domain polyhedra -ctl "AG{AF{otime < time}}" -ast > logs/ctl/coolant_basis_2_unsafe_lifenessAST.log	# UNKNOWN
+# ./function tests/ctl/ltl_automizer/coolant_basis_3_safe_sfty.c -domain polyhedra -ctl "AG{OR{init != 3}{AG{AF{time > otime}}}}" -ast -precondition "init == 0" > logs/ctl/coolant_basis_3_safe_sftyAST.log	# TODO: ?
+# ./function tests/ctl/ltl_automizer/coolant_basis_3_unsafe_sfty.c -domain polyhedra -ctl "AG{OR{init != 3}{AG{AF{time > otime}}}}" -ast -precondition "init == 0" > logs/ctl/coolant_basis_3_unsafe_sftyAST.log	# UNKNOWN?
+# ./function tests/ctl/ltl_automizer/coolant_basis_4_safe_sfty.c -domain polyhedra -ctl "AG{OR{init != 3}{OR{temp <= limit}{AF{AG{chainBroken == 1}}}}}" -ast -precondition "init == 0 && temp < limit" > logs/ctl/coolant_basis_4_safe_sftyAST.log	# TODO: ?
+# ./function tests/ctl/ltl_automizer/coolant_basis_4_unsafe_sfty.c -domain polyhedra -ctl "AG{OR{init != 3}{OR{temp <= limit}{AF{AG{chainBroken == 1}}}}}" -ast -precondition "init == 0 && temp < limit" > logs/ctl/coolant_basis_4_unsafe_sftyAST.log	# TODO: UNKNOWN? + bad performance 
+# ./function tests/ctl/ltl_automizer/coolant_basis_5_safe_cheat.c -domain polyhedra -ctl "AU{init == 0}{OR{AU{init == 1}{AG{init == 3}}}{AG{init == 1}}}" -ast -precondition "init == 0" > logs/ctl/coolant_basis_5_safe_cheatAST.log	# TODO: ?
+# ./function tests/ctl/ltl_automizer/coolant_basis_5_safe_sfty.c -domain polyhedra -ctl "AU{init == 0}{OR{AU{init == 1}{AG{init == 3}}}{AG{init == 1}}}" -ast -precondition "init == 0" > logs/ctl/coolant_basis_5_safe_sftyAST.log	# TODO: ?
+# ./function tests/ctl/ltl_automizer/coolant_basis_5_unsafe_sfty.c -domain polyhedra -ctl "AU{init == 0}{OR{AU{init == 1}{AG{init == 3}}}{AG{init == 1}}}" -ast -precondition "init == 0" > logs/ctl/coolant_basis_5_unsafe_sftyAST.log	# UNKNOWN ?
+# ./function tests/ctl/ltl_automizer/coolant_basis_6_safe_sfty.c -domain polyhedra -ctl "AG{OR{limit <= -273 && limit >= 10}{OR{tempIn >= 0}{AF{ warnLED == 1}}}}" -ast -precondition "init == 0 && temp < limit" > logs/ctl/coolant_basis_6_safe_sftyAST.log	# TODO: ?
+# ./function tests/ctl/ltl_automizer/coolant_basis_6_unsafe_sfty.c -domain polyhedra -ctl "AG{OR{limit <= -273 && limit >= 10}{OR{tempIn >= 0}{AF{ warnLED == 1}}}}" -ast -precondition "init == 0 && temp < limit" > logs/ctl/coolant_basis_6_unsafe_sftyAST.log	# UNKNOWN ?
+./function tests/ctl/ltl_automizer/nestedRandomLoop_true-valid-ltl.c -domain polyhedra -ctl "AG{i >= n}" -ast -precondition "i == 1 && n >= 0 && i > n" > logs/ctl/nestedRandomLoop_true-valid-ltlAST.log
+./function tests/ctl/ltl_automizer/simple-1.c -domain polyhedra -ctl "AF{x > 10000}" -ast > logs/ctl/simple-1AST.log
+./function tests/ctl/ltl_automizer/simple-2.c -domain polyhedra -ctl "AF{x > 100}" -ast > logs/ctl/simple-2AST.log
+# ./function tests/ctl/ltl_automizer/someNonterminating.c -domain polyhedra -ctl "EG{x > 0}" -ast -precondition "x > 0" > logs/ctl/someNonterminatingAST.log	# TODO: cda?
+# ./function tests/ctl/ltl_automizer/timer-intermediate.c -domain polyhedra -ctl "AG{OR{input_1 >= 1000}{AF{output_1 == 1}}}" -ast > logs/ctl/timer-intermediateAST.log	# TODO: assume
+# ./function tests/ctl/ltl_automizer/timer-simple.c -domain polyhedra -ctl "NOT{AG{OR{timer_1 != 0}{AF{output_1 == 1}}}}" -ast > logs/ctl/timer-simpleAST.log		# TODO: ?
+# ./function tests/ctl/ltl_automizer/togglecounter_true-valid-ltl.c -domain polyhedra -ctl "AG{AND{AF{t == 1}}{AF{t == 0}}}" -ast > logs/ctl/togglecounter_true-valid-ltlAST.log	# TODO: ?
+./function tests/ctl/ltl_automizer/toggletoggle_true-valid-ltl.c -domain polyhedra -ctl "AG{AND{AF{t==1}}{AF{t==0}}}" -ast -precondition "t >= 0" > logs/ctl/toggletoggle_true-valid-ltlAST.log
+
 ##########
-
-## drwxr-xr-x@ 32 Caterina  staff    1024 Apr  3  2023 ltl_automizer
-
-# -rw-r--r--@ 1 Caterina  staff   260 Apr  3  2023 Bug_NoLoopAtEndForTerminatingPrograms_safe.c
-# -rw-r--r--@ 1 Caterina  staff   355 Apr  3  2023 PotentialMinimizeSEVPABug.c
-# -rw-r--r--@ 1 Caterina  staff   346 Apr  3  2023 cav2015.c
-# -rw-r--r--@ 1 Caterina  staff  1326 Apr  3  2023 coolant_basis_1_safe_sfty.c
-# -rw-r--r--@ 1 Caterina  staff  1332 Apr  3  2023 coolant_basis_1_unsafe_sfty.c
-# -rw-r--r--@ 1 Caterina  staff  1260 Apr  3  2023 coolant_basis_2_safe_lifeness.c
-# -rw-r--r--@ 1 Caterina  staff  1268 Apr  3  2023 coolant_basis_2_unsafe_lifeness.c
-# -rw-r--r--@ 1 Caterina  staff  1213 Apr  3  2023 coolant_basis_3_safe_sfty.c
-# -rw-r--r--@ 1 Caterina  staff  1223 Apr  3  2023 coolant_basis_3_unsafe_sfty.c
-# -rw-r--r--@ 1 Caterina  staff  1242 Apr  3  2023 coolant_basis_4_safe_sfty.c
-# -rw-r--r--@ 1 Caterina  staff  1312 Apr  3  2023 coolant_basis_4_unsafe_sfty.c
-# -rw-r--r--  1 Caterina  staff  1434 Dec  1 15:47 coolant_basis_5_safe_cheat.c
-# -rw-r--r--@ 1 Caterina  staff  1244 Apr  3  2023 coolant_basis_5_safe_sfty.c
-# -rw-r--r--@ 1 Caterina  staff  1246 Apr  3  2023 coolant_basis_5_unsafe_sfty.c
-# -rw-r--r--@ 1 Caterina  staff  1243 Apr  3  2023 coolant_basis_6_safe_sfty.c
-# -rw-r--r--@ 1 Caterina  staff  1239 Apr  3  2023 coolant_basis_6_unsafe_sfty.c
-# -rw-r--r--@ 1 Caterina  staff   263 Apr  3  2023 nestedRandomLoop_true-valid-ltl.c
-# -rw-r--r--@ 1 Caterina  staff   183 Apr  3  2023 simple-1.c
-# -rw-r--r--@ 1 Caterina  staff   196 Apr  3  2023 simple-2.c
-# -rw-r--r--@ 1 Caterina  staff   261 Apr  3  2023 someNonterminating.c
-# -rw-r--r--@ 1 Caterina  staff   744 Apr  3  2023 timer-intermediate.c
-# -rw-r--r--@ 1 Caterina  staff   382 Apr  3  2023 timer-simple.c
 
 ## drwxr-xr-x@  6 Caterina  staff     192 Apr  3  2023 report
 
