@@ -1,24 +1,24 @@
 
 CFG:
 List of variables:
-  $1{x}:int at tests/sink.c:11.6-7
+  $1{x}:int at tests/recurrence/sink.c:11.6-7
 
 List of functions:
-  1: main() -> void at tests/sink.c:10.0-21.1, entry: 12, exit: 11, calls:
+  1: main() -> void at tests/recurrence/sink.c:10.0-21.1, entry: 12, exit: 11, calls:
 
 List of nodes:
   12: at :0:-1, in: out:1 
   11: at :0:-1, in: 2 out:
-  1: at tests/sink.c:10:0, in: 12 out:3 
-  2: at tests/sink.c:21:1, in: 3 out:11 
-  3: at tests/sink.c:11:8, in: 5 1 out:2 4 
-  4: at tests/sink.c:12:15, in: 3 out:5 
-  5: at tests/sink.c:13:10, in: 7 8 4 out:3 6 
-  6: at tests/sink.c:14:19, in: 5 out:7 8 
-  7: at tests/sink.c:18:8, in: 6 out:5 
-  8: at tests/sink.c:16:8, in: 6 out:5 
-  9: at tests/sink.c:10:0, in: out:10 
-  10: at tests/sink.c:21:1, in: 9 out:
+  1: at tests/recurrence/sink.c:10:0, in: 12 out:3 
+  2: at tests/recurrence/sink.c:21:1, in: 3 out:11 
+  3: at tests/recurrence/sink.c:11:8, in: 5 1 out:2 4 
+  4: at tests/recurrence/sink.c:12:15, in: 3 out:5 
+  5: at tests/recurrence/sink.c:13:10, in: 7 8 4 out:3 6 
+  6: at tests/recurrence/sink.c:14:19, in: 5 out:7 8 
+  7: at tests/recurrence/sink.c:18:8, in: 6 out:5 
+  8: at tests/recurrence/sink.c:16:8, in: 6 out:5 
+  9: at tests/recurrence/sink.c:10:0, in: out:10 
+  10: at tests/recurrence/sink.c:21:1, in: 9 out:
 
 List of arcs:
   12 -> 1: label entry
