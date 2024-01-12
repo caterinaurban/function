@@ -1,74 +1,74 @@
 
 CFG:
 List of variables:
-  $1{x}:int at tests/pingpong.c:11.5-6
-  $2{y}:int at tests/pingpong.c:11.12-13
-  $3{z}:int at tests/pingpong.c:11.19-20
+  $1{x}:int at tests/guarantee/pingpong.c:11.5-6
+  $2{y}:int at tests/guarantee/pingpong.c:11.12-13
+  $3{z}:int at tests/guarantee/pingpong.c:11.19-20
 
 List of functions:
-  1: main() -> void at tests/pingpong.c:10.0-130.1, entry: 60, exit: 59, calls:
+  1: main() -> void at tests/guarantee/pingpong.c:10.0-130.1, entry: 60, exit: 59, calls:
 
 List of nodes:
   60: at :0:-1, in: out:1 
   59: at :0:-1, in: 2 out:
-  1: at tests/pingpong.c:10:0, in: 60 out:4 
-  2: at tests/pingpong.c:130:1, in: 46 55 53 52 44 42 41 33 30 22 18 16 15 out:59 
-  3: at tests/pingpong.c:11:25, in: 5 out:6 7 
-  4: at tests/pingpong.c:11:24, in: 1 out:5 
-  5: at tests/pingpong.c:11:17, in: 4 out:3 
-  6: at tests/pingpong.c:58:8, in: 3 out:24 
-  7: at tests/pingpong.c:19:12, in: 3 out:8 9 
-  8: at tests/pingpong.c:49:9, in: 7 out:20 
-  9: at tests/pingpong.c:25:9, in: 7 out:10 
-  10: at tests/pingpong.c:26:9, in: 9 out:11 12 
-  11: at tests/pingpong.c:42:10, in: 10 out:17 
-  12: at tests/pingpong.c:31:14, in: 10 out:13 14 
-  13: at tests/pingpong.c:38:11, in: 12 out:16 
-  14: at tests/pingpong.c:35:11, in: 12 out:15 
-  15: at tests/pingpong.c:36:11, in: 14 out:2 
-  16: at tests/pingpong.c:39:11, in: 13 out:2 
-  17: at tests/pingpong.c:43:10, in: 19 11 out:18 19 
-  18: at tests/pingpong.c:46:19, in: 17 out:2 
-  19: at tests/pingpong.c:46:18, in: 17 out:17 
-  20: at tests/pingpong.c:50:9, in: 8 out:21 
-  21: at tests/pingpong.c:54:9, in: 23 20 out:22 23 
-  22: at tests/pingpong.c:55:18, in: 21 out:2 
-  23: at tests/pingpong.c:55:17, in: 21 out:21 
-  24: at tests/pingpong.c:59:8, in: 6 out:25 26 
-  25: at tests/pingpong.c:79:9, in: 24 out:35 36 
-  26: at tests/pingpong.c:65:22, in: 24 out:27 28 
-  27: at tests/pingpong.c:72:10, in: 26 out:32 
-  28: at tests/pingpong.c:66:10, in: 26 out:29 
-  29: at tests/pingpong.c:67:10, in: 31 28 out:30 31 
-  30: at tests/pingpong.c:70:19, in: 29 out:2 
-  31: at tests/pingpong.c:70:18, in: 29 out:29 
-  32: at tests/pingpong.c:73:10, in: 34 27 out:33 34 
-  33: at tests/pingpong.c:76:19, in: 32 out:2 
-  34: at tests/pingpong.c:76:18, in: 32 out:32 
-  35: at tests/pingpong.c:102:9, in: 25 out:46 47 
-  36: at tests/pingpong.c:79:20, in: 25 out:37 38 
-  37: at tests/pingpong.c:95:10, in: 36 out:43 
-  38: at tests/pingpong.c:84:14, in: 36 out:39 40 
-  39: at tests/pingpong.c:91:11, in: 38 out:42 
-  40: at tests/pingpong.c:88:11, in: 38 out:41 
-  41: at tests/pingpong.c:89:11, in: 40 out:2 
-  42: at tests/pingpong.c:92:11, in: 39 out:2 
-  43: at tests/pingpong.c:96:10, in: 45 37 out:44 45 
-  44: at tests/pingpong.c:99:19, in: 43 out:2 
-  45: at tests/pingpong.c:99:18, in: 43 out:43 
-  46: at tests/pingpong.c:125:9, in: 35 out:2 
-  47: at tests/pingpong.c:102:20, in: 35 out:48 49 
-  48: at tests/pingpong.c:118:10, in: 47 out:54 
-  49: at tests/pingpong.c:107:14, in: 47 out:50 51 
-  50: at tests/pingpong.c:114:11, in: 49 out:53 
-  51: at tests/pingpong.c:111:11, in: 49 out:52 
-  52: at tests/pingpong.c:112:11, in: 51 out:2 
-  53: at tests/pingpong.c:115:11, in: 50 out:2 
-  54: at tests/pingpong.c:119:10, in: 56 48 out:55 56 
-  55: at tests/pingpong.c:122:19, in: 54 out:2 
-  56: at tests/pingpong.c:122:18, in: 54 out:54 
-  57: at tests/pingpong.c:10:0, in: out:58 
-  58: at tests/pingpong.c:130:1, in: 57 out:
+  1: at tests/guarantee/pingpong.c:10:0, in: 60 out:4 
+  2: at tests/guarantee/pingpong.c:130:1, in: 46 55 53 52 44 42 41 33 30 22 18 16 15 out:59 
+  3: at tests/guarantee/pingpong.c:11:25, in: 5 out:6 7 
+  4: at tests/guarantee/pingpong.c:11:24, in: 1 out:5 
+  5: at tests/guarantee/pingpong.c:11:17, in: 4 out:3 
+  6: at tests/guarantee/pingpong.c:58:8, in: 3 out:24 
+  7: at tests/guarantee/pingpong.c:19:12, in: 3 out:8 9 
+  8: at tests/guarantee/pingpong.c:49:9, in: 7 out:20 
+  9: at tests/guarantee/pingpong.c:25:9, in: 7 out:10 
+  10: at tests/guarantee/pingpong.c:26:9, in: 9 out:11 12 
+  11: at tests/guarantee/pingpong.c:42:10, in: 10 out:17 
+  12: at tests/guarantee/pingpong.c:31:14, in: 10 out:13 14 
+  13: at tests/guarantee/pingpong.c:38:11, in: 12 out:16 
+  14: at tests/guarantee/pingpong.c:35:11, in: 12 out:15 
+  15: at tests/guarantee/pingpong.c:36:11, in: 14 out:2 
+  16: at tests/guarantee/pingpong.c:39:11, in: 13 out:2 
+  17: at tests/guarantee/pingpong.c:43:10, in: 19 11 out:18 19 
+  18: at tests/guarantee/pingpong.c:46:19, in: 17 out:2 
+  19: at tests/guarantee/pingpong.c:46:18, in: 17 out:17 
+  20: at tests/guarantee/pingpong.c:50:9, in: 8 out:21 
+  21: at tests/guarantee/pingpong.c:54:9, in: 23 20 out:22 23 
+  22: at tests/guarantee/pingpong.c:55:18, in: 21 out:2 
+  23: at tests/guarantee/pingpong.c:55:17, in: 21 out:21 
+  24: at tests/guarantee/pingpong.c:59:8, in: 6 out:25 26 
+  25: at tests/guarantee/pingpong.c:79:9, in: 24 out:35 36 
+  26: at tests/guarantee/pingpong.c:65:22, in: 24 out:27 28 
+  27: at tests/guarantee/pingpong.c:72:10, in: 26 out:32 
+  28: at tests/guarantee/pingpong.c:66:10, in: 26 out:29 
+  29: at tests/guarantee/pingpong.c:67:10, in: 31 28 out:30 31 
+  30: at tests/guarantee/pingpong.c:70:19, in: 29 out:2 
+  31: at tests/guarantee/pingpong.c:70:18, in: 29 out:29 
+  32: at tests/guarantee/pingpong.c:73:10, in: 34 27 out:33 34 
+  33: at tests/guarantee/pingpong.c:76:19, in: 32 out:2 
+  34: at tests/guarantee/pingpong.c:76:18, in: 32 out:32 
+  35: at tests/guarantee/pingpong.c:102:9, in: 25 out:46 47 
+  36: at tests/guarantee/pingpong.c:79:20, in: 25 out:37 38 
+  37: at tests/guarantee/pingpong.c:95:10, in: 36 out:43 
+  38: at tests/guarantee/pingpong.c:84:14, in: 36 out:39 40 
+  39: at tests/guarantee/pingpong.c:91:11, in: 38 out:42 
+  40: at tests/guarantee/pingpong.c:88:11, in: 38 out:41 
+  41: at tests/guarantee/pingpong.c:89:11, in: 40 out:2 
+  42: at tests/guarantee/pingpong.c:92:11, in: 39 out:2 
+  43: at tests/guarantee/pingpong.c:96:10, in: 45 37 out:44 45 
+  44: at tests/guarantee/pingpong.c:99:19, in: 43 out:2 
+  45: at tests/guarantee/pingpong.c:99:18, in: 43 out:43 
+  46: at tests/guarantee/pingpong.c:125:9, in: 35 out:2 
+  47: at tests/guarantee/pingpong.c:102:20, in: 35 out:48 49 
+  48: at tests/guarantee/pingpong.c:118:10, in: 47 out:54 
+  49: at tests/guarantee/pingpong.c:107:14, in: 47 out:50 51 
+  50: at tests/guarantee/pingpong.c:114:11, in: 49 out:53 
+  51: at tests/guarantee/pingpong.c:111:11, in: 49 out:52 
+  52: at tests/guarantee/pingpong.c:112:11, in: 51 out:2 
+  53: at tests/guarantee/pingpong.c:115:11, in: 50 out:2 
+  54: at tests/guarantee/pingpong.c:119:10, in: 56 48 out:55 56 
+  55: at tests/guarantee/pingpong.c:122:19, in: 54 out:2 
+  56: at tests/guarantee/pingpong.c:122:18, in: 54 out:54 
+  57: at tests/guarantee/pingpong.c:10:0, in: out:58 
+  58: at tests/guarantee/pingpong.c:130:1, in: 57 out:
 
 List of arcs:
   60 -> 1: label entry

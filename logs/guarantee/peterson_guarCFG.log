@@ -1,1167 +1,1167 @@
 
 CFG:
 List of variables:
-  $1{flag1}:int at tests/peterson.c:12.5-10
-  $2{flag2}:int at tests/peterson.c:12.16-21
-  $3{turn}:int at tests/peterson.c:12.27-31
+  $1{flag1}:int at tests/guarantee/peterson.c:12.5-10
+  $2{flag2}:int at tests/guarantee/peterson.c:12.16-21
+  $3{turn}:int at tests/guarantee/peterson.c:12.27-31
 
 List of functions:
-  1: main() -> void at tests/peterson.c:11.0-2785.1, entry: 1153, exit: 1152, calls:
+  1: main() -> void at tests/guarantee/peterson.c:11.0-2785.1, entry: 1153, exit: 1152, calls:
 
 List of nodes:
   1153: at :0:-1, in: out:1 
   1152: at :0:-1, in: 2 out:
-  1: at tests/peterson.c:11:0, in: 1153 out:4 
-  2: at tests/peterson.c:2785:1, in: 3 out:1152 
-  3: at tests/peterson.c:12:32, in: 1149 1145 1143 1142 1133 1131 1130 1123 1122 1118 1109 1105 1104 1100 1093 1091 1090 1083 1082 1078 1066 1061 1057 1055 1054 1042 1038 1036 1035 1026 1024 1023 1016 1015 1011 996 990 985 981 979 978 963 958 954 952 951 939 935 933 932 923 921 920 913 912 908 890 886 884 883 874 872 871 864 863 859 850 846 845 841 834 832 831 824 823 819 807 802 798 796 795 783 779 777 776 767 765 764 757 756 752 737 733 731 730 721 719 718 711 710 706 697 693 692 688 681 679 678 671 670 666 654 650 649 645 638 636 635 628 627 623 613 609 608 604 597 578 574 572 571 562 560 559 552 551 547 538 534 533 529 522 520 519 512 511 507 495 490 486 484 483 471 467 465 464 455 453 452 445 444 440 425 421 419 418 409 407 406 399 398 394 385 381 380 376 369 367 366 359 358 354 342 338 337 333 326 324 323 316 315 311 301 297 296 292 285 269 265 263 262 253 251 250 243 242 238 229 225 224 220 213 211 210 203 202 198 186 182 181 177 170 168 167 160 159 155 145 141 140 136 129 116 112 111 107 100 98 97 90 89 85 75 71 70 66 59 48 44 43 39 32 24 4 out:2 5 
-  4: at tests/peterson.c:12:25, in: 1 out:3 
-  5: at tests/peterson.c:14:14, in: 3 out:6 7 
-  6: at tests/peterson.c:1404:8, in: 5 out:579 
-  7: at tests/peterson.c:26:8, in: 5 out:8 
-  8: at tests/peterson.c:27:12, in: 7 out:9 10 
-  9: at tests/peterson.c:653:9, in: 8 out:270 
-  10: at tests/peterson.c:38:9, in: 8 out:11 
-  11: at tests/peterson.c:39:12, in: 10 out:12 13 
-  12: at tests/peterson.c:283:10, in: 11 out:117 
-  13: at tests/peterson.c:49:32, in: 11 out:14 15 
-  14: at tests/peterson.c:125:11, in: 13 out:49 
-  15: at tests/peterson.c:58:11, in: 13 out:16 
-  16: at tests/peterson.c:59:8, in: 15 out:17 18 
-  17: at tests/peterson.c:74:12, in: 16 out:25 
-  18: at tests/peterson.c:67:12, in: 16 out:19 
-  19: at tests/peterson.c:68:16, in: 18 out:20 
-  20: at tests/peterson.c:69:16, in: 19 out:21 
-  21: at tests/peterson.c:70:15, in: 23 20 out:22 23 
-  22: at tests/peterson.c:71:38, in: 21 out:24 
-  23: at tests/peterson.c:71:37, in: 21 out:21 
-  24: at tests/peterson.c:72:9, in: 22 out:3 
-  25: at tests/peterson.c:75:16, in: 17 out:26 27 
-  26: at tests/peterson.c:88:13, in: 25 out:33 
-  27: at tests/peterson.c:82:13, in: 25 out:28 
-  28: at tests/peterson.c:83:17, in: 27 out:29 
-  29: at tests/peterson.c:84:16, in: 31 28 out:30 31 
-  30: at tests/peterson.c:85:39, in: 29 out:32 
-  31: at tests/peterson.c:85:38, in: 29 out:29 
-  32: at tests/peterson.c:86:10, in: 30 out:3 
-  33: at tests/peterson.c:89:16, in: 26 out:34 35 
-  34: at tests/peterson.c:117:14, in: 33 out:45 
-  35: at tests/peterson.c:95:36, in: 33 out:36 37 
-  36: at tests/peterson.c:104:15, in: 35 out:40 
-  37: at tests/peterson.c:100:15, in: 35 out:38 
-  38: at tests/peterson.c:101:19, in: 37 out:39 
-  39: at tests/peterson.c:102:12, in: 38 out:3 
-  40: at tests/peterson.c:105:12, in: 36 out:41 42 
-  41: at tests/peterson.c:112:16, in: 40 out:44 
-  42: at tests/peterson.c:109:16, in: 40 out:43 
-  43: at tests/peterson.c:110:20, in: 42 out:3 
-  44: at tests/peterson.c:113:20, in: 41 out:3 
-  45: at tests/peterson.c:118:18, in: 47 34 out:46 47 
-  46: at tests/peterson.c:119:40, in: 45 out:48 
-  47: at tests/peterson.c:119:39, in: 45 out:45 
-  48: at tests/peterson.c:120:11, in: 46 out:3 
-  49: at tests/peterson.c:126:15, in: 14 out:50 51 
-  50: at tests/peterson.c:184:12, in: 49 out:76 
-  51: at tests/peterson.c:134:12, in: 49 out:52 
-  52: at tests/peterson.c:135:9, in: 51 out:53 54 
-  53: at tests/peterson.c:148:13, in: 52 out:60 
-  54: at tests/peterson.c:142:13, in: 52 out:55 
-  55: at tests/peterson.c:143:17, in: 54 out:56 
-  56: at tests/peterson.c:144:16, in: 58 55 out:57 58 
-  57: at tests/peterson.c:145:39, in: 56 out:59 
-  58: at tests/peterson.c:145:38, in: 56 out:56 
-  59: at tests/peterson.c:146:10, in: 57 out:3 
-  60: at tests/peterson.c:149:16, in: 53 out:61 62 
-  61: at tests/peterson.c:177:14, in: 60 out:72 
-  62: at tests/peterson.c:155:36, in: 60 out:63 64 
-  63: at tests/peterson.c:164:15, in: 62 out:67 
-  64: at tests/peterson.c:160:15, in: 62 out:65 
-  65: at tests/peterson.c:161:19, in: 64 out:66 
-  66: at tests/peterson.c:162:12, in: 65 out:3 
-  67: at tests/peterson.c:165:12, in: 63 out:68 69 
-  68: at tests/peterson.c:172:16, in: 67 out:71 
-  69: at tests/peterson.c:169:16, in: 67 out:70 
-  70: at tests/peterson.c:170:20, in: 69 out:3 
-  71: at tests/peterson.c:173:20, in: 68 out:3 
-  72: at tests/peterson.c:178:18, in: 74 61 out:73 74 
-  73: at tests/peterson.c:179:40, in: 72 out:75 
-  74: at tests/peterson.c:179:39, in: 72 out:72 
-  75: at tests/peterson.c:180:11, in: 73 out:3 
-  76: at tests/peterson.c:185:15, in: 50 out:77 78 
-  77: at tests/peterson.c:245:13, in: 76 out:101 
-  78: at tests/peterson.c:192:35, in: 76 out:79 80 
-  79: at tests/peterson.c:221:14, in: 78 out:91 
-  80: at tests/peterson.c:198:14, in: 78 out:81 
-  81: at tests/peterson.c:199:11, in: 80 out:82 83 
-  82: at tests/peterson.c:208:15, in: 81 out:86 
-  83: at tests/peterson.c:204:15, in: 81 out:84 
-  84: at tests/peterson.c:205:19, in: 83 out:85 
-  85: at tests/peterson.c:206:12, in: 84 out:3 
-  86: at tests/peterson.c:209:12, in: 82 out:87 88 
-  87: at tests/peterson.c:216:16, in: 86 out:90 
-  88: at tests/peterson.c:213:16, in: 86 out:89 
-  89: at tests/peterson.c:214:20, in: 88 out:3 
-  90: at tests/peterson.c:217:20, in: 87 out:3 
-  91: at tests/peterson.c:222:11, in: 79 out:92 93 
-  92: at tests/peterson.c:239:15, in: 91 out:99 
-  93: at tests/peterson.c:227:15, in: 91 out:94 
-  94: at tests/peterson.c:228:12, in: 93 out:95 96 
-  95: at tests/peterson.c:235:16, in: 94 out:98 
-  96: at tests/peterson.c:232:16, in: 94 out:97 
-  97: at tests/peterson.c:233:20, in: 96 out:3 
-  98: at tests/peterson.c:236:20, in: 95 out:3 
-  99: at tests/peterson.c:240:19, in: 92 out:100 
-  100: at tests/peterson.c:241:12, in: 99 out:3 
-  101: at tests/peterson.c:246:10, in: 77 out:102 103 
-  102: at tests/peterson.c:274:14, in: 101 out:113 
-  103: at tests/peterson.c:252:36, in: 101 out:104 105 
-  104: at tests/peterson.c:261:15, in: 103 out:108 
-  105: at tests/peterson.c:257:15, in: 103 out:106 
-  106: at tests/peterson.c:258:19, in: 105 out:107 
-  107: at tests/peterson.c:259:12, in: 106 out:3 
-  108: at tests/peterson.c:262:12, in: 104 out:109 110 
-  109: at tests/peterson.c:269:16, in: 108 out:112 
-  110: at tests/peterson.c:266:16, in: 108 out:111 
-  111: at tests/peterson.c:267:20, in: 110 out:3 
-  112: at tests/peterson.c:270:20, in: 109 out:3 
-  113: at tests/peterson.c:275:18, in: 115 102 out:114 115 
-  114: at tests/peterson.c:276:40, in: 113 out:116 
-  115: at tests/peterson.c:276:39, in: 113 out:113 
-  116: at tests/peterson.c:277:11, in: 114 out:3 
-  117: at tests/peterson.c:284:14, in: 12 out:118 119 
-  118: at tests/peterson.c:449:11, in: 117 out:187 
-  119: at tests/peterson.c:293:33, in: 117 out:120 121 
-  120: at tests/peterson.c:351:12, in: 119 out:146 
-  121: at tests/peterson.c:301:12, in: 119 out:122 
-  122: at tests/peterson.c:302:9, in: 121 out:123 124 
-  123: at tests/peterson.c:315:13, in: 122 out:130 
-  124: at tests/peterson.c:309:13, in: 122 out:125 
-  125: at tests/peterson.c:310:17, in: 124 out:126 
-  126: at tests/peterson.c:311:16, in: 128 125 out:127 128 
-  127: at tests/peterson.c:312:39, in: 126 out:129 
-  128: at tests/peterson.c:312:38, in: 126 out:126 
-  129: at tests/peterson.c:313:10, in: 127 out:3 
-  130: at tests/peterson.c:316:16, in: 123 out:131 132 
-  131: at tests/peterson.c:344:14, in: 130 out:142 
-  132: at tests/peterson.c:322:36, in: 130 out:133 134 
-  133: at tests/peterson.c:331:15, in: 132 out:137 
-  134: at tests/peterson.c:327:15, in: 132 out:135 
-  135: at tests/peterson.c:328:19, in: 134 out:136 
-  136: at tests/peterson.c:329:12, in: 135 out:3 
-  137: at tests/peterson.c:332:12, in: 133 out:138 139 
-  138: at tests/peterson.c:339:16, in: 137 out:141 
-  139: at tests/peterson.c:336:16, in: 137 out:140 
-  140: at tests/peterson.c:337:20, in: 139 out:3 
-  141: at tests/peterson.c:340:20, in: 138 out:3 
-  142: at tests/peterson.c:345:18, in: 144 131 out:143 144 
-  143: at tests/peterson.c:346:40, in: 142 out:145 
-  144: at tests/peterson.c:346:39, in: 142 out:142 
-  145: at tests/peterson.c:347:11, in: 143 out:3 
-  146: at tests/peterson.c:352:15, in: 120 out:147 148 
-  147: at tests/peterson.c:412:13, in: 146 out:171 
-  148: at tests/peterson.c:359:35, in: 146 out:149 150 
-  149: at tests/peterson.c:388:14, in: 148 out:161 
-  150: at tests/peterson.c:365:14, in: 148 out:151 
-  151: at tests/peterson.c:366:11, in: 150 out:152 153 
-  152: at tests/peterson.c:375:15, in: 151 out:156 
-  153: at tests/peterson.c:371:15, in: 151 out:154 
-  154: at tests/peterson.c:372:19, in: 153 out:155 
-  155: at tests/peterson.c:373:12, in: 154 out:3 
-  156: at tests/peterson.c:376:12, in: 152 out:157 158 
-  157: at tests/peterson.c:383:16, in: 156 out:160 
-  158: at tests/peterson.c:380:16, in: 156 out:159 
-  159: at tests/peterson.c:381:20, in: 158 out:3 
-  160: at tests/peterson.c:384:20, in: 157 out:3 
-  161: at tests/peterson.c:389:11, in: 149 out:162 163 
-  162: at tests/peterson.c:406:15, in: 161 out:169 
-  163: at tests/peterson.c:394:15, in: 161 out:164 
-  164: at tests/peterson.c:395:12, in: 163 out:165 166 
-  165: at tests/peterson.c:402:16, in: 164 out:168 
-  166: at tests/peterson.c:399:16, in: 164 out:167 
-  167: at tests/peterson.c:400:20, in: 166 out:3 
-  168: at tests/peterson.c:403:20, in: 165 out:3 
-  169: at tests/peterson.c:407:19, in: 162 out:170 
-  170: at tests/peterson.c:408:12, in: 169 out:3 
-  171: at tests/peterson.c:413:10, in: 147 out:172 173 
-  172: at tests/peterson.c:441:14, in: 171 out:183 
-  173: at tests/peterson.c:419:36, in: 171 out:174 175 
-  174: at tests/peterson.c:428:15, in: 173 out:178 
-  175: at tests/peterson.c:424:15, in: 173 out:176 
-  176: at tests/peterson.c:425:19, in: 175 out:177 
-  177: at tests/peterson.c:426:12, in: 176 out:3 
-  178: at tests/peterson.c:429:12, in: 174 out:179 180 
-  179: at tests/peterson.c:436:16, in: 178 out:182 
-  180: at tests/peterson.c:433:16, in: 178 out:181 
-  181: at tests/peterson.c:434:20, in: 180 out:3 
-  182: at tests/peterson.c:437:20, in: 179 out:3 
-  183: at tests/peterson.c:442:18, in: 185 172 out:184 185 
-  184: at tests/peterson.c:443:40, in: 183 out:186 
-  185: at tests/peterson.c:443:39, in: 183 out:183 
-  186: at tests/peterson.c:444:11, in: 184 out:3 
-  187: at tests/peterson.c:450:14, in: 118 out:188 189 
-  188: at tests/peterson.c:554:12, in: 187 out:230 231 
-  189: at tests/peterson.c:458:34, in: 187 out:190 191 
-  190: at tests/peterson.c:518:13, in: 189 out:214 
-  191: at tests/peterson.c:465:35, in: 189 out:192 193 
-  192: at tests/peterson.c:494:14, in: 191 out:204 
-  193: at tests/peterson.c:471:14, in: 191 out:194 
-  194: at tests/peterson.c:472:11, in: 193 out:195 196 
-  195: at tests/peterson.c:481:15, in: 194 out:199 
-  196: at tests/peterson.c:477:15, in: 194 out:197 
-  197: at tests/peterson.c:478:19, in: 196 out:198 
-  198: at tests/peterson.c:479:12, in: 197 out:3 
-  199: at tests/peterson.c:482:12, in: 195 out:200 201 
-  200: at tests/peterson.c:489:16, in: 199 out:203 
-  201: at tests/peterson.c:486:16, in: 199 out:202 
-  202: at tests/peterson.c:487:20, in: 201 out:3 
-  203: at tests/peterson.c:490:20, in: 200 out:3 
-  204: at tests/peterson.c:495:11, in: 192 out:205 206 
-  205: at tests/peterson.c:512:15, in: 204 out:212 
-  206: at tests/peterson.c:500:15, in: 204 out:207 
-  207: at tests/peterson.c:501:12, in: 206 out:208 209 
-  208: at tests/peterson.c:508:16, in: 207 out:211 
-  209: at tests/peterson.c:505:16, in: 207 out:210 
-  210: at tests/peterson.c:506:20, in: 209 out:3 
-  211: at tests/peterson.c:509:20, in: 208 out:3 
-  212: at tests/peterson.c:513:19, in: 205 out:213 
-  213: at tests/peterson.c:514:12, in: 212 out:3 
-  214: at tests/peterson.c:519:10, in: 190 out:215 216 
-  215: at tests/peterson.c:547:14, in: 214 out:226 
-  216: at tests/peterson.c:525:36, in: 214 out:217 218 
-  217: at tests/peterson.c:534:15, in: 216 out:221 
-  218: at tests/peterson.c:530:15, in: 216 out:219 
-  219: at tests/peterson.c:531:19, in: 218 out:220 
-  220: at tests/peterson.c:532:12, in: 219 out:3 
-  221: at tests/peterson.c:535:12, in: 217 out:222 223 
-  222: at tests/peterson.c:542:16, in: 221 out:225 
-  223: at tests/peterson.c:539:16, in: 221 out:224 
-  224: at tests/peterson.c:540:20, in: 223 out:3 
-  225: at tests/peterson.c:543:20, in: 222 out:3 
-  226: at tests/peterson.c:548:18, in: 228 215 out:227 228 
-  227: at tests/peterson.c:549:40, in: 226 out:229 
-  228: at tests/peterson.c:549:39, in: 226 out:226 
-  229: at tests/peterson.c:550:11, in: 227 out:3 
-  230: at tests/peterson.c:614:13, in: 188 out:254 
-  231: at tests/peterson.c:561:35, in: 188 out:232 233 
-  232: at tests/peterson.c:590:14, in: 231 out:244 
-  233: at tests/peterson.c:567:14, in: 231 out:234 
-  234: at tests/peterson.c:568:11, in: 233 out:235 236 
-  235: at tests/peterson.c:577:15, in: 234 out:239 
-  236: at tests/peterson.c:573:15, in: 234 out:237 
-  237: at tests/peterson.c:574:19, in: 236 out:238 
-  238: at tests/peterson.c:575:12, in: 237 out:3 
-  239: at tests/peterson.c:578:12, in: 235 out:240 241 
-  240: at tests/peterson.c:585:16, in: 239 out:243 
-  241: at tests/peterson.c:582:16, in: 239 out:242 
-  242: at tests/peterson.c:583:20, in: 241 out:3 
-  243: at tests/peterson.c:586:20, in: 240 out:3 
-  244: at tests/peterson.c:591:11, in: 232 out:245 246 
-  245: at tests/peterson.c:608:15, in: 244 out:252 
-  246: at tests/peterson.c:596:15, in: 244 out:247 
-  247: at tests/peterson.c:597:12, in: 246 out:248 249 
-  248: at tests/peterson.c:604:16, in: 247 out:251 
-  249: at tests/peterson.c:601:16, in: 247 out:250 
-  250: at tests/peterson.c:602:20, in: 249 out:3 
-  251: at tests/peterson.c:605:20, in: 248 out:3 
-  252: at tests/peterson.c:609:19, in: 245 out:253 
-  253: at tests/peterson.c:610:12, in: 252 out:3 
-  254: at tests/peterson.c:615:10, in: 230 out:255 256 
-  255: at tests/peterson.c:643:14, in: 254 out:266 
-  256: at tests/peterson.c:621:36, in: 254 out:257 258 
-  257: at tests/peterson.c:638:15, in: 256 out:264 
-  258: at tests/peterson.c:626:15, in: 256 out:259 
-  259: at tests/peterson.c:627:12, in: 258 out:260 261 
-  260: at tests/peterson.c:634:16, in: 259 out:263 
-  261: at tests/peterson.c:631:16, in: 259 out:262 
-  262: at tests/peterson.c:632:20, in: 261 out:3 
-  263: at tests/peterson.c:635:20, in: 260 out:3 
-  264: at tests/peterson.c:639:19, in: 257 out:265 
-  265: at tests/peterson.c:640:12, in: 264 out:3 
-  266: at tests/peterson.c:644:18, in: 268 255 out:267 268 
-  267: at tests/peterson.c:645:40, in: 266 out:269 
-  268: at tests/peterson.c:645:39, in: 266 out:266 
-  269: at tests/peterson.c:646:11, in: 267 out:3 
-  270: at tests/peterson.c:654:13, in: 9 out:271 272 
-  271: at tests/peterson.c:1033:10, in: 270 out:426 
-  272: at tests/peterson.c:664:10, in: 270 out:273 
-  273: at tests/peterson.c:665:13, in: 272 out:274 275 
-  274: at tests/peterson.c:830:11, in: 273 out:343 
-  275: at tests/peterson.c:674:33, in: 273 out:276 277 
-  276: at tests/peterson.c:732:12, in: 275 out:302 
-  277: at tests/peterson.c:682:12, in: 275 out:278 
-  278: at tests/peterson.c:683:9, in: 277 out:279 280 
-  279: at tests/peterson.c:696:13, in: 278 out:286 
-  280: at tests/peterson.c:690:13, in: 278 out:281 
-  281: at tests/peterson.c:691:17, in: 280 out:282 
-  282: at tests/peterson.c:692:16, in: 284 281 out:283 284 
-  283: at tests/peterson.c:693:39, in: 282 out:285 
-  284: at tests/peterson.c:693:38, in: 282 out:282 
-  285: at tests/peterson.c:694:10, in: 283 out:3 
-  286: at tests/peterson.c:697:16, in: 279 out:287 288 
-  287: at tests/peterson.c:725:14, in: 286 out:298 
-  288: at tests/peterson.c:703:36, in: 286 out:289 290 
-  289: at tests/peterson.c:712:15, in: 288 out:293 
-  290: at tests/peterson.c:708:15, in: 288 out:291 
-  291: at tests/peterson.c:709:19, in: 290 out:292 
-  292: at tests/peterson.c:710:12, in: 291 out:3 
-  293: at tests/peterson.c:713:12, in: 289 out:294 295 
-  294: at tests/peterson.c:720:16, in: 293 out:297 
-  295: at tests/peterson.c:717:16, in: 293 out:296 
-  296: at tests/peterson.c:718:20, in: 295 out:3 
-  297: at tests/peterson.c:721:20, in: 294 out:3 
-  298: at tests/peterson.c:726:18, in: 300 287 out:299 300 
-  299: at tests/peterson.c:727:40, in: 298 out:301 
-  300: at tests/peterson.c:727:39, in: 298 out:298 
-  301: at tests/peterson.c:728:11, in: 299 out:3 
-  302: at tests/peterson.c:733:15, in: 276 out:303 304 
-  303: at tests/peterson.c:793:13, in: 302 out:327 
-  304: at tests/peterson.c:740:35, in: 302 out:305 306 
-  305: at tests/peterson.c:769:14, in: 304 out:317 
-  306: at tests/peterson.c:746:14, in: 304 out:307 
-  307: at tests/peterson.c:747:11, in: 306 out:308 309 
-  308: at tests/peterson.c:756:15, in: 307 out:312 
-  309: at tests/peterson.c:752:15, in: 307 out:310 
-  310: at tests/peterson.c:753:19, in: 309 out:311 
-  311: at tests/peterson.c:754:12, in: 310 out:3 
-  312: at tests/peterson.c:757:12, in: 308 out:313 314 
-  313: at tests/peterson.c:764:16, in: 312 out:316 
-  314: at tests/peterson.c:761:16, in: 312 out:315 
-  315: at tests/peterson.c:762:20, in: 314 out:3 
-  316: at tests/peterson.c:765:20, in: 313 out:3 
-  317: at tests/peterson.c:770:11, in: 305 out:318 319 
-  318: at tests/peterson.c:787:15, in: 317 out:325 
-  319: at tests/peterson.c:775:15, in: 317 out:320 
-  320: at tests/peterson.c:776:12, in: 319 out:321 322 
-  321: at tests/peterson.c:783:16, in: 320 out:324 
-  322: at tests/peterson.c:780:16, in: 320 out:323 
-  323: at tests/peterson.c:781:20, in: 322 out:3 
-  324: at tests/peterson.c:784:20, in: 321 out:3 
-  325: at tests/peterson.c:788:19, in: 318 out:326 
-  326: at tests/peterson.c:789:12, in: 325 out:3 
-  327: at tests/peterson.c:794:10, in: 303 out:328 329 
-  328: at tests/peterson.c:822:14, in: 327 out:339 
-  329: at tests/peterson.c:800:36, in: 327 out:330 331 
-  330: at tests/peterson.c:809:15, in: 329 out:334 
-  331: at tests/peterson.c:805:15, in: 329 out:332 
-  332: at tests/peterson.c:806:19, in: 331 out:333 
-  333: at tests/peterson.c:807:12, in: 332 out:3 
-  334: at tests/peterson.c:810:12, in: 330 out:335 336 
-  335: at tests/peterson.c:817:16, in: 334 out:338 
-  336: at tests/peterson.c:814:16, in: 334 out:337 
-  337: at tests/peterson.c:815:20, in: 336 out:3 
-  338: at tests/peterson.c:818:20, in: 335 out:3 
-  339: at tests/peterson.c:823:18, in: 341 328 out:340 341 
-  340: at tests/peterson.c:824:40, in: 339 out:342 
-  341: at tests/peterson.c:824:39, in: 339 out:339 
-  342: at tests/peterson.c:825:11, in: 340 out:3 
-  343: at tests/peterson.c:831:14, in: 274 out:344 345 
-  344: at tests/peterson.c:935:12, in: 343 out:386 387 
-  345: at tests/peterson.c:839:34, in: 343 out:346 347 
-  346: at tests/peterson.c:899:13, in: 345 out:370 
-  347: at tests/peterson.c:846:35, in: 345 out:348 349 
-  348: at tests/peterson.c:875:14, in: 347 out:360 
-  349: at tests/peterson.c:852:14, in: 347 out:350 
-  350: at tests/peterson.c:853:11, in: 349 out:351 352 
-  351: at tests/peterson.c:862:15, in: 350 out:355 
-  352: at tests/peterson.c:858:15, in: 350 out:353 
-  353: at tests/peterson.c:859:19, in: 352 out:354 
-  354: at tests/peterson.c:860:12, in: 353 out:3 
-  355: at tests/peterson.c:863:12, in: 351 out:356 357 
-  356: at tests/peterson.c:870:16, in: 355 out:359 
-  357: at tests/peterson.c:867:16, in: 355 out:358 
-  358: at tests/peterson.c:868:20, in: 357 out:3 
-  359: at tests/peterson.c:871:20, in: 356 out:3 
-  360: at tests/peterson.c:876:11, in: 348 out:361 362 
-  361: at tests/peterson.c:893:15, in: 360 out:368 
-  362: at tests/peterson.c:881:15, in: 360 out:363 
-  363: at tests/peterson.c:882:12, in: 362 out:364 365 
-  364: at tests/peterson.c:889:16, in: 363 out:367 
-  365: at tests/peterson.c:886:16, in: 363 out:366 
-  366: at tests/peterson.c:887:20, in: 365 out:3 
-  367: at tests/peterson.c:890:20, in: 364 out:3 
-  368: at tests/peterson.c:894:19, in: 361 out:369 
-  369: at tests/peterson.c:895:12, in: 368 out:3 
-  370: at tests/peterson.c:900:10, in: 346 out:371 372 
-  371: at tests/peterson.c:928:14, in: 370 out:382 
-  372: at tests/peterson.c:906:36, in: 370 out:373 374 
-  373: at tests/peterson.c:915:15, in: 372 out:377 
-  374: at tests/peterson.c:911:15, in: 372 out:375 
-  375: at tests/peterson.c:912:19, in: 374 out:376 
-  376: at tests/peterson.c:913:12, in: 375 out:3 
-  377: at tests/peterson.c:916:12, in: 373 out:378 379 
-  378: at tests/peterson.c:923:16, in: 377 out:381 
-  379: at tests/peterson.c:920:16, in: 377 out:380 
-  380: at tests/peterson.c:921:20, in: 379 out:3 
-  381: at tests/peterson.c:924:20, in: 378 out:3 
-  382: at tests/peterson.c:929:18, in: 384 371 out:383 384 
-  383: at tests/peterson.c:930:40, in: 382 out:385 
-  384: at tests/peterson.c:930:39, in: 382 out:382 
-  385: at tests/peterson.c:931:11, in: 383 out:3 
-  386: at tests/peterson.c:995:13, in: 344 out:410 
-  387: at tests/peterson.c:942:35, in: 344 out:388 389 
-  388: at tests/peterson.c:971:14, in: 387 out:400 
-  389: at tests/peterson.c:948:14, in: 387 out:390 
-  390: at tests/peterson.c:949:11, in: 389 out:391 392 
-  391: at tests/peterson.c:958:15, in: 390 out:395 
-  392: at tests/peterson.c:954:15, in: 390 out:393 
-  393: at tests/peterson.c:955:19, in: 392 out:394 
-  394: at tests/peterson.c:956:12, in: 393 out:3 
-  395: at tests/peterson.c:959:12, in: 391 out:396 397 
-  396: at tests/peterson.c:966:16, in: 395 out:399 
-  397: at tests/peterson.c:963:16, in: 395 out:398 
-  398: at tests/peterson.c:964:20, in: 397 out:3 
-  399: at tests/peterson.c:967:20, in: 396 out:3 
-  400: at tests/peterson.c:972:11, in: 388 out:401 402 
-  401: at tests/peterson.c:989:15, in: 400 out:408 
-  402: at tests/peterson.c:977:15, in: 400 out:403 
-  403: at tests/peterson.c:978:12, in: 402 out:404 405 
-  404: at tests/peterson.c:985:16, in: 403 out:407 
-  405: at tests/peterson.c:982:16, in: 403 out:406 
-  406: at tests/peterson.c:983:20, in: 405 out:3 
-  407: at tests/peterson.c:986:20, in: 404 out:3 
-  408: at tests/peterson.c:990:19, in: 401 out:409 
-  409: at tests/peterson.c:991:12, in: 408 out:3 
-  410: at tests/peterson.c:996:10, in: 386 out:411 412 
-  411: at tests/peterson.c:1024:14, in: 410 out:422 
-  412: at tests/peterson.c:1002:36, in: 410 out:413 414 
-  413: at tests/peterson.c:1019:15, in: 412 out:420 
-  414: at tests/peterson.c:1007:15, in: 412 out:415 
-  415: at tests/peterson.c:1008:12, in: 414 out:416 417 
-  416: at tests/peterson.c:1015:16, in: 415 out:419 
-  417: at tests/peterson.c:1012:16, in: 415 out:418 
-  418: at tests/peterson.c:1013:20, in: 417 out:3 
-  419: at tests/peterson.c:1016:20, in: 416 out:3 
-  420: at tests/peterson.c:1020:19, in: 413 out:421 
-  421: at tests/peterson.c:1021:12, in: 420 out:3 
-  422: at tests/peterson.c:1025:18, in: 424 411 out:423 424 
-  423: at tests/peterson.c:1026:40, in: 422 out:425 
-  424: at tests/peterson.c:1026:39, in: 422 out:422 
-  425: at tests/peterson.c:1027:11, in: 423 out:3 
-  426: at tests/peterson.c:1034:13, in: 271 out:427 428 
-  427: at tests/peterson.c:1199:11, in: 426 out:496 
-  428: at tests/peterson.c:1043:33, in: 426 out:429 430 
-  429: at tests/peterson.c:1148:12, in: 428 out:472 
-  430: at tests/peterson.c:1051:12, in: 428 out:431 
-  431: at tests/peterson.c:1052:15, in: 430 out:432 433 
-  432: at tests/peterson.c:1112:13, in: 431 out:456 
-  433: at tests/peterson.c:1059:35, in: 431 out:434 435 
-  434: at tests/peterson.c:1088:14, in: 433 out:446 
-  435: at tests/peterson.c:1065:14, in: 433 out:436 
-  436: at tests/peterson.c:1066:11, in: 435 out:437 438 
-  437: at tests/peterson.c:1075:15, in: 436 out:441 
-  438: at tests/peterson.c:1071:15, in: 436 out:439 
-  439: at tests/peterson.c:1072:19, in: 438 out:440 
-  440: at tests/peterson.c:1073:12, in: 439 out:3 
-  441: at tests/peterson.c:1076:12, in: 437 out:442 443 
-  442: at tests/peterson.c:1083:16, in: 441 out:445 
-  443: at tests/peterson.c:1080:16, in: 441 out:444 
-  444: at tests/peterson.c:1081:20, in: 443 out:3 
-  445: at tests/peterson.c:1084:20, in: 442 out:3 
-  446: at tests/peterson.c:1089:11, in: 434 out:447 448 
-  447: at tests/peterson.c:1106:15, in: 446 out:454 
-  448: at tests/peterson.c:1094:15, in: 446 out:449 
-  449: at tests/peterson.c:1095:12, in: 448 out:450 451 
-  450: at tests/peterson.c:1102:16, in: 449 out:453 
-  451: at tests/peterson.c:1099:16, in: 449 out:452 
-  452: at tests/peterson.c:1100:20, in: 451 out:3 
-  453: at tests/peterson.c:1103:20, in: 450 out:3 
-  454: at tests/peterson.c:1107:19, in: 447 out:455 
-  455: at tests/peterson.c:1108:12, in: 454 out:3 
-  456: at tests/peterson.c:1113:10, in: 432 out:457 458 
-  457: at tests/peterson.c:1141:14, in: 456 out:468 
-  458: at tests/peterson.c:1119:36, in: 456 out:459 460 
-  459: at tests/peterson.c:1136:15, in: 458 out:466 
-  460: at tests/peterson.c:1124:15, in: 458 out:461 
-  461: at tests/peterson.c:1125:12, in: 460 out:462 463 
-  462: at tests/peterson.c:1132:16, in: 461 out:465 
-  463: at tests/peterson.c:1129:16, in: 461 out:464 
-  464: at tests/peterson.c:1130:20, in: 463 out:3 
-  465: at tests/peterson.c:1133:20, in: 462 out:3 
-  466: at tests/peterson.c:1137:19, in: 459 out:467 
-  467: at tests/peterson.c:1138:12, in: 466 out:3 
-  468: at tests/peterson.c:1142:18, in: 470 457 out:469 470 
-  469: at tests/peterson.c:1143:40, in: 468 out:471 
-  470: at tests/peterson.c:1143:39, in: 468 out:468 
-  471: at tests/peterson.c:1144:11, in: 469 out:3 
-  472: at tests/peterson.c:1149:9, in: 429 out:473 474 
-  473: at tests/peterson.c:1191:13, in: 472 out:491 
-  474: at tests/peterson.c:1156:13, in: 472 out:475 
-  475: at tests/peterson.c:1157:16, in: 474 out:476 477 
-  476: at tests/peterson.c:1185:14, in: 475 out:487 
-  477: at tests/peterson.c:1163:36, in: 475 out:478 479 
-  478: at tests/peterson.c:1180:15, in: 477 out:485 
-  479: at tests/peterson.c:1168:15, in: 477 out:480 
-  480: at tests/peterson.c:1169:12, in: 479 out:481 482 
-  481: at tests/peterson.c:1176:16, in: 480 out:484 
-  482: at tests/peterson.c:1173:16, in: 480 out:483 
-  483: at tests/peterson.c:1174:20, in: 482 out:3 
-  484: at tests/peterson.c:1177:20, in: 481 out:3 
-  485: at tests/peterson.c:1181:19, in: 478 out:486 
-  486: at tests/peterson.c:1182:12, in: 485 out:3 
-  487: at tests/peterson.c:1186:18, in: 489 476 out:488 489 
-  488: at tests/peterson.c:1187:40, in: 487 out:490 
-  489: at tests/peterson.c:1187:39, in: 487 out:487 
-  490: at tests/peterson.c:1188:11, in: 488 out:3 
-  491: at tests/peterson.c:1192:17, in: 473 out:492 
-  492: at tests/peterson.c:1193:16, in: 494 491 out:493 494 
-  493: at tests/peterson.c:1194:39, in: 492 out:495 
-  494: at tests/peterson.c:1194:38, in: 492 out:492 
-  495: at tests/peterson.c:1195:10, in: 493 out:3 
-  496: at tests/peterson.c:1200:14, in: 427 out:497 498 
-  497: at tests/peterson.c:1304:12, in: 496 out:539 540 
-  498: at tests/peterson.c:1208:34, in: 496 out:499 500 
-  499: at tests/peterson.c:1268:13, in: 498 out:523 
-  500: at tests/peterson.c:1215:35, in: 498 out:501 502 
-  501: at tests/peterson.c:1244:14, in: 500 out:513 
-  502: at tests/peterson.c:1221:14, in: 500 out:503 
-  503: at tests/peterson.c:1222:11, in: 502 out:504 505 
-  504: at tests/peterson.c:1231:15, in: 503 out:508 
-  505: at tests/peterson.c:1227:15, in: 503 out:506 
-  506: at tests/peterson.c:1228:19, in: 505 out:507 
-  507: at tests/peterson.c:1229:12, in: 506 out:3 
-  508: at tests/peterson.c:1232:12, in: 504 out:509 510 
-  509: at tests/peterson.c:1239:16, in: 508 out:512 
-  510: at tests/peterson.c:1236:16, in: 508 out:511 
-  511: at tests/peterson.c:1237:20, in: 510 out:3 
-  512: at tests/peterson.c:1240:20, in: 509 out:3 
-  513: at tests/peterson.c:1245:11, in: 501 out:514 515 
-  514: at tests/peterson.c:1262:15, in: 513 out:521 
-  515: at tests/peterson.c:1250:15, in: 513 out:516 
-  516: at tests/peterson.c:1251:12, in: 515 out:517 518 
-  517: at tests/peterson.c:1258:16, in: 516 out:520 
-  518: at tests/peterson.c:1255:16, in: 516 out:519 
-  519: at tests/peterson.c:1256:20, in: 518 out:3 
-  520: at tests/peterson.c:1259:20, in: 517 out:3 
-  521: at tests/peterson.c:1263:19, in: 514 out:522 
-  522: at tests/peterson.c:1264:12, in: 521 out:3 
-  523: at tests/peterson.c:1269:10, in: 499 out:524 525 
-  524: at tests/peterson.c:1297:14, in: 523 out:535 
-  525: at tests/peterson.c:1275:36, in: 523 out:526 527 
-  526: at tests/peterson.c:1284:15, in: 525 out:530 
-  527: at tests/peterson.c:1280:15, in: 525 out:528 
-  528: at tests/peterson.c:1281:19, in: 527 out:529 
-  529: at tests/peterson.c:1282:12, in: 528 out:3 
-  530: at tests/peterson.c:1285:12, in: 526 out:531 532 
-  531: at tests/peterson.c:1292:16, in: 530 out:534 
-  532: at tests/peterson.c:1289:16, in: 530 out:533 
-  533: at tests/peterson.c:1290:20, in: 532 out:3 
-  534: at tests/peterson.c:1293:20, in: 531 out:3 
-  535: at tests/peterson.c:1298:18, in: 537 524 out:536 537 
-  536: at tests/peterson.c:1299:40, in: 535 out:538 
-  537: at tests/peterson.c:1299:39, in: 535 out:535 
-  538: at tests/peterson.c:1300:11, in: 536 out:3 
-  539: at tests/peterson.c:1364:13, in: 497 out:563 
-  540: at tests/peterson.c:1311:35, in: 497 out:541 542 
-  541: at tests/peterson.c:1340:14, in: 540 out:553 
-  542: at tests/peterson.c:1317:14, in: 540 out:543 
-  543: at tests/peterson.c:1318:11, in: 542 out:544 545 
-  544: at tests/peterson.c:1327:15, in: 543 out:548 
-  545: at tests/peterson.c:1323:15, in: 543 out:546 
-  546: at tests/peterson.c:1324:19, in: 545 out:547 
-  547: at tests/peterson.c:1325:12, in: 546 out:3 
-  548: at tests/peterson.c:1328:12, in: 544 out:549 550 
-  549: at tests/peterson.c:1335:16, in: 548 out:552 
-  550: at tests/peterson.c:1332:16, in: 548 out:551 
-  551: at tests/peterson.c:1333:20, in: 550 out:3 
-  552: at tests/peterson.c:1336:20, in: 549 out:3 
-  553: at tests/peterson.c:1341:11, in: 541 out:554 555 
-  554: at tests/peterson.c:1358:15, in: 553 out:561 
-  555: at tests/peterson.c:1346:15, in: 553 out:556 
-  556: at tests/peterson.c:1347:12, in: 555 out:557 558 
-  557: at tests/peterson.c:1354:16, in: 556 out:560 
-  558: at tests/peterson.c:1351:16, in: 556 out:559 
-  559: at tests/peterson.c:1352:20, in: 558 out:3 
-  560: at tests/peterson.c:1355:20, in: 557 out:3 
-  561: at tests/peterson.c:1359:19, in: 554 out:562 
-  562: at tests/peterson.c:1360:12, in: 561 out:3 
-  563: at tests/peterson.c:1365:10, in: 539 out:564 565 
-  564: at tests/peterson.c:1393:14, in: 563 out:575 
-  565: at tests/peterson.c:1371:36, in: 563 out:566 567 
-  566: at tests/peterson.c:1388:15, in: 565 out:573 
-  567: at tests/peterson.c:1376:15, in: 565 out:568 
-  568: at tests/peterson.c:1377:12, in: 567 out:569 570 
-  569: at tests/peterson.c:1384:16, in: 568 out:572 
-  570: at tests/peterson.c:1381:16, in: 568 out:571 
-  571: at tests/peterson.c:1382:20, in: 570 out:3 
-  572: at tests/peterson.c:1385:20, in: 569 out:3 
-  573: at tests/peterson.c:1389:19, in: 566 out:574 
-  574: at tests/peterson.c:1390:12, in: 573 out:3 
-  575: at tests/peterson.c:1394:18, in: 577 564 out:576 577 
-  576: at tests/peterson.c:1395:40, in: 575 out:578 
-  577: at tests/peterson.c:1395:39, in: 575 out:575 
-  578: at tests/peterson.c:1396:11, in: 576 out:3 
-  579: at tests/peterson.c:1405:12, in: 6 out:580 581 
-  580: at tests/peterson.c:2166:9, in: 579 out:891 
-  581: at tests/peterson.c:1416:9, in: 579 out:582 
-  582: at tests/peterson.c:1417:13, in: 581 out:583 584 
-  583: at tests/peterson.c:1796:10, in: 582 out:738 
-  584: at tests/peterson.c:1427:10, in: 582 out:585 
-  585: at tests/peterson.c:1428:13, in: 584 out:586 587 
-  586: at tests/peterson.c:1593:11, in: 585 out:655 
-  587: at tests/peterson.c:1437:33, in: 585 out:588 589 
-  588: at tests/peterson.c:1495:12, in: 587 out:614 
-  589: at tests/peterson.c:1445:12, in: 587 out:590 
-  590: at tests/peterson.c:1446:9, in: 589 out:591 592 
-  591: at tests/peterson.c:1459:13, in: 590 out:598 
-  592: at tests/peterson.c:1453:13, in: 590 out:593 
-  593: at tests/peterson.c:1454:17, in: 592 out:594 
-  594: at tests/peterson.c:1455:16, in: 596 593 out:595 596 
-  595: at tests/peterson.c:1456:39, in: 594 out:597 
-  596: at tests/peterson.c:1456:38, in: 594 out:594 
-  597: at tests/peterson.c:1457:10, in: 595 out:3 
-  598: at tests/peterson.c:1460:16, in: 591 out:599 600 
-  599: at tests/peterson.c:1488:14, in: 598 out:610 
-  600: at tests/peterson.c:1466:36, in: 598 out:601 602 
-  601: at tests/peterson.c:1475:15, in: 600 out:605 
-  602: at tests/peterson.c:1471:15, in: 600 out:603 
-  603: at tests/peterson.c:1472:19, in: 602 out:604 
-  604: at tests/peterson.c:1473:12, in: 603 out:3 
-  605: at tests/peterson.c:1476:12, in: 601 out:606 607 
-  606: at tests/peterson.c:1483:16, in: 605 out:609 
-  607: at tests/peterson.c:1480:16, in: 605 out:608 
-  608: at tests/peterson.c:1481:20, in: 607 out:3 
-  609: at tests/peterson.c:1484:20, in: 606 out:3 
-  610: at tests/peterson.c:1489:18, in: 612 599 out:611 612 
-  611: at tests/peterson.c:1490:40, in: 610 out:613 
-  612: at tests/peterson.c:1490:39, in: 610 out:610 
-  613: at tests/peterson.c:1491:11, in: 611 out:3 
-  614: at tests/peterson.c:1496:15, in: 588 out:615 616 
-  615: at tests/peterson.c:1556:13, in: 614 out:639 
-  616: at tests/peterson.c:1503:35, in: 614 out:617 618 
-  617: at tests/peterson.c:1532:14, in: 616 out:629 
-  618: at tests/peterson.c:1509:14, in: 616 out:619 
-  619: at tests/peterson.c:1510:11, in: 618 out:620 621 
-  620: at tests/peterson.c:1519:15, in: 619 out:624 
-  621: at tests/peterson.c:1515:15, in: 619 out:622 
-  622: at tests/peterson.c:1516:19, in: 621 out:623 
-  623: at tests/peterson.c:1517:12, in: 622 out:3 
-  624: at tests/peterson.c:1520:12, in: 620 out:625 626 
-  625: at tests/peterson.c:1527:16, in: 624 out:628 
-  626: at tests/peterson.c:1524:16, in: 624 out:627 
-  627: at tests/peterson.c:1525:20, in: 626 out:3 
-  628: at tests/peterson.c:1528:20, in: 625 out:3 
-  629: at tests/peterson.c:1533:11, in: 617 out:630 631 
-  630: at tests/peterson.c:1550:15, in: 629 out:637 
-  631: at tests/peterson.c:1538:15, in: 629 out:632 
-  632: at tests/peterson.c:1539:12, in: 631 out:633 634 
-  633: at tests/peterson.c:1546:16, in: 632 out:636 
-  634: at tests/peterson.c:1543:16, in: 632 out:635 
-  635: at tests/peterson.c:1544:20, in: 634 out:3 
-  636: at tests/peterson.c:1547:20, in: 633 out:3 
-  637: at tests/peterson.c:1551:19, in: 630 out:638 
-  638: at tests/peterson.c:1552:12, in: 637 out:3 
-  639: at tests/peterson.c:1557:10, in: 615 out:640 641 
-  640: at tests/peterson.c:1585:14, in: 639 out:651 
-  641: at tests/peterson.c:1563:36, in: 639 out:642 643 
-  642: at tests/peterson.c:1572:15, in: 641 out:646 
-  643: at tests/peterson.c:1568:15, in: 641 out:644 
-  644: at tests/peterson.c:1569:19, in: 643 out:645 
-  645: at tests/peterson.c:1570:12, in: 644 out:3 
-  646: at tests/peterson.c:1573:12, in: 642 out:647 648 
-  647: at tests/peterson.c:1580:16, in: 646 out:650 
-  648: at tests/peterson.c:1577:16, in: 646 out:649 
-  649: at tests/peterson.c:1578:20, in: 648 out:3 
-  650: at tests/peterson.c:1581:20, in: 647 out:3 
-  651: at tests/peterson.c:1586:18, in: 653 640 out:652 653 
-  652: at tests/peterson.c:1587:40, in: 651 out:654 
-  653: at tests/peterson.c:1587:39, in: 651 out:651 
-  654: at tests/peterson.c:1588:11, in: 652 out:3 
-  655: at tests/peterson.c:1594:14, in: 586 out:656 657 
-  656: at tests/peterson.c:1698:12, in: 655 out:698 699 
-  657: at tests/peterson.c:1602:34, in: 655 out:658 659 
-  658: at tests/peterson.c:1662:13, in: 657 out:682 
-  659: at tests/peterson.c:1609:35, in: 657 out:660 661 
-  660: at tests/peterson.c:1638:14, in: 659 out:672 
-  661: at tests/peterson.c:1615:14, in: 659 out:662 
-  662: at tests/peterson.c:1616:11, in: 661 out:663 664 
-  663: at tests/peterson.c:1625:15, in: 662 out:667 
-  664: at tests/peterson.c:1621:15, in: 662 out:665 
-  665: at tests/peterson.c:1622:19, in: 664 out:666 
-  666: at tests/peterson.c:1623:12, in: 665 out:3 
-  667: at tests/peterson.c:1626:12, in: 663 out:668 669 
-  668: at tests/peterson.c:1633:16, in: 667 out:671 
-  669: at tests/peterson.c:1630:16, in: 667 out:670 
-  670: at tests/peterson.c:1631:20, in: 669 out:3 
-  671: at tests/peterson.c:1634:20, in: 668 out:3 
-  672: at tests/peterson.c:1639:11, in: 660 out:673 674 
-  673: at tests/peterson.c:1656:15, in: 672 out:680 
-  674: at tests/peterson.c:1644:15, in: 672 out:675 
-  675: at tests/peterson.c:1645:12, in: 674 out:676 677 
-  676: at tests/peterson.c:1652:16, in: 675 out:679 
-  677: at tests/peterson.c:1649:16, in: 675 out:678 
-  678: at tests/peterson.c:1650:20, in: 677 out:3 
-  679: at tests/peterson.c:1653:20, in: 676 out:3 
-  680: at tests/peterson.c:1657:19, in: 673 out:681 
-  681: at tests/peterson.c:1658:12, in: 680 out:3 
-  682: at tests/peterson.c:1663:10, in: 658 out:683 684 
-  683: at tests/peterson.c:1691:14, in: 682 out:694 
-  684: at tests/peterson.c:1669:36, in: 682 out:685 686 
-  685: at tests/peterson.c:1678:15, in: 684 out:689 
-  686: at tests/peterson.c:1674:15, in: 684 out:687 
-  687: at tests/peterson.c:1675:19, in: 686 out:688 
-  688: at tests/peterson.c:1676:12, in: 687 out:3 
-  689: at tests/peterson.c:1679:12, in: 685 out:690 691 
-  690: at tests/peterson.c:1686:16, in: 689 out:693 
-  691: at tests/peterson.c:1683:16, in: 689 out:692 
-  692: at tests/peterson.c:1684:20, in: 691 out:3 
-  693: at tests/peterson.c:1687:20, in: 690 out:3 
-  694: at tests/peterson.c:1692:18, in: 696 683 out:695 696 
-  695: at tests/peterson.c:1693:40, in: 694 out:697 
-  696: at tests/peterson.c:1693:39, in: 694 out:694 
-  697: at tests/peterson.c:1694:11, in: 695 out:3 
-  698: at tests/peterson.c:1758:13, in: 656 out:722 
-  699: at tests/peterson.c:1705:35, in: 656 out:700 701 
-  700: at tests/peterson.c:1734:14, in: 699 out:712 
-  701: at tests/peterson.c:1711:14, in: 699 out:702 
-  702: at tests/peterson.c:1712:11, in: 701 out:703 704 
-  703: at tests/peterson.c:1721:15, in: 702 out:707 
-  704: at tests/peterson.c:1717:15, in: 702 out:705 
-  705: at tests/peterson.c:1718:19, in: 704 out:706 
-  706: at tests/peterson.c:1719:12, in: 705 out:3 
-  707: at tests/peterson.c:1722:12, in: 703 out:708 709 
-  708: at tests/peterson.c:1729:16, in: 707 out:711 
-  709: at tests/peterson.c:1726:16, in: 707 out:710 
-  710: at tests/peterson.c:1727:20, in: 709 out:3 
-  711: at tests/peterson.c:1730:20, in: 708 out:3 
-  712: at tests/peterson.c:1735:11, in: 700 out:713 714 
-  713: at tests/peterson.c:1752:15, in: 712 out:720 
-  714: at tests/peterson.c:1740:15, in: 712 out:715 
-  715: at tests/peterson.c:1741:12, in: 714 out:716 717 
-  716: at tests/peterson.c:1748:16, in: 715 out:719 
-  717: at tests/peterson.c:1745:16, in: 715 out:718 
-  718: at tests/peterson.c:1746:20, in: 717 out:3 
-  719: at tests/peterson.c:1749:20, in: 716 out:3 
-  720: at tests/peterson.c:1753:19, in: 713 out:721 
-  721: at tests/peterson.c:1754:12, in: 720 out:3 
-  722: at tests/peterson.c:1759:10, in: 698 out:723 724 
-  723: at tests/peterson.c:1787:14, in: 722 out:734 
-  724: at tests/peterson.c:1765:36, in: 722 out:725 726 
-  725: at tests/peterson.c:1782:15, in: 724 out:732 
-  726: at tests/peterson.c:1770:15, in: 724 out:727 
-  727: at tests/peterson.c:1771:12, in: 726 out:728 729 
-  728: at tests/peterson.c:1778:16, in: 727 out:731 
-  729: at tests/peterson.c:1775:16, in: 727 out:730 
-  730: at tests/peterson.c:1776:20, in: 729 out:3 
-  731: at tests/peterson.c:1779:20, in: 728 out:3 
-  732: at tests/peterson.c:1783:19, in: 725 out:733 
-  733: at tests/peterson.c:1784:12, in: 732 out:3 
-  734: at tests/peterson.c:1788:18, in: 736 723 out:735 736 
-  735: at tests/peterson.c:1789:40, in: 734 out:737 
-  736: at tests/peterson.c:1789:39, in: 734 out:734 
-  737: at tests/peterson.c:1790:11, in: 735 out:3 
-  738: at tests/peterson.c:1797:13, in: 583 out:739 740 
-  739: at tests/peterson.c:1962:11, in: 738 out:808 
-  740: at tests/peterson.c:1806:33, in: 738 out:741 742 
-  741: at tests/peterson.c:1911:12, in: 740 out:784 
-  742: at tests/peterson.c:1814:12, in: 740 out:743 
-  743: at tests/peterson.c:1815:15, in: 742 out:744 745 
-  744: at tests/peterson.c:1875:13, in: 743 out:768 
-  745: at tests/peterson.c:1822:35, in: 743 out:746 747 
-  746: at tests/peterson.c:1851:14, in: 745 out:758 
-  747: at tests/peterson.c:1828:14, in: 745 out:748 
-  748: at tests/peterson.c:1829:11, in: 747 out:749 750 
-  749: at tests/peterson.c:1838:15, in: 748 out:753 
-  750: at tests/peterson.c:1834:15, in: 748 out:751 
-  751: at tests/peterson.c:1835:19, in: 750 out:752 
-  752: at tests/peterson.c:1836:12, in: 751 out:3 
-  753: at tests/peterson.c:1839:12, in: 749 out:754 755 
-  754: at tests/peterson.c:1846:16, in: 753 out:757 
-  755: at tests/peterson.c:1843:16, in: 753 out:756 
-  756: at tests/peterson.c:1844:20, in: 755 out:3 
-  757: at tests/peterson.c:1847:20, in: 754 out:3 
-  758: at tests/peterson.c:1852:11, in: 746 out:759 760 
-  759: at tests/peterson.c:1869:15, in: 758 out:766 
-  760: at tests/peterson.c:1857:15, in: 758 out:761 
-  761: at tests/peterson.c:1858:12, in: 760 out:762 763 
-  762: at tests/peterson.c:1865:16, in: 761 out:765 
-  763: at tests/peterson.c:1862:16, in: 761 out:764 
-  764: at tests/peterson.c:1863:20, in: 763 out:3 
-  765: at tests/peterson.c:1866:20, in: 762 out:3 
-  766: at tests/peterson.c:1870:19, in: 759 out:767 
-  767: at tests/peterson.c:1871:12, in: 766 out:3 
-  768: at tests/peterson.c:1876:10, in: 744 out:769 770 
-  769: at tests/peterson.c:1904:14, in: 768 out:780 
-  770: at tests/peterson.c:1882:36, in: 768 out:771 772 
-  771: at tests/peterson.c:1899:15, in: 770 out:778 
-  772: at tests/peterson.c:1887:15, in: 770 out:773 
-  773: at tests/peterson.c:1888:12, in: 772 out:774 775 
-  774: at tests/peterson.c:1895:16, in: 773 out:777 
-  775: at tests/peterson.c:1892:16, in: 773 out:776 
-  776: at tests/peterson.c:1893:20, in: 775 out:3 
-  777: at tests/peterson.c:1896:20, in: 774 out:3 
-  778: at tests/peterson.c:1900:19, in: 771 out:779 
-  779: at tests/peterson.c:1901:12, in: 778 out:3 
-  780: at tests/peterson.c:1905:18, in: 782 769 out:781 782 
-  781: at tests/peterson.c:1906:40, in: 780 out:783 
-  782: at tests/peterson.c:1906:39, in: 780 out:780 
-  783: at tests/peterson.c:1907:11, in: 781 out:3 
-  784: at tests/peterson.c:1912:9, in: 741 out:785 786 
-  785: at tests/peterson.c:1954:13, in: 784 out:803 
-  786: at tests/peterson.c:1919:13, in: 784 out:787 
-  787: at tests/peterson.c:1920:16, in: 786 out:788 789 
-  788: at tests/peterson.c:1948:14, in: 787 out:799 
-  789: at tests/peterson.c:1926:36, in: 787 out:790 791 
-  790: at tests/peterson.c:1943:15, in: 789 out:797 
-  791: at tests/peterson.c:1931:15, in: 789 out:792 
-  792: at tests/peterson.c:1932:12, in: 791 out:793 794 
-  793: at tests/peterson.c:1939:16, in: 792 out:796 
-  794: at tests/peterson.c:1936:16, in: 792 out:795 
-  795: at tests/peterson.c:1937:20, in: 794 out:3 
-  796: at tests/peterson.c:1940:20, in: 793 out:3 
-  797: at tests/peterson.c:1944:19, in: 790 out:798 
-  798: at tests/peterson.c:1945:12, in: 797 out:3 
-  799: at tests/peterson.c:1949:18, in: 801 788 out:800 801 
-  800: at tests/peterson.c:1950:40, in: 799 out:802 
-  801: at tests/peterson.c:1950:39, in: 799 out:799 
-  802: at tests/peterson.c:1951:11, in: 800 out:3 
-  803: at tests/peterson.c:1955:17, in: 785 out:804 
-  804: at tests/peterson.c:1956:16, in: 806 803 out:805 806 
-  805: at tests/peterson.c:1957:39, in: 804 out:807 
-  806: at tests/peterson.c:1957:38, in: 804 out:804 
-  807: at tests/peterson.c:1958:10, in: 805 out:3 
-  808: at tests/peterson.c:1963:14, in: 739 out:809 810 
-  809: at tests/peterson.c:2067:12, in: 808 out:851 852 
-  810: at tests/peterson.c:1971:34, in: 808 out:811 812 
-  811: at tests/peterson.c:2031:13, in: 810 out:835 
-  812: at tests/peterson.c:1978:35, in: 810 out:813 814 
-  813: at tests/peterson.c:2007:14, in: 812 out:825 
-  814: at tests/peterson.c:1984:14, in: 812 out:815 
-  815: at tests/peterson.c:1985:11, in: 814 out:816 817 
-  816: at tests/peterson.c:1994:15, in: 815 out:820 
-  817: at tests/peterson.c:1990:15, in: 815 out:818 
-  818: at tests/peterson.c:1991:19, in: 817 out:819 
-  819: at tests/peterson.c:1992:12, in: 818 out:3 
-  820: at tests/peterson.c:1995:12, in: 816 out:821 822 
-  821: at tests/peterson.c:2002:16, in: 820 out:824 
-  822: at tests/peterson.c:1999:16, in: 820 out:823 
-  823: at tests/peterson.c:2000:20, in: 822 out:3 
-  824: at tests/peterson.c:2003:20, in: 821 out:3 
-  825: at tests/peterson.c:2008:11, in: 813 out:826 827 
-  826: at tests/peterson.c:2025:15, in: 825 out:833 
-  827: at tests/peterson.c:2013:15, in: 825 out:828 
-  828: at tests/peterson.c:2014:12, in: 827 out:829 830 
-  829: at tests/peterson.c:2021:16, in: 828 out:832 
-  830: at tests/peterson.c:2018:16, in: 828 out:831 
-  831: at tests/peterson.c:2019:20, in: 830 out:3 
-  832: at tests/peterson.c:2022:20, in: 829 out:3 
-  833: at tests/peterson.c:2026:19, in: 826 out:834 
-  834: at tests/peterson.c:2027:12, in: 833 out:3 
-  835: at tests/peterson.c:2032:10, in: 811 out:836 837 
-  836: at tests/peterson.c:2060:14, in: 835 out:847 
-  837: at tests/peterson.c:2038:36, in: 835 out:838 839 
-  838: at tests/peterson.c:2047:15, in: 837 out:842 
-  839: at tests/peterson.c:2043:15, in: 837 out:840 
-  840: at tests/peterson.c:2044:19, in: 839 out:841 
-  841: at tests/peterson.c:2045:12, in: 840 out:3 
-  842: at tests/peterson.c:2048:12, in: 838 out:843 844 
-  843: at tests/peterson.c:2055:16, in: 842 out:846 
-  844: at tests/peterson.c:2052:16, in: 842 out:845 
-  845: at tests/peterson.c:2053:20, in: 844 out:3 
-  846: at tests/peterson.c:2056:20, in: 843 out:3 
-  847: at tests/peterson.c:2061:18, in: 849 836 out:848 849 
-  848: at tests/peterson.c:2062:40, in: 847 out:850 
-  849: at tests/peterson.c:2062:39, in: 847 out:847 
-  850: at tests/peterson.c:2063:11, in: 848 out:3 
-  851: at tests/peterson.c:2127:13, in: 809 out:875 
-  852: at tests/peterson.c:2074:35, in: 809 out:853 854 
-  853: at tests/peterson.c:2103:14, in: 852 out:865 
-  854: at tests/peterson.c:2080:14, in: 852 out:855 
-  855: at tests/peterson.c:2081:11, in: 854 out:856 857 
-  856: at tests/peterson.c:2090:15, in: 855 out:860 
-  857: at tests/peterson.c:2086:15, in: 855 out:858 
-  858: at tests/peterson.c:2087:19, in: 857 out:859 
-  859: at tests/peterson.c:2088:12, in: 858 out:3 
-  860: at tests/peterson.c:2091:12, in: 856 out:861 862 
-  861: at tests/peterson.c:2098:16, in: 860 out:864 
-  862: at tests/peterson.c:2095:16, in: 860 out:863 
-  863: at tests/peterson.c:2096:20, in: 862 out:3 
-  864: at tests/peterson.c:2099:20, in: 861 out:3 
-  865: at tests/peterson.c:2104:11, in: 853 out:866 867 
-  866: at tests/peterson.c:2121:15, in: 865 out:873 
-  867: at tests/peterson.c:2109:15, in: 865 out:868 
-  868: at tests/peterson.c:2110:12, in: 867 out:869 870 
-  869: at tests/peterson.c:2117:16, in: 868 out:872 
-  870: at tests/peterson.c:2114:16, in: 868 out:871 
-  871: at tests/peterson.c:2115:20, in: 870 out:3 
-  872: at tests/peterson.c:2118:20, in: 869 out:3 
-  873: at tests/peterson.c:2122:19, in: 866 out:874 
-  874: at tests/peterson.c:2123:12, in: 873 out:3 
-  875: at tests/peterson.c:2128:10, in: 851 out:876 877 
-  876: at tests/peterson.c:2156:14, in: 875 out:887 
-  877: at tests/peterson.c:2134:36, in: 875 out:878 879 
-  878: at tests/peterson.c:2151:15, in: 877 out:885 
-  879: at tests/peterson.c:2139:15, in: 877 out:880 
-  880: at tests/peterson.c:2140:12, in: 879 out:881 882 
-  881: at tests/peterson.c:2147:16, in: 880 out:884 
-  882: at tests/peterson.c:2144:16, in: 880 out:883 
-  883: at tests/peterson.c:2145:20, in: 882 out:3 
-  884: at tests/peterson.c:2148:20, in: 881 out:3 
-  885: at tests/peterson.c:2152:19, in: 878 out:886 
-  886: at tests/peterson.c:2153:12, in: 885 out:3 
-  887: at tests/peterson.c:2157:18, in: 889 876 out:888 889 
-  888: at tests/peterson.c:2158:40, in: 887 out:890 
-  889: at tests/peterson.c:2158:39, in: 887 out:887 
-  890: at tests/peterson.c:2159:11, in: 888 out:3 
-  891: at tests/peterson.c:2167:12, in: 580 out:892 893 
-  892: at tests/peterson.c:2411:10, in: 891 out:997 
-  893: at tests/peterson.c:2177:32, in: 891 out:894 895 
-  894: at tests/peterson.c:2343:11, in: 893 out:964 
-  895: at tests/peterson.c:2186:11, in: 893 out:896 
-  896: at tests/peterson.c:2187:15, in: 895 out:897 898 
-  897: at tests/peterson.c:2292:12, in: 896 out:940 
-  898: at tests/peterson.c:2195:12, in: 896 out:899 
-  899: at tests/peterson.c:2196:15, in: 898 out:900 901 
-  900: at tests/peterson.c:2256:13, in: 899 out:924 
-  901: at tests/peterson.c:2203:35, in: 899 out:902 903 
-  902: at tests/peterson.c:2232:14, in: 901 out:914 
-  903: at tests/peterson.c:2209:14, in: 901 out:904 
-  904: at tests/peterson.c:2210:11, in: 903 out:905 906 
-  905: at tests/peterson.c:2219:15, in: 904 out:909 
-  906: at tests/peterson.c:2215:15, in: 904 out:907 
-  907: at tests/peterson.c:2216:19, in: 906 out:908 
-  908: at tests/peterson.c:2217:12, in: 907 out:3 
-  909: at tests/peterson.c:2220:12, in: 905 out:910 911 
-  910: at tests/peterson.c:2227:16, in: 909 out:913 
-  911: at tests/peterson.c:2224:16, in: 909 out:912 
-  912: at tests/peterson.c:2225:20, in: 911 out:3 
-  913: at tests/peterson.c:2228:20, in: 910 out:3 
-  914: at tests/peterson.c:2233:11, in: 902 out:915 916 
-  915: at tests/peterson.c:2250:15, in: 914 out:922 
-  916: at tests/peterson.c:2238:15, in: 914 out:917 
-  917: at tests/peterson.c:2239:12, in: 916 out:918 919 
-  918: at tests/peterson.c:2246:16, in: 917 out:921 
-  919: at tests/peterson.c:2243:16, in: 917 out:920 
-  920: at tests/peterson.c:2244:20, in: 919 out:3 
-  921: at tests/peterson.c:2247:20, in: 918 out:3 
-  922: at tests/peterson.c:2251:19, in: 915 out:923 
-  923: at tests/peterson.c:2252:12, in: 922 out:3 
-  924: at tests/peterson.c:2257:10, in: 900 out:925 926 
-  925: at tests/peterson.c:2285:14, in: 924 out:936 
-  926: at tests/peterson.c:2263:36, in: 924 out:927 928 
-  927: at tests/peterson.c:2280:15, in: 926 out:934 
-  928: at tests/peterson.c:2268:15, in: 926 out:929 
-  929: at tests/peterson.c:2269:12, in: 928 out:930 931 
-  930: at tests/peterson.c:2276:16, in: 929 out:933 
-  931: at tests/peterson.c:2273:16, in: 929 out:932 
-  932: at tests/peterson.c:2274:20, in: 931 out:3 
-  933: at tests/peterson.c:2277:20, in: 930 out:3 
-  934: at tests/peterson.c:2281:19, in: 927 out:935 
-  935: at tests/peterson.c:2282:12, in: 934 out:3 
-  936: at tests/peterson.c:2286:18, in: 938 925 out:937 938 
-  937: at tests/peterson.c:2287:40, in: 936 out:939 
-  938: at tests/peterson.c:2287:39, in: 936 out:936 
-  939: at tests/peterson.c:2288:11, in: 937 out:3 
-  940: at tests/peterson.c:2293:9, in: 897 out:941 942 
-  941: at tests/peterson.c:2335:13, in: 940 out:959 
-  942: at tests/peterson.c:2300:13, in: 940 out:943 
-  943: at tests/peterson.c:2301:16, in: 942 out:944 945 
-  944: at tests/peterson.c:2329:14, in: 943 out:955 
-  945: at tests/peterson.c:2307:36, in: 943 out:946 947 
-  946: at tests/peterson.c:2324:15, in: 945 out:953 
-  947: at tests/peterson.c:2312:15, in: 945 out:948 
-  948: at tests/peterson.c:2313:12, in: 947 out:949 950 
-  949: at tests/peterson.c:2320:16, in: 948 out:952 
-  950: at tests/peterson.c:2317:16, in: 948 out:951 
-  951: at tests/peterson.c:2318:20, in: 950 out:3 
-  952: at tests/peterson.c:2321:20, in: 949 out:3 
-  953: at tests/peterson.c:2325:19, in: 946 out:954 
-  954: at tests/peterson.c:2326:12, in: 953 out:3 
-  955: at tests/peterson.c:2330:18, in: 957 944 out:956 957 
-  956: at tests/peterson.c:2331:40, in: 955 out:958 
-  957: at tests/peterson.c:2331:39, in: 955 out:955 
-  958: at tests/peterson.c:2332:11, in: 956 out:3 
-  959: at tests/peterson.c:2336:17, in: 941 out:960 
-  960: at tests/peterson.c:2337:16, in: 962 959 out:961 962 
-  961: at tests/peterson.c:2338:39, in: 960 out:963 
-  962: at tests/peterson.c:2338:38, in: 960 out:960 
-  963: at tests/peterson.c:2339:10, in: 961 out:3 
-  964: at tests/peterson.c:2344:8, in: 894 out:965 966 
-  965: at tests/peterson.c:2402:12, in: 964 out:991 
-  966: at tests/peterson.c:2352:12, in: 964 out:967 
-  967: at tests/peterson.c:2353:16, in: 966 out:968 969 
-  968: at tests/peterson.c:2395:13, in: 967 out:986 
-  969: at tests/peterson.c:2360:13, in: 967 out:970 
-  970: at tests/peterson.c:2361:16, in: 969 out:971 972 
-  971: at tests/peterson.c:2389:14, in: 970 out:982 
-  972: at tests/peterson.c:2367:36, in: 970 out:973 974 
-  973: at tests/peterson.c:2384:15, in: 972 out:980 
-  974: at tests/peterson.c:2372:15, in: 972 out:975 
-  975: at tests/peterson.c:2373:12, in: 974 out:976 977 
-  976: at tests/peterson.c:2380:16, in: 975 out:979 
-  977: at tests/peterson.c:2377:16, in: 975 out:978 
-  978: at tests/peterson.c:2378:20, in: 977 out:3 
-  979: at tests/peterson.c:2381:20, in: 976 out:3 
-  980: at tests/peterson.c:2385:19, in: 973 out:981 
-  981: at tests/peterson.c:2386:12, in: 980 out:3 
-  982: at tests/peterson.c:2390:18, in: 984 971 out:983 984 
-  983: at tests/peterson.c:2391:40, in: 982 out:985 
-  984: at tests/peterson.c:2391:39, in: 982 out:982 
-  985: at tests/peterson.c:2392:11, in: 983 out:3 
-  986: at tests/peterson.c:2396:17, in: 968 out:987 
-  987: at tests/peterson.c:2397:16, in: 989 986 out:988 989 
-  988: at tests/peterson.c:2398:39, in: 987 out:990 
-  989: at tests/peterson.c:2398:38, in: 987 out:987 
-  990: at tests/peterson.c:2399:10, in: 988 out:3 
-  991: at tests/peterson.c:2403:16, in: 965 out:992 
-  992: at tests/peterson.c:2404:16, in: 991 out:993 
-  993: at tests/peterson.c:2405:15, in: 995 992 out:994 995 
-  994: at tests/peterson.c:2406:38, in: 993 out:996 
-  995: at tests/peterson.c:2406:37, in: 993 out:993 
-  996: at tests/peterson.c:2407:9, in: 994 out:3 
-  997: at tests/peterson.c:2412:14, in: 892 out:998 999 
-  998: at tests/peterson.c:2577:11, in: 997 out:1067 
-  999: at tests/peterson.c:2421:33, in: 997 out:1000 1001 
-  1000: at tests/peterson.c:2526:12, in: 999 out:1043 
-  1001: at tests/peterson.c:2429:12, in: 999 out:1002 
-  1002: at tests/peterson.c:2430:15, in: 1001 out:1003 1004 
-  1003: at tests/peterson.c:2490:13, in: 1002 out:1027 
-  1004: at tests/peterson.c:2437:35, in: 1002 out:1005 1006 
-  1005: at tests/peterson.c:2466:14, in: 1004 out:1017 
-  1006: at tests/peterson.c:2443:14, in: 1004 out:1007 
-  1007: at tests/peterson.c:2444:11, in: 1006 out:1008 1009 
-  1008: at tests/peterson.c:2453:15, in: 1007 out:1012 
-  1009: at tests/peterson.c:2449:15, in: 1007 out:1010 
-  1010: at tests/peterson.c:2450:19, in: 1009 out:1011 
-  1011: at tests/peterson.c:2451:12, in: 1010 out:3 
-  1012: at tests/peterson.c:2454:12, in: 1008 out:1013 1014 
-  1013: at tests/peterson.c:2461:16, in: 1012 out:1016 
-  1014: at tests/peterson.c:2458:16, in: 1012 out:1015 
-  1015: at tests/peterson.c:2459:20, in: 1014 out:3 
-  1016: at tests/peterson.c:2462:20, in: 1013 out:3 
-  1017: at tests/peterson.c:2467:11, in: 1005 out:1018 1019 
-  1018: at tests/peterson.c:2484:15, in: 1017 out:1025 
-  1019: at tests/peterson.c:2472:15, in: 1017 out:1020 
-  1020: at tests/peterson.c:2473:12, in: 1019 out:1021 1022 
-  1021: at tests/peterson.c:2480:16, in: 1020 out:1024 
-  1022: at tests/peterson.c:2477:16, in: 1020 out:1023 
-  1023: at tests/peterson.c:2478:20, in: 1022 out:3 
-  1024: at tests/peterson.c:2481:20, in: 1021 out:3 
-  1025: at tests/peterson.c:2485:19, in: 1018 out:1026 
-  1026: at tests/peterson.c:2486:12, in: 1025 out:3 
-  1027: at tests/peterson.c:2491:10, in: 1003 out:1028 1029 
-  1028: at tests/peterson.c:2519:14, in: 1027 out:1039 
-  1029: at tests/peterson.c:2497:36, in: 1027 out:1030 1031 
-  1030: at tests/peterson.c:2514:15, in: 1029 out:1037 
-  1031: at tests/peterson.c:2502:15, in: 1029 out:1032 
-  1032: at tests/peterson.c:2503:12, in: 1031 out:1033 1034 
-  1033: at tests/peterson.c:2510:16, in: 1032 out:1036 
-  1034: at tests/peterson.c:2507:16, in: 1032 out:1035 
-  1035: at tests/peterson.c:2508:20, in: 1034 out:3 
-  1036: at tests/peterson.c:2511:20, in: 1033 out:3 
-  1037: at tests/peterson.c:2515:19, in: 1030 out:1038 
-  1038: at tests/peterson.c:2516:12, in: 1037 out:3 
-  1039: at tests/peterson.c:2520:18, in: 1041 1028 out:1040 1041 
-  1040: at tests/peterson.c:2521:40, in: 1039 out:1042 
-  1041: at tests/peterson.c:2521:39, in: 1039 out:1039 
-  1042: at tests/peterson.c:2522:11, in: 1040 out:3 
-  1043: at tests/peterson.c:2527:9, in: 1000 out:1044 1045 
-  1044: at tests/peterson.c:2569:13, in: 1043 out:1062 
-  1045: at tests/peterson.c:2534:13, in: 1043 out:1046 
-  1046: at tests/peterson.c:2535:16, in: 1045 out:1047 1048 
-  1047: at tests/peterson.c:2563:14, in: 1046 out:1058 
-  1048: at tests/peterson.c:2541:36, in: 1046 out:1049 1050 
-  1049: at tests/peterson.c:2558:15, in: 1048 out:1056 
-  1050: at tests/peterson.c:2546:15, in: 1048 out:1051 
-  1051: at tests/peterson.c:2547:12, in: 1050 out:1052 1053 
-  1052: at tests/peterson.c:2554:16, in: 1051 out:1055 
-  1053: at tests/peterson.c:2551:16, in: 1051 out:1054 
-  1054: at tests/peterson.c:2552:20, in: 1053 out:3 
-  1055: at tests/peterson.c:2555:20, in: 1052 out:3 
-  1056: at tests/peterson.c:2559:19, in: 1049 out:1057 
-  1057: at tests/peterson.c:2560:12, in: 1056 out:3 
-  1058: at tests/peterson.c:2564:18, in: 1060 1047 out:1059 1060 
-  1059: at tests/peterson.c:2565:40, in: 1058 out:1061 
-  1060: at tests/peterson.c:2565:39, in: 1058 out:1058 
-  1061: at tests/peterson.c:2566:11, in: 1059 out:3 
-  1062: at tests/peterson.c:2570:17, in: 1044 out:1063 
-  1063: at tests/peterson.c:2571:16, in: 1065 1062 out:1064 1065 
-  1064: at tests/peterson.c:2572:39, in: 1063 out:1066 
-  1065: at tests/peterson.c:2572:38, in: 1063 out:1063 
-  1066: at tests/peterson.c:2573:10, in: 1064 out:3 
-  1067: at tests/peterson.c:2578:14, in: 998 out:1068 1069 
-  1068: at tests/peterson.c:2682:12, in: 1067 out:1110 1111 
-  1069: at tests/peterson.c:2586:34, in: 1067 out:1070 1071 
-  1070: at tests/peterson.c:2646:13, in: 1069 out:1094 
-  1071: at tests/peterson.c:2593:35, in: 1069 out:1072 1073 
-  1072: at tests/peterson.c:2622:14, in: 1071 out:1084 
-  1073: at tests/peterson.c:2599:14, in: 1071 out:1074 
-  1074: at tests/peterson.c:2600:11, in: 1073 out:1075 1076 
-  1075: at tests/peterson.c:2609:15, in: 1074 out:1079 
-  1076: at tests/peterson.c:2605:15, in: 1074 out:1077 
-  1077: at tests/peterson.c:2606:19, in: 1076 out:1078 
-  1078: at tests/peterson.c:2607:12, in: 1077 out:3 
-  1079: at tests/peterson.c:2610:12, in: 1075 out:1080 1081 
-  1080: at tests/peterson.c:2617:16, in: 1079 out:1083 
-  1081: at tests/peterson.c:2614:16, in: 1079 out:1082 
-  1082: at tests/peterson.c:2615:20, in: 1081 out:3 
-  1083: at tests/peterson.c:2618:20, in: 1080 out:3 
-  1084: at tests/peterson.c:2623:11, in: 1072 out:1085 1086 
-  1085: at tests/peterson.c:2640:15, in: 1084 out:1092 
-  1086: at tests/peterson.c:2628:15, in: 1084 out:1087 
-  1087: at tests/peterson.c:2629:12, in: 1086 out:1088 1089 
-  1088: at tests/peterson.c:2636:16, in: 1087 out:1091 
-  1089: at tests/peterson.c:2633:16, in: 1087 out:1090 
-  1090: at tests/peterson.c:2634:20, in: 1089 out:3 
-  1091: at tests/peterson.c:2637:20, in: 1088 out:3 
-  1092: at tests/peterson.c:2641:19, in: 1085 out:1093 
-  1093: at tests/peterson.c:2642:12, in: 1092 out:3 
-  1094: at tests/peterson.c:2647:10, in: 1070 out:1095 1096 
-  1095: at tests/peterson.c:2675:14, in: 1094 out:1106 
-  1096: at tests/peterson.c:2653:36, in: 1094 out:1097 1098 
-  1097: at tests/peterson.c:2662:15, in: 1096 out:1101 
-  1098: at tests/peterson.c:2658:15, in: 1096 out:1099 
-  1099: at tests/peterson.c:2659:19, in: 1098 out:1100 
-  1100: at tests/peterson.c:2660:12, in: 1099 out:3 
-  1101: at tests/peterson.c:2663:12, in: 1097 out:1102 1103 
-  1102: at tests/peterson.c:2670:16, in: 1101 out:1105 
-  1103: at tests/peterson.c:2667:16, in: 1101 out:1104 
-  1104: at tests/peterson.c:2668:20, in: 1103 out:3 
-  1105: at tests/peterson.c:2671:20, in: 1102 out:3 
-  1106: at tests/peterson.c:2676:18, in: 1108 1095 out:1107 1108 
-  1107: at tests/peterson.c:2677:40, in: 1106 out:1109 
-  1108: at tests/peterson.c:2677:39, in: 1106 out:1106 
-  1109: at tests/peterson.c:2678:11, in: 1107 out:3 
-  1110: at tests/peterson.c:2742:13, in: 1068 out:1134 
-  1111: at tests/peterson.c:2689:35, in: 1068 out:1112 1113 
-  1112: at tests/peterson.c:2718:14, in: 1111 out:1124 
-  1113: at tests/peterson.c:2695:14, in: 1111 out:1114 
-  1114: at tests/peterson.c:2696:11, in: 1113 out:1115 1116 
-  1115: at tests/peterson.c:2705:15, in: 1114 out:1119 
-  1116: at tests/peterson.c:2701:15, in: 1114 out:1117 
-  1117: at tests/peterson.c:2702:19, in: 1116 out:1118 
-  1118: at tests/peterson.c:2703:12, in: 1117 out:3 
-  1119: at tests/peterson.c:2706:12, in: 1115 out:1120 1121 
-  1120: at tests/peterson.c:2713:16, in: 1119 out:1123 
-  1121: at tests/peterson.c:2710:16, in: 1119 out:1122 
-  1122: at tests/peterson.c:2711:20, in: 1121 out:3 
-  1123: at tests/peterson.c:2714:20, in: 1120 out:3 
-  1124: at tests/peterson.c:2719:11, in: 1112 out:1125 1126 
-  1125: at tests/peterson.c:2736:15, in: 1124 out:1132 
-  1126: at tests/peterson.c:2724:15, in: 1124 out:1127 
-  1127: at tests/peterson.c:2725:12, in: 1126 out:1128 1129 
-  1128: at tests/peterson.c:2732:16, in: 1127 out:1131 
-  1129: at tests/peterson.c:2729:16, in: 1127 out:1130 
-  1130: at tests/peterson.c:2730:20, in: 1129 out:3 
-  1131: at tests/peterson.c:2733:20, in: 1128 out:3 
-  1132: at tests/peterson.c:2737:19, in: 1125 out:1133 
-  1133: at tests/peterson.c:2738:12, in: 1132 out:3 
-  1134: at tests/peterson.c:2743:10, in: 1110 out:1135 1136 
-  1135: at tests/peterson.c:2771:14, in: 1134 out:1146 
-  1136: at tests/peterson.c:2749:36, in: 1134 out:1137 1138 
-  1137: at tests/peterson.c:2766:15, in: 1136 out:1144 
-  1138: at tests/peterson.c:2754:15, in: 1136 out:1139 
-  1139: at tests/peterson.c:2755:12, in: 1138 out:1140 1141 
-  1140: at tests/peterson.c:2762:16, in: 1139 out:1143 
-  1141: at tests/peterson.c:2759:16, in: 1139 out:1142 
-  1142: at tests/peterson.c:2760:20, in: 1141 out:3 
-  1143: at tests/peterson.c:2763:20, in: 1140 out:3 
-  1144: at tests/peterson.c:2767:19, in: 1137 out:1145 
-  1145: at tests/peterson.c:2768:12, in: 1144 out:3 
-  1146: at tests/peterson.c:2772:18, in: 1148 1135 out:1147 1148 
-  1147: at tests/peterson.c:2773:40, in: 1146 out:1149 
-  1148: at tests/peterson.c:2773:39, in: 1146 out:1146 
-  1149: at tests/peterson.c:2774:11, in: 1147 out:3 
-  1150: at tests/peterson.c:11:0, in: out:1151 
-  1151: at tests/peterson.c:2785:1, in: 1150 out:
+  1: at tests/guarantee/peterson.c:11:0, in: 1153 out:4 
+  2: at tests/guarantee/peterson.c:2785:1, in: 3 out:1152 
+  3: at tests/guarantee/peterson.c:12:32, in: 1149 1145 1143 1142 1133 1131 1130 1123 1122 1118 1109 1105 1104 1100 1093 1091 1090 1083 1082 1078 1066 1061 1057 1055 1054 1042 1038 1036 1035 1026 1024 1023 1016 1015 1011 996 990 985 981 979 978 963 958 954 952 951 939 935 933 932 923 921 920 913 912 908 890 886 884 883 874 872 871 864 863 859 850 846 845 841 834 832 831 824 823 819 807 802 798 796 795 783 779 777 776 767 765 764 757 756 752 737 733 731 730 721 719 718 711 710 706 697 693 692 688 681 679 678 671 670 666 654 650 649 645 638 636 635 628 627 623 613 609 608 604 597 578 574 572 571 562 560 559 552 551 547 538 534 533 529 522 520 519 512 511 507 495 490 486 484 483 471 467 465 464 455 453 452 445 444 440 425 421 419 418 409 407 406 399 398 394 385 381 380 376 369 367 366 359 358 354 342 338 337 333 326 324 323 316 315 311 301 297 296 292 285 269 265 263 262 253 251 250 243 242 238 229 225 224 220 213 211 210 203 202 198 186 182 181 177 170 168 167 160 159 155 145 141 140 136 129 116 112 111 107 100 98 97 90 89 85 75 71 70 66 59 48 44 43 39 32 24 4 out:2 5 
+  4: at tests/guarantee/peterson.c:12:25, in: 1 out:3 
+  5: at tests/guarantee/peterson.c:14:14, in: 3 out:6 7 
+  6: at tests/guarantee/peterson.c:1404:8, in: 5 out:579 
+  7: at tests/guarantee/peterson.c:26:8, in: 5 out:8 
+  8: at tests/guarantee/peterson.c:27:12, in: 7 out:9 10 
+  9: at tests/guarantee/peterson.c:653:9, in: 8 out:270 
+  10: at tests/guarantee/peterson.c:38:9, in: 8 out:11 
+  11: at tests/guarantee/peterson.c:39:12, in: 10 out:12 13 
+  12: at tests/guarantee/peterson.c:283:10, in: 11 out:117 
+  13: at tests/guarantee/peterson.c:49:32, in: 11 out:14 15 
+  14: at tests/guarantee/peterson.c:125:11, in: 13 out:49 
+  15: at tests/guarantee/peterson.c:58:11, in: 13 out:16 
+  16: at tests/guarantee/peterson.c:59:8, in: 15 out:17 18 
+  17: at tests/guarantee/peterson.c:74:12, in: 16 out:25 
+  18: at tests/guarantee/peterson.c:67:12, in: 16 out:19 
+  19: at tests/guarantee/peterson.c:68:16, in: 18 out:20 
+  20: at tests/guarantee/peterson.c:69:16, in: 19 out:21 
+  21: at tests/guarantee/peterson.c:70:15, in: 23 20 out:22 23 
+  22: at tests/guarantee/peterson.c:71:38, in: 21 out:24 
+  23: at tests/guarantee/peterson.c:71:37, in: 21 out:21 
+  24: at tests/guarantee/peterson.c:72:9, in: 22 out:3 
+  25: at tests/guarantee/peterson.c:75:16, in: 17 out:26 27 
+  26: at tests/guarantee/peterson.c:88:13, in: 25 out:33 
+  27: at tests/guarantee/peterson.c:82:13, in: 25 out:28 
+  28: at tests/guarantee/peterson.c:83:17, in: 27 out:29 
+  29: at tests/guarantee/peterson.c:84:16, in: 31 28 out:30 31 
+  30: at tests/guarantee/peterson.c:85:39, in: 29 out:32 
+  31: at tests/guarantee/peterson.c:85:38, in: 29 out:29 
+  32: at tests/guarantee/peterson.c:86:10, in: 30 out:3 
+  33: at tests/guarantee/peterson.c:89:16, in: 26 out:34 35 
+  34: at tests/guarantee/peterson.c:117:14, in: 33 out:45 
+  35: at tests/guarantee/peterson.c:95:36, in: 33 out:36 37 
+  36: at tests/guarantee/peterson.c:104:15, in: 35 out:40 
+  37: at tests/guarantee/peterson.c:100:15, in: 35 out:38 
+  38: at tests/guarantee/peterson.c:101:19, in: 37 out:39 
+  39: at tests/guarantee/peterson.c:102:12, in: 38 out:3 
+  40: at tests/guarantee/peterson.c:105:12, in: 36 out:41 42 
+  41: at tests/guarantee/peterson.c:112:16, in: 40 out:44 
+  42: at tests/guarantee/peterson.c:109:16, in: 40 out:43 
+  43: at tests/guarantee/peterson.c:110:20, in: 42 out:3 
+  44: at tests/guarantee/peterson.c:113:20, in: 41 out:3 
+  45: at tests/guarantee/peterson.c:118:18, in: 47 34 out:46 47 
+  46: at tests/guarantee/peterson.c:119:40, in: 45 out:48 
+  47: at tests/guarantee/peterson.c:119:39, in: 45 out:45 
+  48: at tests/guarantee/peterson.c:120:11, in: 46 out:3 
+  49: at tests/guarantee/peterson.c:126:15, in: 14 out:50 51 
+  50: at tests/guarantee/peterson.c:184:12, in: 49 out:76 
+  51: at tests/guarantee/peterson.c:134:12, in: 49 out:52 
+  52: at tests/guarantee/peterson.c:135:9, in: 51 out:53 54 
+  53: at tests/guarantee/peterson.c:148:13, in: 52 out:60 
+  54: at tests/guarantee/peterson.c:142:13, in: 52 out:55 
+  55: at tests/guarantee/peterson.c:143:17, in: 54 out:56 
+  56: at tests/guarantee/peterson.c:144:16, in: 58 55 out:57 58 
+  57: at tests/guarantee/peterson.c:145:39, in: 56 out:59 
+  58: at tests/guarantee/peterson.c:145:38, in: 56 out:56 
+  59: at tests/guarantee/peterson.c:146:10, in: 57 out:3 
+  60: at tests/guarantee/peterson.c:149:16, in: 53 out:61 62 
+  61: at tests/guarantee/peterson.c:177:14, in: 60 out:72 
+  62: at tests/guarantee/peterson.c:155:36, in: 60 out:63 64 
+  63: at tests/guarantee/peterson.c:164:15, in: 62 out:67 
+  64: at tests/guarantee/peterson.c:160:15, in: 62 out:65 
+  65: at tests/guarantee/peterson.c:161:19, in: 64 out:66 
+  66: at tests/guarantee/peterson.c:162:12, in: 65 out:3 
+  67: at tests/guarantee/peterson.c:165:12, in: 63 out:68 69 
+  68: at tests/guarantee/peterson.c:172:16, in: 67 out:71 
+  69: at tests/guarantee/peterson.c:169:16, in: 67 out:70 
+  70: at tests/guarantee/peterson.c:170:20, in: 69 out:3 
+  71: at tests/guarantee/peterson.c:173:20, in: 68 out:3 
+  72: at tests/guarantee/peterson.c:178:18, in: 74 61 out:73 74 
+  73: at tests/guarantee/peterson.c:179:40, in: 72 out:75 
+  74: at tests/guarantee/peterson.c:179:39, in: 72 out:72 
+  75: at tests/guarantee/peterson.c:180:11, in: 73 out:3 
+  76: at tests/guarantee/peterson.c:185:15, in: 50 out:77 78 
+  77: at tests/guarantee/peterson.c:245:13, in: 76 out:101 
+  78: at tests/guarantee/peterson.c:192:35, in: 76 out:79 80 
+  79: at tests/guarantee/peterson.c:221:14, in: 78 out:91 
+  80: at tests/guarantee/peterson.c:198:14, in: 78 out:81 
+  81: at tests/guarantee/peterson.c:199:11, in: 80 out:82 83 
+  82: at tests/guarantee/peterson.c:208:15, in: 81 out:86 
+  83: at tests/guarantee/peterson.c:204:15, in: 81 out:84 
+  84: at tests/guarantee/peterson.c:205:19, in: 83 out:85 
+  85: at tests/guarantee/peterson.c:206:12, in: 84 out:3 
+  86: at tests/guarantee/peterson.c:209:12, in: 82 out:87 88 
+  87: at tests/guarantee/peterson.c:216:16, in: 86 out:90 
+  88: at tests/guarantee/peterson.c:213:16, in: 86 out:89 
+  89: at tests/guarantee/peterson.c:214:20, in: 88 out:3 
+  90: at tests/guarantee/peterson.c:217:20, in: 87 out:3 
+  91: at tests/guarantee/peterson.c:222:11, in: 79 out:92 93 
+  92: at tests/guarantee/peterson.c:239:15, in: 91 out:99 
+  93: at tests/guarantee/peterson.c:227:15, in: 91 out:94 
+  94: at tests/guarantee/peterson.c:228:12, in: 93 out:95 96 
+  95: at tests/guarantee/peterson.c:235:16, in: 94 out:98 
+  96: at tests/guarantee/peterson.c:232:16, in: 94 out:97 
+  97: at tests/guarantee/peterson.c:233:20, in: 96 out:3 
+  98: at tests/guarantee/peterson.c:236:20, in: 95 out:3 
+  99: at tests/guarantee/peterson.c:240:19, in: 92 out:100 
+  100: at tests/guarantee/peterson.c:241:12, in: 99 out:3 
+  101: at tests/guarantee/peterson.c:246:10, in: 77 out:102 103 
+  102: at tests/guarantee/peterson.c:274:14, in: 101 out:113 
+  103: at tests/guarantee/peterson.c:252:36, in: 101 out:104 105 
+  104: at tests/guarantee/peterson.c:261:15, in: 103 out:108 
+  105: at tests/guarantee/peterson.c:257:15, in: 103 out:106 
+  106: at tests/guarantee/peterson.c:258:19, in: 105 out:107 
+  107: at tests/guarantee/peterson.c:259:12, in: 106 out:3 
+  108: at tests/guarantee/peterson.c:262:12, in: 104 out:109 110 
+  109: at tests/guarantee/peterson.c:269:16, in: 108 out:112 
+  110: at tests/guarantee/peterson.c:266:16, in: 108 out:111 
+  111: at tests/guarantee/peterson.c:267:20, in: 110 out:3 
+  112: at tests/guarantee/peterson.c:270:20, in: 109 out:3 
+  113: at tests/guarantee/peterson.c:275:18, in: 115 102 out:114 115 
+  114: at tests/guarantee/peterson.c:276:40, in: 113 out:116 
+  115: at tests/guarantee/peterson.c:276:39, in: 113 out:113 
+  116: at tests/guarantee/peterson.c:277:11, in: 114 out:3 
+  117: at tests/guarantee/peterson.c:284:14, in: 12 out:118 119 
+  118: at tests/guarantee/peterson.c:449:11, in: 117 out:187 
+  119: at tests/guarantee/peterson.c:293:33, in: 117 out:120 121 
+  120: at tests/guarantee/peterson.c:351:12, in: 119 out:146 
+  121: at tests/guarantee/peterson.c:301:12, in: 119 out:122 
+  122: at tests/guarantee/peterson.c:302:9, in: 121 out:123 124 
+  123: at tests/guarantee/peterson.c:315:13, in: 122 out:130 
+  124: at tests/guarantee/peterson.c:309:13, in: 122 out:125 
+  125: at tests/guarantee/peterson.c:310:17, in: 124 out:126 
+  126: at tests/guarantee/peterson.c:311:16, in: 128 125 out:127 128 
+  127: at tests/guarantee/peterson.c:312:39, in: 126 out:129 
+  128: at tests/guarantee/peterson.c:312:38, in: 126 out:126 
+  129: at tests/guarantee/peterson.c:313:10, in: 127 out:3 
+  130: at tests/guarantee/peterson.c:316:16, in: 123 out:131 132 
+  131: at tests/guarantee/peterson.c:344:14, in: 130 out:142 
+  132: at tests/guarantee/peterson.c:322:36, in: 130 out:133 134 
+  133: at tests/guarantee/peterson.c:331:15, in: 132 out:137 
+  134: at tests/guarantee/peterson.c:327:15, in: 132 out:135 
+  135: at tests/guarantee/peterson.c:328:19, in: 134 out:136 
+  136: at tests/guarantee/peterson.c:329:12, in: 135 out:3 
+  137: at tests/guarantee/peterson.c:332:12, in: 133 out:138 139 
+  138: at tests/guarantee/peterson.c:339:16, in: 137 out:141 
+  139: at tests/guarantee/peterson.c:336:16, in: 137 out:140 
+  140: at tests/guarantee/peterson.c:337:20, in: 139 out:3 
+  141: at tests/guarantee/peterson.c:340:20, in: 138 out:3 
+  142: at tests/guarantee/peterson.c:345:18, in: 144 131 out:143 144 
+  143: at tests/guarantee/peterson.c:346:40, in: 142 out:145 
+  144: at tests/guarantee/peterson.c:346:39, in: 142 out:142 
+  145: at tests/guarantee/peterson.c:347:11, in: 143 out:3 
+  146: at tests/guarantee/peterson.c:352:15, in: 120 out:147 148 
+  147: at tests/guarantee/peterson.c:412:13, in: 146 out:171 
+  148: at tests/guarantee/peterson.c:359:35, in: 146 out:149 150 
+  149: at tests/guarantee/peterson.c:388:14, in: 148 out:161 
+  150: at tests/guarantee/peterson.c:365:14, in: 148 out:151 
+  151: at tests/guarantee/peterson.c:366:11, in: 150 out:152 153 
+  152: at tests/guarantee/peterson.c:375:15, in: 151 out:156 
+  153: at tests/guarantee/peterson.c:371:15, in: 151 out:154 
+  154: at tests/guarantee/peterson.c:372:19, in: 153 out:155 
+  155: at tests/guarantee/peterson.c:373:12, in: 154 out:3 
+  156: at tests/guarantee/peterson.c:376:12, in: 152 out:157 158 
+  157: at tests/guarantee/peterson.c:383:16, in: 156 out:160 
+  158: at tests/guarantee/peterson.c:380:16, in: 156 out:159 
+  159: at tests/guarantee/peterson.c:381:20, in: 158 out:3 
+  160: at tests/guarantee/peterson.c:384:20, in: 157 out:3 
+  161: at tests/guarantee/peterson.c:389:11, in: 149 out:162 163 
+  162: at tests/guarantee/peterson.c:406:15, in: 161 out:169 
+  163: at tests/guarantee/peterson.c:394:15, in: 161 out:164 
+  164: at tests/guarantee/peterson.c:395:12, in: 163 out:165 166 
+  165: at tests/guarantee/peterson.c:402:16, in: 164 out:168 
+  166: at tests/guarantee/peterson.c:399:16, in: 164 out:167 
+  167: at tests/guarantee/peterson.c:400:20, in: 166 out:3 
+  168: at tests/guarantee/peterson.c:403:20, in: 165 out:3 
+  169: at tests/guarantee/peterson.c:407:19, in: 162 out:170 
+  170: at tests/guarantee/peterson.c:408:12, in: 169 out:3 
+  171: at tests/guarantee/peterson.c:413:10, in: 147 out:172 173 
+  172: at tests/guarantee/peterson.c:441:14, in: 171 out:183 
+  173: at tests/guarantee/peterson.c:419:36, in: 171 out:174 175 
+  174: at tests/guarantee/peterson.c:428:15, in: 173 out:178 
+  175: at tests/guarantee/peterson.c:424:15, in: 173 out:176 
+  176: at tests/guarantee/peterson.c:425:19, in: 175 out:177 
+  177: at tests/guarantee/peterson.c:426:12, in: 176 out:3 
+  178: at tests/guarantee/peterson.c:429:12, in: 174 out:179 180 
+  179: at tests/guarantee/peterson.c:436:16, in: 178 out:182 
+  180: at tests/guarantee/peterson.c:433:16, in: 178 out:181 
+  181: at tests/guarantee/peterson.c:434:20, in: 180 out:3 
+  182: at tests/guarantee/peterson.c:437:20, in: 179 out:3 
+  183: at tests/guarantee/peterson.c:442:18, in: 185 172 out:184 185 
+  184: at tests/guarantee/peterson.c:443:40, in: 183 out:186 
+  185: at tests/guarantee/peterson.c:443:39, in: 183 out:183 
+  186: at tests/guarantee/peterson.c:444:11, in: 184 out:3 
+  187: at tests/guarantee/peterson.c:450:14, in: 118 out:188 189 
+  188: at tests/guarantee/peterson.c:554:12, in: 187 out:230 231 
+  189: at tests/guarantee/peterson.c:458:34, in: 187 out:190 191 
+  190: at tests/guarantee/peterson.c:518:13, in: 189 out:214 
+  191: at tests/guarantee/peterson.c:465:35, in: 189 out:192 193 
+  192: at tests/guarantee/peterson.c:494:14, in: 191 out:204 
+  193: at tests/guarantee/peterson.c:471:14, in: 191 out:194 
+  194: at tests/guarantee/peterson.c:472:11, in: 193 out:195 196 
+  195: at tests/guarantee/peterson.c:481:15, in: 194 out:199 
+  196: at tests/guarantee/peterson.c:477:15, in: 194 out:197 
+  197: at tests/guarantee/peterson.c:478:19, in: 196 out:198 
+  198: at tests/guarantee/peterson.c:479:12, in: 197 out:3 
+  199: at tests/guarantee/peterson.c:482:12, in: 195 out:200 201 
+  200: at tests/guarantee/peterson.c:489:16, in: 199 out:203 
+  201: at tests/guarantee/peterson.c:486:16, in: 199 out:202 
+  202: at tests/guarantee/peterson.c:487:20, in: 201 out:3 
+  203: at tests/guarantee/peterson.c:490:20, in: 200 out:3 
+  204: at tests/guarantee/peterson.c:495:11, in: 192 out:205 206 
+  205: at tests/guarantee/peterson.c:512:15, in: 204 out:212 
+  206: at tests/guarantee/peterson.c:500:15, in: 204 out:207 
+  207: at tests/guarantee/peterson.c:501:12, in: 206 out:208 209 
+  208: at tests/guarantee/peterson.c:508:16, in: 207 out:211 
+  209: at tests/guarantee/peterson.c:505:16, in: 207 out:210 
+  210: at tests/guarantee/peterson.c:506:20, in: 209 out:3 
+  211: at tests/guarantee/peterson.c:509:20, in: 208 out:3 
+  212: at tests/guarantee/peterson.c:513:19, in: 205 out:213 
+  213: at tests/guarantee/peterson.c:514:12, in: 212 out:3 
+  214: at tests/guarantee/peterson.c:519:10, in: 190 out:215 216 
+  215: at tests/guarantee/peterson.c:547:14, in: 214 out:226 
+  216: at tests/guarantee/peterson.c:525:36, in: 214 out:217 218 
+  217: at tests/guarantee/peterson.c:534:15, in: 216 out:221 
+  218: at tests/guarantee/peterson.c:530:15, in: 216 out:219 
+  219: at tests/guarantee/peterson.c:531:19, in: 218 out:220 
+  220: at tests/guarantee/peterson.c:532:12, in: 219 out:3 
+  221: at tests/guarantee/peterson.c:535:12, in: 217 out:222 223 
+  222: at tests/guarantee/peterson.c:542:16, in: 221 out:225 
+  223: at tests/guarantee/peterson.c:539:16, in: 221 out:224 
+  224: at tests/guarantee/peterson.c:540:20, in: 223 out:3 
+  225: at tests/guarantee/peterson.c:543:20, in: 222 out:3 
+  226: at tests/guarantee/peterson.c:548:18, in: 228 215 out:227 228 
+  227: at tests/guarantee/peterson.c:549:40, in: 226 out:229 
+  228: at tests/guarantee/peterson.c:549:39, in: 226 out:226 
+  229: at tests/guarantee/peterson.c:550:11, in: 227 out:3 
+  230: at tests/guarantee/peterson.c:614:13, in: 188 out:254 
+  231: at tests/guarantee/peterson.c:561:35, in: 188 out:232 233 
+  232: at tests/guarantee/peterson.c:590:14, in: 231 out:244 
+  233: at tests/guarantee/peterson.c:567:14, in: 231 out:234 
+  234: at tests/guarantee/peterson.c:568:11, in: 233 out:235 236 
+  235: at tests/guarantee/peterson.c:577:15, in: 234 out:239 
+  236: at tests/guarantee/peterson.c:573:15, in: 234 out:237 
+  237: at tests/guarantee/peterson.c:574:19, in: 236 out:238 
+  238: at tests/guarantee/peterson.c:575:12, in: 237 out:3 
+  239: at tests/guarantee/peterson.c:578:12, in: 235 out:240 241 
+  240: at tests/guarantee/peterson.c:585:16, in: 239 out:243 
+  241: at tests/guarantee/peterson.c:582:16, in: 239 out:242 
+  242: at tests/guarantee/peterson.c:583:20, in: 241 out:3 
+  243: at tests/guarantee/peterson.c:586:20, in: 240 out:3 
+  244: at tests/guarantee/peterson.c:591:11, in: 232 out:245 246 
+  245: at tests/guarantee/peterson.c:608:15, in: 244 out:252 
+  246: at tests/guarantee/peterson.c:596:15, in: 244 out:247 
+  247: at tests/guarantee/peterson.c:597:12, in: 246 out:248 249 
+  248: at tests/guarantee/peterson.c:604:16, in: 247 out:251 
+  249: at tests/guarantee/peterson.c:601:16, in: 247 out:250 
+  250: at tests/guarantee/peterson.c:602:20, in: 249 out:3 
+  251: at tests/guarantee/peterson.c:605:20, in: 248 out:3 
+  252: at tests/guarantee/peterson.c:609:19, in: 245 out:253 
+  253: at tests/guarantee/peterson.c:610:12, in: 252 out:3 
+  254: at tests/guarantee/peterson.c:615:10, in: 230 out:255 256 
+  255: at tests/guarantee/peterson.c:643:14, in: 254 out:266 
+  256: at tests/guarantee/peterson.c:621:36, in: 254 out:257 258 
+  257: at tests/guarantee/peterson.c:638:15, in: 256 out:264 
+  258: at tests/guarantee/peterson.c:626:15, in: 256 out:259 
+  259: at tests/guarantee/peterson.c:627:12, in: 258 out:260 261 
+  260: at tests/guarantee/peterson.c:634:16, in: 259 out:263 
+  261: at tests/guarantee/peterson.c:631:16, in: 259 out:262 
+  262: at tests/guarantee/peterson.c:632:20, in: 261 out:3 
+  263: at tests/guarantee/peterson.c:635:20, in: 260 out:3 
+  264: at tests/guarantee/peterson.c:639:19, in: 257 out:265 
+  265: at tests/guarantee/peterson.c:640:12, in: 264 out:3 
+  266: at tests/guarantee/peterson.c:644:18, in: 268 255 out:267 268 
+  267: at tests/guarantee/peterson.c:645:40, in: 266 out:269 
+  268: at tests/guarantee/peterson.c:645:39, in: 266 out:266 
+  269: at tests/guarantee/peterson.c:646:11, in: 267 out:3 
+  270: at tests/guarantee/peterson.c:654:13, in: 9 out:271 272 
+  271: at tests/guarantee/peterson.c:1033:10, in: 270 out:426 
+  272: at tests/guarantee/peterson.c:664:10, in: 270 out:273 
+  273: at tests/guarantee/peterson.c:665:13, in: 272 out:274 275 
+  274: at tests/guarantee/peterson.c:830:11, in: 273 out:343 
+  275: at tests/guarantee/peterson.c:674:33, in: 273 out:276 277 
+  276: at tests/guarantee/peterson.c:732:12, in: 275 out:302 
+  277: at tests/guarantee/peterson.c:682:12, in: 275 out:278 
+  278: at tests/guarantee/peterson.c:683:9, in: 277 out:279 280 
+  279: at tests/guarantee/peterson.c:696:13, in: 278 out:286 
+  280: at tests/guarantee/peterson.c:690:13, in: 278 out:281 
+  281: at tests/guarantee/peterson.c:691:17, in: 280 out:282 
+  282: at tests/guarantee/peterson.c:692:16, in: 284 281 out:283 284 
+  283: at tests/guarantee/peterson.c:693:39, in: 282 out:285 
+  284: at tests/guarantee/peterson.c:693:38, in: 282 out:282 
+  285: at tests/guarantee/peterson.c:694:10, in: 283 out:3 
+  286: at tests/guarantee/peterson.c:697:16, in: 279 out:287 288 
+  287: at tests/guarantee/peterson.c:725:14, in: 286 out:298 
+  288: at tests/guarantee/peterson.c:703:36, in: 286 out:289 290 
+  289: at tests/guarantee/peterson.c:712:15, in: 288 out:293 
+  290: at tests/guarantee/peterson.c:708:15, in: 288 out:291 
+  291: at tests/guarantee/peterson.c:709:19, in: 290 out:292 
+  292: at tests/guarantee/peterson.c:710:12, in: 291 out:3 
+  293: at tests/guarantee/peterson.c:713:12, in: 289 out:294 295 
+  294: at tests/guarantee/peterson.c:720:16, in: 293 out:297 
+  295: at tests/guarantee/peterson.c:717:16, in: 293 out:296 
+  296: at tests/guarantee/peterson.c:718:20, in: 295 out:3 
+  297: at tests/guarantee/peterson.c:721:20, in: 294 out:3 
+  298: at tests/guarantee/peterson.c:726:18, in: 300 287 out:299 300 
+  299: at tests/guarantee/peterson.c:727:40, in: 298 out:301 
+  300: at tests/guarantee/peterson.c:727:39, in: 298 out:298 
+  301: at tests/guarantee/peterson.c:728:11, in: 299 out:3 
+  302: at tests/guarantee/peterson.c:733:15, in: 276 out:303 304 
+  303: at tests/guarantee/peterson.c:793:13, in: 302 out:327 
+  304: at tests/guarantee/peterson.c:740:35, in: 302 out:305 306 
+  305: at tests/guarantee/peterson.c:769:14, in: 304 out:317 
+  306: at tests/guarantee/peterson.c:746:14, in: 304 out:307 
+  307: at tests/guarantee/peterson.c:747:11, in: 306 out:308 309 
+  308: at tests/guarantee/peterson.c:756:15, in: 307 out:312 
+  309: at tests/guarantee/peterson.c:752:15, in: 307 out:310 
+  310: at tests/guarantee/peterson.c:753:19, in: 309 out:311 
+  311: at tests/guarantee/peterson.c:754:12, in: 310 out:3 
+  312: at tests/guarantee/peterson.c:757:12, in: 308 out:313 314 
+  313: at tests/guarantee/peterson.c:764:16, in: 312 out:316 
+  314: at tests/guarantee/peterson.c:761:16, in: 312 out:315 
+  315: at tests/guarantee/peterson.c:762:20, in: 314 out:3 
+  316: at tests/guarantee/peterson.c:765:20, in: 313 out:3 
+  317: at tests/guarantee/peterson.c:770:11, in: 305 out:318 319 
+  318: at tests/guarantee/peterson.c:787:15, in: 317 out:325 
+  319: at tests/guarantee/peterson.c:775:15, in: 317 out:320 
+  320: at tests/guarantee/peterson.c:776:12, in: 319 out:321 322 
+  321: at tests/guarantee/peterson.c:783:16, in: 320 out:324 
+  322: at tests/guarantee/peterson.c:780:16, in: 320 out:323 
+  323: at tests/guarantee/peterson.c:781:20, in: 322 out:3 
+  324: at tests/guarantee/peterson.c:784:20, in: 321 out:3 
+  325: at tests/guarantee/peterson.c:788:19, in: 318 out:326 
+  326: at tests/guarantee/peterson.c:789:12, in: 325 out:3 
+  327: at tests/guarantee/peterson.c:794:10, in: 303 out:328 329 
+  328: at tests/guarantee/peterson.c:822:14, in: 327 out:339 
+  329: at tests/guarantee/peterson.c:800:36, in: 327 out:330 331 
+  330: at tests/guarantee/peterson.c:809:15, in: 329 out:334 
+  331: at tests/guarantee/peterson.c:805:15, in: 329 out:332 
+  332: at tests/guarantee/peterson.c:806:19, in: 331 out:333 
+  333: at tests/guarantee/peterson.c:807:12, in: 332 out:3 
+  334: at tests/guarantee/peterson.c:810:12, in: 330 out:335 336 
+  335: at tests/guarantee/peterson.c:817:16, in: 334 out:338 
+  336: at tests/guarantee/peterson.c:814:16, in: 334 out:337 
+  337: at tests/guarantee/peterson.c:815:20, in: 336 out:3 
+  338: at tests/guarantee/peterson.c:818:20, in: 335 out:3 
+  339: at tests/guarantee/peterson.c:823:18, in: 341 328 out:340 341 
+  340: at tests/guarantee/peterson.c:824:40, in: 339 out:342 
+  341: at tests/guarantee/peterson.c:824:39, in: 339 out:339 
+  342: at tests/guarantee/peterson.c:825:11, in: 340 out:3 
+  343: at tests/guarantee/peterson.c:831:14, in: 274 out:344 345 
+  344: at tests/guarantee/peterson.c:935:12, in: 343 out:386 387 
+  345: at tests/guarantee/peterson.c:839:34, in: 343 out:346 347 
+  346: at tests/guarantee/peterson.c:899:13, in: 345 out:370 
+  347: at tests/guarantee/peterson.c:846:35, in: 345 out:348 349 
+  348: at tests/guarantee/peterson.c:875:14, in: 347 out:360 
+  349: at tests/guarantee/peterson.c:852:14, in: 347 out:350 
+  350: at tests/guarantee/peterson.c:853:11, in: 349 out:351 352 
+  351: at tests/guarantee/peterson.c:862:15, in: 350 out:355 
+  352: at tests/guarantee/peterson.c:858:15, in: 350 out:353 
+  353: at tests/guarantee/peterson.c:859:19, in: 352 out:354 
+  354: at tests/guarantee/peterson.c:860:12, in: 353 out:3 
+  355: at tests/guarantee/peterson.c:863:12, in: 351 out:356 357 
+  356: at tests/guarantee/peterson.c:870:16, in: 355 out:359 
+  357: at tests/guarantee/peterson.c:867:16, in: 355 out:358 
+  358: at tests/guarantee/peterson.c:868:20, in: 357 out:3 
+  359: at tests/guarantee/peterson.c:871:20, in: 356 out:3 
+  360: at tests/guarantee/peterson.c:876:11, in: 348 out:361 362 
+  361: at tests/guarantee/peterson.c:893:15, in: 360 out:368 
+  362: at tests/guarantee/peterson.c:881:15, in: 360 out:363 
+  363: at tests/guarantee/peterson.c:882:12, in: 362 out:364 365 
+  364: at tests/guarantee/peterson.c:889:16, in: 363 out:367 
+  365: at tests/guarantee/peterson.c:886:16, in: 363 out:366 
+  366: at tests/guarantee/peterson.c:887:20, in: 365 out:3 
+  367: at tests/guarantee/peterson.c:890:20, in: 364 out:3 
+  368: at tests/guarantee/peterson.c:894:19, in: 361 out:369 
+  369: at tests/guarantee/peterson.c:895:12, in: 368 out:3 
+  370: at tests/guarantee/peterson.c:900:10, in: 346 out:371 372 
+  371: at tests/guarantee/peterson.c:928:14, in: 370 out:382 
+  372: at tests/guarantee/peterson.c:906:36, in: 370 out:373 374 
+  373: at tests/guarantee/peterson.c:915:15, in: 372 out:377 
+  374: at tests/guarantee/peterson.c:911:15, in: 372 out:375 
+  375: at tests/guarantee/peterson.c:912:19, in: 374 out:376 
+  376: at tests/guarantee/peterson.c:913:12, in: 375 out:3 
+  377: at tests/guarantee/peterson.c:916:12, in: 373 out:378 379 
+  378: at tests/guarantee/peterson.c:923:16, in: 377 out:381 
+  379: at tests/guarantee/peterson.c:920:16, in: 377 out:380 
+  380: at tests/guarantee/peterson.c:921:20, in: 379 out:3 
+  381: at tests/guarantee/peterson.c:924:20, in: 378 out:3 
+  382: at tests/guarantee/peterson.c:929:18, in: 384 371 out:383 384 
+  383: at tests/guarantee/peterson.c:930:40, in: 382 out:385 
+  384: at tests/guarantee/peterson.c:930:39, in: 382 out:382 
+  385: at tests/guarantee/peterson.c:931:11, in: 383 out:3 
+  386: at tests/guarantee/peterson.c:995:13, in: 344 out:410 
+  387: at tests/guarantee/peterson.c:942:35, in: 344 out:388 389 
+  388: at tests/guarantee/peterson.c:971:14, in: 387 out:400 
+  389: at tests/guarantee/peterson.c:948:14, in: 387 out:390 
+  390: at tests/guarantee/peterson.c:949:11, in: 389 out:391 392 
+  391: at tests/guarantee/peterson.c:958:15, in: 390 out:395 
+  392: at tests/guarantee/peterson.c:954:15, in: 390 out:393 
+  393: at tests/guarantee/peterson.c:955:19, in: 392 out:394 
+  394: at tests/guarantee/peterson.c:956:12, in: 393 out:3 
+  395: at tests/guarantee/peterson.c:959:12, in: 391 out:396 397 
+  396: at tests/guarantee/peterson.c:966:16, in: 395 out:399 
+  397: at tests/guarantee/peterson.c:963:16, in: 395 out:398 
+  398: at tests/guarantee/peterson.c:964:20, in: 397 out:3 
+  399: at tests/guarantee/peterson.c:967:20, in: 396 out:3 
+  400: at tests/guarantee/peterson.c:972:11, in: 388 out:401 402 
+  401: at tests/guarantee/peterson.c:989:15, in: 400 out:408 
+  402: at tests/guarantee/peterson.c:977:15, in: 400 out:403 
+  403: at tests/guarantee/peterson.c:978:12, in: 402 out:404 405 
+  404: at tests/guarantee/peterson.c:985:16, in: 403 out:407 
+  405: at tests/guarantee/peterson.c:982:16, in: 403 out:406 
+  406: at tests/guarantee/peterson.c:983:20, in: 405 out:3 
+  407: at tests/guarantee/peterson.c:986:20, in: 404 out:3 
+  408: at tests/guarantee/peterson.c:990:19, in: 401 out:409 
+  409: at tests/guarantee/peterson.c:991:12, in: 408 out:3 
+  410: at tests/guarantee/peterson.c:996:10, in: 386 out:411 412 
+  411: at tests/guarantee/peterson.c:1024:14, in: 410 out:422 
+  412: at tests/guarantee/peterson.c:1002:36, in: 410 out:413 414 
+  413: at tests/guarantee/peterson.c:1019:15, in: 412 out:420 
+  414: at tests/guarantee/peterson.c:1007:15, in: 412 out:415 
+  415: at tests/guarantee/peterson.c:1008:12, in: 414 out:416 417 
+  416: at tests/guarantee/peterson.c:1015:16, in: 415 out:419 
+  417: at tests/guarantee/peterson.c:1012:16, in: 415 out:418 
+  418: at tests/guarantee/peterson.c:1013:20, in: 417 out:3 
+  419: at tests/guarantee/peterson.c:1016:20, in: 416 out:3 
+  420: at tests/guarantee/peterson.c:1020:19, in: 413 out:421 
+  421: at tests/guarantee/peterson.c:1021:12, in: 420 out:3 
+  422: at tests/guarantee/peterson.c:1025:18, in: 424 411 out:423 424 
+  423: at tests/guarantee/peterson.c:1026:40, in: 422 out:425 
+  424: at tests/guarantee/peterson.c:1026:39, in: 422 out:422 
+  425: at tests/guarantee/peterson.c:1027:11, in: 423 out:3 
+  426: at tests/guarantee/peterson.c:1034:13, in: 271 out:427 428 
+  427: at tests/guarantee/peterson.c:1199:11, in: 426 out:496 
+  428: at tests/guarantee/peterson.c:1043:33, in: 426 out:429 430 
+  429: at tests/guarantee/peterson.c:1148:12, in: 428 out:472 
+  430: at tests/guarantee/peterson.c:1051:12, in: 428 out:431 
+  431: at tests/guarantee/peterson.c:1052:15, in: 430 out:432 433 
+  432: at tests/guarantee/peterson.c:1112:13, in: 431 out:456 
+  433: at tests/guarantee/peterson.c:1059:35, in: 431 out:434 435 
+  434: at tests/guarantee/peterson.c:1088:14, in: 433 out:446 
+  435: at tests/guarantee/peterson.c:1065:14, in: 433 out:436 
+  436: at tests/guarantee/peterson.c:1066:11, in: 435 out:437 438 
+  437: at tests/guarantee/peterson.c:1075:15, in: 436 out:441 
+  438: at tests/guarantee/peterson.c:1071:15, in: 436 out:439 
+  439: at tests/guarantee/peterson.c:1072:19, in: 438 out:440 
+  440: at tests/guarantee/peterson.c:1073:12, in: 439 out:3 
+  441: at tests/guarantee/peterson.c:1076:12, in: 437 out:442 443 
+  442: at tests/guarantee/peterson.c:1083:16, in: 441 out:445 
+  443: at tests/guarantee/peterson.c:1080:16, in: 441 out:444 
+  444: at tests/guarantee/peterson.c:1081:20, in: 443 out:3 
+  445: at tests/guarantee/peterson.c:1084:20, in: 442 out:3 
+  446: at tests/guarantee/peterson.c:1089:11, in: 434 out:447 448 
+  447: at tests/guarantee/peterson.c:1106:15, in: 446 out:454 
+  448: at tests/guarantee/peterson.c:1094:15, in: 446 out:449 
+  449: at tests/guarantee/peterson.c:1095:12, in: 448 out:450 451 
+  450: at tests/guarantee/peterson.c:1102:16, in: 449 out:453 
+  451: at tests/guarantee/peterson.c:1099:16, in: 449 out:452 
+  452: at tests/guarantee/peterson.c:1100:20, in: 451 out:3 
+  453: at tests/guarantee/peterson.c:1103:20, in: 450 out:3 
+  454: at tests/guarantee/peterson.c:1107:19, in: 447 out:455 
+  455: at tests/guarantee/peterson.c:1108:12, in: 454 out:3 
+  456: at tests/guarantee/peterson.c:1113:10, in: 432 out:457 458 
+  457: at tests/guarantee/peterson.c:1141:14, in: 456 out:468 
+  458: at tests/guarantee/peterson.c:1119:36, in: 456 out:459 460 
+  459: at tests/guarantee/peterson.c:1136:15, in: 458 out:466 
+  460: at tests/guarantee/peterson.c:1124:15, in: 458 out:461 
+  461: at tests/guarantee/peterson.c:1125:12, in: 460 out:462 463 
+  462: at tests/guarantee/peterson.c:1132:16, in: 461 out:465 
+  463: at tests/guarantee/peterson.c:1129:16, in: 461 out:464 
+  464: at tests/guarantee/peterson.c:1130:20, in: 463 out:3 
+  465: at tests/guarantee/peterson.c:1133:20, in: 462 out:3 
+  466: at tests/guarantee/peterson.c:1137:19, in: 459 out:467 
+  467: at tests/guarantee/peterson.c:1138:12, in: 466 out:3 
+  468: at tests/guarantee/peterson.c:1142:18, in: 470 457 out:469 470 
+  469: at tests/guarantee/peterson.c:1143:40, in: 468 out:471 
+  470: at tests/guarantee/peterson.c:1143:39, in: 468 out:468 
+  471: at tests/guarantee/peterson.c:1144:11, in: 469 out:3 
+  472: at tests/guarantee/peterson.c:1149:9, in: 429 out:473 474 
+  473: at tests/guarantee/peterson.c:1191:13, in: 472 out:491 
+  474: at tests/guarantee/peterson.c:1156:13, in: 472 out:475 
+  475: at tests/guarantee/peterson.c:1157:16, in: 474 out:476 477 
+  476: at tests/guarantee/peterson.c:1185:14, in: 475 out:487 
+  477: at tests/guarantee/peterson.c:1163:36, in: 475 out:478 479 
+  478: at tests/guarantee/peterson.c:1180:15, in: 477 out:485 
+  479: at tests/guarantee/peterson.c:1168:15, in: 477 out:480 
+  480: at tests/guarantee/peterson.c:1169:12, in: 479 out:481 482 
+  481: at tests/guarantee/peterson.c:1176:16, in: 480 out:484 
+  482: at tests/guarantee/peterson.c:1173:16, in: 480 out:483 
+  483: at tests/guarantee/peterson.c:1174:20, in: 482 out:3 
+  484: at tests/guarantee/peterson.c:1177:20, in: 481 out:3 
+  485: at tests/guarantee/peterson.c:1181:19, in: 478 out:486 
+  486: at tests/guarantee/peterson.c:1182:12, in: 485 out:3 
+  487: at tests/guarantee/peterson.c:1186:18, in: 489 476 out:488 489 
+  488: at tests/guarantee/peterson.c:1187:40, in: 487 out:490 
+  489: at tests/guarantee/peterson.c:1187:39, in: 487 out:487 
+  490: at tests/guarantee/peterson.c:1188:11, in: 488 out:3 
+  491: at tests/guarantee/peterson.c:1192:17, in: 473 out:492 
+  492: at tests/guarantee/peterson.c:1193:16, in: 494 491 out:493 494 
+  493: at tests/guarantee/peterson.c:1194:39, in: 492 out:495 
+  494: at tests/guarantee/peterson.c:1194:38, in: 492 out:492 
+  495: at tests/guarantee/peterson.c:1195:10, in: 493 out:3 
+  496: at tests/guarantee/peterson.c:1200:14, in: 427 out:497 498 
+  497: at tests/guarantee/peterson.c:1304:12, in: 496 out:539 540 
+  498: at tests/guarantee/peterson.c:1208:34, in: 496 out:499 500 
+  499: at tests/guarantee/peterson.c:1268:13, in: 498 out:523 
+  500: at tests/guarantee/peterson.c:1215:35, in: 498 out:501 502 
+  501: at tests/guarantee/peterson.c:1244:14, in: 500 out:513 
+  502: at tests/guarantee/peterson.c:1221:14, in: 500 out:503 
+  503: at tests/guarantee/peterson.c:1222:11, in: 502 out:504 505 
+  504: at tests/guarantee/peterson.c:1231:15, in: 503 out:508 
+  505: at tests/guarantee/peterson.c:1227:15, in: 503 out:506 
+  506: at tests/guarantee/peterson.c:1228:19, in: 505 out:507 
+  507: at tests/guarantee/peterson.c:1229:12, in: 506 out:3 
+  508: at tests/guarantee/peterson.c:1232:12, in: 504 out:509 510 
+  509: at tests/guarantee/peterson.c:1239:16, in: 508 out:512 
+  510: at tests/guarantee/peterson.c:1236:16, in: 508 out:511 
+  511: at tests/guarantee/peterson.c:1237:20, in: 510 out:3 
+  512: at tests/guarantee/peterson.c:1240:20, in: 509 out:3 
+  513: at tests/guarantee/peterson.c:1245:11, in: 501 out:514 515 
+  514: at tests/guarantee/peterson.c:1262:15, in: 513 out:521 
+  515: at tests/guarantee/peterson.c:1250:15, in: 513 out:516 
+  516: at tests/guarantee/peterson.c:1251:12, in: 515 out:517 518 
+  517: at tests/guarantee/peterson.c:1258:16, in: 516 out:520 
+  518: at tests/guarantee/peterson.c:1255:16, in: 516 out:519 
+  519: at tests/guarantee/peterson.c:1256:20, in: 518 out:3 
+  520: at tests/guarantee/peterson.c:1259:20, in: 517 out:3 
+  521: at tests/guarantee/peterson.c:1263:19, in: 514 out:522 
+  522: at tests/guarantee/peterson.c:1264:12, in: 521 out:3 
+  523: at tests/guarantee/peterson.c:1269:10, in: 499 out:524 525 
+  524: at tests/guarantee/peterson.c:1297:14, in: 523 out:535 
+  525: at tests/guarantee/peterson.c:1275:36, in: 523 out:526 527 
+  526: at tests/guarantee/peterson.c:1284:15, in: 525 out:530 
+  527: at tests/guarantee/peterson.c:1280:15, in: 525 out:528 
+  528: at tests/guarantee/peterson.c:1281:19, in: 527 out:529 
+  529: at tests/guarantee/peterson.c:1282:12, in: 528 out:3 
+  530: at tests/guarantee/peterson.c:1285:12, in: 526 out:531 532 
+  531: at tests/guarantee/peterson.c:1292:16, in: 530 out:534 
+  532: at tests/guarantee/peterson.c:1289:16, in: 530 out:533 
+  533: at tests/guarantee/peterson.c:1290:20, in: 532 out:3 
+  534: at tests/guarantee/peterson.c:1293:20, in: 531 out:3 
+  535: at tests/guarantee/peterson.c:1298:18, in: 537 524 out:536 537 
+  536: at tests/guarantee/peterson.c:1299:40, in: 535 out:538 
+  537: at tests/guarantee/peterson.c:1299:39, in: 535 out:535 
+  538: at tests/guarantee/peterson.c:1300:11, in: 536 out:3 
+  539: at tests/guarantee/peterson.c:1364:13, in: 497 out:563 
+  540: at tests/guarantee/peterson.c:1311:35, in: 497 out:541 542 
+  541: at tests/guarantee/peterson.c:1340:14, in: 540 out:553 
+  542: at tests/guarantee/peterson.c:1317:14, in: 540 out:543 
+  543: at tests/guarantee/peterson.c:1318:11, in: 542 out:544 545 
+  544: at tests/guarantee/peterson.c:1327:15, in: 543 out:548 
+  545: at tests/guarantee/peterson.c:1323:15, in: 543 out:546 
+  546: at tests/guarantee/peterson.c:1324:19, in: 545 out:547 
+  547: at tests/guarantee/peterson.c:1325:12, in: 546 out:3 
+  548: at tests/guarantee/peterson.c:1328:12, in: 544 out:549 550 
+  549: at tests/guarantee/peterson.c:1335:16, in: 548 out:552 
+  550: at tests/guarantee/peterson.c:1332:16, in: 548 out:551 
+  551: at tests/guarantee/peterson.c:1333:20, in: 550 out:3 
+  552: at tests/guarantee/peterson.c:1336:20, in: 549 out:3 
+  553: at tests/guarantee/peterson.c:1341:11, in: 541 out:554 555 
+  554: at tests/guarantee/peterson.c:1358:15, in: 553 out:561 
+  555: at tests/guarantee/peterson.c:1346:15, in: 553 out:556 
+  556: at tests/guarantee/peterson.c:1347:12, in: 555 out:557 558 
+  557: at tests/guarantee/peterson.c:1354:16, in: 556 out:560 
+  558: at tests/guarantee/peterson.c:1351:16, in: 556 out:559 
+  559: at tests/guarantee/peterson.c:1352:20, in: 558 out:3 
+  560: at tests/guarantee/peterson.c:1355:20, in: 557 out:3 
+  561: at tests/guarantee/peterson.c:1359:19, in: 554 out:562 
+  562: at tests/guarantee/peterson.c:1360:12, in: 561 out:3 
+  563: at tests/guarantee/peterson.c:1365:10, in: 539 out:564 565 
+  564: at tests/guarantee/peterson.c:1393:14, in: 563 out:575 
+  565: at tests/guarantee/peterson.c:1371:36, in: 563 out:566 567 
+  566: at tests/guarantee/peterson.c:1388:15, in: 565 out:573 
+  567: at tests/guarantee/peterson.c:1376:15, in: 565 out:568 
+  568: at tests/guarantee/peterson.c:1377:12, in: 567 out:569 570 
+  569: at tests/guarantee/peterson.c:1384:16, in: 568 out:572 
+  570: at tests/guarantee/peterson.c:1381:16, in: 568 out:571 
+  571: at tests/guarantee/peterson.c:1382:20, in: 570 out:3 
+  572: at tests/guarantee/peterson.c:1385:20, in: 569 out:3 
+  573: at tests/guarantee/peterson.c:1389:19, in: 566 out:574 
+  574: at tests/guarantee/peterson.c:1390:12, in: 573 out:3 
+  575: at tests/guarantee/peterson.c:1394:18, in: 577 564 out:576 577 
+  576: at tests/guarantee/peterson.c:1395:40, in: 575 out:578 
+  577: at tests/guarantee/peterson.c:1395:39, in: 575 out:575 
+  578: at tests/guarantee/peterson.c:1396:11, in: 576 out:3 
+  579: at tests/guarantee/peterson.c:1405:12, in: 6 out:580 581 
+  580: at tests/guarantee/peterson.c:2166:9, in: 579 out:891 
+  581: at tests/guarantee/peterson.c:1416:9, in: 579 out:582 
+  582: at tests/guarantee/peterson.c:1417:13, in: 581 out:583 584 
+  583: at tests/guarantee/peterson.c:1796:10, in: 582 out:738 
+  584: at tests/guarantee/peterson.c:1427:10, in: 582 out:585 
+  585: at tests/guarantee/peterson.c:1428:13, in: 584 out:586 587 
+  586: at tests/guarantee/peterson.c:1593:11, in: 585 out:655 
+  587: at tests/guarantee/peterson.c:1437:33, in: 585 out:588 589 
+  588: at tests/guarantee/peterson.c:1495:12, in: 587 out:614 
+  589: at tests/guarantee/peterson.c:1445:12, in: 587 out:590 
+  590: at tests/guarantee/peterson.c:1446:9, in: 589 out:591 592 
+  591: at tests/guarantee/peterson.c:1459:13, in: 590 out:598 
+  592: at tests/guarantee/peterson.c:1453:13, in: 590 out:593 
+  593: at tests/guarantee/peterson.c:1454:17, in: 592 out:594 
+  594: at tests/guarantee/peterson.c:1455:16, in: 596 593 out:595 596 
+  595: at tests/guarantee/peterson.c:1456:39, in: 594 out:597 
+  596: at tests/guarantee/peterson.c:1456:38, in: 594 out:594 
+  597: at tests/guarantee/peterson.c:1457:10, in: 595 out:3 
+  598: at tests/guarantee/peterson.c:1460:16, in: 591 out:599 600 
+  599: at tests/guarantee/peterson.c:1488:14, in: 598 out:610 
+  600: at tests/guarantee/peterson.c:1466:36, in: 598 out:601 602 
+  601: at tests/guarantee/peterson.c:1475:15, in: 600 out:605 
+  602: at tests/guarantee/peterson.c:1471:15, in: 600 out:603 
+  603: at tests/guarantee/peterson.c:1472:19, in: 602 out:604 
+  604: at tests/guarantee/peterson.c:1473:12, in: 603 out:3 
+  605: at tests/guarantee/peterson.c:1476:12, in: 601 out:606 607 
+  606: at tests/guarantee/peterson.c:1483:16, in: 605 out:609 
+  607: at tests/guarantee/peterson.c:1480:16, in: 605 out:608 
+  608: at tests/guarantee/peterson.c:1481:20, in: 607 out:3 
+  609: at tests/guarantee/peterson.c:1484:20, in: 606 out:3 
+  610: at tests/guarantee/peterson.c:1489:18, in: 612 599 out:611 612 
+  611: at tests/guarantee/peterson.c:1490:40, in: 610 out:613 
+  612: at tests/guarantee/peterson.c:1490:39, in: 610 out:610 
+  613: at tests/guarantee/peterson.c:1491:11, in: 611 out:3 
+  614: at tests/guarantee/peterson.c:1496:15, in: 588 out:615 616 
+  615: at tests/guarantee/peterson.c:1556:13, in: 614 out:639 
+  616: at tests/guarantee/peterson.c:1503:35, in: 614 out:617 618 
+  617: at tests/guarantee/peterson.c:1532:14, in: 616 out:629 
+  618: at tests/guarantee/peterson.c:1509:14, in: 616 out:619 
+  619: at tests/guarantee/peterson.c:1510:11, in: 618 out:620 621 
+  620: at tests/guarantee/peterson.c:1519:15, in: 619 out:624 
+  621: at tests/guarantee/peterson.c:1515:15, in: 619 out:622 
+  622: at tests/guarantee/peterson.c:1516:19, in: 621 out:623 
+  623: at tests/guarantee/peterson.c:1517:12, in: 622 out:3 
+  624: at tests/guarantee/peterson.c:1520:12, in: 620 out:625 626 
+  625: at tests/guarantee/peterson.c:1527:16, in: 624 out:628 
+  626: at tests/guarantee/peterson.c:1524:16, in: 624 out:627 
+  627: at tests/guarantee/peterson.c:1525:20, in: 626 out:3 
+  628: at tests/guarantee/peterson.c:1528:20, in: 625 out:3 
+  629: at tests/guarantee/peterson.c:1533:11, in: 617 out:630 631 
+  630: at tests/guarantee/peterson.c:1550:15, in: 629 out:637 
+  631: at tests/guarantee/peterson.c:1538:15, in: 629 out:632 
+  632: at tests/guarantee/peterson.c:1539:12, in: 631 out:633 634 
+  633: at tests/guarantee/peterson.c:1546:16, in: 632 out:636 
+  634: at tests/guarantee/peterson.c:1543:16, in: 632 out:635 
+  635: at tests/guarantee/peterson.c:1544:20, in: 634 out:3 
+  636: at tests/guarantee/peterson.c:1547:20, in: 633 out:3 
+  637: at tests/guarantee/peterson.c:1551:19, in: 630 out:638 
+  638: at tests/guarantee/peterson.c:1552:12, in: 637 out:3 
+  639: at tests/guarantee/peterson.c:1557:10, in: 615 out:640 641 
+  640: at tests/guarantee/peterson.c:1585:14, in: 639 out:651 
+  641: at tests/guarantee/peterson.c:1563:36, in: 639 out:642 643 
+  642: at tests/guarantee/peterson.c:1572:15, in: 641 out:646 
+  643: at tests/guarantee/peterson.c:1568:15, in: 641 out:644 
+  644: at tests/guarantee/peterson.c:1569:19, in: 643 out:645 
+  645: at tests/guarantee/peterson.c:1570:12, in: 644 out:3 
+  646: at tests/guarantee/peterson.c:1573:12, in: 642 out:647 648 
+  647: at tests/guarantee/peterson.c:1580:16, in: 646 out:650 
+  648: at tests/guarantee/peterson.c:1577:16, in: 646 out:649 
+  649: at tests/guarantee/peterson.c:1578:20, in: 648 out:3 
+  650: at tests/guarantee/peterson.c:1581:20, in: 647 out:3 
+  651: at tests/guarantee/peterson.c:1586:18, in: 653 640 out:652 653 
+  652: at tests/guarantee/peterson.c:1587:40, in: 651 out:654 
+  653: at tests/guarantee/peterson.c:1587:39, in: 651 out:651 
+  654: at tests/guarantee/peterson.c:1588:11, in: 652 out:3 
+  655: at tests/guarantee/peterson.c:1594:14, in: 586 out:656 657 
+  656: at tests/guarantee/peterson.c:1698:12, in: 655 out:698 699 
+  657: at tests/guarantee/peterson.c:1602:34, in: 655 out:658 659 
+  658: at tests/guarantee/peterson.c:1662:13, in: 657 out:682 
+  659: at tests/guarantee/peterson.c:1609:35, in: 657 out:660 661 
+  660: at tests/guarantee/peterson.c:1638:14, in: 659 out:672 
+  661: at tests/guarantee/peterson.c:1615:14, in: 659 out:662 
+  662: at tests/guarantee/peterson.c:1616:11, in: 661 out:663 664 
+  663: at tests/guarantee/peterson.c:1625:15, in: 662 out:667 
+  664: at tests/guarantee/peterson.c:1621:15, in: 662 out:665 
+  665: at tests/guarantee/peterson.c:1622:19, in: 664 out:666 
+  666: at tests/guarantee/peterson.c:1623:12, in: 665 out:3 
+  667: at tests/guarantee/peterson.c:1626:12, in: 663 out:668 669 
+  668: at tests/guarantee/peterson.c:1633:16, in: 667 out:671 
+  669: at tests/guarantee/peterson.c:1630:16, in: 667 out:670 
+  670: at tests/guarantee/peterson.c:1631:20, in: 669 out:3 
+  671: at tests/guarantee/peterson.c:1634:20, in: 668 out:3 
+  672: at tests/guarantee/peterson.c:1639:11, in: 660 out:673 674 
+  673: at tests/guarantee/peterson.c:1656:15, in: 672 out:680 
+  674: at tests/guarantee/peterson.c:1644:15, in: 672 out:675 
+  675: at tests/guarantee/peterson.c:1645:12, in: 674 out:676 677 
+  676: at tests/guarantee/peterson.c:1652:16, in: 675 out:679 
+  677: at tests/guarantee/peterson.c:1649:16, in: 675 out:678 
+  678: at tests/guarantee/peterson.c:1650:20, in: 677 out:3 
+  679: at tests/guarantee/peterson.c:1653:20, in: 676 out:3 
+  680: at tests/guarantee/peterson.c:1657:19, in: 673 out:681 
+  681: at tests/guarantee/peterson.c:1658:12, in: 680 out:3 
+  682: at tests/guarantee/peterson.c:1663:10, in: 658 out:683 684 
+  683: at tests/guarantee/peterson.c:1691:14, in: 682 out:694 
+  684: at tests/guarantee/peterson.c:1669:36, in: 682 out:685 686 
+  685: at tests/guarantee/peterson.c:1678:15, in: 684 out:689 
+  686: at tests/guarantee/peterson.c:1674:15, in: 684 out:687 
+  687: at tests/guarantee/peterson.c:1675:19, in: 686 out:688 
+  688: at tests/guarantee/peterson.c:1676:12, in: 687 out:3 
+  689: at tests/guarantee/peterson.c:1679:12, in: 685 out:690 691 
+  690: at tests/guarantee/peterson.c:1686:16, in: 689 out:693 
+  691: at tests/guarantee/peterson.c:1683:16, in: 689 out:692 
+  692: at tests/guarantee/peterson.c:1684:20, in: 691 out:3 
+  693: at tests/guarantee/peterson.c:1687:20, in: 690 out:3 
+  694: at tests/guarantee/peterson.c:1692:18, in: 696 683 out:695 696 
+  695: at tests/guarantee/peterson.c:1693:40, in: 694 out:697 
+  696: at tests/guarantee/peterson.c:1693:39, in: 694 out:694 
+  697: at tests/guarantee/peterson.c:1694:11, in: 695 out:3 
+  698: at tests/guarantee/peterson.c:1758:13, in: 656 out:722 
+  699: at tests/guarantee/peterson.c:1705:35, in: 656 out:700 701 
+  700: at tests/guarantee/peterson.c:1734:14, in: 699 out:712 
+  701: at tests/guarantee/peterson.c:1711:14, in: 699 out:702 
+  702: at tests/guarantee/peterson.c:1712:11, in: 701 out:703 704 
+  703: at tests/guarantee/peterson.c:1721:15, in: 702 out:707 
+  704: at tests/guarantee/peterson.c:1717:15, in: 702 out:705 
+  705: at tests/guarantee/peterson.c:1718:19, in: 704 out:706 
+  706: at tests/guarantee/peterson.c:1719:12, in: 705 out:3 
+  707: at tests/guarantee/peterson.c:1722:12, in: 703 out:708 709 
+  708: at tests/guarantee/peterson.c:1729:16, in: 707 out:711 
+  709: at tests/guarantee/peterson.c:1726:16, in: 707 out:710 
+  710: at tests/guarantee/peterson.c:1727:20, in: 709 out:3 
+  711: at tests/guarantee/peterson.c:1730:20, in: 708 out:3 
+  712: at tests/guarantee/peterson.c:1735:11, in: 700 out:713 714 
+  713: at tests/guarantee/peterson.c:1752:15, in: 712 out:720 
+  714: at tests/guarantee/peterson.c:1740:15, in: 712 out:715 
+  715: at tests/guarantee/peterson.c:1741:12, in: 714 out:716 717 
+  716: at tests/guarantee/peterson.c:1748:16, in: 715 out:719 
+  717: at tests/guarantee/peterson.c:1745:16, in: 715 out:718 
+  718: at tests/guarantee/peterson.c:1746:20, in: 717 out:3 
+  719: at tests/guarantee/peterson.c:1749:20, in: 716 out:3 
+  720: at tests/guarantee/peterson.c:1753:19, in: 713 out:721 
+  721: at tests/guarantee/peterson.c:1754:12, in: 720 out:3 
+  722: at tests/guarantee/peterson.c:1759:10, in: 698 out:723 724 
+  723: at tests/guarantee/peterson.c:1787:14, in: 722 out:734 
+  724: at tests/guarantee/peterson.c:1765:36, in: 722 out:725 726 
+  725: at tests/guarantee/peterson.c:1782:15, in: 724 out:732 
+  726: at tests/guarantee/peterson.c:1770:15, in: 724 out:727 
+  727: at tests/guarantee/peterson.c:1771:12, in: 726 out:728 729 
+  728: at tests/guarantee/peterson.c:1778:16, in: 727 out:731 
+  729: at tests/guarantee/peterson.c:1775:16, in: 727 out:730 
+  730: at tests/guarantee/peterson.c:1776:20, in: 729 out:3 
+  731: at tests/guarantee/peterson.c:1779:20, in: 728 out:3 
+  732: at tests/guarantee/peterson.c:1783:19, in: 725 out:733 
+  733: at tests/guarantee/peterson.c:1784:12, in: 732 out:3 
+  734: at tests/guarantee/peterson.c:1788:18, in: 736 723 out:735 736 
+  735: at tests/guarantee/peterson.c:1789:40, in: 734 out:737 
+  736: at tests/guarantee/peterson.c:1789:39, in: 734 out:734 
+  737: at tests/guarantee/peterson.c:1790:11, in: 735 out:3 
+  738: at tests/guarantee/peterson.c:1797:13, in: 583 out:739 740 
+  739: at tests/guarantee/peterson.c:1962:11, in: 738 out:808 
+  740: at tests/guarantee/peterson.c:1806:33, in: 738 out:741 742 
+  741: at tests/guarantee/peterson.c:1911:12, in: 740 out:784 
+  742: at tests/guarantee/peterson.c:1814:12, in: 740 out:743 
+  743: at tests/guarantee/peterson.c:1815:15, in: 742 out:744 745 
+  744: at tests/guarantee/peterson.c:1875:13, in: 743 out:768 
+  745: at tests/guarantee/peterson.c:1822:35, in: 743 out:746 747 
+  746: at tests/guarantee/peterson.c:1851:14, in: 745 out:758 
+  747: at tests/guarantee/peterson.c:1828:14, in: 745 out:748 
+  748: at tests/guarantee/peterson.c:1829:11, in: 747 out:749 750 
+  749: at tests/guarantee/peterson.c:1838:15, in: 748 out:753 
+  750: at tests/guarantee/peterson.c:1834:15, in: 748 out:751 
+  751: at tests/guarantee/peterson.c:1835:19, in: 750 out:752 
+  752: at tests/guarantee/peterson.c:1836:12, in: 751 out:3 
+  753: at tests/guarantee/peterson.c:1839:12, in: 749 out:754 755 
+  754: at tests/guarantee/peterson.c:1846:16, in: 753 out:757 
+  755: at tests/guarantee/peterson.c:1843:16, in: 753 out:756 
+  756: at tests/guarantee/peterson.c:1844:20, in: 755 out:3 
+  757: at tests/guarantee/peterson.c:1847:20, in: 754 out:3 
+  758: at tests/guarantee/peterson.c:1852:11, in: 746 out:759 760 
+  759: at tests/guarantee/peterson.c:1869:15, in: 758 out:766 
+  760: at tests/guarantee/peterson.c:1857:15, in: 758 out:761 
+  761: at tests/guarantee/peterson.c:1858:12, in: 760 out:762 763 
+  762: at tests/guarantee/peterson.c:1865:16, in: 761 out:765 
+  763: at tests/guarantee/peterson.c:1862:16, in: 761 out:764 
+  764: at tests/guarantee/peterson.c:1863:20, in: 763 out:3 
+  765: at tests/guarantee/peterson.c:1866:20, in: 762 out:3 
+  766: at tests/guarantee/peterson.c:1870:19, in: 759 out:767 
+  767: at tests/guarantee/peterson.c:1871:12, in: 766 out:3 
+  768: at tests/guarantee/peterson.c:1876:10, in: 744 out:769 770 
+  769: at tests/guarantee/peterson.c:1904:14, in: 768 out:780 
+  770: at tests/guarantee/peterson.c:1882:36, in: 768 out:771 772 
+  771: at tests/guarantee/peterson.c:1899:15, in: 770 out:778 
+  772: at tests/guarantee/peterson.c:1887:15, in: 770 out:773 
+  773: at tests/guarantee/peterson.c:1888:12, in: 772 out:774 775 
+  774: at tests/guarantee/peterson.c:1895:16, in: 773 out:777 
+  775: at tests/guarantee/peterson.c:1892:16, in: 773 out:776 
+  776: at tests/guarantee/peterson.c:1893:20, in: 775 out:3 
+  777: at tests/guarantee/peterson.c:1896:20, in: 774 out:3 
+  778: at tests/guarantee/peterson.c:1900:19, in: 771 out:779 
+  779: at tests/guarantee/peterson.c:1901:12, in: 778 out:3 
+  780: at tests/guarantee/peterson.c:1905:18, in: 782 769 out:781 782 
+  781: at tests/guarantee/peterson.c:1906:40, in: 780 out:783 
+  782: at tests/guarantee/peterson.c:1906:39, in: 780 out:780 
+  783: at tests/guarantee/peterson.c:1907:11, in: 781 out:3 
+  784: at tests/guarantee/peterson.c:1912:9, in: 741 out:785 786 
+  785: at tests/guarantee/peterson.c:1954:13, in: 784 out:803 
+  786: at tests/guarantee/peterson.c:1919:13, in: 784 out:787 
+  787: at tests/guarantee/peterson.c:1920:16, in: 786 out:788 789 
+  788: at tests/guarantee/peterson.c:1948:14, in: 787 out:799 
+  789: at tests/guarantee/peterson.c:1926:36, in: 787 out:790 791 
+  790: at tests/guarantee/peterson.c:1943:15, in: 789 out:797 
+  791: at tests/guarantee/peterson.c:1931:15, in: 789 out:792 
+  792: at tests/guarantee/peterson.c:1932:12, in: 791 out:793 794 
+  793: at tests/guarantee/peterson.c:1939:16, in: 792 out:796 
+  794: at tests/guarantee/peterson.c:1936:16, in: 792 out:795 
+  795: at tests/guarantee/peterson.c:1937:20, in: 794 out:3 
+  796: at tests/guarantee/peterson.c:1940:20, in: 793 out:3 
+  797: at tests/guarantee/peterson.c:1944:19, in: 790 out:798 
+  798: at tests/guarantee/peterson.c:1945:12, in: 797 out:3 
+  799: at tests/guarantee/peterson.c:1949:18, in: 801 788 out:800 801 
+  800: at tests/guarantee/peterson.c:1950:40, in: 799 out:802 
+  801: at tests/guarantee/peterson.c:1950:39, in: 799 out:799 
+  802: at tests/guarantee/peterson.c:1951:11, in: 800 out:3 
+  803: at tests/guarantee/peterson.c:1955:17, in: 785 out:804 
+  804: at tests/guarantee/peterson.c:1956:16, in: 806 803 out:805 806 
+  805: at tests/guarantee/peterson.c:1957:39, in: 804 out:807 
+  806: at tests/guarantee/peterson.c:1957:38, in: 804 out:804 
+  807: at tests/guarantee/peterson.c:1958:10, in: 805 out:3 
+  808: at tests/guarantee/peterson.c:1963:14, in: 739 out:809 810 
+  809: at tests/guarantee/peterson.c:2067:12, in: 808 out:851 852 
+  810: at tests/guarantee/peterson.c:1971:34, in: 808 out:811 812 
+  811: at tests/guarantee/peterson.c:2031:13, in: 810 out:835 
+  812: at tests/guarantee/peterson.c:1978:35, in: 810 out:813 814 
+  813: at tests/guarantee/peterson.c:2007:14, in: 812 out:825 
+  814: at tests/guarantee/peterson.c:1984:14, in: 812 out:815 
+  815: at tests/guarantee/peterson.c:1985:11, in: 814 out:816 817 
+  816: at tests/guarantee/peterson.c:1994:15, in: 815 out:820 
+  817: at tests/guarantee/peterson.c:1990:15, in: 815 out:818 
+  818: at tests/guarantee/peterson.c:1991:19, in: 817 out:819 
+  819: at tests/guarantee/peterson.c:1992:12, in: 818 out:3 
+  820: at tests/guarantee/peterson.c:1995:12, in: 816 out:821 822 
+  821: at tests/guarantee/peterson.c:2002:16, in: 820 out:824 
+  822: at tests/guarantee/peterson.c:1999:16, in: 820 out:823 
+  823: at tests/guarantee/peterson.c:2000:20, in: 822 out:3 
+  824: at tests/guarantee/peterson.c:2003:20, in: 821 out:3 
+  825: at tests/guarantee/peterson.c:2008:11, in: 813 out:826 827 
+  826: at tests/guarantee/peterson.c:2025:15, in: 825 out:833 
+  827: at tests/guarantee/peterson.c:2013:15, in: 825 out:828 
+  828: at tests/guarantee/peterson.c:2014:12, in: 827 out:829 830 
+  829: at tests/guarantee/peterson.c:2021:16, in: 828 out:832 
+  830: at tests/guarantee/peterson.c:2018:16, in: 828 out:831 
+  831: at tests/guarantee/peterson.c:2019:20, in: 830 out:3 
+  832: at tests/guarantee/peterson.c:2022:20, in: 829 out:3 
+  833: at tests/guarantee/peterson.c:2026:19, in: 826 out:834 
+  834: at tests/guarantee/peterson.c:2027:12, in: 833 out:3 
+  835: at tests/guarantee/peterson.c:2032:10, in: 811 out:836 837 
+  836: at tests/guarantee/peterson.c:2060:14, in: 835 out:847 
+  837: at tests/guarantee/peterson.c:2038:36, in: 835 out:838 839 
+  838: at tests/guarantee/peterson.c:2047:15, in: 837 out:842 
+  839: at tests/guarantee/peterson.c:2043:15, in: 837 out:840 
+  840: at tests/guarantee/peterson.c:2044:19, in: 839 out:841 
+  841: at tests/guarantee/peterson.c:2045:12, in: 840 out:3 
+  842: at tests/guarantee/peterson.c:2048:12, in: 838 out:843 844 
+  843: at tests/guarantee/peterson.c:2055:16, in: 842 out:846 
+  844: at tests/guarantee/peterson.c:2052:16, in: 842 out:845 
+  845: at tests/guarantee/peterson.c:2053:20, in: 844 out:3 
+  846: at tests/guarantee/peterson.c:2056:20, in: 843 out:3 
+  847: at tests/guarantee/peterson.c:2061:18, in: 849 836 out:848 849 
+  848: at tests/guarantee/peterson.c:2062:40, in: 847 out:850 
+  849: at tests/guarantee/peterson.c:2062:39, in: 847 out:847 
+  850: at tests/guarantee/peterson.c:2063:11, in: 848 out:3 
+  851: at tests/guarantee/peterson.c:2127:13, in: 809 out:875 
+  852: at tests/guarantee/peterson.c:2074:35, in: 809 out:853 854 
+  853: at tests/guarantee/peterson.c:2103:14, in: 852 out:865 
+  854: at tests/guarantee/peterson.c:2080:14, in: 852 out:855 
+  855: at tests/guarantee/peterson.c:2081:11, in: 854 out:856 857 
+  856: at tests/guarantee/peterson.c:2090:15, in: 855 out:860 
+  857: at tests/guarantee/peterson.c:2086:15, in: 855 out:858 
+  858: at tests/guarantee/peterson.c:2087:19, in: 857 out:859 
+  859: at tests/guarantee/peterson.c:2088:12, in: 858 out:3 
+  860: at tests/guarantee/peterson.c:2091:12, in: 856 out:861 862 
+  861: at tests/guarantee/peterson.c:2098:16, in: 860 out:864 
+  862: at tests/guarantee/peterson.c:2095:16, in: 860 out:863 
+  863: at tests/guarantee/peterson.c:2096:20, in: 862 out:3 
+  864: at tests/guarantee/peterson.c:2099:20, in: 861 out:3 
+  865: at tests/guarantee/peterson.c:2104:11, in: 853 out:866 867 
+  866: at tests/guarantee/peterson.c:2121:15, in: 865 out:873 
+  867: at tests/guarantee/peterson.c:2109:15, in: 865 out:868 
+  868: at tests/guarantee/peterson.c:2110:12, in: 867 out:869 870 
+  869: at tests/guarantee/peterson.c:2117:16, in: 868 out:872 
+  870: at tests/guarantee/peterson.c:2114:16, in: 868 out:871 
+  871: at tests/guarantee/peterson.c:2115:20, in: 870 out:3 
+  872: at tests/guarantee/peterson.c:2118:20, in: 869 out:3 
+  873: at tests/guarantee/peterson.c:2122:19, in: 866 out:874 
+  874: at tests/guarantee/peterson.c:2123:12, in: 873 out:3 
+  875: at tests/guarantee/peterson.c:2128:10, in: 851 out:876 877 
+  876: at tests/guarantee/peterson.c:2156:14, in: 875 out:887 
+  877: at tests/guarantee/peterson.c:2134:36, in: 875 out:878 879 
+  878: at tests/guarantee/peterson.c:2151:15, in: 877 out:885 
+  879: at tests/guarantee/peterson.c:2139:15, in: 877 out:880 
+  880: at tests/guarantee/peterson.c:2140:12, in: 879 out:881 882 
+  881: at tests/guarantee/peterson.c:2147:16, in: 880 out:884 
+  882: at tests/guarantee/peterson.c:2144:16, in: 880 out:883 
+  883: at tests/guarantee/peterson.c:2145:20, in: 882 out:3 
+  884: at tests/guarantee/peterson.c:2148:20, in: 881 out:3 
+  885: at tests/guarantee/peterson.c:2152:19, in: 878 out:886 
+  886: at tests/guarantee/peterson.c:2153:12, in: 885 out:3 
+  887: at tests/guarantee/peterson.c:2157:18, in: 889 876 out:888 889 
+  888: at tests/guarantee/peterson.c:2158:40, in: 887 out:890 
+  889: at tests/guarantee/peterson.c:2158:39, in: 887 out:887 
+  890: at tests/guarantee/peterson.c:2159:11, in: 888 out:3 
+  891: at tests/guarantee/peterson.c:2167:12, in: 580 out:892 893 
+  892: at tests/guarantee/peterson.c:2411:10, in: 891 out:997 
+  893: at tests/guarantee/peterson.c:2177:32, in: 891 out:894 895 
+  894: at tests/guarantee/peterson.c:2343:11, in: 893 out:964 
+  895: at tests/guarantee/peterson.c:2186:11, in: 893 out:896 
+  896: at tests/guarantee/peterson.c:2187:15, in: 895 out:897 898 
+  897: at tests/guarantee/peterson.c:2292:12, in: 896 out:940 
+  898: at tests/guarantee/peterson.c:2195:12, in: 896 out:899 
+  899: at tests/guarantee/peterson.c:2196:15, in: 898 out:900 901 
+  900: at tests/guarantee/peterson.c:2256:13, in: 899 out:924 
+  901: at tests/guarantee/peterson.c:2203:35, in: 899 out:902 903 
+  902: at tests/guarantee/peterson.c:2232:14, in: 901 out:914 
+  903: at tests/guarantee/peterson.c:2209:14, in: 901 out:904 
+  904: at tests/guarantee/peterson.c:2210:11, in: 903 out:905 906 
+  905: at tests/guarantee/peterson.c:2219:15, in: 904 out:909 
+  906: at tests/guarantee/peterson.c:2215:15, in: 904 out:907 
+  907: at tests/guarantee/peterson.c:2216:19, in: 906 out:908 
+  908: at tests/guarantee/peterson.c:2217:12, in: 907 out:3 
+  909: at tests/guarantee/peterson.c:2220:12, in: 905 out:910 911 
+  910: at tests/guarantee/peterson.c:2227:16, in: 909 out:913 
+  911: at tests/guarantee/peterson.c:2224:16, in: 909 out:912 
+  912: at tests/guarantee/peterson.c:2225:20, in: 911 out:3 
+  913: at tests/guarantee/peterson.c:2228:20, in: 910 out:3 
+  914: at tests/guarantee/peterson.c:2233:11, in: 902 out:915 916 
+  915: at tests/guarantee/peterson.c:2250:15, in: 914 out:922 
+  916: at tests/guarantee/peterson.c:2238:15, in: 914 out:917 
+  917: at tests/guarantee/peterson.c:2239:12, in: 916 out:918 919 
+  918: at tests/guarantee/peterson.c:2246:16, in: 917 out:921 
+  919: at tests/guarantee/peterson.c:2243:16, in: 917 out:920 
+  920: at tests/guarantee/peterson.c:2244:20, in: 919 out:3 
+  921: at tests/guarantee/peterson.c:2247:20, in: 918 out:3 
+  922: at tests/guarantee/peterson.c:2251:19, in: 915 out:923 
+  923: at tests/guarantee/peterson.c:2252:12, in: 922 out:3 
+  924: at tests/guarantee/peterson.c:2257:10, in: 900 out:925 926 
+  925: at tests/guarantee/peterson.c:2285:14, in: 924 out:936 
+  926: at tests/guarantee/peterson.c:2263:36, in: 924 out:927 928 
+  927: at tests/guarantee/peterson.c:2280:15, in: 926 out:934 
+  928: at tests/guarantee/peterson.c:2268:15, in: 926 out:929 
+  929: at tests/guarantee/peterson.c:2269:12, in: 928 out:930 931 
+  930: at tests/guarantee/peterson.c:2276:16, in: 929 out:933 
+  931: at tests/guarantee/peterson.c:2273:16, in: 929 out:932 
+  932: at tests/guarantee/peterson.c:2274:20, in: 931 out:3 
+  933: at tests/guarantee/peterson.c:2277:20, in: 930 out:3 
+  934: at tests/guarantee/peterson.c:2281:19, in: 927 out:935 
+  935: at tests/guarantee/peterson.c:2282:12, in: 934 out:3 
+  936: at tests/guarantee/peterson.c:2286:18, in: 938 925 out:937 938 
+  937: at tests/guarantee/peterson.c:2287:40, in: 936 out:939 
+  938: at tests/guarantee/peterson.c:2287:39, in: 936 out:936 
+  939: at tests/guarantee/peterson.c:2288:11, in: 937 out:3 
+  940: at tests/guarantee/peterson.c:2293:9, in: 897 out:941 942 
+  941: at tests/guarantee/peterson.c:2335:13, in: 940 out:959 
+  942: at tests/guarantee/peterson.c:2300:13, in: 940 out:943 
+  943: at tests/guarantee/peterson.c:2301:16, in: 942 out:944 945 
+  944: at tests/guarantee/peterson.c:2329:14, in: 943 out:955 
+  945: at tests/guarantee/peterson.c:2307:36, in: 943 out:946 947 
+  946: at tests/guarantee/peterson.c:2324:15, in: 945 out:953 
+  947: at tests/guarantee/peterson.c:2312:15, in: 945 out:948 
+  948: at tests/guarantee/peterson.c:2313:12, in: 947 out:949 950 
+  949: at tests/guarantee/peterson.c:2320:16, in: 948 out:952 
+  950: at tests/guarantee/peterson.c:2317:16, in: 948 out:951 
+  951: at tests/guarantee/peterson.c:2318:20, in: 950 out:3 
+  952: at tests/guarantee/peterson.c:2321:20, in: 949 out:3 
+  953: at tests/guarantee/peterson.c:2325:19, in: 946 out:954 
+  954: at tests/guarantee/peterson.c:2326:12, in: 953 out:3 
+  955: at tests/guarantee/peterson.c:2330:18, in: 957 944 out:956 957 
+  956: at tests/guarantee/peterson.c:2331:40, in: 955 out:958 
+  957: at tests/guarantee/peterson.c:2331:39, in: 955 out:955 
+  958: at tests/guarantee/peterson.c:2332:11, in: 956 out:3 
+  959: at tests/guarantee/peterson.c:2336:17, in: 941 out:960 
+  960: at tests/guarantee/peterson.c:2337:16, in: 962 959 out:961 962 
+  961: at tests/guarantee/peterson.c:2338:39, in: 960 out:963 
+  962: at tests/guarantee/peterson.c:2338:38, in: 960 out:960 
+  963: at tests/guarantee/peterson.c:2339:10, in: 961 out:3 
+  964: at tests/guarantee/peterson.c:2344:8, in: 894 out:965 966 
+  965: at tests/guarantee/peterson.c:2402:12, in: 964 out:991 
+  966: at tests/guarantee/peterson.c:2352:12, in: 964 out:967 
+  967: at tests/guarantee/peterson.c:2353:16, in: 966 out:968 969 
+  968: at tests/guarantee/peterson.c:2395:13, in: 967 out:986 
+  969: at tests/guarantee/peterson.c:2360:13, in: 967 out:970 
+  970: at tests/guarantee/peterson.c:2361:16, in: 969 out:971 972 
+  971: at tests/guarantee/peterson.c:2389:14, in: 970 out:982 
+  972: at tests/guarantee/peterson.c:2367:36, in: 970 out:973 974 
+  973: at tests/guarantee/peterson.c:2384:15, in: 972 out:980 
+  974: at tests/guarantee/peterson.c:2372:15, in: 972 out:975 
+  975: at tests/guarantee/peterson.c:2373:12, in: 974 out:976 977 
+  976: at tests/guarantee/peterson.c:2380:16, in: 975 out:979 
+  977: at tests/guarantee/peterson.c:2377:16, in: 975 out:978 
+  978: at tests/guarantee/peterson.c:2378:20, in: 977 out:3 
+  979: at tests/guarantee/peterson.c:2381:20, in: 976 out:3 
+  980: at tests/guarantee/peterson.c:2385:19, in: 973 out:981 
+  981: at tests/guarantee/peterson.c:2386:12, in: 980 out:3 
+  982: at tests/guarantee/peterson.c:2390:18, in: 984 971 out:983 984 
+  983: at tests/guarantee/peterson.c:2391:40, in: 982 out:985 
+  984: at tests/guarantee/peterson.c:2391:39, in: 982 out:982 
+  985: at tests/guarantee/peterson.c:2392:11, in: 983 out:3 
+  986: at tests/guarantee/peterson.c:2396:17, in: 968 out:987 
+  987: at tests/guarantee/peterson.c:2397:16, in: 989 986 out:988 989 
+  988: at tests/guarantee/peterson.c:2398:39, in: 987 out:990 
+  989: at tests/guarantee/peterson.c:2398:38, in: 987 out:987 
+  990: at tests/guarantee/peterson.c:2399:10, in: 988 out:3 
+  991: at tests/guarantee/peterson.c:2403:16, in: 965 out:992 
+  992: at tests/guarantee/peterson.c:2404:16, in: 991 out:993 
+  993: at tests/guarantee/peterson.c:2405:15, in: 995 992 out:994 995 
+  994: at tests/guarantee/peterson.c:2406:38, in: 993 out:996 
+  995: at tests/guarantee/peterson.c:2406:37, in: 993 out:993 
+  996: at tests/guarantee/peterson.c:2407:9, in: 994 out:3 
+  997: at tests/guarantee/peterson.c:2412:14, in: 892 out:998 999 
+  998: at tests/guarantee/peterson.c:2577:11, in: 997 out:1067 
+  999: at tests/guarantee/peterson.c:2421:33, in: 997 out:1000 1001 
+  1000: at tests/guarantee/peterson.c:2526:12, in: 999 out:1043 
+  1001: at tests/guarantee/peterson.c:2429:12, in: 999 out:1002 
+  1002: at tests/guarantee/peterson.c:2430:15, in: 1001 out:1003 1004 
+  1003: at tests/guarantee/peterson.c:2490:13, in: 1002 out:1027 
+  1004: at tests/guarantee/peterson.c:2437:35, in: 1002 out:1005 1006 
+  1005: at tests/guarantee/peterson.c:2466:14, in: 1004 out:1017 
+  1006: at tests/guarantee/peterson.c:2443:14, in: 1004 out:1007 
+  1007: at tests/guarantee/peterson.c:2444:11, in: 1006 out:1008 1009 
+  1008: at tests/guarantee/peterson.c:2453:15, in: 1007 out:1012 
+  1009: at tests/guarantee/peterson.c:2449:15, in: 1007 out:1010 
+  1010: at tests/guarantee/peterson.c:2450:19, in: 1009 out:1011 
+  1011: at tests/guarantee/peterson.c:2451:12, in: 1010 out:3 
+  1012: at tests/guarantee/peterson.c:2454:12, in: 1008 out:1013 1014 
+  1013: at tests/guarantee/peterson.c:2461:16, in: 1012 out:1016 
+  1014: at tests/guarantee/peterson.c:2458:16, in: 1012 out:1015 
+  1015: at tests/guarantee/peterson.c:2459:20, in: 1014 out:3 
+  1016: at tests/guarantee/peterson.c:2462:20, in: 1013 out:3 
+  1017: at tests/guarantee/peterson.c:2467:11, in: 1005 out:1018 1019 
+  1018: at tests/guarantee/peterson.c:2484:15, in: 1017 out:1025 
+  1019: at tests/guarantee/peterson.c:2472:15, in: 1017 out:1020 
+  1020: at tests/guarantee/peterson.c:2473:12, in: 1019 out:1021 1022 
+  1021: at tests/guarantee/peterson.c:2480:16, in: 1020 out:1024 
+  1022: at tests/guarantee/peterson.c:2477:16, in: 1020 out:1023 
+  1023: at tests/guarantee/peterson.c:2478:20, in: 1022 out:3 
+  1024: at tests/guarantee/peterson.c:2481:20, in: 1021 out:3 
+  1025: at tests/guarantee/peterson.c:2485:19, in: 1018 out:1026 
+  1026: at tests/guarantee/peterson.c:2486:12, in: 1025 out:3 
+  1027: at tests/guarantee/peterson.c:2491:10, in: 1003 out:1028 1029 
+  1028: at tests/guarantee/peterson.c:2519:14, in: 1027 out:1039 
+  1029: at tests/guarantee/peterson.c:2497:36, in: 1027 out:1030 1031 
+  1030: at tests/guarantee/peterson.c:2514:15, in: 1029 out:1037 
+  1031: at tests/guarantee/peterson.c:2502:15, in: 1029 out:1032 
+  1032: at tests/guarantee/peterson.c:2503:12, in: 1031 out:1033 1034 
+  1033: at tests/guarantee/peterson.c:2510:16, in: 1032 out:1036 
+  1034: at tests/guarantee/peterson.c:2507:16, in: 1032 out:1035 
+  1035: at tests/guarantee/peterson.c:2508:20, in: 1034 out:3 
+  1036: at tests/guarantee/peterson.c:2511:20, in: 1033 out:3 
+  1037: at tests/guarantee/peterson.c:2515:19, in: 1030 out:1038 
+  1038: at tests/guarantee/peterson.c:2516:12, in: 1037 out:3 
+  1039: at tests/guarantee/peterson.c:2520:18, in: 1041 1028 out:1040 1041 
+  1040: at tests/guarantee/peterson.c:2521:40, in: 1039 out:1042 
+  1041: at tests/guarantee/peterson.c:2521:39, in: 1039 out:1039 
+  1042: at tests/guarantee/peterson.c:2522:11, in: 1040 out:3 
+  1043: at tests/guarantee/peterson.c:2527:9, in: 1000 out:1044 1045 
+  1044: at tests/guarantee/peterson.c:2569:13, in: 1043 out:1062 
+  1045: at tests/guarantee/peterson.c:2534:13, in: 1043 out:1046 
+  1046: at tests/guarantee/peterson.c:2535:16, in: 1045 out:1047 1048 
+  1047: at tests/guarantee/peterson.c:2563:14, in: 1046 out:1058 
+  1048: at tests/guarantee/peterson.c:2541:36, in: 1046 out:1049 1050 
+  1049: at tests/guarantee/peterson.c:2558:15, in: 1048 out:1056 
+  1050: at tests/guarantee/peterson.c:2546:15, in: 1048 out:1051 
+  1051: at tests/guarantee/peterson.c:2547:12, in: 1050 out:1052 1053 
+  1052: at tests/guarantee/peterson.c:2554:16, in: 1051 out:1055 
+  1053: at tests/guarantee/peterson.c:2551:16, in: 1051 out:1054 
+  1054: at tests/guarantee/peterson.c:2552:20, in: 1053 out:3 
+  1055: at tests/guarantee/peterson.c:2555:20, in: 1052 out:3 
+  1056: at tests/guarantee/peterson.c:2559:19, in: 1049 out:1057 
+  1057: at tests/guarantee/peterson.c:2560:12, in: 1056 out:3 
+  1058: at tests/guarantee/peterson.c:2564:18, in: 1060 1047 out:1059 1060 
+  1059: at tests/guarantee/peterson.c:2565:40, in: 1058 out:1061 
+  1060: at tests/guarantee/peterson.c:2565:39, in: 1058 out:1058 
+  1061: at tests/guarantee/peterson.c:2566:11, in: 1059 out:3 
+  1062: at tests/guarantee/peterson.c:2570:17, in: 1044 out:1063 
+  1063: at tests/guarantee/peterson.c:2571:16, in: 1065 1062 out:1064 1065 
+  1064: at tests/guarantee/peterson.c:2572:39, in: 1063 out:1066 
+  1065: at tests/guarantee/peterson.c:2572:38, in: 1063 out:1063 
+  1066: at tests/guarantee/peterson.c:2573:10, in: 1064 out:3 
+  1067: at tests/guarantee/peterson.c:2578:14, in: 998 out:1068 1069 
+  1068: at tests/guarantee/peterson.c:2682:12, in: 1067 out:1110 1111 
+  1069: at tests/guarantee/peterson.c:2586:34, in: 1067 out:1070 1071 
+  1070: at tests/guarantee/peterson.c:2646:13, in: 1069 out:1094 
+  1071: at tests/guarantee/peterson.c:2593:35, in: 1069 out:1072 1073 
+  1072: at tests/guarantee/peterson.c:2622:14, in: 1071 out:1084 
+  1073: at tests/guarantee/peterson.c:2599:14, in: 1071 out:1074 
+  1074: at tests/guarantee/peterson.c:2600:11, in: 1073 out:1075 1076 
+  1075: at tests/guarantee/peterson.c:2609:15, in: 1074 out:1079 
+  1076: at tests/guarantee/peterson.c:2605:15, in: 1074 out:1077 
+  1077: at tests/guarantee/peterson.c:2606:19, in: 1076 out:1078 
+  1078: at tests/guarantee/peterson.c:2607:12, in: 1077 out:3 
+  1079: at tests/guarantee/peterson.c:2610:12, in: 1075 out:1080 1081 
+  1080: at tests/guarantee/peterson.c:2617:16, in: 1079 out:1083 
+  1081: at tests/guarantee/peterson.c:2614:16, in: 1079 out:1082 
+  1082: at tests/guarantee/peterson.c:2615:20, in: 1081 out:3 
+  1083: at tests/guarantee/peterson.c:2618:20, in: 1080 out:3 
+  1084: at tests/guarantee/peterson.c:2623:11, in: 1072 out:1085 1086 
+  1085: at tests/guarantee/peterson.c:2640:15, in: 1084 out:1092 
+  1086: at tests/guarantee/peterson.c:2628:15, in: 1084 out:1087 
+  1087: at tests/guarantee/peterson.c:2629:12, in: 1086 out:1088 1089 
+  1088: at tests/guarantee/peterson.c:2636:16, in: 1087 out:1091 
+  1089: at tests/guarantee/peterson.c:2633:16, in: 1087 out:1090 
+  1090: at tests/guarantee/peterson.c:2634:20, in: 1089 out:3 
+  1091: at tests/guarantee/peterson.c:2637:20, in: 1088 out:3 
+  1092: at tests/guarantee/peterson.c:2641:19, in: 1085 out:1093 
+  1093: at tests/guarantee/peterson.c:2642:12, in: 1092 out:3 
+  1094: at tests/guarantee/peterson.c:2647:10, in: 1070 out:1095 1096 
+  1095: at tests/guarantee/peterson.c:2675:14, in: 1094 out:1106 
+  1096: at tests/guarantee/peterson.c:2653:36, in: 1094 out:1097 1098 
+  1097: at tests/guarantee/peterson.c:2662:15, in: 1096 out:1101 
+  1098: at tests/guarantee/peterson.c:2658:15, in: 1096 out:1099 
+  1099: at tests/guarantee/peterson.c:2659:19, in: 1098 out:1100 
+  1100: at tests/guarantee/peterson.c:2660:12, in: 1099 out:3 
+  1101: at tests/guarantee/peterson.c:2663:12, in: 1097 out:1102 1103 
+  1102: at tests/guarantee/peterson.c:2670:16, in: 1101 out:1105 
+  1103: at tests/guarantee/peterson.c:2667:16, in: 1101 out:1104 
+  1104: at tests/guarantee/peterson.c:2668:20, in: 1103 out:3 
+  1105: at tests/guarantee/peterson.c:2671:20, in: 1102 out:3 
+  1106: at tests/guarantee/peterson.c:2676:18, in: 1108 1095 out:1107 1108 
+  1107: at tests/guarantee/peterson.c:2677:40, in: 1106 out:1109 
+  1108: at tests/guarantee/peterson.c:2677:39, in: 1106 out:1106 
+  1109: at tests/guarantee/peterson.c:2678:11, in: 1107 out:3 
+  1110: at tests/guarantee/peterson.c:2742:13, in: 1068 out:1134 
+  1111: at tests/guarantee/peterson.c:2689:35, in: 1068 out:1112 1113 
+  1112: at tests/guarantee/peterson.c:2718:14, in: 1111 out:1124 
+  1113: at tests/guarantee/peterson.c:2695:14, in: 1111 out:1114 
+  1114: at tests/guarantee/peterson.c:2696:11, in: 1113 out:1115 1116 
+  1115: at tests/guarantee/peterson.c:2705:15, in: 1114 out:1119 
+  1116: at tests/guarantee/peterson.c:2701:15, in: 1114 out:1117 
+  1117: at tests/guarantee/peterson.c:2702:19, in: 1116 out:1118 
+  1118: at tests/guarantee/peterson.c:2703:12, in: 1117 out:3 
+  1119: at tests/guarantee/peterson.c:2706:12, in: 1115 out:1120 1121 
+  1120: at tests/guarantee/peterson.c:2713:16, in: 1119 out:1123 
+  1121: at tests/guarantee/peterson.c:2710:16, in: 1119 out:1122 
+  1122: at tests/guarantee/peterson.c:2711:20, in: 1121 out:3 
+  1123: at tests/guarantee/peterson.c:2714:20, in: 1120 out:3 
+  1124: at tests/guarantee/peterson.c:2719:11, in: 1112 out:1125 1126 
+  1125: at tests/guarantee/peterson.c:2736:15, in: 1124 out:1132 
+  1126: at tests/guarantee/peterson.c:2724:15, in: 1124 out:1127 
+  1127: at tests/guarantee/peterson.c:2725:12, in: 1126 out:1128 1129 
+  1128: at tests/guarantee/peterson.c:2732:16, in: 1127 out:1131 
+  1129: at tests/guarantee/peterson.c:2729:16, in: 1127 out:1130 
+  1130: at tests/guarantee/peterson.c:2730:20, in: 1129 out:3 
+  1131: at tests/guarantee/peterson.c:2733:20, in: 1128 out:3 
+  1132: at tests/guarantee/peterson.c:2737:19, in: 1125 out:1133 
+  1133: at tests/guarantee/peterson.c:2738:12, in: 1132 out:3 
+  1134: at tests/guarantee/peterson.c:2743:10, in: 1110 out:1135 1136 
+  1135: at tests/guarantee/peterson.c:2771:14, in: 1134 out:1146 
+  1136: at tests/guarantee/peterson.c:2749:36, in: 1134 out:1137 1138 
+  1137: at tests/guarantee/peterson.c:2766:15, in: 1136 out:1144 
+  1138: at tests/guarantee/peterson.c:2754:15, in: 1136 out:1139 
+  1139: at tests/guarantee/peterson.c:2755:12, in: 1138 out:1140 1141 
+  1140: at tests/guarantee/peterson.c:2762:16, in: 1139 out:1143 
+  1141: at tests/guarantee/peterson.c:2759:16, in: 1139 out:1142 
+  1142: at tests/guarantee/peterson.c:2760:20, in: 1141 out:3 
+  1143: at tests/guarantee/peterson.c:2763:20, in: 1140 out:3 
+  1144: at tests/guarantee/peterson.c:2767:19, in: 1137 out:1145 
+  1145: at tests/guarantee/peterson.c:2768:12, in: 1144 out:3 
+  1146: at tests/guarantee/peterson.c:2772:18, in: 1148 1135 out:1147 1148 
+  1147: at tests/guarantee/peterson.c:2773:40, in: 1146 out:1149 
+  1148: at tests/guarantee/peterson.c:2773:39, in: 1146 out:1146 
+  1149: at tests/guarantee/peterson.c:2774:11, in: 1147 out:3 
+  1150: at tests/guarantee/peterson.c:11:0, in: out:1151 
+  1151: at tests/guarantee/peterson.c:2785:1, in: 1150 out:
 
 List of arcs:
   1153 -> 1: label entry
