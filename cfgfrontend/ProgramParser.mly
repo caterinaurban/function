@@ -29,9 +29,7 @@ open AbstractSyntaxTree
 %token TOK_INT
 %token TOK_TRUE
 %token TOK_FALSE
-%token TOK_RAND
 %token TOK_QUESTIONMARK
-%token TOK_BRAND
 %token TOK_FOR
 %token TOK_WHILE
 %token TOK_RETURN
@@ -115,7 +113,15 @@ toplevel:
 /***************/
 
 bool_expr:
-| TOK_LPAREN e=bool_expr TOK_RPAREN
+| e = rnd_bool_expr     { e }
+| e = det_bool_expr     { e }
+
+rnd_bool_expr:
+| TOK_QUESTIONMARK
+    { AST_bool_rand }
+
+det_bool_expr:
+| TOK_LPAREN e=det_bool_expr TOK_RPAREN
     { e }
 | TOK_TRUE
     { AST_bool_const true }
@@ -127,22 +133,24 @@ bool_expr:
     { AST_bool_binary (o,e1,e2) }
 | e1=ext(int_expr) o=compare_op e2=ext(int_expr)
     { AST_compare (o,e1,e2) }
-| TOK_BRAND
-    { AST_bool_rand }
-| e=ext(int_expr)
+| e=ext(det_int_expr)
     { AST_compare (AST_NOT_EQUAL, e, add_extend_unknown (AST_int_const (add_extend_unknown "0"))) }
     
-int_expr:    
-| TOK_LPAREN e=int_expr TOK_RPAREN
+int_expr:
+| e = rnd_int_expr      { e }
+| e = det_int_expr      { e }
+
+rnd_int_expr:
+| e=ext(TOK_QUESTIONMARK)
+    { AST_int_random }
+
+det_int_expr:
+| TOK_LPAREN e=det_int_expr TOK_RPAREN
     { e }
 | e=ext(TOK_int)
     { AST_int_const e }
 | e=ext(TOK_id)
     { AST_int_identifier e }
-| e=ext(TOK_QUESTIONMARK)
-    { AST_int_random }
-| e=ext(TOK_RAND) TOK_LPAREN TOK_RPAREN
-    { AST_int_random }
 | o=int_unary_op e=ext(int_expr)
     { AST_int_unary (o,e) }
 | e1=ext(int_expr) o=int_binary_op e2=ext(int_expr)
