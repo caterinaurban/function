@@ -1,0 +1,270 @@
+
+Abstract Syntax:
+[ 1:]
+void main( ):
+[ 2:] while [ 3:] ( true ) do
+[ 4:]   while [ 5:] ( $1{WItemsNum} <= 5 || ? ) do
+[ 6:]     if ( $1{WItemsNum} <= 5 ) then
+[ 7:]       $1{WItemsNum} := $1{WItemsNum} + 1
+[ 8:]
+          else
+[ 9:]       $1{WItemsNum} := $1{WItemsNum} + 1
+[10:]
+          endif
+[11:]
+        od
+[12:]   while [13:] ( $1{WItemsNum} > 2 ) do
+[14:]     $1{WItemsNum} := $1{WItemsNum} - 1
+[15:]
+        od
+[16:]
+      od
+[17:] while [18:] ( true ) do
+[19:]
+      od
+[20:]
+
+Property: $1{WItemsNum} >= 1
+
+[ -1:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 2:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 3:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 4:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 5:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 6:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 7:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 8:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 9:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[10:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[11:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[12:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[13:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[14:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[15:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[16:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[17:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[18:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[19:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[20:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+Property: AG{$1{WItemsNum} >= 1}
+
+[ -1:]:
+top ? bottom
+
+[ 2:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 3:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 4:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 5:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 6:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 7:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 8:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[ 9:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[10:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[11:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[12:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[13:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[14:]:
+-$1{WItemsNum} >= -1 ? bottom
+$1{WItemsNum} >= 2 ? 0.
+
+[15:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[16:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[17:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[18:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[19:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[20:]:
+top ? bottom
+
+Property: AF{AG{$1{WItemsNum} >= 1}}
+
+[ -1:]:
+top ? bottom
+
+[ 2:]:
+-$1{WItemsNum} >= 0 ? -3$1{WItemsNum}+4
+$1{WItemsNum} >= 1 ? 0.
+
+[ 3:]:
+-$1{WItemsNum} >= 0 ? -3$1{WItemsNum}+4
+$1{WItemsNum} >= 1 ? 0.
+
+[ 4:]:
+-$1{WItemsNum} >= -1 ? -3$1{WItemsNum}+3
+$1{WItemsNum} >= 2 ? 0.
+
+[ 5:]:
+-$1{WItemsNum} >= -1 ? -3$1{WItemsNum}+3
+$1{WItemsNum} >= 2 ? 0
+
+[ 6:]:
+-$1{WItemsNum} >= 0 ? -3$1{WItemsNum}+2
+$1{WItemsNum} >= 1 ? 0.
+
+[ 7:]:
+-$1{WItemsNum} >= 0 ? -3$1{WItemsNum}+1
+$1{WItemsNum} >= 1 ? 0.
+
+[ 8:]:
+-$1{WItemsNum} >= -1 ? -3$1{WItemsNum}+3
+$1{WItemsNum} >= 2 ? 0.
+
+[ 9:]:
+-$1{WItemsNum} >= 0 ? -3$1{WItemsNum}+1
+$1{WItemsNum} >= 1 ? 0.
+
+[10:]:
+-$1{WItemsNum} >= -1 ? -3$1{WItemsNum}+3
+$1{WItemsNum} >= 2 ? 0.
+
+[11:]:
+-$1{WItemsNum} >= -1 ? -3$1{WItemsNum}+3
+$1{WItemsNum} >= 2 ? 0.
+
+[12:]:
+-$1{WItemsNum} >= 0 ? -3$1{WItemsNum}+5
+$1{WItemsNum} >= 1 ? 0.
+
+[13:]:
+-$1{WItemsNum} >= 0 ? -3$1{WItemsNum}+5
+$1{WItemsNum} >= 1 ? 0.
+
+[14:]:
+-$1{WItemsNum} >= -1 ? -3$1{WItemsNum}+9
+$1{WItemsNum} >= 2 ? 0.
+
+[15:]:
+-$1{WItemsNum} >= 0 ? -3$1{WItemsNum}+5
+$1{WItemsNum} >= 1 ? 0.
+
+[16:]:
+-$1{WItemsNum} >= 0 ? -3$1{WItemsNum}+4
+$1{WItemsNum} >= 1 ? 0.
+
+[17:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[18:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[19:]:
+-$1{WItemsNum} >= 0 ? bottom
+$1{WItemsNum} >= 1 ? 0.
+
+[20:]:
+top ? bottom
+
+
+Analysis Result: TRUE

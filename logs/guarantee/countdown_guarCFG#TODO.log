@@ -1,0 +1,159 @@
+
+CFG:
+List of variables:
+  $1{x}:int at tests/countdown.c:11.6-7
+  $2{c}:int at tests/countdown.c:11.9-10
+
+List of functions:
+  1: main() -> void at tests/countdown.c:10.0-19.1, entry: 11, exit: 10, calls:
+
+List of nodes:
+  11: at :0:-1, in: out:1 
+  10: at :0:-1, in: 2 out:
+  1: at tests/countdown.c:10:0, in: 11 out:3 
+  2: at tests/countdown.c:19:1, in: 3 out:10 
+  3: at tests/countdown.c:11:15, in: 5 1 out:2 4 
+  4: at tests/countdown.c:12:15, in: 3 out:5 
+  5: at tests/countdown.c:13:10, in: 7 4 out:3 6 
+  6: at tests/countdown.c:14:18, in: 5 out:7 
+  7: at tests/countdown.c:15:16, in: 6 out:5 
+  8: at tests/countdown.c:10:0, in: out:9 
+  9: at tests/countdown.c:19:1, in: 8 out:
+
+List of arcs:
+  11 -> 1: label entry
+  2 -> 10: label exit
+  1 -> 3: $2{c} = 1
+  3 -> 4: true ?
+  3 -> 2: ! (true) ?
+  4 -> 5: $1{x} = $2{c}
+  5 -> 6: $1{x} > 0 ?
+  5 -> 3: ! ($1{x} > 0) ?
+  6 -> 7: $1{x} = $1{x} - 1
+  7 -> 5: $2{c} = $2{c} + 1
+  8 -> 9: skip
+
+
+Property: $1{x} == 0
+
+[1:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[2:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[3:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[4:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[5:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[6:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[7:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[8:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[9:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[10:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[11:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+Property: AF{$1{x} == 0}
+
+[1:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[2:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[3:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[4:]:
+-$2{c} >= 1 && -$1{x} >= 1 ? bottom
+-$2{c} >= 1 && $1{x} == 0 ? 0.
+$1{x} >= 1 && -$2{c} >= 1 ? bottom
+-$1{x} >= 1 && $2{c} == 0 ? 1
+$1{x} == 0 && $2{c} == 0 ? 0.
+$1{x} >= 1 && $2{c} == 0 ? 1
+-$1{x} >= 1 && $2{c} == 1 ? 3
+$1{x} == 0 && $2{c} == 1 ? 0.
+$1{x} >= 1 && $2{c} == 1 ? 3
+-$1{x} >= 1 && $2{c} == 2 ? 6
+$1{x} == 0 && $2{c} == 2 ? 0.
+$1{x} >= 1 && $2{c} == 2 ? 6
+$2{c} >= 3 && -$1{x} >= 1 ? 3$2{c}+0
+$2{c} >= 3 && $1{x} == 0 ? 0.
+$1{x} >= 1 && $2{c} >= 3 ? 3$2{c}+0
+
+[5:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? 3$1{x}-1
+
+[6:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? 3$1{x}-2
+
+[7:]:
+-$1{x} >= 1 ? bottom
+$1{x} >= 0 ? 3$1{x}+0
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+[11:]:
+-$1{x} >= 1 ? bottom
+$1{x} == 0 ? 0.
+$1{x} >= 1 ? bottom
+
+
+Analysis Result: UNKNOWN

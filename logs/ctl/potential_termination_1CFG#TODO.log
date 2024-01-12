@@ -1,0 +1,171 @@
+
+CFG:
+List of variables:
+  $1{__return_main}:int at tests/ctl/potential_termination_1.c:8.0-22.1
+  $2{i}:int at tests/ctl/potential_termination_1.c:9.8-9
+  $3{x}:int at tests/ctl/potential_termination_1.c:10.8-9
+  $4{y}:int at tests/ctl/potential_termination_1.c:11.8-9
+
+List of functions:
+  1: main() -> $1{__return_main}:int at tests/ctl/potential_termination_1.c:8.0-22.1, entry: 16, exit: 15, calls:
+
+List of nodes:
+  16: at :0:-1, in: out:1 
+  15: at :0:-1, in: 2 out:
+  1: at tests/ctl/potential_termination_1.c:8:0, in: 16 out:3 
+  2: at tests/ctl/potential_termination_1.c:22:1, in: 11 out:15 
+  3: at tests/ctl/potential_termination_1.c:9:10, in: 1 out:4 
+  4: at tests/ctl/potential_termination_1.c:10:10, in: 3 out:5 
+  5: at tests/ctl/potential_termination_1.c:11:10, in: 4 out:6 
+  6: at tests/ctl/potential_termination_1.c:12:10, in: 5 out:7 
+  7: at tests/ctl/potential_termination_1.c:13:10, in: 6 out:8 
+  8: at tests/ctl/potential_termination_1.c:14:10, in: 7 out:9 10 
+  9: at tests/ctl/potential_termination_1.c:18:5, in: 12 10 8 out:11 12 
+  10: at tests/ctl/potential_termination_1.c:16:16, in: 8 out:9 
+  11: at tests/ctl/potential_termination_1.c:19:22, in: 9 out:2 
+  12: at tests/ctl/potential_termination_1.c:19:19, in: 9 out:9 
+  13: at tests/ctl/potential_termination_1.c:8:0, in: out:14 
+  14: at tests/ctl/potential_termination_1.c:22:1, in: 13 out:
+
+List of arcs:
+  16 -> 1: label entry
+  2 -> 15: label exit
+  1 -> 3: skip
+  3 -> 4: skip
+  4 -> 5: skip
+  5 -> 6: $4{y} = 1
+  6 -> 7: $2{i} = ?
+  7 -> 8: $3{x} = ?
+  8 -> 10: $2{i} > 10 ?
+  8 -> 9: ! ($2{i} > 10) ?
+  10 -> 9: $3{x} = 1
+  9 -> 12: $3{x} == $4{y} ?
+  9 -> 11: ! ($3{x} == $4{y}) ?
+  12 -> 9: skip
+  11 -> 2: $1{__return_main} = 0
+  13 -> 14: skip
+
+
+Property: exit: true
+
+[1:]:
+top ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+top ? bottom
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? bottom
+
+[11:]:
+top ? bottom
+
+[12:]:
+top ? bottom
+
+[13:]:
+top ? bottom
+
+[14:]:
+top ? bottom
+
+[15:]:
+top ? 0.
+
+[16:]:
+top ? bottom
+
+Property: EF{exit: true}
+
+[1:]:
+top ? bottom
+
+[2:]:
+top ? 0.
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+top ? bottom
+
+[8:]:
+-$4{y} >= 0 && -$3{x}+$4{y} >= 1 && -$2{i} >= -10 ? 3
+$2{i} >= 11 && -$4{y} >= 0 && -$3{x}+$4{y} >= 1 ? 4
+-$3{x} >= 0 && -$2{i} >= -10 && -$3{x}+$4{y} == 0 ? bottom
+$2{i} >= 11 && -$3{x} >= 0 && -$3{x}+$4{y} == 0 ? 4
+$3{x}-$4{y} >= 1 && -$4{y} >= 0 && -$2{i} >= -10 ? 3
+$2{i} >= 11 && $3{x}-$4{y} >= 1 && -$4{y} >= 0 ? 4
+-$3{x} >= -1 && -$2{i} >= -10 && $4{y} == 1 ? 3
+$2{i} >= 11 && -$3{x} >= -1 && $4{y} == 1 ? bottom
+$3{x} >= 2 && -$2{i} >= -10 && $4{y} == 1 ? 3
+$2{i} >= 11 && $3{x} >= 2 && $4{y} == 1 ? bottom
+$4{y} >= 2 && -$3{x}+$4{y} >= 1 && -$2{i} >= -10 ? 3
+$2{i} >= 11 && $4{y} >= 2 && -$3{x}+$4{y} >= 1 ? 4
+$3{x} >= 2 && -$2{i} >= -10 && -$3{x}+$4{y} == 0 ? bottom
+$2{i} >= 11 && $3{x} >= 2 && -$3{x}+$4{y} == 0 ? 4
+$3{x}-$4{y} >= 1 && $4{y} >= 2 && -$2{i} >= -10 ? 3
+$2{i} >= 11 && $3{x}-$4{y} >= 1 && $4{y} >= 2 ? 4
+
+[9:]:
+-$3{x}+$4{y} >= 1 ? 2
+-$3{x}+$4{y} == 0 ? bottom
+$3{x}-$4{y} >= 1 ? 2
+
+[10:]:
+-$4{y} >= 0 ? 3
+$4{y} == 1 ? bottom
+$4{y} >= 2 ? 3
+
+[11:]:
+top ? 1
+
+[12:]:
+-$3{x}+$4{y} >= 1 ? 2
+-$3{x}+$4{y} == 0 ? bottom
+$3{x}-$4{y} >= 1 ? 2
+
+[13:]:
+top ? bottom
+
+[14:]:
+top ? bottom
+
+[15:]:
+top ? 0.
+
+[16:]:
+top ? bottom
+
+
+Analysis Result: UNKNOWN

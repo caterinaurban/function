@@ -1,0 +1,629 @@
+
+CFG:
+List of variables:
+  $1{__return_main}:int at tests/ctl/koskinen/acqrel_mod.c:15.0-41.1
+  $2{n}:int at tests/ctl/koskinen/acqrel_mod.c:17.8-9
+  $3{n_init}:int at tests/ctl/koskinen/acqrel_mod.c:18.8-14
+  $4{m}:int at tests/ctl/koskinen/acqrel_mod.c:20.8-9
+  $5{m_init}:int at tests/ctl/koskinen/acqrel_mod.c:21.8-14
+  $6{a}:int at tests/ctl/koskinen/acqrel_mod.c:23.8-9
+  $7{r}:int at tests/ctl/koskinen/acqrel_mod.c:24.8-9
+
+List of functions:
+  1: main() -> $1{__return_main}:int at tests/ctl/koskinen/acqrel_mod.c:15.0-41.1, entry: 23, exit: 22, calls:
+
+List of nodes:
+  23: at :0:-1, in: out:1 
+  22: at :0:-1, in: 2 out:
+  1: at tests/ctl/koskinen/acqrel_mod.c:15:0, in: 23 out:3 
+  2: at tests/ctl/koskinen/acqrel_mod.c:41:1, in: 11 out:22 
+  3: at tests/ctl/koskinen/acqrel_mod.c:17:10, in: 1 out:4 
+  4: at tests/ctl/koskinen/acqrel_mod.c:18:15, in: 3 out:5 
+  5: at tests/ctl/koskinen/acqrel_mod.c:20:10, in: 4 out:6 
+  6: at tests/ctl/koskinen/acqrel_mod.c:21:15, in: 5 out:7 
+  7: at tests/ctl/koskinen/acqrel_mod.c:23:10, in: 6 out:8 
+  8: at tests/ctl/koskinen/acqrel_mod.c:24:10, in: 7 out:9 
+  9: at tests/ctl/koskinen/acqrel_mod.c:26:10, in: 8 out:10 
+  10: at tests/ctl/koskinen/acqrel_mod.c:28:15, in: 18 9 out:11 12 
+  11: at tests/ctl/koskinen/acqrel_mod.c:38:5, in: 19 10 out:2 19 
+  12: at tests/ctl/koskinen/acqrel_mod.c:29:17, in: 10 out:13 
+  13: at tests/ctl/koskinen/acqrel_mod.c:30:14, in: 12 out:14 
+  14: at tests/ctl/koskinen/acqrel_mod.c:31:14, in: 13 out:15 
+  15: at tests/ctl/koskinen/acqrel_mod.c:32:19, in: 17 14 out:16 17 
+  16: at tests/ctl/koskinen/acqrel_mod.c:35:9, in: 15 out:18 
+  17: at tests/ctl/koskinen/acqrel_mod.c:33:19, in: 15 out:15 
+  18: at tests/ctl/koskinen/acqrel_mod.c:36:14, in: 16 out:10 
+  19: at tests/ctl/koskinen/acqrel_mod.c:40:15, in: 11 out:11 
+  20: at tests/ctl/koskinen/acqrel_mod.c:15:0, in: out:21 
+  21: at tests/ctl/koskinen/acqrel_mod.c:41:1, in: 20 out:
+
+List of arcs:
+  23 -> 1: label entry
+  2 -> 22: label exit
+  1 -> 3: skip
+  3 -> 4: skip
+  4 -> 5: skip
+  5 -> 6: skip
+  6 -> 7: skip
+  7 -> 8: skip
+  8 -> 9: $7{r} = 0
+  9 -> 10: $4{m} = $5{m_init}
+  10 -> 12: $4{m} > 0 ?
+  10 -> 11: ! ($4{m} > 0) ?
+  12 -> 13: $6{a} = 1
+  13 -> 14: $6{a} = 0
+  14 -> 15: $2{n} = $3{n_init}
+  15 -> 17: $2{n} > 0 ?
+  15 -> 16: ! ($2{n} > 0) ?
+  17 -> 15: $2{n} = $2{n} + -1
+  16 -> 18: $7{r} = 1
+  18 -> 10: $7{r} = 0
+  11 -> 19: true ?
+  11 -> 2: ! (true) ?
+  19 -> 11: skip
+  20 -> 21: skip
+
+
+Property: $7{r} == 1
+
+[1:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[2:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[3:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[4:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[5:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[6:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[7:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[8:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[9:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[10:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[11:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[12:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[13:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[14:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[15:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[16:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[17:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[18:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[19:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[20:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[21:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[22:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[23:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+Property: AF{$7{r} == 1}
+
+[1:]:
+top ? bottom
+
+[2:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+top ? bottom
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? bottom
+
+[11:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[12:]:
+top ? bottom
+
+[13:]:
+top ? bottom
+
+[14:]:
+top ? bottom
+
+[15:]:
+top ? bottom
+
+[16:]:
+top ? bottom
+
+[17:]:
+top ? bottom
+
+[18:]:
+top ? bottom
+
+[19:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[20:]:
+top ? bottom
+
+[21:]:
+top ? bottom
+
+[22:]:
+-$7{r} >= 0 ? bottom
+$7{r} == 1 ? 0.
+$7{r} >= 2 ? bottom
+
+[23:]:
+top ? bottom
+
+Property: $6{a} != 1
+
+[1:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[2:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[3:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[4:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[5:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[6:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[7:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[8:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[9:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[10:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[11:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[12:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[13:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[14:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[15:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[16:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[17:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[18:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[19:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[20:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[21:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[22:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[23:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+Property: OR{$6{a} != 1}{AF{$7{r} == 1}}
+
+[1:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[2:]:
+-$7{r} >= -1 && -$6{a} >= 0 ? 0.
+-$7{r} >= -1 && $6{a} == 1 ? bottom
+$6{a} >= 2 && -$7{r} >= -1 ? 0
+$7{r} >= 2 && -$6{a} >= 0 ? 0.
+$7{r} >= 2 && $6{a} == 1 ? bottom
+$6{a} >= 2 && $7{r} >= 2 ? 0.
+
+[3:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[4:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[5:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[6:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[7:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[8:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[9:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[10:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[11:]:
+-$7{r} >= -1 && -$6{a} >= 0 ? 0.
+-$7{r} >= -1 && $6{a} == 1 ? bottom
+$6{a} >= 2 && -$7{r} >= -1 ? 0
+$7{r} >= 2 && -$6{a} >= 0 ? 0.
+$7{r} >= 2 && $6{a} == 1 ? bottom
+$6{a} >= 2 && $7{r} >= 2 ? 0.
+
+[12:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[13:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[14:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[15:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[16:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[17:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[18:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[19:]:
+-$7{r} >= -1 && -$6{a} >= 0 ? 0.
+-$7{r} >= -1 && $6{a} == 1 ? bottom
+$6{a} >= 2 && -$7{r} >= -1 ? 0
+$7{r} >= 2 && -$6{a} >= 0 ? 0.
+$7{r} >= 2 && $6{a} == 1 ? bottom
+$6{a} >= 2 && $7{r} >= 2 ? 0.
+
+[20:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[21:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[22:]:
+-$7{r} >= -1 && -$6{a} >= 0 ? 0.
+-$7{r} >= -1 && $6{a} == 1 ? bottom
+$6{a} >= 2 && -$7{r} >= -1 ? 0
+$7{r} >= 2 && -$6{a} >= 0 ? 0.
+$7{r} >= 2 && $6{a} == 1 ? bottom
+$6{a} >= 2 && $7{r} >= 2 ? 0.
+
+[23:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+Property: AG{OR{$6{a} != 1}{AF{$7{r} == 1}}}
+
+[1:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[2:]:
+top ? bottom
+
+[3:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[4:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[5:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[6:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[7:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[8:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[9:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[10:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[11:]:
+-$7{r} >= -1 && -$6{a} >= 0 ? 0.
+-$7{r} >= -1 && $6{a} == 1 ? bottom
+$6{a} >= 2 && -$7{r} >= -1 ? 0
+$7{r} >= 2 && -$6{a} >= 0 ? 0.
+$7{r} >= 2 && $6{a} == 1 ? bottom
+$6{a} >= 2 && $7{r} >= 2 ? 0.
+
+[12:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[13:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[14:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[15:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[16:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[17:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[18:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[19:]:
+-$7{r} >= -1 && -$6{a} >= 0 ? 0.
+-$7{r} >= -1 && $6{a} == 1 ? bottom
+$6{a} >= 2 && -$7{r} >= -1 ? 0
+$7{r} >= 2 && -$6{a} >= 0 ? 0.
+$7{r} >= 2 && $6{a} == 1 ? bottom
+$6{a} >= 2 && $7{r} >= 2 ? 0.
+
+[20:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[21:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+[22:]:
+top ? bottom
+
+[23:]:
+-$6{a} >= 0 ? 0.
+$6{a} == 1 ? bottom
+$6{a} >= 2 ? 0.
+
+
+Analysis Result: TRUE

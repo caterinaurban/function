@@ -1,0 +1,542 @@
+
+CFG:
+List of variables:
+  $1{i}:int at tests/ctl/koskinen/fig8-2007.c:14.4-5
+  $2{Pdolen}:int at tests/ctl/koskinen/fig8-2007.c:14.11-17
+  $3{DName}:int at tests/ctl/koskinen/fig8-2007.c:14.23-28
+  $4{status}:int at tests/ctl/koskinen/fig8-2007.c:15.4-10
+  $5{set}:int at tests/ctl/koskinen/fig8-2007.c:17.4-7
+  $6{unset}:int at tests/ctl/koskinen/fig8-2007.c:18.4-9
+
+List of functions:
+  1: main() -> void at tests/ctl/koskinen/fig8-2007.c:20.0-37.1, entry: 18, exit: 17, calls:
+
+List of nodes:
+  18: at :0:-1, in: out:1 
+  17: at :0:-1, in: 2 out:
+  1: at tests/ctl/koskinen/fig8-2007.c:20:0, in: 18 out:3 
+  2: at tests/ctl/koskinen/fig8-2007.c:37:1, in: 14 out:17 
+  3: at tests/ctl/koskinen/fig8-2007.c:21:12, in: 10 1 out:4 5 
+  4: at tests/ctl/koskinen/fig8-2007.c:34:5, in: 13 12 8 3 out:14 
+  5: at tests/ctl/koskinen/fig8-2007.c:22:23, in: 3 out:6 
+  6: at tests/ctl/koskinen/fig8-2007.c:23:18, in: 5 out:7 8 
+  7: at tests/ctl/koskinen/fig8-2007.c:24:30, in: 6 out:9 
+  8: at tests/ctl/koskinen/fig8-2007.c:24:20, in: 6 out:4 
+  9: at tests/ctl/koskinen/fig8-2007.c:25:19, in: 7 out:10 11 
+  10: at tests/ctl/koskinen/fig8-2007.c:31:15, in: 9 out:3 
+  11: at tests/ctl/koskinen/fig8-2007.c:26:25, in: 9 out:12 13 
+  12: at tests/ctl/koskinen/fig8-2007.c:29:13, in: 11 out:4 
+  13: at tests/ctl/koskinen/fig8-2007.c:27:29, in: 11 out:4 
+  14: at tests/ctl/koskinen/fig8-2007.c:35:13, in: 4 out:2 
+  15: at tests/ctl/koskinen/fig8-2007.c:14:0, in: out:16 
+  16: at tests/ctl/koskinen/fig8-2007.c:37:1, in: 15 out:
+
+List of arcs:
+  18 -> 1: label entry
+  2 -> 17: label exit
+  1 -> 3: $5{set} = 1
+  3 -> 5: $1{i} < $2{Pdolen} ?
+  3 -> 4: ! ($1{i} < $2{Pdolen}) ?
+  5 -> 6: $3{DName} = ?
+  6 -> 8: ! ($3{DName} != 0) ?
+  6 -> 7: ! (! ($3{DName} != 0)) ?
+  8 -> 4: skip: break
+  7 -> 9: $4{status} = ?
+  9 -> 11: 1 != $4{status} ?
+  9 -> 10: ! (1 != $4{status}) ?
+  11 -> 13: 2 == $4{status} ?
+  11 -> 12: ! (2 == $4{status}) ?
+  12 -> 4: skip: break
+  10 -> 3: $1{i} = $1{i} + 1
+  4 -> 14: label loc_continue
+  14 -> 2: $6{unset} = 1
+  13 -> 4: skip: goto loc_continue
+  15 -> 16: skip
+
+
+Property: $6{unset} == 1
+
+[1:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[2:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[3:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[4:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[5:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[6:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[7:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[8:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[9:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[10:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[11:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[12:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[13:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[14:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[15:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[16:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[17:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[18:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+Property: AF{$6{unset} == 1}
+
+[1:]:
+-$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+3
+$1{i}-$2{Pdolen} >= 0 && -$6{unset} >= 0 ? 3
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+3
+$1{i}-$2{Pdolen} >= 0 && $6{unset} >= 2 ? 3
+
+[2:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[3:]:
+-$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+2
+$1{i}-$2{Pdolen} >= 0 && -$6{unset} >= 0 ? 2
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+2
+$1{i}-$2{Pdolen} >= 0 && $6{unset} >= 2 ? 2
+
+[4:]:
+-$6{unset} >= 0 ? 1
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? 1
+
+[5:]:
+-$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+1
+$1{i}-$2{Pdolen} >= -1 && -$6{unset} >= 0 ? 7
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+1
+$1{i}-$2{Pdolen} >= -1 && $6{unset} >= 2 ? 7
+
+[6:]:
+-$6{unset} >= 0 && -$3{DName} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && -$6{unset} >= 0 && -$3{DName} >= 1 ? 6
+-$6{unset} >= 0 && $3{DName} == 0 ? 2
+$3{DName} >= 1 && -$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && $3{DName} >= 1 && -$6{unset} >= 0 ? 6
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$3{DName} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && $6{unset} >= 2 && -$3{DName} >= 1 ? 6
+$6{unset} >= 2 && $3{DName} == 0 ? 2
+$3{DName} >= 1 && $6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && $3{DName} >= 1 && $6{unset} >= 2 ? 6
+
+[7:]:
+-$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}-1
+$1{i}-$2{Pdolen} >= -1 && -$6{unset} >= 0 ? 5
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}-1
+$1{i}-$2{Pdolen} >= -1 && $6{unset} >= 2 ? 5
+
+[8:]:
+-$6{unset} >= 0 ? 1
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? 1
+
+[9:]:
+-$6{unset} >= 0 && -$4{status} >= 0 ? 3
+-$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 2 && $4{status} == 1 ? -6$1{i}+6$2{Pdolen}-2
+$1{i}-$2{Pdolen} >= -1 && -$6{unset} >= 0 && $4{status} == 1 ? 4
+$4{status} >= 2 && -$6{unset} >= 0 ? 3
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$4{status} >= 0 ? 3
+$6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 2 && $4{status} == 1 ? -6$1{i}+6$2{Pdolen}-2
+$1{i}-$2{Pdolen} >= -1 && $6{unset} >= 2 && $4{status} == 1 ? 4
+$4{status} >= 2 && $6{unset} >= 2 ? 3
+
+[10:]:
+-$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}-3
+$1{i}-$2{Pdolen} >= -1 && -$6{unset} >= 0 ? 3
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}-3
+$1{i}-$2{Pdolen} >= -1 && $6{unset} >= 2 ? 3
+
+[11:]:
+-$6{unset} >= 0 ? 2
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? 2
+
+[12:]:
+-$6{unset} >= 0 ? 1
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? 1
+
+[13:]:
+-$6{unset} >= 0 ? 1
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? 1
+
+[14:]:
+-$6{unset} >= 0 ? 1
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? 1
+
+[15:]:
+top ? bottom
+
+[16:]:
+top ? bottom
+
+[17:]:
+-$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? bottom
+
+[18:]:
+-$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+3
+$1{i}-$2{Pdolen} >= 0 && -$6{unset} >= 0 ? 3
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+3
+$1{i}-$2{Pdolen} >= 0 && $6{unset} >= 2 ? 3
+
+Property: $5{set} == 0
+
+[1:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[2:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[3:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[4:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[5:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[6:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[7:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[8:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[9:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[10:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[11:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[12:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[13:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[14:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[15:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[16:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[17:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[18:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+Property: OR{$5{set} == 0}{AF{$6{unset} == 1}}
+
+[1:]:
+-$6{unset} >= 0 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+3
+$1{i}-$2{Pdolen} >= 0 && -$6{unset} >= 0 && -$5{set} >= 1 ? 3
+$5{set} >= 0 && -$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+3
+$1{i}-$2{Pdolen} >= 0 && $5{set} >= 0 && -$6{unset} >= 0 ? 3
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+3
+$1{i}-$2{Pdolen} >= 0 && $6{unset} >= 2 && -$5{set} >= 1 ? 3
+$5{set} >= 0 && $6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+3
+$1{i}-$2{Pdolen} >= 0 && $5{set} >= 0 && $6{unset} >= 2 ? 3
+
+[2:]:
+-$6{unset} >= 0 && -$5{set} >= 1 ? bottom
+-$6{unset} >= 0 && $5{set} == 0 ? 0.
+$5{set} >= 1 && -$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$5{set} >= 1 ? bottom
+$6{unset} >= 2 && $5{set} == 0 ? 0.
+$5{set} >= 1 && $6{unset} >= 2 ? bottom
+
+[3:]:
+-$6{unset} >= 0 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+2
+$1{i}-$2{Pdolen} >= 0 && -$6{unset} >= 0 && -$5{set} >= 1 ? 2
+$5{set} >= 0 && -$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+2
+$1{i}-$2{Pdolen} >= 0 && $5{set} >= 0 && -$6{unset} >= 0 ? 2
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+2
+$1{i}-$2{Pdolen} >= 0 && $6{unset} >= 2 && -$5{set} >= 1 ? 2
+$5{set} >= 0 && $6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+2
+$1{i}-$2{Pdolen} >= 0 && $5{set} >= 0 && $6{unset} >= 2 ? 2
+
+[4:]:
+-$6{unset} >= 0 ? 1
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? 1
+
+[5:]:
+-$6{unset} >= 0 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+1
+$1{i}-$2{Pdolen} >= -1 && -$6{unset} >= 0 && -$5{set} >= 1 ? 7
+$5{set} >= 0 && -$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+1
+$1{i}-$2{Pdolen} >= -1 && $5{set} >= 0 && -$6{unset} >= 0 ? 7
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+1
+$1{i}-$2{Pdolen} >= -1 && $6{unset} >= 2 && -$5{set} >= 1 ? 7
+$5{set} >= 0 && $6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+1
+$1{i}-$2{Pdolen} >= -1 && $5{set} >= 0 && $6{unset} >= 2 ? 7
+
+[6:]:
+-$6{unset} >= 0 && -$5{set} >= 1 && -$3{DName} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && -$6{unset} >= 0 && -$5{set} >= 1 && -$3{DName} >= 1 ? 6
+-$6{unset} >= 0 && -$5{set} >= 1 && $3{DName} == 0 ? 2
+$3{DName} >= 1 && -$6{unset} >= 0 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && $3{DName} >= 1 && -$6{unset} >= 0 && -$5{set} >= 1 ? 6
+-$6{unset} >= 0 && -$3{DName} >= 1 && -$1{i}+$2{Pdolen} >= 2 && $5{set} == 0 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && -$6{unset} >= 0 && -$3{DName} >= 1 && $5{set} == 0 ? 6
+-$6{unset} >= 0 && $3{DName} == 0 && $5{set} == 0 ? 2
+$3{DName} >= 1 && -$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 2 && $5{set} == 0 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && $3{DName} >= 1 && -$6{unset} >= 0 && $5{set} == 0 ? 6
+$5{set} >= 1 && -$6{unset} >= 0 && -$3{DName} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && $5{set} >= 1 && -$6{unset} >= 0 && -$3{DName} >= 1 ? 6
+$5{set} >= 1 && -$6{unset} >= 0 && $3{DName} == 0 ? 2
+$3{DName} >= 1 && $5{set} >= 1 && -$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && $3{DName} >= 1 && $5{set} >= 1 && -$6{unset} >= 0 ? 6
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$5{set} >= 1 && -$3{DName} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && $6{unset} >= 2 && -$5{set} >= 1 && -$3{DName} >= 1 ? 6
+$6{unset} >= 2 && -$5{set} >= 1 && $3{DName} == 0 ? 2
+$3{DName} >= 1 && $6{unset} >= 2 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && $3{DName} >= 1 && $6{unset} >= 2 && -$5{set} >= 1 ? 6
+$6{unset} >= 2 && -$3{DName} >= 1 && -$1{i}+$2{Pdolen} >= 2 && $5{set} == 0 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && $6{unset} >= 2 && -$3{DName} >= 1 && $5{set} == 0 ? 6
+$6{unset} >= 2 && $3{DName} == 0 && $5{set} == 0 ? 2
+$3{DName} >= 1 && $6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 2 && $5{set} == 0 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && $3{DName} >= 1 && $6{unset} >= 2 && $5{set} == 0 ? 6
+$5{set} >= 1 && $6{unset} >= 2 && -$3{DName} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && $5{set} >= 1 && $6{unset} >= 2 && -$3{DName} >= 1 ? 6
+$5{set} >= 1 && $6{unset} >= 2 && $3{DName} == 0 ? 2
+$3{DName} >= 1 && $5{set} >= 1 && $6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}+0
+$1{i}-$2{Pdolen} >= -1 && $3{DName} >= 1 && $5{set} >= 1 && $6{unset} >= 2 ? 6
+
+[7:]:
+-$6{unset} >= 0 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}-1
+$1{i}-$2{Pdolen} >= -1 && -$6{unset} >= 0 && -$5{set} >= 1 ? 5
+$5{set} >= 0 && -$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}-1
+$1{i}-$2{Pdolen} >= -1 && $5{set} >= 0 && -$6{unset} >= 0 ? 5
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}-1
+$1{i}-$2{Pdolen} >= -1 && $6{unset} >= 2 && -$5{set} >= 1 ? 5
+$5{set} >= 0 && $6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}-1
+$1{i}-$2{Pdolen} >= -1 && $5{set} >= 0 && $6{unset} >= 2 ? 5
+
+[8:]:
+-$6{unset} >= 0 ? 1
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? 1
+
+[9:]:
+-$6{unset} >= 0 && -$5{set} >= 1 && -$4{status} >= 0 ? 3
+-$6{unset} >= 0 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 2 && $4{status} == 1 ? -6$1{i}+6$2{Pdolen}-2
+$1{i}-$2{Pdolen} >= -1 && -$6{unset} >= 0 && -$5{set} >= 1 && $4{status} == 1 ? 4
+$4{status} >= 2 && -$6{unset} >= 0 && -$5{set} >= 1 ? 3
+-$6{unset} >= 0 && -$4{status} >= 0 && $5{set} == 0 ? 3
+-$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 2 && $4{status} == 1 && $5{set} == 0 ? -6$1{i}+6$2{Pdolen}-2
+$1{i}-$2{Pdolen} >= -1 && -$6{unset} >= 0 && $4{status} == 1 && $5{set} == 0 ? 4
+$4{status} >= 2 && -$6{unset} >= 0 && $5{set} == 0 ? 3
+$5{set} >= 1 && -$6{unset} >= 0 && -$4{status} >= 0 ? 3
+$5{set} >= 1 && -$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 2 && $4{status} == 1 ? -6$1{i}+6$2{Pdolen}-2
+$1{i}-$2{Pdolen} >= -1 && $5{set} >= 1 && -$6{unset} >= 0 && $4{status} == 1 ? 4
+$4{status} >= 2 && $5{set} >= 1 && -$6{unset} >= 0 ? 3
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$5{set} >= 1 && -$4{status} >= 0 ? 3
+$6{unset} >= 2 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 2 && $4{status} == 1 ? -6$1{i}+6$2{Pdolen}-2
+$1{i}-$2{Pdolen} >= -1 && $6{unset} >= 2 && -$5{set} >= 1 && $4{status} == 1 ? 4
+$4{status} >= 2 && $6{unset} >= 2 && -$5{set} >= 1 ? 3
+$6{unset} >= 2 && -$4{status} >= 0 && $5{set} == 0 ? 3
+$6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 2 && $4{status} == 1 && $5{set} == 0 ? -6$1{i}+6$2{Pdolen}-2
+$1{i}-$2{Pdolen} >= -1 && $6{unset} >= 2 && $4{status} == 1 && $5{set} == 0 ? 4
+$4{status} >= 2 && $6{unset} >= 2 && $5{set} == 0 ? 3
+$5{set} >= 1 && $6{unset} >= 2 && -$4{status} >= 0 ? 3
+$5{set} >= 1 && $6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 2 && $4{status} == 1 ? -6$1{i}+6$2{Pdolen}-2
+$1{i}-$2{Pdolen} >= -1 && $5{set} >= 1 && $6{unset} >= 2 && $4{status} == 1 ? 4
+$4{status} >= 2 && $5{set} >= 1 && $6{unset} >= 2 ? 3
+
+[10:]:
+-$6{unset} >= 0 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}-3
+$1{i}-$2{Pdolen} >= -1 && -$6{unset} >= 0 && -$5{set} >= 1 ? 3
+$5{set} >= 0 && -$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}-3
+$1{i}-$2{Pdolen} >= -1 && $5{set} >= 0 && -$6{unset} >= 0 ? 3
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}-3
+$1{i}-$2{Pdolen} >= -1 && $6{unset} >= 2 && -$5{set} >= 1 ? 3
+$5{set} >= 0 && $6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 2 ? -6$1{i}+6$2{Pdolen}-3
+$1{i}-$2{Pdolen} >= -1 && $5{set} >= 0 && $6{unset} >= 2 ? 3
+
+[11:]:
+-$6{unset} >= 0 ? 2
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? 2
+
+[12:]:
+-$6{unset} >= 0 ? 1
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? 1
+
+[13:]:
+-$6{unset} >= 0 ? 1
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? 1
+
+[14:]:
+-$6{unset} >= 0 ? 1
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 ? 1
+
+[15:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[16:]:
+-$5{set} >= 1 ? bottom
+$5{set} == 0 ? 0.
+$5{set} >= 1 ? bottom
+
+[17:]:
+-$6{unset} >= 0 && -$5{set} >= 1 ? bottom
+-$6{unset} >= 0 && $5{set} == 0 ? 0.
+$5{set} >= 1 && -$6{unset} >= 0 ? bottom
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$5{set} >= 1 ? bottom
+$6{unset} >= 2 && $5{set} == 0 ? 0.
+$5{set} >= 1 && $6{unset} >= 2 ? bottom
+
+[18:]:
+-$6{unset} >= 0 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+3
+$1{i}-$2{Pdolen} >= 0 && -$6{unset} >= 0 && -$5{set} >= 1 ? 3
+$5{set} >= 0 && -$6{unset} >= 0 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+3
+$1{i}-$2{Pdolen} >= 0 && $5{set} >= 0 && -$6{unset} >= 0 ? 3
+$6{unset} == 1 ? 0.
+$6{unset} >= 2 && -$5{set} >= 1 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+3
+$1{i}-$2{Pdolen} >= 0 && $6{unset} >= 2 && -$5{set} >= 1 ? 3
+$5{set} >= 0 && $6{unset} >= 2 && -$1{i}+$2{Pdolen} >= 1 ? -6$1{i}+6$2{Pdolen}+3
+$1{i}-$2{Pdolen} >= 0 && $5{set} >= 0 && $6{unset} >= 2 ? 3
+
+
+Analysis Result: TRUE

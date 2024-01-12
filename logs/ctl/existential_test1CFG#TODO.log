@@ -1,0 +1,153 @@
+
+CFG:
+List of variables:
+  $1{__return_main}:int at tests/ctl/existential_test1.c:3.0-12.1
+  $2{r}:int at tests/ctl/existential_test1.c:4.8-9
+  $3{x}:int at tests/ctl/existential_test1.c:5.8-9
+  $4{y}:int at tests/ctl/existential_test1.c:6.8-9
+
+List of functions:
+  1: main() -> $1{__return_main}:int at tests/ctl/existential_test1.c:3.0-12.1, entry: 11, exit: 10, calls:
+
+List of nodes:
+  11: at :0:-1, in: out:1 
+  10: at :0:-1, in: 2 out:
+  1: at tests/ctl/existential_test1.c:3:0, in: 11 out:3 
+  2: at tests/ctl/existential_test1.c:12:1, in: 7 6 5 out:10 
+  3: at tests/ctl/existential_test1.c:4:14, in: 1 out:4 
+  4: at tests/ctl/existential_test1.c:5:10, in: 3 out:5 
+  5: at tests/ctl/existential_test1.c:6:10, in: 4 out:2 6 
+  6: at tests/ctl/existential_test1.c:7:20, in: 5 out:2 7 
+  7: at tests/ctl/existential_test1.c:8:20, in: 6 out:2 
+  8: at tests/ctl/existential_test1.c:3:0, in: out:9 
+  9: at tests/ctl/existential_test1.c:12:1, in: 8 out:
+
+List of arcs:
+  11 -> 1: label entry
+  2 -> 10: label exit
+  1 -> 3: $2{r} = 0
+  3 -> 4: skip
+  4 -> 5: skip
+  5 -> 6: 2 * $3{x} <= $4{y} + 3 ?
+  5 -> 2: ! (2 * $3{x} <= $4{y} + 3) ?
+  6 -> 7: ? == 1 ?
+  6 -> 2: ! (? == 1) ?
+  7 -> 2: $2{r} = 1
+  8 -> 9: skip
+
+
+Property: $2{r} == 1
+
+[1:]:
+-$2{r} >= 0 ? bottom
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? bottom
+
+[2:]:
+-$2{r} >= 0 ? bottom
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? bottom
+
+[3:]:
+-$2{r} >= 0 ? bottom
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? bottom
+
+[4:]:
+-$2{r} >= 0 ? bottom
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? bottom
+
+[5:]:
+-$2{r} >= 0 ? bottom
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? bottom
+
+[6:]:
+-$2{r} >= 0 ? bottom
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? bottom
+
+[7:]:
+-$2{r} >= 0 ? bottom
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? bottom
+
+[8:]:
+-$2{r} >= 0 ? bottom
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? bottom
+
+[9:]:
+-$2{r} >= 0 ? bottom
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? bottom
+
+[10:]:
+-$2{r} >= 0 ? bottom
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? bottom
+
+[11:]:
+-$2{r} >= 0 ? bottom
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? bottom
+
+Property: EF{$2{r} == 1}
+
+[1:]:
+-2$3{x}+$4{y} >= -3 ? BOT
+2$3{x}-$4{y} >= 4 && -$2{r} >= 0 ? bottom
+2$3{x}-$4{y} >= 4 && $2{r} == 1 ? 0.
+$2{r} >= 2 && 2$3{x}-$4{y} >= 4 ? bottom
+
+[2:]:
+-$2{r} >= 0 ? bottom
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? bottom
+
+[3:]:
+-2$3{x}+$4{y} >= -3 ? BOT
+2$3{x}-$4{y} >= 4 && -$2{r} >= 0 ? bottom
+2$3{x}-$4{y} >= 4 && $2{r} == 1 ? 0.
+$2{r} >= 2 && 2$3{x}-$4{y} >= 4 ? bottom
+
+[4:]:
+-2$3{x}+$4{y} >= -3 ? BOT
+2$3{x}-$4{y} >= 4 && -$2{r} >= 0 ? bottom
+2$3{x}-$4{y} >= 4 && $2{r} == 1 ? 0.
+$2{r} >= 2 && 2$3{x}-$4{y} >= 4 ? bottom
+
+[5:]:
+-2$3{x}+$4{y} >= -3 ? BOT
+2$3{x}-$4{y} >= 4 && -$2{r} >= 0 ? bottom
+2$3{x}-$4{y} >= 4 && $2{r} == 1 ? 0.
+$2{r} >= 2 && 2$3{x}-$4{y} >= 4 ? bottom
+
+[6:]:
+top ? BOT
+
+[7:]:
+-$2{r} >= 0 ? 1
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? 1
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+-$2{r} >= 0 ? bottom
+$2{r} == 1 ? 0.
+$2{r} >= 2 ? bottom
+
+[11:]:
+-2$3{x}+$4{y} >= -3 ? BOT
+2$3{x}-$4{y} >= 4 && -$2{r} >= 0 ? bottom
+2$3{x}-$4{y} >= 4 && $2{r} == 1 ? 0.
+$2{r} >= 2 && 2$3{x}-$4{y} >= 4 ? bottom
+
+
+Analysis Result: UNKNOWN

@@ -1,0 +1,2633 @@
+
+CFG:
+List of variables:
+  $1{error}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:11.4-9
+  $2{tempDisplay}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:11.11-22
+  $3{warnLED}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:11.24-31
+  $4{tempIn}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:11.33-39
+  $5{chainBroken}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:11.41-52
+  $6{warnLight}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:12.0-9
+  $7{temp}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:12.11-15
+  $8{limit}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:12.17-22
+  $9{init}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:12.24-28
+  $10{tempdiff}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:15.17-25
+  $11{warning}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:15.31-38
+  $12{kelvin}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:21.18-24
+  $13{__return_vinToCels}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:21.0-29.1
+  $14{otime}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:33.5-10
+  $15{time}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:33.12-16
+  $16{__ret_vinToCels}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:39.9-18
+  $17{__return_main}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:50.0-85.1
+  $18{try}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:62.8-11
+  $19{limit}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:66.6-11
+
+List of functions:
+  3: coolantControl() -> void at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:31.0-48.1, entry: 11, exit: 12, calls: 53->25
+  1: display($10{tempdiff}:int,$11{warning}:int) -> void at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:15.0-19.1, entry: 1, exit: 2, calls: 49->40 46->44 10->6
+  4: main() -> $17{__return_main}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:50.0-85.1, entry: 57, exit: 56, calls:
+  2: vinToCels($12{kelvin}:int) -> $13{__return_vinToCels}:int at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:21.0-29.1, entry: 4, exit: 5, calls: 19->20
+
+List of nodes:
+  57: at :0:-1, in: out:24 
+  56: at :0:-1, in: 25 out:
+  1: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:15:0, in: out:3 
+  2: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:19:1, in: 3 out:
+  3: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:17:24, in: 1 out:2 
+  4: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:21:0, in: out:6 7 
+  5: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:29:1, in: 6 out:
+  6: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:27:2, in: 59 4 out:5 
+  7: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:24:1, in: 4 out:8 
+  8: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:25:12, in: 7 out:9 
+  9: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:26:29, in: 8 out:10 
+  10: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:26:22, in: 9 out:58 
+  11: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:31:0, in: out:13 
+  12: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:48:1, in: 13 out:
+  13: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:33:21, in: 22 23 11 out:12 14 
+  14: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:35:1, in: 13 out:15 
+  15: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:36:15, in: 14 out:16 
+  16: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:37:19, in: 15 out:17 
+  17: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:38:35, in: 16 out:19 
+  18: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:39:27, in: 21 out:22 23 
+  19: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:39:25, in: 17 out:67 
+  20: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:39:18, in: 68 out:21 
+  21: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:39:18, in: 20 out:18 
+  22: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:43:9, in: 18 out:13 
+  23: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:41:2, in: 18 out:13 
+  24: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:50:0, in: 57 out:26 
+  25: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:85:1, in: 78 out:56 
+  26: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:52:10, in: 24 out:27 
+  27: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:53:20, in: 26 out:28 
+  28: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:54:16, in: 27 out:29 
+  29: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:55:15, in: 28 out:30 
+  30: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:56:14, in: 29 out:31 
+  31: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:57:20, in: 30 out:32 
+  32: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:58:18, in: 31 out:33 
+  33: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:59:13, in: 32 out:34 
+  34: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:60:14, in: 33 out:35 
+  35: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:61:13, in: 34 out:36 
+  36: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:62:16, in: 50 35 out:37 38 
+  37: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:81:2, in: 52 44 36 out:53 
+  38: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:65:1, in: 36 out:39 
+  39: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:66:38, in: 38 out:41 42 
+  40: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:75:3, in: 65 out:50 51 
+  41: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:72:9, in: 39 out:47 
+  42: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:68:2, in: 39 out:43 
+  43: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:69:13, in: 42 out:45 
+  44: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:70:21, in: 62 out:37 
+  45: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:70:19, in: 43 out:46 
+  46: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:70:12, in: 45 out:61 
+  47: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:73:13, in: 41 out:48 
+  48: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:74:19, in: 47 out:49 
+  49: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:74:12, in: 48 out:64 
+  50: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:79:3, in: 40 out:36 
+  51: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:76:16, in: 40 out:52 
+  52: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:77:13, in: 51 out:37 
+  53: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:83:10, in: 37 out:77 
+  54: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:11:0, in: out:55 
+  55: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:85:1, in: 54 out:
+  58: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:15:0, in: 10 out:60 
+  59: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:19:1, in: 60 out:6 
+  60: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:17:24, in: 58 out:59 
+  61: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:15:0, in: 46 out:63 
+  62: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:19:1, in: 63 out:44 
+  63: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:17:24, in: 61 out:62 
+  64: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:15:0, in: 49 out:66 
+  65: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:19:1, in: 66 out:40 
+  66: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:17:24, in: 64 out:65 
+  67: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:21:0, in: 19 out:69 70 
+  68: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:29:1, in: 69 out:20 
+  69: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:27:2, in: 75 67 out:68 
+  70: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:24:1, in: 67 out:71 
+  71: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:25:12, in: 70 out:72 
+  72: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:26:29, in: 71 out:73 
+  73: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:26:22, in: 72 out:74 
+  74: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:15:0, in: 73 out:76 
+  75: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:19:1, in: 76 out:69 
+  76: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:17:24, in: 74 out:75 
+  77: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:31:0, in: 53 out:79 
+  78: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:48:1, in: 79 out:25 
+  79: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:33:21, in: 88 89 77 out:78 80 
+  80: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:35:1, in: 79 out:81 
+  81: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:36:15, in: 80 out:82 
+  82: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:37:19, in: 81 out:83 
+  83: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:38:35, in: 82 out:85 
+  84: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:39:27, in: 87 out:88 89 
+  85: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:39:25, in: 83 out:90 
+  86: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:39:18, in: 91 out:87 
+  87: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:39:18, in: 86 out:84 
+  88: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:43:9, in: 84 out:79 
+  89: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:41:2, in: 84 out:79 
+  90: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:21:0, in: 85 out:92 93 
+  91: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:29:1, in: 92 out:86 
+  92: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:27:2, in: 98 90 out:91 
+  93: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:24:1, in: 90 out:94 
+  94: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:25:12, in: 93 out:95 
+  95: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:26:29, in: 94 out:96 
+  96: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:26:22, in: 95 out:97 
+  97: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:15:0, in: 96 out:99 
+  98: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:19:1, in: 99 out:92 
+  99: at tests/ctl/ltl_automizer/coolant_basis_1_unsafe_sfty.c:17:24, in: 97 out:98 
+
+List of arcs:
+  78 -> 25: return: coolantControl
+  53 -> 77: call: coolantControl
+  68 -> 20: return: vinToCels
+  19 -> 67: call: vinToCels
+  65 -> 40: return: display
+  49 -> 64: call: display
+  62 -> 44: return: display
+  46 -> 61: call: display
+  59 -> 6: return: display
+  10 -> 58: call: display
+  57 -> 24: label entry
+  25 -> 56: label exit
+  1 -> 3: $2{tempDisplay} = $10{tempdiff}
+  3 -> 2: $3{warnLED} = $11{warning}
+  4 -> 7: $7{temp} < 0 ?
+  4 -> 6: ! ($7{temp} < 0) ?
+  7 -> 8: $1{error} = 1
+  8 -> 9: $11{warning} = $1{error}
+  9 -> 10: $10{tempdiff} = $12{kelvin} - 273
+  6 -> 5: $13{__return_vinToCels} = $12{kelvin} - 273
+  11 -> 13: $15{time} = 0
+  13 -> 14: 1 != 0 ?
+  13 -> 12: ! (1 != 0) ?
+  14 -> 15: $14{otime} = $15{time}
+  15 -> 16: $15{time} = $14{otime} + 1
+  16 -> 17: $4{tempIn} = ?
+  17 -> 19: $12{kelvin} = $4{tempIn}
+  20 -> 21: $16{__ret_vinToCels} = $13{__return_vinToCels}
+  21 -> 18: $7{temp} = $16{__ret_vinToCels}
+  18 -> 23: $7{temp} > $8{limit} ?
+  18 -> 22: ! ($7{temp} > $8{limit}) ?
+  23 -> 13: $5{chainBroken} = 1
+  22 -> 13: $5{chainBroken} = 0
+  24 -> 26: $9{init} = 0
+  26 -> 27: $2{tempDisplay} = 0
+  27 -> 28: $3{warnLED} = 1
+  28 -> 29: $4{tempIn} = 0
+  29 -> 30: $1{error} = 0
+  30 -> 31: $5{chainBroken} = 0
+  31 -> 32: $6{warnLight} = 0
+  32 -> 33: $7{temp} = 0
+  33 -> 34: $8{limit} = 8
+  34 -> 35: $9{init} = 1
+  35 -> 36: $18{try} = 0
+  36 -> 38: 1 != 0 ?
+  36 -> 37: ! (1 != 0) ?
+  38 -> 39: $19{limit} = ?
+  39 -> 42: $19{limit} < 10 && $19{limit} > - 273 ?
+  39 -> 41: ! ($19{limit} < 10 && $19{limit} > - 273) ?
+  42 -> 43: $1{error} = 0
+  43 -> 45: $11{warning} = $1{error}
+  45 -> 46: $10{tempdiff} = 0
+  44 -> 37: skip: break
+  41 -> 47: $1{error} = 1
+  47 -> 48: $11{warning} = $1{error}
+  48 -> 49: $10{tempdiff} = 0
+  40 -> 51: $18{try} >= 3 ?
+  40 -> 50: ! ($18{try} >= 3) ?
+  51 -> 52: $19{limit} = 7
+  52 -> 37: skip: break
+  50 -> 36: $18{try} = $18{try} + 1
+  37 -> 53: $9{init} = 3
+  54 -> 55: skip
+  58 -> 60: $2{tempDisplay} = $10{tempdiff}
+  60 -> 59: $3{warnLED} = $11{warning}
+  61 -> 63: $2{tempDisplay} = $10{tempdiff}
+  63 -> 62: $3{warnLED} = $11{warning}
+  64 -> 66: $2{tempDisplay} = $10{tempdiff}
+  66 -> 65: $3{warnLED} = $11{warning}
+  67 -> 69: ! ($7{temp} < 0) ?
+  67 -> 70: $7{temp} < 0 ?
+  69 -> 68: $13{__return_vinToCels} = $12{kelvin} - 273
+  70 -> 71: $1{error} = 1
+  71 -> 72: $11{warning} = $1{error}
+  72 -> 73: $10{tempdiff} = $12{kelvin} - 273
+  73 -> 74: call: display
+  74 -> 76: $2{tempDisplay} = $10{tempdiff}
+  75 -> 69: return: display
+  76 -> 75: $3{warnLED} = $11{warning}
+  77 -> 79: $15{time} = 0
+  79 -> 78: ! (1 != 0) ?
+  79 -> 80: 1 != 0 ?
+  80 -> 81: $14{otime} = $15{time}
+  81 -> 82: $15{time} = $14{otime} + 1
+  82 -> 83: $4{tempIn} = ?
+  83 -> 85: $12{kelvin} = $4{tempIn}
+  84 -> 88: ! ($7{temp} > $8{limit}) ?
+  84 -> 89: $7{temp} > $8{limit} ?
+  85 -> 90: call: vinToCels
+  86 -> 87: $16{__ret_vinToCels} = $13{__return_vinToCels}
+  87 -> 84: $7{temp} = $16{__ret_vinToCels}
+  88 -> 79: $5{chainBroken} = 0
+  89 -> 79: $5{chainBroken} = 1
+  90 -> 92: ! ($7{temp} < 0) ?
+  90 -> 93: $7{temp} < 0 ?
+  91 -> 86: return: vinToCels
+  92 -> 91: $13{__return_vinToCels} = $12{kelvin} - 273
+  93 -> 94: $1{error} = 1
+  94 -> 95: $11{warning} = $1{error}
+  95 -> 96: $10{tempdiff} = $12{kelvin} - 273
+  96 -> 97: call: display
+  97 -> 99: $2{tempDisplay} = $10{tempdiff}
+  98 -> 92: return: display
+  99 -> 98: $3{warnLED} = $11{warning}
+
+
+Property: $5{chainBroken} == 1
+
+[1:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[2:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[3:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[4:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[5:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[6:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[7:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[8:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[9:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[10:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[11:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[12:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[13:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[14:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[15:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[16:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[17:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[18:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[19:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[20:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[21:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[22:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[23:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[24:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[25:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[26:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[27:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[28:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[29:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[30:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[31:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[32:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[33:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[34:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[35:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[36:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[37:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[38:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[39:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[40:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[41:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[42:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[43:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[44:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[45:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[46:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[47:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[48:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[49:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[50:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[51:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[52:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[53:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[54:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[55:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[56:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[57:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[58:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[59:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[60:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[61:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[62:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[63:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[64:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[65:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[66:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[67:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[68:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[69:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[70:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[71:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[72:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[73:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[74:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[75:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[76:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[77:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[78:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[79:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[80:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[81:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[82:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[83:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[84:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[85:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[86:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[87:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[88:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[89:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[90:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[91:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[92:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[93:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[94:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[95:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[96:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[97:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[98:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[99:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+Property: AG{$5{chainBroken} == 1}
+
+[1:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[2:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[3:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[4:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[5:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[6:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[7:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[8:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[9:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[10:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[11:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[12:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[13:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[14:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[15:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[16:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[17:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[18:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[19:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[20:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[21:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[22:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[23:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[24:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[25:]:
+top ? bottom
+
+[26:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[27:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[28:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[29:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[30:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[31:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[32:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[33:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[34:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[35:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[36:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[37:]:
+top ? bottom
+
+[38:]:
+top ? bottom
+
+[39:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$19{limit} >= -9 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && -$19{limit} >= -9 && $5{chainBroken} == 1 ? bottom
+$19{limit} >= 10 && -$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $19{limit} >= 10 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$19{limit} >= -9 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && -$19{limit} >= -9 && $5{chainBroken} == 1 ? bottom
+$19{limit} >= 10 && $7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $19{limit} >= 10 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[40:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[41:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[42:]:
+top ? bottom
+
+[43:]:
+top ? bottom
+
+[44:]:
+top ? bottom
+
+[45:]:
+top ? bottom
+
+[46:]:
+top ? bottom
+
+[47:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[48:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[49:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[50:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[51:]:
+top ? bottom
+
+[52:]:
+top ? bottom
+
+[53:]:
+top ? bottom
+
+[54:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[55:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[56:]:
+top ? bottom
+
+[57:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[58:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[59:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[60:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[61:]:
+top ? bottom
+
+[62:]:
+top ? bottom
+
+[63:]:
+top ? bottom
+
+[64:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[65:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[66:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[67:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[68:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[69:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[70:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[71:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[72:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[73:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[74:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[75:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[76:]:
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
+
+[77:]:
+top ? bottom
+
+[78:]:
+top ? bottom
+
+[79:]:
+top ? bottom
+
+[80:]:
+top ? bottom
+
+[81:]:
+top ? bottom
+
+[82:]:
+top ? bottom
+
+[83:]:
+top ? bottom
+
+[84:]:
+top ? bottom
+
+[85:]:
+top ? bottom
+
+[86:]:
+top ? bottom
+
+[87:]:
+top ? bottom
+
+[88:]:
+top ? bottom
+
+[89:]:
+top ? bottom
+
+[90:]:
+top ? bottom
+
+[91:]:
+top ? bottom
+
+[92:]:
+top ? bottom
+
+[93:]:
+top ? bottom
+
+[94:]:
+top ? bottom
+
+[95:]:
+top ? bottom
+
+[96:]:
+top ? bottom
+
+[97:]:
+top ? bottom
+
+[98:]:
+top ? bottom
+
+[99:]:
+top ? bottom
+
+Property: $5{chainBroken} != 1
+
+[1:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[2:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[3:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[4:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[5:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[6:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[7:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[8:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[9:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[10:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[11:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[12:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[13:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[14:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[15:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[16:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[17:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[18:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[19:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[20:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[21:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[22:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[23:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[24:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[25:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[26:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[27:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[28:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[29:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[30:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[31:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[32:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[33:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[34:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[35:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[36:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[37:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[38:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[39:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[40:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[41:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[42:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[43:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[44:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[45:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[46:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[47:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[48:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[49:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[50:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[51:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[52:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[53:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[54:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[55:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[56:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[57:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[58:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[59:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[60:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[61:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[62:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[63:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[64:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[65:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[66:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[67:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[68:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[69:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[70:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[71:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[72:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[73:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[74:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[75:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[76:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[77:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[78:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[79:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[80:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[81:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[82:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[83:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[84:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[85:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[86:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[87:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[88:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[89:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[90:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[91:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[92:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[93:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[94:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[95:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[96:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[97:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[98:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[99:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+Property: OR{$5{chainBroken} != 1}{AG{$5{chainBroken} == 1}}
+
+[1:]:
+top ? 0.
+
+[2:]:
+top ? 0.
+
+[3:]:
+top ? 0.
+
+[4:]:
+top ? 0.
+
+[5:]:
+top ? 0.
+
+[6:]:
+top ? 0.
+
+[7:]:
+top ? 0.
+
+[8:]:
+top ? 0.
+
+[9:]:
+top ? 0.
+
+[10:]:
+top ? 0.
+
+[11:]:
+top ? 0.
+
+[12:]:
+top ? 0.
+
+[13:]:
+top ? 0.
+
+[14:]:
+top ? 0.
+
+[15:]:
+top ? 0.
+
+[16:]:
+top ? 0.
+
+[17:]:
+top ? 0.
+
+[18:]:
+top ? 0.
+
+[19:]:
+top ? 0.
+
+[20:]:
+top ? 0.
+
+[21:]:
+top ? 0.
+
+[22:]:
+top ? 0.
+
+[23:]:
+top ? 0.
+
+[24:]:
+top ? 0.
+
+[25:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[26:]:
+top ? 0.
+
+[27:]:
+top ? 0.
+
+[28:]:
+top ? 0.
+
+[29:]:
+top ? 0.
+
+[30:]:
+top ? 0.
+
+[31:]:
+top ? 0.
+
+[32:]:
+top ? 0.
+
+[33:]:
+top ? 0.
+
+[34:]:
+top ? 0.
+
+[35:]:
+top ? 0.
+
+[36:]:
+top ? 0.
+
+[37:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[38:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[39:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && -$19{limit} >= -9 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && -$19{limit} >= -9 && $5{chainBroken} == 1 ? bottom
+$19{limit} >= 10 && -$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $19{limit} >= 10 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && -$19{limit} >= -9 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && -$19{limit} >= -9 && $5{chainBroken} == 1 ? bottom
+$19{limit} >= 10 && $7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $19{limit} >= 10 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[40:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[41:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[42:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[43:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[44:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[45:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[46:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[47:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[48:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[49:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[50:]:
+top ? 0.
+
+[51:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[52:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[53:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[54:]:
+top ? 0.
+
+[55:]:
+top ? 0.
+
+[56:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[57:]:
+top ? 0.
+
+[58:]:
+top ? 0.
+
+[59:]:
+top ? 0.
+
+[60:]:
+top ? 0.
+
+[61:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[62:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[63:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[64:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[65:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[66:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[67:]:
+top ? 0.
+
+[68:]:
+top ? 0.
+
+[69:]:
+top ? 0.
+
+[70:]:
+top ? 0.
+
+[71:]:
+top ? 0.
+
+[72:]:
+top ? 0.
+
+[73:]:
+top ? 0.
+
+[74:]:
+top ? 0.
+
+[75:]:
+top ? 0.
+
+[76:]:
+top ? 0.
+
+[77:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[78:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[79:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[80:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[81:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[82:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[83:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[84:]:
+-$7{temp}+$8{limit} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp}+$8{limit} >= 0 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp}+$8{limit} >= 0 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$7{temp}+$8{limit} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && -$7{temp}+$8{limit} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$7{temp}+$8{limit} >= 0 ? 0.
+$7{temp}-$8{limit} >= 1 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+$7{temp}-$8{limit} >= 1 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp}-$8{limit} >= 1 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && $7{temp}-$8{limit} >= 1 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $7{temp}-$8{limit} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 && $7{temp}-$8{limit} >= 1 ? 0.
+
+[85:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[86:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[87:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[88:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[89:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[90:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+$7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+
+[91:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[92:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[93:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[94:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[95:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[96:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[97:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[98:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+[99:]:
+-$5{chainBroken} >= 0 ? 0.
+$5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 ? 0.
+
+Property: AG{OR{$5{chainBroken} != 1}{AG{$5{chainBroken} == 1}}}
+
+[1:]:
+top ? 0.
+
+[2:]:
+top ? 0.
+
+[3:]:
+top ? 0.
+
+[4:]:
+top ? 0.
+
+[5:]:
+top ? 0.
+
+[6:]:
+top ? 0.
+
+[7:]:
+top ? 0.
+
+[8:]:
+top ? 0.
+
+[9:]:
+top ? 0.
+
+[10:]:
+top ? 0.
+
+[11:]:
+top ? 0.
+
+[12:]:
+top ? 0.
+
+[13:]:
+top ? 0.
+
+[14:]:
+top ? 0.
+
+[15:]:
+top ? 0.
+
+[16:]:
+top ? 0.
+
+[17:]:
+top ? 0.
+
+[18:]:
+top ? 0.
+
+[19:]:
+top ? 0.
+
+[20:]:
+top ? 0.
+
+[21:]:
+top ? 0.
+
+[22:]:
+top ? 0.
+
+[23:]:
+top ? 0.
+
+[24:]:
+top ? 0.
+
+[25:]:
+top ? bottom
+
+[26:]:
+top ? 0.
+
+[27:]:
+top ? 0.
+
+[28:]:
+top ? 0.
+
+[29:]:
+top ? 0.
+
+[30:]:
+top ? 0.
+
+[31:]:
+top ? 0.
+
+[32:]:
+top ? 0.
+
+[33:]:
+top ? 0.
+
+[34:]:
+top ? 0.
+
+[35:]:
+top ? 0.
+
+[36:]:
+top ? 0.
+
+[37:]:
+top ? bottom
+
+[38:]:
+top ? bottom
+
+[39:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$19{limit} >= -9 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$19{limit} >= -9 ? bottom
+$19{limit} >= 10 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $19{limit} >= 10 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$19{limit} >= -9 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && -$19{limit} >= -9 && $5{chainBroken} == 1 ? bottom
+$19{limit} >= 10 && -$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $19{limit} >= 10 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$19{limit} >= -9 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$19{limit} >= -9 ? bottom
+$19{limit} >= 10 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $19{limit} >= 10 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$19{limit} >= -9 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$19{limit} >= -9 ? bottom
+$19{limit} >= 10 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $19{limit} >= 10 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$19{limit} >= -9 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && -$19{limit} >= -9 && $5{chainBroken} == 1 ? bottom
+$19{limit} >= 10 && $7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $19{limit} >= 10 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$19{limit} >= -9 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$19{limit} >= -9 ? bottom
+$19{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $19{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[40:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[41:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[42:]:
+top ? bottom
+
+[43:]:
+top ? bottom
+
+[44:]:
+top ? bottom
+
+[45:]:
+top ? bottom
+
+[46:]:
+top ? bottom
+
+[47:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[48:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[49:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[50:]:
+top ? 0.
+
+[51:]:
+top ? bottom
+
+[52:]:
+top ? bottom
+
+[53:]:
+top ? bottom
+
+[54:]:
+top ? 0.
+
+[55:]:
+top ? 0.
+
+[56:]:
+top ? bottom
+
+[57:]:
+top ? 0.
+
+[58:]:
+top ? 0.
+
+[59:]:
+top ? 0.
+
+[60:]:
+top ? 0.
+
+[61:]:
+top ? bottom
+
+[62:]:
+top ? bottom
+
+[63:]:
+top ? bottom
+
+[64:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[65:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[66:]:
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && -$18{try} >= -2 && $5{chainBroken} == 1 ? 0.
+$18{try} >= 3 && $7{temp} >= 0 && $5{chainBroken} == 1 ? bottom
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{try} >= -2 ? 0.
+$18{try} >= 3 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
+
+[67:]:
+top ? 0.
+
+[68:]:
+top ? 0.
+
+[69:]:
+top ? 0.
+
+[70:]:
+top ? 0.
+
+[71:]:
+top ? 0.
+
+[72:]:
+top ? 0.
+
+[73:]:
+top ? 0.
+
+[74:]:
+top ? 0.
+
+[75:]:
+top ? 0.
+
+[76:]:
+top ? 0.
+
+[77:]:
+top ? bottom
+
+[78:]:
+top ? bottom
+
+[79:]:
+top ? bottom
+
+[80:]:
+top ? bottom
+
+[81:]:
+top ? bottom
+
+[82:]:
+top ? bottom
+
+[83:]:
+top ? bottom
+
+[84:]:
+top ? bottom
+
+[85:]:
+top ? bottom
+
+[86:]:
+top ? bottom
+
+[87:]:
+top ? bottom
+
+[88:]:
+top ? bottom
+
+[89:]:
+top ? bottom
+
+[90:]:
+top ? bottom
+
+[91:]:
+top ? bottom
+
+[92:]:
+top ? bottom
+
+[93:]:
+top ? bottom
+
+[94:]:
+top ? bottom
+
+[95:]:
+top ? bottom
+
+[96:]:
+top ? bottom
+
+[97:]:
+top ? bottom
+
+[98:]:
+top ? bottom
+
+[99:]:
+top ? bottom
+
+
+Analysis Result: TRUE

@@ -1,0 +1,146 @@
+
+CFG:
+List of variables:
+  $1{__return_main}:int at tests/example8.c:10.0-19.1
+  $2{x}:int at tests/example8.c:11.6-7
+
+List of functions:
+  1: main() -> $1{__return_main}:int at tests/example8.c:10.0-19.1, entry: 11, exit: 10, calls:
+
+List of nodes:
+  11: at :0:-1, in: out:1 
+  10: at :0:-1, in: 2 out:
+  1: at tests/example8.c:10:0, in: 11 out:3 
+  2: at tests/example8.c:19:1, in: 4 out:10 
+  3: at tests/example8.c:11:12, in: 6 7 1 out:4 5 
+  4: at tests/example8.c:17:3, in: 3 out:2 
+  5: at tests/example8.c:12:19, in: 3 out:6 7 
+  6: at tests/example8.c:16:6, in: 5 out:3 
+  7: at tests/example8.c:14:6, in: 5 out:3 
+  8: at tests/example8.c:10:0, in: out:9 
+  9: at tests/example8.c:19:1, in: 8 out:
+
+List of arcs:
+  11 -> 1: label entry
+  2 -> 10: label exit
+  1 -> 3: $2{x} = ?
+  3 -> 5: $2{x} <= 100 ?
+  3 -> 4: ! ($2{x} <= 100) ?
+  5 -> 7: brand ?
+  5 -> 6: ! (brand) ?
+  7 -> 3: $2{x} = - (2 * $2{x}) + 2
+  6 -> 3: $2{x} = - (3 * $2{x}) - 2
+  4 -> 2: $1{__return_main} = 0
+  8 -> 9: skip
+
+
+Property: exit: true
+
+[1:]:
+top ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+top ? bottom
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? 0.
+
+[11:]:
+top ? bottom
+
+Property: AF{exit: true}
+
+[1:]:
+top ? 36
+
+[2:]:
+top ? 0.
+
+[3:]:
+-$2{x} >= 50 ? 5
+-$2{x} >= 12 && $2{x} >= -49 ? 11
+-$2{x} >= 3 && $2{x} >= -11 ? 17
+$2{x} == -2 ? 23
+$2{x} == -1 ? 35
+$2{x} == 0 ? 29
+$2{x} == 1 ? 32
+$2{x} == 2 ? 26
+-$2{x} >= -6 && $2{x} >= 3 ? 20
+-$2{x} >= -25 && $2{x} >= 7 ? 14
+-$2{x} >= -100 && $2{x} >= 26 ? 8
+$2{x} >= 101 ? 2
+
+[4:]:
+top ? 1
+
+[5:]:
+-$2{x} >= 50 ? 4
+-$2{x} >= 12 && $2{x} >= -49 ? 10
+-$2{x} >= 3 && $2{x} >= -11 ? 16
+$2{x} == -2 ? 22
+$2{x} == -1 ? 34
+$2{x} == 0 ? 28
+$2{x} == 1 ? 31
+$2{x} == 2 ? 25
+-$2{x} >= -6 && $2{x} >= 3 ? 19
+-$2{x} >= -25 && $2{x} >= 7 ? 13
+$2{x} >= 26 ? 7
+
+[6:]:
+-$2{x} >= 35 ? 3
+-$2{x} >= 10 && $2{x} >= -34 ? 9
+-$2{x} >= 3 && $2{x} >= -9 ? 15
+$2{x} == -2 ? 21
+$2{x} == -1 ? 33
+$2{x} == 0 ? 24
+-$2{x} >= -3 && $2{x} >= 1 ? 18
+-$2{x} >= -15 && $2{x} >= 4 ? 12
+$2{x} >= 16 ? 6
+
+[7:]:
+-$2{x} >= 50 ? 3
+-$2{x} >= 12 && $2{x} >= -49 ? 9
+-$2{x} >= 3 && $2{x} >= -11 ? 15
+-$2{x} >= 1 && $2{x} >= -2 ? 21
+$2{x} == 0 ? 27
+$2{x} == 1 ? 30
+$2{x} == 2 ? 24
+-$2{x} >= -6 && $2{x} >= 3 ? 18
+-$2{x} >= -25 && $2{x} >= 7 ? 12
+$2{x} >= 26 ? 6
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? 0.
+
+[11:]:
+top ? 36
+
+
+Analysis Result: TRUE

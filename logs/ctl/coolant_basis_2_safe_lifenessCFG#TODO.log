@@ -1,0 +1,1508 @@
+
+CFG:
+List of variables:
+  $1{error}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:11.4-9
+  $2{tempDisplay}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:11.11-22
+  $3{warnLED}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:11.24-31
+  $4{tempIn}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:11.33-39
+  $5{chainBroken}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:11.41-52
+  $6{warnLight}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:12.0-9
+  $7{temp}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:12.11-15
+  $8{otime}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:12.17-22
+  $9{time}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:12.28-32
+  $10{limit}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:12.38-43
+  $11{init}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:12.45-49
+  $12{tempdiff}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:15.17-25
+  $13{warning}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:15.31-38
+  $14{kelvin}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:21.18-24
+  $15{__return_vinToCels}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:21.0-29.1
+  $16{__ret_vinToCels}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:38.9-18
+  $17{__return_main}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:46.0-81.1
+  $18{try}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:58.8-11
+  $19{limit}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:62.6-11
+
+List of functions:
+  3: coolantControl() -> void at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:31.0-44.1, entry: 11, exit: 12, calls: 51->23
+  1: display($12{tempdiff}:int,$13{warning}:int) -> void at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:15.0-19.1, entry: 1, exit: 2, calls: 47->38 44->42 10->6
+  4: main() -> $17{__return_main}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:46.0-81.1, entry: 56, exit: 55, calls:
+  2: vinToCels($14{kelvin}:int) -> $15{__return_vinToCels}:int at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:21.0-29.1, entry: 4, exit: 5, calls: 18->19
+
+List of nodes:
+  56: at :0:-1, in: out:22 
+  55: at :0:-1, in: 23 out:
+  1: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:15:0, in: out:3 
+  2: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:19:1, in: 3 out:
+  3: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:17:24, in: 1 out:2 
+  4: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:21:0, in: out:6 7 
+  5: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:29:1, in: 6 out:
+  6: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:27:2, in: 58 4 out:5 
+  7: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:24:1, in: 4 out:8 
+  8: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:25:12, in: 7 out:9 
+  9: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:26:29, in: 8 out:10 
+  10: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:26:22, in: 9 out:57 
+  11: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:31:0, in: 21 17 out:12 13 
+  12: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:44:1, in: 11 out:
+  13: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:34:1, in: 11 out:14 
+  14: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:35:15, in: 13 out:15 
+  15: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:36:19, in: 14 out:16 
+  16: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:37:35, in: 15 out:18 
+  17: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:38:27, in: 20 out:11 21 
+  18: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:38:25, in: 16 out:66 
+  19: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:38:18, in: 67 out:20 
+  20: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:38:18, in: 19 out:17 
+  21: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:40:2, in: 17 out:11 
+  22: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:46:0, in: 56 out:24 
+  23: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:81:1, in: 77 out:55 
+  24: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:48:13, in: 22 out:25 
+  25: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:49:20, in: 24 out:26 
+  26: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:50:16, in: 25 out:27 
+  27: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:51:15, in: 26 out:28 
+  28: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:52:14, in: 27 out:29 
+  29: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:53:20, in: 28 out:30 
+  30: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:54:18, in: 29 out:31 
+  31: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:55:13, in: 30 out:32 
+  32: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:56:14, in: 31 out:33 
+  33: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:57:13, in: 32 out:34 
+  34: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:58:16, in: 48 33 out:35 36 
+  35: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:77:2, in: 50 42 34 out:51 
+  36: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:61:1, in: 34 out:37 
+  37: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:62:38, in: 36 out:39 40 
+  38: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:71:3, in: 64 out:48 49 
+  39: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:68:9, in: 37 out:45 
+  40: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:64:2, in: 37 out:41 
+  41: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:65:13, in: 40 out:43 
+  42: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:66:21, in: 61 out:35 
+  43: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:66:19, in: 41 out:44 
+  44: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:66:12, in: 43 out:60 
+  45: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:69:13, in: 39 out:46 
+  46: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:70:19, in: 45 out:47 
+  47: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:70:12, in: 46 out:63 
+  48: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:75:3, in: 38 out:34 
+  49: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:72:16, in: 38 out:50 
+  50: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:73:13, in: 49 out:35 
+  51: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:79:10, in: 35 out:76 
+  52: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:11:0, in: out:54 
+  53: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:81:1, in: 54 out:
+  54: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:12:36, in: 52 out:53 
+  57: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:15:0, in: 10 out:59 
+  58: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:19:1, in: 59 out:6 
+  59: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:17:24, in: 57 out:58 
+  60: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:15:0, in: 44 out:62 
+  61: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:19:1, in: 62 out:42 
+  62: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:17:24, in: 60 out:61 
+  63: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:15:0, in: 47 out:65 
+  64: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:19:1, in: 65 out:38 
+  65: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:17:24, in: 63 out:64 
+  66: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:21:0, in: 18 out:68 69 
+  67: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:29:1, in: 68 out:19 
+  68: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:27:2, in: 74 66 out:67 
+  69: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:24:1, in: 66 out:70 
+  70: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:25:12, in: 69 out:71 
+  71: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:26:29, in: 70 out:72 
+  72: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:26:22, in: 71 out:73 
+  73: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:15:0, in: 72 out:75 
+  74: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:19:1, in: 75 out:68 
+  75: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:17:24, in: 73 out:74 
+  76: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:31:0, in: 51 86 82 out:77 78 
+  77: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:44:1, in: 76 out:23 
+  78: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:34:1, in: 76 out:79 
+  79: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:35:15, in: 78 out:80 
+  80: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:36:19, in: 79 out:81 
+  81: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:37:35, in: 80 out:83 
+  82: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:38:27, in: 85 out:76 86 
+  83: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:38:25, in: 81 out:87 
+  84: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:38:18, in: 88 out:85 
+  85: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:38:18, in: 84 out:82 
+  86: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:40:2, in: 82 out:76 
+  87: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:21:0, in: 83 out:89 90 
+  88: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:29:1, in: 89 out:84 
+  89: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:27:2, in: 95 87 out:88 
+  90: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:24:1, in: 87 out:91 
+  91: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:25:12, in: 90 out:92 
+  92: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:26:29, in: 91 out:93 
+  93: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:26:22, in: 92 out:94 
+  94: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:15:0, in: 93 out:96 
+  95: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:19:1, in: 96 out:89 
+  96: at tests/ctl/ltl_automizer/coolant_basis_2_safe_lifeness.c:17:24, in: 94 out:95 
+
+List of arcs:
+  77 -> 23: return: coolantControl
+  51 -> 76: call: coolantControl
+  67 -> 19: return: vinToCels
+  18 -> 66: call: vinToCels
+  64 -> 38: return: display
+  47 -> 63: call: display
+  61 -> 42: return: display
+  44 -> 60: call: display
+  58 -> 6: return: display
+  10 -> 57: call: display
+  56 -> 22: label entry
+  23 -> 55: label exit
+  1 -> 3: $2{tempDisplay} = $12{tempdiff}
+  3 -> 2: $3{warnLED} = $13{warning}
+  4 -> 7: $7{temp} < 0 ?
+  4 -> 6: ! ($7{temp} < 0) ?
+  7 -> 8: $1{error} = 1
+  8 -> 9: $13{warning} = $1{error}
+  9 -> 10: $12{tempdiff} = $14{kelvin} - 273
+  6 -> 5: $15{__return_vinToCels} = $14{kelvin} - 273
+  11 -> 13: 1 != 0 ?
+  11 -> 12: ! (1 != 0) ?
+  13 -> 14: $8{otime} = $9{time}
+  14 -> 15: $9{time} = $8{otime} + 1
+  15 -> 16: $4{tempIn} = ?
+  16 -> 18: $14{kelvin} = $4{tempIn}
+  19 -> 20: $16{__ret_vinToCels} = $15{__return_vinToCels}
+  20 -> 17: $7{temp} = $16{__ret_vinToCels}
+  17 -> 21: $7{temp} > $10{limit} ?
+  17 -> 11: ! ($7{temp} > $10{limit}) ?
+  21 -> 11: $5{chainBroken} = 1
+  22 -> 24: $11{init} = 0
+  24 -> 25: $2{tempDisplay} = 0
+  25 -> 26: $3{warnLED} = 1
+  26 -> 27: $4{tempIn} = 0
+  27 -> 28: $1{error} = 0
+  28 -> 29: $5{chainBroken} = 0
+  29 -> 30: $6{warnLight} = 0
+  30 -> 31: $7{temp} = 0
+  31 -> 32: $10{limit} = 8
+  32 -> 33: $11{init} = 1
+  33 -> 34: $18{try} = 0
+  34 -> 36: 1 != 0 ?
+  34 -> 35: ! (1 != 0) ?
+  36 -> 37: $19{limit} = ?
+  37 -> 40: $19{limit} < 10 && $19{limit} > - 273 ?
+  37 -> 39: ! ($19{limit} < 10 && $19{limit} > - 273) ?
+  40 -> 41: $1{error} = 0
+  41 -> 43: $13{warning} = $1{error}
+  43 -> 44: $12{tempdiff} = 0
+  42 -> 35: skip: break
+  39 -> 45: $1{error} = 1
+  45 -> 46: $13{warning} = $1{error}
+  46 -> 47: $12{tempdiff} = 0
+  38 -> 49: $18{try} >= 3 ?
+  38 -> 48: ! ($18{try} >= 3) ?
+  49 -> 50: $19{limit} = 7
+  50 -> 35: skip: break
+  48 -> 34: $18{try} = $18{try} + 1
+  35 -> 51: $11{init} = 3
+  52 -> 54: $9{time} = 0
+  54 -> 53: $8{otime} = 0
+  57 -> 59: $2{tempDisplay} = $12{tempdiff}
+  59 -> 58: $3{warnLED} = $13{warning}
+  60 -> 62: $2{tempDisplay} = $12{tempdiff}
+  62 -> 61: $3{warnLED} = $13{warning}
+  63 -> 65: $2{tempDisplay} = $12{tempdiff}
+  65 -> 64: $3{warnLED} = $13{warning}
+  66 -> 68: ! ($7{temp} < 0) ?
+  66 -> 69: $7{temp} < 0 ?
+  68 -> 67: $15{__return_vinToCels} = $14{kelvin} - 273
+  69 -> 70: $1{error} = 1
+  70 -> 71: $13{warning} = $1{error}
+  71 -> 72: $12{tempdiff} = $14{kelvin} - 273
+  72 -> 73: call: display
+  73 -> 75: $2{tempDisplay} = $12{tempdiff}
+  74 -> 68: return: display
+  75 -> 74: $3{warnLED} = $13{warning}
+  76 -> 77: ! (1 != 0) ?
+  76 -> 78: 1 != 0 ?
+  78 -> 79: $8{otime} = $9{time}
+  79 -> 80: $9{time} = $8{otime} + 1
+  80 -> 81: $4{tempIn} = ?
+  81 -> 83: $14{kelvin} = $4{tempIn}
+  82 -> 76: ! ($7{temp} > $10{limit}) ?
+  82 -> 86: $7{temp} > $10{limit} ?
+  83 -> 87: call: vinToCels
+  84 -> 85: $16{__ret_vinToCels} = $15{__return_vinToCels}
+  85 -> 82: $7{temp} = $16{__ret_vinToCels}
+  86 -> 76: $5{chainBroken} = 1
+  87 -> 89: ! ($7{temp} < 0) ?
+  87 -> 90: $7{temp} < 0 ?
+  88 -> 84: return: vinToCels
+  89 -> 88: $15{__return_vinToCels} = $14{kelvin} - 273
+  90 -> 91: $1{error} = 1
+  91 -> 92: $13{warning} = $1{error}
+  92 -> 93: $12{tempdiff} = $14{kelvin} - 273
+  93 -> 94: call: display
+  94 -> 96: $2{tempDisplay} = $12{tempdiff}
+  95 -> 89: return: display
+  96 -> 95: $3{warnLED} = $13{warning}
+
+
+Property: $8{otime} < $9{time}
+
+[1:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[2:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[3:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[4:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[5:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[6:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[7:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[8:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[9:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[10:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[11:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[12:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[13:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[14:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[15:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[16:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[17:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[18:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[19:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[20:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[21:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[22:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[23:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[24:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[25:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[26:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[27:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[28:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[29:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[30:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[31:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[32:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[33:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[34:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[35:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[36:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[37:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[38:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[39:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[40:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[41:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[42:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[43:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[44:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[45:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[46:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[47:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[48:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[49:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[50:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[51:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[52:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[53:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[54:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[55:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[56:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[57:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[58:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[59:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[60:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[61:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[62:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[63:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[64:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[65:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[66:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[67:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[68:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[69:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[70:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[71:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[72:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[73:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[74:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[75:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[76:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[77:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[78:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[79:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[80:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[81:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[82:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[83:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[84:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[85:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[86:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[87:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[88:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[89:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[90:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[91:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[92:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[93:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[94:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[95:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[96:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+Property: AF{$8{otime} < $9{time}}
+
+[1:]:
+top ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+top ? bottom
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? bottom
+
+[11:]:
+top ? bottom
+
+[12:]:
+top ? bottom
+
+[13:]:
+top ? bottom
+
+[14:]:
+top ? bottom
+
+[15:]:
+top ? bottom
+
+[16:]:
+top ? bottom
+
+[17:]:
+top ? bottom
+
+[18:]:
+top ? bottom
+
+[19:]:
+top ? bottom
+
+[20:]:
+top ? bottom
+
+[21:]:
+top ? bottom
+
+[22:]:
+top ? bottom
+
+[23:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[24:]:
+top ? bottom
+
+[25:]:
+top ? bottom
+
+[26:]:
+top ? bottom
+
+[27:]:
+top ? bottom
+
+[28:]:
+top ? bottom
+
+[29:]:
+top ? bottom
+
+[30:]:
+top ? bottom
+
+[31:]:
+top ? bottom
+
+[32:]:
+top ? bottom
+
+[33:]:
+top ? bottom
+
+[34:]:
+top ? bottom
+
+[35:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 4
+
+[36:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 13
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 13
+
+[37:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= 273 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= 273 ? 12
+$19{limit} >= -272 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= -9 ? 10
+$19{limit} >= 10 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $19{limit} >= 10 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 12
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= 273 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= 273 ? 12
+$19{limit} >= -272 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= -9 ? 10
+$19{limit} >= 10 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $19{limit} >= 10 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 12
+
+[38:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 6
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 6
+
+[39:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 11
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 11
+
+[40:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 9
+
+[41:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 8
+
+[42:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 4
+
+[43:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 7
+
+[44:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 6
+
+[45:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 10
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 10
+
+[46:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 9
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 9
+
+[47:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 8
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 8
+
+[48:]:
+top ? bottom
+
+[49:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 5
+
+[50:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 4
+
+[51:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 3
+
+[52:]:
+top ? bottom
+
+[53:]:
+top ? bottom
+
+[54:]:
+top ? bottom
+
+[55:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[56:]:
+top ? bottom
+
+[57:]:
+top ? bottom
+
+[58:]:
+top ? bottom
+
+[59:]:
+top ? bottom
+
+[60:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 6
+
+[61:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 4
+
+[62:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 5
+
+[63:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 8
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 8
+
+[64:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 6
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 6
+
+[65:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 7
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 7
+
+[66:]:
+top ? bottom
+
+[67:]:
+top ? bottom
+
+[68:]:
+top ? bottom
+
+[69:]:
+top ? bottom
+
+[70:]:
+top ? bottom
+
+[71:]:
+top ? bottom
+
+[72:]:
+top ? bottom
+
+[73:]:
+top ? bottom
+
+[74:]:
+top ? bottom
+
+[75:]:
+top ? bottom
+
+[76:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 3
+
+[77:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? bottom
+
+[78:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 2
+
+[79:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 1
+
+[80:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 16
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 11
+
+[81:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$4{tempIn} >= -272 && -$10{limit}+$4{tempIn} >= 274 ? 15
+$10{limit}-$4{tempIn} >= -273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$4{tempIn} >= -272 ? 14
+$4{tempIn} >= 273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$10{limit}+$4{tempIn} >= 274 ? 15
+$10{limit}-$4{tempIn} >= -273 && $4{tempIn} >= 273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 14
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$4{tempIn} >= -272 && -$10{limit}+$4{tempIn} >= 274 ? 10
+$10{limit}-$4{tempIn} >= -273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$4{tempIn} >= -272 ? 9
+$4{tempIn} >= 273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$4{tempIn} >= 274 ? 10
+$10{limit}-$4{tempIn} >= -273 && $4{tempIn} >= 273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 9
+
+[82:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? 5
+$10{limit}-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 4
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$7{temp} >= 1 ? 5
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 4
+
+[83:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 14
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$14{kelvin} >= -272 ? 13
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$10{limit}+$14{kelvin} >= 274 ? 14
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 13
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 9
+$10{limit}-$14{kelvin} >= -273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 8
+$14{kelvin} >= 273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 9
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 8
+
+[84:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$15{__return_vinToCels} >= 1 && -$10{limit}+$15{__return_vinToCels} >= 1 ? 7
+$10{limit}-$15{__return_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 && -$15{__return_vinToCels} >= 1 ? 6
+$15{__return_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$15{__return_vinToCels} >= 1 ? 7
+$10{limit}-$15{__return_vinToCels} >= 0 && $15{__return_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 ? 6
+
+[85:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$16{__ret_vinToCels} >= 1 && -$10{limit}+$16{__ret_vinToCels} >= 1 ? 6
+$10{limit}-$16{__ret_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 && -$16{__ret_vinToCels} >= 1 ? 5
+$16{__ret_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$16{__ret_vinToCels} >= 1 ? 6
+$10{limit}-$16{__ret_vinToCels} >= 0 && $16{__ret_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 ? 5
+
+[86:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 4
+
+[87:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 14
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$14{kelvin} >= -272 ? 13
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$10{limit}+$14{kelvin} >= 274 ? 14
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 13
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 9
+$10{limit}-$14{kelvin} >= -273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 8
+$14{kelvin} >= 273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 9
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 8
+
+[88:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$15{__return_vinToCels} >= 1 && -$10{limit}+$15{__return_vinToCels} >= 1 ? 7
+$10{limit}-$15{__return_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 && -$15{__return_vinToCels} >= 1 ? 6
+$15{__return_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$15{__return_vinToCels} >= 1 ? 7
+$10{limit}-$15{__return_vinToCels} >= 0 && $15{__return_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 ? 6
+
+[89:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 8
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 7
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 8
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 7
+
+[90:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 13
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 12
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 13
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 12
+
+[91:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 12
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 11
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 12
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 11
+
+[92:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 11
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 10
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 11
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 10
+
+[93:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 10
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 9
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 10
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 9
+
+[94:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 10
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 9
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 10
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 9
+
+[95:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 8
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 7
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 8
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 7
+
+[96:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 9
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 8
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 9
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 8
+
+Property: AG{AF{$8{otime} < $9{time}}}
+
+[1:]:
+top ? bottom
+
+[2:]:
+top ? bottom
+
+[3:]:
+top ? bottom
+
+[4:]:
+top ? bottom
+
+[5:]:
+top ? bottom
+
+[6:]:
+top ? bottom
+
+[7:]:
+top ? bottom
+
+[8:]:
+top ? bottom
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? bottom
+
+[11:]:
+top ? bottom
+
+[12:]:
+top ? bottom
+
+[13:]:
+top ? bottom
+
+[14:]:
+top ? bottom
+
+[15:]:
+top ? bottom
+
+[16:]:
+top ? bottom
+
+[17:]:
+top ? bottom
+
+[18:]:
+top ? bottom
+
+[19:]:
+top ? bottom
+
+[20:]:
+top ? bottom
+
+[21:]:
+top ? bottom
+
+[22:]:
+top ? bottom
+
+[23:]:
+top ? bottom
+
+[24:]:
+top ? bottom
+
+[25:]:
+top ? bottom
+
+[26:]:
+top ? bottom
+
+[27:]:
+top ? bottom
+
+[28:]:
+top ? bottom
+
+[29:]:
+top ? bottom
+
+[30:]:
+top ? bottom
+
+[31:]:
+top ? bottom
+
+[32:]:
+top ? bottom
+
+[33:]:
+top ? bottom
+
+[34:]:
+top ? bottom
+
+[35:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 4
+
+[36:]:
+-$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 13
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 13
+
+[37:]:
+-$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$19{limit} >= -9 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$19{limit} >= -9 ? 0.
+$19{limit} >= 10 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $19{limit} >= 10 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$19{limit} >= -9 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$19{limit} >= -9 ? 0.
+$19{limit} >= 10 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $19{limit} >= 10 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= 273 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= 273 ? 12
+$19{limit} >= -272 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= -9 ? 10
+$19{limit} >= 10 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $19{limit} >= 10 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 12
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= 273 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= 273 ? 12
+$19{limit} >= -272 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= -9 ? 10
+$19{limit} >= 10 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $19{limit} >= 10 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 12
+
+[38:]:
+-$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 6
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 6
+
+[39:]:
+-$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 11
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 11
+
+[40:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 9
+
+[41:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 8
+
+[42:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 4
+
+[43:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 7
+
+[44:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 6
+
+[45:]:
+-$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 10
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 10
+
+[46:]:
+-$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 9
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 9
+
+[47:]:
+-$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 8
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 8
+
+[48:]:
+top ? bottom
+
+[49:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 5
+
+[50:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 4
+
+[51:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 3
+
+[52:]:
+top ? bottom
+
+[53:]:
+top ? bottom
+
+[54:]:
+top ? bottom
+
+[55:]:
+top ? bottom
+
+[56:]:
+top ? bottom
+
+[57:]:
+top ? bottom
+
+[58:]:
+top ? bottom
+
+[59:]:
+top ? bottom
+
+[60:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 6
+
+[61:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 4
+
+[62:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 5
+
+[63:]:
+-$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 8
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 8
+
+[64:]:
+-$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 6
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 6
+
+[65:]:
+-$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 7
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 7
+
+[66:]:
+top ? bottom
+
+[67:]:
+top ? bottom
+
+[68:]:
+top ? bottom
+
+[69:]:
+top ? bottom
+
+[70:]:
+top ? bottom
+
+[71:]:
+top ? bottom
+
+[72:]:
+top ? bottom
+
+[73:]:
+top ? bottom
+
+[74:]:
+top ? bottom
+
+[75:]:
+top ? bottom
+
+[76:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 3
+
+[77:]:
+top ? bottom
+
+[78:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 2
+
+[79:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 1
+
+[80:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 16
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 11
+
+[81:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$4{tempIn} >= -272 && -$10{limit}+$4{tempIn} >= 274 ? 15
+$10{limit}-$4{tempIn} >= -273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$4{tempIn} >= -272 ? 14
+$4{tempIn} >= 273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$10{limit}+$4{tempIn} >= 274 ? 15
+$10{limit}-$4{tempIn} >= -273 && $4{tempIn} >= 273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 14
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$4{tempIn} >= -272 && -$10{limit}+$4{tempIn} >= 274 ? 10
+$10{limit}-$4{tempIn} >= -273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$4{tempIn} >= -272 ? 9
+$4{tempIn} >= 273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$4{tempIn} >= 274 ? 10
+$10{limit}-$4{tempIn} >= -273 && $4{tempIn} >= 273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 9
+
+[82:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? 5
+$10{limit}-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 4
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$7{temp} >= 1 ? 5
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 4
+
+[83:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 14
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$14{kelvin} >= -272 ? 13
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$10{limit}+$14{kelvin} >= 274 ? 14
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 13
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 9
+$10{limit}-$14{kelvin} >= -273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 8
+$14{kelvin} >= 273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 9
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 8
+
+[84:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$15{__return_vinToCels} >= 1 && -$10{limit}+$15{__return_vinToCels} >= 1 ? 7
+$10{limit}-$15{__return_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 && -$15{__return_vinToCels} >= 1 ? 6
+$15{__return_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$15{__return_vinToCels} >= 1 ? 7
+$10{limit}-$15{__return_vinToCels} >= 0 && $15{__return_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 ? 6
+
+[85:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$16{__ret_vinToCels} >= 1 && -$10{limit}+$16{__ret_vinToCels} >= 1 ? 6
+$10{limit}-$16{__ret_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 && -$16{__ret_vinToCels} >= 1 ? 5
+$16{__ret_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$16{__ret_vinToCels} >= 1 ? 6
+$10{limit}-$16{__ret_vinToCels} >= 0 && $16{__ret_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 ? 5
+
+[86:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 4
+
+[87:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 14
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$14{kelvin} >= -272 ? 13
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$10{limit}+$14{kelvin} >= 274 ? 14
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 13
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 9
+$10{limit}-$14{kelvin} >= -273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 8
+$14{kelvin} >= 273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 9
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 8
+
+[88:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$15{__return_vinToCels} >= 1 && -$10{limit}+$15{__return_vinToCels} >= 1 ? 7
+$10{limit}-$15{__return_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 && -$15{__return_vinToCels} >= 1 ? 6
+$15{__return_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 && -$10{limit}+$15{__return_vinToCels} >= 1 ? 7
+$10{limit}-$15{__return_vinToCels} >= 0 && $15{__return_vinToCels} >= 0 && $8{otime}-$9{time} >= 0 ? 6
+
+[89:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 8
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 7
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 8
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 7
+
+[90:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 13
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 12
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 13
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 12
+
+[91:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 12
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 11
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 12
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 11
+
+[92:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 11
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 10
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 11
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 10
+
+[93:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 10
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 9
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 10
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 9
+
+[94:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 10
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 9
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 10
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 9
+
+[95:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 8
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 7
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 8
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 7
+
+[96:]:
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 && -$10{limit}+$14{kelvin} >= 274 ? 9
+$10{limit}-$14{kelvin} >= -273 && $8{otime}-$9{time} >= 0 && -$14{kelvin} >= -272 ? 8
+$14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 ? 9
+$10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 8
+
+
+Analysis Result: UNKNOWN

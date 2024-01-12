@@ -1,0 +1,176 @@
+
+CFG:
+List of variables:
+  $1{__return_main}:int at tests/ctl/report/test_existential2.c:3.0-13.1
+  $2{x}:int at tests/ctl/report/test_existential2.c:4.8-9
+  $3{y}:int at tests/ctl/report/test_existential2.c:5.8-9
+  $4{r}:int at tests/ctl/report/test_existential2.c:6.8-9
+
+List of functions:
+  1: main() -> $1{__return_main}:int at tests/ctl/report/test_existential2.c:3.0-13.1, entry: 12, exit: 11, calls:
+
+List of nodes:
+  12: at :0:-1, in: out:1 
+  11: at :0:-1, in: 2 out:
+  1: at tests/ctl/report/test_existential2.c:3:0, in: 12 out:3 
+  2: at tests/ctl/report/test_existential2.c:13:1, in: 5 out:11 
+  3: at tests/ctl/report/test_existential2.c:4:10, in: 1 out:4 
+  4: at tests/ctl/report/test_existential2.c:5:10, in: 3 out:5 
+  5: at tests/ctl/report/test_existential2.c:6:14, in: 8 7 4 out:2 6 
+  6: at tests/ctl/report/test_existential2.c:7:14, in: 5 out:7 
+  7: at tests/ctl/report/test_existential2.c:8:18, in: 6 out:5 8 
+  8: at tests/ctl/report/test_existential2.c:9:22, in: 7 out:5 
+  9: at tests/ctl/report/test_existential2.c:3:0, in: out:10 
+  10: at tests/ctl/report/test_existential2.c:13:1, in: 9 out:
+
+List of arcs:
+  12 -> 1: label entry
+  2 -> 11: label exit
+  1 -> 3: skip
+  3 -> 4: skip
+  4 -> 5: $4{r} = 0
+  5 -> 6: brand ?
+  5 -> 2: ! (brand) ?
+  6 -> 7: $2{x} = $2{x} + 1
+  7 -> 8: $2{x} == 200 ?
+  7 -> 5: ! ($2{x} == 200) ?
+  8 -> 5: $4{r} = 1
+  9 -> 10: skip
+
+
+Property: $4{r} == 1
+
+[1:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+[2:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+[3:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+[4:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+[5:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+[6:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+[7:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+[8:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+[9:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+[10:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+[11:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+[12:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+Property: EF{$4{r} == 1}
+
+[1:]:
+-$4{r} >= 0 && -$2{x} >= -199 ? -3$2{x}+602
+$2{x} >= 200 && -$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 && -$2{x} >= -199 ? -3$2{x}+602
+$2{x} >= 200 && $4{r} >= 2 ? bottom
+
+[2:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+[3:]:
+-$4{r} >= 0 && -$2{x} >= -199 ? -3$2{x}+602
+$2{x} >= 200 && -$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 && -$2{x} >= -199 ? -3$2{x}+602
+$2{x} >= 200 && $4{r} >= 2 ? bottom
+
+[4:]:
+-$4{r} >= 0 && -$2{x} >= -199 ? -3$2{x}+602
+$2{x} >= 200 && -$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 && -$2{x} >= -199 ? -3$2{x}+602
+$2{x} >= 200 && $4{r} >= 2 ? bottom
+
+[5:]:
+-$4{r} >= 0 && -$2{x} >= -199 ? -3$2{x}+601
+$2{x} >= 200 && -$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 && -$2{x} >= -199 ? -3$2{x}+601
+$2{x} >= 200 && $4{r} >= 2 ? bottom
+
+[6:]:
+-$4{r} >= 0 && -$2{x} >= -199 ? -3$2{x}+600
+$2{x} >= 200 && -$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 && -$2{x} >= -199 ? -3$2{x}+600
+$2{x} >= 200 && $4{r} >= 2 ? bottom
+
+[7:]:
+-$4{r} >= 0 && -$2{x} >= -200 ? -3$2{x}+602
+$2{x} >= 201 && -$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 && -$2{x} >= -200 ? -3$2{x}+602
+$2{x} >= 201 && $4{r} >= 2 ? bottom
+
+[8:]:
+-$4{r} >= 0 ? 1
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? 1
+
+[9:]:
+top ? bottom
+
+[10:]:
+top ? bottom
+
+[11:]:
+-$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 ? bottom
+
+[12:]:
+-$4{r} >= 0 && -$2{x} >= -199 ? -3$2{x}+602
+$2{x} >= 200 && -$4{r} >= 0 ? bottom
+$4{r} == 1 ? 0.
+$4{r} >= 2 && -$2{x} >= -199 ? -3$2{x}+602
+$2{x} >= 200 && $4{r} >= 2 ? bottom
+
+
+Analysis Result: TRUE

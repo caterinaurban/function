@@ -1,0 +1,312 @@
+
+CFG:
+List of variables:
+  $1{varA}:int at tests/ctl/t2_cav13/P3.c:9.8-12
+  $2{varR}:int at tests/ctl/t2_cav13/P3.c:10.8-12
+
+List of functions:
+  1: main() -> void at tests/ctl/t2_cav13/P3.c:7.0-23.1, entry: 13, exit: 12, calls:
+
+List of nodes:
+  13: at :0:-1, in: out:1 
+  12: at :0:-1, in: 2 out:
+  1: at tests/ctl/t2_cav13/P3.c:7:0, in: 13 out:3 
+  2: at tests/ctl/t2_cav13/P3.c:23:1, in: 4 out:12 
+  3: at tests/ctl/t2_cav13/P3.c:9:17, in: 1 out:4 
+  4: at tests/ctl/t2_cav13/P3.c:10:17, in: 8 3 out:2 5 
+  5: at tests/ctl/t2_cav13/P3.c:13:13, in: 4 out:6 
+  6: at tests/ctl/t2_cav13/P3.c:14:17, in: 5 out:7 
+  7: at tests/ctl/t2_cav13/P3.c:16:17, in: 9 6 out:8 9 
+  8: at tests/ctl/t2_cav13/P3.c:18:19, in: 7 out:4 
+  9: at tests/ctl/t2_cav13/P3.c:18:17, in: 7 out:7 
+  10: at tests/ctl/t2_cav13/P3.c:7:0, in: out:11 
+  11: at tests/ctl/t2_cav13/P3.c:23:1, in: 10 out:
+
+List of arcs:
+  13 -> 1: label entry
+  2 -> 12: label exit
+  1 -> 3: $1{varA} = 0
+  3 -> 4: $2{varR} = 0
+  4 -> 5: brand ?
+  4 -> 2: ! (brand) ?
+  5 -> 6: $1{varA} = 1
+  6 -> 7: $1{varA} = 0
+  7 -> 9: brand ?
+  7 -> 8: ! (brand) ?
+  9 -> 7: skip
+  8 -> 4: $2{varR} = 1
+  10 -> 11: skip
+
+
+Property: $2{varR} == 1
+
+[1:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[2:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[3:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[4:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[5:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[6:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[7:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[8:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[9:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[10:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[11:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[12:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[13:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+Property: EF{$2{varR} == 1}
+
+[1:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? top
+
+[2:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[3:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? top
+
+[4:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? top
+
+[5:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? top
+
+[6:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? top
+
+[7:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? top
+
+[8:]:
+-$2{varR} >= 0 ? 1
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? 1
+
+[9:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? top
+
+[10:]:
+top ? bottom
+
+[11:]:
+top ? bottom
+
+[12:]:
+-$2{varR} >= 0 ? bottom
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? bottom
+
+[13:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0.
+$2{varR} >= 2 ? top
+
+Property: $1{varA} != 1
+
+[1:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[2:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[3:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[4:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[5:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[6:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[7:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[8:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[9:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[10:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[11:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[12:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[13:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+Property: OR{$1{varA} != 1}{EF{$2{varR} == 1}}
+
+[1:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0
+$2{varR} >= 2 ? top
+
+[2:]:
+-$2{varR} >= -1 && -$1{varA} >= 0 ? 0.
+-$2{varR} >= -1 && $1{varA} == 1 ? bottom
+$1{varA} >= 2 && -$2{varR} >= -1 ? 0
+$2{varR} >= 2 && -$1{varA} >= 0 ? 0.
+$2{varR} >= 2 && $1{varA} == 1 ? bottom
+$1{varA} >= 2 && $2{varR} >= 2 ? 0.
+
+[3:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0
+$2{varR} >= 2 ? top
+
+[4:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0
+$2{varR} >= 2 ? top
+
+[5:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0
+$2{varR} >= 2 ? top
+
+[6:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0
+$2{varR} >= 2 ? top
+
+[7:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0
+$2{varR} >= 2 ? top
+
+[8:]:
+-$2{varR} >= 0 ? 1
+$2{varR} == 1 ? 0
+$2{varR} >= 2 ? 1
+
+[9:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0
+$2{varR} >= 2 ? top
+
+[10:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[11:]:
+-$1{varA} >= 0 ? 0.
+$1{varA} == 1 ? bottom
+$1{varA} >= 2 ? 0.
+
+[12:]:
+-$2{varR} >= -1 && -$1{varA} >= 0 ? 0.
+-$2{varR} >= -1 && $1{varA} == 1 ? bottom
+$1{varA} >= 2 && -$2{varR} >= -1 ? 0
+$2{varR} >= 2 && -$1{varA} >= 0 ? 0.
+$2{varR} >= 2 && $1{varA} == 1 ? bottom
+$1{varA} >= 2 && $2{varR} >= 2 ? 0.
+
+[13:]:
+-$2{varR} >= 0 ? top
+$2{varR} == 1 ? 0
+$2{varR} >= 2 ? top
+
+
+Analysis Result: UNKNOWN
