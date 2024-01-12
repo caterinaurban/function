@@ -20,7 +20,6 @@ let ordinals = ref false
 let property = ref ""
 let precondition = ref "true"
 let time = ref false
-let ctl_analysis_type = ref "cfg"
 let noinline = ref false
 
 let parseFile filename =
@@ -182,8 +181,10 @@ let parse_args () =
     (* CTL arguments ---------------------------------------------------*)
     | "-ctl"::x::r -> (* CTL analysis *)
       analysis := "ctl"; property := x; doit r
-    | "-ast"::r -> (* use AST instead of CFG for analysis *)
-      ctl_analysis_type := "ast"; doit r
+    | "-ctl-ast"::x::r -> (* CTL analysis *)
+      analysis := "ctl-ast"; property := x; doit r
+    | "-ctl-cfg"::x::r -> (* CTL analysis *)
+      analysis := "ctl-cfg"; property := x; doit r
     | "-dot"::r -> (* print CFG and decision trees in 'dot' format *)
       Iterator.dot := true; doit r
     | "-precondition"::c::r -> (* optional precondition that holds 
@@ -429,12 +430,9 @@ let doit () =
   | "termination" -> termination ()
   | "guarantee" -> guarantee ()
   | "recurrence" -> recurrence ()
-  | "ctl" -> 
-    (match !ctl_analysis_type with 
-        | "cfg" -> ctl_cfg ()
-        | "ast" -> ctl_ast ()
-        | _ -> raise (Invalid_argument "Unknown CTL Analysis")
-    )
+  | "ctl" -> ctl_ast ()     (* default CTL analysis is CTL-AST *)
+  | "ctl-ast" -> ctl_ast ()
+  | "ctl-cfg" -> ctl_cfg ()
   | _ -> raise (Invalid_argument "Unknown Analysis")
 
 let _ = doit () 

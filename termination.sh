@@ -44,17 +44,17 @@
 ### -domain boxes
 ### -joinbwd 2
 
-./function tests/boolean.c -ctl "AF{exit: true}" > logs/termination/boolean_termCFG.log				# TRUE
-./function tests/cacm2009a.c -ctl "AF{exit: true}" > logs/termination/cacm2009a_termCFG.log			# TRUE
-./function tests/cav2006.c -ctl "AF{exit: true}" > logs/termination/cav2006_termCFG.log				# TRUE
-./function tests/example1.c -ctl "AF{exit: true}" > logs/termination/example1_termCFG.log			# TRUE
-./function tests/example2a.c -ctl "AF{exit: true}" > logs/termination/example2a_termCFG.log			# TRUE
-# ./function tests/postdecrement.c -ctl "AF{exit: true}" > logs/termination/postdecrement_termCFG.log	# TODO: fix parser?
-# ./function tests/postincrement.c -ctl "AF{exit: true}" > logs/termination/postincrement_termCFG.log	# TODO: fix parser?
-# ./function tests/predecrement.c -ctl "AF{exit: true}" > logs/termination/predecrement_termCFG.log		# TODO: fix parser?
-# ./function tests/preincrement.c -ctl "AF{exit: true}" > logs/termination/preincrement_termCFG.log		# TODO: fix parser?
- ./function tests/sas2010.c -ctl "AF{exit: true}" > logs/termination/sas2010_termCFG#TODO.log				# TODO: ?
-./function tests/tacas2013a.c -ctl "AF{exit: true}" > logs/termination/tacas2013a_termCFG.log		# TRUE
+./function tests/boolean.c -ctl-cfg "AF{exit: true}" > logs/termination/boolean_termCFG.log				# TRUE
+./function tests/cacm2009a.c -ctl-cfg "AF{exit: true}" > logs/termination/cacm2009a_termCFG.log			# TRUE
+./function tests/cav2006.c -ctl-cfg "AF{exit: true}" > logs/termination/cav2006_termCFG.log				# TRUE
+./function tests/example1.c -ctl-cfg "AF{exit: true}" > logs/termination/example1_termCFG.log			# TRUE
+./function tests/example2a.c -ctl-cfg "AF{exit: true}" > logs/termination/example2a_termCFG.log			# TRUE
+# ./function tests/postdecrement.c -ctl-cfg "AF{exit: true}" > logs/termination/postdecrement_termCFG.log	# TODO: fix parser?
+# ./function tests/postincrement.c -ctl-cfg "AF{exit: true}" > logs/termination/postincrement_termCFG.log	# TODO: fix parser?
+# ./function tests/predecrement.c -ctl-cfg "AF{exit: true}" > logs/termination/predecrement_termCFG.log		# TODO: fix parser?
+# ./function tests/preincrement.c -ctl-cfg "AF{exit: true}" > logs/termination/preincrement_termCFG.log		# TODO: fix parser?
+ ./function tests/sas2010.c -ctl-cfg "AF{exit: true}" > logs/termination/sas2010_termCFG#TODO.log				# TODO: ?
+./function tests/tacas2013a.c -ctl-cfg "AF{exit: true}" > logs/termination/tacas2013a_termCFG.log		# TRUE
 
 ## conditional termination
 
@@ -110,7 +110,7 @@
 ### -domain boxes
 ### -joinbwd 5
 
-./function tests/vmcai2004a.c -joinbwd 5 -ctl "AF{exit: true}" > logs/termination/vmcai2004a_termCFG_join5.log		# TRUE
+./function tests/vmcai2004a.c -joinbwd 5 -ctl-cfg "AF{exit: true}" > logs/termination/vmcai2004a_termCFG_join5.log		# TRUE
 
 #################################################################################
 
@@ -124,7 +124,7 @@
 ### -domain boxes
 ### -joinbwd 7
 
-./function tests/example8.c -joinbwd 7 -ctl "AF{exit: true}" > logs/termination/example8_termCFG_join7.log		# TRUE
+./function tests/example8.c -joinbwd 7 -ctl-cfg "AF{exit: true}" > logs/termination/example8_termCFG_join7.log		# TRUE
 
 #################################################################################
 
@@ -161,11 +161,11 @@
 ### -joinbwd 2
 ### -refine
 
-./function tests/example2b.c -refine -ctl "AF{exit: true}" > logs/termination/example2b_termCFG_refine#TODO.log		# TODO: ?
-./function tests/example2c.c -refine -ctl "AF{exit: true}" > logs/termination/example2c_termCFG_refine#TODO.log		# TODO: ?
-./function tests/example2d.c -refine -ctl "AF{exit: true}" > logs/termination/example2d_termCFG_refine#TODO.log		# TODO: ?
-./function tests/example2e.c -refine -ctl "AF{exit: true}" > logs/termination/example2e_termCFG_refine#TODO.log		# TODO: ?
-./function tests/sas2014b.c -refine -ctl "AF{exit: true}" > logs/termination/sas2014b_termCFG_refine#TODO.log			# TODO: ?
+./function tests/example2b.c -refine -ctl-cfg "AF{exit: true}" > logs/termination/example2b_termCFG_refine#TODO.log		# TODO: ?
+./function tests/example2c.c -refine -ctl-cfg "AF{exit: true}" > logs/termination/example2c_termCFG_refine#TODO.log		# TODO: ?
+./function tests/example2d.c -refine -ctl-cfg "AF{exit: true}" > logs/termination/example2d_termCFG_refine#TODO.log		# TODO: ?
+./function tests/example2e.c -refine -ctl-cfg "AF{exit: true}" > logs/termination/example2e_termCFG_refine#TODO.log		# TODO: ?
+./function tests/sas2014b.c -refine -ctl-cfg "AF{exit: true}" > logs/termination/sas2014b_termCFG_refine#TODO.log			# TODO: ?
 
 #################################################################################
 
@@ -195,8 +195,8 @@
 ### -domain polyhedra
 ### -joinbwd 2
 
-./function tests/sorting4.c -domain polyhedra -ctl "AF{exit: true}" > logs/termination/sorting4_termCFG_poly.log			# TRUE
-./function tests/tacas2013b.c -domain polyhedra -ctl "AF{exit: true}" > logs/termination/tacas2013b_termCFG_poly.log		# TRUE
+./function tests/sorting4.c -domain polyhedra -ctl-cfg "AF{exit: true}" > logs/termination/sorting4_termCFG_poly.log			# TRUE
+./function tests/tacas2013b.c -domain polyhedra -ctl-cfg "AF{exit: true}" > logs/termination/tacas2013b_termCFG_poly.log		# TRUE
 
 #################################################################################
 
@@ -226,12 +226,12 @@
 ### -joinbwd 2
 ### -ordinals 2
 
-./function tests/cacm2009b.c -ordinals 2 -ctl "AF{exit: true}" > logs/termination/cacm2009b_termCFG_ord2.log		# TRUE
-./function tests/example2.c -ordinals 2 -ctl "AF{exit: true}" > logs/termination/example2_termCFG_ord2.log			# TRUE
-./function tests/example10.c -ordinals 2 -ctl "AF{exit: true}" > logs/termination/example10_termCFG_ord2.log		# TRUE
-./function tests/tacas2013d.c -ordinals 2 -ctl "AF{exit: true}" > logs/termination/tacas2013d_termCFG_ord2.log		# TRUE
-./function tests/widening1.c -ordinals 2 -ctl "AF{exit: true}" > logs/termination/widening1_termCFG_ord2.log		# TRUE
-./function tests/widening2.c -ordinals 2 -ctl "AF{exit: true}" > logs/termination/widening2_termCFG_ord2.log		# TRUE
+./function tests/cacm2009b.c -ordinals 2 -ctl-cfg "AF{exit: true}" > logs/termination/cacm2009b_termCFG_ord2.log		# TRUE
+./function tests/example2.c -ordinals 2 -ctl-cfg "AF{exit: true}" > logs/termination/example2_termCFG_ord2.log			# TRUE
+./function tests/example10.c -ordinals 2 -ctl-cfg "AF{exit: true}" > logs/termination/example10_termCFG_ord2.log		# TRUE
+./function tests/tacas2013d.c -ordinals 2 -ctl-cfg "AF{exit: true}" > logs/termination/tacas2013d_termCFG_ord2.log		# TRUE
+./function tests/widening1.c -ordinals 2 -ctl-cfg "AF{exit: true}" > logs/termination/widening1_termCFG_ord2.log		# TRUE
+./function tests/widening2.c -ordinals 2 -ctl-cfg "AF{exit: true}" > logs/termination/widening2_termCFG_ord2.log		# TRUE
 
 #################################################################################
 
@@ -255,7 +255,7 @@
 ### -joinbwd 3
 ### -ordinals 2
 
-./function tests/tacas2013c.c -joinbwd 3 -ordinals 2 -ctl "AF{exit: true}" > logs/termination/tacas2013c_termCFG_join3ord2.log	# TRUE
+./function tests/tacas2013c.c -joinbwd 3 -ordinals 2 -ctl-cfg "AF{exit: true}" > logs/termination/tacas2013c_termCFG_join3ord2.log	# TRUE
 
 #################################################################################
 
@@ -270,11 +270,11 @@
 # ./function tests/recursion.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra > logs/termination/recursion_AST.log
 # ./function tests/vijay.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra > logs/termination/vijay_AST.log
 
-# ./function tests/example1a.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl "AF{exit: true}" > logs/termination/example1a_CFG.log
-# ./function tests/example1b.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl "AF{exit: true}" > logs/termination/example1b_CFG.log
-# ./function tests/example1c.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl "AF{exit: true}" > logs/termination/example1c_CFG.log
-# ./function tests/example1d.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl "AF{exit: true}" > logs/termination/example1d_CFG.log
-# ./function tests/example1e.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl "AF{exit: true}" > logs/termination/example1e_CFG.log
-# ./function tests/mccarthy91.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl "AF{exit: true}" > logs/termination/mccarthy91_CFG.log
-# ./function tests/recursion.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl "AF{exit: true}" > logs/termination/recursion_CFG.log
-# ./function tests/vijay.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl "AF{exit: true}" > logs/termination/vijay_CFG.log
+# ./function tests/example1a.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl-cfg "AF{exit: true}" > logs/termination/example1a_CFG.log
+# ./function tests/example1b.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl-cfg "AF{exit: true}" > logs/termination/example1b_CFG.log
+# ./function tests/example1c.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl-cfg "AF{exit: true}" > logs/termination/example1c_CFG.log
+# ./function tests/example1d.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl-cfg "AF{exit: true}" > logs/termination/example1d_CFG.log
+# ./function tests/example1e.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl-cfg "AF{exit: true}" > logs/termination/example1e_CFG.log
+# ./function tests/mccarthy91.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl-cfg "AF{exit: true}" > logs/termination/mccarthy91_CFG.log
+# ./function tests/recursion.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl-cfg "AF{exit: true}" > logs/termination/recursion_CFG.log
+# ./function tests/vijay.c -joinbwd 3 -ordinals 2 -refine -domain polyhedra -ctl-cfg "AF{exit: true}" > logs/termination/vijay_CFG.log
