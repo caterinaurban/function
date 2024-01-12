@@ -1,62 +1,62 @@
 
 CFG:
 List of variables:
-  $1{x}:int at tests/example2d.c:11.17-18
-  $2{__return_get_step}:int at tests/example2d.c:11.0-20.1
-  $3{__return_main}:int at tests/example2d.c:22.0-33.1
-  $4{y}:int at tests/example2d.c:23.6-7
-  $5{x}:int at tests/example2d.c:23.9-10
-  $6{step}:int at tests/example2d.c:23.12-16
-  $7{__ret_get_step}:int at tests/example2d.c:27.14-22
-  $8{__ret_get_step}:int at tests/example2d.c:29.14-22
+  $1{x}:int at tests/termination/example2d.c:11.17-18
+  $2{__return_get_step}:int at tests/termination/example2d.c:11.0-20.1
+  $3{__return_main}:int at tests/termination/example2d.c:22.0-33.1
+  $4{y}:int at tests/termination/example2d.c:23.6-7
+  $5{x}:int at tests/termination/example2d.c:23.9-10
+  $6{step}:int at tests/termination/example2d.c:23.12-16
+  $7{__ret_get_step}:int at tests/termination/example2d.c:27.14-22
+  $8{__ret_get_step}:int at tests/termination/example2d.c:29.14-22
 
 List of functions:
-  1: get_step($1{x}:int) -> $2{__return_get_step}:int at tests/example2d.c:11.0-20.1, entry: 1, exit: 2, calls: 20->21 17->18
-  2: main() -> $3{__return_main}:int at tests/example2d.c:22.0-33.1, entry: 26, exit: 25, calls:
+  1: get_step($1{x}:int) -> $2{__return_get_step}:int at tests/termination/example2d.c:11.0-20.1, entry: 1, exit: 2, calls: 20->21 17->18
+  2: main() -> $3{__return_main}:int at tests/termination/example2d.c:22.0-33.1, entry: 26, exit: 25, calls:
 
 List of nodes:
   26: at :0:-1, in: out:9 
   25: at :0:-1, in: 10 out:
-  1: at tests/example2d.c:11:0, in: out:4 5 
-  2: at tests/example2d.c:20:1, in: 3 8 7 5 out:
-  3: at tests/example2d.c:18:3, in: 6 out:2 
-  4: at tests/example2d.c:14:9, in: 1 out:6 7 
-  5: at tests/example2d.c:12:14, in: 1 out:2 
-  6: at tests/example2d.c:16:9, in: 4 out:3 8 
-  7: at tests/example2d.c:14:21, in: 4 out:2 
-  8: at tests/example2d.c:16:21, in: 6 out:2 
-  9: at tests/example2d.c:22:0, in: 26 out:11 
-  10: at tests/example2d.c:33:1, in: 13 out:25 
-  11: at tests/example2d.c:23:17, in: 9 out:12 
-  12: at tests/example2d.c:24:8, in: 22 19 11 out:13 14 
-  13: at tests/example2d.c:31:3, in: 12 out:10 
-  14: at tests/example2d.c:25:25, in: 12 out:15 16 
-  15: at tests/example2d.c:28:11, in: 14 out:20 
-  16: at tests/example2d.c:26:15, in: 14 out:17 
-  17: at tests/example2d.c:27:24, in: 16 out:27 
-  18: at tests/example2d.c:27:22, in: 28 out:19 
-  19: at tests/example2d.c:27:22, in: 18 out:12 
-  20: at tests/example2d.c:29:25, in: 15 out:35 
-  21: at tests/example2d.c:29:22, in: 36 out:22 
-  22: at tests/example2d.c:29:22, in: 21 out:12 
-  23: at tests/example2d.c:11:0, in: out:24 
-  24: at tests/example2d.c:33:1, in: 23 out:
-  27: at tests/example2d.c:11:0, in: 17 out:30 31 
-  28: at tests/example2d.c:20:1, in: 29 34 33 31 out:18 
-  29: at tests/example2d.c:18:3, in: 32 out:28 
-  30: at tests/example2d.c:14:9, in: 27 out:32 33 
-  31: at tests/example2d.c:12:14, in: 27 out:28 
-  32: at tests/example2d.c:16:9, in: 30 out:29 34 
-  33: at tests/example2d.c:14:21, in: 30 out:28 
-  34: at tests/example2d.c:16:21, in: 32 out:28 
-  35: at tests/example2d.c:11:0, in: 20 out:38 39 
-  36: at tests/example2d.c:20:1, in: 37 42 41 39 out:21 
-  37: at tests/example2d.c:18:3, in: 40 out:36 
-  38: at tests/example2d.c:14:9, in: 35 out:40 41 
-  39: at tests/example2d.c:12:14, in: 35 out:36 
-  40: at tests/example2d.c:16:9, in: 38 out:37 42 
-  41: at tests/example2d.c:14:21, in: 38 out:36 
-  42: at tests/example2d.c:16:21, in: 40 out:36 
+  1: at tests/termination/example2d.c:11:0, in: out:4 5 
+  2: at tests/termination/example2d.c:20:1, in: 3 8 7 5 out:
+  3: at tests/termination/example2d.c:18:3, in: 6 out:2 
+  4: at tests/termination/example2d.c:14:9, in: 1 out:6 7 
+  5: at tests/termination/example2d.c:12:14, in: 1 out:2 
+  6: at tests/termination/example2d.c:16:9, in: 4 out:3 8 
+  7: at tests/termination/example2d.c:14:21, in: 4 out:2 
+  8: at tests/termination/example2d.c:16:21, in: 6 out:2 
+  9: at tests/termination/example2d.c:22:0, in: 26 out:11 
+  10: at tests/termination/example2d.c:33:1, in: 13 out:25 
+  11: at tests/termination/example2d.c:23:17, in: 9 out:12 
+  12: at tests/termination/example2d.c:24:8, in: 22 19 11 out:13 14 
+  13: at tests/termination/example2d.c:31:3, in: 12 out:10 
+  14: at tests/termination/example2d.c:25:25, in: 12 out:15 16 
+  15: at tests/termination/example2d.c:28:11, in: 14 out:20 
+  16: at tests/termination/example2d.c:26:15, in: 14 out:17 
+  17: at tests/termination/example2d.c:27:24, in: 16 out:27 
+  18: at tests/termination/example2d.c:27:22, in: 28 out:19 
+  19: at tests/termination/example2d.c:27:22, in: 18 out:12 
+  20: at tests/termination/example2d.c:29:25, in: 15 out:35 
+  21: at tests/termination/example2d.c:29:22, in: 36 out:22 
+  22: at tests/termination/example2d.c:29:22, in: 21 out:12 
+  23: at tests/termination/example2d.c:11:0, in: out:24 
+  24: at tests/termination/example2d.c:33:1, in: 23 out:
+  27: at tests/termination/example2d.c:11:0, in: 17 out:30 31 
+  28: at tests/termination/example2d.c:20:1, in: 29 34 33 31 out:18 
+  29: at tests/termination/example2d.c:18:3, in: 32 out:28 
+  30: at tests/termination/example2d.c:14:9, in: 27 out:32 33 
+  31: at tests/termination/example2d.c:12:14, in: 27 out:28 
+  32: at tests/termination/example2d.c:16:9, in: 30 out:29 34 
+  33: at tests/termination/example2d.c:14:21, in: 30 out:28 
+  34: at tests/termination/example2d.c:16:21, in: 32 out:28 
+  35: at tests/termination/example2d.c:11:0, in: 20 out:38 39 
+  36: at tests/termination/example2d.c:20:1, in: 37 42 41 39 out:21 
+  37: at tests/termination/example2d.c:18:3, in: 40 out:36 
+  38: at tests/termination/example2d.c:14:9, in: 35 out:40 41 
+  39: at tests/termination/example2d.c:12:14, in: 35 out:36 
+  40: at tests/termination/example2d.c:16:9, in: 38 out:37 42 
+  41: at tests/termination/example2d.c:14:21, in: 38 out:36 
+  42: at tests/termination/example2d.c:16:21, in: 40 out:36 
 
 List of arcs:
   36 -> 21: return: get_step

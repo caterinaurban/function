@@ -1,21 +1,21 @@
 
 CFG:
 List of variables:
-  $1{x}:int at tests/sas2014b.c:11.6-7
-  $2{y}:int at tests/sas2014b.c:11.9-10
+  $1{x}:int at tests/termination/sas2014b.c:11.6-7
+  $2{y}:int at tests/termination/sas2014b.c:11.9-10
 
 List of functions:
-  1: main() -> void at tests/sas2014b.c:10.0-15.1, entry: 8, exit: 7, calls:
+  1: main() -> void at tests/termination/sas2014b.c:10.0-15.1, entry: 8, exit: 7, calls:
 
 List of nodes:
   8: at :0:-1, in: out:1 
   7: at :0:-1, in: 2 out:
-  1: at tests/sas2014b.c:10:0, in: 8 out:3 
-  2: at tests/sas2014b.c:15:1, in: 3 out:7 
-  3: at tests/sas2014b.c:11:11, in: 4 1 out:2 4 
-  4: at tests/sas2014b.c:12:25, in: 3 out:3 
-  5: at tests/sas2014b.c:10:0, in: out:6 
-  6: at tests/sas2014b.c:15:1, in: 5 out:
+  1: at tests/termination/sas2014b.c:10:0, in: 8 out:3 
+  2: at tests/termination/sas2014b.c:15:1, in: 3 out:7 
+  3: at tests/termination/sas2014b.c:11:11, in: 4 1 out:2 4 
+  4: at tests/termination/sas2014b.c:12:25, in: 3 out:3 
+  5: at tests/termination/sas2014b.c:10:0, in: out:6 
+  6: at tests/termination/sas2014b.c:15:1, in: 5 out:
 
 List of arcs:
   8 -> 1: label entry

@@ -1,22 +1,22 @@
 
 CFG:
 List of variables:
-  $1{y}:int at tests/widening1.c:12.6-7
-  $2{z}:int at tests/widening1.c:12.9-10
+  $1{y}:int at tests/termination/widening1.c:12.6-7
+  $2{z}:int at tests/termination/widening1.c:12.9-10
 
 List of functions:
-  1: main() -> void at tests/widening1.c:11.0-17.1, entry: 9, exit: 8, calls:
+  1: main() -> void at tests/termination/widening1.c:11.0-17.1, entry: 9, exit: 8, calls:
 
 List of nodes:
   9: at :0:-1, in: out:1 
   8: at :0:-1, in: 2 out:
-  1: at tests/widening1.c:11:0, in: 9 out:3 
-  2: at tests/widening1.c:17:1, in: 3 out:8 
-  3: at tests/widening1.c:12:11, in: 5 1 out:2 4 
-  4: at tests/widening1.c:13:27, in: 3 out:5 
-  5: at tests/widening1.c:14:8, in: 4 out:3 
-  6: at tests/widening1.c:11:0, in: out:7 
-  7: at tests/widening1.c:17:1, in: 6 out:
+  1: at tests/termination/widening1.c:11:0, in: 9 out:3 
+  2: at tests/termination/widening1.c:17:1, in: 3 out:8 
+  3: at tests/termination/widening1.c:12:11, in: 5 1 out:2 4 
+  4: at tests/termination/widening1.c:13:27, in: 3 out:5 
+  5: at tests/termination/widening1.c:14:8, in: 4 out:3 
+  6: at tests/termination/widening1.c:11:0, in: out:7 
+  7: at tests/termination/widening1.c:17:1, in: 6 out:
 
 List of arcs:
   9 -> 1: label entry

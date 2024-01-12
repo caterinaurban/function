@@ -1,24 +1,24 @@
 
 CFG:
 List of variables:
-  $1{x}:int at tests/cacm2009a.c:11.6-7
-  $2{y}:int at tests/cacm2009a.c:11.9-10
+  $1{x}:int at tests/termination/cacm2009a.c:11.6-7
+  $2{y}:int at tests/termination/cacm2009a.c:11.9-10
 
 List of functions:
-  1: main() -> void at tests/cacm2009a.c:10.0-18.1, entry: 11, exit: 10, calls:
+  1: main() -> void at tests/termination/cacm2009a.c:10.0-18.1, entry: 11, exit: 10, calls:
 
 List of nodes:
   11: at :0:-1, in: out:1 
   10: at :0:-1, in: 2 out:
-  1: at tests/cacm2009a.c:10:0, in: 11 out:3 
-  2: at tests/cacm2009a.c:18:1, in: 3 out:10 
-  3: at tests/cacm2009a.c:11:11, in: 5 7 1 out:2 4 
-  4: at tests/cacm2009a.c:13:4, in: 3 out:5 6 
-  5: at tests/cacm2009a.c:17:6, in: 4 out:3 
-  6: at tests/cacm2009a.c:13:11, in: 4 out:7 
-  7: at tests/cacm2009a.c:14:16, in: 6 out:3 
-  8: at tests/cacm2009a.c:10:0, in: out:9 
-  9: at tests/cacm2009a.c:18:1, in: 8 out:
+  1: at tests/termination/cacm2009a.c:10:0, in: 11 out:3 
+  2: at tests/termination/cacm2009a.c:18:1, in: 3 out:10 
+  3: at tests/termination/cacm2009a.c:11:11, in: 5 7 1 out:2 4 
+  4: at tests/termination/cacm2009a.c:13:4, in: 3 out:5 6 
+  5: at tests/termination/cacm2009a.c:17:6, in: 4 out:3 
+  6: at tests/termination/cacm2009a.c:13:11, in: 4 out:7 
+  7: at tests/termination/cacm2009a.c:14:16, in: 6 out:3 
+  8: at tests/termination/cacm2009a.c:10:0, in: out:9 
+  9: at tests/termination/cacm2009a.c:18:1, in: 8 out:
 
 List of arcs:
   11 -> 1: label entry

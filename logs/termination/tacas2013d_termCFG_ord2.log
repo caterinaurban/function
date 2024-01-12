@@ -1,30 +1,30 @@
 
 CFG:
 List of variables:
-  $1{__return_main}:int at tests/tacas2013d.c:10.0-23.1
-  $2{x1}:int at tests/tacas2013d.c:11.6-8
-  $3{x2}:int at tests/tacas2013d.c:11.10-12
-  $4{x3}:int at tests/tacas2013d.c:11.14-16
+  $1{__return_main}:int at tests/termination/tacas2013d.c:10.0-23.1
+  $2{x1}:int at tests/termination/tacas2013d.c:11.6-8
+  $3{x2}:int at tests/termination/tacas2013d.c:11.10-12
+  $4{x3}:int at tests/termination/tacas2013d.c:11.14-16
 
 List of functions:
-  1: main() -> $1{__return_main}:int at tests/tacas2013d.c:10.0-23.1, entry: 15, exit: 14, calls:
+  1: main() -> $1{__return_main}:int at tests/termination/tacas2013d.c:10.0-23.1, entry: 15, exit: 14, calls:
 
 List of nodes:
   15: at :0:-1, in: out:1 
   14: at :0:-1, in: 2 out:
-  1: at tests/tacas2013d.c:10:0, in: 15 out:3 
-  2: at tests/tacas2013d.c:23:1, in: 4 out:14 
-  3: at tests/tacas2013d.c:11:17, in: 11 10 7 1 out:4 5 
-  4: at tests/tacas2013d.c:21:5, in: 3 out:2 
-  5: at tests/tacas2013d.c:13:4, in: 3 out:6 7 
-  6: at tests/tacas2013d.c:15:11, in: 5 out:8 9 
-  7: at tests/tacas2013d.c:13:11, in: 5 out:3 
-  8: at tests/tacas2013d.c:18:11, in: 6 out:11 
-  9: at tests/tacas2013d.c:15:18, in: 6 out:10 
-  10: at tests/tacas2013d.c:16:18, in: 9 out:3 
-  11: at tests/tacas2013d.c:19:18, in: 8 out:3 
-  12: at tests/tacas2013d.c:10:0, in: out:13 
-  13: at tests/tacas2013d.c:23:1, in: 12 out:
+  1: at tests/termination/tacas2013d.c:10:0, in: 15 out:3 
+  2: at tests/termination/tacas2013d.c:23:1, in: 4 out:14 
+  3: at tests/termination/tacas2013d.c:11:17, in: 11 10 7 1 out:4 5 
+  4: at tests/termination/tacas2013d.c:21:5, in: 3 out:2 
+  5: at tests/termination/tacas2013d.c:13:4, in: 3 out:6 7 
+  6: at tests/termination/tacas2013d.c:15:11, in: 5 out:8 9 
+  7: at tests/termination/tacas2013d.c:13:11, in: 5 out:3 
+  8: at tests/termination/tacas2013d.c:18:11, in: 6 out:11 
+  9: at tests/termination/tacas2013d.c:15:18, in: 6 out:10 
+  10: at tests/termination/tacas2013d.c:16:18, in: 9 out:3 
+  11: at tests/termination/tacas2013d.c:19:18, in: 8 out:3 
+  12: at tests/termination/tacas2013d.c:10:0, in: out:13 
+  13: at tests/termination/tacas2013d.c:23:1, in: 12 out:
 
 List of arcs:
   15 -> 1: label entry

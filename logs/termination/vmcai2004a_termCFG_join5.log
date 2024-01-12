@@ -1,20 +1,20 @@
 
 CFG:
 List of variables:
-  $1{x}:int at tests/vmcai2004a.c:11.6-7
+  $1{x}:int at tests/termination/vmcai2004a.c:11.6-7
 
 List of functions:
-  1: main() -> void at tests/vmcai2004a.c:10.0-14.1, entry: 8, exit: 7, calls:
+  1: main() -> void at tests/termination/vmcai2004a.c:10.0-14.1, entry: 8, exit: 7, calls:
 
 List of nodes:
   8: at :0:-1, in: out:1 
   7: at :0:-1, in: 2 out:
-  1: at tests/vmcai2004a.c:10:0, in: 8 out:3 
-  2: at tests/vmcai2004a.c:14:1, in: 3 out:7 
-  3: at tests/vmcai2004a.c:11:8, in: 4 1 out:2 4 
-  4: at tests/vmcai2004a.c:13:4, in: 3 out:3 
-  5: at tests/vmcai2004a.c:10:0, in: out:6 
-  6: at tests/vmcai2004a.c:14:1, in: 5 out:
+  1: at tests/termination/vmcai2004a.c:10:0, in: 8 out:3 
+  2: at tests/termination/vmcai2004a.c:14:1, in: 3 out:7 
+  3: at tests/termination/vmcai2004a.c:11:8, in: 4 1 out:2 4 
+  4: at tests/termination/vmcai2004a.c:13:4, in: 3 out:3 
+  5: at tests/termination/vmcai2004a.c:10:0, in: out:6 
+  6: at tests/termination/vmcai2004a.c:14:1, in: 5 out:
 
 List of arcs:
   8 -> 1: label entry

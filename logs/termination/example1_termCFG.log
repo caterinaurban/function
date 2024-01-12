@@ -1,22 +1,22 @@
 
 CFG:
 List of variables:
-  $1{__return_main}:int at tests/example1.c:10.0-15.1
-  $2{x}:int at tests/example1.c:11.6-7
+  $1{__return_main}:int at tests/termination/example1.c:10.0-15.1
+  $2{x}:int at tests/termination/example1.c:11.6-7
 
 List of functions:
-  1: main() -> $1{__return_main}:int at tests/example1.c:10.0-15.1, entry: 9, exit: 8, calls:
+  1: main() -> $1{__return_main}:int at tests/termination/example1.c:10.0-15.1, entry: 9, exit: 8, calls:
 
 List of nodes:
   9: at :0:-1, in: out:1 
   8: at :0:-1, in: 2 out:
-  1: at tests/example1.c:10:0, in: 9 out:3 
-  2: at tests/example1.c:15:1, in: 4 out:8 
-  3: at tests/example1.c:11:8, in: 5 1 out:4 5 
-  4: at tests/example1.c:13:14, in: 3 out:2 
-  5: at tests/example1.c:13:4, in: 3 out:3 
-  6: at tests/example1.c:10:0, in: out:7 
-  7: at tests/example1.c:15:1, in: 6 out:
+  1: at tests/termination/example1.c:10:0, in: 9 out:3 
+  2: at tests/termination/example1.c:15:1, in: 4 out:8 
+  3: at tests/termination/example1.c:11:8, in: 5 1 out:4 5 
+  4: at tests/termination/example1.c:13:14, in: 3 out:2 
+  5: at tests/termination/example1.c:13:4, in: 3 out:3 
+  6: at tests/termination/example1.c:10:0, in: out:7 
+  7: at tests/termination/example1.c:15:1, in: 6 out:
 
 List of arcs:
   9 -> 1: label entry
