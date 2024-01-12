@@ -61,7 +61,6 @@ let parsePropertyString str =
     else
       failwith e
 
-
 let parseProperty filename =
   let f = open_in filename in
   let lex = Lexing.from_channel f in
@@ -81,7 +80,6 @@ let parseProperty filename =
       end 
     else
       failwith e
-
 
 let parseCTLProperty filename =
   let f = open_in filename in
@@ -106,7 +104,6 @@ let parseCTLProperty filename =
     else
       failwith e
 
-
 let parseCTLPropertyString_plain (property:string) =
   let lex = Lexing.from_string property in
   try
@@ -127,14 +124,13 @@ let parseCTLPropertyString_plain (property:string) =
     else
       failwith e
 
-
 let parseCTLPropertyString (property:string) =
     CTLProperty.map (fun p -> fst (parsePropertyString p)) @@ parseCTLPropertyString_plain property 
 
 let parse_args () =
   let rec doit args =
     match args with
-    (* General arguments -------------------------------------------*)
+    (* General arguments -----------------------------------------------------*)
     | "-domain"::x::r -> (* abstract domain: boxes|octagons|polyhedra *)
       domain := x; doit r
     | "-timeout"::x::r -> (* analysis timeout *)
@@ -156,29 +152,29 @@ let parse_args () =
       Iterator.retrybwd := int_of_string x;
       DecisionTree.retrybwd := int_of_string x;
       doit r
+    | "-tracefwd"::r -> (* forward analysis trace *)
+      Iterator.tracefwd := true; doit r
     | "-tracebwd"::r -> (* backward analysis trace *)
       Iterator.tracebwd := true;
       DecisionTree.tracebwd := true;
       CFGInterpreter.trace := true;
       CFGInterpreter.trace_states := true;
       doit r
-    | "-tracefwd"::r -> (* forward analysis trace *)
-      Iterator.tracefwd := true; doit r
-    (* Termination arguments -------------------------------*)
+    (* Termination arguments -------------------------------------------------*)
     | "-termination"::r -> (* guarantee analysis *)
       analysis := "termination"; doit r
-    (* Recurrence / Guarantee arguments -------------------------------*)
+    (* Recurrence / Guarantee arguments --------------------------------------*)
     | "-guarantee"::x::r -> (* guarantee analysis *)
       analysis := "guarantee"; property := x; doit r
     | "-recurrence"::x::r -> (* recurrence analysis *)
       analysis := "recurrence"; property := x; doit r
     | "-time"::r -> (* track analysis time *)
       time := true; doit r
-    | "-timebwd"::r -> (* track backward analysis time *)
-      Iterator.timebwd := true; doit r
     | "-timefwd"::r -> (* track forward analysis time *)
       Iterator.timefwd := true; doit r
-    (* CTL arguments ---------------------------------------------------*)
+    | "-timebwd"::r -> (* track backward analysis time *)
+      Iterator.timebwd := true; doit r
+    (* CTL arguments ---------------------------------------------------------*)
     | "-ctl"::x::r -> (* CTL analysis *)
       analysis := "ctl"; property := x; doit r
     | "-ctl-ast"::x::r -> (* CTL analysis *)
@@ -255,7 +251,6 @@ module CFGCTLOctagonsOrdinals = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSOO)
 module CFGCTLPolyhedra = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSAP)
 module CFGCTLPolyhedraOrdinals = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSOP)
 
-
 let result = ref false
 
 let run_analysis analysis_function program () =
@@ -291,7 +286,6 @@ let termination () =
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in run_analysis analysis_function program ()
 
-
 let guarantee () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property File Specified");
@@ -318,7 +312,6 @@ let guarantee () =
     | "polyhedra" -> if !ordinals then GuaranteePolyhedraOrdinals.analyze else GuaranteePolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
   in run_analysis (analysis_function property) program ()
-
 
 let recurrence () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
@@ -422,8 +415,6 @@ let ctl_cfg () =
   else 
     Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
 
-
-(*Main entry point for application*)
 let doit () =
   parse_args ();
   match !analysis with
