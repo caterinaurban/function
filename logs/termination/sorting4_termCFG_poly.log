@@ -1,33 +1,33 @@
 
 CFG:
 List of variables:
-  $1{__return_main}:int at tests/sorting4.c:10.0-25.1
-  $2{x1}:int at tests/sorting4.c:11.5-7
-  $3{x2}:int at tests/sorting4.c:11.9-11
-  $4{x3}:int at tests/sorting4.c:11.13-15
-  $5{x4}:int at tests/sorting4.c:11.17-19
+  $1{__return_main}:int at tests/termination/sorting4.c:10.0-25.1
+  $2{x1}:int at tests/termination/sorting4.c:11.5-7
+  $3{x2}:int at tests/termination/sorting4.c:11.9-11
+  $4{x3}:int at tests/termination/sorting4.c:11.13-15
+  $5{x4}:int at tests/termination/sorting4.c:11.17-19
 
 List of functions:
-  1: main() -> $1{__return_main}:int at tests/sorting4.c:10.0-25.1, entry: 17, exit: 16, calls:
+  1: main() -> $1{__return_main}:int at tests/termination/sorting4.c:10.0-25.1, entry: 17, exit: 16, calls:
 
 List of nodes:
   17: at :0:-1, in: out:1 
   16: at :0:-1, in: 2 out:
-  1: at tests/sorting4.c:10:0, in: 17 out:3 
-  2: at tests/sorting4.c:25:1, in: 4 out:16 
-  3: at tests/sorting4.c:11:20, in: 13 9 11 8 1 out:4 5 
-  4: at tests/sorting4.c:23:2, in: 3 out:2 
-  5: at tests/sorting4.c:12:39, in: 3 out:6 7 
-  6: at tests/sorting4.c:16:9, in: 5 out:9 10 
-  7: at tests/sorting4.c:13:15, in: 5 out:8 
-  8: at tests/sorting4.c:14:11, in: 7 out:3 
-  9: at tests/sorting4.c:19:9, in: 6 out:3 12 
-  10: at tests/sorting4.c:16:22, in: 6 out:11 
-  11: at tests/sorting4.c:17:11, in: 10 out:3 
-  12: at tests/sorting4.c:19:22, in: 9 out:13 
-  13: at tests/sorting4.c:20:11, in: 12 out:3 
-  14: at tests/sorting4.c:10:0, in: out:15 
-  15: at tests/sorting4.c:25:1, in: 14 out:
+  1: at tests/termination/sorting4.c:10:0, in: 17 out:3 
+  2: at tests/termination/sorting4.c:25:1, in: 4 out:16 
+  3: at tests/termination/sorting4.c:11:20, in: 13 9 11 8 1 out:4 5 
+  4: at tests/termination/sorting4.c:23:2, in: 3 out:2 
+  5: at tests/termination/sorting4.c:12:39, in: 3 out:6 7 
+  6: at tests/termination/sorting4.c:16:9, in: 5 out:9 10 
+  7: at tests/termination/sorting4.c:13:15, in: 5 out:8 
+  8: at tests/termination/sorting4.c:14:11, in: 7 out:3 
+  9: at tests/termination/sorting4.c:19:9, in: 6 out:3 12 
+  10: at tests/termination/sorting4.c:16:22, in: 6 out:11 
+  11: at tests/termination/sorting4.c:17:11, in: 10 out:3 
+  12: at tests/termination/sorting4.c:19:22, in: 9 out:13 
+  13: at tests/termination/sorting4.c:20:11, in: 12 out:3 
+  14: at tests/termination/sorting4.c:10:0, in: out:15 
+  15: at tests/termination/sorting4.c:25:1, in: 14 out:
 
 List of arcs:
   17 -> 1: label entry

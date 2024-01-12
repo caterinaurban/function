@@ -279,7 +279,7 @@ let parse_args () =
         doit r
     | [] -> ()
   in
-  let _ = List.map print_endline (Array.to_list Sys.argv) in
+(*  let _ = List.map print_endline (Array.to_list Sys.argv) in *)
   doit (List.tl (Array.to_list Sys.argv))
 
 (* do all *)

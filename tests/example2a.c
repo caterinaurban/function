@@ -1,4 +1,4 @@
-w/*
+/*
 TERMINATION
 
 suggested parameters:

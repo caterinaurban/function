@@ -1,31 +1,31 @@
 
 CFG:
 List of variables:
-  $1{__return_main}:int at tests/example10.c:10.0-28.1
-  $2{x1}:int at tests/example10.c:11.6-8
-  $3{x2}:int at tests/example10.c:11.10-12
+  $1{__return_main}:int at tests/termination/example10.c:10.0-28.1
+  $2{x1}:int at tests/termination/example10.c:11.6-8
+  $3{x2}:int at tests/termination/example10.c:11.10-12
 
 List of functions:
-  1: main() -> $1{__return_main}:int at tests/example10.c:10.0-28.1, entry: 17, exit: 16, calls:
+  1: main() -> $1{__return_main}:int at tests/termination/example10.c:10.0-28.1, entry: 17, exit: 16, calls:
 
 List of nodes:
   17: at :0:-1, in: out:1 
   16: at :0:-1, in: 2 out:
-  1: at tests/example10.c:10:0, in: 17 out:3 
-  2: at tests/example10.c:28:1, in: 4 out:16 
-  3: at tests/example10.c:11:13, in: 13 12 8 10 1 out:4 5 
-  4: at tests/example10.c:26:5, in: 3 out:2 
-  5: at tests/example10.c:13:4, in: 3 out:6 7 
-  6: at tests/example10.c:19:11, in: 5 out:11 12 
-  7: at tests/example10.c:13:16, in: 5 out:8 9 
-  8: at tests/example10.c:18:8, in: 7 out:3 
-  9: at tests/example10.c:14:13, in: 7 out:10 
-  10: at tests/example10.c:15:20, in: 9 out:3 
-  11: at tests/example10.c:22:11, in: 6 out:13 
-  12: at tests/example10.c:21:8, in: 6 out:3 
-  13: at tests/example10.c:23:20, in: 11 out:3 
-  14: at tests/example10.c:10:0, in: out:15 
-  15: at tests/example10.c:28:1, in: 14 out:
+  1: at tests/termination/example10.c:10:0, in: 17 out:3 
+  2: at tests/termination/example10.c:28:1, in: 4 out:16 
+  3: at tests/termination/example10.c:11:13, in: 13 12 8 10 1 out:4 5 
+  4: at tests/termination/example10.c:26:5, in: 3 out:2 
+  5: at tests/termination/example10.c:13:4, in: 3 out:6 7 
+  6: at tests/termination/example10.c:19:11, in: 5 out:11 12 
+  7: at tests/termination/example10.c:13:16, in: 5 out:8 9 
+  8: at tests/termination/example10.c:18:8, in: 7 out:3 
+  9: at tests/termination/example10.c:14:13, in: 7 out:10 
+  10: at tests/termination/example10.c:15:20, in: 9 out:3 
+  11: at tests/termination/example10.c:22:11, in: 6 out:13 
+  12: at tests/termination/example10.c:21:8, in: 6 out:3 
+  13: at tests/termination/example10.c:23:20, in: 11 out:3 
+  14: at tests/termination/example10.c:10:0, in: out:15 
+  15: at tests/termination/example10.c:28:1, in: 14 out:
 
 List of arcs:
   17 -> 1: label entry
