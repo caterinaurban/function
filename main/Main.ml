@@ -10,7 +10,7 @@
 
 (* parsing *)
 open Iterators
-let analysis = ref "ctl"
+let analysis = ref "termination"
 
 let robust = ref false
 
@@ -26,13 +26,11 @@ let minimal = ref false
 
 let ordinals = ref false
 
-let property = ref "AF{exit: true}"
+let property = ref ""
 
 let precondition = ref "true"
 
 let time = ref false
-
-let ctl_analysis_type = ref "cfg"
 
 let noinline = ref false
 
@@ -243,14 +241,15 @@ let parse_args () =
         doit r
         (* CTL arguments
            ---------------------------------------------------*)
-    | "-ctl" :: x :: r ->
+    | "-ctl-cfg" :: x :: r ->
         (* CTL analysis *)
-        analysis := "ctl" ;
+        analysis := "ctl-cfg" ;
         property := x ;
         doit r
-    | "-ast" :: r ->
+    | "-ctl-ast" :: x :: r ->
         (* use AST instead of CFG for analysis *)
-        ctl_analysis_type := "ast" ;
+        analysis := "ctl-ast" ;
+        property := x ;
         doit r
     | "-dot" :: r ->
         (* print CFG and decision trees in 'dot' format *)
@@ -284,8 +283,6 @@ let parse_args () =
   doit (List.tl (Array.to_list Sys.argv))
 
 (* do all *)
-
-
 
 let result = ref false
 
@@ -391,7 +388,45 @@ let recurrence () =
   in
   run_analysis (analysis_function property) program ()
 
-let ctl () =
+let ctl_ast () =
+  if !filename = "" then raise (Invalid_argument "No Source File Specified") ;
+  if !property = "" then raise (Invalid_argument "No Property Specified") ;
+  let starttime = Sys.time () in
+  let parsedPrecondition = parsePropertyString !precondition in
+  let parsedProperty = parseCTLPropertyString !property in
+  let prog, property =
+    ItoA.ctl_prog_itoa parsedProperty !main (parseFile !filename)
+  in
+  let precondition =
+    fst
+    @@ AbstractSyntax.StringMap.find ""
+    @@ ItoA.property_itoa_of_prog prog !main parsedPrecondition
+  in
+  if not !minimal then (
+    Format.fprintf !fmt "\nAbstract Syntax:\n" ;
+    AbstractSyntax.prog_print !fmt prog ;
+    Format.fprintf !fmt "\n" ) ;
+  let program = ASTCTLIterator.program_of_prog prog !main in
+  let analyze =
+    match !domain with
+    | "boxes" ->
+        if !ordinals then ASTCTLBoxesOrdinals.analyze else ASTCTLBoxes.analyze
+    | "octagons" ->
+        if !ordinals then ASTCTLOctagonsOrdinals.analyze
+        else ASTCTLOctagons.analyze
+    | "polyhedra" ->
+        if !ordinals then ASTCTLPolyhedraOrdinals.analyze
+        else ASTCTLPolyhedra.analyze
+    | _ -> raise (Invalid_argument "Unknown Abstract Domain")
+  in
+  let result = analyze ~precondition program property in
+  ( if !time then
+    let stoptime = Sys.time () in
+    Format.fprintf !fmt "\nTime: %f" (stoptime -. starttime) ) ;
+  if result then Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
+  else Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
+
+let ctl_cfg () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified") ;
   if !property = "" then raise (Invalid_argument "No Property Specified") ;
   let starttime = Sys.time () in
@@ -449,47 +484,12 @@ let doit () =
   | "termination" -> termination ()
   | "guarantee" -> guarantee ()
   | "recurrence" -> recurrence ()
-  | "ctl" -> ctl ()
+  | "ctl-ast" -> ctl_ast ()
+  | "ctl-cfg" -> ctl_cfg ()
   | _ -> raise (Invalid_argument "Unknown Analysis")
 
 let _ = doit ()
 
 (* DEPRECATED STUFF BELOW *)
 
-let ctl_ast () =
-  if !filename = "" then raise (Invalid_argument "No Source File Specified") ;
-  if !property = "" then raise (Invalid_argument "No Property Specified") ;
-  let starttime = Sys.time () in
-  let parsedPrecondition = parsePropertyString !precondition in
-  let parsedProperty = parseCTLPropertyString !property in
-  let prog, property =
-    ItoA.ctl_prog_itoa parsedProperty !main (parseFile !filename)
-  in
-  let precondition =
-    fst
-    @@ AbstractSyntax.StringMap.find ""
-    @@ ItoA.property_itoa_of_prog prog !main parsedPrecondition
-  in
-  if not !minimal then (
-    Format.fprintf !fmt "\nAbstract Syntax:\n" ;
-    AbstractSyntax.prog_print !fmt prog ;
-    Format.fprintf !fmt "\n" ) ;
-  let program = ASTCTLIterator.program_of_prog prog !main in
-  let analyze =
-    match !domain with
-    | "boxes" ->
-        if !ordinals then ASTCTLBoxesOrdinals.analyze else ASTCTLBoxes.analyze
-    | "octagons" ->
-        if !ordinals then ASTCTLOctagonsOrdinals.analyze
-        else ASTCTLOctagons.analyze
-    | "polyhedra" ->
-        if !ordinals then ASTCTLPolyhedraOrdinals.analyze
-        else ASTCTLPolyhedra.analyze
-    | _ -> raise (Invalid_argument "Unknown Abstract Domain")
-  in
-  let result = analyze ~precondition program property in
-  ( if !time then
-    let stoptime = Sys.time () in
-    Format.fprintf !fmt "\nTime: %f" (stoptime -. starttime) ) ;
-  if result then Format.fprintf !fmt "\nAnalysis Result: TRUE\n"
-  else Format.fprintf !fmt "\nAnalysis Result: UNKNOWN\n"
+
