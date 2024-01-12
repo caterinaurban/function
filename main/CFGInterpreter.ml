@@ -53,6 +53,7 @@ let execute
     (entry_node:node) (* entry point of the program analysis *)
     (cfg:cfg) (* control flow graph *)
     (loop_heads:bool NodeMap.t)
+    (domSets : NodeSet.t NodeMap.t)
     : a NodeMap.t (* returns a map that assigns each node an abstract state that is the result of the analysis *)
   =
   let nodeCount = List.length cfg.cfg_nodes in

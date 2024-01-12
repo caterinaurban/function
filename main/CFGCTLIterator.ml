@@ -241,7 +241,7 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
     in abstract_transformer
 
 
-  let compute (cfg:cfg) (main:Cfg.func) (loop_heads: bool NodeMap.t) (property:ctl_property) : inv = 
+  let compute (cfg:cfg) (main:Cfg.func) (loop_heads: bool NodeMap.t) (domSets : NodeSet.t NodeMap.t) (property:ctl_property) : inv =
     let backwardAnalysis = CFGInterpreter.backward_analysis in
     let (env, vars) = Conversion.env_vars_of_cfg cfg in
     let print_inv property inv = 
@@ -257,7 +257,7 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
     let init_bot = const_node_map cfg bot in
     let fwdInv = 
       if !refine then
-        CFGForwardIteratorB.compute cfg main loop_heads
+        CFGForwardIteratorB.compute cfg main loop_heads domSets
       else NodeMap.empty
     in
     if not !minimal && !refine then
@@ -272,13 +272,13 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
           let pInv = inv p in
           (* exit_node is set to bot for inital value of backward analysis *)
           let init_value = NodeMap.add main.func_exit bot pInv in
-          backwardAnalysis (global UNIVERSAL fwdInv) init_value main.func_exit cfg loop_heads
+          backwardAnalysis (global UNIVERSAL fwdInv) init_value main.func_exit cfg loop_heads domSets
         | AU (p1, p2) -> 
           let abstractTransformer = until UNIVERSAL fwdInv (inv p1) (inv p2) in
-          backwardAnalysis abstractTransformer init_bot main.func_exit cfg loop_heads
+          backwardAnalysis abstractTransformer init_bot main.func_exit cfg loop_heads domSets
         | AF p -> 
           let abstractTransformer = until UNIVERSAL fwdInv atomic_true_inv (inv p) in
-          backwardAnalysis abstractTransformer init_bot main.func_exit cfg loop_heads
+          backwardAnalysis abstractTransformer init_bot main.func_exit cfg loop_heads domSets
         | EX p -> 
           if !ctl_existential_equivalence then
             (* use the following equivalence relation: 
@@ -295,13 +295,13 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
             let pInv = inv p in
             (* exit_node is set to bot for inital value of backward analysis *)
             let init_value = NodeMap.add main.func_exit bot pInv in
-            backwardAnalysis (global EXISTENTIAL fwdInv) init_value main.func_exit cfg loop_heads
+            backwardAnalysis (global EXISTENTIAL fwdInv) init_value main.func_exit cfg loop_heads domSets
         | EU (p1, p2) -> 
           if !ctl_existential_equivalence then 
             raise (Invalid_argument "existential equivalence conversion not supported for 'until' operator")
           else
             let abstractTransformer = until EXISTENTIAL fwdInv (inv p1) (inv p2) in
-            backwardAnalysis abstractTransformer init_bot main.func_exit cfg loop_heads
+            backwardAnalysis abstractTransformer init_bot main.func_exit cfg loop_heads domSets
         | EF p -> 
           if !ctl_existential_equivalence then 
             (* use the following equivalence relation: 
@@ -312,13 +312,13 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
                to capture finite traces with the 'AG' operator
             *)
             let init_value = NodeMap.add main.func_exit zero inv_not_p in
-            let inv_ag = backwardAnalysis (global UNIVERSAL fwdInv) init_value main.func_exit cfg loop_heads in
+            let inv_ag = backwardAnalysis (global UNIVERSAL fwdInv) init_value main.func_exit cfg loop_heads domSets in
             print_inv (AG (NOT p)) inv_ag;
             (* compute: not AG(not p) *)
             logic_not inv_ag 
           else
             let abstractTransformer = until EXISTENTIAL fwdInv atomic_true_inv (inv p) in
-            backwardAnalysis abstractTransformer init_bot main.func_exit cfg loop_heads
+            backwardAnalysis abstractTransformer init_bot main.func_exit cfg loop_heads domSets
         | AND (p1, p2) -> logic_and (inv p1) (inv p2)
         | OR (p1, p2) -> logic_or (inv p1) (inv p2)
         | NOT (Atomic (property, None)) -> 
@@ -330,8 +330,8 @@ module CFGCTLIterator(D: RANKING_FUNCTION) = struct
       result
     in inv property
 
-  let analyze ?(precondition = CFG_bool_const true) (cfg:cfg) (main:Cfg.func) (loop_heads: bool NodeMap.t) (property:ctl_property) =  
-    let inv = compute cfg main loop_heads property in
+  let analyze ?(precondition = CFG_bool_const true) (cfg:cfg) (main:Cfg.func) (loop_heads: bool NodeMap.t) (domSets : NodeSet.t NodeMap.t) (property:ctl_property) =
+    let inv = compute cfg main loop_heads domSets property in
     let programInvariant = NodeMap.find main.func_entry inv in
     let precondition = Conversion.of_bool_expr precondition in
     D.defined ~condition:precondition programInvariant

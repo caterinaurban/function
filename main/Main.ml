@@ -410,7 +410,8 @@ let ctl_cfg () =
     end;
   let mainFunc = Cfg.find_func !main cfg in
   let possibleLoopHeads = Loop_detection.possible_loop_heads cfg mainFunc in
-  let result = analyze ~precondition:precondition cfg mainFunc possibleLoopHeads ctlProperty in
+  let domSets = Loop_detection.dominator cfg mainFunc in
+  let result = analyze ~precondition:precondition cfg mainFunc possibleLoopHeads domSets ctlProperty in
   if !time then begin
     let stoptime = Sys.time () in
     Format.fprintf !fmt "\nTime: %f" (stoptime-.starttime)
