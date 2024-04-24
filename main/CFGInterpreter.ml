@@ -38,7 +38,7 @@ type 't abstract_transformer  =
      
 let print_worklist fmt queue = 
   Format.fprintf fmt "worklist = [";
-  Queue.iter (fun node -> Format.fprintf fmt "%d " node.node_id) queue;
+  Stack.iter (fun node -> Format.fprintf fmt "%d " node.node_id) queue;
   Format.fprintf fmt "]"
 
 
@@ -58,33 +58,37 @@ let execute
   =
   let nodeCount = List.length cfg.cfg_nodes in
   (* Create empty worklist *)
-  let worklist = Queue.create () in 
+  let worklist = Stack.create () in
   (* bitmap array that keeps track of all nodes that are in the worklist *)
-  let inWorklist = Array.make (nodeCount + 1) false in 
+  let inWorklist = Array.make (nodeCount + 1) false in
   (* add all predecessors of 'node' to worklist if they are not already in it*)
-  let addPredecessorsToWorklist node = List.iter (fun arc -> 
+  let addPredecessorsToWorklist node =
+    let in_node = List.sort (fun a1 a2 ->
+      let domSet = NodeMap.find a1.arc_src domSets in
+      let domSet2 = NodeMap.find a2.arc_src domSets in
+      if NodeSet.mem a2.arc_src domSet then 1
+      else
+      if NodeSet.mem a1.arc_src domSet2 then
+      -1
+      else 0 ) node.node_in
+    in
+    List.iter (fun arc ->
       let predecessor = arc.arc_src in
       if not inWorklist.(predecessor.node_id) then begin
-        (* if the predecessor is a loop head we do NOT add it to the worklist
-          if the worklist still contains nodes that are dominated by it *)
-          let unfinished = if NodeMap.find predecessor loop_heads then (
-            Queue.fold (fun status node ->
-            let domSet = NodeMap.find node domSets in
-            status || (NodeSet.mem predecessor domSet)
-            ) false worklist
-          ) else ( false ) in
-          if not unfinished then (
-        Queue.add predecessor worklist; (* add predecessor to worklist *)
-        inWorklist.(predecessor.node_id) <- true (* update inWorklist array*)
-        )
+        let exist_dom  = Stack.fold (fun b n -> let domSet = NodeMap.find n domSets in b || NodeSet.mem predecessor domSet ) false worklist in
+        if (not exist_dom) then
+        begin
+        Stack.push predecessor worklist; (* add predecessor to worklist *)
+        inWorklist.(predecessor.node_id) <- true;  (* update inWorklist array*)
+        end
       end
-    ) node.node_in
+    ) in_node
   in
   (* add all successors of 'node' to worklist if they are not already in it*)
   let addSuccessorsToWorklist node = List.iter (fun arc -> 
       let successor = arc.arc_dst in
       if not inWorklist.(successor.node_id) then begin
-        Queue.add successor worklist; (* add successor to worklist *)
+        Stack.push successor worklist; (* add successor to worklist *)
         inWorklist.(successor.node_id) <- true (* update inWorklist array*)
       end
     ) node.node_out
@@ -118,10 +122,10 @@ let execute
   *)
   let rec aux (nodeMap: a NodeMap.t): a NodeMap.t = 
     let getState node = NodeMap.find node nodeMap in
-    if Queue.is_empty worklist then nodeMap (* Work list is empty => exit *)
+    if Stack.is_empty worklist then nodeMap (* Work list is empty => exit *)
     else
       (* Take node from worklist *)
-      let node = Queue.take worklist in
+      let node = Stack.pop worklist in
       (* update inWorklist array *)
       inWorklist.(node.node_id) <- false;
       (* Find current state of node *)
@@ -155,7 +159,7 @@ let execute
       aux @@ NodeMap.add node newState nodeMap 
   in
   (* Add initial node to worklist *)
-  Queue.add entry_node worklist;
+  Stack.push entry_node worklist;
   if !trace then 
     begin 
       match analysis_type with 
