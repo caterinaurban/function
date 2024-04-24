@@ -167,8 +167,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 10
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 ? 12
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 ? 14
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 ? 2$4{m_init}+10
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 ? 16
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 ? 2$4{m_init}+10
 $6{varR} == 1 ? 0.
 $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 10
@@ -176,8 +178,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 ? 12
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 ? 14
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 ? 2$4{m_init}+10
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 ? 16
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 ? 2$4{m_init}+10
 
 [2:]:
 -$6{varR} >= 0 ? bottom
@@ -191,8 +195,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 10
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 ? 12
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 ? 14
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 ? 2$4{m_init}+10
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 ? 16
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 ? 2$4{m_init}+10
 $6{varR} == 1 ? 0.
 $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 10
@@ -200,8 +206,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 ? 12
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 ? 14
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 ? 2$4{m_init}+10
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 ? 16
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 ? 2$4{m_init}+10
 
 [4:]:
 -$6{varR} >= 0 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? bottom
@@ -210,8 +218,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 10
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 ? 12
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 ? 14
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 ? 2$4{m_init}+10
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 ? 16
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 ? 2$4{m_init}+10
 $6{varR} == 1 ? 0.
 $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 10
@@ -219,8 +229,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 ? 12
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 ? 14
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 ? 2$4{m_init}+10
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 ? 16
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 ? 2$4{m_init}+10
 
 [5:]:
 -$6{varR} >= 0 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? bottom
@@ -229,8 +241,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 10
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 ? 12
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 ? 14
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 ? 2$4{m_init}+10
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 ? 16
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 ? 2$4{m_init}+10
 $6{varR} == 1 ? 0.
 $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 10
@@ -238,8 +252,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 ? 12
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 ? 14
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 ? 2$4{m_init}+10
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 ? 16
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 ? 2$4{m_init}+10
 
 [6:]:
 -$6{varR} >= 0 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? bottom
@@ -248,8 +264,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 10
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 ? 12
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 ? 14
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 ? 2$4{m_init}+10
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 ? 16
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 ? 2$4{m_init}+10
 $6{varR} == 1 ? 0.
 $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 10
@@ -257,8 +275,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 ? 12
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 ? 14
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 ? 2$4{m_init}+10
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 ? 16
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 ? 2$4{m_init}+10
 
 [7:]:
 -$6{varR} >= 0 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? bottom
@@ -267,8 +287,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 9
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 ? 11
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 ? 13
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 ? 2$4{m_init}+9
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 ? 15
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 ? 2$4{m_init}+9
 $6{varR} == 1 ? 0.
 $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 9
@@ -276,8 +298,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 ? 11
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 ? 13
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 ? 2$4{m_init}+9
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 ? 15
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 ? 2$4{m_init}+9
 
 [8:]:
 -$6{varR} >= 0 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? bottom
@@ -286,8 +310,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 8
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 ? 10
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 ? 12
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 ? 2$4{m_init}+8
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 ? 14
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 ? 2$4{m_init}+8
 $6{varR} == 1 ? 0.
 $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 8
@@ -295,8 +321,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 ? 10
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 ? 12
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 ? 2$4{m_init}+8
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 ? 14
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 ? 2$4{m_init}+8
 
 [9:]:
 -$6{varR} >= 0 && -$4{m_init} >= 0 && -$1{n}+$3{n_init} >= 1 ? 7
@@ -305,8 +333,10 @@ $1{n}-$3{n_init} >= 0 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? bottom
 $1{n}-$3{n_init} >= 0 && -$6{varR} >= 0 && $4{m_init} == 1 ? bottom
 -$6{varR} >= 0 && -$1{n}+$3{n_init} >= 1 && $4{m_init} == 2 ? 11
 $1{n}-$3{n_init} >= 0 && -$6{varR} >= 0 && $4{m_init} == 2 ? bottom
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$1{n}+$3{n_init} >= 1 ? 2$4{m_init}+7
-$1{n}-$3{n_init} >= 0 && $4{m_init} >= 3 && -$6{varR} >= 0 ? bottom
+-$6{varR} >= 0 && -$1{n}+$3{n_init} >= 1 && $4{m_init} == 3 ? 13
+$1{n}-$3{n_init} >= 0 && -$6{varR} >= 0 && $4{m_init} == 3 ? bottom
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$1{n}+$3{n_init} >= 1 ? 2$4{m_init}+7
+$1{n}-$3{n_init} >= 0 && $4{m_init} >= 4 && -$6{varR} >= 0 ? bottom
 $6{varR} == 1 ? 0.
 $6{varR} >= 2 && -$4{m_init} >= 0 && -$1{n}+$3{n_init} >= 1 ? 7
 $1{n}-$3{n_init} >= 0 && $6{varR} >= 2 && -$4{m_init} >= 0 ? bottom
@@ -314,8 +344,10 @@ $6{varR} >= 2 && -$1{n}+$3{n_init} >= 1 && $4{m_init} == 1 ? 9
 $1{n}-$3{n_init} >= 0 && $6{varR} >= 2 && $4{m_init} == 1 ? bottom
 $6{varR} >= 2 && -$1{n}+$3{n_init} >= 1 && $4{m_init} == 2 ? 11
 $1{n}-$3{n_init} >= 0 && $6{varR} >= 2 && $4{m_init} == 2 ? bottom
-$4{m_init} >= 3 && $6{varR} >= 2 && -$1{n}+$3{n_init} >= 1 ? 2$4{m_init}+7
-$1{n}-$3{n_init} >= 0 && $4{m_init} >= 3 && $6{varR} >= 2 ? bottom
+$6{varR} >= 2 && -$1{n}+$3{n_init} >= 1 && $4{m_init} == 3 ? 13
+$1{n}-$3{n_init} >= 0 && $6{varR} >= 2 && $4{m_init} == 3 ? bottom
+$4{m_init} >= 4 && $6{varR} >= 2 && -$1{n}+$3{n_init} >= 1 ? 2$4{m_init}+7
+$1{n}-$3{n_init} >= 0 && $4{m_init} >= 4 && $6{varR} >= 2 ? bottom
 
 [10:]:
 -$6{varR} >= 0 && -$4{m_init} >= 0 ? 6
@@ -386,8 +418,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 10
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 ? 12
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 ? 14
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 ? 2$4{m_init}+10
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 ? 16
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 ? 2$4{m_init}+10
 $6{varR} == 1 ? 0.
 $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 10
@@ -395,8 +429,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 ? 12
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 ? 14
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 ? 2$4{m_init}+10
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 ? 16
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 ? 2$4{m_init}+10
 
 Property: $5{varA} != 1
 
@@ -513,8 +549,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 && $5{varA} == 1 ? 10
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? 12
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? 14
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+10
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? 16
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+10
 $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 10
 $4{m_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? 0.
@@ -530,8 +568,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 && $5{varA} == 1 ? 12
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 && $5{varA} == 1 ? 14
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+10
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 && $5{varA} == 1 ? 16
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+10
 $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 10
 $4{m_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$3{n_init} >= 0 ? 0.
@@ -556,8 +596,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 && $5{varA} == 1 ? 10
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? 12
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? 14
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+10
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? 16
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+10
 $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 10
 $4{m_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? 0.
@@ -573,8 +615,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 && $5{varA} == 1 ? 12
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 && $5{varA} == 1 ? 14
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+10
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 && $5{varA} == 1 ? 16
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+10
 $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 10
 $4{m_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$3{n_init} >= 0 ? 0.
@@ -591,8 +635,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 && $5{varA} == 1 ? 10
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? 12
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? 14
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+10
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? 16
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+10
 $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 10
 $4{m_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? 0.
@@ -608,8 +654,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 && $5{varA} == 1 ? 12
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 && $5{varA} == 1 ? 14
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+10
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 && $5{varA} == 1 ? 16
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+10
 $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 10
 $4{m_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$3{n_init} >= 0 ? 0.
@@ -626,8 +674,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 && $5{varA} == 1 ? 10
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? 12
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? 14
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+10
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? 16
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+10
 $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 10
 $4{m_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? 0.
@@ -643,8 +693,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 && $5{varA} == 1 ? 12
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 && $5{varA} == 1 ? 14
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+10
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 && $5{varA} == 1 ? 16
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+10
 $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 10
 $4{m_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$3{n_init} >= 0 ? 0.
@@ -661,8 +713,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 && $5{varA} == 1 ? 10
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? 12
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? 14
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+10
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? 16
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+10
 $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 10
 $4{m_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? 0.
@@ -678,8 +732,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 && $5{varA} == 1 ? 12
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 && $5{varA} == 1 ? 14
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+10
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 && $5{varA} == 1 ? 16
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+10
 $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 10
 $4{m_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$3{n_init} >= 0 ? 0.
@@ -696,8 +752,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 && $5{varA} == 1 ? 9
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? 11
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? 13
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+9
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? 15
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+9
 $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 9
 $4{m_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? 0.
@@ -713,8 +771,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 && $5{varA} == 1 ? 11
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 && $5{varA} == 1 ? 13
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+9
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 && $5{varA} == 1 ? 15
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+9
 $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 9
 $4{m_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$3{n_init} >= 0 ? 0.
@@ -731,8 +791,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 && $5{varA} == 1 ? 8
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? 10
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? 12
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+8
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? 14
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+8
 $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 8
 $4{m_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? 0.
@@ -748,8 +810,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 && $5{varA} == 1 ? 10
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 && $5{varA} == 1 ? 12
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+8
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 && $5{varA} == 1 ? 14
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+8
 $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 8
 $4{m_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$3{n_init} >= 0 ? 0.
@@ -766,8 +830,10 @@ $1{n}-$3{n_init} >= 0 && -$6{varR} >= 0 && -$4{m_init} >= 0 && $5{varA} == 1 ? b
 $1{n}-$3{n_init} >= 0 && -$6{varR} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? bottom
 -$6{varR} >= 0 && -$1{n}+$3{n_init} >= 1 && $4{m_init} == 2 && $5{varA} == 1 ? 11
 $1{n}-$3{n_init} >= 0 && -$6{varR} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$1{n}+$3{n_init} >= 1 && $5{varA} == 1 ? 2$4{m_init}+7
-$1{n}-$3{n_init} >= 0 && $4{m_init} >= 3 && -$6{varR} >= 0 && $5{varA} == 1 ? bottom
+-$6{varR} >= 0 && -$1{n}+$3{n_init} >= 1 && $4{m_init} == 3 && $5{varA} == 1 ? 13
+$1{n}-$3{n_init} >= 0 && -$6{varR} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$1{n}+$3{n_init} >= 1 && $5{varA} == 1 ? 2$4{m_init}+7
+$1{n}-$3{n_init} >= 0 && $4{m_init} >= 4 && -$6{varR} >= 0 && $5{varA} == 1 ? bottom
 $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 && -$1{n}+$3{n_init} >= 1 ? 7
 $1{n}-$3{n_init} >= 0 && $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 0.
 $4{m_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$1{n}+$3{n_init} >= 1 ? 2$4{m_init}+7
@@ -783,8 +849,10 @@ $6{varR} >= 2 && -$1{n}+$3{n_init} >= 1 && $4{m_init} == 1 && $5{varA} == 1 ? 9
 $1{n}-$3{n_init} >= 0 && $6{varR} >= 2 && $4{m_init} == 1 && $5{varA} == 1 ? bottom
 $6{varR} >= 2 && -$1{n}+$3{n_init} >= 1 && $4{m_init} == 2 && $5{varA} == 1 ? 11
 $1{n}-$3{n_init} >= 0 && $6{varR} >= 2 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
-$4{m_init} >= 3 && $6{varR} >= 2 && -$1{n}+$3{n_init} >= 1 && $5{varA} == 1 ? 2$4{m_init}+7
-$1{n}-$3{n_init} >= 0 && $4{m_init} >= 3 && $6{varR} >= 2 && $5{varA} == 1 ? bottom
+$6{varR} >= 2 && -$1{n}+$3{n_init} >= 1 && $4{m_init} == 3 && $5{varA} == 1 ? 13
+$1{n}-$3{n_init} >= 0 && $6{varR} >= 2 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$4{m_init} >= 4 && $6{varR} >= 2 && -$1{n}+$3{n_init} >= 1 && $5{varA} == 1 ? 2$4{m_init}+7
+$1{n}-$3{n_init} >= 0 && $4{m_init} >= 4 && $6{varR} >= 2 && $5{varA} == 1 ? bottom
 $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 && -$1{n}+$3{n_init} >= 1 ? 7
 $1{n}-$3{n_init} >= 0 && $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 0.
 $4{m_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$1{n}+$3{n_init} >= 1 ? 2$4{m_init}+7
@@ -906,8 +974,10 @@ $3{n_init} >= 1 && -$6{varR} >= 0 && -$4{m_init} >= 0 && $5{varA} == 1 ? 10
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? 12
 -$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? 14
-$4{m_init} >= 3 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+10
+-$6{varR} >= 0 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && -$6{varR} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? 16
+$4{m_init} >= 4 && -$6{varR} >= 0 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && -$6{varR} >= 0 && $5{varA} == 1 ? 2$4{m_init}+10
 $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$4{m_init} >= 0 ? 10
 $4{m_init} >= 1 && $5{varA} >= 2 && -$6{varR} >= 0 && -$3{n_init} >= 0 ? 0.
@@ -923,8 +993,10 @@ $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 1 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 1 && $5{varA} == 1 ? 12
 $6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 2 && $5{varA} == 1 ? bottom
 $3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 2 && $5{varA} == 1 ? 14
-$4{m_init} >= 3 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
-$3{n_init} >= 1 && $4{m_init} >= 3 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+10
+$6{varR} >= 2 && -$3{n_init} >= 0 && $4{m_init} == 3 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $6{varR} >= 2 && $4{m_init} == 3 && $5{varA} == 1 ? 16
+$4{m_init} >= 4 && $6{varR} >= 2 && -$3{n_init} >= 0 && $5{varA} == 1 ? bottom
+$3{n_init} >= 1 && $4{m_init} >= 4 && $6{varR} >= 2 && $5{varA} == 1 ? 2$4{m_init}+10
 $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 && -$3{n_init} >= 0 ? 0.
 $3{n_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$4{m_init} >= 0 ? 10
 $4{m_init} >= 1 && $5{varA} >= 2 && $6{varR} >= 2 && -$3{n_init} >= 0 ? 0.

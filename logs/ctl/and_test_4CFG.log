@@ -33,110 +33,6 @@ List of arcs:
   8 -> 9: skip
 
 
-Property: $1{n} == 0
-
-[1:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[2:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[3:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[4:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[5:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[6:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[7:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[8:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[9:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[10:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[11:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-Property: AF{$1{n} == 0}
-
-[1:]:
-top ? bottom
-
-[2:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[3:]:
-top ? bottom
-
-[4:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[5:]:
-top ? bottom
-
-[6:]:
--$1{n} >= 2 ? bottom
-$1{n} == -1 ? 1
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[7:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} == 1 ? 1
-$1{n} >= 2 ? bottom
-
-[8:]:
-top ? bottom
-
-[9:]:
-top ? bottom
-
-[10:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 0.
-$1{n} >= 1 ? bottom
-
-[11:]:
-top ? bottom
-
 Property: $1{n} == 1
 
 [1:]:
@@ -194,10 +90,12 @@ $1{n} >= 2 ? bottom
 $1{n} == 1 ? 0.
 $1{n} >= 2 ? bottom
 
-Property: AF{$1{n} == 1}
+Property: EF{$1{n} == 1}
 
 [1:]:
-top ? bottom
+-$1{n} >= 1 ? bottom
+$1{n} == 0 ? 3
+$1{n} >= 1 ? 2$1{n}-2
 
 [2:]:
 -$1{n} >= 0 ? bottom
@@ -205,7 +103,9 @@ $1{n} == 1 ? 0.
 $1{n} >= 2 ? bottom
 
 [3:]:
-top ? bottom
+-$1{n} >= 1 ? bottom
+$1{n} == 0 ? 3
+$1{n} >= 1 ? 2$1{n}-2
 
 [4:]:
 -$1{n} >= 1 ? bottom
@@ -214,7 +114,9 @@ $1{n} == 1 ? 0.
 $1{n} >= 2 ? bottom
 
 [5:]:
-top ? bottom
+-$1{n} >= 0 ? bottom
+$1{n} == 1 ? 0.
+$1{n} >= 2 ? 2$1{n}-3
 
 [6:]:
 -$1{n} >= 1 ? bottom
@@ -240,18 +142,24 @@ $1{n} == 1 ? 0.
 $1{n} >= 2 ? bottom
 
 [11:]:
-top ? bottom
+-$1{n} >= 1 ? bottom
+$1{n} == 0 ? 3
+$1{n} >= 1 ? 2$1{n}-2
 
-Property: AG{AF{$1{n} == 1}}
+Property: EG{EF{$1{n} == 1}}
 
 [1:]:
-top ? bottom
+-$1{n} >= 1 ? bottom
+$1{n} == 0 ? 3
+$1{n} >= 1 ? 2$1{n}-2
 
 [2:]:
 top ? bottom
 
 [3:]:
-top ? bottom
+-$1{n} >= 1 ? bottom
+$1{n} == 0 ? 3
+$1{n} >= 1 ? 2$1{n}-2
 
 [4:]:
 -$1{n} >= 1 ? bottom
@@ -259,7 +167,9 @@ $1{n} == 0 ? 2
 $1{n} >= 1 ? bottom
 
 [5:]:
-top ? bottom
+-$1{n} >= 0 ? bottom
+$1{n} == 1 ? 0.
+$1{n} >= 2 ? 2$1{n}-3
 
 [6:]:
 -$1{n} >= 1 ? bottom
@@ -281,48 +191,9 @@ top ? bottom
 top ? bottom
 
 [11:]:
-top ? bottom
-
-Property: AND{AG{AF{$1{n} == 1}}}{AF{$1{n} == 0}}
-
-[1:]:
-top ? bottom
-
-[2:]:
-top ? bottom
-
-[3:]:
-top ? bottom
-
-[4:]:
 -$1{n} >= 1 ? bottom
-$1{n} == 0 ? 2
-$1{n} >= 1 ? bottom
-
-[5:]:
-top ? bottom
-
-[6:]:
--$1{n} >= 1 ? bottom
-$1{n} == 0 ? 1
-$1{n} >= 1 ? bottom
-
-[7:]:
--$1{n} >= 0 ? bottom
-$1{n} == 1 ? 1
-$1{n} >= 2 ? bottom
-
-[8:]:
-top ? bottom
-
-[9:]:
-top ? bottom
-
-[10:]:
-top ? bottom
-
-[11:]:
-top ? bottom
+$1{n} == 0 ? 3
+$1{n} >= 1 ? 2$1{n}-2
 
 
-Analysis Result: UNKNOWN
+Analysis Result: TRUE

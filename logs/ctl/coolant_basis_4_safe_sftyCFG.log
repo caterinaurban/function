@@ -782,37 +782,25 @@ $5{chainBroken} == 1 ? 0.
 $5{chainBroken} >= 2 ? bottom
 
 [22:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+top ? bottom
 
 [23:]:
 top ? bottom
 
 [24:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+top ? bottom
 
 [25:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+top ? bottom
 
 [26:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+top ? bottom
 
 [27:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+top ? bottom
 
 [28:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+top ? bottom
 
 [29:]:
 -$5{chainBroken} >= 0 ? bottom
@@ -825,84 +813,132 @@ $5{chainBroken} == 1 ? 0.
 $5{chainBroken} >= 2 ? bottom
 
 [31:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [32:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [33:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [34:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [35:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [36:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [37:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [38:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [39:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [40:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [41:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [42:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [43:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [44:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [45:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [46:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [47:]:
 -$5{chainBroken} >= 0 ? bottom
@@ -923,9 +959,7 @@ $5{chainBroken} >= 2 ? bottom
 top ? bottom
 
 [51:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+top ? bottom
 
 [52:]:
 -$5{chainBroken} >= 0 ? bottom
@@ -943,34 +977,52 @@ $5{chainBroken} == 1 ? 0.
 $5{chainBroken} >= 2 ? bottom
 
 [55:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [56:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [57:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [58:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [59:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [60:]:
--$5{chainBroken} >= 0 ? bottom
-$5{chainBroken} == 1 ? 0.
-$5{chainBroken} >= 2 ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [61:]:
 -$5{chainBroken} >= 0 ? bottom
@@ -1233,19 +1285,38 @@ top ? bottom
 top ? bottom
 
 [29:]:
-top ? bottom
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
 
 [30:]:
-top ? bottom
+-$5{chainBroken} >= 0 ? bottom
+$5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 ? bottom
 
 [31:]:
-top ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [32:]:
-top ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [33:]:
-top ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [34:]:
 -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
@@ -1272,7 +1343,12 @@ $7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
 $5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [37:]:
-top ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [38:]:
 -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
@@ -1315,13 +1391,28 @@ $7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
 $5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [43:]:
-top ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [44:]:
-top ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [45:]:
-top ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [46:]:
 -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
@@ -1380,13 +1471,28 @@ $7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
 $5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [58:]:
-top ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [59:]:
-top ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [60:]:
-top ? bottom
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 ? bottom
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 ? bottom
 
 [61:]:
 top ? bottom
@@ -2107,8 +2213,12 @@ $10{limit}-$7{temp} >= 0 ? 0.
 $10{limit}-$7{temp} >= 0 ? 0.
 
 [22:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+-$10{limit}+$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 ? 0.
 
 [23:]:
 -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
@@ -2119,44 +2229,86 @@ $5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 ? 0.
 
 [24:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+-$10{limit}+$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 ? 0.
 
 [25:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+-$10{limit}+$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 ? 0.
 
 [26:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+-$10{limit}+$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 ? 0.
 
 [27:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+-$10{limit}+$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 ? 0.
 
 [28:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+-$10{limit}+$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 ? 0.
 
 [29:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 ? 0.
 
 [30:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 ? 0.
 
 [31:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [32:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [33:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [34:]:
 -$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
@@ -2207,8 +2359,14 @@ $18{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp
 $10{limit}-$7{temp} >= 0 && $18{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [37:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [38:]:
 -$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
@@ -2261,16 +2419,34 @@ $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [43:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [44:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [45:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [46:]:
 -$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
@@ -2299,8 +2475,12 @@ $10{limit}-$7{temp} >= 0 ? 0.
 $10{limit}-$7{temp} >= 0 ? 0.
 
 [51:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
+-$10{limit}+$7{temp} >= 1 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 ? 0.
 
 [52:]:
 -$10{limit}+$7{temp} >= 1 ? bottom
@@ -2345,16 +2525,34 @@ $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [58:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [59:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [60:]:
--$10{limit}+$7{temp} >= 1 ? bottom
-$10{limit}-$7{temp} >= 0 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [61:]:
 -$10{limit}+$7{temp} >= 1 ? bottom
@@ -3291,10 +3489,18 @@ $10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 ? 0.
 
 [22:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [23:]:
 -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
@@ -3311,64 +3517,148 @@ $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [24:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [25:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [26:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [27:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [28:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [29:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [30:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [31:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [32:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [33:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [34:]:
 -$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
@@ -3459,10 +3749,22 @@ $10{limit}-$7{temp} >= 0 && $18{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp}
 $11{init} >= 4 && $18{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [37:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [38:]:
 -$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
@@ -3555,22 +3857,58 @@ $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} =
 $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [43:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [44:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [45:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [46:]:
 -$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
@@ -3615,10 +3953,18 @@ $10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 ? 0.
 
 [51:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [52:]:
 -$11{init} >= -2 ? 0.
@@ -3693,22 +4039,58 @@ $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} =
 $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [58:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [59:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [60:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
 
 [61:]:
 -$11{init} >= -2 ? 0.
@@ -4516,73 +4898,207 @@ $10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 ? 0.
 
 [22:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [23:]:
 top ? bottom
 
 [24:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$10{limit} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [25:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$10{limit} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [26:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$10{limit} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [27:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$10{limit} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [28:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$10{limit} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [29:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [30:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= -1 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$10{limit} >= 1 && $11{init} == 3 ? bottom
+$10{limit} >= 0 && $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [31:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
+$7{temp} >= 0 && -$7{temp} >= -8 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
+$7{temp} >= 0 && -$7{temp} >= -8 && -$5{chainBroken} >= -1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$7{temp} >= -8 && -$5{chainBroken} >= -1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$7{temp} >= -8 && -$5{chainBroken} >= -1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$7{temp} >= -8 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$7{temp} >= -8 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$7{temp} >= -8 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$7{temp} >= -8 ? 0.
+$7{temp} >= 9 && -$5{chainBroken} >= 0 ? bottom
+$7{temp} >= 9 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 9 ? bottom
 
 [32:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0
 
 [33:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0
 
 [34:]:
 -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
@@ -4619,10 +5135,7 @@ $10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init
 $10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0
--$7{temp} >= 1 && -$11{init} >= -2 && $5{chainBroken} == 1 ? 0
--$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
-$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? 0
-$11{init} >= 4 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? 0
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0
 $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0
 $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
@@ -4635,10 +5148,7 @@ $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init}
 $10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0
-$7{temp} >= 0 && -$11{init} >= -2 && $5{chainBroken} == 1 ? 0
-$7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
-$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0
-$11{init} >= 4 && $7{temp} >= 0 && $5{chainBroken} == 1 ? 0
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0
 $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0
 $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
@@ -4647,84 +5157,108 @@ $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} 
 $10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0
 
 [36:]:
--$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 && -$11{init} >= -2 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 && -$11{init} >= -2 ? 0
 -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
 $10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
-$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 ? 0
 $18{limit} >= -272 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= -9 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $18{limit} >= -272 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= -9 && -$11{init} >= -2 ? 0
 $18{limit} >= -272 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= -9 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
 $10{limit}-$7{temp} >= 0 && $18{limit} >= -272 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $18{limit} >= -272 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= -9 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $18{limit} >= -272 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$18{limit} >= -9 ? 0
-$18{limit} >= 10 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+$18{limit} >= 10 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $18{limit} >= 10 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
 $18{limit} >= 10 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
 $10{limit}-$7{temp} >= 0 && $18{limit} >= 10 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 && $18{limit} >= 10 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0.
--$7{temp} >= 1 && -$18{limit} >= -9 && -$11{init} >= -2 && $5{chainBroken} == 1 ? 0
--$7{temp} >= 1 && -$18{limit} >= -9 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
-$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 3 && $5{chainBroken} == 1 ? 0
-$11{init} >= 4 && -$7{temp} >= 1 && -$18{limit} >= -9 && $5{chainBroken} == 1 ? 0
-$18{limit} >= 10 && -$7{temp} >= 1 && -$11{init} >= -2 && $5{chainBroken} == 1 ? 0
-$18{limit} >= 10 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
-$10{limit}-$7{temp} >= 0 && $18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? 0
-$11{init} >= 4 && $18{limit} >= 10 && -$7{temp} >= 1 && $5{chainBroken} == 1 ? 0
-$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= 273 && -$11{init} >= -2 ? 0.
+$11{init} >= 4 && $18{limit} >= 10 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $18{limit} >= 10 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= 273 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= 273 && -$11{init} >= -2 ? 0
 $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= 273 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
 $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
-$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= 273 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= 273 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= 273 ? 0
 $18{limit} >= -272 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= -9 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $18{limit} >= -272 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= -9 && -$11{init} >= -2 ? 0
 $18{limit} >= -272 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= -9 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
 $10{limit}-$7{temp} >= 0 && $18{limit} >= -272 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $18{limit} >= -272 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= -9 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $18{limit} >= -272 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$18{limit} >= -9 ? 0
-$18{limit} >= 10 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0.
+$18{limit} >= 10 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $18{limit} >= 10 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0
 $18{limit} >= 10 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
 $10{limit}-$7{temp} >= 0 && $18{limit} >= 10 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
-$11{init} >= 4 && $18{limit} >= 10 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0.
-$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 && -$11{init} >= -2 ? 0.
+$11{init} >= 4 && $18{limit} >= 10 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $18{limit} >= 10 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 && -$11{init} >= -2 ? 0
 $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
 $10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
-$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= 273 ? 0
 $18{limit} >= -272 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= -9 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $18{limit} >= -272 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= -9 && -$11{init} >= -2 ? 0
 $18{limit} >= -272 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= -9 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
 $10{limit}-$7{temp} >= 0 && $18{limit} >= -272 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $18{limit} >= -272 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= -9 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $18{limit} >= -272 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$18{limit} >= -9 ? 0
-$18{limit} >= 10 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+$18{limit} >= 10 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $18{limit} >= 10 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
 $18{limit} >= 10 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
 $10{limit}-$7{temp} >= 0 && $18{limit} >= 10 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 && $18{limit} >= 10 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0.
-$7{temp} >= 0 && -$18{limit} >= -9 && -$11{init} >= -2 && $5{chainBroken} == 1 ? 0
-$7{temp} >= 0 && -$18{limit} >= -9 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
-$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 3 && $5{chainBroken} == 1 ? 0
-$11{init} >= 4 && $7{temp} >= 0 && -$18{limit} >= -9 && $5{chainBroken} == 1 ? 0
-$18{limit} >= 10 && $7{temp} >= 0 && -$11{init} >= -2 && $5{chainBroken} == 1 ? 0
-$18{limit} >= 10 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
-$10{limit}-$7{temp} >= 0 && $18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0
-$11{init} >= 4 && $18{limit} >= 10 && $7{temp} >= 0 && $5{chainBroken} == 1 ? 0
-$5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= 273 && -$11{init} >= -2 ? 0.
+$11{init} >= 4 && $18{limit} >= 10 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $18{limit} >= 10 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= 273 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= 273 && -$11{init} >= -2 ? 0
 $5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= 273 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
 $10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
-$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= 273 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= 273 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= 273 ? 0
 $18{limit} >= -272 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= -9 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $18{limit} >= -272 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= -9 && -$11{init} >= -2 ? 0
 $18{limit} >= -272 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= -9 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
 $10{limit}-$7{temp} >= 0 && $18{limit} >= -272 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $18{limit} >= -272 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= -9 && -$10{limit}+$7{temp} >= 1 ? bottom
 $10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $18{limit} >= -272 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$18{limit} >= -9 ? 0
-$18{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0.
+$18{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $18{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0
 $18{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
 $10{limit}-$7{temp} >= 0 && $18{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 && $18{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0.
+$11{init} >= 4 && $18{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $18{limit} >= 10 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0
 
 [37:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0
 
 [38:]:
 -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
@@ -4867,22 +5401,88 @@ $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} 
 $10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0
 
 [43:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0
 
 [44:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0
 
 [45:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0
 
 [46:]:
 -$7{temp} >= 1 && -$5{chainBroken} >= -1 && -$11{init} >= -2 ? 0.
@@ -4924,10 +5524,18 @@ $11{init} >= 4 ? 0.
 top ? bottom
 
 [51:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0.
+-$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$5{chainBroken} >= 0 ? 0.
+-$11{init} >= -2 && $5{chainBroken} == 1 ? 0.
+-$10{limit}+$7{temp} >= 1 && $11{init} == 3 && $5{chainBroken} == 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} == 3 && $5{chainBroken} == 1 ? 0.
+$11{init} >= 4 && $5{chainBroken} == 1 ? 0.
+$5{chainBroken} >= 2 && -$11{init} >= -2 ? 0.
+$5{chainBroken} >= 2 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 ? 0.
 
 [52:]:
 -$11{init} >= -2 ? 0.
@@ -5032,22 +5640,88 @@ $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} 
 $10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0
 
 [58:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0
 
 [59:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0
 
 [60:]:
--$11{init} >= -2 ? 0.
--$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
-$10{limit}-$7{temp} >= 0 && $11{init} == 3 ? 0.
-$11{init} >= 4 ? 0.
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+-$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && -$7{temp} >= 1 && -$5{chainBroken} >= 0 ? 0
+-$7{temp} >= 1 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && -$7{temp} >= 1 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$11{init} >= -2 ? 0
+$7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $7{temp} >= 0 && -$5{chainBroken} >= 0 ? 0
+$7{temp} >= 0 && $5{chainBroken} == 1 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$11{init} >= -2 ? 0
+$5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 && $11{init} == 3 ? bottom
+$10{limit}-$7{temp} >= 0 && $5{chainBroken} >= 2 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 && -$10{limit}+$7{temp} >= 1 ? bottom
+$10{limit}-$7{temp} >= 0 && $11{init} >= 4 && $5{chainBroken} >= 2 && $7{temp} >= 0 ? 0
 
 [61:]:
 -$11{init} >= -2 ? 0.

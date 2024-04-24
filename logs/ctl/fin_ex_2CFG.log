@@ -101,7 +101,9 @@ $1{n} >= 2 ? bottom
 Property: EF{$1{n} == 1}
 
 [1:]:
-top ? bottom
+-$1{n} >= 1 ? bottom
+$1{n} == 0 ? 4
+$1{n} >= 1 ? 2$1{n}-2
 
 [2:]:
 -$1{n} >= 0 ? bottom
@@ -109,7 +111,9 @@ $1{n} == 1 ? 0.
 $1{n} >= 2 ? bottom
 
 [3:]:
-top ? bottom
+-$1{n} >= 1 ? bottom
+$1{n} == 0 ? 4
+$1{n} >= 1 ? 2$1{n}-2
 
 [4:]:
 -$1{n} >= 1 ? bottom
@@ -118,7 +122,9 @@ $1{n} == 1 ? 0.
 $1{n} >= 2 ? bottom
 
 [5:]:
-top ? bottom
+-$1{n} >= 0 ? bottom
+$1{n} == 1 ? 0.
+$1{n} >= 2 ? 2$1{n}-3
 
 [6:]:
 -$1{n} >= 1 ? bottom
@@ -150,18 +156,24 @@ $1{n} == 1 ? 0.
 $1{n} >= 2 ? bottom
 
 [12:]:
-top ? bottom
+-$1{n} >= 1 ? bottom
+$1{n} == 0 ? 4
+$1{n} >= 1 ? 2$1{n}-2
 
 Property: EG{EF{$1{n} == 1}}
 
 [1:]:
-top ? bottom
+-$1{n} >= 1 ? bottom
+$1{n} == 0 ? 4
+$1{n} >= 1 ? 2$1{n}-2
 
 [2:]:
 top ? bottom
 
 [3:]:
-top ? bottom
+-$1{n} >= 1 ? bottom
+$1{n} == 0 ? 4
+$1{n} >= 1 ? 2$1{n}-2
 
 [4:]:
 -$1{n} >= 1 ? bottom
@@ -169,7 +181,9 @@ $1{n} == 0 ? 3
 $1{n} >= 1 ? bottom
 
 [5:]:
-top ? bottom
+-$1{n} >= 0 ? bottom
+$1{n} == 1 ? 0.
+$1{n} >= 2 ? 2$1{n}-3
 
 [6:]:
 -$1{n} >= 1 ? bottom
@@ -196,7 +210,9 @@ top ? bottom
 top ? bottom
 
 [12:]:
-top ? bottom
+-$1{n} >= 1 ? bottom
+$1{n} == 0 ? 4
+$1{n} >= 1 ? 2$1{n}-2
 
 
-Analysis Result: UNKNOWN
+Analysis Result: TRUE

@@ -681,44 +681,59 @@ top ? bottom
 top ? bottom
 
 [22:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 55
 
 [23:]:
 -$8{otime}+$9{time} >= 1 ? 0.
 $8{otime}-$9{time} >= 0 ? bottom
 
 [24:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 54
 
 [25:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 53
 
 [26:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 52
 
 [27:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 51
 
 [28:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 50
 
 [29:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 49
 
 [30:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 48
 
 [31:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 47
 
 [32:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 46
 
 [33:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 45
 
 [34:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+44
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 14
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+44
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 14
 
 [35:]:
 -$8{otime}+$9{time} >= 1 ? 0.
@@ -726,36 +741,36 @@ $8{otime}-$9{time} >= 0 ? 4
 
 [36:]:
 -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+43
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 13
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+43
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 13
 
 [37:]:
 -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= 273 && -$18{try} >= -2 ? bottom
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= 273 && -$18{try} >= -2 ? -10$18{try}+42
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= 273 ? 12
 $19{limit} >= -272 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= -9 ? 10
-$19{limit} >= 10 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$19{limit} >= 10 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+42
 $18{try} >= 3 && $19{limit} >= 10 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 12
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= 273 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= 273 && -$18{try} >= -2 ? -10$18{try}+42
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= 273 ? 12
 $19{limit} >= -272 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= -9 ? 10
-$19{limit} >= 10 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$19{limit} >= 10 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+42
 $18{try} >= 3 && $19{limit} >= 10 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 12
 
 [38:]:
 -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+36
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 6
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+36
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 6
 
 [39:]:
 -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+41
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 11
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+41
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 11
 
 [40:]:
@@ -780,27 +795,31 @@ $8{otime}-$9{time} >= 0 ? 6
 
 [45:]:
 -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+40
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 10
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+40
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 10
 
 [46:]:
 -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+39
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 9
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+39
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 9
 
 [47:]:
 -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+38
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 8
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+38
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 8
 
 [48:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -1 ? -10$18{try}+35
+$18{try} >= 2 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 15
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -1 ? -10$18{try}+35
+$18{try} >= 2 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 15
 
 [49:]:
 -$8{otime}+$9{time} >= 1 ? 0.
@@ -828,7 +847,8 @@ top ? bottom
 $8{otime}-$9{time} >= 0 ? bottom
 
 [56:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 55
 
 [57:]:
 top ? bottom
@@ -853,23 +873,23 @@ $8{otime}-$9{time} >= 0 ? 5
 
 [63:]:
 -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+38
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 8
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+38
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 8
 
 [64:]:
 -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+36
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 6
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+36
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 6
 
 [65:]:
 -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+37
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 7
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+37
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 7
 
 [66:]:
@@ -1110,96 +1130,95 @@ top ? bottom
 top ? bottom
 
 [22:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 55
 
 [23:]:
 top ? bottom
 
 [24:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 54
 
 [25:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 53
 
 [26:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 52
 
 [27:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 51
 
 [28:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 50
 
 [29:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 49
 
 [30:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 48
 
 [31:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 47
 
 [32:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 46
 
 [33:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 45
 
 [34:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+44
+$18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 14
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+44
+$18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 14
 
 [35:]:
 -$8{otime}+$9{time} >= 1 ? 0.
 $8{otime}-$9{time} >= 0 ? 4
 
 [36:]:
--$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
-$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+43
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 13
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+43
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 13
 
 [37:]:
--$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$19{limit} >= -9 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$19{limit} >= -9 ? 0.
-$19{limit} >= 10 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && $19{limit} >= 10 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
-$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$19{limit} >= -9 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$19{limit} >= -9 ? 0.
-$19{limit} >= 10 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && $19{limit} >= 10 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= 273 && -$18{try} >= -2 ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= 273 && -$18{try} >= -2 ? -10$18{try}+42
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= 273 ? 12
 $19{limit} >= -272 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$19{limit} >= -9 ? 10
-$19{limit} >= 10 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+$19{limit} >= 10 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+42
 $18{try} >= 3 && $19{limit} >= 10 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 12
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= 273 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= 273 && -$18{try} >= -2 ? -10$18{try}+42
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= 273 ? 12
 $19{limit} >= -272 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$19{limit} >= -9 ? 10
-$19{limit} >= 10 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$19{limit} >= 10 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+42
 $18{try} >= 3 && $19{limit} >= 10 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 12
 
 [38:]:
--$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
-$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+36
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 6
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+36
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 6
 
 [39:]:
--$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
-$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+41
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 11
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+41
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 11
 
 [40:]:
@@ -1223,37 +1242,32 @@ $8{otime}-$9{time} >= 0 ? 7
 $8{otime}-$9{time} >= 0 ? 6
 
 [45:]:
--$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
-$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+40
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 10
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+40
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 10
 
 [46:]:
--$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
-$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+39
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 9
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+39
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 9
 
 [47:]:
--$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
-$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+38
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 8
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+38
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 8
 
 [48:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -1 ? -10$18{try}+35
+$18{try} >= 2 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 15
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -1 ? -10$18{try}+35
+$18{try} >= 2 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 15
 
 [49:]:
 -$8{otime}+$9{time} >= 1 ? 0.
@@ -1280,7 +1294,8 @@ top ? bottom
 top ? bottom
 
 [56:]:
-top ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 ? 55
 
 [57:]:
 top ? bottom
@@ -1304,33 +1319,24 @@ $8{otime}-$9{time} >= 0 ? 4
 $8{otime}-$9{time} >= 0 ? 5
 
 [63:]:
--$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
-$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+38
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 8
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+38
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 8
 
 [64:]:
--$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
-$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+36
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 6
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+36
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 6
 
 [65:]:
--$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && -$8{otime}+$9{time} >= 1 && -$7{temp} >= 1 ? 0.
-$7{temp} >= 0 && -$8{otime}+$9{time} >= 1 && -$18{try} >= -2 ? bottom
-$18{try} >= 3 && $7{temp} >= 0 && -$8{otime}+$9{time} >= 1 ? 0.
-$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? bottom
+-$8{otime}+$9{time} >= 1 ? 0.
+$8{otime}-$9{time} >= 0 && -$7{temp} >= 1 && -$18{try} >= -2 ? -10$18{try}+37
 $18{try} >= 3 && $8{otime}-$9{time} >= 0 && -$7{temp} >= 1 ? 7
-$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? bottom
+$7{temp} >= 0 && $8{otime}-$9{time} >= 0 && -$18{try} >= -2 ? -10$18{try}+37
 $18{try} >= 3 && $7{temp} >= 0 && $8{otime}-$9{time} >= 0 ? 7
 
 [66:]:
@@ -1505,4 +1511,4 @@ $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 && -$10{limit}+$14{kelvin} >= 274 
 $10{limit}-$14{kelvin} >= -273 && $14{kelvin} >= 273 && $8{otime}-$9{time} >= 0 ? 8
 
 
-Analysis Result: UNKNOWN
+Analysis Result: TRUE

@@ -1,27 +1,27 @@
 
 CFG:
 List of variables:
-  $1{__return_main}:int at tests/tap2008c.c:10.0-23.1
-  $2{x}:int at tests/tap2008c.c:11.6-7
-  $3{brake}:int at tests/tap2008c.c:11.9-14
+  $1{__return_main}:int at tests/termination/tap2008c.c:10.0-23.1
+  $2{x}:int at tests/termination/tap2008c.c:11.6-7
+  $3{brake}:int at tests/termination/tap2008c.c:11.9-14
 
 List of functions:
-  1: main() -> $1{__return_main}:int at tests/tap2008c.c:10.0-23.1, entry: 13, exit: 12, calls:
+  1: main() -> $1{__return_main}:int at tests/termination/tap2008c.c:10.0-23.1, entry: 13, exit: 12, calls:
 
 List of nodes:
   13: at :0:-1, in: out:1 
   12: at :0:-1, in: 2 out:
-  1: at tests/tap2008c.c:10:0, in: 13 out:3 
-  2: at tests/tap2008c.c:23:1, in: 4 out:12 
-  3: at tests/tap2008c.c:11:19, in: 9 6 1 out:4 5 
-  4: at tests/tap2008c.c:21:3, in: 3 out:2 
-  5: at tests/tap2008c.c:12:31, in: 3 out:7 8 
-  6: at tests/tap2008c.c:17:5, in: 7 8 out:3 9 
-  7: at tests/tap2008c.c:15:11, in: 5 out:6 
-  8: at tests/tap2008c.c:13:16, in: 5 out:6 
-  9: at tests/tap2008c.c:18:17, in: 6 out:3 
-  10: at tests/tap2008c.c:10:0, in: out:11 
-  11: at tests/tap2008c.c:23:1, in: 10 out:
+  1: at tests/termination/tap2008c.c:10:0, in: 13 out:3 
+  2: at tests/termination/tap2008c.c:23:1, in: 4 out:12 
+  3: at tests/termination/tap2008c.c:11:19, in: 9 6 1 out:4 5 
+  4: at tests/termination/tap2008c.c:21:3, in: 3 out:2 
+  5: at tests/termination/tap2008c.c:12:31, in: 3 out:7 8 
+  6: at tests/termination/tap2008c.c:17:5, in: 7 8 out:3 9 
+  7: at tests/termination/tap2008c.c:15:11, in: 5 out:6 
+  8: at tests/termination/tap2008c.c:13:16, in: 5 out:6 
+  9: at tests/termination/tap2008c.c:18:17, in: 6 out:3 
+  10: at tests/termination/tap2008c.c:10:0, in: out:11 
+  11: at tests/termination/tap2008c.c:23:1, in: 10 out:
 
 List of arcs:
   13 -> 1: label entry
@@ -86,7 +86,8 @@ Property: AF{exit: true}
 [1:]:
 -$2{x} >= -10 ? 3
 $2{x} >= 11 && -$2{x} >= -20 ? 4$2{x}-37
-$2{x} >= 21 && -$2{x} >= -27 ? -4$2{x}+124
+$2{x} >= 21 && -$2{x} >= -26 ? -4$2{x}+124
+$2{x} == 27 ? 16
 $2{x} == 28 ? 12
 $2{x} == 29 ? 8
 $2{x} >= 30 ? bottom
@@ -227,7 +228,8 @@ top ? 0.
 [13:]:
 -$2{x} >= -10 ? 3
 $2{x} >= 11 && -$2{x} >= -20 ? 4$2{x}-37
-$2{x} >= 21 && -$2{x} >= -27 ? -4$2{x}+124
+$2{x} >= 21 && -$2{x} >= -26 ? -4$2{x}+124
+$2{x} == 27 ? 16
 $2{x} == 28 ? 12
 $2{x} == 29 ? 8
 $2{x} >= 30 ? bottom

@@ -1,27 +1,27 @@
 
 CFG:
 List of variables:
-  $1{__return_main}:int at tests/tap2008e.c:10.0-24.1
-  $2{x}:int at tests/tap2008e.c:11.6-7
+  $1{__return_main}:int at tests/termination/tap2008e.c:10.0-24.1
+  $2{x}:int at tests/termination/tap2008e.c:11.6-7
 
 List of functions:
-  1: main() -> $1{__return_main}:int at tests/tap2008e.c:10.0-24.1, entry: 14, exit: 13, calls:
+  1: main() -> $1{__return_main}:int at tests/termination/tap2008e.c:10.0-24.1, entry: 14, exit: 13, calls:
 
 List of nodes:
   14: at :0:-1, in: out:1 
   13: at :0:-1, in: 2 out:
-  1: at tests/tap2008e.c:10:0, in: 14 out:3 
-  2: at tests/tap2008e.c:24:1, in: 4 out:13 
-  3: at tests/tap2008e.c:11:8, in: 10 8 1 out:4 5 
-  4: at tests/tap2008e.c:22:3, in: 3 out:2 
-  5: at tests/tap2008e.c:12:26, in: 3 out:6 7 
-  6: at tests/tap2008e.c:15:5, in: 7 5 out:8 9 
-  7: at tests/tap2008e.c:13:16, in: 5 out:6 
-  8: at tests/tap2008e.c:18:5, in: 9 6 out:3 10 
-  9: at tests/tap2008e.c:16:16, in: 6 out:8 
-  10: at tests/tap2008e.c:19:28, in: 8 out:3 
-  11: at tests/tap2008e.c:10:0, in: out:12 
-  12: at tests/tap2008e.c:24:1, in: 11 out:
+  1: at tests/termination/tap2008e.c:10:0, in: 14 out:3 
+  2: at tests/termination/tap2008e.c:24:1, in: 4 out:13 
+  3: at tests/termination/tap2008e.c:11:8, in: 10 8 1 out:4 5 
+  4: at tests/termination/tap2008e.c:22:3, in: 3 out:2 
+  5: at tests/termination/tap2008e.c:12:26, in: 3 out:6 7 
+  6: at tests/termination/tap2008e.c:15:5, in: 7 5 out:8 9 
+  7: at tests/termination/tap2008e.c:13:16, in: 5 out:6 
+  8: at tests/termination/tap2008e.c:18:5, in: 9 6 out:3 10 
+  9: at tests/termination/tap2008e.c:16:16, in: 6 out:8 
+  10: at tests/termination/tap2008e.c:19:28, in: 8 out:3 
+  11: at tests/termination/tap2008e.c:10:0, in: out:12 
+  12: at tests/termination/tap2008e.c:24:1, in: 11 out:
 
 List of arcs:
   14 -> 1: label entry
@@ -92,7 +92,8 @@ Property: AF{exit: true}
 -$2{x} >= 0 ? 2
 $2{x} >= 1 && -$2{x} >= -11 ? 5$2{x}+2
 $2{x} >= 12 && -$2{x} >= -39 ? bottom
-$2{x} >= 40 && -$2{x} >= -47 ? -5$2{x}+252
+$2{x} >= 40 && -$2{x} >= -46 ? -5$2{x}+252
+$2{x} == 47 ? 17
 $2{x} == 48 ? 12
 $2{x} == 49 ? 7
 $2{x} >= 50 ? 2
@@ -180,7 +181,8 @@ top ? 0.
 -$2{x} >= 0 ? 2
 $2{x} >= 1 && -$2{x} >= -11 ? 5$2{x}+2
 $2{x} >= 12 && -$2{x} >= -39 ? bottom
-$2{x} >= 40 && -$2{x} >= -47 ? -5$2{x}+252
+$2{x} >= 40 && -$2{x} >= -46 ? -5$2{x}+252
+$2{x} == 47 ? 17
 $2{x} == 48 ? 12
 $2{x} == 49 ? 7
 $2{x} >= 50 ? 2

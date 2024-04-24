@@ -1,23 +1,23 @@
 
 CFG:
 List of variables:
-  $1{__return_main}:int at tests/example0.c:10.0-18.1
-  $2{x}:int at tests/example0.c:11.6-7
+  $1{__return_main}:int at tests/termination/example0.c:10.0-18.1
+  $2{x}:int at tests/termination/example0.c:11.6-7
 
 List of functions:
-  1: main() -> $1{__return_main}:int at tests/example0.c:10.0-18.1, entry: 10, exit: 9, calls:
+  1: main() -> $1{__return_main}:int at tests/termination/example0.c:10.0-18.1, entry: 10, exit: 9, calls:
 
 List of nodes:
   10: at :0:-1, in: out:1 
   9: at :0:-1, in: 2 out:
-  1: at tests/example0.c:10:0, in: 10 out:3 
-  2: at tests/example0.c:18:1, in: 4 out:9 
-  3: at tests/example0.c:11:8, in: 6 5 1 out:4 5 
-  4: at tests/example0.c:16:3, in: 3 out:2 
-  5: at tests/example0.c:12:18, in: 3 out:3 6 
-  6: at tests/example0.c:13:16, in: 5 out:3 
-  7: at tests/example0.c:10:0, in: out:8 
-  8: at tests/example0.c:18:1, in: 7 out:
+  1: at tests/termination/example0.c:10:0, in: 10 out:3 
+  2: at tests/termination/example0.c:18:1, in: 4 out:9 
+  3: at tests/termination/example0.c:11:8, in: 6 5 1 out:4 5 
+  4: at tests/termination/example0.c:16:3, in: 3 out:2 
+  5: at tests/termination/example0.c:12:18, in: 3 out:3 6 
+  6: at tests/termination/example0.c:13:16, in: 5 out:3 
+  7: at tests/termination/example0.c:10:0, in: out:8 
+  8: at tests/termination/example0.c:18:1, in: 7 out:
 
 List of arcs:
   10 -> 1: label entry
@@ -67,7 +67,9 @@ top ? bottom
 Property: AF{exit: true}
 
 [1:]:
--$2{x} >= -6 ? top
+-$2{x} >= -4 ? top
+$2{x} == 5 ? 11
+$2{x} == 6 ? bottom
 $2{x} == 7 ? 8
 $2{x} == 8 ? bottom
 $2{x} == 9 ? 5
@@ -118,7 +120,9 @@ top ? bottom
 top ? 0.
 
 [10:]:
--$2{x} >= -6 ? top
+-$2{x} >= -4 ? top
+$2{x} == 5 ? 11
+$2{x} == 6 ? bottom
 $2{x} == 7 ? 8
 $2{x} == 8 ? bottom
 $2{x} == 9 ? 5

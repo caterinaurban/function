@@ -789,62 +789,40 @@ $11{init} == 1 ? 0.
 $11{init} >= 2 ? bottom
 
 [22:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [23:]:
 top ? bottom
 
 [24:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [25:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [26:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [27:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [28:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [29:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [30:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [31:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [32:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [33:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [34:]:
 top ? bottom
@@ -853,17 +831,10 @@ top ? bottom
 top ? bottom
 
 [36:]:
--$18{limit} >= -9 && -$11{init} >= 0 ? bottom
--$18{limit} >= -9 && $11{init} == 1 ? 0.
-$11{init} >= 2 && -$18{limit} >= -9 ? bottom
-$18{limit} >= 10 && -$11{init} >= 0 ? bottom
-$18{limit} >= 10 && $11{init} == 1 ? 0.
-$11{init} >= 2 && $18{limit} >= 10 ? bottom
+top ? bottom
 
 [37:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [38:]:
 top ? bottom
@@ -881,24 +852,21 @@ top ? bottom
 top ? bottom
 
 [43:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [44:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [45:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [46:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+-$7{temp} >= 1 && -$11{init} >= 0 ? bottom
+-$7{temp} >= 1 && $11{init} == 1 ? 0.
+$11{init} >= 2 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= 0 ? bottom
+$7{temp} >= 0 && $11{init} == 1 ? 0.
+$11{init} >= 2 && $7{temp} >= 0 ? bottom
 
 [47:]:
 -$11{init} >= 0 ? bottom
@@ -924,9 +892,7 @@ $11{init} >= 2 ? bottom
 top ? bottom
 
 [52:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [53:]:
 -$11{init} >= 0 ? bottom
@@ -953,19 +919,13 @@ top ? bottom
 top ? bottom
 
 [59:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [60:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [61:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [62:]:
 -$11{init} >= 0 ? bottom
@@ -1711,133 +1671,161 @@ $11{init} == 3 ? 0.
 $11{init} >= 4 ? bottom
 
 [22:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+top ? bottom
 
 [23:]:
 top ? bottom
 
 [24:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+top ? bottom
 
 [25:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+top ? bottom
 
 [26:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+top ? bottom
 
 [27:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+top ? bottom
 
 [28:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+top ? bottom
 
 [29:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+top ? bottom
 
 [30:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+top ? bottom
 
 [31:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+top ? bottom
 
 [32:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+top ? bottom
 
 [33:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [34:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [35:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [36:]:
--$18{limit} >= 273 && -$11{init} >= -2 ? bottom
--$18{limit} >= 273 && $11{init} == 3 ? 0.
-$11{init} >= 4 && -$18{limit} >= 273 ? bottom
-$18{limit} >= -272 && -$18{limit} >= -9 && -$11{init} >= -2 ? bottom
-$18{limit} >= -272 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
-$11{init} >= 4 && $18{limit} >= -272 && -$18{limit} >= -9 ? bottom
-$18{limit} >= 10 && -$11{init} >= -2 ? bottom
-$18{limit} >= 10 && $11{init} == 3 ? 0.
-$11{init} >= 4 && $18{limit} >= 10 ? bottom
+-$7{temp} >= 1 && -$18{limit} >= 273 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 && -$18{limit} >= 273 ? bottom
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && -$11{init} >= -2 ? bottom
+$18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 ? bottom
+$18{limit} >= 10 && -$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+$18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= 10 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$18{limit} >= 273 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 && -$18{limit} >= 273 ? bottom
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && -$11{init} >= -2 ? bottom
+$18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 ? bottom
+$18{limit} >= 10 && $7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $18{limit} >= 10 && $7{temp} >= 0 ? bottom
 
 [37:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [38:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [39:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [40:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [41:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [42:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [43:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [44:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [45:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [46:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [47:]:
 -$11{init} >= -2 ? bottom
@@ -1863,9 +1851,7 @@ $11{init} >= 4 ? bottom
 top ? bottom
 
 [52:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+top ? bottom
 
 [53:]:
 -$11{init} >= -2 ? bottom
@@ -1883,34 +1869,52 @@ $11{init} == 3 ? 0.
 $11{init} >= 4 ? bottom
 
 [56:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [57:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [58:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [59:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [60:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [61:]:
--$11{init} >= -2 ? bottom
-$11{init} == 3 ? 0.
-$11{init} >= 4 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [62:]:
 -$11{init} >= -2 ? bottom
@@ -2647,7 +2651,12 @@ top ? bottom
 top ? bottom
 
 [33:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [34:]:
 -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
@@ -2694,7 +2703,12 @@ $18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $18{limit} >= 10 && $7{temp} >= 0 ? bottom
 
 [37:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [38:]:
 -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
@@ -2757,13 +2771,28 @@ $7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [43:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [44:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [45:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [46:]:
 -$7{temp} >= 1 && -$11{init} >= -2 ? bottom
@@ -2837,13 +2866,28 @@ $7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [59:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [60:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [61:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [62:]:
 top ? bottom
@@ -3164,62 +3208,45 @@ $11{init} == 1 ? 0.
 $11{init} >= 2 ? bottom
 
 [22:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [23:]:
 top ? bottom
 
 [24:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [25:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [26:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [27:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [28:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [29:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [30:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [31:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [32:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [33:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [34:]:
 -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
@@ -3242,9 +3269,7 @@ $7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [36:]:
--$7{temp} >= 1 && -$18{limit} >= 273 && -$11{init} >= 0 ? bottom
--$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 1 ? 0.
--$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && -$18{limit} >= 273 && -$11{init} >= -2 ? bottom
 -$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
 $11{init} >= 4 && -$7{temp} >= 1 && -$18{limit} >= 273 ? bottom
 $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && -$11{init} >= 0 ? bottom
@@ -3252,14 +3277,10 @@ $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 1 ? 7
 $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 2 ? bottom
 $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 ? bottom
-$18{limit} >= 10 && -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
-$18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 1 ? 0.
-$18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 2 ? bottom
+$18{limit} >= 10 && -$7{temp} >= 1 && -$11{init} >= -2 ? bottom
 $18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $18{limit} >= 10 && -$7{temp} >= 1 ? bottom
-$7{temp} >= 0 && -$18{limit} >= 273 && -$11{init} >= 0 ? bottom
-$7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 1 ? 0.
-$7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && -$18{limit} >= 273 && -$11{init} >= -2 ? bottom
 $7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $7{temp} >= 0 && -$18{limit} >= 273 ? bottom
 $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && -$11{init} >= 0 ? bottom
@@ -3267,16 +3288,17 @@ $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 1 ? 7
 $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 2 ? bottom
 $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 ? bottom
-$18{limit} >= 10 && $7{temp} >= 0 && -$11{init} >= 0 ? bottom
-$18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 1 ? 0.
-$18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 2 ? bottom
+$18{limit} >= 10 && $7{temp} >= 0 && -$11{init} >= -2 ? bottom
 $18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $18{limit} >= 10 && $7{temp} >= 0 ? bottom
 
 [37:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [38:]:
 -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
@@ -3339,19 +3361,28 @@ $7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [43:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [44:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [45:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [46:]:
 -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
@@ -3389,9 +3420,7 @@ $11{init} >= 2 ? bottom
 top ? bottom
 
 [52:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+top ? bottom
 
 [53:]:
 -$11{init} >= 0 ? bottom
@@ -3445,19 +3474,28 @@ $7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [59:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [60:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [61:]:
--$11{init} >= 0 ? bottom
-$11{init} == 1 ? 0.
-$11{init} >= 2 ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [62:]:
 -$11{init} >= 0 ? bottom
@@ -4343,7 +4381,12 @@ top ? bottom
 top ? bottom
 
 [33:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [34:]:
 -$7{temp} >= 1 && -$11{init} >= 1 ? bottom
@@ -4368,9 +4411,7 @@ $7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [36:]:
--$7{temp} >= 1 && -$18{limit} >= 273 && -$11{init} >= 0 ? bottom
--$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 1 ? 0.
--$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 2 ? bottom
+-$7{temp} >= 1 && -$18{limit} >= 273 && -$11{init} >= -2 ? bottom
 -$7{temp} >= 1 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
 $11{init} >= 4 && -$7{temp} >= 1 && -$18{limit} >= 273 ? bottom
 $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && -$11{init} >= 1 ? bottom
@@ -4379,14 +4420,10 @@ $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 1 ? 0.
 $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 2 ? bottom
 $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $18{limit} >= -272 && -$7{temp} >= 1 && -$18{limit} >= -9 ? bottom
-$18{limit} >= 10 && -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
-$18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 1 ? 0.
-$18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 2 ? bottom
+$18{limit} >= 10 && -$7{temp} >= 1 && -$11{init} >= -2 ? bottom
 $18{limit} >= 10 && -$7{temp} >= 1 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $18{limit} >= 10 && -$7{temp} >= 1 ? bottom
-$7{temp} >= 0 && -$18{limit} >= 273 && -$11{init} >= 0 ? bottom
-$7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 1 ? 0.
-$7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 2 ? bottom
+$7{temp} >= 0 && -$18{limit} >= 273 && -$11{init} >= -2 ? bottom
 $7{temp} >= 0 && -$18{limit} >= 273 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $7{temp} >= 0 && -$18{limit} >= 273 ? bottom
 $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && -$11{init} >= 1 ? bottom
@@ -4395,14 +4432,17 @@ $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 1 ? 0.
 $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 2 ? bottom
 $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $18{limit} >= -272 && $7{temp} >= 0 && -$18{limit} >= -9 ? bottom
-$18{limit} >= 10 && $7{temp} >= 0 && -$11{init} >= 0 ? bottom
-$18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 1 ? 0.
-$18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 2 ? bottom
+$18{limit} >= 10 && $7{temp} >= 0 && -$11{init} >= -2 ? bottom
 $18{limit} >= 10 && $7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $18{limit} >= 10 && $7{temp} >= 0 ? bottom
 
 [37:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [38:]:
 -$7{temp} >= 1 && -$11{init} >= 1 ? bottom
@@ -4475,13 +4515,28 @@ $7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [43:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [44:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [45:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [46:]:
 -$7{temp} >= 1 && -$11{init} >= 0 ? bottom
@@ -4565,13 +4620,28 @@ $7{temp} >= 0 && $11{init} == 3 ? 0.
 $11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [59:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [60:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [61:]:
-top ? bottom
+-$7{temp} >= 1 && -$11{init} >= -2 ? bottom
+-$7{temp} >= 1 && $11{init} == 3 ? 0.
+$11{init} >= 4 && -$7{temp} >= 1 ? bottom
+$7{temp} >= 0 && -$11{init} >= -2 ? bottom
+$7{temp} >= 0 && $11{init} == 3 ? 0.
+$11{init} >= 4 && $7{temp} >= 0 ? bottom
 
 [62:]:
 top ? bottom

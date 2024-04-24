@@ -760,7 +760,9 @@ top ? bottom
 top ? bottom
 
 [22:]:
-top ? bottom
+-$3{warnLED} >= 0 ? 3
+$3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 ? 3
 
 [23:]:
 -$3{warnLED} >= 0 ? bottom
@@ -768,31 +770,58 @@ $3{warnLED} == 1 ? 0.
 $3{warnLED} >= 2 ? bottom
 
 [24:]:
-top ? bottom
+-$3{warnLED} >= 0 ? 2
+$3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 ? 2
 
 [25:]:
-top ? bottom
+-$3{warnLED} >= 0 ? 1
+$3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 ? 1
 
 [26:]:
-top ? bottom
+-$3{warnLED} >= 0 ? bottom
+$3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 ? bottom
 
 [27:]:
-top ? bottom
+-$3{warnLED} >= 0 ? bottom
+$3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 ? bottom
 
 [28:]:
-top ? bottom
+-$3{warnLED} >= 0 ? bottom
+$3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 ? bottom
 
 [29:]:
-top ? bottom
+-$3{warnLED} >= 0 ? bottom
+$3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 ? bottom
 
 [30:]:
-top ? bottom
+-$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+-$6{temp} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
 
 [31:]:
-top ? bottom
+-$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+-$6{temp} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
 
 [32:]:
-top ? bottom
+-$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+-$6{temp} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
 
 [33:]:
 -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 12
@@ -803,27 +832,36 @@ $6{temp} >= 0 && $3{warnLED} == 1 ? 0.
 $3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
 
 [34:]:
--$6{temp} >= 1 && -$3{warnLED} >= 0 ? bottom
+-$6{temp} >= 1 && -$3{warnLED} >= 0 ? 19
 -$6{temp} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && -$6{temp} >= 1 ? bottom
+$3{warnLED} >= 2 && -$6{temp} >= 1 ? 19
 $6{temp} >= 0 && -$3{warnLED} >= 0 ? bottom
 $6{temp} >= 0 && $3{warnLED} == 1 ? 0.
 $3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
 
 [35:]:
--$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? bottom
+-$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? bottom
+$17{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 6
 -$6{temp} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && -$6{temp} >= 1 && -$17{limit} >= 273 ? bottom
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && -$6{temp} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && -$6{temp} >= 1 ? bottom
-$6{temp} >= 0 && -$3{warnLED} >= 0 ? bottom
+$17{limit} >= 10 && $3{warnLED} >= 2 && -$6{temp} >= 1 ? 6
+$6{temp} >= 0 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $6{temp} >= 0 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? bottom
+$17{limit} >= 10 && $6{temp} >= 0 && -$3{warnLED} >= 0 ? 6
 $6{temp} >= 0 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$17{limit} >= -9 ? bottom
+$17{limit} >= 10 && $3{warnLED} >= 2 && $6{temp} >= 0 ? 6
 
 [36:]:
-top ? bottom
+-$6{temp} >= 1 && -$3{warnLED} >= 0 ? 5
+-$6{temp} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 ? 5
+$6{temp} >= 0 && -$3{warnLED} >= 0 ? 5
+$6{temp} >= 0 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 ? 5
 
 [37:]:
 -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 17
@@ -890,13 +928,52 @@ $3{warnLED} >= 2 && $6{temp} >= 0 && $12{warning} == 1 ? 2
 $12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
 
 [42:]:
-top ? bottom
+-$6{temp} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+-$6{temp} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 24
+-$6{temp} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && -$6{temp} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && -$6{temp} >= 1 ? 24
+$6{temp} >= 0 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? bottom
+$6{temp} >= 0 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $6{temp} >= 0 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$1{error} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
 
 [43:]:
-top ? bottom
+-$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+-$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 23
+-$6{temp} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && -$6{temp} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$6{temp} >= 1 ? 23
+$6{temp} >= 0 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $6{temp} >= 0 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
 
 [44:]:
-top ? bottom
+-$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+-$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+-$6{temp} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $6{temp} >= 0 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
 
 [45:]:
 -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 11
@@ -933,7 +1010,9 @@ $3{warnLED} == 1 ? 0.
 $3{warnLED} >= 2 ? bottom
 
 [54:]:
-top ? bottom
+-$3{warnLED} >= 0 ? 3
+$3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 ? 3
 
 [55:]:
 top ? bottom
@@ -985,13 +1064,44 @@ $3{warnLED} >= 2 && $6{temp} >= 0 && $12{warning} == 1 ? 1
 $12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
 
 [61:]:
-top ? bottom
+-$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+-$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+-$6{temp} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $6{temp} >= 0 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
 
 [62:]:
-top ? bottom
+-$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+-$6{temp} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
 
 [63:]:
-top ? bottom
+-$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+-$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+-$6{temp} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && -$6{temp} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $6{temp} >= 0 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 ? bottom
 
 [64:]:
 top ? bottom
@@ -1796,8 +1906,12 @@ $4{tempIn} >= 0 ? 0.
 $4{tempIn} >= 0 ? 0.
 
 [22:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+-$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 ? 3
 
 [23:]:
 -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
@@ -1806,40 +1920,80 @@ $3{warnLED} >= 2 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 ? 0.
 
 [24:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 2
+-$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$4{tempIn} >= 1 ? 2
+$4{tempIn} >= 0 && -$3{warnLED} >= 0 ? 2
+$4{tempIn} >= 0 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 ? 2
 
 [25:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 1
+-$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$4{tempIn} >= 1 ? 1
+$4{tempIn} >= 0 && -$3{warnLED} >= 0 ? 1
+$4{tempIn} >= 0 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 ? 1
 
 [26:]:
--$4{tempIn} >= 1 ? bottom
+-$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+-$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 ? 0.
 
 [27:]:
--$4{tempIn} >= 1 ? bottom
+-$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+-$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 ? 0.
 
 [28:]:
--$4{tempIn} >= 1 ? bottom
+-$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+-$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 ? 0.
 
 [29:]:
--$4{tempIn} >= 1 ? bottom
+-$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+-$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 ? 0.
 
 [30:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
 
 [31:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
 
 [32:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
 
 [33:]:
 -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 12
@@ -1854,37 +2008,60 @@ $3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
 
 [34:]:
--$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 19
 -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$6{temp} >= 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 19
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 19
+$4{tempIn} >= 0 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 ? 19
 $6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
 $6{temp} >= 0 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
 $3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
 
 [35:]:
--$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? bottom
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$17{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 6
 -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? bottom
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= 273 ? 0.
-$17{limit} >= -272 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= -1 ? 0
-$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 6
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
+$17{limit} >= 10 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 ? 0.
-$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 ? 6
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? bottom
+$17{limit} >= 10 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 6
 $6{temp} >= 0 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$17{limit} >= -9 ? bottom
+$17{limit} >= 10 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? 6
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && $6{temp} >= 0 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 ? 6
 
 [36:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 5
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 5
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 ? 5
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 5
+$6{temp} >= 0 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? 5
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && $6{temp} >= 0 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 ? 5
 
 [37:]:
 -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 17
@@ -1998,16 +2175,91 @@ $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $12{warning} == 1 ? 2
 $12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
 
 [42:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 24
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 24
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 24
+$4{tempIn} >= 0 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 ? 24
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$1{error} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 && -$1{error} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$1{error} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
 
 [43:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 23
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 23
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 23
+$4{tempIn} >= 0 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 ? 23
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
 
 [44:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
 
 [45:]:
 -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 11
@@ -2056,8 +2308,12 @@ $3{warnLED} >= 2 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 ? 0.
 
 [54:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+-$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 ? 3
 
 [55:]:
 -$4{tempIn} >= 1 ? bottom
@@ -2142,16 +2398,74 @@ $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $12{warning} == 1 ? 1
 $12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
 
 [61:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
 
 [62:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
 
 [63:]:
--$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 ? 0.
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+-$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+$4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 ? 0.
 
 [64:]:
 -$4{tempIn} >= 1 ? bottom
@@ -3190,12 +3504,24 @@ $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
 
 [22:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && -$9{limit} >= 273 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 ? 3
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 3
+$9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+$9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && $9{limit} >= 10 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 ? 3
 
 [23:]:
 -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
@@ -3212,76 +3538,196 @@ $3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
 
 [24:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 2
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? 2
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 ? 2
+$4{tempIn} >= 0 && -$9{limit} >= 273 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 ? 2
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 2
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? 2
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 ? 2
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 2
+$9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 2
+$9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? 2
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 ? 2
+$4{tempIn} >= 0 && $9{limit} >= 10 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 ? 2
 
 [25:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 1
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? 1
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 ? 1
+$4{tempIn} >= 0 && -$9{limit} >= 273 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 ? 1
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 1
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? 1
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 ? 1
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 1
+$9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 1
+$9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? 1
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 ? 1
+$4{tempIn} >= 0 && $9{limit} >= 10 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 ? 1
 
 [26:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
 
 [27:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
 
 [28:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
 
 [29:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
 
 [30:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [31:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [32:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [33:]:
 -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 12
@@ -3316,91 +3762,160 @@ $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? botto
 $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [34:]:
--$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 19
 -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 19
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 19
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 19
 $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
 $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
 $3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 19
 $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 19
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 19
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 19
 $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
 $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
 $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 19
 $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 19
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 19
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 19
 $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
 $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
 $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [35:]:
--$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? bottom
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$17{limit} >= 10 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 6
 -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? bottom
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= 273 ? 0.
-$17{limit} >= -272 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= -1 ? 0
-$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 6
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
+$17{limit} >= 10 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 0.
-$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 6
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? bottom
+$17{limit} >= 10 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 6
 $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$17{limit} >= -9 ? bottom
+$17{limit} >= 10 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? 6
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 6
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$17{limit} >= 10 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 6
 $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? bottom
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= 273 ? 0.
-$17{limit} >= -272 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= -1 ? 0
-$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 6
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
+$17{limit} >= 10 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 0.
-$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 6
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? bottom
+$17{limit} >= 10 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 6
 $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$17{limit} >= -9 ? bottom
+$17{limit} >= 10 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? 6
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 6
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$17{limit} >= 10 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 6
 $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? bottom
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= 273 ? 0.
-$17{limit} >= -272 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= -1 ? 0
-$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 6
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
+$17{limit} >= 10 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 0.
-$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 6
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? bottom
+$17{limit} >= 10 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 6
 $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
-$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$17{limit} >= -9 ? bottom
+$17{limit} >= 10 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? 6
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 6
 
 [36:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 5
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 5
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 5
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 5
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? 5
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 5
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 5
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 5
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 5
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 5
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? 5
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 5
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 5
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 5
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 5
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 5
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? 5
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 5
 
 [37:]:
 -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 17
@@ -3716,28 +4231,253 @@ $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $12{w
 $12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [42:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 24
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 24
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 24
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 24
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$1{error} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && -$1{error} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$1{error} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 24
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 24
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 24
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 24
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$1{error} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && -$1{error} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$1{error} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 24
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 24
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 24
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 24
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$1{error} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && -$1{error} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$1{error} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [43:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 23
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 23
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 23
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 23
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 23
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 23
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 23
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 23
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 23
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 23
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 23
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 23
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [44:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [45:]:
 -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 11
@@ -3842,12 +4582,24 @@ $3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
 
 [54:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && -$9{limit} >= 273 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 ? 3
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 3
+$9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+$9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && $9{limit} >= 10 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 ? 3
 
 [55:]:
 -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
@@ -4072,28 +4824,202 @@ $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $12{w
 $12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [61:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [62:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [63:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? bottom
+$3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [64:]:
 -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
@@ -5644,38 +6570,80 @@ $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
 
 [22:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && -$9{limit} >= 273 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 ? 3
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 3
+$9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+$9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && $9{limit} >= 10 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 ? 3
 
 [23:]:
 top ? bottom
 
 [24:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 2
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? 2
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 ? 2
+$4{tempIn} >= 0 && -$9{limit} >= 273 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 ? 2
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 2
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? 2
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 ? 2
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 2
+$9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 2
+$9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? 2
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 ? 2
+$4{tempIn} >= 0 && $9{limit} >= 10 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 ? 2
 
 [25:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 1
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? 1
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 ? 1
+$4{tempIn} >= 0 && -$9{limit} >= 273 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 ? 1
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 1
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? 1
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 ? 1
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 1
+$9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 1
+$9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? 1
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 ? 1
+$4{tempIn} >= 0 && $9{limit} >= 10 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 ? 1
 
 [26:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
+$9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
 
 [27:]:
@@ -5703,28 +6671,82 @@ $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
 
 [30:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [31:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [32:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [33:]:
 -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 12
@@ -5759,79 +6781,130 @@ $3{warnLED} >= 2 && $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? botto
 $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [34:]:
--$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 19
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 19
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 19
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 19
 $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 19
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 19
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 19
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 19
 $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 19
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 19
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 19
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 19
 $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
 $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [35:]:
--$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? bottom
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
--$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 && $3{warnLED} == 1 ? bottom
-$17{limit} >= -272 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= -9 && $3{warnLED} == 1 ? 0.
-$17{limit} >= 10 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? bottom
-$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? bottom
+$17{limit} >= 10 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 6
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= 273 ? 0.
-$17{limit} >= -272 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= -1 ? 0
-$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 6
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
+$17{limit} >= 10 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 6
 $6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 6
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
-$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 && $3{warnLED} == 1 ? bottom
-$17{limit} >= -272 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= -9 && $3{warnLED} == 1 ? 0.
-$17{limit} >= 10 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? bottom
-$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? bottom
+$17{limit} >= 10 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 6
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= 273 ? 0.
-$17{limit} >= -272 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= -1 ? 0
-$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 6
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
+$17{limit} >= 10 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 6
 $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 6
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? bottom
-$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 && $3{warnLED} == 1 ? bottom
-$17{limit} >= -272 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= -9 && $3{warnLED} == 1 ? 0.
-$17{limit} >= 10 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? bottom
-$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? bottom
+$17{limit} >= 10 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 6
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= 273 ? 0.
-$17{limit} >= -272 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= -1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= -1 ? 0
-$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 6
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 18
+$17{limit} >= 10 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$17{limit} >= 273 ? 6
 $17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$17{limit} >= -9 ? 18
-$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 6
 $6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 ? 6
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$17{limit} >= 273 ? 6
+$17{limit} >= -272 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$17{limit} >= -9 ? 0.
+$17{limit} >= 10 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 6
 
 [36:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 5
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 5
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 5
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 5
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 5
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 5
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 5
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 5
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 5
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 5
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 5
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 ? 5
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 5
 
 [37:]:
 -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 17
@@ -6159,28 +7232,199 @@ $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $12{w
 $12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [42:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 24
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 24
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 24
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 24
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && -$1{error} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$1{error} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 24
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 24
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 24
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 24
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && -$1{error} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$1{error} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 24
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 24
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$1{error} >= 0 ? 24
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 24
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$1{error} >= 0 ? 24
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 24
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && -$1{error} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && $1{error} == 1 ? 4
+$1{error} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$1{error} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $1{error} == 1 ? 4
+$1{error} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [43:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 23
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 23
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 23
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 23
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 23
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 23
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 23
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 23
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 23
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 23
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 23
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 23
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 23
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 23
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $12{warning} == 1 ? 3
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [44:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [45:]:
 -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 11
@@ -6274,12 +7518,24 @@ $4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
 top ? bottom
 
 [54:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+-$9{limit} >= 273 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && -$9{limit} >= 273 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 ? 3
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 3
+$9{limit} >= 10 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 3
+$9{limit} >= 10 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? 3
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= 0 ? 3
+$4{tempIn} >= 0 && $9{limit} >= 10 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 ? 3
 
 [55:]:
 -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
@@ -6516,28 +7772,160 @@ $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $12{w
 $12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [61:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 22
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 22
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 22
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 22
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $12{warning} == 1 ? 2
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [62:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 20
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 20
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 20
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 20
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [63:]:
--$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && -$9{limit} >= 273 ? 0.
-$9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
-$9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
-$4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+-$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && -$9{limit} >= 273 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && -$9{limit} >= 273 ? 0.
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+$9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= -272 && -$9{limit} >= -9 ? 0.
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$3{warnLED} >= 0 ? 21
+$9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $3{warnLED} == 1 ? 0.
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $9{limit} >= 10 && -$6{temp} >= 1 && -$4{tempIn} >= 1 ? 21
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && -$12{warning} >= 0 ? 21
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$3{warnLED} >= 0 ? 21
+$4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $3{warnLED} == 1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && -$12{warning} >= 0 ? 21
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 && -$6{temp} >= 1 ? 21
+$6{temp} >= 0 && $9{limit} >= 10 && -$4{tempIn} >= 1 ? bottom
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && -$12{warning} >= 0 ? 0.
+$4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$3{warnLED} >= -1 ? 0
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && -$12{warning} >= 0 ? 0.
+$3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 && $12{warning} == 1 ? 1
+$12{warning} >= 2 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $6{temp} >= 0 && $9{limit} >= 10 ? 0.
 
 [64:]:
 -$9{limit} >= 273 && -$4{tempIn} >= 1 ? bottom
@@ -7992,4 +9380,4 @@ $13{kelvin}-$9{limit} >= 274 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit}
 $12{warning} >= 2 && $13{kelvin}-$9{limit} >= 274 && $3{warnLED} >= 2 && $4{tempIn} >= 0 && $9{limit} >= 10 ? 0.
 
 
-Analysis Result: UNKNOWN
+Analysis Result: TRUE
