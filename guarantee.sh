@@ -27,6 +27,7 @@
 ### -joinbwd 2
 
 ./function tests/guarantee/countdown.c -ctl-cfg "AF{x == 0}" -domain polyhedra > logs/guarantee/countdownCFG.log
+./function tests/guarantee/mnav.c -ctl-cfg "AF{enable == 0}" -domain polyhedra > logs/guarantee/mnavCFG.log
 ./function tests/guarantee/peterson.c -ctl-cfg "AF{C1: true}" -domain polyhedra > logs/guarantee/petersonCFG.log
 ./function tests/guarantee/pingpong.c -ctl-cfg "AF{z == 1}" -domain polyhedra > logs/guarantee/pingpongCFG.log
 
@@ -48,6 +49,7 @@
 ### -joinbwd 2
 
 ./function tests/guarantee/countdown.c -ctl-ast "AF{x == 0}" -domain polyhedra > logs/guarantee/countdownAST.log
+./function tests/guarantee/mnav.c -ctl-ast "AF{enable == 0}" -domain polyhedra > logs/guarantee/mnavAST.log
 ./function tests/guarantee/peterson.c -ctl-ast "AF{C1: true}" -domain polyhedra > logs/guarantee/petersonAST.log
 ./function tests/guarantee/pingpong.c -ctl-ast "AF{z == 1}" -domain polyhedra > logs/guarantee/pingpongAST.log
 
