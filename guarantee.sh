@@ -26,7 +26,7 @@
 ### -domain polyhedra
 ### -joinbwd 2
 
-./function tests/guarantee/countdown.c -ctl-cfg "AF{x == 0}" -domain polyhedra > logs/guarantee/countdownCFG#TODO.log           # TODO: ?
+./function tests/guarantee/countdown.c -ctl-cfg "AF{x == 0}" -domain polyhedra > logs/guarantee/countdownCFG.log
 ./function tests/guarantee/peterson.c -ctl-cfg "AF{C1: true}" -domain polyhedra > logs/guarantee/petersonCFG.log
 ./function tests/guarantee/pingpong.c -ctl-cfg "AF{z == 1}" -domain polyhedra > logs/guarantee/pingpongCFG.log
 
@@ -35,11 +35,11 @@
 ### -joinbwd 2
 ### -ordinals 1
 
-./function tests/guarantee/sink.c -ctl-cfg "AF{x == 0}" -domain polyhedra -ordinals 1 > logs/guarantee/sinkCFG#TODO.log         # TODO: ?
+./function tests/guarantee/sink.c -ctl-cfg "AF{x == 0}" -domain polyhedra -ordinals 1 > logs/guarantee/sinkCFG.log
 
 # conditional guarantee (CTL-CFG)
 
-./function tests/guarantee/simple.c -ctl-cfg "AF{x == 3}" -domain polyhedra > logs/guarantee/simpleCFG#TODO.log                 # TODO: ?
+./function tests/guarantee/simple.c -ctl-cfg "AF{x == 3}" -domain polyhedra > logs/guarantee/simpleCFG.log                       # x <= 3
 
 ###
 
@@ -60,4 +60,4 @@
 
 # conditional guarantee (CTL-AST)
 
-./function tests/guarantee/simple.c -ctl-ast "AF{x == 3}" -domain polyhedra > logs/guarantee/simpleAST.log            # x <= 3
+./function tests/guarantee/simple.c -ctl-ast "AF{x == 3}" -domain polyhedra > logs/guarantee/simpleAST.log                       # x <= 3
