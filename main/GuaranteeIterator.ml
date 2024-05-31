@@ -109,7 +109,7 @@ struct
 
   (* Analyzer *)
 
-  let analyze property (vars,stmts,funcs) main =
+  let analyze ?(precondition = AbstractSyntax.A_TRUE) property (vars,stmts,funcs) main =
     let rec aux xs env =
       match xs with
       | [] -> env
@@ -149,6 +149,6 @@ struct
           Format.fprintf !fmt "\nBackward Analysis:\n";
         bwdMap_print !fmt !bwdInvMap;
       end;
-    D.defined i
+    D.defined ~condition:precondition i
 
 end

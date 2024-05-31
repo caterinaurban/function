@@ -254,7 +254,7 @@ module CFGCTLPolyhedraOrdinals = CFGCTLIterator.CFGCTLIterator(DecisionTree.TSOP
 let result = ref false
 
 let run_analysis analysis_function program () =
-  try 
+  try
     let start = Sys.time () in
     let terminating = analysis_function program !main in
     let stop = Sys.time () in
@@ -272,7 +272,11 @@ let run_analysis analysis_function program () =
 let termination () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   let sources = parseFile !filename in
+  let parsedPrecondition = parsePropertyString !precondition in
   let (program,_) = ItoA.prog_itoa sources in
+  let precondition = 
+    fst @@ AbstractSyntax.StringMap.find "" @@ ItoA.property_itoa_of_prog program !main parsedPrecondition 
+  in
   if not !minimal then
     begin
       Format.fprintf !fmt "\nAbstract Syntax:\n";
@@ -284,15 +288,19 @@ let termination () =
     | "octagons" -> if !ordinals then TerminationOctagonsOrdinals.analyze else TerminationOctagons.analyze
     | "polyhedra" -> if !ordinals then TerminationPolyhedraOrdinals.analyze else TerminationPolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
-  in run_analysis analysis_function program ()
+  in run_analysis (analysis_function ~precondition:precondition) program ()
 
 let guarantee () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property File Specified");
   let sources = parseFile !filename in
   let property = parseProperty !property in
+  let parsedPrecondition = parsePropertyString !precondition in
   let (program, property) =
     ItoA.prog_itoa ~property:(!main,property) sources in
+  let precondition = 
+    fst @@ AbstractSyntax.StringMap.find "" @@ ItoA.property_itoa_of_prog program !main parsedPrecondition 
+  in
   let property =
     match property with
     | None -> raise (Invalid_argument "Unknown Property")
@@ -311,15 +319,19 @@ let guarantee () =
     | "octagons" -> if !ordinals then GuaranteeOctagonsOrdinals.analyze else GuaranteeOctagons.analyze
     | "polyhedra" -> if !ordinals then GuaranteePolyhedraOrdinals.analyze else GuaranteePolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
-  in run_analysis (analysis_function property) program ()
+  in run_analysis (analysis_function ~precondition:precondition property) program ()
 
 let recurrence () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
   if !property = "" then raise (Invalid_argument "No Property File Specified");
   let sources = parseFile !filename in
   let property = parseProperty !property in
+  let parsedPrecondition = parsePropertyString !precondition in
   let (program,property) =
     ItoA.prog_itoa ~property:(!main,property) sources in
+  let precondition = 
+    fst @@ AbstractSyntax.StringMap.find "" @@ ItoA.property_itoa_of_prog program !main parsedPrecondition 
+  in
   let property =
     match property with
     | None -> raise (Invalid_argument "Unknown Property")
@@ -338,7 +350,7 @@ let recurrence () =
     | "octagons" -> if !ordinals then RecurrenceOctagonsOrdinals.analyze else RecurrenceOctagons.analyze
     | "polyhedra" -> if !ordinals then RecurrencePolyhedraOrdinals.analyze else RecurrencePolyhedra.analyze
     | _ -> raise (Invalid_argument "Unknown Abstract Domain")
-  in run_analysis (analysis_function property) program ()
+  in run_analysis (analysis_function ~precondition:precondition property) program ()
 
 let ctl_ast () =
   if !filename = "" then raise (Invalid_argument "No Source File Specified");
