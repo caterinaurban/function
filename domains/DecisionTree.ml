@@ -28,6 +28,8 @@ let evolvethr = ref 0
 let tracebwd = ref false
 let retrybwd = ref 5
 
+let tracewiden = false
+
 (** The ranking functions abstract domain is an abstract domain functor T. 
     It is parameterized by an auxiliary abstract domain for linear constraints 
     C, and an auxiliary abstract domains for functions F, both parameterized by 
@@ -68,6 +70,8 @@ struct
       upper bounds on the number of program execution steps to termination. *)
   type tree = Bot | Leaf of F.f | Node of L.t * tree * tree
 
+  exception GetOut of tree*tree
+
   (** An element of the ranking functions abstract domain. *)
   type t = {
     domain : B.t option;	(* current reachable program states *)
@@ -84,11 +88,11 @@ struct
   let print_tree vars fmt t =
     let rec aux ind fmt t =
       match t with
-      | Bot -> Format.fprintf fmt "\n%sNIL" ind
-      | Leaf f ->  Format.fprintf fmt "\n%sLEAF %a" ind F.print f
-      | Node ((c,_),l,r) -> Format.fprintf fmt "\n%sNODE %a%a%a" ind 
-                              (C.print vars) c (aux (ind ^ " ")) l (aux (ind ^ "  ")) r
-    in aux "" fmt t
+      | Bot -> Format.fprintf fmt "NIL"
+      | Leaf f ->  Format.fprintf fmt "LEAF %a" F.print f
+      | Node ((c,_),l,r) -> Format.fprintf fmt "NODE %a\n%s+ %a\n%s` %a" 
+                              (C.print vars) c ind (aux (ind ^ "| ")) l ind (aux (ind ^ "  ")) r
+    in Format.fprintf fmt "\n%a" (aux "") t
 
   (**
      Prints a tree in graphviz 'dot' format for visualization. 
@@ -521,8 +525,7 @@ struct
                else true
              else false
            | COMPUTATIONAL -> 
-             F.isLeq k b f1 f2 (* forall x: f1(x) <= f2(x) *)
-           | _  -> raise (Invalid_argument ("Learning order not defined for tree")) )
+             F.isLeq k b f1 f2 (* forall x: f1(x) <= f2(x) *) )
             
       | Node ((c1,nc1),l1,r1), Node((c2,nc2),l2,r2) when (C.isEq c1 c2) ->
         (aux (l1,l2) (c1::cs)) && (aux (r1,r2) (nc1::cs))
@@ -623,7 +626,6 @@ struct
     let fBotLeftRight = match k with
       | APPROXIMATION -> fun _ _ -> Bot (* use NIL if at least one leaf is NIL *)
       | COMPUTATIONAL -> fun _ _ -> botLeaf (* use bottom leaf if at least one leaf is nil*)
-      | _ -> raise (Invalid_argument "Should not call Learning meet on decision trees")
     in
     let fLeaf cs f1 f2 = 
       let b = match domain with 
@@ -857,14 +859,12 @@ struct
     let domain = t1.domain in
     let env = t1.env in
     let vars = t1.vars in
+    let inner_b cs = match domain with None -> B.inner env vars cs | Some domain -> B.meet (B.inner env vars cs) domain in
     let t1 = t1.tree and t2 = t2.tree in
     let rec widen_right (t1,t2) cs =
       match t1,t2 with
       | Leaf f1,Leaf f2 ->
-        let b = match domain with 
-          | None -> B.inner env vars cs 
-          | Some domain -> B.meet (B.inner env vars cs) domain in
-          
+        let b = inner_b cs in
         if F.isLeq COMPUTATIONAL b f1 f2 then t2 
         else Leaf (F.top env vars)
       | Node((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isEq c1 c2) (* c1 = c2 *) ->
@@ -872,12 +872,12 @@ struct
         let r = widen_right (r1,r2) (nc1::cs) in
         Node((c2,nc2),l,r)
       | Node((c1,nc1),l1,r1),Node((c2,_),_,_) when (C.isLeq c1 c2) (* c1 < c2 *) ->
-        let bcs = B.inner env vars cs in
-        let bc1 = B.inner env vars [c1] in
+        let bcs = inner_b cs in
+        let bc1 = inner_b [c1] in
         if (B.isLeq bcs bc1)
         then (* c1 is redundant *) widen_right (l1,t2) cs
         else (* c1 is not redundant *)
-          let bnc1 = B.inner env vars [nc1] in
+          let bnc1 = inner_b [nc1] in
           if (B.isLeq bcs bnc1) then (* nc1 is redundant *) widen_right (r1,t2) cs
           else (* nc1 is not redundant *)
             let l = widen_right (l1, t2) (c1 :: cs) in
@@ -889,12 +889,12 @@ struct
         Node((c2,nc2),l,r)
 
       | Node ((c1,nc1),l1,r1),_ ->
-        let bcs = B.inner env vars cs in
-        let bc1 = B.inner env vars [c1] in
+        let bcs = inner_b cs in
+        let bc1 = inner_b [c1] in
         if (B.isLeq bcs bc1)
         then (* c1 is redundant *) widen_right (l1,t2) cs
         else (* c1 is not redundant *)
-          let bnc1 = B.inner env vars [nc1] in
+          let bnc1 = inner_b [nc1] in
           if (B.isLeq bcs bnc1) then (* nc1 is redundant *) widen_right (r1,t2) cs
           else (* nc1 is not redundant *)
             let l = widen_right (l1, t2) (c1 :: cs) in
@@ -910,30 +910,30 @@ struct
       match t1,t2 with
       | Bot,Bot -> Bot
       | Leaf f1,Leaf f2 ->
-        let b = match domain with | None -> B.inner env vars cs | Some domain -> B.meet (B.inner env vars cs) domain in
+        let b = inner_b cs in
         Leaf (F.widen ~jokers:(if !retrybwd > 0 then
                                  (jokers + !retrybwd - 1) / !retrybwd
                                else 0)
                 b f1 f2)
       | Node ((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isEq c1 c2) (* c1 = c2 *) -> Node ((c1,nc1),widen_up (l1,l2) (c1::cs),widen_up (r1,r2) (nc1::cs))
       | Node ((c1,nc1),l1,r1),Node((c2,_),_,_) when (C.isLeq c1 c2) (* c1 < c2 *) ->
-        let bcs = B.inner env vars cs in
-        let bc1 = B.inner env vars [c1] in
+        let bcs = inner_b cs in
+        let bc1 = inner_b [c1] in
         if (B.isLeq bcs bc1)
         then (* c1 is redundant *) widen_up (l1,t2) cs
         else (* c1 is not redundant *)
-          let bnc1 = B.inner env vars [nc1] in
+          let bnc1 = inner_b [nc1] in
           if (B.isLeq bcs bnc1) then (* nc1 is redundant *) widen_up (r1,t2) cs
           else (* nc1 is not redundant *)
             Node ((c1, nc1), widen_up (l1, t2) (c1 :: cs), widen_up (r1, t2) (nc1 :: cs))
       | Node ((c1,_),_,_),Node((c2,nc2),l2,r2) when (C.isLeq c2 c1) (* c1 > c2 *) -> Node((c2,nc2),widen_up (t1,l2) (c2::cs),widen_up (t1,r2) (nc2::cs))
       | Node ((c1,nc1),l1,r1),_ ->
-        let bcs = B.inner env vars cs in
-        let bc1 = B.inner env vars [c1] in
+        let bcs = inner_b cs in
+        let bc1 = inner_b [c1] in
         if (B.isLeq bcs bc1)
         then (* c1 is redundant *) widen_up (l1,t2) cs
         else (* c1 is not redundant *)
-          let bnc1 = B.inner env vars [nc1] in
+          let bnc1 = inner_b [nc1] in
           if (B.isLeq bcs bnc1) then (* nc1 is redundant *) widen_up (r1,t2) cs
           else (* nc1 is not redundant *) Node ((c1, nc1), widen_up (l1, t2) (c1 :: cs), widen_up (r1, t2) (nc1 :: cs))
       | _,Node((c2,nc2),l2,r2) -> Node((c2,nc2),widen_up (t1,l2) (c2::cs),widen_up (t1,r2) (nc2::cs))
@@ -942,103 +942,165 @@ struct
     let widen (t1,t2) =
       let prev = t1 in
       let lbl = LSet.elements (tree_labels t2) in
-      let rec leaves p t ls cs =
-        match t,ls with
-        | Bot,_ -> []
-        | Leaf f,[] ->
-          let b = match domain with | None -> B.inner env vars cs | Some domain -> B.meet (B.inner env vars cs) domain in
-          if (F.defined f) && not (B.isBot b) && not (F.isEq b f (F.reset f)) then [b,f] else []
-        | Leaf _,(c,nc)::ls ->
-          let h = List.hd p in
-          if (h = 1) then leaves (List.tl p) t ls (c::cs)
-          else if (h = 2) then leaves (List.tl p) t ls (nc::cs)
-          else leaves (List.tl p) t ls cs
-        | Node ((c1,nc1),l1,r1),(c,_)::ls when (C.isEq c1 c) ->
-          let h = List.hd p in
-          if (h = 2) then leaves (List.tl p) r1 ls (nc1::cs)
-          else leaves (List.tl p) l1 ls (c1::cs)
-        | Node ((c1,_),_,_),(c,nc)::ls when (C.isLeq c c1) ->
-          let h = List.hd p in
-          if (h = 1) then leaves (List.tl p) t ls (c::cs)
-          else if (h = 2) then leaves (List.tl p) t ls (nc::cs)
-          else leaves (List.tl p) t ls cs
-        | _ -> raise (Invalid_argument "widen:leaves:")
+      let () =
+        if tracewiden && !tracebwd then begin
+          List.iter (fun (c,_nc) -> Format.printf "%a " Lincons1.print c) lbl;
+          match domain with
+          | None -> ()
+          | Some domain -> Format.printf "\nDomain: %a@." B.print domain
+        end in
+      let extend1 b2 f20 f2 (b1,f1) =
+        if !tracebwd then
+          begin
+            Format.fprintf Format.std_formatter "EXTEND\n";
+            Format.fprintf Format.std_formatter "%a? %a\n" B.print b1 F.print f1;
+            Format.fprintf Format.std_formatter "%a? %a\n" B.print b2 F.print f20;
+            Format.fprintf Format.std_formatter "%a? %a\n\n" B.print b2 F.print (F.extend b1 b2 f1 f20)
+          end;
+        F.join COMPUTATIONAL b2 (F.extend b1 b2 f1 f20) f2
       in
-      let rec adjacent p1 p2 =
+      let rec leaf p (* labels + path *) t leafcs cs =
+        let select ((c,nc),(h,_)) cs =
+          if h then c::cs
+          else nc::cs in
+        let () =
+          if tracewiden && cs = [] && !tracebwd then begin
+            Format.printf "leaf";
+            List.iter (fun (_,h) -> Format.printf " %b(%b)" (fst h) (snd h)) p;
+            Format.printf "%a@." (print_tree vars) t
+          end in
+        match t with
+        | Bot -> None
+        | Leaf f ->
+          let cs =
+            let rec inner p cs = match p with
+              | [] -> cs
+              | h::p -> inner p (select h cs)
+            in inner p cs in
+          let leafb = inner_b leafcs in
+          let b = inner_b cs in
+          let () =
+            if tracewiden && !tracebwd then begin
+              Format.printf "%a [%b] // %a [%b] // %b => %a@."
+                F.print f (F.defined f)
+                B.print b (not (B.isBot b))
+                (not (F.isEq b f (F.reset f)))
+                B.print leafb
+            end in
+          if (F.defined f) && not (B.isBot b) && not (F.isEq b f (F.reset f)) then Some (leafb, f) else None
+        | Node ((c1,_),l1,r1) -> begin match p with
+            | [] -> raise (Invalid_argument "widen:leaf:")
+            | ((c,_),(s,_) as h)::p ->
+                if C.isEq c1 c
+                then leaf p (if s then l1 else r1) (select h leafcs) (select h cs)
+                else leaf p t leafcs (select h cs)
+            end
+      in
+      let rec adjacent leafb f2 p1 p2 acc =
+        let () =
+          if tracewiden && !tracebwd && p1 = [] then begin
+            Format.printf "adjacent";
+            List.iter (fun (_, (h, r)) -> Format.printf " %b(%b)" h r) p2;
+            Format.printf "@."
+          end in
         match p2 with
-        | [] -> leaves p1 prev lbl []
-        (* List.iter (fun p -> Format.fprintf Format.std_formatter "%s " (string_of_int p)) p1;
-           Format.fprintf Format.std_formatter "\n";
-           leaves p1 prev lbl [] *)
-        | h::ps ->
-          (match h with
-           | 1 -> (leaves (p1@[2]@ps) prev lbl []) @ (adjacent (p1@[1]) ps)
-           (* List.iter (fun p -> Format.fprintf Format.std_formatter "%s " (string_of_int p)) (p1@[2]@ps);
-              Format.fprintf Format.std_formatter "\n";
-              (leaves (p1@[2]@ps) prev lbl []) @ (adjacent (p1@[1]) ps) *)
-           | 2 -> (leaves (p1@[1]@ps) prev lbl []) @ (adjacent (p1@[2]) ps)
-           (* List.iter (fun p -> Format.fprintf Format.std_formatter "%s " (string_of_int p)) (p1@[1]@ps);
-              Format.fprintf Format.std_formatter "\n";
-              (leaves (p1@[1]@ps) prev lbl []) @ (adjacent (p1@[2]) ps) *)
-           | _ -> adjacent (p1@[0]) ps)
-      in
-      let rec extend (b2,f2) bfs =
-        match bfs with
-        | [] -> f2
-        | (b1,f1)::bfs ->
-          if !tracebwd then
-            begin
-              Format.fprintf Format.std_formatter "EXTEND\n";
-              Format.fprintf Format.std_formatter "%a? %a\n" B.print b1 F.print f1;
-              Format.fprintf Format.std_formatter "%a? %a\n" B.print b2 F.print f2;
-              Format.fprintf Format.std_formatter "%a? %a\n\n" B.print b2 F.print (F.extend b1 b2 f1 f2)
-            end;
-          F.join COMPUTATIONAL b2 (F.extend b1 b2 f1 f2) (extend (b2,f2) bfs)
+        | [] -> acc
+        | (p, (b, true)) :: ps -> adjacent leafb f2 ((p, (b, true)) :: p1) ps acc
+        | (p, (b, false)) :: ps -> begin
+            let acc = match leaf (List.rev_append p1 ((p, (not b, false)) :: ps)) prev [] [] with
+            | None -> acc
+            | Some (b, l) -> extend1 leafb f2 acc (b, l)
+            in adjacent leafb f2 ((p, (b, false)) :: p1) ps acc
+          end
       in
       let rec merge (t1,t2) cs =
         match t1,t2 with
         | _,Bot -> t1
         | Bot,_ -> t2
-        | Leaf f1,Leaf f2 -> Leaf (F.join COMPUTATIONAL (B.inner env vars cs) f1 f2)
+        | Leaf f1,Leaf f2 -> Leaf (F.join COMPUTATIONAL (inner_b cs) f1 f2)
         | Node ((c1,nc1),l1,r1),Node((c2,nc2),l2,r2) when (C.isEq c1 c2) (* c1 = c2 *) ->
           let l = merge (l1,l2) (c1::cs) in
           let r = merge (r1,r2) (nc1::cs) in
           Node ((c1,nc1),l,r)
         | _ -> raise (Invalid_argument "widen:merge:")
       in
-      let rec aux p (* path *) ls (* labels *) (t1,t2) cs =
-        match t1, t2, ls with
-        | Bot, Bot, _ -> Bot
-        | Leaf f1, Leaf f2, _ ->
-          let b = match domain with | None -> B.inner env vars cs | Some domain -> B.meet (B.inner env vars cs) domain in
-          if (B.isBot b) then Bot
-          else if (F.isEq b f1 f2) then t2
-          else
-            let p = List.rev p @ List.map (fun _ -> 0) ls in
-            let bfs = adjacent [] p in
-            Leaf (extend (b, f2) bfs)
-        | Node ((c1, nc1), l1, r1),
-          Node ((c2, nc2), l2, r2),
-          (c, _) :: ls
-          when C.isEq c1 c2 && C.isEq c1 c ->
-          let l = aux (1::p) ls (l1, l2) (c1 :: cs) in
-          let r = aux (2::p) ls (r1, r2) (nc1 :: cs) in
-          Node ((c1,nc1),l,r)
-        | Node ((c1, _), _, _),
-          Node ((c2, _), _, _),
-          (c, nc) :: ls
-          when C.isEq c1 c2 && C.isLeq c c1 ->
-          let bcs = B.inner env vars cs in
-          let bc = B.inner env vars [c] in
-          if (B.isLeq bcs bc)
-          then (* c is redundant *)
-            aux (0 :: p) ls (t1, t2) cs
-          else (* c is not redundant *)
-            merge (aux (1 :: p) ls (t1, t2) (c :: cs),
-                   aux (2 :: p) ls (t1, t2) (nc :: cs)) cs
-        | Bot, _, _ | _, Bot, _ | _, _, _ -> Bot
+      let rec aux p (* path *) ls (* labels *) (t1,t2) leafcs cs =
+        (* The path also contains the associated label *)
+        let () =
+          if tracewiden && !tracebwd then begin
+            List.iter (fun (_, (h, r)) -> Format.printf "%b(%b) " h r) p;
+            Format.printf "%a%a@.cs = [" (print_tree vars) t1 (print_tree vars) t2;
+            List.iter (fun c -> Format.printf "%a " Lincons1.print c) cs;
+            Format.printf "]@."
+          end in
+        match t1, t2 with
+        | Bot, _ | _, Bot -> Bot
+        | Leaf _, Node _
+        | Node _, Leaf _ -> raise (Invalid_argument "widen:aux:")
+        | Leaf f1, Leaf f2 ->
+            let leafb = inner_b leafcs in
+            let b = inner_b cs in
+            let () =
+              if tracewiden && !tracebwd then begin
+                Format.printf "Leaf + Leaf with b = %a {%a} [%b]@." B.print b B.print leafb (F.isEq b f1 f2)
+              end in
+            if (B.isBot b) then Bot
+            else if (F.isEq b f1 f2) then t2
+            else
+              let rec aux2 p ls cs acc = match ls with (* finish the path, then extend *)
+                | [] -> adjacent leafb f2 [] (List.rev p) acc (* path finished *)
+                | (c, nc) :: ls -> (* extend the path *)
+                    let bcs = B.inner env vars cs in
+                    let bc = B.inner env vars [c] in
+                    let bnc = B.inner env vars [nc] in
+                    let leqc = B.isLeq bcs bc in
+                    let leqnc = B.isLeq bcs bnc in
+                    let () =
+                      if tracewiden && !tracebwd then begin
+                        Format.printf "Path extension with bcs = %a // bc = %a // bnc = %a [%b/%b]@." B.print bcs B.print bc B.print bnc leqc leqnc
+                      end in
+                    if leqc
+                    then (* c is redundant *)
+                      aux2 (((c, nc), (true, true)) :: p) ls cs acc
+                    else if leqnc
+                    then (* nc is redundant *)
+                      aux2 (((c, nc), (false, true)) :: p) ls cs acc
+                    else (* c and nc are not redundant; mark them as such anyway to avoid taking the current leaf *)
+                      aux2 (((c, nc), (false, true)) :: p) ls (nc :: cs) (aux2 (((c, nc), (true, true)) :: p) ls (c :: cs) acc)
+              in
+              Leaf (aux2 p ls cs f2)
+        | Node ((c1, _), l1, r1), Node ((c2, _), l2, r2) ->
+            if not (C.isEq c1 c2) then raise (Invalid_argument "widen:aux:")
+            else begin match ls with
+              | [] -> raise (Invalid_argument "widen:aux:")
+              | (c, nc) :: ls ->
+                  if C.isEq c1 c then begin
+                    let l = aux (((c, nc), (true, false))::p) ls (l1, l2) (c :: leafcs) (c :: cs) in
+                    let r = aux (((c, nc), (false, false))::p) ls (r1, r2) (nc :: leafcs) (nc :: cs) in
+                    Node ((c,nc),l,r)
+                  end else if C.isLeq c c1 then begin
+                    let bcs = B.inner env vars cs in
+                    let bc = B.inner env vars [c] in
+                    let bnc = B.inner env vars [nc] in
+                    let leqc = B.isLeq bcs bc in
+                    let leqnc = B.isLeq bcs bnc in
+                    let () =
+                      if tracewiden && !tracebwd then begin
+                        Format.printf "Node + Node with bcs = %a // bc = %a // bnc = %a [%b/%b]@." B.print bcs B.print bc B.print bnc leqc leqnc
+                      end in
+                    if leqc
+                    then (* c is redundant *)
+                      aux (((c, nc), (true, true)) :: p) ls (t1, t2) leafcs cs
+                    else if leqnc
+                    then (* nc is redundant *)
+                      aux (((c, nc), (false, true)) :: p) ls (t1, t2) leafcs cs
+                    else (* c and nc are not redundant *)
+                      merge (aux (((c, nc), (true, true)) :: p) ls (t1, t2) leafcs (c :: cs),
+                            aux (((c, nc), (false, true)) :: p) ls (t1, t2) leafcs (nc :: cs)) cs
+                  end else raise (Invalid_argument "widen:aux:")
+            end
       in
-      aux [] lbl (t1, t2) []
+      aux [] lbl (t1, t2) [] []
     in
     if !tracebwd then
       begin
@@ -1650,7 +1712,29 @@ struct
         | _ -> Node((c,nc),l,r)
     in { domain = domain; tree = aux t.tree []; env = env; vars = vars }
 
-  let  print fmt t =
+  (* Compress nodes where leaves are upper-bounded by something into a single leaf. *)
+  let compress_consts t =
+    match t.tree with
+    | Leaf _ -> t
+    | _ ->
+      let rec aux t cs =
+        match t with
+        | Bot | Leaf _ -> t
+        | Node((c,nc),l,r) ->
+          try
+            (* Compress both children *)
+            match aux l (c::cs),aux r (nc::cs) with
+            | Leaf f1,Leaf f2 when F.defined f1 && F.defined f2 -> begin
+              (* The two leaves are compatible, are they compressable? *)
+              match F.getCompressed cs c nc f1 f2 with
+              | Some l -> Leaf l (* Yes *)
+              | None -> raise(GetOut(Leaf f1,Leaf f2)) (* No *)
+              end
+            | l,r -> raise(GetOut(l,r))
+          with GetOut(l,r) -> Node((c,nc),l,r)
+      in { t with tree=aux t.tree [] }
+
+  let print fmt t =
     let domain = t.domain in
     let env = t.env in
     let vars = t.vars in

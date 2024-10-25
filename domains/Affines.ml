@@ -7,6 +7,8 @@ open Partition
 open Functions
 open Numerical
 
+module VarMap = Mapext.Make(Var)
+
 module Affine (B : PARTITION) : FUNCTION = struct
   module B = B
 
@@ -159,6 +161,54 @@ module Affine (B : PARTITION) : FUNCTION = struct
       match k with APPROXIMATION -> true | COMPUTATIONAL -> false )
     | Bot, _ | _, Top -> true
     | _ -> false
+
+  let getCompressed cs c nc f01 f02 : f option =
+    let fvars1, fvars2 = f01.vars, f02.vars in
+    match f01.ranking, f02.ranking with
+    | Fun f1, Fun f2 -> begin
+        let vars1 = ref VarMap.empty in
+        let vars2 = ref VarMap.empty in
+        Linexpr1.iter
+            (fun c v ->
+              if not (Coeff.is_zero c) && List.exists (fun v1 -> String.compare (Var.to_string v) v1.varId = 0) fvars1 then
+                vars1 := VarMap.add v c !vars1)
+            f1 ;
+        Linexpr1.iter
+            (fun c v ->
+              if not (Coeff.is_zero c) && List.exists (fun v2 -> String.compare (Var.to_string v) v2.varId = 0) fvars2 then
+                vars2 := VarMap.add v c !vars2)
+            f2 ;
+        let le1 = Linexpr1.make f01.env in
+        let le2 = Linexpr1.make f02.env in
+        let ler = Linexpr1.make f1.env in
+        let arr1 = Lincons1.array_make f01.env (List.length cs + 1) in
+        let arr2 = Lincons1.array_make f01.env (List.length cs + 1) in
+        Lincons1.array_set arr1 0 c;
+        Lincons1.array_set arr2 0 nc;
+        List.iteri (fun i c -> Lincons1.array_set arr1 (i + 1) c; Lincons1.array_set arr2 (i + 1) c) cs;
+        let cs1 = Abstract1.of_lincons_array manager f01.env arr1 in
+        let cs2 = Abstract1.of_lincons_array manager f02.env arr2 in
+        VarMap.iter2o
+          (fun v1 c1 -> Linexpr1.set_coeff le1 v1 c1)
+          (fun v2 c2 -> Linexpr1.set_coeff le2 v2 c2)
+          (fun v c1 c2 ->
+            if Coeff.equal c1 c2 then Linexpr1.set_coeff ler v c1
+            else (Linexpr1.set_coeff le1 v c1; Linexpr1.set_coeff le2 v c2))
+          !vars1 !vars2;
+        Linexpr1.set_cst le1 (Linexpr1.get_cst f1);
+        Linexpr1.set_cst le2 (Linexpr1.get_cst f2);
+        let i1 = Abstract1.bound_linexpr manager cs1 le1 in
+        let i2 = Abstract1.bound_linexpr manager cs2 le2 in
+        if Scalar.is_infty i1.sup = 0 && Scalar.is_infty i2.sup = 0
+        then if Scalar.cmp i1.sup i2.sup > 0 then begin
+          Linexpr1.set_cst ler (Coeff.Scalar i1.sup);
+          Some { f01 with ranking = Fun ler }
+        end else begin
+          Linexpr1.set_cst ler (Coeff.Scalar i2.sup);
+          Some { f02 with ranking = Fun ler }
+        end else None
+      end
+    | _ -> None
 
   (**)
 

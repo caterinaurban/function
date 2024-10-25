@@ -110,7 +110,11 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
           if B.isLeq i' i then i
           else
             let i'' =
-              if n <= !joinfwd then i' else B.widen i (B.join i i')
+              if n <= !joinfwd then i' else (
+                let j = B.join i i' in
+                if !tracefwd && not !minimal then
+                  Format.fprintf !fmt "j: %a\n" B.print j ;
+                B.widen i j )
             in
             if !tracefwd && not !minimal then
               Format.fprintf !fmt "i'': %a\n" B.print i'' ;
@@ -145,25 +149,37 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
 
   (* Backward Iterator + Recursion *)
 
-  let rec bwdStm ?domain funcs env vars (p, r, flag) s =
+  let rec bwdStm ?domain fixed_structure funcs env vars (p, r, flag) s =
     match s with
     | A_label _ -> (p, r, flag)
     | A_return -> (D.zero ?domain env vars, r, flag)
-    | A_assign ((l, _), (e, _)) -> (D.bwdAssign ?domain p (l, e), r, flag)
+    | A_assign ((l, _), (e, _)) ->
+        let j = D.bwdAssign ?domain p (l, e) in
+        let j' = if fixed_structure then j else D.compress_consts j in
+        if !tracebwd && not !minimal then (
+          Format.fprintf !fmt "j: %a\n" D.print j ;
+          if j <> j' then Format.fprintf !fmt "j': %a\n" D.print j' ) ;
+        (j', r, flag)
     | A_assert (b, _) -> (D.filter ?domain p b, r, flag)
     | A_if ((b, ba), s1, s2) ->
-        let p1, _, flag1 = bwdBlk funcs env vars (p, r, flag) s1 in
+        let p1, _, flag1 = bwdBlk fixed_structure funcs env vars (p, r, flag) s1 in
         let p1 = D.filter ?domain p1 b in
-        let p2, _, flag2 = bwdBlk funcs env vars (p, r, flag) s2 in
+        let p2, _, flag2 = bwdBlk fixed_structure funcs env vars (p, r, flag) s2 in
         let p2 = D.filter ?domain p2 (fst (negBExp (b, ba))) in
+        let j = D.join APPROXIMATION p1 p2 in
+        let j' = if fixed_structure then j else D.compress_consts j in
         if !tracebwd && not !minimal then (
           Format.fprintf !fmt "p1: %a\n" D.print p1 ;
-          Format.fprintf !fmt "p2: %a\n" D.print p2 ) ;
-        (D.join APPROXIMATION p1 p2, r, flag1 || flag2)
+          Format.fprintf !fmt "p2: %a\n" D.print p2 ;
+          Format.fprintf !fmt "j: %a\n" D.print j ;
+          if j <> j' then Format.fprintf !fmt "j': %a\n" D.print j' ) ;
+        (j', r, flag1 || flag2)
     | A_while (l, (b, ba), s) ->
         let a = InvMap.find l !fwdInvMap in
         let dm = if !refine then Some a else None in
         let p1 = D.filter ?domain:dm p (fst (negBExp (b, ba))) in
+        let old_fixed_structure = fixed_structure in
+        let fixed_structure = true in
         let rec aux (i, _, _) (p2, _, flag2) n =
           if !abort then raise Abort
           else
@@ -189,7 +205,7 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
                 in
                 if !tracebwd && not !minimal then
                   Format.fprintf !fmt "i'': %a\n" D.print i'' ;
-                let p2, _, flag2 = bwdBlk funcs env vars (i'', r, flag2) s in
+                let p2, _, flag2 = bwdBlk fixed_structure funcs env vars (i'', r, flag2) s in
                 let p2' = D.filter ?domain:dm p2 b in
                 aux (i'', r, flag2) (p2', r, flag2) (n + 1) )
             else
@@ -199,38 +215,45 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
               in
               if !tracebwd && not !minimal then
                 Format.fprintf !fmt "i'': %a\n" D.print i'' ;
-              let p2, _, flag2 = bwdBlk funcs env vars (i'', r, flag2) s in
+              let p2, _, flag2 = bwdBlk fixed_structure funcs env vars (i'', r, flag2) s in
               let p2' = D.filter ?domain:dm p2 b in
               aux (i'', r, flag2) (p2', r, flag2) (n + 1)
         in
         let i = (D.bot ?domain:dm env vars, r, flag) in
-        let p2, _, flag2 = bwdBlk funcs env vars i s in
+        let p2, _, flag2 = bwdBlk fixed_structure funcs env vars i s in
         let p2' = D.filter ?domain:dm p2 b in
         let p, r, flag = aux i (p2', r, flag2) 1 in
         addBwdInv l p ;
-        if !refine then (D.refine p a, r, flag) else (p, r, flag)
+        let p = if !refine then D.refine p a else p in
+        let fixed_structure = old_fixed_structure in
+        let p' = if fixed_structure then p else D.compress_consts p in
+        if !tracebwd && not !minimal then (
+          Format.fprintf !fmt "### %a:DONE ###:\n" label_print l ;
+          Format.fprintf !fmt "p: %a\n" D.print p ;
+          if p <> p' then Format.fprintf !fmt "p': %a\n" D.print p' ) ;
+        (p', r, flag)
     | A_call (f, ss) ->
         let f = StringMap.find f funcs in
         let p = bwdRec funcs env vars p f.funcBody in
         List.fold_left
           (fun (ap, ar, aflag) (s, _) ->
-            bwdStm ?domain funcs env vars (ap, ar, aflag) s )
+            bwdStm ?domain fixed_structure funcs env vars (ap, ar, aflag) s )
           (p, r, flag) ss
     | A_recall (f, ss) -> (
       match domain with
       | None ->
           List.fold_left
             (fun (ap, ar, aflag) (s, _) ->
-              bwdStm funcs env vars (ap, ar, aflag) s )
+              bwdStm fixed_structure funcs env vars (ap, ar, aflag) s )
             (D.join APPROXIMATION p r, r, true)
             ss
       | Some domain ->
           List.fold_left
             (fun (ap, ar, aflag) (s, _) ->
-              bwdStm ~domain funcs env vars (ap, ar, aflag) s )
+              bwdStm ~domain fixed_structure funcs env vars (ap, ar, aflag) s )
             (r, r, true) ss )
 
-  and bwdBlk funcs env vars (p, r, flag) (b : block) : D.t * D.t * bool =
+  and bwdBlk fixed_structure funcs env vars (p, r, flag) (b : block) : D.t * D.t * bool =
     let result_print l p =
       Format.fprintf !fmt "### %a ###:\n%a@." label_print l D.print p
     in
@@ -245,11 +268,11 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
         stop := Sys.time () ;
         if !stop -. !start > !timeout then raise Timeout
         else
-          let b, rb, flagb = bwdBlk funcs env vars (p, r, flag) b in
+          let b, rb, flagb = bwdBlk fixed_structure funcs env vars (p, r, flag) b in
           let a = InvMap.find l !fwdInvMap in
           let p, r, flag =
-            if !refine then bwdStm ~domain:a funcs env vars (b, rb, flagb) s
-            else bwdStm funcs env vars (b, rb, flagb) s
+            if !refine then bwdStm ~domain:a fixed_structure funcs env vars (b, rb, flagb) s
+            else bwdStm fixed_structure funcs env vars (b, rb, flagb) s
           in
           let p = if !refine then D.refine p a else p in
           if !tracebwd && not !minimal then result_print l p ;
@@ -257,7 +280,7 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
           (p, r, flag)
 
   and bwdRec funcs env vars (p : D.t) (b : block) : D.t =
-    let res, _, _ = bwdBlk funcs env vars (p, D.bot env vars, false) b in
+    let res, _, _ = bwdBlk false funcs env vars (p, D.bot env vars, false) b in
     res
 
   (* NOTE: unsound *)
@@ -409,7 +432,6 @@ module TerminationIterator (D : RANKING_FUNCTION) = struct
     aux (B.top env vars) (D.bot env vars) 1
 
   let analyze (vars, stmts, funcs) main robust =
-    let sv = vars in
     let rec aux xs env =
       match xs with
       | [] -> env

@@ -35,6 +35,8 @@ module type FUNCTION = sig
 
   val isLeq : kind -> B.t -> f -> f -> bool
 
+  val getCompressed : Lincons1.t list -> Lincons1.t -> Lincons1.t -> f -> f -> f option
+
   val join : kind -> B.t -> f -> f -> f
   val learn: B.t -> f -> f -> f (* conflict-driven analysis *)
   val widen : ?jokers:int -> B.t -> f -> f -> f
